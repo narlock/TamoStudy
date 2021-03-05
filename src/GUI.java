@@ -1,38 +1,51 @@
+/**
+ * @description GUI Class of TamoStudy
+ * @author Anthony Narlock
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI extends JPanel implements ActionListener{
-	private JFrame frame = new JFrame();
+public class GUI extends JFrame {
+	
+	//Component Declaration
+	private JPanel topPanel, centerPanel, botPanel;
+	private JButton studyButton, endStudyButton;
 
 	public GUI() {
 		
-		createAspects();
-		
 		setUpFrame();
 		
-	}
-	
-	public void createAspects() {
-		//Study Button
-		JButton studyButton = new JButton("STUDY");
-		studyButton.addActionListener(this);
-				
-		//The panel with button and some text
-		JPanel panel = new JPanel();
-		panel.add(studyButton);
+		initVariables();
+		
+		createAspects();
+		
+		setUpGUI();
+		
+		this.setSize(1280, 720);
+		
 	}
 	
 	public void setUpFrame() {
-		//Set up the frame and display it
-		add(frame);
+		//Sets up the GUI's frame
+		this.setTitle("TamoStudy (version: 0.1)");
+		this.setSize(1280,720);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public void initVariables() {
 		
+	}
+
+	public void createAspects() {
 		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void setUpGUI() {
 		
 	}
 
