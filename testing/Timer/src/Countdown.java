@@ -1,3 +1,4 @@
+import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,6 +10,8 @@ public class Countdown {
 		public void run() {
 				seconds--;
 				System.out.println("Decrementing by 1 second. Now at " + seconds);
+				//send information back to the gui
+				
 				if(seconds == 0)
 					task.cancel();
 			} 
@@ -24,6 +27,11 @@ public class Countdown {
 	public Countdown(int seconds) {
 		this.seconds = seconds;
 
+	}
+	
+
+	public int updateSeconds() {
+		return seconds;
 	}
 
 
