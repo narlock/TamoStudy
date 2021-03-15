@@ -24,6 +24,7 @@ public class testGUI extends JFrame {
 	private Timer timer;
 
 	private JLabel imageLabel;
+	
 
 	public testGUI()  {
 		
@@ -41,12 +42,16 @@ public class testGUI extends JFrame {
 	
 	public void setUpFrame() {
 		//Sets up the GUI's frame
-		this.setTitle("FOCUS - TamoStudy (version: 0.1)");
+		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon("assets/heart.png");
+		
+		this.setTitle("TamoStudy - alpha 0.1.2");
 		this.setSize(500,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setIconImage(logo.getImage());
 		
 	}
 	
