@@ -78,8 +78,11 @@ public class testGUI extends JFrame {
 				sec = Integer.parseInt(secondTime.getText());
 			}
 		});
+		breakButton = new JButton("Break Focus");
+		breakButton.setEnabled(false);
 		
 		startButton = new JButton("Start");
+		
 		startButton.addActionListener(new ActionListener() {
 
 			//Button Action
@@ -90,8 +93,11 @@ public class testGUI extends JFrame {
 					//This is the "timer" action
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						//Enabled and Disabled updating
 						minuteBox.setEnabled(false);
 						secondBox.setEnabled(false);
+						startButton.setEnabled(false);
+						breakButton.setEnabled(true);
 						
 						if(sec == 0) {
 							sec = 60;
@@ -100,20 +106,11 @@ public class testGUI extends JFrame {
 						
 						if(min < 0) {
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
-							JOptionPane.showMessageDialog(rootPane, "Session Completed", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(rootPane, "Session Completed\nYou focused for _ minutes", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
 							
 							//TODO: make methods to actually update coins and total statistics
 							
-							//update the timer gui
-							min = 0;
-							sec = 0;
-							
-							minuteTime.setText("0" + min);
-							secondTime.setText("0" + sec);
-							
-							//stop timer
-							minuteBox.setEnabled(true);
-							secondBox.setEnabled(true);
+							resetTimer();
 							timer.stop();
 						} 
 						else {
@@ -141,8 +138,23 @@ public class testGUI extends JFrame {
 			}
 			
 		});
+		
+		breakButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				resetTimer();
+				timer.stop();
+				
+				JOptionPane.showMessageDialog(rootPane, "Session Focus Broke\nYou focused for _ minutes", "Maybe next time...", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
 			
-		breakButton = new JButton("Break Focus");
+			
+		});
+			
+		
 	}
 
 	public void createAspects() {
@@ -197,6 +209,23 @@ public class testGUI extends JFrame {
 		botPanel.add(breakButton);
 	}
 	
+	public void resetTimer() {
+		min = 0;
+		sec = 0;
+		
+		minuteTime.setText("0" + min);
+		secondTime.setText("0" + sec);
+		
+		minuteBox.setSelectedIndex(0);
+		secondBox.setSelectedIndex(0);
+		
+		//stop 
+		minuteBox.setEnabled(true);
+		secondBox.setEnabled(true);
+		startButton.setEnabled(true);
+		breakButton.setEnabled(false);
+		
+	}
 
 	
 }
