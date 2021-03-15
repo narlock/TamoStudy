@@ -3,14 +3,18 @@
  * @author Anthony Narlock
  */
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.io.IOException;
 
 public class testGUI extends JFrame {
 	
 	//Component Declaration
-	private JPanel topPanel, centerPanel, botCenterPanel, botPanel;
+	private JPanel topPanel, topCenterPanel, centerPanel, botCenterPanel, botPanel;
 	private JButton startButton, breakButton;
 	private JLabel minuteTime, secondTime, spaceLabel, titleLabel;
 	private JComboBox minuteBox, secondBox;
@@ -18,10 +22,10 @@ public class testGUI extends JFrame {
 	private int min, sec, tempMin, tempSec;
 	private boolean zeroMinFlag, zeroSecFlag, isStopped = false;
 	private Timer timer;
-	
-	//private Countdown countdown;
 
-	public testGUI() {
+	private JLabel imageLabel;
+
+	public testGUI()  {
 		
 		setUpFrame();
 		
@@ -46,8 +50,12 @@ public class testGUI extends JFrame {
 		
 	}
 	
-	public void initVariables() {
+	public void initVariables()  {
+		
+		imageLabel = new JLabel(new ImageIcon("assets/tama_test3.png"));
+		
 		topPanel = new JPanel();
+		topCenterPanel = new JPanel();
 		centerPanel = new JPanel();
 		botCenterPanel = new JPanel();
 		botPanel = new JPanel();
@@ -81,7 +89,7 @@ public class testGUI extends JFrame {
 		breakButton = new JButton("Break Focus");
 		breakButton.setEnabled(false);
 		
-		startButton = new JButton("Start");
+		startButton = new JButton("Start Focus");
 		
 		startButton.addActionListener(new ActionListener() {
 
@@ -173,9 +181,11 @@ public class testGUI extends JFrame {
 	}
 	
 	public void setUpGUI() {
-		this.getContentPane().setLayout(new GridLayout(4,1));
+		this.getContentPane().setLayout(new GridLayout(5,1));
+		this.getContentPane().setBackground(new Color(255,161,161));
 		
 		this.getContentPane().add(topPanel);
+		this.getContentPane().add(topCenterPanel);
 		this.getContentPane().add(centerPanel);
 		this.getContentPane().add(botCenterPanel);
 		this.getContentPane().add(botPanel);
@@ -183,16 +193,25 @@ public class testGUI extends JFrame {
 		//centerPanel.setLayout(new GridLayout(1,3));
 		
 		addComponentsToTopPanel();
+		addComponentsToTopCenterPanel();
 		addComponentsToCenterPanel();
 		addComponentsToBotCenterPanel();
 		addComponentsToBottomPanel();
 	}
 	
 	public void addComponentsToTopPanel() {
+		topPanel.setBackground(new Color(255,161,161));
 		topPanel.add(titleLabel);
+	}
+	
+	public void addComponentsToTopCenterPanel() {
+		topCenterPanel.setBackground(new Color(255,161,161));
+		topCenterPanel.add(imageLabel);
+		
 	}
 
 	public void addComponentsToCenterPanel() {
+		centerPanel.setBackground(new Color(255,161,161));
 		centerPanel.add(minuteTime);
 		centerPanel.add(spaceLabel);
 		centerPanel.add(secondTime);
@@ -200,11 +219,13 @@ public class testGUI extends JFrame {
 	}
 	
 	public void addComponentsToBotCenterPanel() {
+		botCenterPanel.setBackground(new Color(255,161,161));
 		botCenterPanel.add(minuteBox);
 		botCenterPanel.add(secondBox);
 	}
 	
 	public void addComponentsToBottomPanel() {
+		botPanel.setBackground(new Color(255,161,161));
 		botPanel.add(startButton);
 		botPanel.add(breakButton);
 	}
@@ -226,6 +247,7 @@ public class testGUI extends JFrame {
 		breakButton.setEnabled(false);
 		
 	}
+	
 
 	
 }
