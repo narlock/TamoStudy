@@ -90,6 +90,8 @@ public class testGUI extends JFrame {
 					//This is the "timer" action
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						minuteBox.setEnabled(false);
+						secondBox.setEnabled(false);
 						
 						if(sec == 0) {
 							sec = 60;
@@ -110,6 +112,8 @@ public class testGUI extends JFrame {
 							secondTime.setText("0" + sec);
 							
 							//stop timer
+							minuteBox.setEnabled(true);
+							secondBox.setEnabled(true);
 							timer.stop();
 						} 
 						else {
