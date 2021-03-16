@@ -86,6 +86,10 @@ public class Tamo {
 		}
 	}
 	
+	public String tamoInfo() {
+		return name + "," + age + "," + happiness + "," + hunger;
+	}
+	
 	@Override
 	public String toString() {
 		return

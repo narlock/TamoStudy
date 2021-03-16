@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.io.IOException;
 
 public class welcomeGUI extends JFrame {
 	private JPanel topPanel, centerPanel, buttonPanel;
@@ -15,6 +14,7 @@ public class welcomeGUI extends JFrame {
 	
 	private Profile profile;
 	private int result;
+	private File file;
 	
 	public welcomeGUI() {
 		setUpFrame();
@@ -53,6 +53,8 @@ public class welcomeGUI extends JFrame {
 		
 		createProfileButton = new JButton("Create New Profile");
 		existingLoginButton = new JButton("Existing Profile");
+		//TODO
+		existingLoginButton.setEnabled(false);
 		
 	}
 	
@@ -87,8 +89,17 @@ public class welcomeGUI extends JFrame {
 				if(resultPane == JOptionPane.OK_OPTION) {
 					result = 1;
 					profile = new Profile(usernameField.getText(), passwordField.getText(), tamoNameField.getText());
-					//TODO:
-					writeProfileToFile();
+					
+					
+					//TODO: update this try and catch statement
+					try {
+						writeProfileToFile(profile);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
 					GUI Focus = new GUI(profile);
 					
 				} else {
@@ -130,7 +141,17 @@ public class welcomeGUI extends JFrame {
 	
 	}
 	
-	public void writeProfileToFile() {
+	public void writeProfileToFile(Profile p) throws IOException {
+		//hides the main screen page
+		this.setVisible(false);
+		
+		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getTamo().tamoInfo();
+		
+		//rid this
+		file = new File("profiles.txt");
+		OutputStream outStream = new FileOutputStream(file);
+		outStream.write(profileInfo.getBytes());
+		outStream.close();
 		
 	}
 }
