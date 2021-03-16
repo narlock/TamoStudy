@@ -1,14 +1,11 @@
-# java-workPunchTime
-Work/Break time tracker. Inspired to display study/not-studying time for productivity purpose
-
-Created by: Anthony Narlock
+# TamoStudy
+Author: Anthony Narlock
 ##
 
-Purpose: Create a GUI that tracks user information including:
-	Punch in and Punch out system, marking when work has begun and when work ends. (Also would count the amount of time the user was in "break mode")
-	Create time markings, to show the exact time that the user punched in, or punched out, took a break, etc.
-	All information for specific user is to be loaded via another file that is stored on the computer.
+Original Concept Idea: I wanted a way to record the amount of time I spent focused every day. At the time, I was cleaning through my room and found my Tamagotchi that I used to play with when I was very young. I thought that implementing a Tamagotchi-like pet into a focus timer would be a good idea. The more I focus and get my work done, the more upgrades and new things I can do with the virtual pet (in my project, it's called a Tamo).
 
-Reason for dev: I started a new type of studying and I wanted to track the amount of time I spent studying and the amound of time that I was taking breaks. I think that other people may find this useful as well!
+##
 
-Optional addition: Adding the gross "hourly" rate of a user could also display how much money that person makes when they are punched in. This could also lead to multiple other calculations as well in the future.
+Project plans to include a GUI in which a user can create a username and password along with give a name for their Tamo. The user can re-load this information so they can load where they left off in their studies. (Keeping the total amount of time they have focused, and their previous Tamo alive)
+
+The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
