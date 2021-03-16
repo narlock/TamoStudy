@@ -12,9 +12,13 @@ public class welcomeGUI extends JFrame {
 	private JLabel titleLabel, botLabel;
 	private JButton existingLoginButton, createProfileButton;
 	
+	private JLabel imageLabel;
+	
 	private Profile profile;
 	private int result;
+	
 	private File file;
+	private BufferedWriter bw;
 	
 	public welcomeGUI() {
 		setUpFrame();
@@ -42,6 +46,8 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public void initVariables() {
+		imageLabel = new JLabel(new ImageIcon("assets/tama_test4.png"));
+		
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
 		buttonPanel = new JPanel();
@@ -127,10 +133,12 @@ public class welcomeGUI extends JFrame {
 	public void addComponentsToTopPanel() {
 		topPanel.setBackground(new Color(255,161,161));
 		topPanel.add(titleLabel);
+		topPanel.add(imageLabel);
 	}
 	
 	public void addComponentsToCenterPanel() {
 		centerPanel.setBackground(new Color(255,161,161));
+		//centerPanel.add(imageLabel);
 	}
 	
 	public void addComponentsToButtonPanel() {
@@ -145,13 +153,19 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getTamo().tamoInfo();
+		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getTamo().tamoInfo() + "\n";
 		
-		//rid this
+		
 		file = new File("profiles.txt");
-		OutputStream outStream = new FileOutputStream(file);
-		outStream.write(profileInfo.getBytes());
-		outStream.close();
+		if(!file.exists()) {
+			file.createNewFile();
+		}
+		
+		FileWriter fileWriter = new FileWriter(file.getName(), true);
+		bw = new BufferedWriter(fileWriter);
+		bw.append(profileInfo);
+		bw.close();
+		
 		
 	}
 }
