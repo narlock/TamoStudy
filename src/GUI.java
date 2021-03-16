@@ -36,8 +36,24 @@ public class GUI extends JFrame {
 		
 		setUpGUI();
 		
+		updateUserInformation();
+		
 		this.setSize(500, 350);
 		
+	}
+	
+	public GUI(Profile p) {
+		setUpFrame();
+		
+		initVariables();
+		
+		createAspects();
+		
+		setUpGUI();
+		
+		updateUserInformation(p);
+		
+		this.setSize(500, 350);
 	}
 	
 	public void setUpFrame() {
@@ -65,7 +81,7 @@ public class GUI extends JFrame {
 		botCenterPanel = new JPanel();
 		botPanel = new JPanel();
 		
-		titleLabel = new JLabel("TamoStudy");
+		titleLabel = new JLabel("Focus - TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
 		minuteTime = new JLabel("00");
@@ -253,6 +269,15 @@ public class GUI extends JFrame {
 		
 	}
 	
+	//no user information
+	public void updateUserInformation() {
+		
+	}
+	
+	//with user information
+	public void updateUserInformation(Profile p) {
+		
+	}
 
 	
 }

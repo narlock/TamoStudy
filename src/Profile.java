@@ -12,8 +12,10 @@ public class Profile {
 		//TODO
 	}
 	
-	public Profile(String username, String password) {
-		//TODO
+	public Profile(String username, String password, String tamoName) {
+		this.username = username;
+		this.password = password;
+		this.tamo = new Tamo(tamoName);
 	}
 
 	public String getUsername() {
