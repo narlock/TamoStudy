@@ -23,6 +23,13 @@ public class Tamo {
 		this.hunger = 0;
 	}
 	
+	public Tamo(String name, int level, int happiness, int hunger) {
+		this.name = name;
+		this.level = level;
+		this.happiness = happiness;
+		this.hunger = hunger;
+	}
+
 	//getters
 	public String getName() {
 		return name;
@@ -94,6 +101,11 @@ public class Tamo {
 				"\nLevel: " + level +
 				"\nHappiness: " + happiness +
 				"\nHunger: " + hunger;
+	}
+
+	public void setName(String tamoName) {
+		this.name = tamoName;
+		
 	}
 
 }

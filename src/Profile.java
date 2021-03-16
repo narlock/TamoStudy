@@ -33,6 +33,18 @@ public class Profile {
 		
 		this.money = 0;
 	}
+	
+	
+	//When loading profile, use this
+	public Profile(String username, String password, String dateString, int money, Tamo tamo) {
+		this.username = username;
+		this.password = password;
+		this.dateString = dateString;
+		this.money = money;
+		
+		this.tamo = tamo;
+	}
+
 
 	public String getUsername() {
 		return username;
