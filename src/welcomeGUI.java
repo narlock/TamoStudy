@@ -153,7 +153,7 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getTamo().tamoInfo() + "\n";
+		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getMoney() + "," + p.getTamo().tamoInfo();
 		
 		
 		file = new File("profiles.txt");
@@ -163,7 +163,7 @@ public class welcomeGUI extends JFrame {
 		
 		FileWriter fileWriter = new FileWriter(file.getName(), true);
 		bw = new BufferedWriter(fileWriter);
-		bw.append(profileInfo);
+		bw.append("\n" + profileInfo);
 		bw.close();
 		
 		

@@ -3,7 +3,6 @@ public class Tamo {
 	private String name;
 	private int level;
 	private int experience;
-	private int age;
 	private int happiness;
 	private int hunger;
 	
@@ -11,7 +10,6 @@ public class Tamo {
 		this.name = "null";
 		this.level = -1;
 		this.experience = -1;
-		this.age = -1;
 		this.happiness = -1;
 		this.hunger = -1;
 		
@@ -21,7 +19,6 @@ public class Tamo {
 		this.name = name;
 		this.level = 0;
 		this.experience = 0;
-		this.age = 0;
 		this.happiness = 0;
 		this.hunger = 0;
 	}
@@ -31,8 +28,8 @@ public class Tamo {
 		return name;
 	}
 	
-	public int getAge() {
-		return age;
+	public int getLevel() {
+		return level;
 	}
 	
 	public int getHappiness() {
@@ -87,15 +84,16 @@ public class Tamo {
 	}
 	
 	public String tamoInfo() {
-		return name + "," + age + "," + happiness + "," + hunger;
+		return name + "," + level + "," + happiness + "," + hunger;
 	}
 	
 	@Override
 	public String toString() {
 		return
 				"Name: " + name +
-				"\nAge: " + age + " days" +
+				"\nLevel: " + level +
 				"\nHappiness: " + happiness +
 				"\nHunger: " + hunger;
 	}
+
 }

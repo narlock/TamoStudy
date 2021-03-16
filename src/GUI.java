@@ -25,8 +25,13 @@ public class GUI extends JFrame {
 
 	private JLabel imageLabel;
 	
+	private Profile profile;
+	private JLabel profileName, tamoName, tamoLevel, tamoHappiness, tamoHunger;
+	private JPanel profileInfoPanel;
+	
 
 	public GUI()  {
+		this.profile = new Profile();
 		
 		setUpFrame();
 		
@@ -43,7 +48,11 @@ public class GUI extends JFrame {
 	}
 	
 	public GUI(Profile p) {
+		this.profile = p;
+		
 		setUpFrame();
+		
+		updateUserInformation(p);
 		
 		initVariables();
 		
@@ -51,7 +60,6 @@ public class GUI extends JFrame {
 		
 		setUpGUI();
 		
-		updateUserInformation(p);
 		
 		this.setSize(500, 350);
 	}
@@ -71,6 +79,14 @@ public class GUI extends JFrame {
 		
 	}
 	
+	public void updateUserInformation(Profile p) {
+		profileName = new JLabel("Welcome, " + p.getUsername() + "!");
+		tamoName = new JLabel("" + p.getTamo().getName());
+		tamoLevel = new JLabel("Level: " + p.getTamo().getLevel());
+		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
+		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
+	}
+	
 	public void initVariables()  {
 		
 		imageLabel = new JLabel(new ImageIcon("assets/tama_test3.png"));
@@ -80,6 +96,8 @@ public class GUI extends JFrame {
 		centerPanel = new JPanel();
 		botCenterPanel = new JPanel();
 		botPanel = new JPanel();
+		
+		profileInfoPanel = new JPanel();
 		
 		titleLabel = new JLabel("Focus - TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
@@ -211,7 +229,7 @@ public class GUI extends JFrame {
 		this.getContentPane().add(botCenterPanel);
 		this.getContentPane().add(botPanel);
 		
-		//centerPanel.setLayout(new GridLayout(1,3));
+		profileInfoPanel.setLayout(new GridLayout(5,1));
 		
 		addComponentsToTopPanel();
 		addComponentsToTopCenterPanel();
@@ -226,8 +244,17 @@ public class GUI extends JFrame {
 	}
 	
 	public void addComponentsToTopCenterPanel() {
+		topCenterPanel.setLayout(new GridLayout(1,2));
 		topCenterPanel.setBackground(new Color(255,161,161));
 		topCenterPanel.add(imageLabel);
+		topCenterPanel.add(profileInfoPanel);
+		
+		profileInfoPanel.setBackground(new Color(255,161,161));
+		profileInfoPanel.add(profileName);
+		profileInfoPanel.add(tamoName);
+		profileInfoPanel.add(tamoLevel);
+		profileInfoPanel.add(tamoHappiness);
+		profileInfoPanel.add(tamoHunger);
 		
 	}
 
@@ -275,9 +302,7 @@ public class GUI extends JFrame {
 	}
 	
 	//with user information
-	public void updateUserInformation(Profile p) {
-		
-	}
+	
 
 	
 }
