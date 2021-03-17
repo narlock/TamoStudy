@@ -46,7 +46,7 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public void initVariables() {
-		imageLabel = new JLabel(new ImageIcon("assets/tama_test4.png"));
+		imageLabel = new JLabel(new ImageIcon("assets/tama_welcome.png"));
 		
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
@@ -55,7 +55,7 @@ public class welcomeGUI extends JFrame {
 		titleLabel = new JLabel("Welcome to TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
-		botLabel = new JLabel("Created by Anthony Narlock - Version: alpha 0.2.0");
+		botLabel = new JLabel("alpha 0.2.1");
 		
 		createProfileButton = new JButton("Create New Profile");
 		existingLoginButton = new JButton("Load Existing Profile");
@@ -165,12 +165,13 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public void setUpGUI() {
-		this.getContentPane().setLayout(new GridLayout(3,1));
+		//this.getContentPane().setLayout(new GridLayout(3,1));
+		this.getContentPane().setLayout(new BorderLayout());
 		this.getContentPane().setBackground(new Color(255,161,161));
 		
-		this.getContentPane().add(topPanel);
-		this.getContentPane().add(centerPanel);
-		this.getContentPane().add(buttonPanel);
+		this.getContentPane().add(topPanel, BorderLayout.NORTH);
+		this.getContentPane().add(centerPanel, BorderLayout.CENTER);
+		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 		
 		addComponentsToTopPanel();
 		addComponentsToCenterPanel();
@@ -178,21 +179,28 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public void addComponentsToTopPanel() {
+		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(new Color(255,161,161));
-		topPanel.add(titleLabel);
-		topPanel.add(imageLabel);
+		
+		titleLabel.setHorizontalAlignment(JLabel.CENTER);
+		botLabel.setHorizontalAlignment(JLabel.CENTER);
+		
+		topPanel.add(titleLabel, BorderLayout.CENTER);
+		
+		topPanel.add(botLabel, BorderLayout.SOUTH);
+		//topPanel.add(imageLabel);
 	}
 	
 	public void addComponentsToCenterPanel() {
 		centerPanel.setBackground(new Color(255,161,161));
-		//centerPanel.add(imageLabel);
+		centerPanel.add(imageLabel);
 	}
 	
 	public void addComponentsToButtonPanel() {
 		buttonPanel.setBackground(new Color(255,161,161));
 		buttonPanel.add(createProfileButton);
 		buttonPanel.add(existingLoginButton);
-		buttonPanel.add(botLabel);
+		//buttonPanel.add(botLabel);
 	
 	}
 	
