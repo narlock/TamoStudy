@@ -138,12 +138,20 @@ public class welcomeGUI extends JFrame {
 				if(resultPane == JOptionPane.OK_OPTION) {
 					result = 1;
 					try {
-						profile = loadProfileFromFile(usernameField.getText(), passwordField.getText());
+						if(profileExistsInFile(usernameField.getText())) {
+						//if(!usernameField.getText().equals("") && !passwordField.equals("")) {
+								profile = loadProfileFromFile(usernameField.getText(), passwordField.getText());
+								GUI Focus = new GUI(profile);
+							
+							
+						} else {
+							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE);
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					GUI Focus = new GUI(profile);
+					
 					
 				} else {
 					System.out.println("Cancelled");
@@ -207,6 +215,30 @@ public class welcomeGUI extends JFrame {
 		
 	}
 	
+	//TODO: Scan the file to see if the profile exists
+	public boolean profileExistsInFile(String username) throws IOException {
+		file = new File("profiles.txt");
+		BufferedReader br = new BufferedReader(new FileReader(file.getName()));
+		
+		String line;
+		while ((line = br.readLine()) != null) {
+			if(!line.equals("")) {
+				//System.out.println(line);
+				boolean exists = false;
+				String[] profileDetails = line.split(",");
+				
+				if(profileDetails[0].equals(username)) {
+					br.close();
+					return true;
+				}
+			} else {
+				
+			}
+		}
+		br.close();
+		return false;
+	}
+	
 	public Profile loadProfileFromFile(String username, String password) throws IOException {
 		//String[] profileDetails = line.split(",");
 		//compare [0] to username and [1] to password, if equal return the profile
@@ -219,34 +251,34 @@ public class welcomeGUI extends JFrame {
 		
 		BufferedReader br = new BufferedReader(new FileReader(file.getName()));
 		
-		//DEBUG
-//		while(br.readLine() != null) {
-//			line = br.readLine();
-//			System.out.println(line);
-//		}
-		
 		//TODO: fix this shit
-		while(br.readLine() != null) {
-			int flag = -1;
-			boolean flagFound = false;
-			line = br.readLine();
-			String[] profileDetails = line.split(",");
+		while((line = br.readLine()) != null) {
+			if(!line.equals("")) {
+				int flag = -1;
+				boolean flagFound = false;
+				String[] profileDetails = line.split(",");
 			
-			for(int i = 0; i < profileDetails.length; i++) {
-				if(profileDetails[i].equals(username) && profileDetails[i+1].equals(password)) {
-					flag = i;
-					flagFound = true;
-				}
+				for(int i = 0; i < profileDetails.length; i++) {
+					if(profileDetails[i].equals(username) && profileDetails[i+1].equals(password)) {
+						flag = i;
+						flagFound = true;
+					}
 					
-			}
+				}
 			
-			if(flagFound) {
-				//return here
-				Tamo loadTamo = new Tamo(profileDetails[flag+4], Integer.parseInt(profileDetails[flag+5]), Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]));
-				Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), loadTamo);
-				return load;
+				if(flagFound) {
+					//return here
+					Tamo loadTamo = new Tamo(profileDetails[flag+4], Integer.parseInt(profileDetails[flag+5]), Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]));
+					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), loadTamo);
+					br.close();
+					return load;
+				}
+			}
+			else {
+				
 			}
 		}
+		br.close();
 		return null;
 	}
 }

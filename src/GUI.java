@@ -41,7 +41,7 @@ public class GUI extends JFrame {
 		
 		setUpGUI();
 		
-		updateUserInformation();
+		updateUserInformation(profile);
 		
 		this.setSize(500, 350);
 		
@@ -85,8 +85,10 @@ public class GUI extends JFrame {
 		tamoLevel = new JLabel("Level: " + p.getTamo().getLevel());
 		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
 		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
+		
+		updateUserInformationToFile(p);
 	}
-	
+
 	public void initVariables()  {
 		
 		imageLabel = new JLabel(new ImageIcon("assets/tama_test3.png"));
@@ -296,12 +298,11 @@ public class GUI extends JFrame {
 		
 	}
 	
-	//no user information
-	public void updateUserInformation() {
+	private void updateUserInformationToFile(Profile p) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	//with user information
+
 	
 
 	
