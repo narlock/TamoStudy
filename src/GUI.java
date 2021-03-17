@@ -14,10 +14,10 @@ import java.io.IOException;
 public class GUI extends JFrame {
 	
 	//Component Declaration
-	private JPanel topPanel, topCenterPanel, centerPanel, botCenterPanel, botPanel;
-	private JButton startButton, breakButton;
+	private JPanel headPanel, top2Panel, topPanel, topCenterPanel, centerPanel, botCenterPanel, botPanel;
+	private JButton startButton, breakButton, statsButton, inventoryButton;
 	private JLabel minuteTime, secondTime, spaceLabel, titleLabel;
-	private JComboBox minuteBox, secondBox;
+	private JComboBox minuteBox, secondBox, shopBox;
 	
 	private int min, sec, tempMin, tempSec;
 	private boolean zeroMinFlag, zeroSecFlag, isStopped = false;
@@ -93,6 +93,8 @@ public class GUI extends JFrame {
 		
 		imageLabel = new JLabel(new ImageIcon("assets/tama_test3.png"));
 		
+		headPanel = new JPanel();
+		top2Panel = new JPanel();
 		topPanel = new JPanel();
 		topCenterPanel = new JPanel();
 		centerPanel = new JPanel();
@@ -127,6 +129,11 @@ public class GUI extends JFrame {
 				sec = Integer.parseInt(secondTime.getText());
 			}
 		});
+		
+		statsButton = new JButton("Statistics");
+		inventoryButton = new JButton("Inventory");
+		shopBox = new JComboBox();
+		
 		breakButton = new JButton("Break Focus");
 		breakButton.setEnabled(false);
 		
@@ -225,12 +232,13 @@ public class GUI extends JFrame {
 		this.getContentPane().setLayout(new GridLayout(5,1));
 		this.getContentPane().setBackground(new Color(255,161,161));
 		
-		this.getContentPane().add(topPanel);
+		this.getContentPane().add(headPanel);
 		this.getContentPane().add(topCenterPanel);
 		this.getContentPane().add(centerPanel);
 		this.getContentPane().add(botCenterPanel);
 		this.getContentPane().add(botPanel);
 		
+		headPanel.setLayout(new GridLayout(2,1));
 		profileInfoPanel.setLayout(new GridLayout(5,1));
 		
 		addComponentsToTopPanel();
@@ -241,6 +249,15 @@ public class GUI extends JFrame {
 	}
 	
 	public void addComponentsToTopPanel() {
+		headPanel.add(top2Panel);
+		headPanel.add(topPanel);
+		
+		top2Panel.setLayout(new GridLayout(1,3));
+		top2Panel.setBackground(new Color(255, 161, 161));
+		top2Panel.add(statsButton);
+		top2Panel.add(inventoryButton);
+		top2Panel.add(shopBox);
+		
 		topPanel.setBackground(new Color(255,161,161));
 		topPanel.add(titleLabel);
 	}

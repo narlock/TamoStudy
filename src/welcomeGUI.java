@@ -142,6 +142,7 @@ public class welcomeGUI extends JFrame {
 						//if(!usernameField.getText().equals("") && !passwordField.equals("")) {
 								profile = loadProfileFromFile(usernameField.getText(), passwordField.getText());
 								GUI Focus = new GUI(profile);
+								hideWindow();
 							
 							
 						} else {
@@ -193,6 +194,10 @@ public class welcomeGUI extends JFrame {
 		buttonPanel.add(existingLoginButton);
 		buttonPanel.add(botLabel);
 	
+	}
+	
+	public void hideWindow() {
+		this.setVisible(false);
 	}
 	
 	public void writeProfileToFile(Profile p) throws IOException {
