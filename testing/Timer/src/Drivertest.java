@@ -7,6 +7,6 @@ public class Drivertest {
 		//Countdown test = new Countdown(seconds);
 		//test.timer.schedule(test.task, 1000, 1000);
 		
-		testGUI gui = new testGUI();
+		testGUI2 gui = new testGUI2();
 	}
 }
