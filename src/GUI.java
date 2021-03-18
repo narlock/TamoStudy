@@ -14,7 +14,7 @@ import java.io.IOException;
 public class GUI extends JFrame {
 	
 	//Component Declaration
-	private JPanel headPanel, top2Panel, topPanel, topCenterPanel, centerPanel, botCenterPanel, botPanel;
+	private JPanel headPanel, top2Panel, topPanel, topCenterPanel, tamoPanel, centerPanel, botCenterPanel, botPanel;
 	private JButton startButton, breakButton, statsButton, inventoryButton;
 	private JLabel minuteTime, secondTime, spaceLabel, titleLabel;
 	private JComboBox minuteBox, secondBox, shopBox;
@@ -43,7 +43,7 @@ public class GUI extends JFrame {
 		
 		updateUserInformation(profile);
 		
-		this.setSize(500, 350);
+		this.setSize(650, 500);
 		
 	}
 	
@@ -61,7 +61,7 @@ public class GUI extends JFrame {
 		setUpGUI();
 		
 		
-		this.setSize(500, 350);
+		this.setSize(650, 500);
 	}
 	
 	public void setUpFrame() {
@@ -70,7 +70,7 @@ public class GUI extends JFrame {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
 		this.setTitle("TamoStudy - alpha 0.2.0");
-		this.setSize(500,349);
+		this.setSize(650,499);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -92,6 +92,7 @@ public class GUI extends JFrame {
 	public void initVariables()  {
 		
 		imageLabel = new JLabel(new ImageIcon("assets/tama_test3.png"));
+		tamoPanel = new JPanel();
 		
 		headPanel = new JPanel();
 		top2Panel = new JPanel();
@@ -233,11 +234,13 @@ public class GUI extends JFrame {
 		this.getContentPane().setBackground(new Color(255,161,161));
 		
 		this.getContentPane().add(headPanel);
+		this.getContentPane().add(topPanel);
 		this.getContentPane().add(topCenterPanel);
 		this.getContentPane().add(centerPanel);
 		this.getContentPane().add(botCenterPanel);
 		this.getContentPane().add(botPanel);
 		
+		tamoPanel.setLayout(new BorderLayout());
 		headPanel.setLayout(new GridLayout(2,1));
 		profileInfoPanel.setLayout(new GridLayout(5,1));
 		
@@ -259,18 +262,23 @@ public class GUI extends JFrame {
 		top2Panel.add(shopBox);
 		
 		topPanel.setBackground(new Color(255,161,161));
-		topPanel.add(titleLabel);
+		topPanel.add(profileName);
 	}
 	
 	public void addComponentsToTopCenterPanel() {
 		topCenterPanel.setLayout(new GridLayout(1,2));
 		topCenterPanel.setBackground(new Color(255,161,161));
-		topCenterPanel.add(imageLabel);
+		topCenterPanel.add(tamoPanel);
+		
+		tamoPanel.add(imageLabel, BorderLayout.CENTER);
+		tamoPanel.add(tamoName, BorderLayout.SOUTH);
+		tamoName.setHorizontalAlignment(JLabel.CENTER);
+		
 		topCenterPanel.add(profileInfoPanel);
 		
 		profileInfoPanel.setBackground(new Color(255,161,161));
-		profileInfoPanel.add(profileName);
-		profileInfoPanel.add(tamoName);
+		//profileInfoPanel.add(profileName);
+		//profileInfoPanel.add(tamoName);
 		profileInfoPanel.add(tamoLevel);
 		profileInfoPanel.add(tamoHappiness);
 		profileInfoPanel.add(tamoHunger);
