@@ -35,7 +35,7 @@ public class updatedTestGUI extends JFrame {
 	private JLabel imageLabel, backgroundImageLabel;
 	
 	private JPanel tamoStatsPanel;
-	private JLabel profileNameLabel, nameLabel, levelLabel, happyLabel, hungerLabel;
+	private JLabel profileNameLabel, moneyLabel, nameLabel, levelLabel, happyLabel, hungerLabel;
 	
 	/**
 	 * timerPanel
@@ -134,11 +134,13 @@ public class updatedTestGUI extends JFrame {
 		
 		//RightSidePanel
 		tamoStatsPanel = new JPanel();
-		tamoStatsPanel.setLayout(new GridLayout(5,1));
+		tamoStatsPanel.setLayout(new GridLayout(6,1));
 		tamoStatsPanel.setBackground(new Color(255,161,161));
 		
 		profileNameLabel = new JLabel("Welcome, <profile_name>");
 		profileNameLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		moneyLabel = new JLabel("Tamo Tokens: 100");
+		moneyLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		nameLabel = new JLabel("Tamo: LISA");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		levelLabel = new JLabel("Level: 0");
@@ -149,6 +151,7 @@ public class updatedTestGUI extends JFrame {
 		hungerLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		tamoStatsPanel.add(profileNameLabel);
+		tamoStatsPanel.add(moneyLabel);
 		tamoStatsPanel.add(nameLabel);
 		tamoStatsPanel.add(levelLabel);
 		tamoStatsPanel.add(happyLabel);
