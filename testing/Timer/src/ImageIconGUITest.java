@@ -8,7 +8,7 @@ import java.io.IOException;
 
 //this tests code to put an imageIcon label on top of another imageIcon label
 
-public class testGUI2 extends JFrame {
+public class ImageIconGUITest extends JFrame {
 	
 	private JPanel testPanel, buttonPanel;
 	private JLabel imageLabel, backgroundImageLabel;
@@ -16,7 +16,7 @@ public class testGUI2 extends JFrame {
 	private JButton changeButton;
 	private GridBagConstraints gbc = new GridBagConstraints();
 	
-	public testGUI2() {
+	public ImageIconGUITest() {
 		setUpFrame();
 		
 		initComponents();
@@ -30,7 +30,7 @@ public class testGUI2 extends JFrame {
 		this.setTitle("Test GUI");
 		this.setSize(600, 499);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -44,7 +44,7 @@ public class testGUI2 extends JFrame {
 		
 		
 		imageLabel = new JLabel(new ImageIcon("assets/tama_test4.png"));
-		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg4.png"));
+		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg.png"));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		
@@ -80,7 +80,7 @@ public class testGUI2 extends JFrame {
 	
 	public void changeImage() {
 		System.out.println("reaching method");
-		this.imageLabel = new JLabel(new ImageIcon("assets/heart.png"));
+		imageLabel.setIcon(new ImageIcon("assets/tama_test3.png"));
 		
 		testPanel.revalidate();
 		testPanel.repaint();
