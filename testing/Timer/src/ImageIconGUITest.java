@@ -13,7 +13,7 @@ public class ImageIconGUITest extends JFrame {
 	private JPanel testPanel, buttonPanel;
 	private JLabel imageLabel, backgroundImageLabel;
 	
-	private JButton changeButton;
+	private JButton changeButton, bgButton;
 	private GridBagConstraints gbc = new GridBagConstraints();
 	
 	public ImageIconGUITest() {
@@ -64,12 +64,23 @@ public class ImageIconGUITest extends JFrame {
 			
 		});
 		
+		bgButton = new JButton("Change background");
+		bgButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeBackground();
+				
+			}
+			
+		});
 		
 	}
 	
 	public void setUpGUI() {
 		testPanel.add(backgroundImageLabel);
 		buttonPanel.add(changeButton);
+		buttonPanel.add(bgButton);
 		
 		this.getContentPane().add(testPanel, BorderLayout.CENTER);
 		this.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
@@ -79,12 +90,10 @@ public class ImageIconGUITest extends JFrame {
 	}
 	
 	public void changeImage() {
-		System.out.println("reaching method");
 		imageLabel.setIcon(new ImageIcon("assets/tama_test3.png"));
-		
-		testPanel.revalidate();
-		testPanel.repaint();
-		this.setSize(600,499);
-		
+	}
+	
+	public void changeBackground() {
+		backgroundImageLabel.setIcon(new ImageIcon("assets/bg2.png"));
 	}
 }

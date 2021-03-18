@@ -8,6 +8,6 @@ public class Drivertest {
 		//test.timer.schedule(test.task, 1000, 1000);
 		
 		//testGUI gui = new testGUI();
-		ImageIconGUITest gui = new ImageIconGUITest();
+		updatedTestGUI gui = new updatedTestGUI();
 	}
 }
