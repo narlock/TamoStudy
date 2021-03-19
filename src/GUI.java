@@ -67,8 +67,9 @@ public class GUI extends JFrame {
 	/*
 	 * Variables
 	 */
-	private int min, sec, tempMin, tempSec;
+	private int min, sec, tempMin, tempSec, studyMin, studySec, studyTimeMinutes, studyTimeSeconds;
 	private boolean zeroMinFlag, zeroSecFlag, isStopped = false;
+	private String studyMessage;
 	private Timer timer;
 	private Profile profile;
 	
@@ -311,7 +312,15 @@ public class GUI extends JFrame {
 			//Button Action
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Initial study values
+				studyMin = Integer.parseInt(minuteTime.getText());
+				studySec = Integer.parseInt(secondTime.getText());
+				System.out.println("STUDY SESSION: " + studyMin + " minutes and " + studySec + " seconds.");
+				tempSec = -1;
+				tempMin = 0;
+				
 				timer = new Timer(1000, new ActionListener() {
+					
 
 					//This is the "timer" action
 					@Override
@@ -322,14 +331,30 @@ public class GUI extends JFrame {
 						startButton.setEnabled(false);
 						breakButton.setEnabled(true);
 						
+						//Set how long studied for variables
+						tempSec = tempSec + 1;
+						if(tempSec == 60) {
+							tempMin = tempMin + 1;
+							tempSec = 0;
+						}
+						
+						System.out.println(tempMin + " minutes and " + tempSec + " seconds.");
+						
 						if(sec == 0) {
 							sec = 60;
 							min--;
 						}
 						
 						if(min < 0) {
+							//Caclulate studyTime & update stats
+							studyTimeMinutes = tempMin;
+							studyTimeSeconds = tempSec;
+							updateStudyStats(studyTimeMinutes, studyTimeSeconds);
+							studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
+							
+							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
-							JOptionPane.showMessageDialog(rootPane, "Session Completed\nYou focused for _ minutes", "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
 							
 							//TODO: make methods to actually update coins and total statistics
 							
@@ -366,11 +391,15 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				studyTimeMinutes = tempMin;
+				studyTimeSeconds = tempSec;
+				updateStudyStats(studyTimeMinutes, studyTimeSeconds);
+				studyMessage = "Session Focus Broke\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
 				
 				resetTimer();
 				timer.stop();
 				
-				JOptionPane.showMessageDialog(rootPane, "Session Focus Broke\nYou focused for _ minutes", "Maybe next time...", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 			
@@ -406,6 +435,10 @@ public class GUI extends JFrame {
 	
 	private void updateUserInformationToFile(Profile p) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void updateStudyStats(int min, int sec) {
 		
 	}
 	
