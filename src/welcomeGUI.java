@@ -35,7 +35,7 @@ public class welcomeGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("Welcome - TamoStudy - alpha 0.2.0");
+		this.setTitle("TamoStudy - alpha 0.2.2");
 		this.setSize(500,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -55,7 +55,7 @@ public class welcomeGUI extends JFrame {
 		titleLabel = new JLabel("Welcome to TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
-		botLabel = new JLabel("alpha 0.2.1");
+		botLabel = new JLabel("alpha 0.2.2");
 		
 		createProfileButton = new JButton("Create New Profile");
 		existingLoginButton = new JButton("Load Existing Profile");
