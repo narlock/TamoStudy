@@ -138,7 +138,7 @@ public class welcomeGUI extends JFrame {
 				if(resultPane == JOptionPane.OK_OPTION) {
 					result = 1;
 					try {
-						if(profileExistsInFile(usernameField.getText())) {
+						if(profileExistsInFile(usernameField.getText(), passwordField.getText())) {
 						//if(!usernameField.getText().equals("") && !passwordField.equals("")) {
 								profile = loadProfileFromFile(usernameField.getText(), passwordField.getText());
 								GUI Focus = new GUI(profile);
@@ -212,7 +212,7 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getMoney() + "," + p.getTamo().tamoInfo();
+		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo();
 		
 		
 		file = new File("profiles.txt");
@@ -229,7 +229,7 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	//TODO: Scan the file to see if the profile exists
-	public boolean profileExistsInFile(String username) throws IOException {
+	public boolean profileExistsInFile(String username, String password) throws IOException {
 		file = new File("profiles.txt");
 		BufferedReader br = new BufferedReader(new FileReader(file.getName()));
 		
@@ -240,7 +240,7 @@ public class welcomeGUI extends JFrame {
 				boolean exists = false;
 				String[] profileDetails = line.split(",");
 				
-				if(profileDetails[0].equals(username)) {
+				if(profileDetails[0].equals(username) && profileDetails[1].equals(password)) {
 					br.close();
 					return true;
 				}
@@ -281,8 +281,8 @@ public class welcomeGUI extends JFrame {
 			
 				if(flagFound) {
 					//return here
-					Tamo loadTamo = new Tamo(profileDetails[flag+4], Integer.parseInt(profileDetails[flag+5]), Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]));
-					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), loadTamo);
+					Tamo loadTamo = new Tamo(profileDetails[flag+5], Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]), Integer.parseInt(profileDetails[flag+8]));
+					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), Integer.parseInt(profileDetails[flag+4]),loadTamo);
 					br.close();
 					return load;
 				}

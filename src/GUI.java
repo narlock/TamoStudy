@@ -439,7 +439,7 @@ public class GUI extends JFrame {
 	}
 	
 	public void updateStudyStats(int min, int sec) {
-		
+
 	}
 	
 	/*

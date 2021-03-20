@@ -11,6 +11,7 @@ public class Profile {
 	
 	private Tamo tamo;
 	private int money;
+	private int totalTime;
 	
 	public Profile() {
 		this.username = "null";
@@ -19,6 +20,8 @@ public class Profile {
 		
 		this.join_date = new Date();
 		this.dateString = formatter.format(join_date);
+		
+		this.totalTime = 0;
 		
 		this.money = -1;
 	}
@@ -31,16 +34,19 @@ public class Profile {
 		this.join_date = new Date();
 		this.dateString = formatter.format(join_date);
 		
+		this.totalTime = 0;
+		
 		this.money = 0;
 	}
 	
 	
 	//When loading profile, use this
-	public Profile(String username, String password, String dateString, int money, Tamo tamo) {
+	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo) {
 		this.username = username;
 		this.password = password;
 		this.dateString = dateString;
 		this.money = money;
+		this.totalTime = totalTime;
 		
 		this.tamo = tamo;
 	}
@@ -84,5 +90,22 @@ public class Profile {
 
 	public void setMoney(int money) {
 		this.money = money;
+	}
+	
+	public int getTotalTime(int minutes, int seconds) {	
+		//Convert tempMin to seconds
+		int convertedSeconds = minutes * 60;
+		
+		this.totalTime = this.totalTime + convertedSeconds;
+		
+		//Returns totalTimeInSession (in seconds)
+		return totalTime;
+	}
+	public int getTotalTime() {
+		return totalTime;
+	}
+	
+	public void setTotalTime(int totalTime) {
+		this.totalTime = totalTime;
 	}
 }
