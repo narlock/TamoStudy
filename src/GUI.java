@@ -72,6 +72,7 @@ public class GUI extends JFrame {
 	private String studyMessage;
 	private Timer timer;
 	private Profile profile;
+	private int sessionMin, sessionSec;
 	
 
 	/*
@@ -137,7 +138,7 @@ public class GUI extends JFrame {
 		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
 		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
 		
-		updateUserInformationToFile(p);
+		//updateUserInformationToFile(p);
 		
 	}
 
@@ -352,6 +353,9 @@ public class GUI extends JFrame {
 							updateStudyStats(studyTimeMinutes, studyTimeSeconds);
 							studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
 							
+							sessionMin = sessionMin + studyTimeMinutes;
+							sessionSec = sessionSec + studyTimeSeconds;
+							
 							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
@@ -396,6 +400,9 @@ public class GUI extends JFrame {
 				updateStudyStats(studyTimeMinutes, studyTimeSeconds);
 				studyMessage = "Session Focus Broke\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
 				
+				sessionMin = sessionMin + studyTimeMinutes;
+				sessionSec = sessionSec + studyTimeSeconds;
+				
 				resetTimer();
 				timer.stop();
 				
@@ -403,6 +410,39 @@ public class GUI extends JFrame {
 				
 			}
 			
+			
+		});
+		
+		
+		/*
+		 * Shows statistics of the profile. 
+		 * Converts the minute/sec to total hours studied
+		 * Converts the minute/sec of current session to hours
+		 * 
+		 * The data in the text file is stored via seconds, so the calculation for hours is done
+		 * with a rounding of 2 decimal places
+		 */
+		statsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int totalSeconds = profile.getTotalTime();
+				
+				double totalHours = totalSeconds * 0.000277778;
+				totalHours = Math.round(totalHours * 100.0) / 100.0;	//Rounds totalHours to the nearest Hundredth
+				
+				double sessionTotalSeconds = (sessionMin * 60) + sessionSec;
+				double totalSessionHours = sessionTotalSeconds * 0.0002777778;
+				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
+				
+				String statsMessage = "Total Hours: " + totalHours +
+									"\nTotal Hours in Session: " + totalSessionHours +
+									"\n\nUser: " + profile.getUsername() + "\nJoin Date: " + profile.getJoinDate() +
+									"\nAchievements: 0/30";
+				
+				JOptionPane.showMessageDialog(rootPane, statsMessage, "Statistics", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
 			
 		});
 	}
@@ -433,22 +473,109 @@ public class GUI extends JFrame {
 		
 	}
 	
-	private void updateUserInformationToFile(Profile p) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	/*
+	 * Updates the profile that is in use to the profiles text file
+	 * 
+	 * HOW: Rewrites the changeable values to the file.
+	 * This includes: totalTime, totalMoney, tamoLevel, tamoHappiness, tamoHunger.
+	 * 
+	 * This is for local purposes, assuming that the user does not have a lot of locally stored profiles.
+	 * In the future, their may be a profile limit?
+	 * 
+	 * But eventually when added to a database, this method of updating system information will not be used to
+	 * rewrite the locally stored profile to the database. (because it would be inefficient then)
+	 */
+	private void updateUserInformationToFile() {
+		try {
+			BufferedReader file = new BufferedReader(new FileReader("profiles.txt"));
+			StringBuffer inputBuffer = new StringBuffer();
+			String line;
+			String username = "\n" + profile.getUsername();
+			
+			while((line = file.readLine()) != null) {
+				inputBuffer.append(line);
+				inputBuffer.append('\n');
+			}
+			
+			file.close();
+			String inputStr = inputBuffer.toString();
+			
+			System.out.println(inputStr); //DEBUG TO DISPLAY ORIGINAL FILE
+			
+			//split the string, by comma so username can be identified
+			String[] inputtedString = inputStr.split(",");
+			
+			//DEBUG:
+			System.out.println("array[0] equals " + inputtedString[8]);
+			System.out.println("username equals " + username);
+			
+//			System.out.println("do they equal? :");
+//			System.out.println(inputtedString[0].equals(username));
+			
+			System.out.println("inputted string before:");
+			for(int i = 0; i < inputtedString.length; i++) {
+				System.out.println(inputtedString[i].equals(username));
+			}
+			
+			//Logic to replace lines in the string
+			for(int i = 0; i < inputtedString.length; i++) {
+				if(inputtedString[i].equals(username)) {
+					//Flag is now the index value
+					System.out.println("DEBUG: Finding username");
+					
+					//Rewrite TotalTime
+					inputtedString[i+3] = String.valueOf(profile.getTotalTime());
+					
+					//Rewrite TotalMoney
+					inputtedString[i+4] = String.valueOf(profile.getMoney());
+					
+					//Rewrite TamoLevel, happiness, and 
+					inputtedString[i+6] = String.valueOf(profile.getTamo().getLevel());
+					inputtedString[i+7] = String.valueOf(profile.getTamo().getHappiness());
+					inputtedString[i+8] = String.valueOf(profile.getTamo().getHunger());
+					
+				}
+			}
+			
+			System.out.println("inputted string after:");
+			for(int i = 0; i < inputtedString.length; i++) {
+				System.out.println(inputtedString[i]);
+			}
+				
+			//join the string back together
+			inputStr = String.join(",", inputtedString);
+			System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
+			
+			FileOutputStream fileOut = new FileOutputStream("profiles.txt");
+			fileOut.write(inputStr.getBytes());
+			fileOut.close();
+			
+			
+			}
+		catch (Exception e) {
+			System.out.println("Updating user information failed due to exception.");
+			}
+		}
+		
+	
+	
+	/*
+	 * Updates the totalTime studied for the user
+	 */
 	public void updateStudyStats(int min, int sec) {
-
+		int totalSeconds = (min * 60) + sec;
+		profile.setTotalTime(profile.getTotalTime() + totalSeconds);
+		updateUserInformationToFile();
 	}
 	
 	/*
 	 * Updates the Tamo's image based on number
 	 * 0 - default
 	 * 1 - happy
-	 * 2 - very happy
-	 * 3 - sad
-	 * 4 - hungry
+	 * 2 - sad
+	 * 3 - hungry
+	 * 4 - focus mode
 	 * TODO: Get an artist to create tamo images
 	 */
 	public void updateTamoImage(int tamaID, int num) {
@@ -458,11 +585,11 @@ public class GUI extends JFrame {
 			else if(num == 1)
 				imageLabel.setIcon(new ImageIcon("assets/tamo0_happy.png"));
 			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_veryHappy.png"));
-			else if(num == 3)
 				imageLabel.setIcon(new ImageIcon("assets/tamo0_sad.png"));
-			else if(num == 4)
+			else if(num == 3)
 				imageLabel.setIcon(new ImageIcon("assets/tamo0_hungry.png"));
+			else if(num == 4)
+				imageLabel.setIcon(new ImageIcon("assets/tamo0_focus.png"));
 			
 		}
 		

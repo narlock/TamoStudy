@@ -108,4 +108,9 @@ public class Tamo {
 		
 	}
 
+	public void setLevel(int i) {
+		this.level = i;
+		
+	}
+
 }
