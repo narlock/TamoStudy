@@ -566,7 +566,32 @@ public class GUI extends JFrame {
 	public void updateStudyStats(int min, int sec) {
 		int totalSeconds = (min * 60) + sec;
 		profile.setTotalTime(profile.getTotalTime() + totalSeconds);
+		
+		//Give money, every 3600 seconds (1 hour) = 50 Tamo Tokens
+		//Dev Note: This means that for every 72 seconds, 1 Tamo Token is earned.
+		int earnedSessionMoney = ((50 * totalSeconds) / 3600);
+		profile.setMoney(profile.getMoney() + earnedSessionMoney);
+		
+		//Update TamoHappiness, tamoHappiness will increment by one for every half hour studied.
+		int heartsEarned = 0;
+		if(profile.getTamo().getHappiness() == 10) {
+			// The user exceeded the amount of happiness, no happiness is rewarded since it has already been made.
+		} else {
+			heartsEarned = (totalSeconds / 1800);
+			profile.getTamo().setHappiness(profile.getTamo().getHappiness() + heartsEarned);
+		}
+		
+		updateGUI();
+		
 		updateUserInformationToFile();
+	}
+	
+	public void updateGUI() {
+		moneyLabel.setText("Tamo Tokens: " + profile.getMoney());
+		
+		tamoLevel.setText("Level: " + profile.getTamo().getLevel());
+		tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
+		tamoHunger.setText("Hunger: " + profile.getTamo().getHunger()  + "/10");
 	}
 	
 	/*

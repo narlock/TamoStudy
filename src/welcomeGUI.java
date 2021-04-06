@@ -147,6 +147,8 @@ public class welcomeGUI extends JFrame {
 							
 						} else {
 							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE);
+							usernameField.setText("");
+							passwordField.setText("");
 						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
