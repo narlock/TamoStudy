@@ -6,12 +6,15 @@ public class Profile {
 	private String password;
 	
 	private Date join_date;
+	private Date last_login_date;
 	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	private String dateString;
+	private String lastLoginString;
 	
 	private Tamo tamo;
 	private int money;
 	private int totalTime;
+	private int currentBackground;
 	
 	public Profile() {
 		this.username = "null";
@@ -37,11 +40,15 @@ public class Profile {
 		this.totalTime = 0;
 		
 		this.money = 0;
+		
+		this.last_login_date = new Date();
+		this.lastLoginString = formatter.format(last_login_date);
+		this.currentBackground = 0;
 	}
 	
 	
 	//When loading profile, use this
-	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo) {
+	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground) {
 		this.username = username;
 		this.password = password;
 		this.dateString = dateString;
@@ -49,6 +56,9 @@ public class Profile {
 		this.totalTime = totalTime;
 		
 		this.tamo = tamo;
+		
+		this.lastLoginString = lastLoginString;
+		this.currentBackground = currentBackground;
 	}
 
 
@@ -108,4 +118,30 @@ public class Profile {
 	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
 	}
+
+	public String getLastLoginString() {
+		return lastLoginString;
+	}
+
+	public void setLastLoginString(String lastLoginString) {
+		this.lastLoginString = lastLoginString;
+	}
+
+	public Date getLast_login_date() {
+		return last_login_date;
+	}
+
+	public void setLast_login_date(Date last_login_date) {
+		this.last_login_date = last_login_date;
+	}
+
+	public int getCurrentBackground() {
+		return currentBackground;
+	}
+
+	public void setCurrentBackground(int currentBackground) {
+		this.currentBackground = currentBackground;
+	}
+	
+	
 }

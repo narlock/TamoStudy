@@ -19,8 +19,8 @@ public class Tamo {
 		this.name = name;
 		this.level = 0;
 		this.experience = 0;
-		this.happiness = 0;
-		this.hunger = 0;
+		this.happiness = 5;
+		this.hunger = 5;
 	}
 	
 	public Tamo(String name, int level, int happiness, int hunger) {

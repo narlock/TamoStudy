@@ -18,7 +18,7 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, feedButton, backgroundShopButton;
+	private JButton statsButton, feedButton, backgroundShopButton, minigameButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -175,12 +175,14 @@ public class GUI extends JFrame {
 		statsButton = new JButton("Statistics");
 		feedButton = new JButton("Food Store");
 		backgroundShopButton = new JButton("Background Store");
+		minigameButton = new JButton("Minigames (Coming soon)");
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
 		headPanel.add(statsButton);
 		headPanel.add(feedButton);
 		headPanel.add(backgroundShopButton);
+		headPanel.add(minigameButton);
 		//headPanel.add(shopBox);
 	}
 	
@@ -195,7 +197,9 @@ public class GUI extends JFrame {
 		tamoImagePanel.setBackground(new Color(255,161,161));
 				
 		imageLabel = new JLabel(new ImageIcon("assets/tamo0_default.png"));
+		
 		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg4.png"));
+		setBackground(profile.getCurrentBackground());
 				
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		imageLabel.setSize(imageLabel.getPreferredSize());
@@ -474,11 +478,15 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//bgGUI bg = new bgGUI(p);
-				//hideWindow();
+				bgGUI bg = new bgGUI(profile);
+				hideWindow();
 			}
 			
 		});
+		
+		
+		//TODO Add minigames in the future
+		minigameButton.setEnabled(false);
 
 	}
 		
@@ -569,6 +577,9 @@ public class GUI extends JFrame {
 					inputtedString[i+7] = String.valueOf(profile.getTamo().getHappiness());
 					inputtedString[i+8] = String.valueOf(profile.getTamo().getHunger());
 					
+					//Rewrite currentbackground
+					inputtedString[i+10] = String.valueOf(profile.getCurrentBackground());
+					
 				}
 			}
 			
@@ -621,6 +632,9 @@ public class GUI extends JFrame {
 	}
 	
 	public void updateGUI() {
+		//Update Last Login Date and compare to update happiness and hunger
+		//TODO
+		
 		//Update Labels
 		
 		moneyLabel.setText("Tamo Tokens: " + profile.getMoney());
@@ -652,6 +666,8 @@ public class GUI extends JFrame {
 		} else if (happy >= 1 && happy <= 3) {
 			updateTamoImage(0, 2);
 		}
+		
+		
 		
 	}
 	
@@ -686,5 +702,14 @@ public class GUI extends JFrame {
 		this.dispose();
 	}
 
-	
+	public void setBackground(int num) {
+		if(num == 0)
+			backgroundImageLabel.setIcon(new ImageIcon("assets/bg.png"));
+		else if(num == 1)
+			backgroundImageLabel.setIcon(new ImageIcon("assets/bg2.png"));
+		else if(num == 2)
+			backgroundImageLabel.setIcon(new ImageIcon("assets/bg3.png"));
+		else if(num == 3)
+			backgroundImageLabel.setIcon(new ImageIcon("assets/bg4.png"));
+	}
 }
