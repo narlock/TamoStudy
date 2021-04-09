@@ -36,6 +36,11 @@ public class foodGUI extends JFrame {
 	private JLabel food2ImageLabel, food2InfoLabel;
 	private JButton food2BuyButton;
 	
+	//South panel components
+	private JPanel southPanel;
+	
+	private JButton returnToFocus;
+	
 	public foodGUI(Profile profile) {
 		this.p = profile;
 
@@ -87,6 +92,10 @@ public class foodGUI extends JFrame {
 		food2InfoLabel = new JLabel("200 TamoTokens, 3 Hunger");
 		food2BuyButton = new JButton("BUY");
 		
+		//Init South panel components
+		southPanel = new JPanel();
+		southPanel.setBackground(new Color(255,161,161));
+		returnToFocus = new JButton("Return to Focus");
 		
 		/*
 		 * Button activities
@@ -96,16 +105,51 @@ public class foodGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 100 Tamo Tokens",
-				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					p.getTamo().setHunger(p.getTamo().getHunger() + 1);
-					p.setMoney(p.getMoney() - 100 );
-					
-					GUI Focus = new GUI(p);
-					hideWindow();
+				if(p.getMoney() - 100 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 100 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.getTamo().setHunger(p.getTamo().getHunger() + 1);
+						p.setMoney(p.getMoney() - 100);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
 				} else {
-				    // no option
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
 				}
+				
+			}
+			
+		});
+		
+		food2BuyButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 200 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 200 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.getTamo().setHunger(p.getTamo().getHunger() + 3);
+						p.setMoney(p.getMoney() - 200);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
+		
+		returnToFocus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUI Focus = new GUI(p);
+				hideWindow();
 				
 			}
 			
@@ -131,6 +175,9 @@ public class foodGUI extends JFrame {
 		rightPanel.add(food2ImageLabel);
 		rightPanel.add(food2InfoLabel);
 		rightPanel.add(food2BuyButton);
+		
+		this.add(southPanel, BorderLayout.SOUTH);
+		southPanel.add(returnToFocus);
 	}
 
 	public void hideWindow() {

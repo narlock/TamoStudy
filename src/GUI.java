@@ -18,7 +18,7 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, feedButton;
+	private JButton statsButton, feedButton, backgroundShopButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -174,12 +174,14 @@ public class GUI extends JFrame {
 		//Initialize Head Panel components
 		statsButton = new JButton("Statistics");
 		feedButton = new JButton("Food Store");
+		backgroundShopButton = new JButton("Background Store");
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
 		headPanel.add(statsButton);
 		headPanel.add(feedButton);
-		headPanel.add(shopBox);
+		headPanel.add(backgroundShopButton);
+		//headPanel.add(shopBox);
 	}
 	
 	public void createTamoPanel() {
@@ -464,6 +466,16 @@ public class GUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Your Tamo is full!", "Can't enter food shop", JOptionPane.INFORMATION_MESSAGE);
 				}
 				
+			}
+			
+		});
+		
+		backgroundShopButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//bgGUI bg = new bgGUI(p);
+				//hideWindow();
 			}
 			
 		});
