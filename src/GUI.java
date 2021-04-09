@@ -107,6 +107,7 @@ public class GUI extends JFrame {
 		
 		setUpGUI();
 		
+		updateGUI();
 		
 		this.setSize(720, 535);
 	}
@@ -189,8 +190,8 @@ public class GUI extends JFrame {
 		tamoImagePanel = new JPanel();
 		tamoImagePanel.setBackground(new Color(255,161,161));
 				
-		imageLabel = new JLabel(new ImageIcon("assets/tama_test4.png"));
-		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg.png"));
+		imageLabel = new JLabel(new ImageIcon("assets/tamo0_default.png"));
+		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg4.png"));
 				
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		imageLabel.setSize(imageLabel.getPreferredSize());
@@ -314,6 +315,7 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Initial study values
+				updateTamoImage(0,4);
 				studyMin = Integer.parseInt(minuteTime.getText());
 				studySec = Integer.parseInt(secondTime.getText());
 				System.out.println("STUDY SESSION: " + studyMin + " minutes and " + studySec + " seconds.");
@@ -587,11 +589,38 @@ public class GUI extends JFrame {
 	}
 	
 	public void updateGUI() {
+		//Update Labels
+		
 		moneyLabel.setText("Tamo Tokens: " + profile.getMoney());
 		
 		tamoLevel.setText("Level: " + profile.getTamo().getLevel());
 		tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
 		tamoHunger.setText("Hunger: " + profile.getTamo().getHunger()  + "/10");
+		
+		
+		//Update Tamo Image
+		int happy = profile.getTamo().getHappiness();
+		int calcHung = profile.getTamo().getHunger();
+		boolean hungry = true;
+		
+		if(calcHung >= 5)
+			hungry = false;
+		
+		if(happy >= 4 && happy <= 6) {
+			if(hungry)
+				updateTamoImage(0,3);
+			else
+			updateTamoImage(0, 0);
+			
+		} else if (happy >= 7 && happy <= 10) {
+			if(hungry)
+				updateTamoImage(0,3);
+			else
+			updateTamoImage(0, 1);
+		} else if (happy >= 1 && happy <= 3) {
+			updateTamoImage(0, 2);
+		}
+		
 	}
 	
 	/*
