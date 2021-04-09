@@ -18,7 +18,7 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, inventoryButton;
+	private JButton statsButton, feedButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -103,6 +103,8 @@ public class GUI extends JFrame {
 		
 		updateUserInformation(p);
 		
+		updateUserInformationToFile();
+		
 		initComponents();
 		
 		setUpGUI();
@@ -171,12 +173,12 @@ public class GUI extends JFrame {
 				
 		//Initialize Head Panel components
 		statsButton = new JButton("Statistics");
-		inventoryButton = new JButton("Inventory");
+		feedButton = new JButton("Food Store");
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
 		headPanel.add(statsButton);
-		headPanel.add(inventoryButton);
+		headPanel.add(feedButton);
 		headPanel.add(shopBox);
 	}
 	
@@ -447,7 +449,27 @@ public class GUI extends JFrame {
 			}
 			
 		});
+		
+		/*
+		 * Opens the Food GUI and allows user to purchase food, increasing hunger
+		 */
+		feedButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(profile.getTamo().getHunger() < 10) {
+					foodGUI food = new foodGUI(profile);
+					hideWindow();
+				} else {
+					JOptionPane.showMessageDialog(null, "Your Tamo is full!", "Can't enter food shop", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+
 	}
+		
 
 	
 	public void setUpGUI() {
@@ -512,8 +534,6 @@ public class GUI extends JFrame {
 			System.out.println("array[0] equals " + inputtedString[8]);
 			System.out.println("username equals " + username);
 			
-//			System.out.println("do they equal? :");
-//			System.out.println(inputtedString[0].equals(username));
 			
 			System.out.println("inputted string before:");
 			for(int i = 0; i < inputtedString.length; i++) {
@@ -649,7 +669,10 @@ public class GUI extends JFrame {
 		
 	}
 
-	
+	public void hideWindow() {
+		this.setVisible(false);
+		this.dispose();
+	}
 
 	
 }

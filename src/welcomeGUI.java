@@ -208,6 +208,7 @@ public class welcomeGUI extends JFrame {
 	
 	public void hideWindow() {
 		this.setVisible(false);
+		this.dispose();
 	}
 	
 	public void writeProfileToFile(Profile p) throws IOException {
