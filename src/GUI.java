@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class GUI extends JFrame {
 	
@@ -101,6 +103,8 @@ public class GUI extends JFrame {
 		
 		setUpFrame();
 		
+		updateHappyHunger();
+		
 		updateUserInformation(p);
 		
 		updateUserInformationToFile();
@@ -121,7 +125,7 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.2.2");
+		this.setTitle("TamoStudy - alpha 0.3.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -141,7 +145,6 @@ public class GUI extends JFrame {
 		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
 		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
 		
-		//updateUserInformationToFile(p);
 		
 	}
 
@@ -577,6 +580,9 @@ public class GUI extends JFrame {
 					inputtedString[i+7] = String.valueOf(profile.getTamo().getHappiness());
 					inputtedString[i+8] = String.valueOf(profile.getTamo().getHunger());
 					
+					//Update login date
+					inputtedString[i+9] = profile.getNewLoginString();
+					
 					//Rewrite currentbackground
 					inputtedString[i+10] = String.valueOf(profile.getCurrentBackground());
 					
@@ -711,5 +717,57 @@ public class GUI extends JFrame {
 			backgroundImageLabel.setIcon(new ImageIcon("assets/bg3.png"));
 		else if(num == 3)
 			backgroundImageLabel.setIcon(new ImageIcon("assets/bg4.png"));
+	}
+	
+	//TODO COMPLETE THIS!!
+	public void updateHappyHunger() {
+		//will grab profile.lastLoginString and compare it to profile.newLoginString
+
+		LocalDate start = LocalDate.parse(profile.getLastLoginString());
+		LocalDate end = LocalDate.parse(profile.getNewLoginString());
+
+		
+		long diff = ChronoUnit.DAYS.between(start,end);
+		System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
+		
+		
+		if(diff == 0) {
+			//If the user logs in on the same day, no changes will occur.
+		} else if(diff == 1) {
+			//If the user is logging in on a consecutive day, hunger will deplete 3 hunger points
+			int hungerAfterDepletion = profile.getTamo().getHunger() - 3;
+			
+			if(underEqualZero(hungerAfterDepletion)) {
+				profile.getTamo().setHunger(0);
+			} else {
+				profile.getTamo().setHunger(hungerAfterDepletion);
+			}
+		} else if(diff > 1 && diff < 4) {
+			//If the user is logging in between 2 and 3 days, hunger will deplete 4, happiness deplete 2
+			int hungerAfterDepletion = profile.getTamo().getHunger() - 3;
+			int happinessAfterDepletion = profile.getTamo().getHappiness() - 2;
+			
+			if(underEqualZero(hungerAfterDepletion)) {
+				profile.getTamo().setHunger(0);
+			} else {
+				profile.getTamo().setHunger(hungerAfterDepletion);
+			}
+		} else if(diff > 4 && diff < 8) {
+			//If the user is logging in between 4 and 7 days, hunger will deplete 5, happiness deplete 3
+		} else if(diff > 8) {
+			//If the user does not log in for a week, hunger and happiness will be both depleted entirely
+		} else if(diff > 30) {
+			//If the user does not log in for a month, the Tamo will reset (die).
+		}
+		
+		//Set the new date equal to the previous date here
+		profile.setLast_login_date(profile.getNew_login_date());
+		profile.setLastLoginString(profile.getNewLoginString());
+	}
+	
+	public boolean underEqualZero(int num) {
+		if(num <= 0) {
+			return true;
+		} else return false;
 	}
 }

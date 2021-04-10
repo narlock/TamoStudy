@@ -7,9 +7,11 @@ public class Profile {
 	
 	private Date join_date;
 	private Date last_login_date;
-	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	private Date new_login_date;
+	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	private String dateString;
 	private String lastLoginString;
+	private String newLoginString;
 	
 	private Tamo tamo;
 	private int money;
@@ -58,6 +60,10 @@ public class Profile {
 		this.tamo = tamo;
 		
 		this.lastLoginString = lastLoginString;
+		
+		this.new_login_date = new Date();
+		this.newLoginString = formatter.format(new_login_date);
+		
 		this.currentBackground = currentBackground;
 	}
 
@@ -142,6 +148,16 @@ public class Profile {
 	public void setCurrentBackground(int currentBackground) {
 		this.currentBackground = currentBackground;
 	}
+
+	public String getNewLoginString() {
+		return newLoginString;
+	}
+
+	public void setNewLoginString(String newLoginString) {
+		this.newLoginString = newLoginString;
+	}
 	
-	
+	public Date getNew_login_date() {
+		return new_login_date;
+	}
 }

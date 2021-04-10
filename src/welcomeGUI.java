@@ -10,7 +10,7 @@ import java.io.*;
 public class welcomeGUI extends JFrame {
 	private JPanel topPanel, centerPanel, buttonPanel;
 	private JLabel titleLabel, botLabel;
-	private JButton existingLoginButton, createProfileButton;
+	private JButton existingLoginButton, createProfileButton, aboutButton;
 	
 	private JLabel imageLabel;
 	
@@ -35,7 +35,7 @@ public class welcomeGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.2.2");
+		this.setTitle("TamoStudy - alpha 0.3.0");
 		this.setSize(500,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -55,10 +55,11 @@ public class welcomeGUI extends JFrame {
 		titleLabel = new JLabel("Welcome to TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
-		botLabel = new JLabel("alpha 0.2.2");
+		botLabel = new JLabel("alpha 0.3.0");
 		
 		createProfileButton = new JButton("Create New Profile");
 		existingLoginButton = new JButton("Load Existing Profile");
+		aboutButton = new JButton("About TamoStudy");
 
 		
 	}
@@ -164,6 +165,17 @@ public class welcomeGUI extends JFrame {
 			}
 			
 		});
+		
+		aboutButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TODO: Create an ImageIcon and throw it into a JLabel, then display that to an OK Option Pane
+				JLabel label = new JLabel(new ImageIcon("assets/bg.png"));
+				JOptionPane.showMessageDialog(rootPane, label, "About TamoStudy", JOptionPane.PLAIN_MESSAGE);
+			}
+			
+		});
 	}
 	
 	public void setUpGUI() {
@@ -202,6 +214,7 @@ public class welcomeGUI extends JFrame {
 		buttonPanel.setBackground(new Color(255,161,161));
 		buttonPanel.add(createProfileButton);
 		buttonPanel.add(existingLoginButton);
+		buttonPanel.add(aboutButton);
 		//buttonPanel.add(botLabel);
 	
 	}
