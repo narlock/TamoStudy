@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class welcomeGUI extends JFrame {
 	private JPanel topPanel, centerPanel, buttonPanel;
@@ -171,8 +174,88 @@ public class welcomeGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO: Create an ImageIcon and throw it into a JLabel, then display that to an OK Option Pane
-				JLabel label = new JLabel(new ImageIcon("assets/bg.png"));
-				JOptionPane.showMessageDialog(rootPane, label, "About TamoStudy", JOptionPane.PLAIN_MESSAGE);
+				JPanel aboutPanel = new JPanel();
+				aboutPanel.setBackground(new Color(255,161,161));
+				JPanel rightPanel = new JPanel();
+				rightPanel.setBackground(new Color(255,161,161));
+				rightPanel.setLayout(new GridLayout(3,1));
+				
+				JLabel label = new JLabel(new ImageIcon("assets/about.png"));
+				JButton twitter_button = new JButton("Twitter");
+				
+				twitter_button.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URL("http://twitter.com/anthonynarlock").toURI());
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				});
+				
+				JButton github_button = new JButton("GitHub");
+				
+				github_button.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URL("http://github.com/narlock").toURI());
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				});
+				
+				JButton discord_button = new JButton("Join Discord");
+				
+				discord_button.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URL("https://discord.gg/eEbEYbXaNS").toURI());
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				});		
+				
+				aboutPanel.add(label);
+				aboutPanel.add(rightPanel);
+				rightPanel.add(github_button);
+				rightPanel.add(twitter_button);
+				rightPanel.add(discord_button);
+				
+				rootPane.setBackground(new Color(255,161,161));
+				
+				JOptionPane.showMessageDialog(rootPane, aboutPanel, "About TamoStudy", JOptionPane.PLAIN_MESSAGE);
 			}
 			
 		});

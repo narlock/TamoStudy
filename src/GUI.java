@@ -333,17 +333,24 @@ public class GUI extends JFrame {
 				tempSec = -1;
 				tempMin = 0;
 				
+				//Enabled and Disabled updating
+				minuteBox.setEnabled(false);
+				secondBox.setEnabled(false);
+				startButton.setEnabled(false);
+				breakButton.setEnabled(true);
+				
+				statsButton.setEnabled(false);
+				feedButton.setEnabled(false);
+				backgroundShopButton.setEnabled(false);
+				//minigameButton.setEnabled(false);
+				
 				timer = new Timer(1000, new ActionListener() {
 					
 
 					//This is the "timer" action
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//Enabled and Disabled updating
-						minuteBox.setEnabled(false);
-						secondBox.setEnabled(false);
-						startButton.setEnabled(false);
-						breakButton.setEnabled(true);
+						
 						
 						//Set how long studied for variables
 						tempSec = tempSec + 1;
@@ -517,6 +524,11 @@ public class GUI extends JFrame {
 		secondBox.setEnabled(true);
 		startButton.setEnabled(true);
 		breakButton.setEnabled(false);
+		
+		statsButton.setEnabled(true);
+		feedButton.setEnabled(true);
+		backgroundShopButton.setEnabled(true);
+		//minigameButton.setEnabled(true);
 		
 	}
 	
@@ -735,7 +747,7 @@ public class GUI extends JFrame {
 			//If the user logs in on the same day, no changes will occur.
 		} else if(diff == 1) {
 			//If the user is logging in on a consecutive day, hunger will deplete 3 hunger points
-			int hungerAfterDepletion = profile.getTamo().getHunger() - 3;
+			int hungerAfterDepletion = profile.getTamo().getHunger() - 2;
 			
 			if(underEqualZero(hungerAfterDepletion)) {
 				profile.getTamo().setHunger(0);

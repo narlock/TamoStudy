@@ -29,6 +29,14 @@ public class Tamo {
 		this.happiness = happiness;
 		this.hunger = hunger;
 	}
+	
+	public Tamo(String name, int level, int happiness, int hunger, int experience) {
+		this.name = name;
+		this.level = level;
+		this.happiness = happiness;
+		this.hunger = hunger;
+		this.experience = experience;
+	}
 
 	//getters
 	public String getName() {
@@ -111,6 +119,14 @@ public class Tamo {
 	public void setLevel(int i) {
 		this.level = i;
 		
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
 	}
 
 }
