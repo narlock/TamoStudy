@@ -223,10 +223,16 @@ public class GUI extends JFrame {
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoLevel = new JLabel("Level: " + profile.getTamo().getLevel());
 		tamoLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoHappiness = new JLabel("Happiness: " + profile.getTamo().getHappiness() + "/10");
-		tamoHappiness.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoHunger = new JLabel("Hunger: " + profile.getTamo().getHunger() + "/10");
-		tamoHunger.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		//tamoHappiness = new JLabel("Happiness: " + profile.getTamo().getHappiness() + "/10");
+		//tamoHappiness.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		tamoHappiness = new JLabel();
+		updateTamoHappiness(profile.getTamo().getHappiness());
+		
+		//tamoHunger = new JLabel("Hunger: " + profile.getTamo().getHunger() + "/10");
+		//tamoHunger.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		tamoHunger = new JLabel();
+		updateTamoHunger(profile.getTamo().getHunger());
 				
 		tamoStatsPanel.add(profileName);
 		tamoStatsPanel.add(moneyLabel);
@@ -658,9 +664,11 @@ public class GUI extends JFrame {
 		moneyLabel.setText("Tamo Tokens: " + profile.getMoney());
 		
 		tamoLevel.setText("Level: " + profile.getTamo().getLevel());
-		tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
-		tamoHunger.setText("Hunger: " + profile.getTamo().getHunger()  + "/10");
+		//tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
+		updateTamoHappiness(profile.getTamo().getHappiness());
 		
+		//tamoHunger.setText("Hunger: " + profile.getTamo().getHunger()  + "/10");
+		updateTamoHunger(profile.getTamo().getHunger());
 		
 		//Update Tamo Image
 		int happy = profile.getTamo().getHappiness();
@@ -781,5 +789,25 @@ public class GUI extends JFrame {
 		if(num <= 0) {
 			return true;
 		} else return false;
+	}
+	
+	public void updateTamoHappiness(int happiness) {
+		String str = Integer.toString(happiness);
+		
+		for(int i = 1; i <= happiness; i++) {
+			if(i == happiness) {
+				tamoHappiness.setIcon(new ImageIcon("assets/happiness/" + str +".png"));
+			}
+		}
+	}
+	
+	public void updateTamoHunger(int hunger) {
+		String str = Integer.toString(hunger);
+		
+		for(int i = 1; i <= hunger; i++) {
+			if(i == hunger) {
+				tamoHunger.setIcon(new ImageIcon("assets/hunger/" + str +".png"));
+			}
+		}
 	}
 }
