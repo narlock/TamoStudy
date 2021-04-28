@@ -106,6 +106,112 @@ public class bgGUI extends JFrame {
 			}
 			
 		});
+		
+		
+		bg1button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 1000 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setCurrentBackground(0);
+						p.setMoney(p.getMoney() - 1000);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
+		bg2button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 1000 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setCurrentBackground(1);
+						p.setMoney(p.getMoney() - 1000);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
+		bg3button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 1000 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setCurrentBackground(2);
+						p.setMoney(p.getMoney() - 1000);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
+		bg4button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 1000 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setCurrentBackground(3);
+						p.setMoney(p.getMoney() - 1000);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
+		bg5button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 5000 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 5000 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setCurrentBackground(4);
+						p.setMoney(p.getMoney() - 5000);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
 	}
 	
 	public void setUpGUI() {

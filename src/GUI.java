@@ -501,12 +501,10 @@ public class GUI extends JFrame {
 		});
 		
 		
-		//TODO Add minigames in the future
+		//TODO Add mini games in the future
 		minigameButton.setEnabled(false);
 
 	}
-		
-
 	
 	public void setUpGUI() {
 		this.getContentPane().setBackground(new Color(255,161,161));
@@ -515,6 +513,9 @@ public class GUI extends JFrame {
 		this.getContentPane().add(timerPanel, BorderLayout.SOUTH);
 	}
 	
+	/*
+	 * Method resets the timer
+	 */
 	public void resetTimer() {
 		min = 0;
 		sec = 0;
@@ -580,6 +581,11 @@ public class GUI extends JFrame {
 			for(int i = 0; i < inputtedString.length; i++) {
 				System.out.println(inputtedString[i].equals(username));
 			}
+			
+			//I didn't know where to put the code to update the level, so it's here:
+			//Every 24 hours, your tamo will gain 1 level
+			int new_level = (profile.getTotalTime() / 86400);
+			profile.getTamo().setLevel(new_level);
 			
 			//Logic to replace lines in the string
 			for(int i = 0; i < inputtedString.length; i++) {
@@ -655,6 +661,9 @@ public class GUI extends JFrame {
 		updateUserInformationToFile();
 	}
 	
+	/*
+	 * Updates the GUI components
+	 */
 	public void updateGUI() {
 		//Update Last Login Date and compare to update happiness and hunger
 		//TODO
@@ -693,8 +702,6 @@ public class GUI extends JFrame {
 			updateTamoImage(0, 2);
 		}
 		
-		
-		
 	}
 	
 	/*
@@ -723,11 +730,17 @@ public class GUI extends JFrame {
 		
 	}
 
+	/*
+	 * Hides the window
+	 */
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();
 	}
 
+	/*
+	 * Changes the Tamo's background image
+	 */
 	public void setBackground(int num) {
 		if(num == 0)
 			backgroundImageLabel.setIcon(new ImageIcon("assets/bg.png"));
@@ -737,9 +750,13 @@ public class GUI extends JFrame {
 			backgroundImageLabel.setIcon(new ImageIcon("assets/bg3.png"));
 		else if(num == 3)
 			backgroundImageLabel.setIcon(new ImageIcon("assets/bg4.png"));
+		else if(num == 4)
+			backgroundImageLabel.setIcon(new ImageIcon("assets/bg5.png"));
 	}
 	
-	//TODO COMPLETE THIS!!
+	/*
+	 * Updates values based off of log in date
+	 */
 	public void updateHappyHunger() {
 		//will grab profile.lastLoginString and compare it to profile.newLoginString
 
@@ -772,12 +789,39 @@ public class GUI extends JFrame {
 			} else {
 				profile.getTamo().setHunger(hungerAfterDepletion);
 			}
+			
+			if(underEqualZero(happinessAfterDepletion)) {
+				profile.getTamo().setHappiness(1);
+			} else {
+				profile.getTamo().setHunger(happinessAfterDepletion);
+			}
 		} else if(diff > 4 && diff < 8) {
 			//If the user is logging in between 4 and 7 days, hunger will deplete 5, happiness deplete 3
+			int hungerAfterDepletion = profile.getTamo().getHunger() - 5;
+			int happinessAfterDepletion = profile.getTamo().getHappiness() - 3;
+			
+			if(underEqualZero(hungerAfterDepletion)) {
+				profile.getTamo().setHunger(0);
+			} else {
+				profile.getTamo().setHunger(hungerAfterDepletion);
+			}
+			
+			if(underEqualZero(happinessAfterDepletion)) {
+				profile.getTamo().setHappiness(1);
+			} else {
+				profile.getTamo().setHunger(happinessAfterDepletion);
+			}
 		} else if(diff > 8) {
 			//If the user does not log in for a week, hunger and happiness will be both depleted entirely
+			profile.getTamo().setHunger(0);
+			profile.getTamo().setHappiness(1);
+
 		} else if(diff > 30) {
 			//If the user does not log in for a month, the Tamo will reset (die).
+			//TODO
+			//Essentially the tamo data will be wiped and user will start over
+			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
+			//will write to the profile file
 		}
 		
 		//Set the new date equal to the previous date here
@@ -785,12 +829,19 @@ public class GUI extends JFrame {
 		profile.setLastLoginString(profile.getNewLoginString());
 	}
 	
+	/*
+	 * Method that returns if a number is less than or equal to zero
+	 */
 	public boolean underEqualZero(int num) {
 		if(num <= 0) {
 			return true;
 		} else return false;
 	}
 	
+	/*
+	 * Update tamo Happiness/hunger
+	 * grabs the happiness/hunger level and changes the visual image
+	 */
 	public void updateTamoHappiness(int happiness) {
 		String str = Integer.toString(happiness);
 		
@@ -804,7 +855,7 @@ public class GUI extends JFrame {
 	public void updateTamoHunger(int hunger) {
 		String str = Integer.toString(hunger);
 		
-		for(int i = 1; i <= hunger; i++) {
+		for(int i = 0; i <= hunger; i++) {
 			if(i == hunger) {
 				tamoHunger.setIcon(new ImageIcon("assets/hunger/" + str +".png"));
 			}
