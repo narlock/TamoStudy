@@ -93,7 +93,7 @@ public class GUI extends JFrame {
 		
 		this.setSize(720, 535);
 		
-	}
+	} 
 	
 	/*
 	 * Main constructor, profile is set according to what is called
@@ -125,7 +125,7 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.3.0");
+		this.setTitle("TamoStudy - alpha 0.4.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -554,7 +554,8 @@ public class GUI extends JFrame {
 	 */
 	private void updateUserInformationToFile() {
 		try {
-			BufferedReader file = new BufferedReader(new FileReader("profiles.txt"));
+			//BufferedReader file = new BufferedReader(new FileReader("profiles.txt"));
+			BufferedReader file = new BufferedReader(new FileReader("profiles/" + profile.getUsername() + ".txt"));
 			StringBuffer inputBuffer = new StringBuffer();
 			String line;
 			String username = "\n" + profile.getUsername();
@@ -572,46 +573,44 @@ public class GUI extends JFrame {
 			//split the string, by comma so username can be identified
 			String[] inputtedString = inputStr.split(",");
 			
-			//DEBUG:
-			System.out.println("array[0] equals " + inputtedString[8]);
-			System.out.println("username equals " + username);
-			
-			
-			System.out.println("inputted string before:");
-			for(int i = 0; i < inputtedString.length; i++) {
-				System.out.println(inputtedString[i].equals(username));
-			}
 			
 			//I didn't know where to put the code to update the level, so it's here:
 			//Every 24 hours, your tamo will gain 1 level
 			int new_level = (profile.getTotalTime() / 86400);
 			profile.getTamo().setLevel(new_level);
+			System.out.println("tamo level is currently " + profile.getTamo().getLevel());
 			
-			//Logic to replace lines in the string
-			for(int i = 0; i < inputtedString.length; i++) {
-				if(inputtedString[i].equals(username)) {
-					//Flag is now the index value
-					System.out.println("DEBUG: Finding username");
-					
-					//Rewrite TotalTime
-					inputtedString[i+3] = String.valueOf(profile.getTotalTime());
-					
-					//Rewrite TotalMoney
-					inputtedString[i+4] = String.valueOf(profile.getMoney());
-					
-					//Rewrite TamoLevel, happiness, and 
-					inputtedString[i+6] = String.valueOf(profile.getTamo().getLevel());
-					inputtedString[i+7] = String.valueOf(profile.getTamo().getHappiness());
-					inputtedString[i+8] = String.valueOf(profile.getTamo().getHunger());
-					
-					//Update login date
-					inputtedString[i+9] = profile.getNewLoginString();
-					
-					//Rewrite currentbackground
-					inputtedString[i+10] = String.valueOf(profile.getCurrentBackground());
-					
-				}
+			//Rewrite TotalTime
+			System.out.println("DEBUG: Rewriting Total Time");
+			inputtedString[3] = String.valueOf(profile.getTotalTime());
+			
+			//Rewrite TotalMoney
+			System.out.println("DEBUG: Rewriting Total Money");
+			inputtedString[4] = String.valueOf(profile.getMoney());
+			
+			//Rewrite TamoLevel, happiness, and 
+			System.out.println("DEBUG: Rewriting Level");
+			inputtedString[6] = String.valueOf(profile.getTamo().getLevel());
+			
+			System.out.println("DEBUG: Rewriting Happiness");
+			inputtedString[7] = String.valueOf(profile.getTamo().getHappiness());
+			
+			System.out.println("DEBUG: Rewriting Hunger");
+			inputtedString[8] = String.valueOf(profile.getTamo().getHunger());
+			
+			//Update login date
+			System.out.println("DEBUG: Rewriting newloginString");
+			if(profile.getNewLoginString() == null) {
+				
+			} else {
+			inputtedString[9] = profile.getNewLoginString();
 			}
+			
+			//Rewrite currentbackground
+			System.out.println("DEBUG: Rewriting current bg");
+			inputtedString[10] = String.valueOf(profile.getCurrentBackground());
+			
+			System.out.println("DEBUG: Success");
 			
 			System.out.println("inputted string after:");
 			for(int i = 0; i < inputtedString.length; i++) {
@@ -622,14 +621,15 @@ public class GUI extends JFrame {
 			inputStr = String.join(",", inputtedString);
 			System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
 			
-			FileOutputStream fileOut = new FileOutputStream("profiles.txt");
+			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
+			FileOutputStream fileOut = new FileOutputStream("profiles/" + profile.getUsername() + ".txt");
 			fileOut.write(inputStr.getBytes());
 			fileOut.close();
 			
 			
 			}
 		catch (Exception e) {
-			System.out.println("Updating user information failed due to exception.");
+			System.out.println("Updating user information failed due to exception." + e);
 			}
 		}
 		
@@ -761,11 +761,16 @@ public class GUI extends JFrame {
 		//will grab profile.lastLoginString and compare it to profile.newLoginString
 
 		LocalDate start = LocalDate.parse(profile.getLastLoginString());
-		LocalDate end = LocalDate.parse(profile.getNewLoginString());
-
+		LocalDate end = LocalDate.parse(profile.getLastLoginString());
+		
+		try {
+			end = LocalDate.parse(profile.getNewLoginString());
+		} catch (Exception e) {
+			System.out.println("Profile does not have a last Login string, exception *first day of profile*");
+		}
 		
 		long diff = ChronoUnit.DAYS.between(start,end);
-		System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
+		//System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
 		
 		
 		if(diff == 0) {

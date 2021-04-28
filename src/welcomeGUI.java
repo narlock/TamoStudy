@@ -38,7 +38,7 @@ public class welcomeGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.3.0");
+		this.setTitle("TamoStudy - alpha 0.4.0");
 		this.setSize(500,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -58,7 +58,7 @@ public class welcomeGUI extends JFrame {
 		titleLabel = new JLabel("Welcome to TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
-		botLabel = new JLabel("alpha 0.3.0");
+		botLabel = new JLabel("alpha 0.4.0");
 		
 		createProfileButton = new JButton("Create New Profile");
 		existingLoginButton = new JButton("Load Existing Profile");
@@ -311,26 +311,23 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground();
+		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground();
+		System.out.println("DEBUG: profileInfo = " + profileInfo);
 		
+		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
+		fileWriter.write(profileInfo);
+		fileWriter.flush();
+		fileWriter.close();
 		
-		file = new File("profiles.txt");
-		if(!file.exists()) {
-			file.createNewFile();
-		}
-		
-		FileWriter fileWriter = new FileWriter(file.getName(), true);
-		bw = new BufferedWriter(fileWriter);
-		bw.append("\n" + profileInfo);
-		bw.close();
-		
-		
+		System.out.println("pasts commands");
 	}
 	
 	//TODO: Scan the file to see if the profile exists
 	public boolean profileExistsInFile(String username, String password) throws IOException {
-		file = new File("profiles.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file.getName()));
+		System.out.println("debug: username = " + username);
+		
+		//file = new File("profiles/"+ username + ".txt");
+		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
 		
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -339,7 +336,7 @@ public class welcomeGUI extends JFrame {
 				boolean exists = false;
 				String[] profileDetails = line.split(",");
 				
-				if(profileDetails[0].equals(username) && profileDetails[1].equals(password)) {
+				if(profileDetails[1].equals(password)) {
 					br.close();
 					return true;
 				}
@@ -356,12 +353,7 @@ public class welcomeGUI extends JFrame {
 		//compare [0] to username and [1] to password, if equal return the profile
 		String line = "";
 		
-		file = new File("profiles.txt");
-		if(!file.exists()) {
-			file.createNewFile();
-		}
-		
-		BufferedReader br = new BufferedReader(new FileReader(file.getName()));
+		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
 		
 		//TODO: fix this shit
 		while((line = br.readLine()) != null) {
@@ -370,12 +362,10 @@ public class welcomeGUI extends JFrame {
 				boolean flagFound = false;
 				String[] profileDetails = line.split(",");
 			
-				for(int i = 0; i < profileDetails.length; i++) {
-					if(profileDetails[i].equals(username) && profileDetails[i+1].equals(password)) {
-						flag = i;
-						flagFound = true;
-					}
-					
+				
+				if(profileDetails[1].equals(password)) {
+					flag = 0;
+					flagFound = true;
 				}
 			
 				if(flagFound) {
