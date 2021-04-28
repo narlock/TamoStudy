@@ -759,20 +759,22 @@ public class GUI extends JFrame {
 	 */
 	public void updateHappyHunger() {
 		//will grab profile.lastLoginString and compare it to profile.newLoginString
-
-		LocalDate start = LocalDate.parse(profile.getLastLoginString());
-		LocalDate end = LocalDate.parse(profile.getLastLoginString());
+		boolean first_day = true;
+		LocalDate end = null;
+		LocalDate start = null;
 		
 		try {
+			start = LocalDate.parse(profile.getLastLoginString());
 			end = LocalDate.parse(profile.getNewLoginString());
+			first_day = false;
 		} catch (Exception e) {
 			System.out.println("Profile does not have a last Login string, exception *first day of profile*");
 		}
 		
-		long diff = ChronoUnit.DAYS.between(start,end);
-		//System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
 		
-		
+		if(first_day == false) {
+			long diff = ChronoUnit.DAYS.between(start,end);
+			//System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
 		if(diff == 0) {
 			//If the user logs in on the same day, no changes will occur.
 		} else if(diff == 1) {
@@ -827,6 +829,7 @@ public class GUI extends JFrame {
 			//Essentially the tamo data will be wiped and user will start over
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
+		}
 		}
 		
 		//Set the new date equal to the previous date here
