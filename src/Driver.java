@@ -1,6 +1,6 @@
 /**
  * @author Anthony Narlock
- * @description 
+ * @description The main driver of TamoStudy
  */
 
 import java.io.IOException;

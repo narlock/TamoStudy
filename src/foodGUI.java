@@ -1,6 +1,6 @@
-/*
+/**
  * @author: Anthony Narlock
- * foodGUI: this is the food GUI screen in TamoStudy
+ * @description: foodGUI: this is the food GUI screen in TamoStudy
  */
 
 
@@ -14,6 +14,7 @@ public class foodGUI extends JFrame {
 	
 	/*
 	 * Components of foodGUI
+	 * Initialized based off of location on the screen
 	 */
 	private Profile p;
 	private GridBagConstraints gbc = new GridBagConstraints();
@@ -41,6 +42,10 @@ public class foodGUI extends JFrame {
 	
 	private JButton returnToFocus;
 	
+	/*
+	 * Constructor for GUI, parameter is profile information
+	 */
+	
 	public foodGUI(Profile profile) {
 		this.p = profile;
 
@@ -55,6 +60,10 @@ public class foodGUI extends JFrame {
 		
 	}
 	
+	/*
+	 *  Sets up frame information, size, etc.
+	 */
+	
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
@@ -67,6 +76,10 @@ public class foodGUI extends JFrame {
 		this.setIconImage(logo.getImage());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	
+	/*
+	 * Initializes GUI components, including action listeners
+	 */
 	
 	public void initComponents() {
 		//Init Left Panel Components
@@ -129,7 +142,12 @@ public class foodGUI extends JFrame {
 				if(p.getMoney() - 200 >= 0) {
 					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 200 Tamo Tokens",
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-						p.getTamo().setHunger(p.getTamo().getHunger() + 3);
+						if(p.getTamo().getHunger() > 7) {
+							p.getTamo().setHunger(10);
+						} else {
+							p.getTamo().setHunger(p.getTamo().getHunger() + 3);
+						}
+						
 						p.setMoney(p.getMoney() - 200);
 						
 						GUI Focus = new GUI(p);
@@ -156,6 +174,10 @@ public class foodGUI extends JFrame {
 		});
 	}
 	
+	/*
+	 * Sets up the GUI, layout, etc.
+	 */
+	
 	public void setUpGUI() {
 		this.setLayout(new BorderLayout());
 		
@@ -179,7 +201,10 @@ public class foodGUI extends JFrame {
 		this.add(southPanel, BorderLayout.SOUTH);
 		southPanel.add(returnToFocus);
 	}
-
+	
+	/*
+	 * Method hides the main windows and disposes it
+	 */
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();

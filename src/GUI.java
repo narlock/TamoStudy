@@ -168,6 +168,9 @@ public class GUI extends JFrame {
 		
 	}
 	
+	/*
+	 * The next methods create the panels for GUI
+	 */
 	public void createHeadPanel() {
 		//Create Head Panel
 		headPanel = new JPanel();

@@ -1,4 +1,7 @@
-//welcome to TamoStudy page
+/**
+ * @author Anthony Narlock
+ * @description welcome to TamoStudy page
+ */
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,18 +14,28 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class welcomeGUI extends JFrame {
+	
+	/*
+	 * Panels and components of GUI
+	 */
 	private JPanel topPanel, centerPanel, buttonPanel;
 	private JLabel titleLabel, botLabel;
 	private JButton existingLoginButton, createProfileButton, aboutButton;
 	
 	private JLabel imageLabel;
 	
+	/*
+	 * Variables, file information
+	 */
 	private Profile profile;
 	private int result;
 	
 	private File file;
 	private BufferedWriter bw;
 	
+	/*
+	 * Constructor
+	 */
 	public welcomeGUI() {
 		setUpFrame();
 		
@@ -35,6 +48,9 @@ public class welcomeGUI extends JFrame {
 		this.setSize(500,350);
 	}
 	
+	/*
+	 * Method sets up the frame information
+	 */
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
@@ -47,7 +63,9 @@ public class welcomeGUI extends JFrame {
 		this.setIconImage(logo.getImage());
 		
 	}
-	
+	/*
+	 * Method initializes the variables and components
+	 */
 	public void initVariables() {
 		imageLabel = new JLabel(new ImageIcon("assets/tama_welcome.png"));
 		
@@ -67,6 +85,9 @@ public class welcomeGUI extends JFrame {
 		
 	}
 	
+	/*
+	 * Method creates the aspects of the components, action listeners
+	 */
 	public void createAspects() {
 		createProfileButton.addActionListener(new ActionListener() {
 
@@ -261,6 +282,9 @@ public class welcomeGUI extends JFrame {
 		});
 	}
 	
+	/*
+	 * Method sets up GUI, layout
+	 */
 	public void setUpGUI() {
 		//this.getContentPane().setLayout(new GridLayout(3,1));
 		this.getContentPane().setLayout(new BorderLayout());
@@ -302,11 +326,17 @@ public class welcomeGUI extends JFrame {
 	
 	}
 	
+	/*
+	 * Method hides the main windows and disposes it
+	 */
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();
 	}
 	
+	/*
+	 * Write the profile to a file
+	 */
 	public void writeProfileToFile(Profile p) throws IOException {
 		//hides the main screen page
 		this.setVisible(false);
@@ -322,7 +352,10 @@ public class welcomeGUI extends JFrame {
 		System.out.println("pasts commands");
 	}
 	
-	//TODO: Scan the file to see if the profile exists
+	/*
+	 * Check to see if the profile exists inside of the profiles folder
+	 * The indicator is if the text file is the username, and the password matches inside of the text field
+	 */
 	public boolean profileExistsInFile(String username, String password) throws IOException {
 		System.out.println("debug: username = " + username);
 		
@@ -348,6 +381,9 @@ public class welcomeGUI extends JFrame {
 		return false;
 	}
 	
+	/*
+	 * Loads profile from file
+	 */
 	public Profile loadProfileFromFile(String username, String password) throws IOException {
 		//String[] profileDetails = line.split(",");
 		//compare [0] to username and [1] to password, if equal return the profile
