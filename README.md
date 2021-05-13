@@ -1,6 +1,7 @@
 ![alt text](https://i.imgur.com/Vwphoy3.png)
 
 Author: Anthony Narlock
+Website: https://anthonynarlock.com/TamoStudy.html
 ##
 
 Original Concept Idea: I wanted a way to record the amount of time I spent focused every day. At the time, I was cleaning through my room and found my Tamagotchi that I used to play with when I was very young. I thought that implementing a Tamagotchi-like pet into a focus timer would be a good idea. The more I focus and get my work done, the more upgrades and new things I can do with the virtual pet (in my project, it's called a Tamo).
