@@ -105,7 +105,7 @@ public class GUI extends JFrame {
 		
 		updateHappyHunger();
 		
-		updateUserInformation(p);
+		//updateUserInformation(p);
 		
 		updateUserInformationToFile();
 		
@@ -584,21 +584,21 @@ public class GUI extends JFrame {
 			System.out.println("tamo level is currently " + profile.getTamo().getLevel());
 			
 			//Rewrite TotalTime
-			System.out.println("DEBUG: Rewriting Total Time");
+			System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
 			inputtedString[3] = String.valueOf(profile.getTotalTime());
 			
 			//Rewrite TotalMoney
-			System.out.println("DEBUG: Rewriting Total Money");
+			System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
 			inputtedString[4] = String.valueOf(profile.getMoney());
 			
 			//Rewrite TamoLevel, happiness, and 
-			System.out.println("DEBUG: Rewriting Level");
+			System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
 			inputtedString[6] = String.valueOf(profile.getTamo().getLevel());
 			
-			System.out.println("DEBUG: Rewriting Happiness");
+			System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
 			inputtedString[7] = String.valueOf(profile.getTamo().getHappiness());
 			
-			System.out.println("DEBUG: Rewriting Hunger");
+			System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
 			inputtedString[8] = String.valueOf(profile.getTamo().getHunger());
 			
 			//Update login date
@@ -761,6 +761,11 @@ public class GUI extends JFrame {
 	 * Updates values based off of log in date
 	 */
 	public void updateHappyHunger() {
+		System.out.println("RUNNING UPDATEHAPPYHUNGER METHOD\n--------------------------");
+		
+		System.out.println("DEBUG: Hunger before updateHappyHunger = " + profile.getTamo().getHunger());
+		System.out.println("DEBUG: Happiness before updateHappyHunger = " + profile.getTamo().getHappiness());
+		
 		//will grab profile.lastLoginString and compare it to profile.newLoginString
 		boolean first_day = true;
 		LocalDate end = null;
@@ -771,28 +776,27 @@ public class GUI extends JFrame {
 			end = LocalDate.parse(profile.getNewLoginString());
 			first_day = false;
 		} catch (Exception e) {
-			System.out.println("Profile does not have a last Login string, exception *first day of profile*");
+			System.out.println("NOTICE: Profile does not have a last Login string, exception *first day of profile*");
 		}
 		
 		
 		if(first_day == false) {
 			long diff = ChronoUnit.DAYS.between(start,end);
-			//System.out.println("test: difference between lastLogin and newLogin are " + diff + " days.");
+			System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
 		if(diff == 0) {
 			//If the user logs in on the same day, no changes will occur.
-		} else if(diff == 1) {
-			//If the user is logging in on a consecutive day, hunger will deplete 3 hunger points
+			System.out.println("DEBUG: Running difference = 0");
+			
+		} 
+		
+		
+		if(diff == 1) {
+			//If the user is logging in on a consecutive day, hunger will deplete 2 hunger points
+			System.out.println("DEBUG: Running difference = 1:");
 			int hungerAfterDepletion = profile.getTamo().getHunger() - 2;
-			
-			if(underEqualZero(hungerAfterDepletion)) {
-				profile.getTamo().setHunger(0);
-			} else {
-				profile.getTamo().setHunger(hungerAfterDepletion);
-			}
-		} else if(diff > 1 && diff < 4) {
-			//If the user is logging in between 2 and 3 days, hunger will deplete 4, happiness deplete 2
-			int hungerAfterDepletion = profile.getTamo().getHunger() - 3;
+			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
 			int happinessAfterDepletion = profile.getTamo().getHappiness() - 2;
+			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
 			
 			if(underEqualZero(hungerAfterDepletion)) {
 				profile.getTamo().setHunger(0);
@@ -803,12 +807,42 @@ public class GUI extends JFrame {
 			if(underEqualZero(happinessAfterDepletion)) {
 				profile.getTamo().setHappiness(1);
 			} else {
-				profile.getTamo().setHunger(happinessAfterDepletion);
+				profile.getTamo().setHappiness(happinessAfterDepletion);
 			}
-		} else if(diff > 4 && diff < 8) {
-			//If the user is logging in between 4 and 7 days, hunger will deplete 5, happiness deplete 3
-			int hungerAfterDepletion = profile.getTamo().getHunger() - 5;
+		} 
+		
+		
+		if(diff > 1 && diff < 4) {
+			//If the user is logging in between 2 and 3 days, hunger will deplete 4, happiness deplete 2
+			System.out.println("DEBUG: Running difference = 2-3:");
+			int hungerAfterDepletion = (profile.getTamo().getHunger() - 4);
+			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
 			int happinessAfterDepletion = profile.getTamo().getHappiness() - 3;
+			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
+			
+			System.out.println("HUNGER UNDEREQUAL ZERO VALUE: " + underEqualZero(hungerAfterDepletion));
+			if(underEqualZero(hungerAfterDepletion)) {
+				System.out.println("SETTING HUNGER TO ZERO");
+				profile.getTamo().setHunger(0);
+			} else { 
+				System.out.println("SETTING HUNGER TO: " + hungerAfterDepletion);
+				profile.getTamo().setHunger(hungerAfterDepletion);
+			}
+			
+			if(underEqualZero(happinessAfterDepletion)) {
+				profile.getTamo().setHappiness(1);
+			} else {
+				profile.getTamo().setHappiness(happinessAfterDepletion);
+			}
+		}
+			
+		if(diff > 3 && diff < 8) {
+			//If the user is logging in between 4 and 7 days, hunger will deplete 5, happiness deplete 3
+			System.out.println("Running difference = 4-7:");
+			int hungerAfterDepletion = profile.getTamo().getHunger() - 5;
+			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
+			int happinessAfterDepletion = profile.getTamo().getHappiness() - 4;
+			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
 			
 			if(underEqualZero(hungerAfterDepletion)) {
 				profile.getTamo().setHunger(0);
@@ -819,25 +853,37 @@ public class GUI extends JFrame {
 			if(underEqualZero(happinessAfterDepletion)) {
 				profile.getTamo().setHappiness(1);
 			} else {
-				profile.getTamo().setHunger(happinessAfterDepletion);
+				profile.getTamo().setHappiness(happinessAfterDepletion);
 			}
-		} else if(diff > 8) {
+		}
+		
+		if(diff >= 8 && diff < 30) {
 			//If the user does not log in for a week, hunger and happiness will be both depleted entirely
+			System.out.println("Running difference = 7+:");
 			profile.getTamo().setHunger(0);
 			profile.getTamo().setHappiness(1);
+		}
 
-		} else if(diff > 30) {
+		if(diff >= 30) {
+			System.out.println("Running difference = 30+:");
 			//If the user does not log in for a month, the Tamo will reset (die).
 			//TODO
 			//Essentially the tamo data will be wiped and user will start over
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
+			
+			tamoDeath();
 		}
-		}
+		
+		System.out.println("DEBUG HUNGER AFTER FUNCTION: " + profile.getTamo().getHunger());
+		System.out.println("DEBUG HAPPY AFTER FUNCTION: " + profile.getTamo().getHappiness());
 		
 		//Set the new date equal to the previous date here
 		profile.setLast_login_date(profile.getNew_login_date());
 		profile.setLastLoginString(profile.getNewLoginString());
+		
+		}
+		
 	}
 	
 	/*
@@ -871,5 +917,9 @@ public class GUI extends JFrame {
 				tamoHunger.setIcon(new ImageIcon("assets/hunger/" + str +".png"));
 			}
 		}
+	}
+	
+	public void tamoDeath() {
+		System.out.println("Tamo Death");
 	}
 }
