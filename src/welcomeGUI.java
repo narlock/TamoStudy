@@ -45,7 +45,7 @@ public class welcomeGUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(500,350);
+		this.setSize(550,350);
 	}
 	
 	/*
@@ -54,8 +54,8 @@ public class welcomeGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.4.0");
-		this.setSize(500,349);
+		this.setTitle("TamoStudy | alpha 0.4.3");
+		this.setSize(550,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -67,7 +67,7 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
-		imageLabel = new JLabel(new ImageIcon("assets/tama_welcome.png"));
+		imageLabel = new JLabel(new ImageIcon("assets/welcome.png"));
 		
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
@@ -78,9 +78,22 @@ public class welcomeGUI extends JFrame {
 		
 		botLabel = new JLabel("alpha 0.4.0");
 		
-		createProfileButton = new JButton("Create New Profile");
-		existingLoginButton = new JButton("Load Existing Profile");
-		aboutButton = new JButton("About TamoStudy");
+		//createProfileButton = new JButton("Create New Profile");
+		createProfileButton = new JButton(new ImageIcon("assets/new_button.png"));
+		createProfileButton.setBorderPainted(false);
+		createProfileButton.setFocusPainted(false);
+		createProfileButton.setContentAreaFilled(false);
+		//existingLoginButton = new JButton("Load Existing Profile");
+		existingLoginButton = new JButton(new ImageIcon("assets/load_button.png"));
+		existingLoginButton.setBorderPainted(false);
+		existingLoginButton.setFocusPainted(false);
+		existingLoginButton.setContentAreaFilled(false);
+		//aboutButton = new JButton("About TamoStudy");
+		aboutButton = new JButton(new ImageIcon("assets/about_button.png"));
+		//aboutButton.setBorderPainted(new ImageIcon("assets/about_button.png"));
+		aboutButton.setBorderPainted(false);
+		aboutButton.setFocusPainted(false);
+		aboutButton.setContentAreaFilled(false);
 
 		
 	}
@@ -303,12 +316,12 @@ public class welcomeGUI extends JFrame {
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(new Color(255,161,161));
 		
-		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		botLabel.setHorizontalAlignment(JLabel.CENTER);
+		//titleLabel.setHorizontalAlignment(JLabel.CENTER);
+		//botLabel.setHorizontalAlignment(JLabel.CENTER);
 		
-		topPanel.add(titleLabel, BorderLayout.CENTER);
+		//topPanel.add(titleLabel, BorderLayout.CENTER);
 		
-		topPanel.add(botLabel, BorderLayout.SOUTH);
+		//topPanel.add(botLabel, BorderLayout.SOUTH);
 		//topPanel.add(imageLabel);
 	}
 	
