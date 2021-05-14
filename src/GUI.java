@@ -37,7 +37,10 @@ public class GUI extends JFrame {
 	private JLabel imageLabel, backgroundImageLabel;
 	
 	private JPanel tamoStatsPanel;
-	private JLabel profileName, moneyLabel, tamoName, tamoLevel, tamoHappiness, tamoHunger;
+	private JLabel profileName, tamoName, tamoLevel, tamoHappiness, tamoHunger;
+	
+	private JPanel moneyPanel;
+	private JLabel moneyLabel, moneyImage;
 	
 	/*
 	 * timerPanel
@@ -220,8 +223,13 @@ public class GUI extends JFrame {
 				
 		profileName = new JLabel("Welcome, " + profile.getUsername());
 		profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
-		moneyLabel = new JLabel("Tamo Tokens: " + profile.getMoney());
+		
+		moneyPanel = new JPanel();
+		moneyImage = new JLabel(new ImageIcon("assets/tamo_token.png"));
+		moneyLabel = new JLabel("" + profile.getMoney());
 		moneyLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		
+		
 		tamoName = new JLabel("Tamo: " + profile.getTamo().getName());
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoLevel = new JLabel("Level: " + profile.getTamo().getLevel());
@@ -238,7 +246,12 @@ public class GUI extends JFrame {
 		updateTamoHunger(profile.getTamo().getHunger());
 				
 		tamoStatsPanel.add(profileName);
-		tamoStatsPanel.add(moneyLabel);
+		tamoStatsPanel.add(moneyPanel);
+		
+		moneyPanel.setBackground(new Color(255,161,161));
+		moneyPanel.add(moneyImage, BorderLayout.WEST);
+		moneyPanel.add(moneyLabel, BorderLayout.WEST);
+		
 		tamoStatsPanel.add(tamoName);
 		tamoStatsPanel.add(tamoLevel);
 		tamoStatsPanel.add(tamoHappiness);
@@ -673,7 +686,7 @@ public class GUI extends JFrame {
 		
 		//Update Labels
 		
-		moneyLabel.setText("Tamo Tokens: " + profile.getMoney());
+		moneyLabel.setText("" + profile.getMoney());
 		
 		tamoLevel.setText("Level: " + profile.getTamo().getLevel());
 		//tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
