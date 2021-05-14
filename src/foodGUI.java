@@ -22,25 +22,27 @@ public class foodGUI extends JFrame {
 	//Left Panel Components
 	private JPanel leftPanel;
 	
-	private JLabel food1ImageLabel, food1InfoLabel;
-	private JButton food1BuyButton;
-	
-	//Center Panel Components
-	private JPanel centerPanel;
-	
 	private JLabel shopImageLabel;
 	private JLabel tutorialLabel;
 	
-	//Right Panel Components
-	private JPanel rightPanel;
-	
-	private JLabel food2ImageLabel, food2InfoLabel;
-	private JButton food2BuyButton;
-	
 	//South panel components
 	private JPanel southPanel;
-	
 	private JButton returnToFocus;
+	
+	//Center Panel Components
+	private JPanel centerPanel;
+	private JPanel food1Panel, food2Panel, food3Panel;
+	
+	private JLabel food1InfoLabel;
+	private JButton food1BuyButton;
+	
+	private JLabel food2InfoLabel;
+	private JButton food2BuyButton;
+	
+	private JLabel food3InfoLabel;
+	private JButton food3BuyButton;
+	
+
 	
 	/*
 	 * Constructor for GUI, parameter is profile information
@@ -86,29 +88,36 @@ public class foodGUI extends JFrame {
 		leftPanel = new JPanel();
 		leftPanel.setBackground(new Color(255,161,161));
 		
-		food1ImageLabel = new JLabel(new ImageIcon("assets/food1.png"));
-		food1InfoLabel = new JLabel("100 TamoTokens, 1 Hunger");
-		food1BuyButton = new JButton("BUY");
+		//Init South panel components
+		southPanel = new JPanel();
+		southPanel.setBackground(new Color(255,161,161));
+		returnToFocus = new JButton("Return to Focus");
 		
 		//Init Center Panel Components
 		centerPanel = new JPanel();
 		centerPanel.setBackground(new Color(255,161,161));
 		
+		food1Panel = new JPanel();
+		food1Panel.setBackground(new Color(255,161,161));
+		
+		food2Panel = new JPanel();
+		food2Panel.setBackground(new Color(255,161,161));
+		
+		food3Panel = new JPanel();
+		food3Panel.setBackground(new Color(255,161,161));
+		
 		shopImageLabel = new JLabel(new ImageIcon("assets/shop.png"));
 		tutorialLabel = new JLabel("Buy food for your Tamo!\nUpon purchase, Tamo will eat food.");
 		
-		//Init right panel components
-		rightPanel = new JPanel();
-		rightPanel.setBackground(new Color(255,161,161));
-		
-		food2ImageLabel = new JLabel(new ImageIcon("assets/food2.png"));
+		food1InfoLabel = new JLabel("100 TamoTokens, 1 Hunger");
+		food1BuyButton = new JButton(new ImageIcon("assets/food1.png"));
+
 		food2InfoLabel = new JLabel("200 TamoTokens, 3 Hunger");
-		food2BuyButton = new JButton("BUY");
+		food2BuyButton = new JButton(new ImageIcon("assets/food2.png"));
 		
-		//Init South panel components
-		southPanel = new JPanel();
-		southPanel.setBackground(new Color(255,161,161));
-		returnToFocus = new JButton("Return to Focus");
+		food3InfoLabel = new JLabel("800 TamoTokens, Fill Hunger");
+		food3BuyButton = new JButton(new ImageIcon("assets/cheesecake.png"));
+		
 		
 		/*
 		 * Button activities
@@ -161,6 +170,27 @@ public class foodGUI extends JFrame {
 			
 		});
 		
+		food3BuyButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 800 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 800 Tamo Tokens",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.getTamo().setHunger(10);
+						p.setMoney(p.getMoney() - 800);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+			}
+			
+		});
+		
 		
 		returnToFocus.addActionListener(new ActionListener() {
 
@@ -179,27 +209,39 @@ public class foodGUI extends JFrame {
 	 */
 	
 	public void setUpGUI() {
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridLayout(1,2));
 		
-		this.add(leftPanel, BorderLayout.WEST);
-		leftPanel.setLayout(new GridLayout(3, 1));
-		leftPanel.add(food1ImageLabel);
-		leftPanel.add(food1InfoLabel);
-		leftPanel.add(food1BuyButton);
+		this.add(leftPanel);
+		leftPanel.setLayout(new BorderLayout());
+		leftPanel.add(shopImageLabel); 
 		
-		this.add(centerPanel, BorderLayout.CENTER);
-		centerPanel.setLayout(new GridLayout(1, 1));
-		centerPanel.add(shopImageLabel); 
-		//centerPanel.add(tutorialLabel);
-		
-		this.add(rightPanel, BorderLayout.EAST);
-		rightPanel.setLayout(new GridLayout(3, 1));
-		rightPanel.add(food2ImageLabel);
-		rightPanel.add(food2InfoLabel);
-		rightPanel.add(food2BuyButton);
-		
-		this.add(southPanel, BorderLayout.SOUTH);
+		leftPanel.add(southPanel, BorderLayout.SOUTH);
 		southPanel.add(returnToFocus);
+		//leftPanel.add(food1ImageLabel);
+		
+		
+		
+		this.add(centerPanel);
+		centerPanel.setLayout(new GridLayout(3, 1));
+		
+		centerPanel.add(food1Panel);
+		
+		food1Panel.setLayout(new BorderLayout());
+		food1Panel.add(food1BuyButton, BorderLayout.WEST);
+		food1Panel.add(food1InfoLabel, BorderLayout.CENTER);
+		
+		centerPanel.add(food2Panel);
+		
+		food2Panel.setLayout(new BorderLayout());
+		food2Panel.add(food2BuyButton, BorderLayout.WEST);
+		food2Panel.add(food2InfoLabel, BorderLayout.CENTER);
+		
+		centerPanel.add(food3Panel);
+		
+		food3Panel.setLayout(new BorderLayout());
+		food3Panel.add(food3BuyButton, BorderLayout.WEST);
+		food3Panel.add(food3InfoLabel, BorderLayout.CENTER);
+
 	}
 	
 	/*
