@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +18,9 @@ public class Profile {
 	private int money;
 	private int totalTime;
 	private int currentBackground;
+	private String guiColor;
+	
+	private int warnings;
 	
 	public Profile() {
 		this.username = "null";
@@ -46,11 +50,15 @@ public class Profile {
 		this.last_login_date = new Date();
 		this.lastLoginString = formatter.format(last_login_date);
 		this.currentBackground = 0;
+		
+		this.guiColor = "default";
+		
+		this.warnings = 0;
 	}
 	
 	
 	//When loading profile, use this
-	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground) {
+	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int warnings) {
 		this.username = username;
 		this.password = password;
 		this.dateString = dateString;
@@ -65,6 +73,10 @@ public class Profile {
 		this.newLoginString = formatter.format(new_login_date);
 		
 		this.currentBackground = currentBackground;
+		
+		this.guiColor = guiColor;
+		
+		this.warnings = warnings;
 	}
 
 
@@ -159,5 +171,21 @@ public class Profile {
 	
 	public Date getNew_login_date() {
 		return new_login_date;
+	}
+ 
+	public String getGuiColor() {
+		return guiColor;
+	}
+
+	public void setGuiColor(String guiColor) {
+		this.guiColor = guiColor;
+	}
+
+	public int getWarnings() {
+		return warnings;
+	}
+
+	public void setWarnings(int warnings) {
+		this.warnings = warnings;
 	}
 }

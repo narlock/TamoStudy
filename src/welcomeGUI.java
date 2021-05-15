@@ -354,7 +354,7 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground();
+		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getWarnings();
 		System.out.println("DEBUG: profileInfo = " + profileInfo);
 		
 		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
@@ -419,8 +419,8 @@ public class welcomeGUI extends JFrame {
 			
 				if(flagFound) {
 					//return here
-					Tamo loadTamo = new Tamo(profileDetails[flag+5], Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]), Integer.parseInt(profileDetails[flag+8]));
-					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), Integer.parseInt(profileDetails[flag+4]),loadTamo, profileDetails[flag+9], Integer.parseInt(profileDetails[flag+10]));
+					Tamo loadTamo = new Tamo(profileDetails[flag+5], Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]), Integer.parseInt(profileDetails[flag+8]), Integer.parseInt(profileDetails[flag+12]));
+					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), Integer.parseInt(profileDetails[flag+4]),loadTamo, profileDetails[flag+9], Integer.parseInt(profileDetails[flag+10]), profileDetails[flag+11], Integer.parseInt(profileDetails[flag+13]));
 					br.close();
 					return load;
 				}

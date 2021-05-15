@@ -37,10 +37,19 @@ public class GUI extends JFrame {
 	private JLabel imageLabel, backgroundImageLabel;
 	
 	private JPanel tamoStatsPanel;
-	private JLabel profileName, tamoName, tamoLevel, tamoHappiness, tamoHunger;
+	private JLabel tamoHappiness, tamoHunger;
+	
+	private JPanel profilePanel;
+	private JLabel profileName;
 	
 	private JPanel moneyPanel;
 	private JLabel moneyLabel, moneyImage;
+	
+	private JPanel tamoNamePanel;
+	private JLabel tamoName;
+	
+	private JPanel tamoLevelPanel;
+	private JLabel tamoLevel;
 	
 	/*
 	 * timerPanel
@@ -626,6 +635,15 @@ public class GUI extends JFrame {
 			System.out.println("DEBUG: Rewriting current bg");
 			inputtedString[10] = String.valueOf(profile.getCurrentBackground());
 			
+			System.out.println("DEBUG: Rewriting guiColor");
+			inputtedString[11] = profile.getGuiColor();
+			
+			System.out.println("DEBUG: Rewriting tamo ID");
+			inputtedString[12] = String.valueOf(profile.getTamo().getId());
+			
+			System.out.println("DEBUG: Rewriting warnings");
+			inputtedString[13] = String.valueOf(profile.getWarnings());
+			
 			System.out.println("DEBUG: Success");
 			
 			System.out.println("inputted string after:");
@@ -705,17 +723,17 @@ public class GUI extends JFrame {
 		
 		if(happy >= 4 && happy <= 6) {
 			if(hungry)
-				updateTamoImage(0,3);
+				updateTamoImage(profile.getTamo().getId(),3);
 			else
-			updateTamoImage(0, 0);
+			updateTamoImage(profile.getTamo().getId(), 0);
 			
 		} else if (happy >= 7 && happy <= 10) {
 			if(hungry)
-				updateTamoImage(0,3);
+				updateTamoImage(profile.getTamo().getId(),3);
 			else
-			updateTamoImage(0, 1);
+			updateTamoImage(profile.getTamo().getId(), 1);
 		} else if (happy >= 1 && happy <= 3) {
-			updateTamoImage(0, 2);
+			updateTamoImage(profile.getTamo().getId(), 2);
 		}
 		
 	}
@@ -729,19 +747,32 @@ public class GUI extends JFrame {
 	 * 4 - focus mode
 	 * TODO: Get an artist to create tamo images
 	 */
-	public void updateTamoImage(int tamaID, int num) {
-		if(tamaID == 0) {
+	public void updateTamoImage(int tamoID, int num) {
+		if(tamoID == 0) {
 			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_default.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_default.png"));
 			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_happy.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_happy.png"));
 			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_sad.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_sad.png"));
 			else if(num == 3)
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_hungry.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_hungry.png"));
 			else if(num == 4)
-				imageLabel.setIcon(new ImageIcon("assets/tamo0_focus.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_focus.png"));
 			
+		}
+		
+		if(tamoID == 1) {
+			if(num == 0) 
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_default.png"));
+			else if(num == 1)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_happy.png"));
+			else if(num == 2)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_sad.png"));
+			else if(num == 3)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_hungry.png"));
+			else if(num == 4)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_focus.png"));
 		}
 		
 	}
@@ -884,7 +915,7 @@ public class GUI extends JFrame {
 			//Essentially the tamo data will be wiped and user will start over
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
-			
+			profile.setWarnings(3);
 			tamoDeath();
 		}
 		

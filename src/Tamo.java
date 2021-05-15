@@ -6,13 +6,15 @@ public class Tamo {
 	private int happiness;
 	private int hunger;
 	
+	private int id;
+	
 	public Tamo() {
 		this.name = "null";
 		this.level = -1;
 		this.experience = -1;
 		this.happiness = -1;
 		this.hunger = -1;
-		
+		this.id = 0;
 	}
 	
 	public Tamo(String name) {
@@ -21,6 +23,9 @@ public class Tamo {
 		this.experience = 0;
 		this.happiness = 5;
 		this.hunger = 5;
+		
+		//TODO: Random ID
+		this.id = 0;
 	}
 	
 	public Tamo(String name, int level, int happiness, int hunger) {
@@ -28,14 +33,19 @@ public class Tamo {
 		this.level = level;
 		this.happiness = happiness;
 		this.hunger = hunger;
+		
+		//TODO: Random ID
+		this.id = 0;
 	}
 	
-	public Tamo(String name, int level, int happiness, int hunger, int experience) {
+	public Tamo(String name, int level, int happiness, int hunger, int id) {
 		this.name = name;
 		this.level = level;
 		this.happiness = happiness;
 		this.hunger = hunger;
-		this.experience = experience;
+		
+		//TODO: Random ID
+		this.id = id;
 	}
 
 	//getters
@@ -127,6 +137,14 @@ public class Tamo {
 
 	public void setExperience(int experience) {
 		this.experience = experience;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
