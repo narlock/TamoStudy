@@ -134,11 +134,9 @@ public class welcomeGUI extends JFrame {
 					profile = new Profile(usernameField.getText(), passwordField.getText(), tamoNameField.getText());
 					
 					
-					//TODO: update this try and catch statement
 					try {
 						writeProfileToFile(profile);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
