@@ -24,7 +24,6 @@ public class testGUI extends JFrame {
 	private Timer timer;
 
 	private JLabel imageLabel;
-	
 
 	public testGUI()  {
 		

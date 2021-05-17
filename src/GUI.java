@@ -454,6 +454,12 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				studyTimeMinutes = tempMin;
 				studyTimeSeconds = tempSec;
+				
+				//Tamo Loses happiness upon breaking session
+				if(profile.getTamo().getHappiness() > 1) {
+					profile.getTamo().setHappiness(profile.getTamo().getHappiness() - 1);
+				}
+				
 				updateStudyStats(studyTimeMinutes, studyTimeSeconds);
 				studyMessage = "Session Focus Broke\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
 				
@@ -535,7 +541,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resultPane = JOptionPane.showConfirmDialog(null, "Logging out...", "Are you sure?",
+				int resultPane = JOptionPane.showConfirmDialog(null, "Are you sure?", "Logging out...",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("assets/info.png"));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI();
@@ -788,7 +794,7 @@ public class GUI extends JFrame {
 			if(num == 0) 
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_default.gif"));
 			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_happy.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_happy.gif"));
 			else if(num == 2)
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_sad.png"));
 			else if(num == 3)
