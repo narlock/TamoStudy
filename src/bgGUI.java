@@ -48,7 +48,7 @@ public class bgGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("Background Shop - Current TamoTokens: " + p.getMoney());
+		this.setTitle("Background Shop | TamoTokens: " + p.getMoney());
 		this.setSize(1280, 749);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -80,11 +80,11 @@ public class bgGUI extends JFrame {
 		bg5Panel = new JPanel();
 		bg5Panel.setBackground(new Color(255,161,161));
 		
-		bg1 = new JLabel(new ImageIcon("assets/bg.png"));
-		bg2 = new JLabel(new ImageIcon("assets/bg2.png"));
-		bg3 = new JLabel(new ImageIcon("assets/bg3.png"));
-		bg4 = new JLabel(new ImageIcon("assets/bg4.png"));
-		bg5 = new JLabel(new ImageIcon("assets/bg5.png"));
+		bg1 = new JLabel(new ImageIcon("assets/backgrounds/bg.png"));
+		bg2 = new JLabel(new ImageIcon("assets/backgrounds/bg2.png"));
+		bg3 = new JLabel(new ImageIcon("assets/backgrounds/bg3.png"));
+		bg4 = new JLabel(new ImageIcon("assets/backgrounds/bg4.png"));
+		bg5 = new JLabel(new ImageIcon("assets/backgrounds/bg5.png"));
 		
 		bg1button = new JButton("BUY (1000 Tokens)");
 		bg2button = new JButton("BUY (1000 Tokens)");
@@ -122,7 +122,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -143,7 +143,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -164,7 +164,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -185,7 +185,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -206,7 +206,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}

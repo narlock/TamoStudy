@@ -25,7 +25,7 @@ public class Tamo {
 		this.hunger = 5;
 		
 		//TODO: Random ID
-		this.id = 0;
+		this.id = 1;
 	}
 	
 	public Tamo(String name, int level, int happiness, int hunger) {

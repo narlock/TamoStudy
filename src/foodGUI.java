@@ -69,7 +69,7 @@ public class foodGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("Food Shop - Current TamoTokens: " + p.getMoney());
+		this.setTitle("Food Shop | Tamo Tokens: " + p.getMoney());
 		this.setSize(720, 299);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -137,7 +137,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -163,7 +163,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -184,7 +184,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}

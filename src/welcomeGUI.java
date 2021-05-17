@@ -54,7 +54,12 @@ public class welcomeGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy | alpha 0.4.3");
+		//UI Manager implements background colors for panels and option panes
+		UIManager UI = new UIManager();
+		UI.put("OptionPane.background", new Color(255,161,161));
+		UI.put("Panel.background", new Color(255,161,161));
+		
+		this.setTitle("TamoStudy | alpha 0.5.0");
 		this.setSize(550,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -76,7 +81,7 @@ public class welcomeGUI extends JFrame {
 		titleLabel = new JLabel("Welcome to TamoStudy");
 		titleLabel.setFont(new Font ("Tahoma", Font.BOLD, 24));
 		
-		botLabel = new JLabel("alpha 0.4.0");
+		botLabel = new JLabel("alpha 0.5.0");
 		
 		//createProfileButton = new JButton("Create New Profile");
 		createProfileButton = new JButton(new ImageIcon("assets/new_button.png"));
@@ -182,13 +187,15 @@ public class welcomeGUI extends JFrame {
 							
 							
 						} else {
-							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
 							usernameField.setText("");
 							passwordField.setText("");
 						}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						//e1.printStackTrace();
+						JOptionPane.showMessageDialog(rootPane, "This user is not in data file.\nIf you believe this is a mistake, please report bug on our Discord Server", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+						usernameField.setText("");
+						passwordField.setText("");
 					}
 					
 					
@@ -210,10 +217,10 @@ public class welcomeGUI extends JFrame {
 				aboutPanel.setBackground(new Color(255,161,161));
 				JPanel rightPanel = new JPanel();
 				rightPanel.setBackground(new Color(255,161,161));
-				rightPanel.setLayout(new GridLayout(3,1));
+				rightPanel.setLayout(new GridLayout(4,1));
 				
 				JLabel label = new JLabel(new ImageIcon("assets/about.png"));
-				JButton twitter_button = new JButton("Twitter");
+				JButton twitter_button = new JButton(new ImageIcon("assets/socials/twitter.png"));
 				
 				twitter_button.addActionListener(new ActionListener() {
 
@@ -235,7 +242,7 @@ public class welcomeGUI extends JFrame {
 					
 				});
 				
-				JButton github_button = new JButton("GitHub");
+				JButton github_button = new JButton(new ImageIcon("assets/socials/github.png"));
 				
 				github_button.addActionListener(new ActionListener() {
 
@@ -257,7 +264,7 @@ public class welcomeGUI extends JFrame {
 					
 				});
 				
-				JButton discord_button = new JButton("Join Discord");
+				JButton discord_button = new JButton(new ImageIcon("assets/socials/discord.png"));
 				
 				discord_button.addActionListener(new ActionListener() {
 
@@ -279,8 +286,31 @@ public class welcomeGUI extends JFrame {
 					
 				});		
 				
+				JButton personal_button = new JButton(new ImageIcon("assets/socials/narlock.png"));
+				
+				personal_button.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							Desktop.getDesktop().browse(new URL("https://anthonynarlock.com").toURI());
+						} catch (MalformedURLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				});	
+				
 				aboutPanel.add(label);
 				aboutPanel.add(rightPanel);
+				rightPanel.add(personal_button);
 				rightPanel.add(github_button);
 				rightPanel.add(twitter_button);
 				rightPanel.add(discord_button);

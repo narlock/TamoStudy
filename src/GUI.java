@@ -20,7 +20,7 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, feedButton, backgroundShopButton, minigameButton;
+	private JButton statsButton, feedButton, backgroundShopButton, logOutButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -137,7 +137,7 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy - alpha 0.4.0");
+		this.setTitle("TamoStudy | alpha 0.5.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -193,18 +193,20 @@ public class GUI extends JFrame {
 		statsButton = new JButton("Statistics");
 		feedButton = new JButton("Food Store");
 		backgroundShopButton = new JButton("Background Store");
-		minigameButton = new JButton("Minigames (Coming soon)");
+		logOutButton = new JButton("Logout");
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
 		headPanel.add(statsButton);
 		headPanel.add(feedButton);
 		headPanel.add(backgroundShopButton);
-		headPanel.add(minigameButton);
+		headPanel.add(logOutButton);
 		//headPanel.add(shopBox);
 	}
 	
 	public void createTamoPanel() {
+		spaceLabel = new JLabel();
+		
 		//Base Panel
 		tamoPanel = new JPanel();
 		tamoPanel.setLayout(new GridLayout(1,2));
@@ -257,9 +259,12 @@ public class GUI extends JFrame {
 		tamoStatsPanel.add(profileName);
 		tamoStatsPanel.add(moneyPanel);
 		
+		moneyPanel.setLayout(new GridLayout(1,4));
 		moneyPanel.setBackground(new Color(255,161,161));
-		moneyPanel.add(moneyImage, BorderLayout.WEST);
-		moneyPanel.add(moneyLabel, BorderLayout.WEST);
+		moneyPanel.add(moneyImage);
+		moneyPanel.add(moneyLabel);
+		moneyPanel.add(spaceLabel);
+		moneyPanel.add(spaceLabel);
 		
 		tamoStatsPanel.add(tamoName);
 		tamoStatsPanel.add(tamoLevel);
@@ -357,7 +362,8 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Initial study values
-				updateTamoImage(0,4);
+				updateTamoImage(profile.getTamo().getId(),4);
+				
 				studyMin = Integer.parseInt(minuteTime.getText());
 				studySec = Integer.parseInt(secondTime.getText());
 				System.out.println("STUDY SESSION: " + studyMin + " minutes and " + studySec + " seconds.");
@@ -373,7 +379,7 @@ public class GUI extends JFrame {
 				statsButton.setEnabled(false);
 				feedButton.setEnabled(false);
 				backgroundShopButton.setEnabled(false);
-				//minigameButton.setEnabled(false);
+				logOutButton.setEnabled(false);
 				
 				timer = new Timer(1000, new ActionListener() {
 					
@@ -409,7 +415,7 @@ public class GUI extends JFrame {
 							
 							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
-							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
 							
 							//TODO: make methods to actually update coins and total statistics
 							
@@ -457,7 +463,7 @@ public class GUI extends JFrame {
 				resetTimer();
 				timer.stop();
 				
-				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
 				
 			}
 			
@@ -491,7 +497,7 @@ public class GUI extends JFrame {
 									"\n\nUser: " + profile.getUsername() + "\nJoin Date: " + profile.getJoinDate() +
 									"\nAchievements: 0/30";
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, "Statistics", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(rootPane, statsMessage, "Statistics", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
 				
 			}
 			
@@ -508,7 +514,7 @@ public class GUI extends JFrame {
 					foodGUI food = new foodGUI(profile);
 					hideWindow();
 				} else {
-					JOptionPane.showMessageDialog(null, "Your Tamo is full!", "Can't enter food shop", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Your Tamo is full!", "Can't enter food shop", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -525,9 +531,25 @@ public class GUI extends JFrame {
 			
 		});
 		
+		logOutButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int resultPane = JOptionPane.showConfirmDialog(null, "Logging out...", "Are you sure?",
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("assets/info.png"));
+				if(resultPane == JOptionPane.OK_OPTION) {
+					welcomeGUI welcome = new welcomeGUI();
+					hideWindow();
+					
+				} else {
+					System.out.println("Cancelled");
+				}
+				
+			}
+			
+		});
 		
 		//TODO Add mini games in the future
-		minigameButton.setEnabled(false);
 
 	}
 	
@@ -560,7 +582,7 @@ public class GUI extends JFrame {
 		statsButton.setEnabled(true);
 		feedButton.setEnabled(true);
 		backgroundShopButton.setEnabled(true);
-		//minigameButton.setEnabled(true);
+		logOutButton.setEnabled(true);
 		
 	}
 	
@@ -750,7 +772,7 @@ public class GUI extends JFrame {
 	public void updateTamoImage(int tamoID, int num) {
 		if(tamoID == 0) {
 			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_default.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_default.gif"));
 			else if(num == 1)
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_happy.png"));
 			else if(num == 2)
@@ -764,7 +786,7 @@ public class GUI extends JFrame {
 		
 		if(tamoID == 1) {
 			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_default.png"));
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_default.gif"));
 			else if(num == 1)
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_happy.png"));
 			else if(num == 2)
@@ -790,15 +812,15 @@ public class GUI extends JFrame {
 	 */
 	public void setBackground(int num) {
 		if(num == 0)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/bg.png"));
+			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg.png"));
 		else if(num == 1)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/bg2.png"));
+			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg2.png"));
 		else if(num == 2)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/bg3.png"));
+			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg3.png"));
 		else if(num == 3)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/bg4.png"));
+			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg4.png"));
 		else if(num == 4)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/bg5.png"));
+			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg5.png"));
 	}
 	
 	/*
