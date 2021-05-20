@@ -27,3 +27,5 @@ I wanted a way to record the amount of time I spent focused every day. At the ti
 Project plans to include a GUI in which a user can create a username and password along with give a name for their Tamo. The user can re-load this information so they can load where they left off in their studies. (Keeping the total amount of time they have focused, and their previous Tamo alive)
 
 The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
+
+TamoStudy was created on January 30th, 2021
