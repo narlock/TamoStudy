@@ -150,13 +150,19 @@ public class welcomeGUI extends JFrame {
 					
 					
 					try {
-						writeProfileToFile(profile);
+						if(profileExistsInFile(usernameField.getText())) {
+							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user already exists in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+							usernameField.setText("");
+							passwordField.setText("");
+						} else {
+							writeProfileToFile(profile);
+							
+							GUI Focus = new GUI(profile);
+						}
+						
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					
-					
-					GUI Focus = new GUI(profile);
 					
 				} else {
 					System.out.println("Cancelled");
@@ -430,6 +436,19 @@ public class welcomeGUI extends JFrame {
 		}
 		br.close();
 		return false;
+	}
+	
+	public boolean profileExistsInFile(String username) {
+		System.out.println("debug: username = " + username);
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
+		} catch (IOException e) {
+			return false;
+		}
+		
+		return true;
+
 	}
 	
 	/*
