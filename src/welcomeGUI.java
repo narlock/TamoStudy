@@ -104,9 +104,10 @@ public class welcomeGUI extends JFrame {
 
 		languageBox = new JComboBox();
 		languageBox.addItem("English");
-		languageBox.addItem("Espa�ol (Spanish)");
-		languageBox.addItem("Portugu�s (Portuguese)");
+		languageBox.addItem("Español (Spanish)");
+		languageBox.addItem("Português (Portuguese)");
 		languageBox.addItem("Deutsche (German)");
+		languageBox.addItem("日本語 (Japanese)");
 	}
 	
 	/*
@@ -493,13 +494,14 @@ public class welcomeGUI extends JFrame {
 	public int getLanguageIndicator(String languageString) {
 		if(languageString.equals("English"))
 			return 0;
-		if(languageString.equals("Espa�ol (Spanish)"))
+		if(languageString.equals("Español (Spanish)"))
 			return 1;
-		if(languageString.equals("Portugu�s (Portuguese)"))
+		if(languageString.equals("Português (Portuguese)"))
 			return 2;
 		if(languageString.equals("Deutsche (German)"))
 			return 3;
-		
+		if(languageString.equals("日本語 (Japanese)"))
+			return 4;
 		
 		return 0;
 	}

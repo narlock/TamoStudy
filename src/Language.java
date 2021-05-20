@@ -91,7 +91,7 @@ public class Language {
 			if(num == 2)
 				return "Nivel";
 			if(num == 3)
-				return "Estad�stica";
+				return "Estadística";
 			if(num == 4)
 				return "Supermercado";
 			if(num == 5)
@@ -107,7 +107,7 @@ public class Language {
 			if(num == 9)
 				return "Horas Totales";
 			if(num == 10)
-				return "Horas Totales en Sesi�n";
+				return "Horas Totales en Sesión";
 			if(num == 11)
 				return "Usuario";
 			if(num == 12)
@@ -119,7 +119,7 @@ public class Language {
 			if(num == 14)
 				return "No puedes entrar en el supermercado";
 			if(num == 15)
-				return "Tu Tamo est� lleno!";
+				return "Tu Tamo está lleno!";
 			if(num == 16)
 				return "Compra por";
 			if(num == 17)
@@ -135,9 +135,9 @@ public class Language {
 				
 			//Logout
 			if(num == 22)
-				return "Cerrando sesi�n...";
+				return "Cerrando sesión...";
 			if(num == 23)
-				return "Est�s seguro?";
+				return "Estás seguro?";
 		}
 		
 		//2 = Portuguese
@@ -146,9 +146,9 @@ public class Language {
 			if(num == 1)
 				return "Boas vindas";
 			if(num == 2)
-				return "N�vel";
+				return "Nível";
 			if(num == 3)
-				return "Estat�stica";
+				return "Estatística";
 			if(num == 4)
 				return "Loja de Comidas";
 			if(num == 5)
@@ -164,9 +164,9 @@ public class Language {
 			if(num == 9)
 				return "Horas totais de foco";
 			if(num == 10)
-				return "Horas totais em sess�es";
+				return "Horas totais em sessões";
 			if(num == 11)
-				return "Usu�rio";
+				return "Usuário";
 			if(num == 12)
 				return "Ingressou em";
 			if(num == 13)
@@ -174,17 +174,17 @@ public class Language {
 				
 			//Shop Interface
 			if(num == 14)
-				return "Voc� n�o precisa comprar comida agora";
+				return "Você não precisa comprar comida agora";
 			if(num == 15)
-				return "Seu Tamo n�o est� com fome!";
+				return "Seu Tamo não está com fome!";
 			if(num == 16)
 				return "Comprar";
 			if(num == 17)
 				return "Tamo Moedas";
 			if(num == 18)
-				return "N�o foi poss�vel concluir a compra";
+				return "Não foi possível concluir a compra";
 			if(num == 19)
-				return "Voc� n�o tem Tamo Moedas suficientes";
+				return "Você não tem Tamo Moedas suficientes";
 			if(num == 20)
 				return "Retornar ao foco";
 			if(num == 21)
@@ -194,7 +194,7 @@ public class Language {
 			if(num == 22)
 				return "Fazendo logoff...";
 			if(num == 23)
-				return "Voc� tem certeza?";
+				return "Você tem certeza?";
 		}
 		
 		//3 = German
@@ -231,19 +231,19 @@ public class Language {
 				
 			//Shop Interface
 			if(num == 14)
-				return "Betreten des Markts nicht m�glich";
+				return "Betreten des Markts nicht möglich";
 			if(num == 15)
 				return "Dein Tamo ist satt!";
 			if(num == 16)
 				return "Kauf von";
 			if(num == 17)
-				return "Tamo M�nzen";
+				return "Tamo Münzen";
 			if(num == 18)
 				return "Kauf kann nicht beendet werden";
 			if(num == 19)
-				return "Nicht genug Tamo M�nzen";
+				return "Nicht genug Tamo Münzen";
 			if(num == 20)
-				return "Zur�ck zum Fokus";
+				return "Zurück zum Fokus";
 			if(num == 21)
 				return "Hunger";
 				
@@ -252,6 +252,63 @@ public class Language {
 				return "Ausloggen...";
 			if(num == 23)
 				return "Bist du dir sicher?";
+		}
+		
+		//4 = Japanese
+		if(lang == 4) {
+			//UI Interface
+			if(num == 1)
+				return "お帰りなさいませ";
+			if(num == 2)
+				return "レベル";
+			if(num == 3)
+				return "データ";
+			if(num == 4)
+				return "食堂";
+			if(num == 5)
+				return "バックゴラウンドストア";
+			if(num == 6)
+				return "ログアウト";
+			if(num == 7)
+				return "フォーカススタート";
+			if(num == 8)
+				return "フォーカスブレイク";
+				
+			//Statistics Interface
+			if(num == 9)
+				return "合計時間";
+			if(num == 10)
+				return "セッションの合計時間";
+			if(num == 11)
+				return "ユーザー";
+			if(num == 12)
+				return "参加日";
+			if(num == 13)
+				return "アチーブメント";
+				
+			//Shop Interface
+			if(num == 14)
+				return "食堂は入りませんでした";
+			if(num == 15)
+				return "Tamo はもう食べられません";
+			if(num == 16)
+				return "がかかります";
+			if(num == 17)
+				return "Tamo Tokens";
+			if(num == 18)
+				return "購入を完了できません";
+			if(num == 19)
+				return "資金は足りません";
+			if(num == 20)
+				return "フォーカスに戻ります";
+			if(num == 21)
+				return "飢え";
+				
+			//Logout
+			if(num == 22)
+				return "ログアウト中...";
+			if(num == 23)
+				return "よろしいでしょうか";
 		}
 		
 		return null;
