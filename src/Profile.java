@@ -22,6 +22,11 @@ public class Profile {
 	
 	private int warnings;
 	
+	private int language_indicator;
+	private Language lang;
+	
+	//private Language language;
+	
 	public Profile() {
 		this.username = "null";
 		this.password = "null";
@@ -54,11 +59,38 @@ public class Profile {
 		this.guiColor = "default";
 		
 		this.warnings = 0;
+		
+		this.language_indicator = 0;
+		this.lang = new Language(0);
+	}
+	
+	public Profile(String username, String password, String tamoName, int lang) {
+		this.username = username;
+		this.password = password;
+		this.tamo = new Tamo(tamoName);
+		
+		this.join_date = new Date();
+		this.dateString = formatter.format(join_date);
+		
+		this.totalTime = 0;
+		
+		this.money = 0;
+		
+		this.last_login_date = new Date();
+		this.lastLoginString = formatter.format(last_login_date);
+		this.currentBackground = 0;
+		
+		this.guiColor = "default";
+		
+		this.warnings = 0;
+		
+		this.language_indicator = lang;
+		this.lang = new Language(lang);
 	}
 	
 	
 	//When loading profile, use this
-	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int warnings) {
+	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int lang) {
 		this.username = username;
 		this.password = password;
 		this.dateString = dateString;
@@ -76,7 +108,8 @@ public class Profile {
 		
 		this.guiColor = guiColor;
 		
-		this.warnings = warnings;
+		this.language_indicator = lang;
+		this.lang = new Language(lang);
 	}
 
 
@@ -188,4 +221,17 @@ public class Profile {
 	public void setWarnings(int warnings) {
 		this.warnings = warnings;
 	}
+
+	public int getLanguageIndicator() {
+		return language_indicator;
+	}
+
+	public void setLanguageIndicator(int language_indicator) {
+		this.language_indicator = language_indicator;
+	}
+	
+	public Language getLanguage() {
+		return lang;
+	}
+	
 }

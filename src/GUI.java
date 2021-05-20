@@ -151,9 +151,9 @@ public class GUI extends JFrame {
 	 * Updates the user information labels and writes them back to the file
 	 */
 	public void updateUserInformation(Profile p) {
-		profileName = new JLabel("Welcome, " + p.getUsername() + "!");
+		profileName = new JLabel(p.getLanguage().getText(1) + ", " + p.getUsername() + "!");
 		tamoName = new JLabel("" + p.getTamo().getName());
-		tamoLevel = new JLabel("Level: " + p.getTamo().getLevel());
+		tamoLevel = new JLabel(profile.getLanguage().getText(2) + p.getTamo().getLevel());
 		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
 		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
 		
@@ -190,10 +190,10 @@ public class GUI extends JFrame {
 		headPanel.setBackground(new Color(255,161,161));
 				
 		//Initialize Head Panel components
-		statsButton = new JButton("Statistics");
-		feedButton = new JButton("Food Store");
-		backgroundShopButton = new JButton("Background Store");
-		logOutButton = new JButton("Logout");
+		statsButton = new JButton(profile.getLanguage().getText(3));
+		feedButton = new JButton(profile.getLanguage().getText(4));
+		backgroundShopButton = new JButton(profile.getLanguage().getText(5));
+		logOutButton = new JButton(profile.getLanguage().getText(6));
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
@@ -232,7 +232,7 @@ public class GUI extends JFrame {
 		tamoStatsPanel.setLayout(new GridLayout(6,1));
 		tamoStatsPanel.setBackground(new Color(255,161,161));
 				
-		profileName = new JLabel("Welcome, " + profile.getUsername());
+		profileName = new JLabel(profile.getLanguage().getText(1) + ", " + profile.getUsername());
 		profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
 		
 		moneyPanel = new JPanel();
@@ -243,7 +243,7 @@ public class GUI extends JFrame {
 		
 		tamoName = new JLabel("Tamo: " + profile.getTamo().getName());
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoLevel = new JLabel("Level: " + profile.getTamo().getLevel());
+		tamoLevel = new JLabel(profile.getLanguage().getText(2) + profile.getTamo().getLevel());
 		tamoLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		//tamoHappiness = new JLabel("Happiness: " + profile.getTamo().getHappiness() + "/10");
@@ -311,8 +311,8 @@ public class GUI extends JFrame {
 		timerButtonPanel = new JPanel();
 		timerButtonPanel.setBackground(new Color(255,161,161));
 				
-		startButton = new JButton("Start Focus");
-		breakButton = new JButton("Break Focus");
+		startButton = new JButton(profile.getLanguage().getText(7));
+		breakButton = new JButton(profile.getLanguage().getText(8));
 				
 		timerButtonPanel.add(startButton);
 		timerButtonPanel.add(breakButton);
@@ -498,12 +498,13 @@ public class GUI extends JFrame {
 				double totalSessionHours = sessionTotalSeconds * 0.0002777778;
 				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
 				
-				String statsMessage = "Total Hours: " + totalHours +
-									"\nTotal Hours in Session: " + totalSessionHours +
-									"\n\nUser: " + profile.getUsername() + "\nJoin Date: " + profile.getJoinDate() +
-									"\nAchievements: 0/30";
+				String statsMessage = profile.getLanguage().getText(9) + ": " + totalHours +
+									"\n" + profile.getLanguage().getText(10) + ": " + totalSessionHours +
+									"\n\n" + profile.getLanguage().getText(11) + ": " + profile.getUsername() + 
+									"\n" + profile.getLanguage().getText(12) + ": " + profile.getJoinDate() +
+									"\n" + profile.getLanguage().getText(13) + ": 0/30";
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, "Statistics", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getLanguage().getText(3), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
 				
 			}
 			
@@ -520,7 +521,7 @@ public class GUI extends JFrame {
 					foodGUI food = new foodGUI(profile);
 					hideWindow();
 				} else {
-					JOptionPane.showMessageDialog(null, "Your Tamo is full!", "Can't enter food shop", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, profile.getLanguage().getText(15), profile.getLanguage().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -541,7 +542,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resultPane = JOptionPane.showConfirmDialog(null, "Are you sure?", "Logging out...",
+				int resultPane = JOptionPane.showConfirmDialog(null, profile.getLanguage().getText(23), profile.getLanguage().getText(22),
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("assets/info.png"));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI();
@@ -669,9 +670,6 @@ public class GUI extends JFrame {
 			System.out.println("DEBUG: Rewriting tamo ID");
 			inputtedString[12] = String.valueOf(profile.getTamo().getId());
 			
-			System.out.println("DEBUG: Rewriting warnings");
-			inputtedString[13] = String.valueOf(profile.getWarnings());
-			
 			System.out.println("DEBUG: Success");
 			
 			System.out.println("inputted string after:");
@@ -734,7 +732,7 @@ public class GUI extends JFrame {
 		
 		moneyLabel.setText("" + profile.getMoney());
 		
-		tamoLevel.setText("Level: " + profile.getTamo().getLevel());
+		tamoLevel.setText(profile.getLanguage().getText(2) + ": " + profile.getTamo().getLevel());
 		//tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
 		updateTamoHappiness(profile.getTamo().getHappiness());
 		

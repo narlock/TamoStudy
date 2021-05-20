@@ -48,7 +48,7 @@ public class bgGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("Background Shop | TamoTokens: " + p.getMoney());
+		this.setTitle(p.getLanguage().getText(5) + " | TamoTokens: " + p.getMoney());
 		this.setSize(1280, 749);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -86,13 +86,13 @@ public class bgGUI extends JFrame {
 		bg4 = new JLabel(new ImageIcon("assets/backgrounds/bg4.png"));
 		bg5 = new JLabel(new ImageIcon("assets/backgrounds/bg5.png"));
 		
-		bg1button = new JButton("BUY (1000 Tokens)");
-		bg2button = new JButton("BUY (1000 Tokens)");
-		bg3button = new JButton("BUY (1000 Tokens)");
-		bg4button = new JButton("BUY (1000 Tokens)");
-		bg5button = new JButton("BUY (5000 Tokens)");
-		
-		returnToFocus = new JButton("Return to Focus");
+		bg1button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
+		bg2button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
+		bg3button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
+		bg4button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
+		bg5button = new JButton(p.getLanguage().getText(16) + " 5000 Tokens");
+	
+		returnToFocus = new JButton(p.getLanguage().getText(20));
 	}
 	
 	public void addActions() {
@@ -113,7 +113,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 1000 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(0);
 						p.setMoney(p.getMoney() - 1000);
@@ -122,7 +122,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -134,7 +134,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 1000 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(1);
 						p.setMoney(p.getMoney() - 1000);
@@ -143,7 +143,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -155,7 +155,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 1000 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(2);
 						p.setMoney(p.getMoney() - 1000);
@@ -164,7 +164,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -176,7 +176,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 1000 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 1000 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
@@ -185,7 +185,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -197,7 +197,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 5000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 5000 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 5000 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
@@ -206,7 +206,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}

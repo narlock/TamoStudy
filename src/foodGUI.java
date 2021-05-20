@@ -69,7 +69,7 @@ public class foodGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("Food Shop | Tamo Tokens: " + p.getMoney());
+		this.setTitle(p.getLanguage().getText(4) + " | Tamo Tokens: " + p.getMoney());
 		this.setSize(720, 299);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -91,7 +91,7 @@ public class foodGUI extends JFrame {
 		//Init South panel components
 		southPanel = new JPanel();
 		southPanel.setBackground(new Color(255,161,161));
-		returnToFocus = new JButton("Return to Focus");
+		returnToFocus = new JButton(p.getLanguage().getText(20));
 		
 		//Init Center Panel Components
 		centerPanel = new JPanel();
@@ -109,13 +109,13 @@ public class foodGUI extends JFrame {
 		shopImageLabel = new JLabel(new ImageIcon("assets/shop.png"));
 		tutorialLabel = new JLabel("Buy food for your Tamo!\nUpon purchase, Tamo will eat food.");
 		
-		food1InfoLabel = new JLabel("100 TamoTokens, 1 Hunger");
+		food1InfoLabel = new JLabel("100 TamoTokens, 1 " + p.getLanguage().getText(21));
 		food1BuyButton = new JButton(new ImageIcon("assets/food1.png"));
 
-		food2InfoLabel = new JLabel("200 TamoTokens, 3 Hunger");
+		food2InfoLabel = new JLabel("200 TamoTokens, 3 " + p.getLanguage().getText(21));
 		food2BuyButton = new JButton(new ImageIcon("assets/food2.png"));
 		
-		food3InfoLabel = new JLabel("800 TamoTokens, Fill Hunger");
+		food3InfoLabel = new JLabel("800 TamoTokens, 10 " + p.getLanguage().getText(21));
 		food3BuyButton = new JButton(new ImageIcon("assets/cheesecake.png"));
 		
 		
@@ -128,7 +128,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 100 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 100 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 100 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.getTamo().setHunger(p.getTamo().getHunger() + 1);
 						p.setMoney(p.getMoney() - 100);
@@ -137,7 +137,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -149,7 +149,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 200 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 200 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 200 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						if(p.getTamo().getHunger() > 7) {
 							p.getTamo().setHunger(10);
@@ -163,7 +163,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}
@@ -175,7 +175,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 800 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, "Are you sure?", "Purchase for 800 Tamo Tokens",
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 800 " + p.getLanguage().getText(17),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.getTamo().setHunger(10);
 						p.setMoney(p.getMoney() - 800);
@@ -184,7 +184,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "You don't have sufficient funds.", "Can't complete purchase", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
 				}
 				
 			}

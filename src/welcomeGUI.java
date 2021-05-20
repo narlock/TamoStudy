@@ -33,6 +33,8 @@ public class welcomeGUI extends JFrame {
 	private File file;
 	private BufferedWriter bw;
 	
+	private JComboBox languageBox;
+	
 	/*
 	 * Constructor
 	 */
@@ -100,7 +102,11 @@ public class welcomeGUI extends JFrame {
 		aboutButton.setFocusPainted(false);
 		aboutButton.setContentAreaFilled(false);
 
-		
+		languageBox = new JComboBox();
+		languageBox.addItem("English");
+		languageBox.addItem("Español (Spanish)");
+		languageBox.addItem("Português (Portuguese)");
+		languageBox.addItem("Deutsche (German)");
 	}
 	
 	/*
@@ -113,6 +119,7 @@ public class welcomeGUI extends JFrame {
 			JLabel usernameLabel = new JLabel("New username:");
 			JLabel passwordLabel = new JLabel("New password:");
 			JLabel tamoNameLabel = new JLabel("Enter your Tamo's name:");
+			JLabel languageLabel = new JLabel("Language:");
 			
 			JTextField usernameField = new JTextField("");
 			JTextField passwordField = new JTextField("");
@@ -120,8 +127,6 @@ public class welcomeGUI extends JFrame {
 			
 			//JButton confirmNewProfileButton = new JButton("Confirm New Profile");
 			//JButton cancelButton = new JButton("Cancel");
-			
-			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -131,12 +136,17 @@ public class welcomeGUI extends JFrame {
 				newProfilePanel.add(passwordField);
 				newProfilePanel.add(tamoNameLabel);
 				newProfilePanel.add(tamoNameField);
+				newProfilePanel.add(languageLabel);
+				newProfilePanel.add(languageBox);
 				
 				int resultPane = JOptionPane.showConfirmDialog(null, newProfilePanel, "Create New Profile",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 				if(resultPane == JOptionPane.OK_OPTION) {
 					result = 1;
-					profile = new Profile(usernameField.getText(), passwordField.getText(), tamoNameField.getText());
+					
+					int language_indicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
+					
+					profile = new Profile(usernameField.getText(), passwordField.getText(), tamoNameField.getText(), language_indicator);
 					
 					
 					try {
@@ -382,7 +392,7 @@ public class welcomeGUI extends JFrame {
 		//hides the main screen page
 		this.setVisible(false);
 		
-		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getWarnings();
+		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
 		System.out.println("DEBUG: profileInfo = " + profileInfo);
 		
 		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
@@ -459,5 +469,19 @@ public class welcomeGUI extends JFrame {
 		}
 		br.close();
 		return null;
+	}
+	
+	public int getLanguageIndicator(String languageString) {
+		if(languageString.equals("English"))
+			return 0;
+		if(languageString.equals("Español (Spanish)"))
+			return 1;
+		if(languageString.equals("Português (Portuguese)"))
+			return 2;
+		if(languageString.equals("Deutsche (German)"))
+			return 3;
+		
+		
+		return 0;
 	}
 }
