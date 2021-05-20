@@ -64,7 +64,7 @@ public class Language {
 			if(num == 15)
 				return "Your Tamo is full!";
 			if(num == 16)
-				return "Purchase for ";
+				return "Purchase for";
 			if(num == 17)
 				return "Tamo Tokens";
 			if(num == 18)

@@ -1,1 +1,1 @@
-username,password,join-date,total-seconds,money,tamoName,tamoLevel,tamoHappy,tamoHunger,latest-login,background,gui-color,tamoID,warnings
+username,password,join-date,total-seconds,money,tamoName,tamoLevel,tamoHappy,tamoHunger,latest-login,background,gui-color,tamoID,language-indicator
