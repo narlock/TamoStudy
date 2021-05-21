@@ -83,7 +83,7 @@ public class Language {
 				return "Are you sure?";
 		}
 		
-		//1 = Spanish
+		//1 = Spanish - credit: oodsofnoodles
 		if(lang == 1) {
 			//UI Interface
 			if(num == 1)
@@ -140,7 +140,7 @@ public class Language {
 				return "Estás seguro?";
 		}
 		
-		//2 = Portuguese
+		//2 = Portuguese - credit: kathflowers
 		if(lang == 2) {
 			//UI Interface
 			if(num == 1)
@@ -197,7 +197,7 @@ public class Language {
 				return "Você tem certeza?";
 		}
 		
-		//3 = German
+		//3 = German - credit: boba
 		if(lang == 3) {
 			//UI Interface
 			if(num == 1)
@@ -254,7 +254,7 @@ public class Language {
 				return "Bist du dir sicher?";
 		}
 		
-		//4 = Japanese
+		//4 = Japanese - credit: kathflowers
 		if(lang == 4) {
 			//UI Interface
 			if(num == 1)
@@ -310,6 +310,63 @@ public class Language {
 			if(num == 23)
 				return "よろしいでしょうか";
 		}
+		
+		//5 = Dutch - credit: Britt
+				if(lang == 5) {
+					//UI Interface
+					if(num == 1)
+						return "Welkom";
+					if(num == 2)
+						return "Level";
+					if(num == 3)
+						return "Statistieken";
+					if(num == 4)
+						return "Shop voedsel";
+					if(num == 5)
+						return "Shop achtergrond";
+					if(num == 6)
+						return "Uitloggen";
+					if(num == 7)
+						return "Start Focus";
+					if(num == 8)
+						return "Pauzeer Focus";
+						
+					//Statistics Interface
+					if(num == 9)
+						return "Totaal aantal uren";
+					if(num == 10)
+						return "Totaal aantal uren in sessie";
+					if(num == 11)
+						return "Gebruiker";
+					if(num == 12)
+						return "Lid sinds";
+					if(num == 13)
+						return "Prestaties";
+						
+					//Shop Interface
+					if(num == 14)
+						return "Kan niet binnen";
+					if(num == 15)
+						return "Jouw Tamo zit vol!";
+					if(num == 16)
+						return "Koop voor";
+					if(num == 17)
+						return "Tamo Tokens";
+					if(num == 18)
+						return "Kan aankoop niet voltooien";
+					if(num == 19)
+						return "Je hebt niet genoeg Tamo Tokens";
+					if(num == 20)
+						return "Keer terug naar Focus";
+					if(num == 21)
+						return "Honger";
+						
+					//Logout
+					if(num == 22)
+						return "Aan het uitloggen...";
+					if(num == 23)
+						return "Ben je zeker?";
+				}
 		
 		return null;
 	}
