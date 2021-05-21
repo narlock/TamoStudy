@@ -367,6 +367,63 @@ public class Language {
 					if(num == 23)
 						return "Ben je zeker?";
 				}
+				
+				//6 = French - credit: Marie
+				if(lang == 6) {
+					//UI Interface
+					if(num == 1)
+						return "Bienvenue";
+					if(num == 2)
+						return "Niveau";
+					if(num == 3)
+						return "Statistiques";
+					if(num == 4)
+						return "Magasin d’alimentation";
+					if(num == 5)
+						return "Magasin d’arrière-plan";
+					if(num == 6)
+						return "Déconnexion";
+					if(num == 7)
+						return "Commencer la concentration";
+					if(num == 8)
+						return "Arrêter la concentration";
+						
+					//Statistics Interface
+					if(num == 9)
+						return "Total d’heures";
+					if(num == 10)
+						return "Total d’heures en session";
+					if(num == 11)
+						return "Utilisateur";
+					if(num == 12)
+						return "Date d’inscription";
+					if(num == 13)
+						return "Succès";
+						
+					//Shop Interface
+					if(num == 14)
+						return "Entrée dans le magasin d’alimentation impossible";
+					if(num == 15)
+						return "Votre Tamo est plein!";
+					if(num == 16)
+						return "Acheter pour";
+					if(num == 17)
+						return "jetons Tamo";
+					if(num == 18)
+						return "Impossible d’effectuer l’achat";
+					if(num == 19)
+						return "Fonds insuffisants";
+					if(num == 20)
+						return "Retourner à la concentration";
+					if(num == 21)
+						return "Faim";
+						
+					//Logout
+					if(num == 22)
+						return "Déconnexion...";
+					if(num == 23)
+						return "Êtes vous sûr?";
+				}
 		
 		return null;
 	}
