@@ -312,118 +312,175 @@ public class Language {
 		}
 		
 		//5 = Dutch - credit: Britt
-				if(lang == 5) {
-					//UI Interface
-					if(num == 1)
-						return "Welkom";
-					if(num == 2)
-						return "Level";
-					if(num == 3)
-						return "Statistieken";
-					if(num == 4)
-						return "Shop voedsel";
-					if(num == 5)
-						return "Shop achtergrond";
-					if(num == 6)
-						return "Uitloggen";
-					if(num == 7)
-						return "Start Focus";
-					if(num == 8)
-						return "Pauzeer Focus";
+		if(lang == 5) {
+			//UI Interface
+			if(num == 1)
+				return "Welkom";
+			if(num == 2)
+				return "Level";
+			if(num == 3)
+				return "Statistieken";
+			if(num == 4)
+				return "Shop voedsel";
+			if(num == 5)
+				return "Shop achtergrond";
+			if(num == 6)
+				return "Uitloggen";
+			if(num == 7)
+				return "Start Focus";
+			if(num == 8)
+				return "Pauzeer Focus";
+					
+			//Statistics Interface
+			if(num == 9)
+				return "Totaal aantal uren";
+			if(num == 10)
+				return "Totaal aantal uren in sessie";
+			if(num == 11)
+				return "Gebruiker";
+			if(num == 12)
+				return "Lid sinds";
+			if(num == 13)
+				return "Prestaties";
 						
-					//Statistics Interface
-					if(num == 9)
-						return "Totaal aantal uren";
-					if(num == 10)
-						return "Totaal aantal uren in sessie";
-					if(num == 11)
-						return "Gebruiker";
-					if(num == 12)
-						return "Lid sinds";
-					if(num == 13)
-						return "Prestaties";
+			//Shop Interface
+			if(num == 14)
+				return "Kan niet binnen";
+			if(num == 15)
+				return "Jouw Tamo zit vol!";
+			if(num == 16)
+				return "Koop voor";
+			if(num == 17)
+				return "Tamo Tokens";
+			if(num == 18)
+				return "Kan aankoop niet voltooien";
+			if(num == 19)
+				return "Je hebt niet genoeg Tamo Tokens";
+			if(num == 20)
+				return "Keer terug naar Focus";
+			if(num == 21)
+				return "Honger";
 						
-					//Shop Interface
-					if(num == 14)
-						return "Kan niet binnen";
-					if(num == 15)
-						return "Jouw Tamo zit vol!";
-					if(num == 16)
-						return "Koop voor";
-					if(num == 17)
-						return "Tamo Tokens";
-					if(num == 18)
-						return "Kan aankoop niet voltooien";
-					if(num == 19)
-						return "Je hebt niet genoeg Tamo Tokens";
-					if(num == 20)
-						return "Keer terug naar Focus";
-					if(num == 21)
-						return "Honger";
-						
-					//Logout
-					if(num == 22)
-						return "Aan het uitloggen...";
-					if(num == 23)
-						return "Ben je zeker?";
-				}
+			//Logout
+			if(num == 22)
+				return "Aan het uitloggen...";
+			if(num == 23)
+				return "Ben je zeker?";
+		}
 				
-				//6 = French - credit: Marie
-				if(lang == 6) {
-					//UI Interface
-					if(num == 1)
-						return "Bienvenue";
-					if(num == 2)
-						return "Niveau";
-					if(num == 3)
-						return "Statistiques";
-					if(num == 4)
-						return "Magasin d’alimentation";
-					if(num == 5)
-						return "Magasin d’arrière-plan";
-					if(num == 6)
-						return "Déconnexion";
-					if(num == 7)
-						return "Commencer la concentration";
-					if(num == 8)
-						return "Arrêter la concentration";
+		//6 = French - credit: Marie
+		if(lang == 6) {
+			//UI Interface
+			if(num == 1)
+				return "Bienvenue";
+			if(num == 2)
+				return "Niveau";
+			if(num == 3)
+				return "Statistiques";
+			if(num == 4)
+				return "Magasin d’alimentation";
+			if(num == 5)
+				return "Magasin d’arrière-plan";
+			if(num == 6)
+				return "Déconnexion";
+			if(num == 7)
+				return "Commencer la concentration";
+			if(num == 8)
+				return "Arrêter la concentration";
+				
+			//Statistics Interface
+			if(num == 9)
+				return "Total d’heures";
+			if(num == 10)
+				return "Total d’heures en session";
+			if(num == 11)
+				return "Utilisateur";
+			if(num == 12)
+				return "Date d’inscription";
+			if(num == 13)
+				return "Succès";
+				
+			//Shop Interface
+			if(num == 14)
+				return "Entrée dans le magasin d’alimentation impossible";
+			if(num == 15)
+				return "Votre Tamo est plein!";
+			if(num == 16)
+				return "Acheter pour";
+			if(num == 17)
+				return "jetons Tamo";
+			if(num == 18)
+				return "Impossible d’effectuer l’achat";
+			if(num == 19)
+				return "Fonds insuffisants";
+			if(num == 20)
+				return "Retourner à la concentration";
+			if(num == 21)
+				return "Faim";
 						
-					//Statistics Interface
-					if(num == 9)
-						return "Total d’heures";
-					if(num == 10)
-						return "Total d’heures en session";
-					if(num == 11)
-						return "Utilisateur";
-					if(num == 12)
-						return "Date d’inscription";
-					if(num == 13)
-						return "Succès";
+			//Logout
+			if(num == 22)
+				return "Déconnexion...";
+			if(num == 23)
+				return "Êtes vous sûr?";
+		}
+				
+		//7 = Chinese
+		if(lang == 0) {
+			//UI Interface
+			if(num == 1)
+				return "欢迎";
+			if(num == 2)
+				return "等级";
+			if(num == 3)
+				return "统计数据";
+			if(num == 4)
+				return "食品店";
+			if(num == 5)
+				return "后台商店";
+			if(num == 6)
+				return "登出";
+			if(num == 7)
+				return "开始关注";
+			if(num == 8)
+				return "打破焦点";
 						
-					//Shop Interface
-					if(num == 14)
-						return "Entrée dans le magasin d’alimentation impossible";
-					if(num == 15)
-						return "Votre Tamo est plein!";
-					if(num == 16)
-						return "Acheter pour";
-					if(num == 17)
-						return "jetons Tamo";
-					if(num == 18)
-						return "Impossible d’effectuer l’achat";
-					if(num == 19)
-						return "Fonds insuffisants";
-					if(num == 20)
-						return "Retourner à la concentration";
-					if(num == 21)
-						return "Faim";
+			//Statistics Interface
+			if(num == 9)
+				return "全部小时数";
+			if(num == 10)
+				return "会话总时数";
+			if(num == 11)
+				return "用户";
+			if(num == 12)
+				return "入会日期";
+			if(num == 13)
+				return "成就成就";
 						
-					//Logout
-					if(num == 22)
-						return "Déconnexion...";
-					if(num == 23)
-						return "Êtes vous sûr?";
-				}
+			//Shop Interface
+			if(num == 14)
+				return "无法进入食品店";
+			if(num == 15)
+				return "您的Tamo已满!";
+			if(num == 16)
+				return "购买为";
+			if(num == 17)
+				return "Tamo代币";
+			if(num == 18)
+				return "无法完成购买";
+			if(num == 19)
+				return "你没有足够的资金";
+			if(num == 20)
+				return "返回焦点";
+			if(num == 21)
+				return "饥饿";
+				
+			//Logout
+			if(num == 22)
+				return "注销...";
+			if(num == 23)
+				return "你确定吗？";
+		}
 		
 		return null;
 	}

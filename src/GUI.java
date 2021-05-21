@@ -233,7 +233,10 @@ public class GUI extends JFrame {
 		tamoStatsPanel.setBackground(new Color(255,161,161));
 				
 		profileName = new JLabel(profile.getLanguage().getText(1) + ", " + profile.getUsername());
-		profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
+		if(profile.getLanguageIndicator() == 4 || profile.getLanguageIndicator() == 7)
+			profileName.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		else
+			profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
 		
 		moneyPanel = new JPanel();
 		moneyImage = new JLabel(new ImageIcon("assets/tamo_token.png"));

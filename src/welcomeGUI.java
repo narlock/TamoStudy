@@ -110,6 +110,7 @@ public class welcomeGUI extends JFrame {
 		languageBox.addItem("日本語 (Japanese)");
 		languageBox.addItem("Nederlands (Dutch)");
 		languageBox.addItem("Français (French)");
+		languageBox.addItem("汉语/漢語 (Chinese)");
 	}
 	
 	/*
@@ -508,6 +509,8 @@ public class welcomeGUI extends JFrame {
 			return 5;
 		if(languageString.equals("Français (French)"))
 			return 6;
+		if(languageString.equals("汉语/漢語 (Chinese)"))
+			return 7;
 		
 		return 0;
 	}
