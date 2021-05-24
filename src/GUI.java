@@ -137,7 +137,7 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy | alpha 0.5.0");
+		this.setTitle("TamoStudy | alpha 0.6.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);

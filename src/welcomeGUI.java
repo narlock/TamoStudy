@@ -61,7 +61,7 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | alpha 0.5.0");
+		this.setTitle("TamoStudy | alpha 0.6.0");
 		this.setSize(550,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -110,7 +110,7 @@ public class welcomeGUI extends JFrame {
 		languageBox.addItem("日本語 (Japanese)");
 		languageBox.addItem("Nederlands (Dutch)");
 		languageBox.addItem("Français (French)");
-		languageBox.addItem("汉语/漢語 (Chinese)");
+		//languageBox.addItem("汉语/漢語 (Chinese)");
 	}
 	
 	/*
