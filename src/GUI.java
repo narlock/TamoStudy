@@ -82,7 +82,7 @@ public class GUI extends JFrame {
 	 * Variables
 	 */
 	private int min, sec, tempMin, tempSec, studyMin, studySec, studyTimeMinutes, studyTimeSeconds;
-	private boolean zeroMinFlag, zeroSecFlag, isStopped = false;
+	private boolean zeroMinFlag, zeroSecFlag, isStopped = false, death;
 	private String studyMessage;
 	private Timer timer;
 	private Profile profile;
@@ -111,6 +111,8 @@ public class GUI extends JFrame {
 	 * Main constructor, profile is set according to what is called
 	 */
 	public GUI(Profile p) {
+		this.death = false;
+		
 		this.profile = p;
 		
 		setUpFrame();
@@ -126,6 +128,9 @@ public class GUI extends JFrame {
 		setUpGUI();
 		
 		updateGUI();
+		
+		if(this.death)
+			tamoDeath();
 		
 		this.setSize(720, 535);
 	}
@@ -645,6 +650,10 @@ public class GUI extends JFrame {
 			System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
 			inputtedString[4] = String.valueOf(profile.getMoney());
 			
+			//Rewrite TotalMoney
+			System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
+			inputtedString[5] = profile.getTamo().getName();
+			
 			//Rewrite TamoLevel, happiness, and 
 			System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
 			inputtedString[6] = String.valueOf(profile.getTamo().getLevel());
@@ -944,8 +953,9 @@ public class GUI extends JFrame {
 			//Essentially the tamo data will be wiped and user will start over
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
-			profile.setWarnings(3);
-			tamoDeath();
+			//profile.setWarnings(3);
+			this.death = true;
+			
 		}
 		
 		System.out.println("DEBUG HUNGER AFTER FUNCTION: " + profile.getTamo().getHunger());
@@ -995,7 +1005,53 @@ public class GUI extends JFrame {
 		}
 	}
 	
+	
+	//The death of Tamo from inactivity or bad care
 	public void tamoDeath() {
-		System.out.println("Tamo Death");
+		System.out.println("Initiating Tamo Death");
+		
+		JPanel deathPanel = new JPanel();
+		deathPanel.setLayout(new GridLayout(5,1));
+		JLabel deathMessage = new JLabel("Your Tamo didn't receive the care it needed and has passed.");
+		JLabel spaceLabel = new JLabel();
+		JLabel infoMessage = new JLabel("Your statistics for your previous Tamo will be reset.");
+		JLabel newTamoMessage = new JLabel("Enter new Tamo name: ");
+		JTextField newTamoNameField = new JTextField(10);
+		
+		deathPanel.add(deathMessage);
+		deathPanel.add(infoMessage);
+		deathPanel.add(spaceLabel);
+		deathPanel.add(newTamoMessage);
+		deathPanel.add(newTamoNameField);
+		
+		Object[] options = {"Reset"};
+		
+		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, "Tamo Death", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon("assets/info.png"), options, options[0]);
+		if(resultPane == 0) {
+			System.out.println("Resetting Tamo");
+			resetTamo(newTamoNameField.getText());
+					
+		} else if(resultPane == JOptionPane.CLOSED_OPTION) {
+			System.out.println("Resetting Tamo using original name");
+			resetTamo(profile.getTamo().getName());
+		}
+		
 	}
+	
+	
+	//Resets TamoStudy, will occur on after TamoDeath
+	public void resetTamo(String name) {
+		profile.setTotalTime(0);
+		profile.setMoney(0);
+		profile.setCurrentBackground(0);
+		profile.getTamo().setName(name);
+		profile.getTamo().setHappiness(5);
+		profile.getTamo().setHunger(5);
+		
+		updateUserInformationToFile();
+		hideWindow();
+		
+		GUI newGUI = new GUI(profile);
+	}
+	
 }
