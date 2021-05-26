@@ -725,7 +725,10 @@ public class GUI extends JFrame {
 			// The user exceeded the amount of happiness, no happiness is rewarded since it has already been made.
 		} else {
 			heartsEarned = (totalSeconds / 1800);
-			profile.getTamo().setHappiness(profile.getTamo().getHappiness() + heartsEarned);
+			if(profile.getTamo().getHappiness() + heartsEarned >= 10)
+				profile.getTamo().setHappiness(10);
+			else
+				profile.getTamo().setHappiness(profile.getTamo().getHappiness() + heartsEarned);
 		}
 		
 		updateGUI();
