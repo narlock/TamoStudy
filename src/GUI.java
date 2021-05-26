@@ -955,6 +955,9 @@ public class GUI extends JFrame {
 		profile.setLast_login_date(profile.getNew_login_date());
 		profile.setLastLoginString(profile.getNewLoginString());
 		
+		if(profile.getTamo().getHappiness() > 10)
+			profile.getTamo().setHappiness(10);
+		
 		}
 		
 	}
