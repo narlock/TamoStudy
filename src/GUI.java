@@ -142,7 +142,7 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
-		this.setTitle("TamoStudy | alpha 0.6.0");
+		this.setTitle("TamoStudy | alpha 0.6.2");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -374,7 +374,7 @@ public class GUI extends JFrame {
 				
 				studyMin = Integer.parseInt(minuteTime.getText());
 				studySec = Integer.parseInt(secondTime.getText());
-				System.out.println("STUDY SESSION: " + studyMin + " minutes and " + studySec + " seconds.");
+				//System.out.println("STUDY SESSION: " + studyMin + " minutes and " + studySec + " seconds.");
 				tempSec = -1;
 				tempMin = 0;
 				
@@ -404,7 +404,7 @@ public class GUI extends JFrame {
 							tempSec = 0;
 						}
 						
-						System.out.println(tempMin + " minutes and " + tempSec + " seconds.");
+						//System.out.println(tempMin + " minutes and " + tempSec + " seconds.");
 						
 						if(sec == 0) {
 							sec = 60;
@@ -557,7 +557,7 @@ public class GUI extends JFrame {
 					hideWindow();
 					
 				} else {
-					System.out.println("Cancelled");
+					//System.out.println("Cancelled");
 				}
 				
 			}
@@ -630,7 +630,7 @@ public class GUI extends JFrame {
 			file.close();
 			String inputStr = inputBuffer.toString();
 			
-			System.out.println(inputStr); //DEBUG TO DISPLAY ORIGINAL FILE
+			//System.out.println(inputStr); //DEBUG TO DISPLAY ORIGINAL FILE
 			
 			//split the string, by comma so username can be identified
 			String[] inputtedString = inputStr.split(",");
@@ -640,32 +640,32 @@ public class GUI extends JFrame {
 			//Every 24 hours, your tamo will gain 1 level
 			int new_level = (profile.getTotalTime() / 86400);
 			profile.getTamo().setLevel(new_level);
-			System.out.println("tamo level is currently " + profile.getTamo().getLevel());
+			//System.out.println("tamo level is currently " + profile.getTamo().getLevel());
 			
 			//Rewrite TotalTime
-			System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
+			//System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
 			inputtedString[3] = String.valueOf(profile.getTotalTime());
 			
 			//Rewrite TotalMoney
-			System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
+			//System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
 			inputtedString[4] = String.valueOf(profile.getMoney());
 			
 			//Rewrite TotalMoney
-			System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
+			//System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
 			inputtedString[5] = profile.getTamo().getName();
 			
 			//Rewrite TamoLevel, happiness, and 
-			System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
+			//System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
 			inputtedString[6] = String.valueOf(profile.getTamo().getLevel());
 			
-			System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
+			//System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
 			inputtedString[7] = String.valueOf(profile.getTamo().getHappiness());
 			
-			System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
+			//System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
 			inputtedString[8] = String.valueOf(profile.getTamo().getHunger());
 			
 			//Update login date
-			System.out.println("DEBUG: Rewriting newloginString");
+			//System.out.println("DEBUG: Rewriting newloginString");
 			if(profile.getNewLoginString() == null) {
 				
 			} else {
@@ -673,25 +673,25 @@ public class GUI extends JFrame {
 			}
 			
 			//Rewrite currentbackground
-			System.out.println("DEBUG: Rewriting current bg");
+			//System.out.println("DEBUG: Rewriting current bg");
 			inputtedString[10] = String.valueOf(profile.getCurrentBackground());
 			
-			System.out.println("DEBUG: Rewriting guiColor");
+			//System.out.println("DEBUG: Rewriting guiColor");
 			inputtedString[11] = profile.getGuiColor();
 			
-			System.out.println("DEBUG: Rewriting tamo ID");
+			//System.out.println("DEBUG: Rewriting tamo ID");
 			inputtedString[12] = String.valueOf(profile.getTamo().getId());
 			
-			System.out.println("DEBUG: Success");
+			//System.out.println("DEBUG: Success");
 			
-			System.out.println("inputted string after:");
+			//System.out.println("inputted string after:");
 			for(int i = 0; i < inputtedString.length; i++) {
-				System.out.println(inputtedString[i]);
+				//System.out.println(inputtedString[i]);
 			}
 				
 			//join the string back together
 			inputStr = String.join(",", inputtedString);
-			System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
+			//System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
 			
 			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
 			FileOutputStream fileOut = new FileOutputStream("profiles/" + profile.getUsername() + ".txt");
@@ -843,10 +843,10 @@ public class GUI extends JFrame {
 	 * Updates values based off of log in date
 	 */
 	public void updateHappyHunger() {
-		System.out.println("RUNNING UPDATEHAPPYHUNGER METHOD\n--------------------------");
+		//System.out.println("RUNNING UPDATEHAPPYHUNGER METHOD\n--------------------------");
 		
-		System.out.println("DEBUG: Hunger before updateHappyHunger = " + profile.getTamo().getHunger());
-		System.out.println("DEBUG: Happiness before updateHappyHunger = " + profile.getTamo().getHappiness());
+		//System.out.println("DEBUG: Hunger before updateHappyHunger = " + profile.getTamo().getHunger());
+		//System.out.println("DEBUG: Happiness before updateHappyHunger = " + profile.getTamo().getHappiness());
 		
 		//will grab profile.lastLoginString and compare it to profile.newLoginString
 		boolean first_day = true;
@@ -858,27 +858,27 @@ public class GUI extends JFrame {
 			end = LocalDate.parse(profile.getNewLoginString());
 			first_day = false;
 		} catch (Exception e) {
-			System.out.println("NOTICE: Profile does not have a last Login string, exception *first day of profile*");
+			//System.out.println("NOTICE: Profile does not have a last Login string, exception *first day of profile*");
 		}
 		
 		
 		if(first_day == false) {
 			long diff = ChronoUnit.DAYS.between(start,end);
-			System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
+			//System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
 		if(diff == 0) {
 			//If the user logs in on the same day, no changes will occur.
-			System.out.println("DEBUG: Running difference = 0");
+			//System.out.println("DEBUG: Running difference = 0");
 			
 		} 
 		
 		
 		if(diff == 1) {
 			//If the user is logging in on a consecutive day, hunger will deplete 2 hunger points
-			System.out.println("DEBUG: Running difference = 1:");
+			//System.out.println("DEBUG: Running difference = 1:");
 			int hungerAfterDepletion = profile.getTamo().getHunger() - 2;
-			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
+			//System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
 			int happinessAfterDepletion = profile.getTamo().getHappiness() - 2;
-			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
+			//System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
 			
 			if(underEqualZero(hungerAfterDepletion)) {
 				profile.getTamo().setHunger(0);
@@ -896,18 +896,18 @@ public class GUI extends JFrame {
 		
 		if(diff > 1 && diff < 4) {
 			//If the user is logging in between 2 and 3 days, hunger will deplete 4, happiness deplete 2
-			System.out.println("DEBUG: Running difference = 2-3:");
+			//System.out.println("DEBUG: Running difference = 2-3:");
 			int hungerAfterDepletion = (profile.getTamo().getHunger() - 4);
-			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
+			//System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
 			int happinessAfterDepletion = profile.getTamo().getHappiness() - 3;
-			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
+			//System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
 			
-			System.out.println("HUNGER UNDEREQUAL ZERO VALUE: " + underEqualZero(hungerAfterDepletion));
+			//System.out.println("HUNGER UNDEREQUAL ZERO VALUE: " + underEqualZero(hungerAfterDepletion));
 			if(underEqualZero(hungerAfterDepletion)) {
-				System.out.println("SETTING HUNGER TO ZERO");
+				//System.out.println("SETTING HUNGER TO ZERO");
 				profile.getTamo().setHunger(0);
 			} else { 
-				System.out.println("SETTING HUNGER TO: " + hungerAfterDepletion);
+				//System.out.println("SETTING HUNGER TO: " + hungerAfterDepletion);
 				profile.getTamo().setHunger(hungerAfterDepletion);
 			}
 			
@@ -920,11 +920,11 @@ public class GUI extends JFrame {
 			
 		if(diff > 3 && diff < 8) {
 			//If the user is logging in between 4 and 7 days, hunger will deplete 5, happiness deplete 3
-			System.out.println("Running difference = 4-7:");
+			//System.out.println("Running difference = 4-7:");
 			int hungerAfterDepletion = profile.getTamo().getHunger() - 5;
-			System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
+			//System.out.println("HUNGER AFTER DEPLETION = " + hungerAfterDepletion);
 			int happinessAfterDepletion = profile.getTamo().getHappiness() - 4;
-			System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
+			//System.out.println("HAPPY AFTER DEPLETION = " + happinessAfterDepletion);
 			
 			if(underEqualZero(hungerAfterDepletion)) {
 				profile.getTamo().setHunger(0);
@@ -941,15 +941,14 @@ public class GUI extends JFrame {
 		
 		if(diff >= 8 && diff < 30) {
 			//If the user does not log in for a week, hunger and happiness will be both depleted entirely
-			System.out.println("Running difference = 7+:");
+			//System.out.println("Running difference = 7+:");
 			profile.getTamo().setHunger(0);
 			profile.getTamo().setHappiness(1);
 		}
 
 		if(diff >= 30) {
-			System.out.println("Running difference = 30+:");
+			//System.out.println("Running difference = 30+:");
 			//If the user does not log in for a month, the Tamo will reset (die).
-			//TODO
 			//Essentially the tamo data will be wiped and user will start over
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
@@ -958,8 +957,8 @@ public class GUI extends JFrame {
 			
 		}
 		
-		System.out.println("DEBUG HUNGER AFTER FUNCTION: " + profile.getTamo().getHunger());
-		System.out.println("DEBUG HAPPY AFTER FUNCTION: " + profile.getTamo().getHappiness());
+		//System.out.println("DEBUG HUNGER AFTER FUNCTION: " + profile.getTamo().getHunger());
+		//System.out.println("DEBUG HAPPY AFTER FUNCTION: " + profile.getTamo().getHappiness());
 		
 		//Set the new date equal to the previous date here
 		profile.setLast_login_date(profile.getNew_login_date());
@@ -1008,7 +1007,7 @@ public class GUI extends JFrame {
 	
 	//The death of Tamo from inactivity or bad care
 	public void tamoDeath() {
-		System.out.println("Initiating Tamo Death");
+		//System.out.println("Initiating Tamo Death");
 		
 		JPanel deathPanel = new JPanel();
 		deathPanel.setLayout(new GridLayout(5,1));
@@ -1028,11 +1027,11 @@ public class GUI extends JFrame {
 		
 		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, "Tamo Death", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon("assets/info.png"), options, options[0]);
 		if(resultPane == 0) {
-			System.out.println("Resetting Tamo");
+			//System.out.println("Resetting Tamo");
 			resetTamo(newTamoNameField.getText());
 					
 		} else if(resultPane == JOptionPane.CLOSED_OPTION) {
-			System.out.println("Resetting Tamo using original name");
+			//System.out.println("Resetting Tamo using original name");
 			resetTamo(profile.getTamo().getName());
 		}
 		

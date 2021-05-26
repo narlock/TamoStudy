@@ -39,6 +39,8 @@ public class welcomeGUI extends JFrame {
 	 * Constructor
 	 */
 	public welcomeGUI() {
+		System.out.println("If you can see this message, do NOT close the terminal/command line or TamoStudy will close.");
+		
 		setUpFrame();
 		
 		initVariables();
@@ -61,7 +63,7 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | alpha 0.6.0");
+		this.setTitle("TamoStudy | alpha 0.6.2");
 		this.setSize(550,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -169,7 +171,7 @@ public class welcomeGUI extends JFrame {
 					}
 					
 				} else {
-					System.out.println("Cancelled");
+					//System.out.println("Cancelled");
 				}
 				
 			}
@@ -220,7 +222,7 @@ public class welcomeGUI extends JFrame {
 					
 					
 				} else {
-					System.out.println("Cancelled");
+					//System.out.println("Cancelled");
 				}
 				
 				
@@ -403,14 +405,14 @@ public class welcomeGUI extends JFrame {
 		this.setVisible(false);
 		
 		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
-		System.out.println("DEBUG: profileInfo = " + profileInfo);
+		//System.out.println("DEBUG: profileInfo = " + profileInfo);
 		
 		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
 		fileWriter.write(profileInfo);
 		fileWriter.flush();
 		fileWriter.close();
 		
-		System.out.println("pasts commands");
+		//System.out.println("pasts commands");
 	}
 	
 	/*
@@ -418,7 +420,7 @@ public class welcomeGUI extends JFrame {
 	 * The indicator is if the text file is the username, and the password matches inside of the text field
 	 */
 	public boolean profileExistsInFile(String username, String password) throws IOException {
-		System.out.println("debug: username = " + username);
+		//System.out.println("debug: username = " + username);
 		
 		//file = new File("profiles/"+ username + ".txt");
 		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
@@ -443,7 +445,7 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public boolean profileExistsInFile(String username) {
-		System.out.println("debug: username = " + username);
+		//System.out.println("debug: username = " + username);
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
