@@ -10,7 +10,7 @@ Author: Anthony Narlock
 - Interactive tamagotchi-like "Tamo" pet which needs food and happiness which can be maintained through focus sessions
 - Easy-to-use GUI system: Login welcome screen, Main landing screen, Food Shop, Background Shop, etc.
 - Creation of Multiple profiles through file I/O capabilities
-- Supports multiple languages (currently: Spanish, Portuguese, German, & Japanese)
+- Supports multiple languages (currently: Spanish, Portuguese, German, Japanese, French, & Dutch)
 - More to come in the future :)
 
 ##
