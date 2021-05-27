@@ -8,7 +8,12 @@ public class bgGUI extends JFrame {
 	private Profile p;
 	
 	private JPanel northPanel, centerPanel;
+	private JPanel mainPanel;
 	private JLabel shopImage;
+	
+	private JPanel changeColorPanel, changeColorNorth, changeColorSouth;
+	private JLabel localBackgroundLabel;
+	private JButton redButton, blueButton, greenButton, yellowButton, purpleButton, orangeButton, greyButton;
 	
 	private JPanel bg1Panel, bg2Panel, bg3Panel, bg4Panel, bg5Panel;
 	
@@ -62,23 +67,45 @@ public class bgGUI extends JFrame {
 	public void initComponents() {
 		//north panel
 		northPanel = new JPanel();
-		northPanel.setBackground(new Color(255,161,161));
+		northPanel.setBackground(p.getColor());
+		
+		mainPanel = new JPanel();
+		mainPanel.setBackground(p.getColor());
+		returnToFocus = new JButton(p.getLanguage().getText(20));
 		shopImage = new JLabel(new ImageIcon("assets/shop.png"));
+		
+		//Change background Panel
+		changeColorPanel = new JPanel();
+		changeColorPanel.setBackground(p.getColor());
+		changeColorNorth = new JPanel();
+		changeColorNorth.setBackground(p.getColor());
+		changeColorSouth = new JPanel();
+		changeColorSouth.setBackground(p.getColor());
+
+		localBackgroundLabel = new JLabel("Change Background Color (500 TamoTokens)");
+		redButton = new JButton(new ImageIcon("assets/backgrounds/color/default.png"));
+		blueButton = new JButton(new ImageIcon("assets/backgrounds/color/blue.png"));
+		greenButton = new JButton(new ImageIcon("assets/backgrounds/color/green.png"));
+		yellowButton = new JButton(new ImageIcon("assets/backgrounds/color/yellow.png"));
+		purpleButton = new JButton(new ImageIcon("assets/backgrounds/color/purple.png"));
+		orangeButton = new JButton(new ImageIcon("assets/backgrounds/color/orange.png"));
+		greyButton = new JButton(new ImageIcon("assets/backgrounds/color/grey.png"));
+		
 		
 		//center panel
 		centerPanel = new JPanel();
-		centerPanel.setBackground(new Color(255,161,161));
+		centerPanel.setBackground(p.getColor());
 		
 		bg1Panel = new JPanel();
-		bg1Panel.setBackground(new Color(255,161,161));
+		bg1Panel.setBackground(p.getColor());
 		bg2Panel = new JPanel();
-		bg2Panel.setBackground(new Color(255,161,161));
+		bg2Panel.setBackground(p.getColor());
 		bg3Panel = new JPanel();
-		bg3Panel.setBackground(new Color(255,161,161));
+		bg3Panel.setBackground(p.getColor());
 		bg4Panel = new JPanel();
-		bg4Panel.setBackground(new Color(255,161,161));
+		bg4Panel.setBackground(p.getColor());
 		bg5Panel = new JPanel();
-		bg5Panel.setBackground(new Color(255,161,161));
+		bg5Panel.setBackground(p.getColor());
 		
 		bg1 = new JLabel(new ImageIcon("assets/backgrounds/bg.png"));
 		bg2 = new JLabel(new ImageIcon("assets/backgrounds/bg2.png"));
@@ -92,7 +119,7 @@ public class bgGUI extends JFrame {
 		bg4button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
 		bg5button = new JButton(p.getLanguage().getText(16) + " 5000 Tokens");
 	
-		returnToFocus = new JButton(p.getLanguage().getText(20));
+		
 	}
 	
 	public void addActions() {
@@ -212,14 +239,37 @@ public class bgGUI extends JFrame {
 			}
 			
 		});
+		
+		
+		addGuiColorActions();
 	}
 	
+
 	public void setUpGUI() {
 		this.setLayout(new GridLayout(2,1));
-		
+		//JPanel changeColorNorth, changeColorSouth;
+		// JLabel localBackgroundLabel;
 		this.add(northPanel);
-		northPanel.add(shopImage);
-		northPanel.add(returnToFocus);
+		northPanel.setLayout(new GridLayout(1,2));
+		northPanel.add(mainPanel);
+		northPanel.add(changeColorPanel);
+		
+		mainPanel.add(returnToFocus);
+		mainPanel.add(shopImage);
+		
+		changeColorPanel.setLayout(new BorderLayout());
+		changeColorPanel.add(changeColorNorth, BorderLayout.NORTH);
+		changeColorPanel.add(changeColorSouth, BorderLayout.CENTER);
+		
+		changeColorNorth.add(localBackgroundLabel);
+		
+		changeColorSouth.add(redButton);
+		changeColorSouth.add(blueButton);
+		changeColorSouth.add(greenButton);
+		changeColorSouth.add(orangeButton);
+		changeColorSouth.add(purpleButton);
+		changeColorSouth.add(yellowButton);
+		changeColorSouth.add(greyButton);
 		
 		this.add(centerPanel);
 		centerPanel.setLayout(new GridLayout(1,5));
@@ -249,5 +299,156 @@ public class bgGUI extends JFrame {
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();
+	}
+	
+	public void addGuiColorActions() {
+		redButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("default");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		
+		blueButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("blue");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		greenButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("green");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		orangeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("orange");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		purpleButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("purple");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		yellowButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("yellow");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
+		greyButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(p.getMoney() - 500 >= 0) {
+					if(JOptionPane.showConfirmDialog(null, p.getLanguage().getText(23), p.getLanguage().getText(16) + " 500 " + p.getLanguage().getText(17),
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						p.setGuiColor("grey");
+						p.setMoney(p.getMoney() - 500);
+						
+						GUI Focus = new GUI(p);
+						hideWindow();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+				}
+				
+			}
+			
+		});
+		
 	}
 }

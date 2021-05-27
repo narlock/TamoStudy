@@ -39,7 +39,7 @@ public class welcomeGUI extends JFrame {
 	 * Constructor
 	 */
 	public welcomeGUI() {
-		System.out.println("If you can see this message, do NOT close the terminal/command line or TamoStudy will close.");
+		//System.out.println("If you can see this message, do NOT close the terminal/command line or TamoStudy will close.");
 		
 		setUpFrame();
 		

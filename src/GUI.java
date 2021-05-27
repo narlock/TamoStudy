@@ -142,6 +142,10 @@ public class GUI extends JFrame {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		ImageIcon logo = new ImageIcon("assets/heart.png");
 		
+		UIManager UI = new UIManager();
+		UI.put("OptionPane.background", profile.getColor());
+		UI.put("Panel.background", profile.getColor());
+		
 		this.setTitle("TamoStudy | alpha 0.6.2");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
@@ -192,7 +196,7 @@ public class GUI extends JFrame {
 		//Create Head Panel
 		headPanel = new JPanel();
 		headPanel.setLayout(new FlowLayout());
-		headPanel.setBackground(new Color(255,161,161));
+		headPanel.setBackground(profile.getColor());
 				
 		//Initialize Head Panel components
 		statsButton = new JButton(profile.getLanguage().getText(3));
@@ -215,11 +219,11 @@ public class GUI extends JFrame {
 		//Base Panel
 		tamoPanel = new JPanel();
 		tamoPanel.setLayout(new GridLayout(1,2));
-		tamoPanel.setBackground(new Color(255,161,161));
+		tamoPanel.setBackground(profile.getColor());
 				
 		//LeftSidePanel
 		tamoImagePanel = new JPanel();
-		tamoImagePanel.setBackground(new Color(255,161,161));
+		tamoImagePanel.setBackground(profile.getColor());
 				
 		imageLabel = new JLabel(new ImageIcon("assets/tamo0_default.png"));
 		
@@ -235,7 +239,7 @@ public class GUI extends JFrame {
 		//RightSidePanel
 		tamoStatsPanel = new JPanel();
 		tamoStatsPanel.setLayout(new GridLayout(6,1));
-		tamoStatsPanel.setBackground(new Color(255,161,161));
+		tamoStatsPanel.setBackground(profile.getColor());
 				
 		profileName = new JLabel(profile.getLanguage().getText(1) + ", " + profile.getUsername());
 		if(profile.getLanguageIndicator() == 4 || profile.getLanguageIndicator() == 7)
@@ -268,7 +272,7 @@ public class GUI extends JFrame {
 		tamoStatsPanel.add(moneyPanel);
 		
 		moneyPanel.setLayout(new GridLayout(1,4));
-		moneyPanel.setBackground(new Color(255,161,161));
+		moneyPanel.setBackground(profile.getColor());
 		moneyPanel.add(moneyImage);
 		moneyPanel.add(moneyLabel);
 		moneyPanel.add(spaceLabel);
@@ -288,11 +292,11 @@ public class GUI extends JFrame {
 		//Base Panel
 		timerPanel = new JPanel();
 		timerPanel.setLayout(new BorderLayout());
-		timerPanel.setBackground(new Color(255,161,161));
+		timerPanel.setBackground(profile.getColor());
 				
 		//timerTextPanel
 		timerTextPanel = new JPanel();
-		timerTextPanel.setBackground(new Color(255,161,161));
+		timerTextPanel.setBackground(profile.getColor());
 				
 		minuteTime = new JLabel("00");
 		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 48));
@@ -307,7 +311,7 @@ public class GUI extends JFrame {
 				
 		//timerSetPanel
 		timerSetPanel = new JPanel();
-		timerSetPanel.setBackground(new Color(255,161,161));
+		timerSetPanel.setBackground(profile.getColor());
 				
 		minuteBox = new JComboBox();
 		secondBox = new JComboBox();
@@ -317,7 +321,7 @@ public class GUI extends JFrame {
 				
 		//timerButtonPanel
 		timerButtonPanel = new JPanel();
-		timerButtonPanel.setBackground(new Color(255,161,161));
+		timerButtonPanel.setBackground(profile.getColor());
 				
 		startButton = new JButton(profile.getLanguage().getText(7));
 		breakButton = new JButton(profile.getLanguage().getText(8));
@@ -681,6 +685,9 @@ public class GUI extends JFrame {
 			
 			//System.out.println("DEBUG: Rewriting tamo ID");
 			inputtedString[12] = String.valueOf(profile.getTamo().getId());
+			
+			//System.out.println("DEBUG: Rewriting Language Indicator");
+			inputtedString[13] = String.valueOf(profile.getLanguageIndicator());
 			
 			//System.out.println("DEBUG: Success");
 			

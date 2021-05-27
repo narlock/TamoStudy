@@ -86,25 +86,25 @@ public class foodGUI extends JFrame {
 	public void initComponents() {
 		//Init Left Panel Components
 		leftPanel = new JPanel();
-		leftPanel.setBackground(new Color(255,161,161));
+		leftPanel.setBackground(p.getColor());
 		
 		//Init South panel components
 		southPanel = new JPanel();
-		southPanel.setBackground(new Color(255,161,161));
+		southPanel.setBackground(p.getColor());
 		returnToFocus = new JButton(p.getLanguage().getText(20));
 		
 		//Init Center Panel Components
 		centerPanel = new JPanel();
-		centerPanel.setBackground(new Color(255,161,161));
+		centerPanel.setBackground(p.getColor());
 		
 		food1Panel = new JPanel();
-		food1Panel.setBackground(new Color(255,161,161));
+		food1Panel.setBackground(p.getColor());
 		
 		food2Panel = new JPanel();
-		food2Panel.setBackground(new Color(255,161,161));
+		food2Panel.setBackground(p.getColor());
 		
 		food3Panel = new JPanel();
-		food3Panel.setBackground(new Color(255,161,161));
+		food3Panel.setBackground(p.getColor());
 		
 		shopImageLabel = new JLabel(new ImageIcon("assets/shop.png"));
 		tutorialLabel = new JLabel("Buy food for your Tamo!\nUpon purchase, Tamo will eat food.");

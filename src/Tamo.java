@@ -1,3 +1,7 @@
+/**
+ * @author: Anthony Narlock
+ * @description: Tamo Object class
+ */
 
 public class Tamo {
 	private String name;
@@ -5,9 +9,13 @@ public class Tamo {
 	private int experience;
 	private int happiness;
 	private int hunger;
-	
 	private int id;
 	
+	/*
+	 * Default Constructor
+	 * 
+	 * Yields default attributes
+	 */
 	public Tamo() {
 		this.name = "null";
 		this.level = -1;
@@ -17,6 +25,11 @@ public class Tamo {
 		this.id = 0;
 	}
 	
+	/*
+	 * New Tamo Constructor
+	 * 
+	 * Yields default attributes, but name is set
+	 */
 	public Tamo(String name) {
 		this.name = name;
 		this.level = 0;
@@ -28,6 +41,11 @@ public class Tamo {
 		this.id = 1;
 	}
 	
+	/*
+	 * Old Load Tamo constructor
+	 * 
+	 * Yields previously stored attributes
+	 */
 	public Tamo(String name, int level, int happiness, int hunger) {
 		this.name = name;
 		this.level = level;
@@ -38,6 +56,11 @@ public class Tamo {
 		this.id = 0;
 	}
 	
+	/*
+	 * Load Tamo constructor
+	 * 
+	 * Yields previously stored attributes
+	 */
 	public Tamo(String name, int level, int happiness, int hunger, int id) {
 		this.name = name;
 		this.level = level;
