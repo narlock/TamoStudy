@@ -3,6 +3,8 @@
  * @description: Tamo Object class
  */
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Tamo {
 	private String name;
 	private int level;
@@ -38,7 +40,7 @@ public class Tamo {
 		this.hunger = 5;
 		
 		//TODO: Random ID
-		this.id = 1;
+		this.id = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 	}
 	
 	/*
@@ -51,8 +53,6 @@ public class Tamo {
 		this.level = level;
 		this.happiness = happiness;
 		this.hunger = hunger;
-		
-		//TODO: Random ID
 		this.id = 0;
 	}
 	
@@ -66,8 +66,6 @@ public class Tamo {
 		this.level = level;
 		this.happiness = happiness;
 		this.hunger = hunger;
-		
-		//TODO: Random ID
 		this.id = id;
 	}
 

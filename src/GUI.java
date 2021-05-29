@@ -146,7 +146,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | alpha 0.6.2");
+		this.setTitle("TamoStudy | alpha 0.7.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -821,6 +821,32 @@ public class GUI extends JFrame {
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_hungry.png"));
 			else if(num == 4)
 				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_focus.png"));
+		}
+		
+		if(tamoID == 2) {
+			if(num == 0) 
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_default.gif"));
+			else if(num == 1)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_happy.gif"));
+			else if(num == 2)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_sad.png"));
+			else if(num == 3)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_hungry.png"));
+			else if(num == 4)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_focus.png"));
+		}
+		
+		if(tamoID == 3) {
+			if(num == 0) 
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_default.gif"));
+			else if(num == 1)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_happy.gif"));
+			else if(num == 2)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_sad.png"));
+			else if(num == 3)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_hungry.png"));
+			else if(num == 4)
+				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_focus.png"));
 		}
 		
 	}
