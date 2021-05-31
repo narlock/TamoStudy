@@ -140,7 +140,7 @@ public class GUI extends JFrame {
 	 */
 	public void setUpFrame() {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
-		ImageIcon logo = new ImageIcon("assets/heart.png");
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		
 		UIManager UI = new UIManager();
 		UI.put("OptionPane.background", profile.getColor());
@@ -225,9 +225,9 @@ public class GUI extends JFrame {
 		tamoImagePanel = new JPanel();
 		tamoImagePanel.setBackground(profile.getColor());
 				
-		imageLabel = new JLabel(new ImageIcon("assets/tamo0_default.png"));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("tamo0_default.png")));
+		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg4.png")));
 		
-		backgroundImageLabel = new JLabel(new ImageIcon("assets/bg4.png"));
 		setBackground(profile.getCurrentBackground());
 				
 		backgroundImageLabel.setLayout(new GridBagLayout());
@@ -248,7 +248,7 @@ public class GUI extends JFrame {
 			profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
 		
 		moneyPanel = new JPanel();
-		moneyImage = new JLabel(new ImageIcon("assets/tamo_token.png"));
+		moneyImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("tamo_token.png")));
 		moneyLabel = new JLabel("" + profile.getMoney());
 		moneyLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		
@@ -427,7 +427,7 @@ public class GUI extends JFrame {
 							
 							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
-							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 							
 							//TODO: make methods to actually update coins and total statistics
 							
@@ -481,7 +481,7 @@ public class GUI extends JFrame {
 				resetTimer();
 				timer.stop();
 				
-				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -516,7 +516,7 @@ public class GUI extends JFrame {
 									"\n" + profile.getLanguage().getText(12) + ": " + profile.getJoinDate() +
 									"\n" + profile.getLanguage().getText(13) + ": 0/30";
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getLanguage().getText(3), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getLanguage().getText(3), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -533,7 +533,7 @@ public class GUI extends JFrame {
 					foodGUI food = new foodGUI(profile);
 					hideWindow();
 				} else {
-					JOptionPane.showMessageDialog(null, profile.getLanguage().getText(15), profile.getLanguage().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, profile.getLanguage().getText(15), profile.getLanguage().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -555,7 +555,7 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int resultPane = JOptionPane.showConfirmDialog(null, profile.getLanguage().getText(23), profile.getLanguage().getText(22),
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("assets/info.png"));
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI();
 					hideWindow();
@@ -798,59 +798,16 @@ public class GUI extends JFrame {
 	 * TODO: Get an artist to create tamo images
 	 */
 	public void updateTamoImage(int tamoID, int num) {
-		if(tamoID == 0) {
 			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_default.gif"));
+				imageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("tamo"+tamoID+"_default.gif")));
 			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_happy.png"));
+				imageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("tamo"+tamoID+"_happy.gif")));
 			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_sad.png"));
+				imageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("tamo"+tamoID+"_sad.png")));
 			else if(num == 3)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_hungry.png"));
+				imageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("tamo"+tamoID+"_hungry.png")));
 			else if(num == 4)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo0_focus.png"));
-			
-		}
-		
-		if(tamoID == 1) {
-			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_default.gif"));
-			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_happy.gif"));
-			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_sad.png"));
-			else if(num == 3)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_hungry.png"));
-			else if(num == 4)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo1_focus.png"));
-		}
-		
-		if(tamoID == 2) {
-			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_default.gif"));
-			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_happy.gif"));
-			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_sad.png"));
-			else if(num == 3)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_hungry.png"));
-			else if(num == 4)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo2_focus.png"));
-		}
-		
-		if(tamoID == 3) {
-			if(num == 0) 
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_default.gif"));
-			else if(num == 1)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_happy.gif"));
-			else if(num == 2)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_sad.png"));
-			else if(num == 3)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_hungry.png"));
-			else if(num == 4)
-				imageLabel.setIcon(new ImageIcon("assets/tamo/tamo3_focus.png"));
-		}
-		
+				imageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("tamo"+tamoID+"_focus.png")));
 	}
 
 	/*
@@ -866,15 +823,15 @@ public class GUI extends JFrame {
 	 */
 	public void setBackground(int num) {
 		if(num == 0)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg.png"));
+			backgroundImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bg.png")));
 		else if(num == 1)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg2.png"));
+			backgroundImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bg2.png")));
 		else if(num == 2)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg3.png"));
+			backgroundImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bg3.png")));
 		else if(num == 3)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg4.png"));
+			backgroundImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bg4.png")));
 		else if(num == 4)
-			backgroundImageLabel.setIcon(new ImageIcon("assets/backgrounds/bg5.png"));
+			backgroundImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("bg5.png")));
 	}
 	
 	/*
@@ -1028,7 +985,7 @@ public class GUI extends JFrame {
 		
 		for(int i = 1; i <= happiness; i++) {
 			if(i == happiness) {
-				tamoHappiness.setIcon(new ImageIcon("assets/happiness/" + str +".png"));
+				tamoHappiness.setIcon(new ImageIcon(getClass().getClassLoader().getResource("happy" + str +".png")));
 			}
 		}
 	}
@@ -1038,7 +995,7 @@ public class GUI extends JFrame {
 		
 		for(int i = 0; i <= hunger; i++) {
 			if(i == hunger) {
-				tamoHunger.setIcon(new ImageIcon("assets/hunger/" + str +".png"));
+				tamoHunger.setIcon(new ImageIcon(getClass().getClassLoader().getResource("hungry" + str +".png")));
 			}
 		}
 	}
@@ -1064,7 +1021,7 @@ public class GUI extends JFrame {
 		
 		Object[] options = {"Reset"};
 		
-		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, "Tamo Death", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon("assets/info.png"), options, options[0]);
+		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, "Tamo Death", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")), options, options[0]);
 		if(resultPane == 0) {
 			//System.out.println("Resetting Tamo");
 			resetTamo(newTamoNameField.getText());

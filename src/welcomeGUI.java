@@ -56,7 +56,7 @@ public class welcomeGUI extends JFrame {
 	 * Method sets up the frame information
 	 */
 	public void setUpFrame() {
-		ImageIcon logo = new ImageIcon("assets/heart.png");
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		
 		//UI Manager implements background colors for panels and option panes
 		UIManager UI = new UIManager();
@@ -76,7 +76,8 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
-		imageLabel = new JLabel(new ImageIcon("assets/welcome.png"));
+		//imageLabel = new JLabel(new ImageIcon("assets/welcome.png"));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("wel-welcome.png")));
 		
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
@@ -88,17 +89,17 @@ public class welcomeGUI extends JFrame {
 		botLabel = new JLabel("alpha 0.5.0");
 		
 		//createProfileButton = new JButton("Create New Profile");
-		createProfileButton = new JButton(new ImageIcon("assets/new_button.png"));
+		createProfileButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-new_button.png")));
 		createProfileButton.setBorderPainted(false);
 		createProfileButton.setFocusPainted(false);
 		createProfileButton.setContentAreaFilled(false);
 		//existingLoginButton = new JButton("Load Existing Profile");
-		existingLoginButton = new JButton(new ImageIcon("assets/load_button.png"));
+		existingLoginButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-load_button.png")));
 		existingLoginButton.setBorderPainted(false);
 		existingLoginButton.setFocusPainted(false);
 		existingLoginButton.setContentAreaFilled(false);
 		//aboutButton = new JButton("About TamoStudy");
-		aboutButton = new JButton(new ImageIcon("assets/about_button.png"));
+		aboutButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-about.png")));
 		//aboutButton.setBorderPainted(new ImageIcon("assets/about_button.png"));
 		aboutButton.setBorderPainted(false);
 		aboutButton.setFocusPainted(false);
@@ -157,7 +158,7 @@ public class welcomeGUI extends JFrame {
 					
 					try {
 						if(profileExistsInFile(usernameField.getText())) {
-							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user already exists in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user already exists in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 							usernameField.setText("");
 							passwordField.setText("");
 						} else {
@@ -209,13 +210,13 @@ public class welcomeGUI extends JFrame {
 							
 							
 						} else {
-							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 							usernameField.setText("");
 							passwordField.setText("");
 						}
 					} catch (IOException e1) {
 						//e1.printStackTrace();
-						JOptionPane.showMessageDialog(rootPane, "This user is not in data file.\nIf you believe this is a mistake, please report bug on our Discord Server", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon("assets/info.png"));
+						JOptionPane.showMessageDialog(rootPane, "This user is not in data file.\nIf you believe this is a mistake, please report bug on our Discord Server", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 						usernameField.setText("");
 						passwordField.setText("");
 					}
@@ -241,8 +242,8 @@ public class welcomeGUI extends JFrame {
 				rightPanel.setBackground(new Color(255,161,161));
 				rightPanel.setLayout(new GridLayout(4,1));
 				
-				JLabel label = new JLabel(new ImageIcon("assets/about.png"));
-				JButton twitter_button = new JButton(new ImageIcon("assets/socials/twitter.png"));
+				JLabel label = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("about-about.png")));
+				JButton twitter_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-twitter.png")));
 				
 				twitter_button.addActionListener(new ActionListener() {
 
@@ -264,7 +265,7 @@ public class welcomeGUI extends JFrame {
 					
 				});
 				
-				JButton github_button = new JButton(new ImageIcon("assets/socials/github.png"));
+				JButton github_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-github.png")));
 				
 				github_button.addActionListener(new ActionListener() {
 
@@ -286,7 +287,7 @@ public class welcomeGUI extends JFrame {
 					
 				});
 				
-				JButton discord_button = new JButton(new ImageIcon("assets/socials/discord.png"));
+				JButton discord_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-discord.png")));
 				
 				discord_button.addActionListener(new ActionListener() {
 
@@ -308,7 +309,7 @@ public class welcomeGUI extends JFrame {
 					
 				});		
 				
-				JButton personal_button = new JButton(new ImageIcon("assets/socials/narlock.png"));
+				JButton personal_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-narlock.png")));
 				
 				personal_button.addActionListener(new ActionListener() {
 

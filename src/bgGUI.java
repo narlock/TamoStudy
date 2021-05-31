@@ -51,7 +51,7 @@ public class bgGUI extends JFrame {
 	}
 	
 	public void setUpFrame() {
-		ImageIcon logo = new ImageIcon("assets/heart.png");
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
 		
 		this.setTitle(p.getLanguage().getText(5) + " | TamoTokens: " + p.getMoney());
 		this.setSize(1280, 749);
@@ -72,7 +72,7 @@ public class bgGUI extends JFrame {
 		mainPanel = new JPanel();
 		mainPanel.setBackground(p.getColor());
 		returnToFocus = new JButton(p.getLanguage().getText(20));
-		shopImage = new JLabel(new ImageIcon("assets/shop.png"));
+		shopImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("shop.png")));
 		
 		//Change background Panel
 		changeColorPanel = new JPanel();
@@ -83,13 +83,13 @@ public class bgGUI extends JFrame {
 		changeColorSouth.setBackground(p.getColor());
 
 		localBackgroundLabel = new JLabel("Change Background Color (500 TamoTokens)");
-		redButton = new JButton(new ImageIcon("assets/backgrounds/color/default.png"));
-		blueButton = new JButton(new ImageIcon("assets/backgrounds/color/blue.png"));
-		greenButton = new JButton(new ImageIcon("assets/backgrounds/color/green.png"));
-		yellowButton = new JButton(new ImageIcon("assets/backgrounds/color/yellow.png"));
-		purpleButton = new JButton(new ImageIcon("assets/backgrounds/color/purple.png"));
-		orangeButton = new JButton(new ImageIcon("assets/backgrounds/color/orange.png"));
-		greyButton = new JButton(new ImageIcon("assets/backgrounds/color/grey.png"));
+		redButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-default.png")));
+		blueButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-blue.png")));
+		greenButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-green.png")));
+		yellowButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-yellow.png")));
+		purpleButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-purple.png")));
+		orangeButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-orange.png")));
+		greyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-grey.png")));
 		
 		
 		//center panel
@@ -107,11 +107,11 @@ public class bgGUI extends JFrame {
 		bg5Panel = new JPanel();
 		bg5Panel.setBackground(p.getColor());
 		
-		bg1 = new JLabel(new ImageIcon("assets/backgrounds/bg.png"));
-		bg2 = new JLabel(new ImageIcon("assets/backgrounds/bg2.png"));
-		bg3 = new JLabel(new ImageIcon("assets/backgrounds/bg3.png"));
-		bg4 = new JLabel(new ImageIcon("assets/backgrounds/bg4.png"));
-		bg5 = new JLabel(new ImageIcon("assets/backgrounds/bg5.png"));
+		bg1 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg.png")));
+		bg2 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg2.png")));
+		bg3 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg3.png")));
+		bg4 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg4.png")));
+		bg5 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg5.png")));
 		
 		bg1button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
 		bg2button = new JButton(p.getLanguage().getText(16) + " 1000 Tokens");
@@ -149,7 +149,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -170,7 +170,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -191,7 +191,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -212,7 +212,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -233,7 +233,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -316,7 +316,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -338,7 +338,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -359,7 +359,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -380,7 +380,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -401,7 +401,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -422,7 +422,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -443,7 +443,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/info.png"));
+					JOptionPane.showMessageDialog(null, p.getLanguage().getText(19), p.getLanguage().getText(18), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}

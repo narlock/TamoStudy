@@ -1,2 +1,0 @@
-
-chineseTest,pass,2021-05-23,0,0,Tamo,0,5,5,2021-05-23,0,default,1,7
