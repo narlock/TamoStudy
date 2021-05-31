@@ -406,9 +406,10 @@ public class welcomeGUI extends JFrame {
 		
 		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
 		//System.out.println("DEBUG: profileInfo = " + profileInfo);
+		String encryptedInfo = (profileInfo);
 		
 		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
-		fileWriter.write(profileInfo);
+		fileWriter.write(encryptedInfo);
 		fileWriter.flush();
 		fileWriter.close();
 		
@@ -426,7 +427,7 @@ public class welcomeGUI extends JFrame {
 		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
 		
 		String line;
-		while ((line = br.readLine()) != null) {
+		while ((line = (br.readLine())) != null) {
 			if(!line.equals("")) {
 				//System.out.println(line);
 				boolean exists = false;
@@ -468,7 +469,7 @@ public class welcomeGUI extends JFrame {
 		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
 		
 		//TODO: fix this shit
-		while((line = br.readLine()) != null) {
+		while((line = (br.readLine())) != null) {
 			if(!line.equals("")) {
 				int flag = -1;
 				boolean flagFound = false;

@@ -626,7 +626,7 @@ public class GUI extends JFrame {
 			String line;
 			String username = "\n" + profile.getUsername();
 			
-			while((line = file.readLine()) != null) {
+			while((line = (file.readLine())) != null) {
 				inputBuffer.append(line);
 				inputBuffer.append('\n');
 			}
@@ -700,9 +700,11 @@ public class GUI extends JFrame {
 			inputStr = String.join(",", inputtedString);
 			//System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
 			
+			String encryptedStr = (inputStr);
+			
 			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
 			FileOutputStream fileOut = new FileOutputStream("profiles/" + profile.getUsername() + ".txt");
-			fileOut.write(inputStr.getBytes());
+			fileOut.write(encryptedStr.getBytes());
 			fileOut.close();
 			
 			
@@ -900,6 +902,7 @@ public class GUI extends JFrame {
 		
 		if(first_day == false) {
 			long diff = ChronoUnit.DAYS.between(start,end);
+			
 			//System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
 		if(diff == 0) {
 			//If the user logs in on the same day, no changes will occur.
