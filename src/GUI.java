@@ -90,6 +90,7 @@ public class GUI extends JFrame {
 	private int sessionMin, sessionSec;
 	
 	private File profileFile;
+	private Encryption encryption;
 	
 
 	/*
@@ -140,6 +141,7 @@ public class GUI extends JFrame {
 		this.death = false;
 		this.profile = p;
 		this.profileFile = file;
+		encryption = new Encryption();
 		
 		setUpFrame();
 		
@@ -631,20 +633,19 @@ public class GUI extends JFrame {
 			BufferedReader file = new BufferedReader(new FileReader(profileFile));
 			StringBuffer inputBuffer = new StringBuffer();
 			String line;
-			String username = "\n" + profile.getUsername();
 			
 			while((line = (file.readLine())) != null) {
 				inputBuffer.append(line);
-				inputBuffer.append('\n');
 			}
 			
 			file.close();
 			String inputStr = inputBuffer.toString();
+			String decryptedString = encryption.decrypt(inputStr);
 			
 			//System.out.println(inputStr); //DEBUG TO DISPLAY ORIGINAL FILE
 			
 			//split the string, by comma so username can be identified
-			String[] inputtedString = inputStr.split(",");
+			String[] inputtedString = decryptedString.split(",");
 			
 			
 			//I didn't know where to put the code to update the level, so it's here:
@@ -704,10 +705,10 @@ public class GUI extends JFrame {
 			}
 				
 			//join the string back together
-			inputStr = String.join(",", inputtedString);
+			decryptedString = String.join(",", inputtedString);
 			//System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
 			
-			String encryptedStr = (inputStr);
+			String encryptedStr = encryption.encrypt(decryptedString);
 			
 			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
 			FileOutputStream fileOut = new FileOutputStream(profileFile);

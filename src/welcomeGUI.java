@@ -36,6 +36,7 @@ public class welcomeGUI extends JFrame {
 	private JComboBox languageBox;
 	
 	private JFileChooser fileChooser;
+	private Encryption encryption;
 	
 	/*
 	 * Constructor
@@ -78,6 +79,8 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
+		encryption = new Encryption();
+		
 		fileChooser = new JFileChooser();
 		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("wel-welcome.png")));
 		
@@ -361,8 +364,9 @@ public class welcomeGUI extends JFrame {
 			outFile = new BufferedWriter(new FileWriter(fileName));
 			//Write Profile Information
 			String profileInfo = p.getUsername() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
+			String encryptedInfo = encryption.encrypt(profileInfo);
 			
-			outFile.append(profileInfo);
+			outFile.append(encryptedInfo);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -420,7 +424,9 @@ public class welcomeGUI extends JFrame {
 		while((line = (br.readLine())) != null) {
 			if(!line.equals("")) {
 				System.out.println("line= " + line);
-				String[] profileDetails = line.split(","); 
+				String decrypt = encryption.decrypt(line);
+				
+				String[] profileDetails = decrypt.split(","); 
 				
 				for(int i = 0; i < profileDetails.length; i++) {
 					System.out.println("profileDetails["+i+"] = " + profileDetails[i]);
