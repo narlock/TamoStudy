@@ -15,7 +15,7 @@ Author: Anthony Narlock
 
 ##
 
-[![Installation Guide](https://i.imgur.com/JEXOEwy.png)](https://www.youtube.com/watch?v=Lsnpg8YzsyE)
+[![Installation Guide](https://i.imgur.com/JEXOEwy.png)](https://www.youtube.com/watch?v=xNarVygElG0)
 
 
 ## Original Concept Idea: 
