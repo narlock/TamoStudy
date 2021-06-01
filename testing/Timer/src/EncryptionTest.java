@@ -47,9 +47,13 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		Encryption e = new Encryption();
 		
-		System.out.println(e.encrypt(","));
-		System.out.println(e.decrypt(e.encrypt("123")));
-		System.out.println(e.decrypt("Rkyork2vgyy2868736;39726262Zkyz262;2;2868736;397262jklg{rz2726"));
+		String test = e.encrypt("Hello my name is Anthony");
+		
+		System.out.println(test);
+		
+		System.out.println(e.decrypt(test));
+		//System.out.println(e.decrypt(e.encrypt("123")));
+		//System.out.println(e.decrypt("Rkyork2vgyy2868736;39726262Zkyz262;2;2868736;397262jklg{rz2726"));
 	}
 	
 }

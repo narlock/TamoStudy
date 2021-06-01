@@ -1,11 +1,13 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.*;
 
 public class bgGUI extends JFrame {
 	private Profile p;
+	private File file;
 	
 	private JPanel northPanel, centerPanel;
 	private JPanel mainPanel;
@@ -48,6 +50,21 @@ public class bgGUI extends JFrame {
 		
 		this.setSize(1280, 750);
 		
+	}
+	
+	public bgGUI(Profile profile, File file) {
+		this.p = profile;
+		this.file = file;
+		
+		setUpFrame();
+		
+		initComponents();
+		
+		addActions();
+		
+		setUpGUI();
+		
+		this.setSize(1280, 750);
 	}
 	
 	public void setUpFrame() {
@@ -127,7 +144,7 @@ public class bgGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUI Focus = new GUI(p);
+				GUI Focus = new GUI(p,file);
 				hideWindow();
 				
 			}
@@ -145,7 +162,7 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(0);
 						p.setMoney(p.getMoney() - 1000);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -166,7 +183,7 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(1);
 						p.setMoney(p.getMoney() - 1000);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -187,7 +204,7 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(2);
 						p.setMoney(p.getMoney() - 1000);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -208,7 +225,7 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -229,7 +246,7 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -312,7 +329,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("default");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -334,7 +351,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("blue");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -355,7 +372,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("green");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -376,7 +393,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("orange");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -397,7 +414,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("purple");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -418,7 +435,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("yellow");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -439,7 +456,7 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("grey");
 						p.setMoney(p.getMoney() - 500);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {

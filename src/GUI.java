@@ -12,6 +12,7 @@ import java.io.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GUI extends JFrame {
 	
@@ -88,6 +89,8 @@ public class GUI extends JFrame {
 	private Profile profile;
 	private int sessionMin, sessionSec;
 	
+	private File profileFile;
+	
 
 	/*
 	 * Default Constructor, profile will be null
@@ -100,8 +103,6 @@ public class GUI extends JFrame {
 		initComponents();
 		
 		setUpGUI();
-		
-		updateUserInformation(profile);
 		
 		this.setSize(720, 535);
 		
@@ -135,6 +136,29 @@ public class GUI extends JFrame {
 		this.setSize(720, 535);
 	}
 	
+	public GUI(Profile p, File file) {
+		this.death = false;
+		this.profile = p;
+		this.profileFile = file;
+		
+		setUpFrame();
+		
+		updateHappyHunger();
+		
+		updateUserInformationToFile();
+		
+		initComponents();
+		
+		setUpGUI();
+		
+		updateGUI();
+		
+		if(this.death)
+			tamoDeath();
+		
+		this.setSize(720, 535);
+	}
+	
 	/*
 	 * Sets up the JFrame and settings of Frame
 	 */
@@ -146,7 +170,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | alpha 0.7.0");
+		this.setTitle("TamoStudy | beta 1.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -157,26 +181,9 @@ public class GUI extends JFrame {
 	}
 	
 	/*
-	 * Updates the user information labels and writes them back to the file
-	 */
-	public void updateUserInformation(Profile p) {
-		profileName = new JLabel(p.getLanguage().getText(1) + ", " + p.getUsername() + "!");
-		tamoName = new JLabel("" + p.getTamo().getName());
-		tamoLevel = new JLabel(profile.getLanguage().getText(2) + p.getTamo().getLevel());
-		tamoHappiness = new JLabel("Happiness: " + p.getTamo().getHappiness() + "/10");
-		tamoHunger = new JLabel("Hunger: " + p.getTamo().getHunger() + "/10");
-		
-		
-	}
-
-	/*
 	 * Calls methods that initialize each individual panel
 	 */
 	public void initComponents()  {
-		
-		//Initializes GridBag's gridx and gridy (don't work at the moment, this is fine for now)
-		this.gbc.gridx = 0;
-		this.gbc.gridy = 0;
 		
 		createHeadPanel();
 		
@@ -530,7 +537,7 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(profile.getTamo().getHunger() < 10) {
-					foodGUI food = new foodGUI(profile);
+					foodGUI food = new foodGUI(profile, profileFile);
 					hideWindow();
 				} else {
 					JOptionPane.showMessageDialog(null, profile.getLanguage().getText(15), profile.getLanguage().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
@@ -544,7 +551,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				bgGUI bg = new bgGUI(profile);
+				bgGUI bg = new bgGUI(profile, profileFile);
 				hideWindow();
 			}
 			
@@ -621,7 +628,7 @@ public class GUI extends JFrame {
 	private void updateUserInformationToFile() {
 		try {
 			//BufferedReader file = new BufferedReader(new FileReader("profiles.txt"));
-			BufferedReader file = new BufferedReader(new FileReader("profiles/" + profile.getUsername() + ".txt"));
+			BufferedReader file = new BufferedReader(new FileReader(profileFile));
 			StringBuffer inputBuffer = new StringBuffer();
 			String line;
 			String username = "\n" + profile.getUsername();
@@ -648,46 +655,46 @@ public class GUI extends JFrame {
 			
 			//Rewrite TotalTime
 			//System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
-			inputtedString[3] = String.valueOf(profile.getTotalTime());
+			inputtedString[2] = String.valueOf(profile.getTotalTime());
 			
 			//Rewrite TotalMoney
 			//System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
-			inputtedString[4] = String.valueOf(profile.getMoney());
+			inputtedString[3] = String.valueOf(profile.getMoney());
 			
 			//Rewrite TotalMoney
 			//System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
-			inputtedString[5] = profile.getTamo().getName();
+			inputtedString[4] = profile.getTamo().getName();
 			
 			//Rewrite TamoLevel, happiness, and 
 			//System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
-			inputtedString[6] = String.valueOf(profile.getTamo().getLevel());
+			inputtedString[5] = String.valueOf(profile.getTamo().getLevel());
 			
 			//System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
-			inputtedString[7] = String.valueOf(profile.getTamo().getHappiness());
+			inputtedString[6] = String.valueOf(profile.getTamo().getHappiness());
 			
 			//System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
-			inputtedString[8] = String.valueOf(profile.getTamo().getHunger());
+			inputtedString[7] = String.valueOf(profile.getTamo().getHunger());
 			
 			//Update login date
 			//System.out.println("DEBUG: Rewriting newloginString");
 			if(profile.getNewLoginString() == null) {
 				
 			} else {
-			inputtedString[9] = profile.getNewLoginString();
+			inputtedString[8] = profile.getNewLoginString();
 			}
 			
 			//Rewrite currentbackground
 			//System.out.println("DEBUG: Rewriting current bg");
-			inputtedString[10] = String.valueOf(profile.getCurrentBackground());
+			inputtedString[9] = String.valueOf(profile.getCurrentBackground());
 			
 			//System.out.println("DEBUG: Rewriting guiColor");
-			inputtedString[11] = profile.getGuiColor();
+			inputtedString[10] = profile.getGuiColor();
 			
 			//System.out.println("DEBUG: Rewriting tamo ID");
-			inputtedString[12] = String.valueOf(profile.getTamo().getId());
+			inputtedString[11] = String.valueOf(profile.getTamo().getId());
 			
 			//System.out.println("DEBUG: Rewriting Language Indicator");
-			inputtedString[13] = String.valueOf(profile.getLanguageIndicator());
+			inputtedString[12] = String.valueOf(profile.getLanguageIndicator());
 			
 			//System.out.println("DEBUG: Success");
 			
@@ -703,7 +710,7 @@ public class GUI extends JFrame {
 			String encryptedStr = (inputStr);
 			
 			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
-			FileOutputStream fileOut = new FileOutputStream("profiles/" + profile.getUsername() + ".txt");
+			FileOutputStream fileOut = new FileOutputStream(profileFile);
 			fileOut.write(encryptedStr.getBytes());
 			fileOut.close();
 			
@@ -1042,6 +1049,7 @@ public class GUI extends JFrame {
 		profile.getTamo().setName(name);
 		profile.getTamo().setHappiness(5);
 		profile.getTamo().setHunger(5);
+		profile.getTamo().setId(ThreadLocalRandom.current().nextInt(1, 3 + 1));
 		
 		updateUserInformationToFile();
 		hideWindow();

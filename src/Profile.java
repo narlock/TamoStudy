@@ -99,9 +99,8 @@ public class Profile {
 	 * The constructor that is used when a new profile is created
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String password, String tamoName, int lang) {
+	public Profile(String username, String tamoName, int lang) {
 		this.username = username;
-		this.password = password;
 		this.tamo = new Tamo(tamoName);
 		
 		this.join_date = new Date();
@@ -130,9 +129,8 @@ public class Profile {
 	 * The constructor that is used when a profile is being loaded
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String password, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int lang) {
+	public Profile(String username, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int lang) {
 		this.username = username;
-		this.password = password;
 		this.dateString = dateString;
 		this.money = money;
 		this.totalTime = totalTime;

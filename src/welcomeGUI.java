@@ -35,6 +35,8 @@ public class welcomeGUI extends JFrame {
 	
 	private JComboBox languageBox;
 	
+	private JFileChooser fileChooser;
+	
 	/*
 	 * Constructor
 	 */
@@ -63,7 +65,7 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | alpha 0.7.0");
+		this.setTitle("TamoStudy | beta 1.0");
 		this.setSize(550,349);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -76,7 +78,7 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
-		//imageLabel = new JLabel(new ImageIcon("assets/welcome.png"));
+		fileChooser = new JFileChooser();
 		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("wel-welcome.png")));
 		
 		topPanel = new JPanel();
@@ -88,19 +90,15 @@ public class welcomeGUI extends JFrame {
 		
 		botLabel = new JLabel("alpha 0.5.0");
 		
-		//createProfileButton = new JButton("Create New Profile");
 		createProfileButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-new_button.png")));
 		createProfileButton.setBorderPainted(false);
 		createProfileButton.setFocusPainted(false);
 		createProfileButton.setContentAreaFilled(false);
-		//existingLoginButton = new JButton("Load Existing Profile");
 		existingLoginButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-load_button.png")));
 		existingLoginButton.setBorderPainted(false);
 		existingLoginButton.setFocusPainted(false);
 		existingLoginButton.setContentAreaFilled(false);
-		//aboutButton = new JButton("About TamoStudy");
 		aboutButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-about.png")));
-		//aboutButton.setBorderPainted(new ImageIcon("assets/about_button.png"));
 		aboutButton.setBorderPainted(false);
 		aboutButton.setFocusPainted(false);
 		aboutButton.setContentAreaFilled(false);
@@ -124,23 +122,16 @@ public class welcomeGUI extends JFrame {
 
 			JPanel newProfilePanel = new JPanel(new GridLayout(0,1));
 			JLabel usernameLabel = new JLabel("New username:");
-			JLabel passwordLabel = new JLabel("New password:");
 			JLabel tamoNameLabel = new JLabel("Enter your Tamo's name:");
 			JLabel languageLabel = new JLabel("Language:");
 			
 			JTextField usernameField = new JTextField("");
-			JTextField passwordField = new JTextField("");
 			JTextField tamoNameField = new JTextField("");
-			
-			//JButton confirmNewProfileButton = new JButton("Confirm New Profile");
-			//JButton cancelButton = new JButton("Cancel");
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				newProfilePanel.add(usernameLabel);
 				newProfilePanel.add(usernameField);
-				newProfilePanel.add(passwordLabel);
-				newProfilePanel.add(passwordField);
 				newProfilePanel.add(tamoNameLabel);
 				newProfilePanel.add(tamoNameField);
 				newProfilePanel.add(languageLabel);
@@ -153,22 +144,13 @@ public class welcomeGUI extends JFrame {
 					
 					int language_indicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
 					
-					profile = new Profile(usernameField.getText(), passwordField.getText(), tamoNameField.getText(), language_indicator);
+					profile = new Profile(usernameField.getText(), tamoNameField.getText(), language_indicator);
 					
-					
-					try {
-						if(profileExistsInFile(usernameField.getText())) {
-							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user already exists in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-							usernameField.setText("");
-							passwordField.setText("");
-						} else {
-							writeProfileToFile(profile);
-							
-							GUI Focus = new GUI(profile);
-						}
-						
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					if(writeProfileToFile(profile) == 1) {
+						GUI Focus = new GUI(profile,file);
+						hideWindow();
+					} else {
+						// do nothing
 					}
 					
 				} else {
@@ -182,50 +164,24 @@ public class welcomeGUI extends JFrame {
 		
 		//User wants to load profile already in text file
 		existingLoginButton.addActionListener(new ActionListener() {
-
-			JPanel newProfilePanel = new JPanel(new GridLayout(0,1));
-			JLabel usernameLabel = new JLabel("Username:");
-			JLabel passwordLabel = new JLabel("Password:");
-			
-			JTextField usernameField = new JTextField("");
-			JTextField passwordField = new JTextField("");
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				newProfilePanel.add(usernameLabel);
-				newProfilePanel.add(usernameField);
-				newProfilePanel.add(passwordLabel);
-				newProfilePanel.add(passwordField);
 				
-				int resultPane = JOptionPane.showConfirmDialog(null, newProfilePanel, "Load Existing Profile",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-				if(resultPane == JOptionPane.OK_OPTION) {
-					result = 1;
+				if(selectFile() == 1) {
 					try {
-						if(profileExistsInFile(usernameField.getText(), passwordField.getText())) {
-						//if(!usernameField.getText().equals("") && !passwordField.equals("")) {
-								profile = loadProfileFromFile(usernameField.getText(), passwordField.getText());
-								GUI Focus = new GUI(profile);
-								hideWindow();
-							
-							
-						} else {
-							JOptionPane.showMessageDialog(rootPane, "Unexpected Error:\nThis user is not in data file.", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-							usernameField.setText("");
-							passwordField.setText("");
-						}
+						profile = getProfileInfoFromFile();
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					} catch (IOException e1) {
-						//e1.printStackTrace();
-						JOptionPane.showMessageDialog(rootPane, "This user is not in data file.\nIf you believe this is a mistake, please report bug on our Discord Server", "Error Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-						usernameField.setText("");
-						passwordField.setText("");
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					
-					
+					GUI Focus = new GUI(profile, file);
+					hideWindow();
 				} else {
-					//System.out.println("Cancelled");
+					//do nothing
 				}
-				
 				
 			}
 			
@@ -366,14 +322,6 @@ public class welcomeGUI extends JFrame {
 	public void addComponentsToTopPanel() {
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(new Color(255,161,161));
-		
-		//titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		//botLabel.setHorizontalAlignment(JLabel.CENTER);
-		
-		//topPanel.add(titleLabel, BorderLayout.CENTER);
-		
-		//topPanel.add(botLabel, BorderLayout.SOUTH);
-		//topPanel.add(imageLabel);
 	}
 	
 	public void addComponentsToCenterPanel() {
@@ -386,8 +334,6 @@ public class welcomeGUI extends JFrame {
 		buttonPanel.add(createProfileButton);
 		buttonPanel.add(existingLoginButton);
 		buttonPanel.add(aboutButton);
-		//buttonPanel.add(botLabel);
-	
 	}
 	
 	/*
@@ -401,101 +347,39 @@ public class welcomeGUI extends JFrame {
 	/*
 	 * Write the profile to a file
 	 */
-	public void writeProfileToFile(Profile p) throws IOException {
-		//hides the main screen page
-		this.setVisible(false);
-		
-		String profileInfo = "\n" + p.getUsername() + "," + p.getPassword() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
-		//System.out.println("DEBUG: profileInfo = " + profileInfo);
-		String encryptedInfo = (profileInfo);
-		
-		FileWriter fileWriter = new FileWriter("profiles/"+ p.getUsername() +".txt");
-		fileWriter.write(encryptedInfo);
-		fileWriter.flush();
-		fileWriter.close();
-		
-		//System.out.println("pasts commands");
-	}
 	
-	/*
-	 * Check to see if the profile exists inside of the profiles folder
-	 * The indicator is if the text file is the username, and the password matches inside of the text field
-	 */
-	public boolean profileExistsInFile(String username, String password) throws IOException {
-		//System.out.println("debug: username = " + username);
-		
-		//file = new File("profiles/"+ username + ".txt");
-		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
-		
-		String line;
-		while ((line = (br.readLine())) != null) {
-			if(!line.equals("")) {
-				//System.out.println(line);
-				boolean exists = false;
-				String[] profileDetails = line.split(",");
-				
-				if(profileDetails[1].equals(password)) {
-					br.close();
-					return true;
-				}
-			} else {
-				
-			}
+	public int writeProfileToFile(Profile p) {
+		final JFileChooser SaveAs = new JFileChooser();
+		SaveAs.setApproveButtonText("Save");
+		int actionDialog = SaveAs.showOpenDialog(this);
+		if(actionDialog != JFileChooser.APPROVE_OPTION) {
+			//
 		}
-		br.close();
-		return false;
-	}
-	
-	public boolean profileExistsInFile(String username) {
-		//System.out.println("debug: username = " + username);
 		
+		File fileName = new File(SaveAs.getSelectedFile() + ".txt");
+		BufferedWriter outFile = null;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
-		} catch (IOException e) {
-			return false;
-		}
-		
-		return true;
-
-	}
-	
-	/*
-	 * Loads profile from file
-	 */
-	public Profile loadProfileFromFile(String username, String password) throws IOException {
-		//String[] profileDetails = line.split(",");
-		//compare [0] to username and [1] to password, if equal return the profile
-		String line = "";
-		
-		BufferedReader br = new BufferedReader(new FileReader("profiles/"+ username + ".txt"));
-		
-		//TODO: fix this shit
-		while((line = (br.readLine())) != null) {
-			if(!line.equals("")) {
-				int flag = -1;
-				boolean flagFound = false;
-				String[] profileDetails = line.split(",");
+			outFile = new BufferedWriter(new FileWriter(fileName));
+			//Write Profile Information
+			String profileInfo = p.getUsername() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
 			
-				
-				if(profileDetails[1].equals(password)) {
-					flag = 0;
-					flagFound = true;
-				}
-			
-				if(flagFound) {
-					//return here
-					Tamo loadTamo = new Tamo(profileDetails[flag+5], Integer.parseInt(profileDetails[flag+6]), Integer.parseInt(profileDetails[flag+7]), Integer.parseInt(profileDetails[flag+8]), Integer.parseInt(profileDetails[flag+12]));
-					Profile load = new Profile(profileDetails[flag+0],profileDetails[flag+1],profileDetails[flag+2], Integer.parseInt(profileDetails[flag+3]), Integer.parseInt(profileDetails[flag+4]),loadTamo, profileDetails[flag+9], Integer.parseInt(profileDetails[flag+10]), profileDetails[flag+11], Integer.parseInt(profileDetails[flag+13]));
-					br.close();
-					return load;
+			outFile.append(profileInfo);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (outFile != null) {
+				try {
+					this.file = new File(SaveAs.getSelectedFile() + ".txt");
+					outFile.close();
+					return 1;
+				} catch (IOException ex2) {
+					
 				}
 			}
-			else {
-				
-			}
 		}
-		br.close();
-		return null;
+		
+		
+		return 0;
 	}
 	
 	public int getLanguageIndicator(String languageString) {
@@ -518,4 +402,40 @@ public class welcomeGUI extends JFrame {
 		
 		return 0;
 	}
+	
+	public int selectFile() {
+		if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			this.file = fileChooser.getSelectedFile();
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
+	public Profile getProfileInfoFromFile() throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String line = "";
+		Profile nullProfile;
+		
+		//TODO: fix this shit
+		while((line = (br.readLine())) != null) {
+			if(!line.equals("")) {
+				System.out.println("line= " + line);
+				String[] profileDetails = line.split(","); 
+				
+				for(int i = 0; i < profileDetails.length; i++) {
+					System.out.println("profileDetails["+i+"] = " + profileDetails[i]);
+				}
+				
+				//tamo(name, level, happy, hunger, tamoID
+				Tamo loadTamo = new Tamo(profileDetails[4], Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[6]), Integer.parseInt(profileDetails[7]), Integer.parseInt(profileDetails[11]));
+				//profile(username, joindate, totaltime, totalmoney, tamoObject, latest_login, currentBackground, guiColor, languageIndicator
+				Profile load = new Profile(profileDetails[0],profileDetails[1],Integer.parseInt(profileDetails[2]), Integer.parseInt(profileDetails[3]), loadTamo, profileDetails[8], Integer.parseInt(profileDetails[9]), profileDetails[10], Integer.parseInt(profileDetails[12]));
+				br.close();
+				return load;
+			}
+		}
+		return new Profile();
+	}
+	
 }

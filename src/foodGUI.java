@@ -7,6 +7,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -17,6 +18,7 @@ public class foodGUI extends JFrame {
 	 * Initialized based off of location on the screen
 	 */
 	private Profile p;
+	private File file;
 	private GridBagConstraints gbc = new GridBagConstraints();
 	
 	//Left Panel Components
@@ -51,6 +53,20 @@ public class foodGUI extends JFrame {
 	public foodGUI(Profile profile) {
 		this.p = profile;
 
+		
+		setUpFrame();
+		
+		initComponents();
+		
+		setUpGUI();
+		
+		this.setSize(720, 300);
+		
+	}
+	
+	public foodGUI(Profile profile, File profileFile) {
+		this.p = profile;
+		this.file = profileFile;
 		
 		setUpFrame();
 		
@@ -133,7 +149,7 @@ public class foodGUI extends JFrame {
 						p.getTamo().setHunger(p.getTamo().getHunger() + 1);
 						p.setMoney(p.getMoney() - 100);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -159,7 +175,7 @@ public class foodGUI extends JFrame {
 						
 						p.setMoney(p.getMoney() - 200);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -180,7 +196,7 @@ public class foodGUI extends JFrame {
 						p.getTamo().setHunger(10);
 						p.setMoney(p.getMoney() - 800);
 						
-						GUI Focus = new GUI(p);
+						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
 				} else {
@@ -196,7 +212,7 @@ public class foodGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUI Focus = new GUI(p);
+				GUI Focus = new GUI(p,file);
 				hideWindow();
 				
 			}
