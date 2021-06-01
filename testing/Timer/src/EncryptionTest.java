@@ -47,7 +47,7 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		Encryption e = new Encryption();
 		
-		String test = e.encrypt("Anthony,2021-03-24,129794,896,Lisa,1,7,3,2021-05-31,4,default,2,0");
+		String test = e.encrypt("kath,2021-06-01,33,0,kathkath,0,5,5,2021-06-01,0,default,2,0");
 		
 		System.out.println(test);
 		
