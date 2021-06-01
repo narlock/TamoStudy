@@ -350,10 +350,9 @@ public class welcomeGUI extends JFrame {
 	
 	public int writeProfileToFile(Profile p) {
 		final JFileChooser SaveAs = new JFileChooser();
-		SaveAs.setApproveButtonText("Save");
-		int actionDialog = SaveAs.showOpenDialog(this);
+		int actionDialog = SaveAs.showSaveDialog(this);
 		if(actionDialog != JFileChooser.APPROVE_OPTION) {
-			//
+			return 0;
 		}
 		
 		File fileName = new File(SaveAs.getSelectedFile() + ".txt");
