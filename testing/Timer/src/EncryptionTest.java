@@ -51,7 +51,7 @@ public class EncryptionTest {
 		
 		System.out.println(test);
 		
-		System.out.println(e.decrypt("Gtznut2868736;39729262Royg262;2;2868736;397262jklg{rz2826"));
+		System.out.println(e.decrypt("zut2zut2vgyy2868736;3772?99?>2=?72y{sskx2727262jklg{rz2626"));
 		//System.out.println(e.decrypt(e.encrypt("123")));
 		//System.out.println(e.decrypt("Rkyork2vgyy2868736;39726262Zkyz262;2;2868736;397262jklg{rz2726"));
 	}
