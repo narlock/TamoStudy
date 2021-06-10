@@ -21,7 +21,7 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, feedButton, backgroundShopButton, logOutButton;
+	private JButton statsButton, feedButton, backgroundShopButton, logOutButton, optionsButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -70,6 +70,7 @@ public class GUI extends JFrame {
 	
 	private JPanel timerSetPanel;
 	private JComboBox minuteBox, secondBox;
+	private JComboBox fiveIntervalBox;
 	
 	private JPanel timerButtonPanel;
 	private JButton startButton, breakButton;
@@ -212,12 +213,14 @@ public class GUI extends JFrame {
 		feedButton = new JButton(profile.getLanguage().getText(4));
 		backgroundShopButton = new JButton(profile.getLanguage().getText(5));
 		logOutButton = new JButton(profile.getLanguage().getText(6));
+		optionsButton = new JButton(profile.getLanguage().getText(24));
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
 		headPanel.add(statsButton);
 		headPanel.add(feedButton);
 		headPanel.add(backgroundShopButton);
+		headPanel.add(optionsButton);
 		headPanel.add(logOutButton);
 		//headPanel.add(shopBox);
 	}
@@ -321,12 +324,28 @@ public class GUI extends JFrame {
 		//timerSetPanel
 		timerSetPanel = new JPanel();
 		timerSetPanel.setBackground(profile.getColor());
+		
+		/*
+		 * Different Combo Boxes
+		 * minute/secondBox represent the custom time
+		 * fiveIntervalBox represents the default option which is times of 5 minute intervals
+		 */
 				
 		minuteBox = new JComboBox();
 		secondBox = new JComboBox();
+		
+		fiveIntervalBox = new JComboBox();
 				
 		timerSetPanel.add(minuteBox);
 		timerSetPanel.add(secondBox);
+		timerSetPanel.add(fiveIntervalBox);
+		
+		/*
+		 * Set Enabled Timer Method:
+		 * This will call a method that will automatically update the GUI based off of the timer selection.
+		 * TODO:
+		 * setEnabledTimerMethod();
+		 */
 				
 		//timerButtonPanel
 		timerButtonPanel = new JPanel();
@@ -361,6 +380,14 @@ public class GUI extends JFrame {
 			
 		}
 		
+		//Init 5 Increment Combo Box Items
+		for(int i = 5; i <= 60; i = i + 5) {
+			if(i == 5)
+				fiveIntervalBox.addItem("0" + i + ":00");
+			else
+				fiveIntervalBox.addItem(i + ":00");
+		}
+		
 		//Combo box actions - update on selection
 		minuteBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -372,6 +399,16 @@ public class GUI extends JFrame {
 		secondBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				secondTime.setText(""+secondBox.getSelectedItem());
+				sec = Integer.parseInt(secondTime.getText());
+			}
+		});
+		
+		fiveIntervalBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				minuteTime.setText(""+fiveIntervalBox.getSelectedItem());
+				minuteTime.setText(minuteTime.getText().substring(0,2));
+				min = Integer.parseInt(minuteTime.getText());
 				sec = Integer.parseInt(secondTime.getText());
 			}
 		});

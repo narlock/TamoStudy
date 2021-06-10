@@ -81,6 +81,11 @@ public class Language {
 				return "Logging out...";
 			if(num == 23)
 				return "Are you sure?";
+			
+			
+			
+			if(num == 24)
+				return "Options";
 		}
 		
 		//1 = Spanish - credit: oodsofnoodles
