@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TamoStudyDemo - ANTHONY NARLOCK</title>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
+
+    <style>
+        body {
+            top: 0;
+            left: 0;
+            width: 99%;
+            height: 97%;
+            position: absolute;
+            display: table
+        }
+
+        p {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+    </style>
+
+</head>
+
+<body style="background-color:lavender;">
+    
+    <p>
+            <font size="7"><i><b>TamoStudy Web Demo</b></i></font>
+            <br>
+            This is a work-in-progress, more updates will come in the future.
+
+            <br>
+            <br>
+            <img src="./assets/TamoStudyDemoImage.gif">
+            <br>
+
+        <font size="5">
+            <b>Tamo: Demo</b>
+
+            <br>
+            <b class = "joinDate">Join Date: </b>
+
+            <br>
+            <b class = "totalHours">Total Sessions: </b>
+
+            <br>
+            <b>Set Session Time</b>
+        </font>
+
+        <select id="setTimer" onclick="printSelectedTime();">
+            <option value="0">60:00</option>
+            <option value="1">00:05</option>
+            <option value="2">05:00</option>
+                    
+        </select>
+
+
+        <font size="7">
+            <br>
+            <b class = "time">00:00</b>
+        </font>
+
+        <br>
+        <input id="start" type="button" value="Start Focus" onclick="startCountdown();">
+        <input id="break" type="button" value="Break Focus" onclick="breakFocus();">
+        
+        
+    <br>
+    <br>
+    <br>
+
+
+        <a href="index.html">home</a> |
+        <a href="about.html">about</a> |
+        <a href="projects.html">projects</a> |
+        <a href="faq.html">faq</a> |
+        <a href="https://www.youtube.com/channel/UCXMqF8Nz5-cMcrI-aY21GzA">youtube</a> |
+        <a href="https://www.linkedin.com/in/anthonynarlock/">linkedin</a> |
+        <a href="https://github.com/narlock">github</a>
+
+        <br>
+
+    </p>
+
+    <script src="TSDemo.js"></script>
+
+
+</body>
+</html>
