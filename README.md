@@ -1,4 +1,8 @@
-![alt text](https://i.imgur.com/Vwphoy3.png) 
+![alt text](https://i.imgur.com/Vwphoy3.png)
+
+[![Github All Releases](https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg)]()
+[![Github Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)]()
+[![Latest Commit](https://img.shields.io/github/last-commit/narlock/TamoStudy)]()
 
 Author: Anthony Narlock
 - Website: https://anthonynarlock.com/TamoStudy.html
