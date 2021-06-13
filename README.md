@@ -8,6 +8,7 @@ Author: Anthony Narlock
 - Website: https://anthonynarlock.com/TamoStudy.html
 - Instagram Page: https://www.instagram.com/tamostudy/
 - Discord Server: https://tinyurl.com/TamoDiscord
+- (indev) TamoStudy Web: https://anthonynarlock.com/TSDemo.html
 
 ## Features:
 - Pomodoro work/study timer. Total time focused and Total time in session period is recorded.
