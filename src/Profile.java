@@ -6,6 +6,7 @@
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import profile.*;
 
 public class Profile {
 	/*
