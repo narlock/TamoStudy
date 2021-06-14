@@ -27,16 +27,16 @@ public class Profile {
 	private String lastLoginString;
 	private String newLoginString;
 	
-	private Tamo tamo;
 	private int money;
 	private int totalTime;
 	private int currentBackground;
 	private String guiColor;
-	
 	private int warnings;
 	
-	private int language_indicator;
-	private Language lang;
+	private Tamo tamo;
+	private ProfileSettings settings;
+	private Achievements ahm;
+
 	
 	/*
 	 * Default Constructor
@@ -46,54 +46,21 @@ public class Profile {
 	public Profile() {
 		this.username = "null";
 		this.password = "null";
-		this.tamo = new Tamo();
-		
 		this.join_date = new Date();
 		this.dateString = formatter.format(join_date);
-		
 		this.totalTime = 0;
 		this.money = -1;
-		
 		this.last_login_date = new Date();
 		this.lastLoginString = formatter.format(last_login_date);
 		this.currentBackground = 0;
-		
 		this.guiColor = "blue";
+		this.warnings = 4;
 		
-		this.warnings = 0;
-		this.language_indicator = 0;
-		this.lang = new Language(0);
+		this.tamo = new Tamo();
+		this.settings = new ProfileSettings(0);
+		this.ahm = new Achievements();
 	}
 	
-	/*
-	 * Old Constructor
-	 * 
-	 * This constructor was used before TamoStudy implemented Language
-	 * Is used now for debugging, since the language automatically is set to English
-	 */
-	public Profile(String username, String password, String tamoName) {
-		this.username = username;
-		this.password = password;
-		this.tamo = new Tamo(tamoName);
-		
-		this.join_date = new Date();
-		this.dateString = formatter.format(join_date);
-		
-		this.totalTime = 0;
-		
-		this.money = 0;
-		
-		this.last_login_date = new Date();
-		this.lastLoginString = formatter.format(last_login_date);
-		this.currentBackground = 0;
-		
-		this.guiColor = "default";
-		
-		this.warnings = 0;
-		
-		this.language_indicator = 0;
-		this.lang = new Language(0);
-	}
 	/*
 	 * Main New Profile Constructor
 	 * 
@@ -102,25 +69,19 @@ public class Profile {
 	 */
 	public Profile(String username, String tamoName, int lang) {
 		this.username = username;
-		this.tamo = new Tamo(tamoName);
-		
 		this.join_date = new Date();
 		this.dateString = formatter.format(join_date);
-		
 		this.totalTime = 0;
-		
 		this.money = 0;
-		
 		this.last_login_date = new Date();
 		this.lastLoginString = formatter.format(last_login_date);
 		this.currentBackground = 0;
-		
 		this.guiColor = "default";
-		
 		this.warnings = 0;
 		
-		this.language_indicator = lang;
-		this.lang = new Language(lang);
+		this.tamo = new Tamo(tamoName);
+		this.settings = new ProfileSettings(lang);
+		this.ahm = new Achievements();
 	}
 	
 	
@@ -130,25 +91,19 @@ public class Profile {
 	 * The constructor that is used when a profile is being loaded
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String dateString, int totalTime, int money, Tamo tamo, String lastLoginString, int currentBackground, String guiColor, int lang) {
+	public Profile(String username, String dateString, String lastLoginString, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm) {
 		this.username = username;
 		this.dateString = dateString;
-		this.money = money;
-		this.totalTime = totalTime;
-		
-		this.tamo = tamo;
-		
 		this.lastLoginString = lastLoginString;
-		
-		this.new_login_date = new Date();
-		this.newLoginString = formatter.format(new_login_date);
-		
+		this.totalTime = totalTime;
+		this.money = money;
 		this.currentBackground = currentBackground;
-		
 		this.guiColor = guiColor;
+		this.warnings = warnings;
 		
-		this.language_indicator = lang;
-		this.lang = new Language(lang);
+		this.settings = settings;
+		this.tamo = tamo;
+		this.ahm = ahm;
 	}
 
 	/*
@@ -180,6 +135,22 @@ public class Profile {
 
 	public void setTamo(Tamo tamo) {
 		this.tamo = tamo;
+	}
+
+	public ProfileSettings getSettings() {
+		return settings;
+	}
+
+	public void setSettings(ProfileSettings settings) {
+		this.settings = settings;
+	}
+
+	public Achievements getAhm() {
+		return ahm;
+	}
+
+	public void setAhm(Achievements ahm) {
+		this.ahm = ahm;
 	}
 
 	public String getJoinDate() {
@@ -262,18 +233,6 @@ public class Profile {
 	public void setWarnings(int warnings) {
 		this.warnings = warnings;
 	}
-
-	public int getLanguageIndicator() {
-		return language_indicator;
-	}
-
-	public void setLanguageIndicator(int language_indicator) {
-		this.language_indicator = language_indicator;
-	}
-	
-	public Language getLanguage() {
-		return lang;
-	}
 	
 	public Color getColor() {
 		if(this.guiColor.equals("default"))
@@ -292,5 +251,13 @@ public class Profile {
 			return new Color(161,161,161);
 		
 		return new Color(255,161,161);
+	}
+	
+	@Override
+	public String toString() {
+		String profileInfo = username + "," + dateString + "," + lastLoginString + "," + totalTime
+						+ "," + money + "," + currentBackground + "," + guiColor + "," + warnings;
+		
+		return profileInfo;
 	}
 }

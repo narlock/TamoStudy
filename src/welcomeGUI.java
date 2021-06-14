@@ -5,6 +5,9 @@
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import profile.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -363,10 +366,11 @@ public class welcomeGUI extends JFrame {
 		try {
 			outFile = new BufferedWriter(new FileWriter(fileName));
 			//Write Profile Information
-			String profileInfo = p.getUsername() + "," + p.getJoinDate() + "," + p.getTotalTime() + "," + p.getMoney() + "," + p.getTamo().tamoInfo() + "," + p.getLastLoginString()  + "," + p.getCurrentBackground() + "," + p.getGuiColor() + "," + p.getTamo().getId() + "," + p.getLanguageIndicator();
+			String profileInfo = p.toString() + "," + p.getSettings().toString() + "," + p.getTamo().toString() + "," + p.getAhm().getAhmString();
 			String encryptedInfo = encryption.encrypt(profileInfo);
 			
 			outFile.append(encryptedInfo);
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -432,10 +436,11 @@ public class welcomeGUI extends JFrame {
 					System.out.println("profileDetails["+i+"] = " + profileDetails[i]);
 				}
 				
-				//tamo(name, level, happy, hunger, tamoID
-				Tamo loadTamo = new Tamo(profileDetails[4], Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[6]), Integer.parseInt(profileDetails[7]), Integer.parseInt(profileDetails[11]));
-				//profile(username, joindate, totaltime, totalmoney, tamoObject, latest_login, currentBackground, guiColor, languageIndicator
-				Profile load = new Profile(profileDetails[0],profileDetails[1],Integer.parseInt(profileDetails[2]), Integer.parseInt(profileDetails[3]), loadTamo, profileDetails[8], Integer.parseInt(profileDetails[9]), profileDetails[10], Integer.parseInt(profileDetails[12]));
+				ProfileSettings loadSettings = new ProfileSettings(Integer.parseInt(profileDetails[8]), Integer.parseInt(profileDetails[9]), Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]));
+				Achievements loadAhm = new Achievements(profileDetails[16]);
+				Tamo loadTamo = new Tamo(profileDetails[12], Integer.parseInt(profileDetails[13]), Integer.parseInt(profileDetails[14]), Integer.parseInt(profileDetails[15]));
+				
+				Profile load = new Profile(profileDetails[0], profileDetails[1], profileDetails[2], Integer.parseInt(profileDetails[3]), Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]), profileDetails[6], Integer.parseInt(profileDetails[7]), loadSettings, loadTamo, loadAhm);
 				br.close();
 				return load;
 			}

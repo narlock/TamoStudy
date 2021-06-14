@@ -1,3 +1,4 @@
+package profile;
 /*
  * @author Anthony Narlock
  * This Language class defines what each type of Langauge will outline
@@ -10,6 +11,7 @@
 
 public class Language {
 
+	private final int INDEX = 50;
 	private int lang;
 	
 	public Language() {
@@ -18,6 +20,14 @@ public class Language {
 	
 	public Language(int lang) {
 		this.lang = lang;
+	}
+	
+	public void setIndicator(int newLang) {
+		this.lang = newLang;
+	}
+	
+	public int getIndicator() {
+		return lang;
 	}
 	
 	/*
@@ -489,4 +499,5 @@ public class Language {
 		
 		return null;
 	}
+	
 }
