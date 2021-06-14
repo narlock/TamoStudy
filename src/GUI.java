@@ -334,6 +334,9 @@ public class GUI extends JFrame {
 		minuteBox = new JComboBox();
 		secondBox = new JComboBox();
 		
+		minuteBox.setVisible(false);
+		secondBox.setVisible(false);
+		
 		fiveIntervalBox = new JComboBox();
 				
 		timerSetPanel.add(minuteBox);
@@ -614,7 +617,70 @@ public class GUI extends JFrame {
 			
 		});
 		
-		//TODO Add mini games in the future
+		optionsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JPanel optionsPanel = new JPanel();
+				optionsPanel.setLayout(new GridLayout(3,1));
+				
+				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel();
+				JLabel focusModeLabel = new JLabel("Change Focus Mode");
+				JLabel langLabel = new JLabel("Change Language");
+				JLabel soundsLabel = new JLabel("Sounds");
+				
+				JComboBox focusMode = new JComboBox();
+				focusMode.addItem("5-Interval Countdown");
+				focusMode.addItem("Custom Interval Countdown");
+				
+				JComboBox languageBox = new JComboBox();
+				languageBox.addItem("English");
+				languageBox.addItem("Español (Spanish)");
+				languageBox.addItem("Português (Portuguese)");
+				languageBox.addItem("Deutsche (German)");
+				languageBox.addItem("日本語 (Japanese)");
+				languageBox.addItem("Nederlands (Dutch)");
+				languageBox.addItem("Français (French)");
+				
+				JToggleButton soundButton = new JToggleButton("OFF", false);
+				
+				optionsPanel.add(op1);
+				optionsPanel.add(op2);
+				optionsPanel.add(op3);
+				
+				op1.add(focusModeLabel);
+				op1.add(focusMode);
+				
+				op2.add(langLabel);
+				op2.add(languageBox);
+				
+				op3.add(soundsLabel);
+				op3.add(soundButton);
+				
+				int result = JOptionPane.showConfirmDialog(rootPane, optionsPanel, "Options", JOptionPane.PLAIN_MESSAGE, 0, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				if(result == 0) {
+					//Change Settings
+					
+					//Focus Mode
+					int focusModeIndicator = getFocusIndicator(focusMode.getSelectedItem().toString());
+					int languageIndicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
+					
+					//TODO Sounds on/off
+					
+					profile.getSettings().setFocusMode(focusModeIndicator);
+					profile.getSettings().getLang().setIndicator(languageIndicator);
+					
+					//Update and Reload GUI
+					updateUserInformationToFile();
+					GUI reloadedGUI = new GUI(profile, profileFile);
+					hideWindow();
+					
+					
+				}
+				
+			}
+			
+		});
 
 	}
 	
@@ -836,6 +902,20 @@ public class GUI extends JFrame {
 			updateTamoImage(profile.getTamo().getId(), 1);
 		} else if (happy >= 1 && happy <= 3) {
 			updateTamoImage(profile.getTamo().getId(), 2);
+		}
+		
+		
+		//Update Study Mode
+		if(profile.getSettings().getFocusMode() == 0) {
+			minuteBox.setVisible(false);
+			secondBox.setVisible(false);
+			fiveIntervalBox.setVisible(true);
+		}
+		
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteBox.setVisible(true);
+			secondBox.setVisible(true);
+			fiveIntervalBox.setVisible(false);
 		}
 		
 	}
@@ -1100,6 +1180,37 @@ public class GUI extends JFrame {
 		hideWindow();
 		
 		GUI newGUI = new GUI(profile);
+	}
+	
+	public int getFocusIndicator(String stringIndicator) {
+		if(stringIndicator.equals("5-Interval Countdown"))
+			return 0;
+		if(stringIndicator.equals("Custom Interval Countdown"))
+			return 1;
+		
+		
+		return 0;
+	}
+	
+	public int getLanguageIndicator(String languageString) {
+		if(languageString.equals("English"))
+			return 0;
+		if(languageString.equals("Español (Spanish)"))
+			return 1;
+		if(languageString.equals("Português (Portuguese)"))
+			return 2;
+		if(languageString.equals("Deutsche (German)"))
+			return 3;
+		if(languageString.equals("日本語 (Japanese)"))
+			return 4;
+		if(languageString.equals("Nederlands (Dutch)"))
+			return 5;
+		if(languageString.equals("Français (French)"))
+			return 6;
+		if(languageString.equals("汉语/漢語 (Chinese)"))
+			return 7;
+		
+		return 0;
 	}
 	
 }
