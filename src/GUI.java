@@ -209,11 +209,11 @@ public class GUI extends JFrame {
 		headPanel.setBackground(profile.getColor());
 				
 		//Initialize Head Panel components
-		statsButton = new JButton(profile.getSettings().getLang().getText(3));
-		feedButton = new JButton(profile.getSettings().getLang().getText(4));
-		backgroundShopButton = new JButton(profile.getSettings().getLang().getText(5));
-		logOutButton = new JButton(profile.getSettings().getLang().getText(6));
-		optionsButton = new JButton(profile.getSettings().getLang().getText(24));
+		statsButton = new JButton(profile.getSettings().getLang().getText(5));
+		feedButton = new JButton(profile.getSettings().getLang().getText(6));
+		backgroundShopButton = new JButton(profile.getSettings().getLang().getText(7));
+		logOutButton = new JButton(profile.getSettings().getLang().getText(9));
+		optionsButton = new JButton(profile.getSettings().getLang().getText(8));
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
@@ -354,8 +354,8 @@ public class GUI extends JFrame {
 		timerButtonPanel = new JPanel();
 		timerButtonPanel.setBackground(profile.getColor());
 				
-		startButton = new JButton(profile.getSettings().getLang().getText(7));
-		breakButton = new JButton(profile.getSettings().getLang().getText(8));
+		startButton = new JButton(profile.getSettings().getLang().getText(3));
+		breakButton = new JButton(profile.getSettings().getLang().getText(4));
 				
 		timerButtonPanel.add(startButton);
 		timerButtonPanel.add(breakButton);
@@ -440,6 +440,7 @@ public class GUI extends JFrame {
 				statsButton.setEnabled(false);
 				feedButton.setEnabled(false);
 				backgroundShopButton.setEnabled(false);
+				optionsButton.setEnabled(false);
 				logOutButton.setEnabled(false);
 				
 				timer = new Timer(1000, new ActionListener() {
@@ -559,13 +560,13 @@ public class GUI extends JFrame {
 				double totalSessionHours = sessionTotalSeconds * 0.0002777778;
 				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
 				
-				String statsMessage = profile.getSettings().getLang().getText(9) + ": " + totalHours +
-									"\n" + profile.getSettings().getLang().getText(10) + ": " + totalSessionHours +
-									"\n\n" + profile.getSettings().getLang().getText(11) + ": " + profile.getUsername() + 
-									"\n" + profile.getSettings().getLang().getText(12) + ": " + profile.getJoinDate() +
-									"\n" + profile.getSettings().getLang().getText(13) + ": 0/30";
+				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
+									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
+									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
+									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate() +
+									"\n" + profile.getSettings().getLang().getText(21) + ": 0/30";
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getSettings().getLang().getText(3), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -582,7 +583,7 @@ public class GUI extends JFrame {
 					foodGUI food = new foodGUI(profile, profileFile);
 					hideWindow();
 				} else {
-					JOptionPane.showMessageDialog(null, profile.getSettings().getLang().getText(15), profile.getSettings().getLang().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, profile.getSettings().getLang().getText(27), profile.getSettings().getLang().getText(26), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -603,7 +604,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().getText(23), profile.getSettings().getLang().getText(22),
+				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().getText(39), profile.getSettings().getLang().getText(38),
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI();
@@ -713,6 +714,7 @@ public class GUI extends JFrame {
 		statsButton.setEnabled(true);
 		feedButton.setEnabled(true);
 		backgroundShopButton.setEnabled(true);
+		optionsButton.setEnabled(true);
 		logOutButton.setEnabled(true);
 		
 	}

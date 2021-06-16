@@ -6,13 +6,282 @@ package profile;
  * Each profile will be assigned an integer value that will determine their language
  * The language can be modified afterwards.
  * 
- * 
+ * Language Credits:
+ * English: myself (Anthony Narlock)
+ * Spanish: oodsofnoodles
+ * Portuguese: kathflowers
+ * German: boba
+ * Japanese: kathflowers
+ * Dutch: Britt
+ * French: Marie
  */
 
 public class Language {
 
 	private final int INDEX = 50;
 	private int lang;
+	
+	/*
+	 * Basic Text Arrays
+	 * These contain the basic messages that will appear on each of the screens
+	 */
+	
+	private String[] englishText = {
+			"INVALID_KEY_TEXT",
+			"Welcome",
+			"Level",
+			"Start Focus",
+			"Break Focus",
+			"Statistics",
+			"Food Store",
+			"Background Store",
+			"Options",
+			"Logout",
+			"Congratulations!",
+			"Session Completed",
+			"You focused for",
+			"minutes(s) and",
+			"seconds(s)",
+			"Maybe next time...",
+			"Session Focus Broke",
+			"Total Hours",
+			"Total Hours in Session",
+			"User",
+			"Join Date",
+			"Achievements",
+			"Hunger",
+			"Return To Focus",
+			"Can't Complete Purchase",
+			"You don't have sufficient funds",
+			"Can't enter food store",
+			"Your Tamo is full!",
+			"Purchase for",
+			"TamoTokens",
+			"Change Background Color",
+			"Change Focus Mode",
+			"5-Minute Countdown",
+			"Custom Countdown",
+			"Change Language",
+			"Sounds",
+			"Off",
+			"On",
+			"Logging out...",
+			"Are you sure?",
+			"OK",
+			"Cancel",
+			"Yes",
+			"No",
+			
+	};
+	
+	private String[] spanishText = {
+			"INVALID_KEY_TEXT",
+			"Bienvenido",
+			"Nivel",
+			"Empieza la Concentración",
+			"Pare la Concentración",
+			"Estadística",
+			"Supermercado",
+			"Tienda de Fondos",
+			"Opciones",
+			"Logout",
+			"Felicidades!",
+			"Sesión completada",
+			"Se ha concentrado para",
+			"minuto(s) y",
+			"segundo(s)",
+			"A lo mejor la próxima vez...",
+			"Sesión de Concentración Interrumpida",
+			"Horas Totales",
+			"Horas Totales en Sesión",
+			"Usuario",
+			"Fecha de Entrada",
+			"Exitos",
+			"Hambre",
+			"Regresa a Concentración",
+			"No se puede completar la compra",
+			"No tienes fondos suficientes",
+			"No se puede entrar en el supermercado",
+			"Tu Tamo está lleno!",
+			"Compra por",
+			"TamoTokens",
+			"Cambia el color del fondo",
+			"Cambia el modo de concentración",
+			"Cuenta atrás de intervalo de 5 minutos",
+			"Cuenta atrás de intervalo de minutos personalizados",
+			"Cambia idioma",
+			"Sonidos",
+			"Apagado",
+			"Prendido",
+			"Saliendo del sesión...",
+			"Está segura?",
+			"Sí",
+			"Cancela",
+			"Sí",
+			"No",
+			
+	};
+	
+	private String[] portugueseText = {
+			"INVALID_KEY_TEXT",
+			"Bem Vindo",
+			"Nível",
+			"Iniciar foco",
+			"Interromper foco",
+			"Estatística",
+			"Loja de Comidas",
+			"Loja de Background",
+			"Opções",
+			"Sair",
+			"Parabéns!",
+			"Sessão encerrada",
+			"Você manteve o foco por",
+			"minuto(s) e",
+			"segundo(s)",
+			"Talvez na próxima...",
+			"Sessão de foco interrompida",
+			"Horas totais de focos",
+			"Horas totais em sessões",
+			"Usuário",
+			"Ingressou em",
+			"Conquistas",
+			"Fome",
+			"Retornar ao foco",
+			"Não foi possível concluir a compra",
+			"Você não tem TamoTokens suficientes",
+			"Você não precisa comprar comida agora",
+			"Seu Tamo não está com fome!",
+			"Compre por",
+			"TamoTokens",
+			"Mudar cor de fundo",
+			"Mudar modo de foco",
+			"Intervalo de 5 minutos",
+			"Personalizar timer de intervalo",
+			"Mundar idioma",
+			"Sons",
+			"Desligado",
+			"Ligado",
+			"Fazendo logoff...",
+			"Você tem certeza?",
+			"OK",
+			"Cancelar",
+			"Sim",
+			"Não",
+			
+	};
+	
+	private String[] germanText = {
+			"INVALID_KEY_TEXT",
+			"Willkommen",
+			"Level",
+			"Beginn Fokus",
+			"Pause Fokus",
+			"Statistiken",
+			"Markt",
+			"Background Store",
+			"Optionen",
+			"Logout",
+			"Glückwunsch!",
+			"Session beendet",
+			"Du hast dich für",
+			"minute(n) und",
+			"sekunde(n) fokussiert",
+			"Vielleicht nächstes Mal...",
+			"Session-Fokus abgebrochen",
+			"Gesamtzeit",
+			"Gesamtzeit in Session",
+			"Benutzer",
+			"Beitrittsdatum",
+			"Erfolge",
+			"Hunger",
+			"Zurück zum Fokus",
+			"Kauf kann nicht beendet werden",
+			"Nicht genug Tamo Münzen",
+			"Betreten des Markts nicht möglich",
+			"Dein Tamo ist satt!",
+			"Kauf von",
+			"Tamo Münzen",
+			"Backgroundfarbe ändern",
+			"Fokusmodus ändern",
+			"5-Intervall-Countdown",
+			"Benutzerdefinierter Intervall-Countdown",
+			"Sprache ändern",
+			"Sounds",
+			"Aus",
+			"An",
+			"Ausloggen...",
+			"Bist du dir sicher?",
+			"OK",
+			"Abbrechen",
+			"Ja",
+			"No",
+			
+	};
+	
+	private String[] japaneseText;
+	
+	private String[] dutchText;
+	
+	private String[] frenchText = {
+			"INVALID_KEY_TEXT",
+			"Bienvenue",
+			"Niveau",
+			"Commencer la concentration",
+			"Arrêter la concentration",
+			"Statistiques",
+			"Magasin d'alimentation",
+			"Magasin d'arrière-plan",
+			"Options",
+			"Déconnexion",
+			"Félicitations !",
+			"Session complétée",
+			"Vous vous êtes concentré(e) pendant",
+			"minute(s) et",
+			"seconde(s)",
+			"La prochaine fois peut-être...",
+			"Concentration interrompue",
+			"Total d’heures",
+			"Total d’heures en session",
+			"Utilisateur",
+			"Date d’inscription",
+			"Succès",
+			"Faim",
+			"Retourner à la concentration",
+			"Impossible d’effectuer l’achat",
+			"Fonds insuffisants",
+			"Impossible d'entrer dans le magasin d’alimentation",
+			"Votre Tamo est plein !",
+			"Acheter pour",
+			"JetonsTamo",
+			"Changer la couleur d'arrière-plan",
+			"Changer le mode de concentration",
+			"Minuteur d'intervalle 5mn",
+			"Personnaliser le minuteur d'intervalle",
+			"Changer la langue",
+			"Son",
+			"Désactivé",
+			"Activé",
+			"Déconnexion",
+			"Êtes-vous sûr(e) ?",
+			"OK",
+			"Annuler",
+			"Oui",
+			"Non",
+			
+	};
+	
+	/*
+	 * Achievement Text Arrays
+	 * These arrays contain the titles and descriptions of the achievements
+	 */
+	
+	private String[] englishAhm;
+	private String[] spanishAhm;
+	private String[] portugueseAhm;
+	private String[] germanAhm;
+	private String[] japaneseAhm;
+	private String[] dutchAhm;
+	private String[] frenchAhm;
 	
 	public Language() {
 		this.lang = 0;
@@ -36,466 +305,20 @@ public class Language {
 	 */
 	
 	public String getText(int num) {
-		//0 = English
-		if(lang == 0) {
-			//UI Interface
-			if(num == 1)
-				return "Welcome";
-			if(num == 2)
-				return "Level";
-			if(num == 3)
-				return "Statistics";
-			if(num == 4)
-				return "Food Store";
-			if(num == 5)
-				return "Background Store";
-			if(num == 6)
-				return "Logout";
-			if(num == 7)
-				return "Start Focus";
-			if(num == 8)
-				return "Break Focus";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "Total Hours";
-			if(num == 10)
-				return "Total Hours in Session";
-			if(num == 11)
-				return "User";
-			if(num == 12)
-				return "Join Date";
-			if(num == 13)
-				return "Achievements";
-				
-			//Shop Interface
-			if(num == 14)
-				return "Can't enter food shop";
-			if(num == 15)
-				return "Your Tamo is full!";
-			if(num == 16)
-				return "Purchase for";
-			if(num == 17)
-				return "Tamo Tokens";
-			if(num == 18)
-				return "Can't complete purchase";
-			if(num == 19)
-				return "You don't have sufficient funds";
-			if(num == 20)
-				return "Return to Focus";
-			if(num == 21)
-				return "Hunger";
-				
-			//Logout
-			if(num == 22)
-				return "Logging out...";
-			if(num == 23)
-				return "Are you sure?";
-			
-			
-			
-			if(num == 24)
-				return "Options";
-		}
-		
-		//1 = Spanish - credit: oodsofnoodles
-		if(lang == 1) {
-			//UI Interface
-			if(num == 1)
-				return "Bienvendios";
-			if(num == 2)
-				return "Nivel";
-			if(num == 3)
-				return "Estadística";
-			if(num == 4)
-				return "Supermercado";
-			if(num == 5)
-				return "Tienda de Fondos";
-			if(num == 6)
-				return "Salir";
-			if(num == 7)
-				return "Comienza Enfoque";
-			if(num == 8)
-				return "Pare Enfoque";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "Horas Totales";
-			if(num == 10)
-				return "Horas Totales en Sesión";
-			if(num == 11)
-				return "Usuario";
-			if(num == 12)
-				return "Fecha de Entrada";
-			if(num == 13)
-				return "Exitos";
-				
-			//Shop Interface
-			if(num == 14)
-				return "No puedes entrar en el supermercado";
-			if(num == 15)
-				return "Tu Tamo está lleno!";
-			if(num == 16)
-				return "Compra por";
-			if(num == 17)
-				return "Tamo Tokens";
-			if(num == 18)
-				return "No se puede completar la compra";
-			if(num == 19)
-				return "No tienes condos suficientes";
-			if(num == 20)
-				return "Volver a enfoque";
-			if(num == 21)
-				return "Hambre";
-				
-			//Logout
-			if(num == 22)
-				return "Cerrando sesión...";
-			if(num == 23)
-				return "Estás seguro?";
-		}
-		
-		//2 = Portuguese - credit: kathflowers
-		if(lang == 2) {
-			//UI Interface
-			if(num == 1)
-				return "Boas vindas";
-			if(num == 2)
-				return "Nível";
-			if(num == 3)
-				return "Estatística";
-			if(num == 4)
-				return "Loja de Comidas";
-			if(num == 5)
-				return "Loja de Background";
-			if(num == 6)
-				return "Sair";
-			if(num == 7)
-				return "Iniciar foco";
-			if(num == 8)
-				return "Interromper foco";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "Horas totais de foco";
-			if(num == 10)
-				return "Horas totais em sessões";
-			if(num == 11)
-				return "Usuário";
-			if(num == 12)
-				return "Ingressou em";
-			if(num == 13)
-				return "Conquistas";
-				
-			//Shop Interface
-			if(num == 14)
-				return "Você não precisa comprar comida agora";
-			if(num == 15)
-				return "Seu Tamo não está com fome!";
-			if(num == 16)
-				return "Comprar";
-			if(num == 17)
-				return "Tamo Moedas";
-			if(num == 18)
-				return "Não foi possível concluir a compra";
-			if(num == 19)
-				return "Você não tem Tamo Moedas suficientes";
-			if(num == 20)
-				return "Retornar ao foco";
-			if(num == 21)
-				return "Hunger";
-				
-			//Logout
-			if(num == 22)
-				return "Fazendo logoff...";
-			if(num == 23)
-				return "Você tem certeza?";
-		}
-		
-		//3 = German - credit: boba
-		if(lang == 3) {
-			//UI Interface
-			if(num == 1)
-				return "Willkommen";
-			if(num == 2)
-				return "Level";
-			if(num == 3)
-				return "Statistik";
-			if(num == 4)
-				return "Markt";
-			if(num == 5)
-				return "Background Store";
-			if(num == 6)
-				return "Logout";
-			if(num == 7)
-				return "Beginn Fokus";
-			if(num == 8)
-				return "Pause Fokus";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "Gesamtzeit";
-			if(num == 10)
-				return "Gesamtzeit in Session";
-			if(num == 11)
-				return "Benutzer";
-			if(num == 12)
-				return "Beitrittsdatum";
-			if(num == 13)
-				return "Erfolge";
-				
-			//Shop Interface
-			if(num == 14)
-				return "Betreten des Markts nicht möglich";
-			if(num == 15)
-				return "Dein Tamo ist satt!";
-			if(num == 16)
-				return "Kauf von";
-			if(num == 17)
-				return "Tamo Münzen";
-			if(num == 18)
-				return "Kauf kann nicht beendet werden";
-			if(num == 19)
-				return "Nicht genug Tamo Münzen";
-			if(num == 20)
-				return "Zurück zum Fokus";
-			if(num == 21)
-				return "Hunger";
-				
-			//Logout
-			if(num == 22)
-				return "Ausloggen...";
-			if(num == 23)
-				return "Bist du dir sicher?";
-		}
-		
-		//4 = Japanese - credit: kathflowers
-		if(lang == 4) {
-			//UI Interface
-			if(num == 1)
-				return "お帰りなさいませ";
-			if(num == 2)
-				return "レベル";
-			if(num == 3)
-				return "データ";
-			if(num == 4)
-				return "食堂";
-			if(num == 5)
-				return "バックゴラウンドストア";
-			if(num == 6)
-				return "ログアウト";
-			if(num == 7)
-				return "フォーカススタート";
-			if(num == 8)
-				return "フォーカスブレイク";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "合計時間";
-			if(num == 10)
-				return "セッションの合計時間";
-			if(num == 11)
-				return "ユーザー";
-			if(num == 12)
-				return "参加日";
-			if(num == 13)
-				return "アチーブメント";
-				
-			//Shop Interface
-			if(num == 14)
-				return "食堂は入りませんでした";
-			if(num == 15)
-				return "Tamo はもう食べられません";
-			if(num == 16)
-				return "がかかります";
-			if(num == 17)
-				return "Tamo Tokens";
-			if(num == 18)
-				return "購入を完了できません";
-			if(num == 19)
-				return "資金は足りません";
-			if(num == 20)
-				return "フォーカスに戻ります";
-			if(num == 21)
-				return "飢え";
-				
-			//Logout
-			if(num == 22)
-				return "ログアウト中...";
-			if(num == 23)
-				return "よろしいでしょうか";
-		}
-		
-		//5 = Dutch - credit: Britt
-		if(lang == 5) {
-			//UI Interface
-			if(num == 1)
-				return "Welkom";
-			if(num == 2)
-				return "Level";
-			if(num == 3)
-				return "Statistieken";
-			if(num == 4)
-				return "Shop voedsel";
-			if(num == 5)
-				return "Shop achtergrond";
-			if(num == 6)
-				return "Uitloggen";
-			if(num == 7)
-				return "Start Focus";
-			if(num == 8)
-				return "Pauzeer Focus";
-					
-			//Statistics Interface
-			if(num == 9)
-				return "Totaal aantal uren";
-			if(num == 10)
-				return "Totaal aantal uren in sessie";
-			if(num == 11)
-				return "Gebruiker";
-			if(num == 12)
-				return "Lid sinds";
-			if(num == 13)
-				return "Prestaties";
-						
-			//Shop Interface
-			if(num == 14)
-				return "Kan niet binnen";
-			if(num == 15)
-				return "Jouw Tamo zit vol!";
-			if(num == 16)
-				return "Koop voor";
-			if(num == 17)
-				return "Tamo Tokens";
-			if(num == 18)
-				return "Kan aankoop niet voltooien";
-			if(num == 19)
-				return "Je hebt niet genoeg Tamo Tokens";
-			if(num == 20)
-				return "Keer terug naar Focus";
-			if(num == 21)
-				return "Honger";
-						
-			//Logout
-			if(num == 22)
-				return "Aan het uitloggen...";
-			if(num == 23)
-				return "Ben je zeker?";
-		}
-				
-		//6 = French - credit: Marie
-		if(lang == 6) {
-			//UI Interface
-			if(num == 1)
-				return "Bienvenue";
-			if(num == 2)
-				return "Niveau";
-			if(num == 3)
-				return "Statistiques";
-			if(num == 4)
-				return "Magasin d’alimentation";
-			if(num == 5)
-				return "Magasin d’arrière-plan";
-			if(num == 6)
-				return "Déconnexion";
-			if(num == 7)
-				return "Commencer la concentration";
-			if(num == 8)
-				return "Arrêter la concentration";
-				
-			//Statistics Interface
-			if(num == 9)
-				return "Total d’heures";
-			if(num == 10)
-				return "Total d’heures en session";
-			if(num == 11)
-				return "Utilisateur";
-			if(num == 12)
-				return "Date d’inscription";
-			if(num == 13)
-				return "Succès";
-				
-			//Shop Interface
-			if(num == 14)
-				return "Entrée dans le magasin d’alimentation impossible";
-			if(num == 15)
-				return "Votre Tamo est plein!";
-			if(num == 16)
-				return "Acheter pour";
-			if(num == 17)
-				return "jetons Tamo";
-			if(num == 18)
-				return "Impossible d’effectuer l’achat";
-			if(num == 19)
-				return "Fonds insuffisants";
-			if(num == 20)
-				return "Retourner à la concentration";
-			if(num == 21)
-				return "Faim";
-						
-			//Logout
-			if(num == 22)
-				return "Déconnexion...";
-			if(num == 23)
-				return "Êtes vous sûr?";
-		}
-				
-		//7 = Chinese
-		if(lang == 0) {
-			//UI Interface
-			if(num == 1)
-				return "欢迎";
-			if(num == 2)
-				return "等级";
-			if(num == 3)
-				return "统计数据";
-			if(num == 4)
-				return "食品店";
-			if(num == 5)
-				return "后台商店";
-			if(num == 6)
-				return "登出";
-			if(num == 7)
-				return "开始关注";
-			if(num == 8)
-				return "打破焦点";
-						
-			//Statistics Interface
-			if(num == 9)
-				return "全部小时数";
-			if(num == 10)
-				return "会话总时数";
-			if(num == 11)
-				return "用户";
-			if(num == 12)
-				return "入会日期";
-			if(num == 13)
-				return "成就成就";
-						
-			//Shop Interface
-			if(num == 14)
-				return "无法进入食品店";
-			if(num == 15)
-				return "您的Tamo已满!";
-			if(num == 16)
-				return "购买为";
-			if(num == 17)
-				return "Tamo代币";
-			if(num == 18)
-				return "无法完成购买";
-			if(num == 19)
-				return "你没有足够的资金";
-			if(num == 20)
-				return "返回焦点";
-			if(num == 21)
-				return "饥饿";
-				
-			//Logout
-			if(num == 22)
-				return "注销...";
-			if(num == 23)
-				return "你确定吗？";
-		}
+		if(lang == 0)
+			return englishText[num];
+		if(lang == 1)
+			return spanishText[num];
+		if(lang == 2)
+			return portugueseText[num];
+		if(lang == 3)
+			return germanText[num];
+		if(lang == 4)
+			return japaneseText[num];
+		if(lang == 5)
+			return dutchText[num];
+		if(lang == 6)
+			return frenchText[num];
 		
 		return null;
 	}
