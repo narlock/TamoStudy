@@ -2,13 +2,13 @@ package profile;
 
 /**
  * 
- * @author Anthony
+ * @author Anthony Narlock
  * @description Achievements for profile
  *
  */
 
 public class Achievements {
-	private final int ACHIEVEMENT_COUNT = 8;
+	private final int ACHIEVEMENT_COUNT = 11;
 	
 	//Title of Achievement
 	private String[] title = 
@@ -19,7 +19,10 @@ public class Achievements {
 		"Customizer 2",
 		"From the beginning",
 		"Tamo full",
-		"Tamo Love"}; 
+		"Tamo Love",
+		"Dedication 1",
+		"Dedication 2",
+		"Dedicated"}; 
 	//Description of Achievement
 	private String[] desc = 
 		{"Reach Total focus time of 3 hours",
@@ -29,16 +32,25 @@ public class Achievements {
 		"Change your Tamo's background",
 		"Updated profile from a version before beta",
 		"Entering the food shop when Tamo is full",
-		"Achieve maximum Tamo happiness"};
+		"Achieve maximum Tamo happiness",
+		"Log into TamoStudy consecutively for 7 days",
+		"Log into TamoStudy consecutively for 14 days",
+		"Log into TamoStudy consecutively for 30 days"};
 	
 	//Indicator of Achievement
-	private int[] indicator; 
+	private int[] indicator;
+	private String[] stringIndicator;
+	private String ahmString;
 	
 	/*
 	 * New Profile: Achievements will not be filled in
 	 */
 	public Achievements() {
 		this.indicator = new int[ACHIEVEMENT_COUNT];
+		this.stringIndicator = new String[ACHIEVEMENT_COUNT];
+		
+		this.ahmString = "00000000000";
+		
 		updateAchievements();
 	}
 	
@@ -46,7 +58,11 @@ public class Achievements {
 	 * Loaded Profile: Achievements will be updated
 	 */
 	public Achievements(String aline) {
+		this.ahmString = aline;
+		
 		this.indicator = new int[ACHIEVEMENT_COUNT];
+		this.stringIndicator = new String[ACHIEVEMENT_COUNT];
+
 		updateAchievements(aline);
 	}
 
@@ -54,6 +70,11 @@ public class Achievements {
 		for(int i = 0; i < indicator.length; i++) {
 			this.indicator[i] = 0;
 		}
+		
+		for(int i = 0; i < indicator.length; i++) {
+			this.stringIndicator[i] = "0";
+		}
+		
 	}
 	
 	public void updateAchievements(String aline) {
@@ -64,13 +85,13 @@ public class Achievements {
 		 * Ex: 10101010
 		 * This maps to the profile having achievements 0,3,5, and 7
 		 */
-		String[] achline = new String[ACHIEVEMENT_COUNT];
-		for(int i = 0; i < achline.length; i++) {
-			achline[i] = aline.substring(i,i);
+		
+		for(int i = 0; i < indicator.length; i++) {
+			stringIndicator[i] = ahmString.substring(i,i);
 		}
 		 
 		for(int i = 0; i < indicator.length; i++) {
-			this.indicator[i] = Integer.parseInt(achline[i]);
+			//this.indicator[i] = Integer.parseInt(stringIndicator[i]);
 		}
 	}
 	
@@ -82,8 +103,36 @@ public class Achievements {
 		return this.desc[index];
 	}
 	
+	public void setAchievementIndicator(int ahm) {
+		this.indicator[ahm] = 1;
+		this.stringIndicator[ahm] = "1";
+		this.ahmString = String.join("", stringIndicator);
+		runDebug();
+	}
+	
 	public int getIndicator(int index) {
 		return this.indicator[index];
 	}
+	
+	public String getAhmString() {
+		return this.ahmString;
+	}
+	
+	public void runDebug() {
+		System.out.println("RUNNING ACHIEVEMENTS DEBUG:"
+				+ "\nIndicator = ");
+		for(int i = 0; i < indicator.length; i++) {
+			System.out.print(this.indicator[i]);
+		}
+		
+		System.out.println("stringIndicator = ");
+		
+		for(int i = 0; i < indicator.length; i++) {
+			System.out.print(this.stringIndicator[i]);
+		}
+		
+		System.out.println("ahmString = " + ahmString);
+	}
+	
 	
 }

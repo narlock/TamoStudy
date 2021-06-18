@@ -44,26 +44,12 @@ public class Tamo {
 	}
 	
 	/*
-	 * Old Load Tamo constructor
-	 * 
-	 * Yields previously stored attributes
-	 */
-	public Tamo(String name, int level, int happiness, int hunger) {
-		this.name = name;
-		this.level = level;
-		this.happiness = happiness;
-		this.hunger = hunger;
-		this.id = 0;
-	}
-	
-	/*
 	 * Load Tamo constructor
 	 * 
 	 * Yields previously stored attributes
 	 */
-	public Tamo(String name, int level, int happiness, int hunger, int id) {
+	public Tamo(String name, int id, int happiness, int hunger) {
 		this.name = name;
-		this.level = level;
 		this.happiness = happiness;
 		this.hunger = hunger;
 		this.id = id;
@@ -129,17 +115,9 @@ public class Tamo {
 		}
 	}
 	
-	public String tamoInfo() {
-		return name + "," + level + "," + happiness + "," + hunger;
-	}
-	
 	@Override
 	public String toString() {
-		return
-				"Name: " + name +
-				"\nLevel: " + level +
-				"\nHappiness: " + happiness +
-				"\nHunger: " + hunger;
+		return name + "," + id + "," + happiness + "," + hunger;
 	}
 
 	public void setName(String tamoName) {

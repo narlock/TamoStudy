@@ -209,11 +209,11 @@ public class GUI extends JFrame {
 		headPanel.setBackground(profile.getColor());
 				
 		//Initialize Head Panel components
-		statsButton = new JButton(profile.getLanguage().getText(3));
-		feedButton = new JButton(profile.getLanguage().getText(4));
-		backgroundShopButton = new JButton(profile.getLanguage().getText(5));
-		logOutButton = new JButton(profile.getLanguage().getText(6));
-		optionsButton = new JButton(profile.getLanguage().getText(24));
+		statsButton = new JButton(profile.getSettings().getLang().getText(5));
+		feedButton = new JButton(profile.getSettings().getLang().getText(6));
+		backgroundShopButton = new JButton(profile.getSettings().getLang().getText(7));
+		logOutButton = new JButton(profile.getSettings().getLang().getText(9));
+		optionsButton = new JButton(profile.getSettings().getLang().getText(8));
 		shopBox = new JComboBox();
 				
 		//Add Components to Head Panel
@@ -253,8 +253,8 @@ public class GUI extends JFrame {
 		tamoStatsPanel.setLayout(new GridLayout(6,1));
 		tamoStatsPanel.setBackground(profile.getColor());
 				
-		profileName = new JLabel(profile.getLanguage().getText(1) + ", " + profile.getUsername());
-		if(profile.getLanguageIndicator() == 4 || profile.getLanguageIndicator() == 7)
+		profileName = new JLabel(profile.getSettings().getLang().getText(1) + ", " + profile.getUsername());
+		if(profile.getSettings().getLang().getIndicator() == 4 || profile.getSettings().getLang().getIndicator() == 7)
 			profileName.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		else
 			profileName.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -267,7 +267,7 @@ public class GUI extends JFrame {
 		
 		tamoName = new JLabel("Tamo: " + profile.getTamo().getName());
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoLevel = new JLabel(profile.getLanguage().getText(2) + profile.getTamo().getLevel());
+		tamoLevel = new JLabel(profile.getSettings().getLang().getText(2) + profile.getTamo().getLevel());
 		tamoLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		//tamoHappiness = new JLabel("Happiness: " + profile.getTamo().getHappiness() + "/10");
@@ -334,6 +334,9 @@ public class GUI extends JFrame {
 		minuteBox = new JComboBox();
 		secondBox = new JComboBox();
 		
+		minuteBox.setVisible(false);
+		secondBox.setVisible(false);
+		
 		fiveIntervalBox = new JComboBox();
 				
 		timerSetPanel.add(minuteBox);
@@ -351,8 +354,8 @@ public class GUI extends JFrame {
 		timerButtonPanel = new JPanel();
 		timerButtonPanel.setBackground(profile.getColor());
 				
-		startButton = new JButton(profile.getLanguage().getText(7));
-		breakButton = new JButton(profile.getLanguage().getText(8));
+		startButton = new JButton(profile.getSettings().getLang().getText(3));
+		breakButton = new JButton(profile.getSettings().getLang().getText(4));
 				
 		timerButtonPanel.add(startButton);
 		timerButtonPanel.add(breakButton);
@@ -437,6 +440,7 @@ public class GUI extends JFrame {
 				statsButton.setEnabled(false);
 				feedButton.setEnabled(false);
 				backgroundShopButton.setEnabled(false);
+				optionsButton.setEnabled(false);
 				logOutButton.setEnabled(false);
 				
 				timer = new Timer(1000, new ActionListener() {
@@ -556,13 +560,13 @@ public class GUI extends JFrame {
 				double totalSessionHours = sessionTotalSeconds * 0.0002777778;
 				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
 				
-				String statsMessage = profile.getLanguage().getText(9) + ": " + totalHours +
-									"\n" + profile.getLanguage().getText(10) + ": " + totalSessionHours +
-									"\n\n" + profile.getLanguage().getText(11) + ": " + profile.getUsername() + 
-									"\n" + profile.getLanguage().getText(12) + ": " + profile.getJoinDate() +
-									"\n" + profile.getLanguage().getText(13) + ": 0/30";
+				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
+									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
+									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
+									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate() +
+									"\n" + profile.getSettings().getLang().getText(21) + ": 0/30";
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getLanguage().getText(3), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -579,7 +583,7 @@ public class GUI extends JFrame {
 					foodGUI food = new foodGUI(profile, profileFile);
 					hideWindow();
 				} else {
-					JOptionPane.showMessageDialog(null, profile.getLanguage().getText(15), profile.getLanguage().getText(14), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, profile.getSettings().getLang().getText(27), profile.getSettings().getLang().getText(26), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -600,7 +604,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resultPane = JOptionPane.showConfirmDialog(null, profile.getLanguage().getText(23), profile.getLanguage().getText(22),
+				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().getText(39), profile.getSettings().getLang().getText(38),
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI();
@@ -614,7 +618,70 @@ public class GUI extends JFrame {
 			
 		});
 		
-		//TODO Add mini games in the future
+		optionsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JPanel optionsPanel = new JPanel();
+				optionsPanel.setLayout(new GridLayout(3,1));
+				
+				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel();
+				JLabel focusModeLabel = new JLabel("Change Focus Mode");
+				JLabel langLabel = new JLabel("Change Language");
+				JLabel soundsLabel = new JLabel("Sounds");
+				
+				JComboBox focusMode = new JComboBox();
+				focusMode.addItem("5-Interval Countdown");
+				focusMode.addItem("Custom Interval Countdown");
+				
+				JComboBox languageBox = new JComboBox();
+				languageBox.addItem("English");
+				languageBox.addItem("Español (Spanish)");
+				languageBox.addItem("Português (Portuguese)");
+				languageBox.addItem("Deutsche (German)");
+				languageBox.addItem("日本語 (Japanese)");
+				languageBox.addItem("Nederlands (Dutch)");
+				languageBox.addItem("Français (French)");
+				
+				JToggleButton soundButton = new JToggleButton("OFF", false);
+				
+				optionsPanel.add(op1);
+				optionsPanel.add(op2);
+				optionsPanel.add(op3);
+				
+				op1.add(focusModeLabel);
+				op1.add(focusMode);
+				
+				op2.add(langLabel);
+				op2.add(languageBox);
+				
+				op3.add(soundsLabel);
+				op3.add(soundButton);
+				
+				int result = JOptionPane.showConfirmDialog(rootPane, optionsPanel, "Options", JOptionPane.PLAIN_MESSAGE, 0, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				if(result == 0) {
+					//Change Settings
+					
+					//Focus Mode
+					int focusModeIndicator = getFocusIndicator(focusMode.getSelectedItem().toString());
+					int languageIndicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
+					
+					//TODO Sounds on/off
+					
+					profile.getSettings().setFocusMode(focusModeIndicator);
+					profile.getSettings().getLang().setIndicator(languageIndicator);
+					
+					//Update and Reload GUI
+					updateUserInformationToFile();
+					GUI reloadedGUI = new GUI(profile, profileFile);
+					hideWindow();
+					
+					
+				}
+				
+			}
+			
+		});
 
 	}
 	
@@ -647,6 +714,7 @@ public class GUI extends JFrame {
 		statsButton.setEnabled(true);
 		feedButton.setEnabled(true);
 		backgroundShopButton.setEnabled(true);
+		optionsButton.setEnabled(true);
 		logOutButton.setEnabled(true);
 		
 	}
@@ -689,58 +757,65 @@ public class GUI extends JFrame {
 			//Every 24 hours, your tamo will gain 1 level
 			int new_level = (profile.getTotalTime() / 86400);
 			profile.getTamo().setLevel(new_level);
-			//System.out.println("tamo level is currently " + profile.getTamo().getLevel());
 			
-			//Rewrite TotalTime
-			//System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
-			inputtedString[2] = String.valueOf(profile.getTotalTime());
-			
-			//Rewrite TotalMoney
-			//System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
-			inputtedString[3] = String.valueOf(profile.getMoney());
-			
-			//Rewrite TotalMoney
-			//System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
-			inputtedString[4] = profile.getTamo().getName();
-			
-			//Rewrite TamoLevel, happiness, and 
-			//System.out.println("DEBUG: Rewriting Level = " + profile.getTamo().getLevel());
-			inputtedString[5] = String.valueOf(profile.getTamo().getLevel());
-			
-			//System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
-			inputtedString[6] = String.valueOf(profile.getTamo().getHappiness());
-			
-			//System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
-			inputtedString[7] = String.valueOf(profile.getTamo().getHunger());
+			/*
+			 * Rewriting Profile Information
+			 */
 			
 			//Update login date
 			//System.out.println("DEBUG: Rewriting newloginString");
 			if(profile.getNewLoginString() == null) {
 				
 			} else {
-			inputtedString[8] = profile.getNewLoginString();
+			inputtedString[2] = profile.getNewLoginString();
 			}
+			
+			//Rewrite TotalTime
+			//System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
+			inputtedString[3] = String.valueOf(profile.getTotalTime());
+			
+			//Rewrite TotalMoney
+			//System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
+			inputtedString[4] = String.valueOf(profile.getMoney());
 			
 			//Rewrite currentbackground
 			//System.out.println("DEBUG: Rewriting current bg");
-			inputtedString[9] = String.valueOf(profile.getCurrentBackground());
+			inputtedString[5] = String.valueOf(profile.getCurrentBackground());
 			
 			//System.out.println("DEBUG: Rewriting guiColor");
-			inputtedString[10] = profile.getGuiColor();
+			inputtedString[6] = profile.getGuiColor();
+			
+			/*
+			 * Rewriting Profile Settings
+			 */
+			
+			inputtedString[8] = String.valueOf(profile.getSettings().getFocusMode());
+			inputtedString[9] = String.valueOf(profile.getSettings().getLang().getIndicator());
+			inputtedString[10] = String.valueOf(profile.getSettings().getSessionSounds());
+			inputtedString[11] = String.valueOf(profile.getSettings().getBackgroundSounds());
+			
+			/*
+			 * Rewriting Tamo Information
+			 */
+			
+			//Rewrite Tamo Name
+			//System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
+			inputtedString[12] = profile.getTamo().getName();
 			
 			//System.out.println("DEBUG: Rewriting tamo ID");
-			inputtedString[11] = String.valueOf(profile.getTamo().getId());
+			inputtedString[13] = String.valueOf(profile.getTamo().getId());
 			
-			//System.out.println("DEBUG: Rewriting Language Indicator");
-			inputtedString[12] = String.valueOf(profile.getLanguageIndicator());
+			//System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
+			inputtedString[14] = String.valueOf(profile.getTamo().getHappiness());
 			
-			//System.out.println("DEBUG: Success");
+			//System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
+			inputtedString[15] = String.valueOf(profile.getTamo().getHunger());
 			
-			//System.out.println("inputted string after:");
-			for(int i = 0; i < inputtedString.length; i++) {
-				//System.out.println(inputtedString[i]);
-			}
-				
+			/*
+			 * Rewriting Achievement String
+			 */
+			inputtedString[16] = profile.getAhm().getAhmString();
+			
 			//join the string back together
 			decryptedString = String.join(",", inputtedString);
 			//System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
@@ -801,7 +876,7 @@ public class GUI extends JFrame {
 		
 		moneyLabel.setText("" + profile.getMoney());
 		
-		tamoLevel.setText(profile.getLanguage().getText(2) + ": " + profile.getTamo().getLevel());
+		tamoLevel.setText(profile.getSettings().getLang().getText(2) + ": " + profile.getTamo().getLevel());
 		//tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
 		updateTamoHappiness(profile.getTamo().getHappiness());
 		
@@ -829,6 +904,20 @@ public class GUI extends JFrame {
 			updateTamoImage(profile.getTamo().getId(), 1);
 		} else if (happy >= 1 && happy <= 3) {
 			updateTamoImage(profile.getTamo().getId(), 2);
+		}
+		
+		
+		//Update Study Mode
+		if(profile.getSettings().getFocusMode() == 0) {
+			minuteBox.setVisible(false);
+			secondBox.setVisible(false);
+			fiveIntervalBox.setVisible(true);
+		}
+		
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteBox.setVisible(true);
+			secondBox.setVisible(true);
+			fiveIntervalBox.setVisible(false);
 		}
 		
 	}
@@ -1093,6 +1182,37 @@ public class GUI extends JFrame {
 		hideWindow();
 		
 		GUI newGUI = new GUI(profile);
+	}
+	
+	public int getFocusIndicator(String stringIndicator) {
+		if(stringIndicator.equals("5-Interval Countdown"))
+			return 0;
+		if(stringIndicator.equals("Custom Interval Countdown"))
+			return 1;
+		
+		
+		return 0;
+	}
+	
+	public int getLanguageIndicator(String languageString) {
+		if(languageString.equals("English"))
+			return 0;
+		if(languageString.equals("Español (Spanish)"))
+			return 1;
+		if(languageString.equals("Português (Portuguese)"))
+			return 2;
+		if(languageString.equals("Deutsche (German)"))
+			return 3;
+		if(languageString.equals("日本語 (Japanese)"))
+			return 4;
+		if(languageString.equals("Nederlands (Dutch)"))
+			return 5;
+		if(languageString.equals("Français (French)"))
+			return 6;
+		if(languageString.equals("汉语/漢語 (Chinese)"))
+			return 7;
+		
+		return 0;
 	}
 	
 }

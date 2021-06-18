@@ -2,7 +2,7 @@ package profile;
 
 /**
  * 
- * @author Anthony
+ * @author Anthony Narlock
  * @description ProfileSettings, the settings for Profile class
  *
  */
@@ -31,7 +31,7 @@ public class ProfileSettings {
 	 * 5: Dutch
 	 * 6: French
 	 */
-	private int languageIndicator;
+	private Language lang;
 	
 	/*
 	 * Enable Sounds: Session over sound, background sounds
@@ -49,7 +49,7 @@ public class ProfileSettings {
 	 */
 	public ProfileSettings(int languageIndicator) {
 		this.focusMode = 0;
-		this.languageIndicator = languageIndicator;
+		this.lang = new Language(languageIndicator);
 		this.sessionSounds = 0;
 		this.backgroundSounds = 0;
 	}
@@ -60,7 +60,7 @@ public class ProfileSettings {
 	 */
 	public ProfileSettings(int focusMode, int languageIndicator, int sessionSounds, int backgroundSounds) {
 		this.focusMode = focusMode;
-		this.languageIndicator = languageIndicator;
+		this.lang = new Language(languageIndicator);
 		this.sessionSounds = sessionSounds;
 		this.backgroundSounds = backgroundSounds;
 	}
@@ -77,12 +77,12 @@ public class ProfileSettings {
 		this.focusMode = focusMode;
 	}
 
-	public int getLanguageIndicator() {
-		return languageIndicator;
+	public Language getLang() {
+		return lang;
 	}
 
-	public void setLanguageIndicator(int languageIndicator) {
-		this.languageIndicator = languageIndicator;
+	public void setLang(Language lang) {
+		this.lang = lang;
 	}
 
 	public int getSessionSounds() {
@@ -99,6 +99,12 @@ public class ProfileSettings {
 
 	public void setBackgroundSounds(int backgroundSounds) {
 		this.backgroundSounds = backgroundSounds;
+	}
+	
+	@Override
+	public String toString() {
+		String settingsInfo = focusMode + "," + lang.getIndicator() + "," + sessionSounds + "," + backgroundSounds;
+		return settingsInfo;
 	}
 	
 }

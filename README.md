@@ -3,6 +3,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg)](https://github.com/narlock/TamoStudy/releases/tag/b1.1)
 [![Github Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/releases/tag/b1.1)
 [![Latest Commit](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
+[![Discord Shield](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
 
 Author: Anthony Narlock
 - Website: https://anthonynarlock.com/TamoStudy.html
