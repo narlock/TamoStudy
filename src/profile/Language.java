@@ -72,8 +72,7 @@ public class Language {
 			"Yes",
 			"No",
 			
-	};
-	
+	};	
 	private String[] spanishText = {
 			"INVALID_KEY_TEXT",
 			"Bienvenido",
@@ -121,7 +120,6 @@ public class Language {
 			"No",
 			
 	};
-	
 	private String[] portugueseText = {
 			"INVALID_KEY_TEXT",
 			"Bem Vindo",
@@ -169,7 +167,6 @@ public class Language {
 			"Não",
 			
 	};
-	
 	private String[] germanText = {
 			"INVALID_KEY_TEXT",
 			"Willkommen",
@@ -217,11 +214,8 @@ public class Language {
 			"No",
 			
 	};
-	
 	private String[] japaneseText;
-	
 	private String[] dutchText;
-	
 	private String[] frenchText = {
 			"INVALID_KEY_TEXT",
 			"Bienvenue",
@@ -271,17 +265,83 @@ public class Language {
 	};
 	
 	/*
-	 * Achievement Text Arrays
+	 * Achievement Text Title Arrays
 	 * These arrays contain the titles and descriptions of the achievements
 	 */
 	
-	private String[] englishAhm;
-	private String[] spanishAhm;
-	private String[] portugueseAhm;
-	private String[] germanAhm;
-	private String[] japaneseAhm;
-	private String[] dutchAhm;
-	private String[] frenchAhm;
+	private String[] englishAhmTitle = {
+			"The Beginning",
+			"Nothing can stop you!",
+			"Never give up!",
+			"Customizer 1",
+			"Customizer 2",
+			"From the beginning",
+			"Tamo full",
+			"Tamo Love",
+			"Dedication 1",
+			"Dedication 2",
+			"Dedicated"
+	};
+	private String[] spanishAhmTitle = {
+			"El Cominezo",
+			"Nada puede detenerle!",
+			"Nunca se rinda!",
+			"Personalizador 1",
+			"Personalizador 2",
+			"Del Principio",
+			"Tamo lleno",
+			"Amor del Tamo",
+			"Dedicación 1",
+			"Dedicación 2",
+			"Dedicado"
+	};
+	private String[] portugueseAhmTitle = {
+			"O Início",
+			"Nada pode parar você!",
+			"Nunca desista!",
+			"Personalizado 1",
+			"Personalizado 2",
+			"Desde o começo",
+			"Tamo no máximo",
+			"Tamo Love",
+			"Dedicação 1",
+			"Dedicação 2",
+			"Dedicado"
+	};
+	private String[] germanAhmTitle = {
+			"Der Anfang",
+			"Nichts kann dich aufhalten!",
+			"Gib niemals auf!",
+			"Customizer 1",
+			"Customizer 2",
+			"Von Anfang an",
+			"Tamo satt",
+			"Tamo Liebe",
+			"Widmung 1",
+			"Widmung 2",
+			"Gewidmet"
+	};
+	private String[] japaneseAhmTitle;
+	private String[] dutchAhmTitle;
+	private String[] frenchAhmTitle = {
+			"Le commencement",
+			"Rien ne peut vous arrêter !",
+			"N'abandonnez jamais !",
+			"Personnalisateur 1",
+			"Personnalisateur 2",
+			"Depuis le début",
+			"Tamo plein",
+			"Amour de Tamo",
+			"Dévouement 1",
+			"Dévouement 2",
+			"Dévoué"
+	};
+
+	/*
+	 * Achievement Description Arrays
+	 */
+	//TODO
+	
 	
 	public Language() {
 		this.lang = 0;
