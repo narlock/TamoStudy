@@ -45,7 +45,7 @@ public class EncryptionTest {
 	
 	
 	public static void main(String[] args) {
-		Encryption e = new Encryption();
+		EncryptionTest e = new EncryptionTest();
 		
 		String test = e.encrypt("10");
 		
