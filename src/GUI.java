@@ -21,7 +21,11 @@ public class GUI extends JFrame {
 	 * Components: statsButton, inventory Button, store Button
 	 */
 	private JPanel headPanel;
-	private JButton statsButton, feedButton, backgroundShopButton, logOutButton, optionsButton;
+	private JMenuBar headMenu;
+	private JMenu profileMenu;
+	private JMenuItem statsButton, inventoryButton, ahmButton, optionsButton;
+	
+	private JButton feedButton, backgroundShopButton, logOutButton;
 	private JComboBox shopBox;
 	
 	/*
@@ -196,7 +200,7 @@ public class GUI extends JFrame {
 		
 		initActions();
 		
-		
+		initButtonVisuals();
 	}
 	
 	/*
@@ -207,23 +211,41 @@ public class GUI extends JFrame {
 		headPanel = new JPanel();
 		headPanel.setLayout(new FlowLayout());
 		headPanel.setBackground(profile.getColor());
-				
+		
+		headMenu = new JMenuBar();
+		headMenu.setBackground(Color.WHITE);
+		profileMenu = new JMenu("Profile");	
+		
 		//Initialize Head Panel components
-		statsButton = new JButton(profile.getSettings().getLang().getText(5));
+		statsButton = new JMenuItem(profile.getSettings().getLang().getText(5), new ImageIcon(getClass().getClassLoader().getResource("menu-stats.png")));
+		optionsButton = new JMenuItem(profile.getSettings().getLang().getText(8), new ImageIcon(getClass().getClassLoader().getResource("menu-options.png")));
+		ahmButton = new JMenuItem(profile.getSettings().getLang().getText(21), new ImageIcon(getClass().getClassLoader().getResource("menu-ahm.png")));
+		inventoryButton = new JMenuItem("Inventory", new ImageIcon(getClass().getClassLoader().getResource("menu-inventory.png")));
+		
+		//Other Menu Options
 		feedButton = new JButton(profile.getSettings().getLang().getText(6));
 		backgroundShopButton = new JButton(profile.getSettings().getLang().getText(7));
 		logOutButton = new JButton(profile.getSettings().getLang().getText(9));
-		optionsButton = new JButton(profile.getSettings().getLang().getText(8));
+
 		shopBox = new JComboBox();
-				
+		
+		profileMenu.add(statsButton);
+		profileMenu.add(inventoryButton);
+		profileMenu.add(ahmButton);
+		profileMenu.add(optionsButton);
+		
+		
+		headMenu.add(profileMenu);
+		headMenu.add(feedButton);
+		headMenu.add(backgroundShopButton);
+		headMenu.add(logOutButton);
+		
 		//Add Components to Head Panel
-		headPanel.add(statsButton);
-		headPanel.add(feedButton);
-		headPanel.add(backgroundShopButton);
-		headPanel.add(optionsButton);
-		headPanel.add(logOutButton);
-		//headPanel.add(shopBox);
+		headPanel.add(headMenu);
+
 	}
+	
+
 	
 	public void createTamoPanel() {
 		spaceLabel = new JLabel();
@@ -356,7 +378,7 @@ public class GUI extends JFrame {
 				
 		startButton = new JButton(profile.getSettings().getLang().getText(3));
 		breakButton = new JButton(profile.getSettings().getLang().getText(4));
-				
+
 		timerButtonPanel.add(startButton);
 		timerButtonPanel.add(breakButton);
 				
@@ -424,6 +446,7 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Initial study values
 				updateTamoImage(profile.getTamo().getId(),4);
+				startButton.setBackground(Color.WHITE);
 				
 				studyMin = Integer.parseInt(minuteTime.getText());
 				studySec = Integer.parseInt(secondTime.getText());
@@ -563,8 +586,7 @@ public class GUI extends JFrame {
 				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
 									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
 									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
-									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate() +
-									"\n" + profile.getSettings().getLang().getText(21) + ": 0/30";
+									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate();
 				
 				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
@@ -684,6 +706,90 @@ public class GUI extends JFrame {
 		});
 
 	}
+	
+	public void initButtonVisuals() {
+		feedButton.setBackground(Color.WHITE);
+		feedButton.setBorderPainted(false);
+		feedButton.setFocusPainted(false);
+		
+		feedButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(feedButton.isEnabled())
+		    		feedButton.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(feedButton.isEnabled())
+		    		feedButton.setBackground(Color.WHITE);
+		    }
+		});
+		
+		backgroundShopButton.setBackground(Color.WHITE);
+		backgroundShopButton.setBorderPainted(false);
+		backgroundShopButton.setFocusPainted(false);
+		
+		backgroundShopButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(backgroundShopButton.isEnabled())
+		    		backgroundShopButton.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(backgroundShopButton.isEnabled())
+		    		backgroundShopButton.setBackground(Color.WHITE);
+		    }
+		});
+		
+		logOutButton.setBackground(Color.WHITE);
+		logOutButton.setBorderPainted(false);
+		logOutButton.setFocusPainted(false);
+		
+		logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(logOutButton.isEnabled())
+		    		logOutButton.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(logOutButton.isEnabled())
+		    		logOutButton.setBackground(Color.WHITE);
+		    }
+		});
+		
+		startButton.setBackground(Color.WHITE);
+		startButton.setBorderPainted(false);
+		startButton.setFocusPainted(false);
+		
+		startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(startButton.isEnabled())
+		    		startButton.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(startButton.isEnabled())
+		    		startButton.setBackground(Color.WHITE);
+		    }
+		});
+		
+		breakButton.setBackground(Color.WHITE);
+		breakButton.setBorderPainted(false);
+		breakButton.setFocusPainted(false);
+		
+		breakButton.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(breakButton.isEnabled())
+		    		breakButton.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(breakButton.isEnabled())
+		    		breakButton.setBackground(Color.WHITE);
+		    }
+		});
+		
+	}
+	
 	
 	public void setUpGUI() {
 		this.getContentPane().setBackground(new Color(255,161,161));

@@ -1,13 +1,16 @@
 /**
  * @author Anthony Narlock
  * @description welcome to TamoStudy page
+ * 
+ * @purpose Creates launching page for TamoStudy application
+ * Users can create a new profile, fill out new profile form, then save profile text file to file system
+ * Users can load their created profile. It must be a profile text file that is on their file system
+ * Users can read "ABOUT" which displays TamoStudy about page with links
  */
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import profile.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
