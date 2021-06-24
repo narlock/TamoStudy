@@ -116,6 +116,9 @@ public class ProfileUpdater extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					updateProfileFile();
+					welcomeGUI gui = new welcomeGUI();
+					hideWindow();
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 				}
@@ -292,8 +295,12 @@ public class ProfileUpdater extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-		ProfileUpdater pu = new ProfileUpdater();
+	/*
+	 * Method hides the main windows and disposes it
+	 */
+	public void hideWindow() {
+		this.setVisible(false);
+		this.dispose();
 	}
 }
 

@@ -5,6 +5,8 @@
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -177,7 +179,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | beta 1.1");
+		this.setTitle("TamoStudy | beta 2.0");
 		this.setSize(720,534);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -221,6 +223,7 @@ public class GUI extends JFrame {
 		optionsButton = new JMenuItem(profile.getSettings().getLang().getText(8), new ImageIcon(getClass().getClassLoader().getResource("menu-options.png")));
 		ahmButton = new JMenuItem(profile.getSettings().getLang().getText(21), new ImageIcon(getClass().getClassLoader().getResource("menu-ahm.png")));
 		inventoryButton = new JMenuItem("Inventory", new ImageIcon(getClass().getClassLoader().getResource("menu-inventory.png")));
+		inventoryButton.setEnabled(false);
 		
 		//Other Menu Options
 		feedButton = new JButton(profile.getSettings().getLang().getText(6));
@@ -357,9 +360,12 @@ public class GUI extends JFrame {
 		secondBox = new JComboBox();
 		
 		minuteBox.setVisible(false);
+		minuteBox.setBackground(Color.WHITE);
 		secondBox.setVisible(false);
+		secondBox.setBackground(Color.WHITE);
 		
 		fiveIntervalBox = new JComboBox();
+		fiveIntervalBox.setBackground(Color.WHITE);
 				
 		timerSetPanel.add(minuteBox);
 		timerSetPanel.add(secondBox);

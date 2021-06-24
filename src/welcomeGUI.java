@@ -30,6 +30,9 @@ public class welcomeGUI extends JFrame {
 	
 	private JLabel imageLabel;
 	
+	//private JMenu menu;
+	private JButton updateProfile;
+	
 	/*
 	 * Variables, file information
 	 */
@@ -58,7 +61,7 @@ public class welcomeGUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(550,350);
+		this.setSize(550,400);
 	}
 	
 	/*
@@ -72,8 +75,8 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | beta 1.1");
-		this.setSize(550,349);
+		this.setTitle("TamoStudy | beta 2.0");
+		this.setSize(550,399);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -85,6 +88,23 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
+		updateProfile = new JButton("Update Existing Profile");
+		updateProfile.setBackground(Color.WHITE);
+		updateProfile.setBorderPainted(false);
+		updateProfile.setFocusPainted(false);
+		
+		updateProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(updateProfile.isEnabled())
+		    		updateProfile.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(updateProfile.isEnabled())
+		    		updateProfile.setBackground(Color.WHITE);
+		    }
+		});
+		
 		encryption = new Encryption();
 		
 		fileChooser = new JFileChooser();
@@ -309,6 +329,16 @@ public class welcomeGUI extends JFrame {
 			}
 			
 		});
+		
+		updateProfile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProfileUpdater pu = new ProfileUpdater();
+				hideWindow();
+			}
+			
+		});
 	}
 	
 	/*
@@ -329,8 +359,11 @@ public class welcomeGUI extends JFrame {
 	}
 	
 	public void addComponentsToTopPanel() {
-		topPanel.setLayout(new BorderLayout());
-		topPanel.setBackground(new Color(255,161,161));
+		//topPanel.setLayout(new BorderLayout());
+		//topPanel.setBackground(new Color(255,161,161));
+		
+		//menu.add(updateProfile);
+		topPanel.add(updateProfile);
 	}
 	
 	public void addComponentsToCenterPanel() {

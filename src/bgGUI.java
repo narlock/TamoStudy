@@ -88,7 +88,7 @@ public class bgGUI extends JFrame {
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(p.getColor());
-		returnToFocus = new JButton(p.getSettings().getLang().getText(39));
+		returnToFocus = new JButton(p.getSettings().getLang().getText(23));
 		shopImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("shop.png")));
 		
 		//Change background Panel
