@@ -32,6 +32,7 @@ public class welcomeGUI extends JFrame {
 	
 	//private JMenu menu;
 	private JButton updateProfile;
+	private JButton checkForUpdatesButton;
 	
 	/*
 	 * Variables, file information
@@ -88,22 +89,11 @@ public class welcomeGUI extends JFrame {
 	 * Method initializes the variables and components
 	 */
 	public void initVariables() {
-		updateProfile = new JButton("Update Existing Profile");
-		updateProfile.setBackground(Color.WHITE);
-		updateProfile.setBorderPainted(false);
-		updateProfile.setFocusPainted(false);
+		updateProfile = new JButton("Update Outdated Profile");
+		initButton(updateProfile);
 		
-		updateProfile.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(updateProfile.isEnabled())
-		    		updateProfile.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(updateProfile.isEnabled())
-		    		updateProfile.setBackground(Color.WHITE);
-		    }
-		});
+		checkForUpdatesButton = new JButton("Check for Updates");
+		initButton(checkForUpdatesButton);
 		
 		encryption = new Encryption();
 		
@@ -339,6 +329,70 @@ public class welcomeGUI extends JFrame {
 			}
 			
 		});
+		
+		checkForUpdatesButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CheckForUpdates updates = new CheckForUpdates();
+				boolean isThereUpdates = false;
+				
+				try {
+					isThereUpdates = updates.checkForUpdates();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				JPanel updatesPanel = new JPanel();
+				JLabel updateResult = new JLabel();
+				
+				if(isThereUpdates) {
+					updatesPanel.setLayout(new GridLayout(2,1));
+					updateResult.setText("A new update is available!");
+					JButton clickHereToDownload = new JButton("Click Here To Download Latest Update");
+					initButton(clickHereToDownload);
+					
+					clickHereToDownload.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								Desktop.getDesktop().browse(new URL("https://github.com/narlock/TamoStudy/releases").toURI());
+							} catch (MalformedURLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (URISyntaxException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							
+						}
+						
+					});
+					
+					updatesPanel.add(updateResult);
+					updatesPanel.add(clickHereToDownload);
+					JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				
+				}
+				else {
+					updateResult.setText("No updates are available!");
+					
+					updatesPanel.add(updateResult);
+					JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE);
+				}
+				
+				
+					
+				
+				
+			}
+			
+		});
 	}
 	
 	/*
@@ -363,6 +417,7 @@ public class welcomeGUI extends JFrame {
 		//topPanel.setBackground(new Color(255,161,161));
 		
 		//menu.add(updateProfile);
+		topPanel.add(checkForUpdatesButton);
 		topPanel.add(updateProfile);
 	}
 	
@@ -482,6 +537,24 @@ public class welcomeGUI extends JFrame {
 			}
 		}
 		return new Profile();
+	}
+	
+	public void initButton(JButton button) {
+		button.setBackground(Color.WHITE);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		
+		button.addMouseListener(new java.awt.event.MouseAdapter() {
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(button.isEnabled())
+		    		button.setBackground(Color.LIGHT_GRAY);
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(button.isEnabled())
+		    		button.setBackground(Color.WHITE);
+		    }
+		});
 	}
 	
 }
