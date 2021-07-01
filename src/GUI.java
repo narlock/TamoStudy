@@ -173,7 +173,7 @@ public class GUI extends JFrame {
 	 */
 	public void setUpFrame() {
 		//ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
-		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
 		UIManager UI = new UIManager();
 		UI.put("OptionPane.background", profile.getColor());
@@ -707,6 +707,18 @@ public class GUI extends JFrame {
 					
 				}
 				
+			}
+			
+		});
+		
+		ahmButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Create achievement GUI
+				ahmGUI ahmgui = new ahmGUI(profile, profileFile);
+				ahmgui.showConfirmDialog();
+				//hideWindow();
 			}
 			
 		});
