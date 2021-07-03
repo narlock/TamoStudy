@@ -53,9 +53,11 @@ public class ahmGUI extends JOptionPane {
 	}
 	
 	public void setAchievementPanels() {
+		System.out.println("ahmString = " + profile.getAhm().getAhmString());
 		for(int i = 0; i < achievementPanels.length; i++) {
 			achievementPanels[i] = new ahmPanel(i, profile.getAhm().getIndicator(i), profile.getSettings().getLang().getIndicator());
 			System.out.println("Achievement Panel " + i + " " + achievementPanels[i].toString());
+			System.out.println("Achievement Indicator for " + i + " = " + profile.getAhm().getIndicator(i));
 		}
 		
 	}
