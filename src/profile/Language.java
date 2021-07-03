@@ -340,7 +340,73 @@ public class Language {
 	/*
 	 * Achievement Description Arrays
 	 */
-	//TODO
+	private String[] englishAhmDesc = {
+		"Reach total focus time of 3 hours",
+		"Reach total focus time of 1 day",
+		"Reach total focus time of 7 days",
+		"Change your background color",
+		"Change your Tamo's background",
+		"Updated profile from a version before beta",
+		"Entering the food shop when Tamo is full",
+		"Achieve maximum Tamo happiness",
+		"Log into TamoStudy consecutively for 7 days",
+		"Log into TamoStudy consecutively for 14 days",
+		"Log into TamoStudy consecutively for 30 days"
+	};
+	private String[] spanishAhmDesc = {
+		"Alcance tiempo total de concentración de 3 horas",
+		"Alcance tiempo total de concentración de 1 día",
+		"Alcance tiempo total de concentración de 7 días",
+		"Cambia el color del fondo",
+		"Cambia el fondo del Tamo",
+		"Se ha actualizado el perfil de una versión anterior a la beta",
+		"Entra en el supermercado candy Tamo está lleno",
+		"Logra la máxima felicidad de Tamo",
+		"Inicie sesión en TamoStudy consecutivamente para 7 días",
+		"Inicie sesión en TamoStudy consecutivamente para 14 días",
+		"Inicie sesión en TamoStudy consecutivamente para 30 días"
+	};
+	private String[] portugueseAhmDesc = {
+		"Completou 3 horas totais de foco",
+		"Completou um dia inteiro de foco",
+		"Completou 7 dias inteiros de foco",
+		"Mudou a cor do plano de fundo",
+		"Mudou o plano de fundo do seu Tamo",
+		"Atualizou o perfil de uma versão anterior a beta",
+		"Entrou na Loja de Comida quando o Tamo estava cheio",
+		"Seu Tamo ficou no máximo da felicidade",
+		"Fez login por 7 dias seguidos",
+		"Fez login por 14 dias seguidos",
+		"Fez login por 30 dias seguidos"
+	};
+	private String[] germanAhmDesc = {
+		"Gesamtfokuszeit von 3 Stunden erreicht",
+		"Gesamtfokuszeit von 1 Tag erreicht",
+		"Gesamtfokuszeit von 7 Tagen erreicht",
+		"Ändere deine Backgroundfarbe",
+		"Ändere deinen Tamo-Background",
+		"Profil von einer früheren beta Version upgedated",
+		"Betreten des Markts, wenn Tamo satt ist",
+		"Erreiche maximales Tamo-Glück",
+		"Logge dich in TamoStudy für 7 Tage hintereinander ein",
+		"Logge dich in TamoStudy für 14 Tage hintereinander ein",
+		"Logge dich in TamoStudy für 30 Tage hintereinander ein"
+	};
+	private String[] japaneseAhmDesc;
+	private String[] dutchAhmDesc;
+	private String[] frenchAhmDesc = {
+		"Atteignez une concentration totale de 3 heures",
+		"Atteignez une concentration totale de 1 jour",
+		"Atteignez une concentration totale de 7 jours",
+		"Changez la couleur d'arrière-plan",
+		"Changez l'arrière-plan de votre Tamo",
+		"Profil mis à jour à partir d'une version antérieure à bêta",
+		"Allez dans le magasin d'alimentation lorsque votre Tamo est plein",
+		"Atteignez le niveau maximal du bonheur de votre Tamo",
+		"Connectez-vous à TamoStudy 7 jours d'affilée",
+		"Connectez-vous à TamoStudy 14 jours d'affilée",
+		"Connectez-vous à TamoStudy 30 jours d'affilée"
+	};
 	
 	
 	public Language() {
@@ -379,6 +445,44 @@ public class Language {
 			return dutchText[num];
 		if(lang == 6)
 			return frenchText[num];
+		
+		return null;
+	}
+	
+	public String getAhmTitle(int num) {
+		if(lang == 0)
+			return englishAhmTitle[num];
+		if(lang == 1)
+			return spanishAhmTitle[num];
+		if(lang == 2)
+			return portugueseAhmTitle[num];
+		if(lang == 3)
+			return germanAhmTitle[num];
+		if(lang == 4)
+			return japaneseAhmTitle[num];
+		if(lang == 5)
+			return dutchAhmTitle[num];
+		if(lang == 6)
+			return frenchAhmTitle[num];
+		
+		return null;
+	}
+	
+	public String getAhmDesc(int num) {
+		if(lang == 0)
+			return englishAhmDesc[num];
+		if(lang == 1)
+			return spanishAhmDesc[num];
+		if(lang == 2)
+			return portugueseAhmDesc[num];
+		if(lang == 3)
+			return germanAhmDesc[num];
+		if(lang == 4)
+			return japaneseAhmDesc[num];
+		if(lang == 5)
+			return dutchAhmDesc[num];
+		if(lang == 6)
+			return frenchAhmDesc[num];
 		
 		return null;
 	}
