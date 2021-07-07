@@ -3,6 +3,7 @@ package guicomponents;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ public class ahmPanel extends JPanel {
 		centerPanel = new JPanel();
 		ahmImage = new JLabel();
 		ahmTitle = new JLabel();
+		ahmTitle.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ahmDesc = new JLabel();
 		
 		setAhmInfo(id);

@@ -68,7 +68,7 @@ public class bgGUI extends JFrame {
 	}
 	
 	public void setUpFrame() {
-		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
 		this.setTitle(p.getSettings().getLang().getText(7) + " | TamoTokens: " + p.getMoney());
 		this.setSize(1280, 749);
@@ -162,6 +162,8 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(0);
 						p.setMoney(p.getMoney() - 1000);
 						
+						p.getAhm().setIndicator(4,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -182,6 +184,8 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(1);
 						p.setMoney(p.getMoney() - 1000);
+						
+						p.getAhm().setIndicator(4,1);
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -204,6 +208,8 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(2);
 						p.setMoney(p.getMoney() - 1000);
 						
+						p.getAhm().setIndicator(4,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -225,6 +231,8 @@ public class bgGUI extends JFrame {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
 						
+						p.getAhm().setIndicator(4,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -245,6 +253,8 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
+						
+						p.getAhm().setIndicator(4,1);
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -329,6 +339,8 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("default");
 						p.setMoney(p.getMoney() - 500);
 						
+						p.getAhm().setIndicator(3,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -351,6 +363,8 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("blue");
 						p.setMoney(p.getMoney() - 500);
 						
+						p.getAhm().setIndicator(3,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -371,6 +385,8 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("green");
 						p.setMoney(p.getMoney() - 500);
+						
+						p.getAhm().setIndicator(3,1);
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -393,6 +409,8 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("orange");
 						p.setMoney(p.getMoney() - 500);
 						
+						p.getAhm().setIndicator(3,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -413,6 +431,8 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("purple");
 						p.setMoney(p.getMoney() - 500);
+						
+						p.getAhm().setIndicator(3,1);
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -435,6 +455,8 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("yellow");
 						p.setMoney(p.getMoney() - 500);
 						
+						p.getAhm().setIndicator(3,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -456,6 +478,8 @@ public class bgGUI extends JFrame {
 						p.setGuiColor("grey");
 						p.setMoney(p.getMoney() - 500);
 						
+						p.getAhm().setIndicator(3,1);
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -468,4 +492,5 @@ public class bgGUI extends JFrame {
 		});
 		
 	}
+	
 }

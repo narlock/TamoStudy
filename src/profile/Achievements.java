@@ -1,5 +1,8 @@
 package profile;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * 
  * @author Anthony Narlock
@@ -8,7 +11,7 @@ package profile;
  */
 
 public class Achievements {
-	private final int ACHIEVEMENT_COUNT = 11;
+	private final int ACHIEVEMENT_COUNT = 8;
 	
 	//Title of Achievement
 	private String[] title = 
@@ -49,7 +52,7 @@ public class Achievements {
 		this.indicator = new int[ACHIEVEMENT_COUNT];
 		this.stringIndicator = new String[ACHIEVEMENT_COUNT];
 		
-		this.ahmString = "00000000000";
+		this.ahmString = "00000000";
 		
 		updateAchievements();
 	}
@@ -111,6 +114,11 @@ public class Achievements {
 		runDebug();
 	}
 	
+	public void setIndicator(int index, int value) {
+		this.indicator[index] = value;
+		updateIndicatorString();
+	}
+	
 	public int getIndicator(int index) {
 		return this.indicator[index];
 	}
@@ -133,6 +141,15 @@ public class Achievements {
 		}
 		
 		System.out.println("ahmString = " + ahmString);
+	}
+	
+	
+	public void updateIndicatorString() {
+		System.out.println("DEBUG: AHMSTRING BEFORE: " + ahmString);
+		//Update ahmString
+		this.ahmString = Arrays.stream(indicator).mapToObj(String::valueOf).collect(Collectors.joining(""));
+		
+		System.out.println("DEBUG: AHMSTRING AFTER: " + ahmString);
 	}
 	
 	

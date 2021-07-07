@@ -85,7 +85,7 @@ public class foodGUI extends JFrame {
 	 */
 	
 	public void setUpFrame() {
-		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
 		this.setTitle(p.getSettings().getLang().getText(6) + " | Tamo Tokens: " + p.getMoney());
 		this.setSize(720, 299);

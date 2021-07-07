@@ -69,7 +69,7 @@ public class welcomeGUI extends JFrame {
 	 * Method sets up the frame information
 	 */
 	public void setUpFrame() {
-		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
 		//UI Manager implements background colors for panels and option panes
 		UIManager UI = new UIManager();

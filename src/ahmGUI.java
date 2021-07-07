@@ -22,7 +22,7 @@ public class ahmGUI extends JOptionPane {
 		this.profile = profile;
 		this.file = file;
 		
-		this.achievementPanels = new ahmPanel[11];
+		this.achievementPanels = new ahmPanel[8];
 		setAchievementPanels();
 		
 		setUpFrame();
@@ -33,7 +33,7 @@ public class ahmGUI extends JOptionPane {
 		
 		setUpGUI();
 		
-		this.setSize(480, 720);
+		this.setSize(480, 640);
 	}
 	
 	public void setUpFrame() {
@@ -44,7 +44,7 @@ public class ahmGUI extends JOptionPane {
 		UI.put("Panel.background", profile.getColor());
 		
 		//this.setTitle(profile.getUsername() + "'s Achievements");
-		this.setSize(481,720);
+		this.setSize(481,640);
 		//this.setLocationRelativeTo(null);
 		//this.setResizable(true);
 		this.setVisible(true);

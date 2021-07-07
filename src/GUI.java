@@ -938,6 +938,7 @@ public class GUI extends JFrame {
 			/*
 			 * Rewriting Achievement String
 			 */
+			achievementUpdates();
 			inputtedString[16] = profile.getAhm().getAhmString();
 			
 			//join the string back together
@@ -1339,4 +1340,32 @@ public class GUI extends JFrame {
 		return 0;
 	}
 	
+	/*
+	 * This method checks for updates for the achievements
+	 * Then updates them to the string respectively
+	 */
+	public void achievementUpdates() {
+		//Reach 3 hours focus time
+		if(profile.getTotalTime() >= 10800 && profile.getAhm().getIndicator(0) != 1) {
+			profile.getAhm().setIndicator(0,1);
+		}
+		
+		//Reach 1 day focus time
+		if(profile.getTotalTime() >= 86400 && profile.getAhm().getIndicator(1) != 1) {
+			profile.getAhm().setIndicator(1,1);
+		}
+		
+		//Reach 7 day focus time
+		if(profile.getTotalTime() >= 604800 && profile.getAhm().getIndicator(2) != 1) {
+			profile.getAhm().setIndicator(2,1);
+		}
+		
+		/*
+		 * Background achievements are covered in bgGUI
+		 * TODO Updated profile version
+		 * Food Shop achievement covered in that line of code
+		 * Happiness achievement in updateHappyHunger
+		 */
+		
+	}
 }

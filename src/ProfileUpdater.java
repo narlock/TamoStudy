@@ -51,7 +51,7 @@ public class ProfileUpdater extends JFrame {
 		this.setBackground(new Color(255,161,161));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("heart.png"));
+		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		this.setIconImage(logo.getImage());
 		
 		UIManager UI = new UIManager();

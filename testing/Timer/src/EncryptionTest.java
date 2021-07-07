@@ -47,11 +47,11 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		EncryptionTest e = new EncryptionTest();
 		
-		String test = e.encrypt("10");
+		String test = e.encrypt("ant,2021-07-06,2021-07-06,10800,0,0,default,0,0,0,0,0,12,3,5,5,00000000000");
 		
 		System.out.println(test);
 		
-		System.out.println(e.decrypt("Gtznut2868736<37:2868736<37:2<626262jklg{rz26262726262Royg2762762;266666666666"));
+		System.out.println(e.decrypt("gtz2868736=36<2868736=36<2626262jklg{rz2626262626278292;2;266666666666"));
 		//System.out.println(e.decrypt(e.encrypt("123")));
 		//System.out.println(e.decrypt("Rkyork2vgyy2868736;39726262Zkyz262;2;2868736;397262jklg{rz2726"));
 	}
