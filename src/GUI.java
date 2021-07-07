@@ -154,6 +154,8 @@ public class GUI extends JFrame {
 		
 		updateHappyHunger();
 		
+		achievementUpdates();
+		
 		updateUserInformationToFile();
 		
 		initComponents();
@@ -612,6 +614,12 @@ public class GUI extends JFrame {
 					hideWindow();
 				} else {
 					JOptionPane.showMessageDialog(null, profile.getSettings().getLang().getText(27), profile.getSettings().getLang().getText(26), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					
+					//Earn achievement
+					if(profile.getAhm().getIndicator(6) != 1) {
+						profile.getAhm().setIndicator(6, 1);
+						achievementUpdates();
+					}
 				}
 				
 			}
@@ -938,7 +946,7 @@ public class GUI extends JFrame {
 			/*
 			 * Rewriting Achievement String
 			 */
-			achievementUpdates();
+			
 			inputtedString[16] = profile.getAhm().getAhmString();
 			
 			//join the string back together
@@ -1365,7 +1373,13 @@ public class GUI extends JFrame {
 		 * TODO Updated profile version
 		 * Food Shop achievement covered in that line of code
 		 * Happiness achievement in updateHappyHunger
+		 * TODO implement login ones (perhaps in future updates
 		 */
 		
+		if(profile.getTamo().getHappiness() > 9 && profile.getAhm().getIndicator(7) != 1) {
+			profile.getAhm().setIndicator(7, 1);
+		}
+		
+		updateUserInformationToFile();
 	}
 }
