@@ -666,6 +666,17 @@ public class GUI extends JFrame {
 				JLabel langLabel = new JLabel("Change Language");
 				JLabel soundsLabel = new JLabel("Sounds");
 				
+				JButton debugButton = new JButton("Debug");
+				debugButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						debugGUI debug = new debugGUI(profile, profileFile);
+						hideWindow();
+					}
+					
+				});
+				
 				JComboBox focusMode = new JComboBox();
 				focusMode.addItem("5-Interval Countdown");
 				focusMode.addItem("Custom Interval Countdown");
@@ -1382,4 +1393,5 @@ public class GUI extends JFrame {
 		
 		updateUserInformationToFile();
 	}
+	
 }

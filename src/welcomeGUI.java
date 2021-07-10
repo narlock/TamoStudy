@@ -219,6 +219,7 @@ public class welcomeGUI extends JFrame {
 				
 				JLabel label = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("about-about.png")));
 				JButton twitter_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-twitter.png")));
+				initButton(twitter_button);
 				
 				twitter_button.addActionListener(new ActionListener() {
 
@@ -241,6 +242,7 @@ public class welcomeGUI extends JFrame {
 				});
 				
 				JButton github_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-github.png")));
+				initButton(github_button);
 				
 				github_button.addActionListener(new ActionListener() {
 
@@ -263,6 +265,7 @@ public class welcomeGUI extends JFrame {
 				});
 				
 				JButton discord_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-discord.png")));
+				initButton(discord_button);
 				
 				discord_button.addActionListener(new ActionListener() {
 
@@ -285,6 +288,7 @@ public class welcomeGUI extends JFrame {
 				});		
 				
 				JButton personal_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-narlock.png")));
+				initButton(personal_button);
 				
 				personal_button.addActionListener(new ActionListener() {
 
@@ -347,7 +351,7 @@ public class welcomeGUI extends JFrame {
 				JLabel updateResult = new JLabel();
 				
 				if(isThereUpdates) {
-					updatesPanel.setLayout(new GridLayout(2,1));
+					updatesPanel.setLayout(new GridLayout(3,1));
 					updateResult.setText("A new update is available!");
 					JButton clickHereToDownload = new JButton("Click Here To Download Latest Update");
 					initButton(clickHereToDownload);
@@ -374,16 +378,68 @@ public class welcomeGUI extends JFrame {
 						
 					});
 					
+					JButton notifyButton = new JButton("Join Discord for update notifications!");
+					initButton(notifyButton);
+					notifyButton.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								Desktop.getDesktop().browse(new URL("https://tinyurl.com/TamoDiscord").toURI());
+							} catch (MalformedURLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (URISyntaxException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							
+						}
+						
+					});
+					
+					
 					updatesPanel.add(updateResult);
 					updatesPanel.add(clickHereToDownload);
+					updatesPanel.add(notifyButton);
 					JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 				}
 				else {
+					JButton notifyButton = new JButton("Join Discord for update notifications!");
+					initButton(notifyButton);
+					notifyButton.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								Desktop.getDesktop().browse(new URL("https://tinyurl.com/TamoDiscord").toURI());
+							} catch (MalformedURLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (URISyntaxException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							
+						}
+						
+					});
+					
 					updateResult.setText("No updates are available!");
 					
+					updatesPanel.setLayout(new GridLayout(2,1));
 					updatesPanel.add(updateResult);
-					JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE);
+					updatesPanel.add(notifyButton);
+					JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 				
