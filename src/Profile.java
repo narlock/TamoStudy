@@ -234,6 +234,7 @@ public class Profile {
 		this.warnings = warnings;
 	}
 	
+	
 	public Color getColor() {
 		if(this.guiColor.equals("default"))
 			return new Color(255,161,161);

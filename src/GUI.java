@@ -659,7 +659,8 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JPanel optionsPanel = new JPanel();
-				optionsPanel.setLayout(new GridLayout(3,1));
+				//TODO Change back to 3,1 AFTER DEBUG SESSION IS OVER
+				optionsPanel.setLayout(new GridLayout(4,1));
 				
 				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel();
 				JLabel focusModeLabel = new JLabel("Change Focus Mode");
@@ -695,6 +696,9 @@ public class GUI extends JFrame {
 				optionsPanel.add(op1);
 				optionsPanel.add(op2);
 				optionsPanel.add(op3);
+				
+				//TODO REMOVE THIS LATER
+				optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
