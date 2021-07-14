@@ -91,9 +91,10 @@ public class ProfileUpdater extends JFrame {
 		
 		versionBox = new JComboBox();
 		versionBox.addItem("Open to Select Version");
-		versionBox.addItem("alpha 0.4.1");
-		versionBox.addItem("alpha 0.5.0");
-		versionBox.addItem("alpha 0.6.2");
+		//versionBox.addItem("alpha 0.4.1");
+		//versionBox.addItem("alpha 0.5.0");
+		//versionBox.addItem("alpha 0.6.2");
+		versionBox.addItem("beta 1.1");
 		
 		pathFileLabel = new JLabel("No File Opened");
 		
@@ -177,6 +178,11 @@ public class ProfileUpdater extends JFrame {
 		
 		if(version == "alpha 0.5.0" || version == "alpha 0.6.2") {
 			updateVersion(1);
+			return;
+		}
+		
+		if(version == "beta 1.1") {
+			updateVersion(2);
 			return;
 		}
 		
@@ -264,6 +270,68 @@ public class ProfileUpdater extends JFrame {
 					}
 					
 					newDetails[12] = "0";
+					
+					System.out.println("\n");
+					
+					for(int i = 0; i < newDetails.length; i++) {
+						System.out.print("newdetails["+i+"] = " + newDetails[i] + ",");
+					}
+					
+					String newInfo = String.join(",", newDetails);
+					System.out.println("\nnewinfo = " + newInfo);
+					newInfo = encryption.encrypt(newInfo);
+					
+					File fnew = new File(file.getAbsolutePath());
+					
+					try {
+						FileWriter writer = new FileWriter(fnew, false);
+						writer.write(newInfo);
+						writer.close();
+						return;
+						
+					} catch (IOException e) {
+						
+					} catch (ArrayIndexOutOfBoundsException e) {
+						
+					}
+					
+				}
+			}
+		}
+		
+		if(num == 2) {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			String line;
+			while ((line = (br.readLine())) != null) {
+				if(!line.equals("")) {
+					line = encryption.decrypt(line);
+					String[] oldDetails = line.split(",");
+					
+					for(int i = 0; i < oldDetails.length; i++) {
+						System.out.print("olddetails["+i+"] = " + oldDetails[i] + ",");
+					}
+
+					
+					String[] newDetails = new String[17];
+					
+					newDetails[0] = oldDetails[0];
+					newDetails[1] = oldDetails[1];
+					newDetails[2] = oldDetails[8];
+					newDetails[3] = oldDetails[2];
+					newDetails[4] = oldDetails[3];
+					newDetails[5] = oldDetails[9];
+					newDetails[6] = oldDetails[10];
+					newDetails[7] = "0";
+					newDetails[8] = "0";
+					newDetails[9] = oldDetails[12];
+					newDetails[10] = "0";
+					newDetails[11] = "0";
+					newDetails[12] = oldDetails[4];
+					newDetails[13] = oldDetails[11];
+					newDetails[14] = oldDetails[6];
+					newDetails[15] = oldDetails[7];
+					newDetails[16] = "00000100";
 					
 					System.out.println("\n");
 					
