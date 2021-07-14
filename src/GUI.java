@@ -112,7 +112,7 @@ public class GUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(720, 535);
+		this.setSize(720, 550);
 		
 	} 
 	
@@ -141,7 +141,7 @@ public class GUI extends JFrame {
 		if(this.death)
 			tamoDeath();
 		
-		this.setSize(720, 535);
+		this.setSize(720, 550);
 	}
 	
 	public GUI(Profile p, File file) {
@@ -167,7 +167,7 @@ public class GUI extends JFrame {
 		if(this.death)
 			tamoDeath();
 		
-		this.setSize(720, 535);
+		this.setSize(720, 550);
 	}
 	
 	/*
@@ -182,7 +182,7 @@ public class GUI extends JFrame {
 		UI.put("Panel.background", profile.getColor());
 		
 		this.setTitle("TamoStudy | beta 2.0");
-		this.setSize(720,534);
+		this.setSize(720,549);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
