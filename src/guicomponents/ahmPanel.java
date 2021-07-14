@@ -103,9 +103,71 @@ public class ahmPanel extends JPanel {
 	
 	public void createPanel() {
 		if(achieved == 1) {
-			this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-achieved.png")));
+			//this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-achieved.png")));
+			if(id == 0) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-01.png")));
+			}
+			
+			if(id == 1) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-11.png")));
+			}
+			
+			if(id == 2) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-21.png")));
+			}
+			
+			if(id == 3) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-31.png")));
+			}
+			
+			if(id == 4) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-41.png")));
+			}
+			
+			if(id == 5) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-51.png")));
+			}
+			
+			if(id == 6) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-61.png")));
+			}
+			
+			if(id == 7) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-71.png")));
+			}
+			
 		} else {
-			this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-not.png")));
+			if(id == 0) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-00.png")));
+			}
+			
+			if(id == 1) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-00.png")));
+			}
+			
+			if(id == 2) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-00.png")));
+			}
+			
+			if(id == 3) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-30.png")));
+			}
+			
+			if(id == 4) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-40.png")));
+			}
+			
+			if(id == 5) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-50.png")));
+			}
+			
+			if(id == 6) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-60.png")));
+			}
+			
+			if(id == 7) {
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-70.png")));
+			}
 		}
 		
 		this.add(ahmImage, BorderLayout.WEST);
@@ -124,4 +186,5 @@ public class ahmPanel extends JPanel {
 	public String toString() {
 		return this.ahmTitle.getText();
 	}
+	
 }
