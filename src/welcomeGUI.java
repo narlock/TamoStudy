@@ -613,4 +613,27 @@ public class welcomeGUI extends JFrame {
 		});
 	}
 	
+	/*
+	 * InitButton
+	 * 
+	 * This method will take a JLabel, which will be an image icon, along with an identification integer
+	 * This will implement a mouse listener (similar to the one above this comment) that changes
+	 * the image to a highlighted image when the mouse enters the JLabel
+	 */
+	public void initButton(JLabel label, int id) {
+		label.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+		    	if(label.isEnabled()) {
+		    		//set Image Icon according to id
+		    	}
+		    }
+
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	if(label.isEnabled()) {
+		    		//set Image icon according to id
+		    	}
+		    }
+		});
+	}
+	
 }
