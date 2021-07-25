@@ -128,7 +128,7 @@ public class welcomeGUI extends JFrame {
 		languageBox.addItem("Português (Portuguese)");
 		languageBox.addItem("Deutsche (German)");
 		languageBox.addItem("日本語 (Japanese)");
-		languageBox.addItem("Nederlands (Dutch)");
+		//languageBox.addItem("Nederlands (Dutch)");
 		languageBox.addItem("Français (French)");
 		//languageBox.addItem("汉语/漢語 (Chinese)");
 	}

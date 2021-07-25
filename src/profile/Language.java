@@ -11,9 +11,10 @@ package profile;
  * Spanish: oodsofnoodles
  * Portuguese: kathflowers
  * German: boba
- * Japanese: kathflowers
- * Dutch: Britt
+ * Japanese: Marie
+ * Dutch: Currently no translator
  * French: Marie
+ * Chinese: Currently no translator
  */
 
 public class Language {
@@ -214,8 +215,100 @@ public class Language {
 			"No",
 			
 	};
-	private String[] japaneseText;
-	private String[] dutchText;
+	private String[] japaneseText = {
+			"INVALID_KEY_TEXT",
+			"ようこそ",
+			"レベル",
+			"フォーカスを始める",
+			"フォカスを止める",
+			"統計",
+			"食料品店",
+			"バックグラウンドストア",
+			"設定",
+			"ログアウト",
+			"おめでとうございます！",
+			"セッション完成",
+			"",
+			"分",
+			"秒フォーカスしました。",
+			"今度かもしれない…",
+			"フォーカスセッション中断",
+			"時間集計",
+			"セッション時間集計",
+			"ユーザー",
+			"入会年月日",
+			"アチーブメント",
+			"空腹",
+			"フォーカスに戻る",
+			"購入できない",
+			"お金不足",
+			"食料品店に入れない",
+			"タモが満腹している！",
+			"",
+			"タモトークンで購入する",
+			"バックグラウンド色を変更する",
+			"フォーカスモードを変更する",
+			"5分間隔カウントダウン",
+			"間隔カウントダウンを決まる",
+			"言語を変更する",
+			"音",
+			"オフ",
+			"オン",
+			"ログアウト中",
+			"本当ですか？",
+			"OK",
+			"キャンセル",
+			"はい",
+			"いいえ",
+	};
+	
+	//TODO: Currently is English since failure to receive translations
+	private String[] dutchText = {
+			"INVALID_KEY_TEXT",
+			"Welcome",
+			"Level",
+			"Start Focus",
+			"Break Focus",
+			"Statistics",
+			"Food Store",
+			"Background Store",
+			"Options",
+			"Logout",
+			"Congratulations!",
+			"Session Completed",
+			"You focused for",
+			"minutes(s) and",
+			"seconds(s)",
+			"Maybe next time...",
+			"Session Focus Broke",
+			"Total Hours",
+			"Total Hours in Session",
+			"User",
+			"Join Date",
+			"Achievements",
+			"Hunger",
+			"Return To Focus",
+			"Can't Complete Purchase",
+			"You don't have sufficient funds",
+			"Can't enter food store",
+			"Your Tamo is full!",
+			"Purchase for",
+			"TamoTokens",
+			"Change Background Color",
+			"Change Focus Mode",
+			"5-Minute Countdown",
+			"Custom Countdown",
+			"Change Language",
+			"Sounds",
+			"Off",
+			"On",
+			"Logging out...",
+			"Are you sure?",
+			"OK",
+			"Cancel",
+			"Yes",
+			"No",
+	};
 	private String[] frenchText = {
 			"INVALID_KEY_TEXT",
 			"Bienvenue",
@@ -321,8 +414,32 @@ public class Language {
 			"Widmung 2",
 			"Gewidmet"
 	};
-	private String[] japaneseAhmTitle;
-	private String[] dutchAhmTitle;
+	private String[] japaneseAhmTitle = {
+			"始め",
+			"あなたを何も止められない！",
+			"ネバー・ギブ・アップ！",
+			"カストマイザー１",
+			"カストマイザー2",
+			"始めから",
+			"タモフル",
+			"タモラブ",
+			"献身１",
+			"献身2",
+			"献身的な人"
+	};
+	private String[] dutchAhmTitle = {
+			"The Beginning",
+			"Nothing can stop you!",
+			"Never give up!",
+			"Customizer 1",
+			"Customizer 2",
+			"From the beginning",
+			"Tamo full",
+			"Tamo Love",
+			"Dedication 1",
+			"Dedication 2",
+			"Dedicated"
+	};
 	private String[] frenchAhmTitle = {
 			"Le commencement",
 			"Rien ne peut vous arrêter !",
@@ -392,8 +509,32 @@ public class Language {
 		"Logge dich in TamoStudy für 14 Tage hintereinander ein",
 		"Logge dich in TamoStudy für 30 Tage hintereinander ein"
 	};
-	private String[] japaneseAhmDesc;
-	private String[] dutchAhmDesc;
+	private String[] japaneseAhmDesc = {
+		"-フォーカス時間を集計３時間に達する",
+		"フォーカス時間を集計1日間に達する",
+		"フォーカス時間を集計７日間に達する",
+		"バックグラウンド色を変更する",
+		"タモのバックグラウンドを変更する",
+		"ベター以前のバージョンからプロファイルを更新する",
+		"タモが満腹している間に食料品店に行く",
+		"タモの幸せを最高のレベルに達する",
+		"7日連続タモスタディにログインする",
+		"１４日連続タモスタディにログインする",
+		"３０日連続タモスタディにログインする"
+	};
+	private String[] dutchAhmDesc = {
+			"Reach total focus time of 3 hours",
+			"Reach total focus time of 1 day",
+			"Reach total focus time of 7 days",
+			"Change your background color",
+			"Change your Tamo's background",
+			"Updated profile from a version before beta",
+			"Entering the food shop when Tamo is full",
+			"Achieve maximum Tamo happiness",
+			"Log into TamoStudy consecutively for 7 days",
+			"Log into TamoStudy consecutively for 14 days",
+			"Log into TamoStudy consecutively for 30 days"
+	};
 	private String[] frenchAhmDesc = {
 		"Atteignez une concentration totale de 3 heures",
 		"Atteignez une concentration totale de 1 jour",
