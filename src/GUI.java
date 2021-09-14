@@ -843,11 +843,22 @@ public class GUI extends JFrame {
 	 * Method resets the timer
 	 */
 	public void resetTimer() {
-		min = 0;
-		sec = 0;
+		//TODO: Fix this code so it keeps set pomodoro time according to set previously
 		
-		minuteTime.setText("0" + min);
-		secondTime.setText("0" + sec);
+		if(profile.getSettings().getFocusMode() == 0) {
+			
+			minuteTime.setText(""+fiveIntervalBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+			
+			min = Integer.parseInt(minuteTime.getText());
+			sec = Integer.parseInt(secondTime.getText()); 
+		} else {
+			min = 0;
+			sec = 0;
+			
+			minuteTime.setText("0" + min);
+			secondTime.setText("0" + sec);
+		}
 		
 		minuteBox.setSelectedIndex(0);
 		secondBox.setSelectedIndex(0);
