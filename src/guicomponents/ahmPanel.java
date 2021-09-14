@@ -117,11 +117,11 @@ public class ahmPanel extends JPanel {
 			}
 			
 			if(id == 3) {
-				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-31.png")));
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-41.png")));
 			}
 			
 			if(id == 4) {
-				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-41.png")));
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-31.png")));
 			}
 			
 			if(id == 5) {
@@ -150,11 +150,11 @@ public class ahmPanel extends JPanel {
 			}
 			
 			if(id == 3) {
-				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-30.png")));
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-40.png")));
 			}
 			
 			if(id == 4) {
-				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-40.png")));
+				this.ahmImage.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-30.png")));
 			}
 			
 			if(id == 5) {
