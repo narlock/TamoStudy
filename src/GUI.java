@@ -6,7 +6,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
+import java.net.URL;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.sound.sampled.*;
 
 public class GUI extends JFrame {
 	
@@ -507,8 +508,33 @@ public class GUI extends JFrame {
 							sessionSec = sessionSec + studyTimeSeconds;
 							
 							
+							try {
+								//Get the url for the sound clip
+								URL url = this.getClass().getClassLoader().getResource("end2.wav");
+								AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+								
+								//get the clip from the url
+								Clip clip = AudioSystem.getClip();
+								clip.open(audioIn);
+								
+								//volume control - make the sound quieter
+								FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+						        volume.setValue(-1 * 20);
+								
+						        //start and loop the clip
+								clip.start();
+								clip.loop(Clip.LOOP_CONTINUOUSLY);
+								
+								//loop will end when user hits ok dialog
+								JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+								clip.stop();
+								
+							} catch (Exception ex2) {
+								ex2.printStackTrace();
+							}
+							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
-							JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+							
 							
 							//TODO: make methods to actually update coins and total statistics
 							
@@ -533,6 +559,7 @@ public class GUI extends JFrame {
 							}
 						}
 					}
+
 					
 				});
 				timer.start();
