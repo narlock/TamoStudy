@@ -12,7 +12,7 @@ package profile;
  * Portuguese: kathflowers
  * German: boba
  * Japanese: Marie
- * Dutch: Currently no translator
+ * Dutch: Britt
  * French: Marie
  * Chinese: Currently no translator
  */

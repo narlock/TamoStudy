@@ -91,7 +91,7 @@ public class GUI extends JFrame {
 	 * Variables
 	 */
 	private int min, sec, tempMin, tempSec, studyMin, studySec, studyTimeMinutes, studyTimeSeconds;
-	private boolean zeroMinFlag, zeroSecFlag, isStopped = false, death;
+	private boolean zeroMinFlag, zeroSecFlag, isStopped = false, death, soundsEnabled;
 	private String studyMessage;
 	private Timer timer;
 	private Profile profile;
@@ -142,6 +142,8 @@ public class GUI extends JFrame {
 		if(this.death)
 			tamoDeath();
 		
+		this.soundsEnabled = false;
+		
 		this.setSize(720, 550);
 	}
 	
@@ -167,6 +169,37 @@ public class GUI extends JFrame {
 		
 		if(this.death)
 			tamoDeath();
+		
+		this.soundsEnabled = false;
+		
+		this.setSize(720, 550);
+	}
+	
+	//TODO: Get rid of this constructor and all soundsBool to the profile file
+	public GUI(Profile p, File file, boolean soundsBool) {
+		this.death = false;
+		this.profile = p;
+		this.profileFile = file;
+		encryption = new Encryption();
+		
+		setUpFrame();
+		
+		updateHappyHunger();
+		
+		achievementUpdates();
+		
+		updateUserInformationToFile();
+		
+		initComponents();
+		
+		setUpGUI();
+		
+		updateGUI();
+		
+		if(this.death)
+			tamoDeath();
+		
+		this.soundsEnabled = soundsBool;
 		
 		this.setSize(720, 550);
 	}
@@ -507,32 +540,36 @@ public class GUI extends JFrame {
 							sessionMin = sessionMin + studyTimeMinutes;
 							sessionSec = sessionSec + studyTimeSeconds;
 							
+							if(soundsEnabled == true) {
 							
-							try {
-								//Get the url for the sound clip
-								URL url = this.getClass().getClassLoader().getResource("end2.wav");
-								AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-								
-								//get the clip from the url
-								Clip clip = AudioSystem.getClip();
-								clip.open(audioIn);
-								
-								//volume control - make the sound quieter
-								FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-						        volume.setValue(-1 * 20);
-								
-						        //start and loop the clip
-								clip.start();
-								clip.loop(Clip.LOOP_CONTINUOUSLY);
-								
-								//loop will end when user hits ok dialog
+								try {
+									//Get the url for the sound clip
+									URL url = this.getClass().getClassLoader().getResource("end2.wav");
+									AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+									
+									//get the clip from the url
+									Clip clip = AudioSystem.getClip();
+									clip.open(audioIn);
+									
+									//volume control - make the sound quieter
+									FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+							        volume.setValue(-1 * 20);
+									
+							        //start and loop the clip
+									clip.start();
+									clip.loop(Clip.LOOP_CONTINUOUSLY);
+									
+									//loop will end when user hits ok dialog
+									JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+									clip.stop();
+									
+								} catch (Exception ex2) {
+									ex2.printStackTrace();
+								}
+							
+							} else {
 								JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-								clip.stop();
-								
-							} catch (Exception ex2) {
-								ex2.printStackTrace();
 							}
-							
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 							
 							
@@ -720,6 +757,25 @@ public class GUI extends JFrame {
 				
 				JToggleButton soundButton = new JToggleButton("OFF", false);
 				
+				soundButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (((JToggleButton) e.getSource()).isSelected() == true) {
+							System.out.println("Sound Button is now set to: True");
+							soundButton.setText("ON");
+							setSoundsEnabled(true);
+						} else {
+							System.out.println("Sound Button is now set to: False");
+							soundButton.setText("OFF");
+							setSoundsEnabled(false);
+						}
+							
+						
+					}
+					
+				});
+				
 				optionsPanel.add(op1);
 				optionsPanel.add(op2);
 				optionsPanel.add(op3);
@@ -751,7 +807,7 @@ public class GUI extends JFrame {
 					
 					//Update and Reload GUI
 					updateUserInformationToFile();
-					GUI reloadedGUI = new GUI(profile, profileFile);
+					GUI reloadedGUI = new GUI(profile, profileFile, soundsEnabled);
 					hideWindow();
 					
 					
@@ -773,6 +829,10 @@ public class GUI extends JFrame {
 			
 		});
 
+	}
+	
+	public void setSoundsEnabled(boolean condition) {
+		this.soundsEnabled = condition;
 	}
 	
 	public void initButtonVisuals() {
