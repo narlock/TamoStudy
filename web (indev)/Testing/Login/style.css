@@ -1,0 +1,77 @@
+@font-face {
+    font-family: "Inter Light";
+    src: url("./fonts/Inter-Light.ttf") format("truetype");
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 99%;
+    height: 97%;
+    position: absolute;
+    display: table
+}
+
+p {
+    vertical-align: middle;
+    text-align: center;
+    color:antiquewhite;
+    font-family: "Inter Light";
+    padding: 2%;
+}
+
+header {
+   text-align: center;
+    color: black; 
+    font-family: "Inter Light";
+}
+
+footer {
+    text-align: center;
+    color: white;
+    font-family: "Inter Light";
+}
+
+.navbar {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    overflow: hidden;
+    top: 2%;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    background-color: transparent;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+}
+
+ul {
+list-style-type: none;
+}   
+
+li a {
+display:inline-block;
+display: block;
+color: white;
+text-align: center;
+padding: 10px 10px;
+text-decoration: none;
+font-family: "Inter Light";
+}
