@@ -647,8 +647,11 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int totalSeconds = profile.getTotalTime();
+				JPanel statsPanel = new JPanel();
+				statsPanel.setLayout(new GridLayout(5,1));
 				
+				//On the fly calculations
+				int totalSeconds = profile.getTotalTime();
 				double totalHours = totalSeconds * 0.000277778;
 				totalHours = Math.round(totalHours * 100.0) / 100.0;	//Rounds totalHours to the nearest Hundredth
 				
@@ -656,12 +659,35 @@ public class GUI extends JFrame {
 				double totalSessionHours = sessionTotalSeconds * 0.0002777778;
 				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
 				
-				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
-									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
-									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
-									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate();
+				//Create statspanel components
+				JLabel totalHoursLabel = new JLabel(profile.getSettings().getLang().getText(17) + ": " + totalHours);
+				JLabel totalHoursSessionLabel = new JLabel(profile.getSettings().getLang().getText(18) + ": " + totalSessionHours);
 				
-				JOptionPane.showMessageDialog(rootPane, statsMessage, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				JPanel starPanel = new JPanel();
+				starPanel.setLayout(new GridLayout());
+				JLabel ahmStarLabel = new JLabel();
+				
+				//If the user has studied for 7 days total time, they will recieve a star badge on their profile
+				if(totalSeconds >= 604800)
+					ahmStarLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ahm-star.png")));
+				
+				starPanel.add(ahmStarLabel);
+				
+				JLabel usernameStatsLabel = new JLabel(profile.getSettings().getLang().getText(19) + ": " + profile.getUsername());
+				JLabel joinDateStatsLabel = new JLabel(profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate());
+				
+				statsPanel.add(totalHoursLabel);
+				statsPanel.add(totalHoursSessionLabel);
+				statsPanel.add(starPanel);
+				statsPanel.add(usernameStatsLabel);
+				statsPanel.add(joinDateStatsLabel);
+				
+//				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
+//									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
+//									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
+//									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate();
+				
+				JOptionPane.showMessageDialog(rootPane, statsPanel, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -782,7 +808,7 @@ public class GUI extends JFrame {
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				//optionsPanel.add(debugButton);
+				optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
