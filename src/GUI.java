@@ -506,6 +506,7 @@ public class GUI extends JFrame {
 				feedButton.setEnabled(false);
 				backgroundShopButton.setEnabled(false);
 				optionsButton.setEnabled(false);
+				ahmButton.setEnabled(false);
 				logOutButton.setEnabled(false);
 				
 				timer = new Timer(1000, new ActionListener() {
@@ -752,7 +753,7 @@ public class GUI extends JFrame {
 				languageBox.addItem("Português (Portuguese)");
 				languageBox.addItem("Deutsche (German)");
 				languageBox.addItem("日本語 (Japanese)");
-				//languageBox.addItem("Nederlands (Dutch)");
+				languageBox.addItem("Nederlands (Dutch)");
 				languageBox.addItem("Français (French)");
 				
 				JToggleButton soundButton = new JToggleButton("OFF", false);
@@ -933,12 +934,14 @@ public class GUI extends JFrame {
 		//TODO: Fix this code so it keeps set pomodoro time according to set previously
 		
 		if(profile.getSettings().getFocusMode() == 0) {
+			min = 5;
+			sec = 0;
 			
-			minuteTime.setText(""+fiveIntervalBox.getSelectedItem());
-			minuteTime.setText(minuteTime.getText().substring(0,2));
+			fiveIntervalBox.setSelectedIndex(0);
 			
-			min = Integer.parseInt(minuteTime.getText());
-			sec = Integer.parseInt(secondTime.getText()); 
+			minuteTime.setText("0" + min);
+			secondTime.setText("0" + sec);
+			
 		} else {
 			min = 0;
 			sec = 0;
@@ -946,6 +949,7 @@ public class GUI extends JFrame {
 			minuteTime.setText("0" + min);
 			secondTime.setText("0" + sec);
 		}
+		
 		
 		minuteBox.setSelectedIndex(0);
 		secondBox.setSelectedIndex(0);
@@ -960,6 +964,7 @@ public class GUI extends JFrame {
 		feedButton.setEnabled(true);
 		backgroundShopButton.setEnabled(true);
 		optionsButton.setEnabled(true);
+		ahmButton.setEnabled(true);
 		logOutButton.setEnabled(true);
 		
 	}
