@@ -734,7 +734,7 @@ public class GUI extends JFrame {
 				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().getText(39), profile.getSettings().getLang().getText(38),
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(resultPane == JOptionPane.OK_OPTION) {
-					welcomeGUI welcome = new welcomeGUI();
+					welcomeGUI welcome = new welcomeGUI(1);
 					hideWindow();
 					
 				} else {
@@ -808,7 +808,7 @@ public class GUI extends JFrame {
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				optionsPanel.add(debugButton);
+				//optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
