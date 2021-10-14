@@ -63,6 +63,8 @@ public class welcomeGUI extends JFrame {
 		setUpGUI();
 		
 		this.setSize(550,400);
+		
+		checkForUpdatesNow();
 	}
 	
 	/*
@@ -128,7 +130,7 @@ public class welcomeGUI extends JFrame {
 		languageBox.addItem("Português (Portuguese)");
 		languageBox.addItem("Deutsche (German)");
 		languageBox.addItem("日本語 (Japanese)");
-		//languageBox.addItem("Nederlands (Dutch)");
+		languageBox.addItem("Nederlands (Dutch)");
 		languageBox.addItem("Français (French)");
 		//languageBox.addItem("汉语/漢語 (Chinese)");
 	}
@@ -634,6 +636,81 @@ public class welcomeGUI extends JFrame {
 		    	}
 		    }
 		});
+	}
+	
+	public void checkForUpdatesNow() {
+		CheckForUpdates updates = new CheckForUpdates();
+		boolean isThereUpdates = false;
+		
+		try {
+			isThereUpdates = updates.checkForUpdates();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		JPanel updatesPanel = new JPanel();
+		JLabel updateResult = new JLabel();
+		
+		if(isThereUpdates) {
+			updatesPanel.setLayout(new GridLayout(3,1));
+			updateResult.setText("A new update is available!");
+			JButton clickHereToDownload = new JButton("Click Here To Download Latest Update");
+			initButton(clickHereToDownload);
+			
+			clickHereToDownload.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Desktop.getDesktop().browse(new URL("https://github.com/narlock/TamoStudy/releases").toURI());
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+				}
+				
+			});
+			
+			JButton notifyButton = new JButton("Join Discord for update notifications!");
+			initButton(notifyButton);
+			notifyButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Desktop.getDesktop().browse(new URL("https://tinyurl.com/TamoDiscord").toURI());
+					} catch (MalformedURLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+				}
+				
+			});
+			
+			
+			updatesPanel.add(updateResult);
+			updatesPanel.add(clickHereToDownload);
+			updatesPanel.add(notifyButton);
+			JOptionPane.showMessageDialog(rootPane, updatesPanel, "Checking for Updates", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+		
+		}
+		
 	}
 	
 }
