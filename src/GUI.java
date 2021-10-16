@@ -215,7 +215,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | beta 2.0");
+		this.setTitle("TamoStudy | beta 2.1");
 		this.setSize(720,549);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -499,6 +499,7 @@ public class GUI extends JFrame {
 				//Enabled and Disabled updating
 				minuteBox.setEnabled(false);
 				secondBox.setEnabled(false);
+				fiveIntervalBox.setEnabled(false);
 				startButton.setEnabled(false);
 				breakButton.setEnabled(true);
 				
@@ -983,6 +984,7 @@ public class GUI extends JFrame {
 		//stop 
 		minuteBox.setEnabled(true);
 		secondBox.setEnabled(true);
+		fiveIntervalBox.setEnabled(true);
 		startButton.setEnabled(true);
 		breakButton.setEnabled(false);
 		

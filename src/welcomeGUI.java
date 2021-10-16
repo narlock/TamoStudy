@@ -92,7 +92,7 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | beta 2.0");
+		this.setTitle("TamoStudy | beta 2.1");
 		this.setSize(550,399);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
