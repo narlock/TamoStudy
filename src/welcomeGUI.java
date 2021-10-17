@@ -146,6 +146,7 @@ public class welcomeGUI extends JFrame {
 		languageBox.addItem("日本語 (Japanese)");
 		languageBox.addItem("Nederlands (Dutch)");
 		languageBox.addItem("Français (French)");
+		languageBox.addItem("Türkçe (Turkish)");
 		//languageBox.addItem("汉语/漢語 (Chinese)");
 	}
 	
@@ -569,6 +570,8 @@ public class welcomeGUI extends JFrame {
 			return 6;
 		if(languageString.equals("汉语/漢語 (Chinese)"))
 			return 7;
+		if(languageString.equals("Türkçe (Turkish)"))
+			return 8;
 		
 		return 0;
 	}

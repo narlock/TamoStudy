@@ -99,7 +99,7 @@ public class bgGUI extends JFrame {
 		changeColorSouth = new JPanel();
 		changeColorSouth.setBackground(p.getColor());
 
-		localBackgroundLabel = new JLabel("Change Background Color (500 TamoTokens)");
+		localBackgroundLabel = new JLabel(p.getSettings().getLang().getText(30) + " (500 TamoTokens)");
 		redButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-default.png")));
 		blueButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-blue.png")));
 		greenButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-green.png")));

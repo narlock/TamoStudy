@@ -356,6 +356,54 @@ public class Language {
 			
 	};
 	
+	private String[] turkishText = {
+			"INVALID_KEY_TEXT",
+			"Hoş Geldin",
+			"Seviye",
+			"Odaklanmaya Başla",
+			"Odaklanmayı Bitir",
+			"İstatistikler",
+			"Yiyecek Dükkanı",
+			"Arka Plan Dükkanı",
+			"Ayarlar",
+			"Çıkış Yap",
+			"Tebrikler!",
+			"Oturum Tamamlandı",
+			"",
+			"dakika(s) ve",
+			"saniye(s) boyunca odaklandın",
+			"Bir sonraki sefere...",
+			"Odaklanma sonlandırıldı",
+			"Toplam Saat",
+			"Toplam çalışma saati",
+			"Kullanıcı",
+			"Kayıt Tarihi",
+			"Başarımlar",
+			"Açlık",
+			"Odaklanmaya Geri Dön",
+			"Ödeme Yapılamadı",
+			"Yetersiz Bakiye",
+			"Yemek Dükkanına Girilemedi",
+			"Tamo aç değil!",
+			"",
+			"TamoToken öde",
+			"Arka Plan rengini değiştir",
+			"Odaklanma ayarını değiştir",
+			"5 aralıklı geri sayım",
+			"Manuel Sayaç",
+			"Dili Değiştir",
+			"Sesler",
+			"Kapalı",
+			"Açık",
+			"Çıkış Yapılıyor...",
+			"Emin misin ?",
+			"Tamam",
+			"İptal",
+			"Evet",
+			"Hayır",
+			
+	};	
+	
 	/*
 	 * Achievement Text Title Arrays
 	 * These arrays contain the titles and descriptions of the achievements
@@ -452,6 +500,19 @@ public class Language {
 			"Dévouement 2",
 			"Dévoué"
 	};
+	private String[] turkishAhmTitle = {
+			"Başlangıç",
+			"Hiçbir şey seni durduramaz!",
+			"Asla pes etme!",
+			"Özelleştirme 1",
+			"Özelleştirme 2",
+			"Başlangıçtan İtibaren",
+			"Tamo Tok",
+			"Tamo'nun mutluluğu",
+			"ithaf etme 1",
+			"ithaf etme 2",
+			"ithaf edilen"
+	};
 
 	/*
 	 * Achievement Description Arrays
@@ -547,6 +608,19 @@ public class Language {
 		"Connectez-vous à TamoStudy 14 jours d'affilée",
 		"Connectez-vous à TamoStudy 30 jours d'affilée"
 	};
+	private String[] turkishAhmDesc = {
+			"Toplamda 3 saat boyunca odaklan",
+			"Toplamda 1 gün boyunca odaklan",
+			"Toplamda 7 gün boyunca odaklan",
+			"Arka plan rengini değiştir",
+			"Tamo'nun arka planını değiştir",
+			"Beta sürümünden önce güncellenen versiyon",
+			"Tamo tokken yemek dükkanına gir",
+			"Tamo'nun maksimum sevgisini kazan",
+			"TamoStudy'e art arda 7 gün boyunca giriş yap",
+			"TamoStudy'e art arda 14 gün boyunca giriş yap",
+			"TamoStudy'e art arda 30 gün boyunca giriş yap"
+		};
 	
 	
 	public Language() {
@@ -585,6 +659,8 @@ public class Language {
 			return dutchText[num];
 		if(lang == 6)
 			return frenchText[num];
+		if(lang == 8)
+			return turkishText[num];
 		
 		return null;
 	}
@@ -604,6 +680,8 @@ public class Language {
 			return dutchAhmTitle[num];
 		if(lang == 6)
 			return frenchAhmTitle[num];
+		if(lang == 8)
+			return turkishAhmTitle[num];
 		
 		return null;
 	}
@@ -623,6 +701,8 @@ public class Language {
 			return dutchAhmDesc[num];
 		if(lang == 6)
 			return frenchAhmDesc[num];
+		if(lang == 8)
+			return turkishAhmDesc[num];
 		
 		return null;
 	}

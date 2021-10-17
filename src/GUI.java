@@ -782,6 +782,7 @@ public class GUI extends JFrame {
 				languageBox.addItem("日本語 (Japanese)");
 				languageBox.addItem("Nederlands (Dutch)");
 				languageBox.addItem("Français (French)");
+				languageBox.addItem("Türkçe (Turkish)");
 				
 				JToggleButton soundButton = new JToggleButton("OFF", false);
 				
