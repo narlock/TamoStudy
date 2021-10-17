@@ -79,6 +79,11 @@ public class GUI extends JFrame {
 	private JComboBox minuteBox, secondBox;
 	private JComboBox fiveIntervalBox;
 	
+	private JLabel pomoNumberSessionLabel, pomoSessionLabel, pomoBreakLabel;
+	private JComboBox pomoNumberSessionBox, pomoSessionBox, pomoBreakBox;
+	private int pomoSessionNumber;
+	private boolean breakCondition;
+	
 	private JPanel timerButtonPanel;
 	private JButton startButton, breakButton;
 	
@@ -402,10 +407,28 @@ public class GUI extends JFrame {
 		
 		fiveIntervalBox = new JComboBox();
 		fiveIntervalBox.setBackground(Color.WHITE);
+		
+		pomoNumberSessionLabel = new JLabel("# Of Sessions: ");
+		pomoNumberSessionBox = new JComboBox();
+		
+		
+		pomoSessionLabel = new JLabel("Session Length: ");
+		pomoSessionBox = new JComboBox();
+		pomoBreakLabel = new JLabel("Break Length: ");
+		pomoBreakBox = new JComboBox();
+		pomoSessionBox.setBackground(Color.WHITE);
+		pomoBreakBox.setBackground(Color.WHITE);
 				
 		timerSetPanel.add(minuteBox);
 		timerSetPanel.add(secondBox);
 		timerSetPanel.add(fiveIntervalBox);
+		
+		timerSetPanel.add(pomoNumberSessionLabel);
+		timerSetPanel.add(pomoNumberSessionBox);
+		timerSetPanel.add(pomoSessionLabel);
+		timerSetPanel.add(pomoSessionBox);
+		timerSetPanel.add(pomoBreakLabel);
+		timerSetPanel.add(pomoBreakBox);
 		
 		/*
 		 * Set Enabled Timer Method:
@@ -455,6 +478,35 @@ public class GUI extends JFrame {
 				fiveIntervalBox.addItem(i + ":00");
 		}
 		
+		//Init Pomodoro Box Items
+		for(int i = 5; i <= 60; i = i + 5) {
+			if(i == 5) {
+				pomoSessionBox.addItem("0" + i + ":00");
+				pomoBreakBox.addItem("0" + i + ":00");
+			}
+			else {
+				pomoSessionBox.addItem(i + ":00");
+				pomoBreakBox.addItem(i + ":00");
+			}
+		}
+		
+		
+		for(int i = 1; i <= 16; i++) {
+			pomoNumberSessionBox.addItem(i);
+			breakCondition = false;
+		}
+		
+		pomoNumberSessionBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pomoSessionNumber = pomoNumberSessionBox.getSelectedIndex() + 1;
+				System.out.println("pomoSessions: " + pomoSessionNumber);
+			}
+			
+		});
+		
+		
 		//Combo box actions - update on selection
 		minuteBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -474,6 +526,16 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				minuteTime.setText(""+fiveIntervalBox.getSelectedItem());
+				minuteTime.setText(minuteTime.getText().substring(0,2));
+				min = Integer.parseInt(minuteTime.getText());
+				sec = Integer.parseInt(secondTime.getText());
+			}
+		});
+		
+		pomoSessionBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				minuteTime.setText(""+pomoSessionBox.getSelectedItem());
 				minuteTime.setText(minuteTime.getText().substring(0,2));
 				min = Integer.parseInt(minuteTime.getText());
 				sec = Integer.parseInt(secondTime.getText());
@@ -500,6 +562,9 @@ public class GUI extends JFrame {
 				minuteBox.setEnabled(false);
 				secondBox.setEnabled(false);
 				fiveIntervalBox.setEnabled(false);
+				pomoNumberSessionBox.setEnabled(false);
+				pomoSessionBox.setEnabled(false);
+				pomoBreakBox.setEnabled(false);
 				startButton.setEnabled(false);
 				breakButton.setEnabled(true);
 				
@@ -509,6 +574,7 @@ public class GUI extends JFrame {
 				optionsButton.setEnabled(false);
 				ahmButton.setEnabled(false);
 				logOutButton.setEnabled(false);
+				
 				
 				timer = new Timer(1000, new ActionListener() {
 					
@@ -571,14 +637,19 @@ public class GUI extends JFrame {
 							
 							} else {
 								JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+								
 							}
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 							
 							
 							//TODO: make methods to actually update coins and total statistics
-							
-							resetTimer();
-							timer.stop();
+							if(profile.getSettings().getFocusMode() == 2 && pomoSessionNumber != 0) {
+								System.out.println("pomoSessionNumber: " + pomoSessionNumber);
+								nextSession();
+							} else {
+								resetTimer();
+								timer.stop();
+							}
 						} 
 						else {
 							sec--;
@@ -634,6 +705,7 @@ public class GUI extends JFrame {
 			
 			
 		});
+		
 		
 		
 		/*
@@ -773,6 +845,7 @@ public class GUI extends JFrame {
 				JComboBox focusMode = new JComboBox();
 				focusMode.addItem("5-Interval Countdown");
 				focusMode.addItem("Custom Interval Countdown");
+				focusMode.addItem("Pomodoro Mode");
 				
 				JComboBox languageBox = new JComboBox();
 				languageBox.addItem("English");
@@ -858,6 +931,32 @@ public class GUI extends JFrame {
 			
 		});
 
+	}
+	
+	public void nextSession() {
+		if(profile.getSettings().getFocusMode() == 2) {
+			if(breakCondition == false) {
+				//Start Break Timer
+				minuteTime.setText(""+pomoBreakBox.getSelectedItem());
+				minuteTime.setText(minuteTime.getText().substring(0,2));
+				min = Integer.parseInt(minuteTime.getText());
+				sec = Integer.parseInt(secondTime.getText());
+				breakCondition = true;
+				
+				startButton.doClick();
+			}
+			else {
+				//End Break Timer, begin next session timer
+				minuteTime.setText(""+pomoSessionBox.getSelectedItem());
+				minuteTime.setText(minuteTime.getText().substring(0,2));
+				min = Integer.parseInt(minuteTime.getText());
+				sec = Integer.parseInt(secondTime.getText());
+				breakCondition = false;
+				pomoSessionNumber--;
+				
+				startButton.doClick();
+			}
+		}
 	}
 	
 	public void setSoundsEnabled(boolean condition) {
@@ -986,6 +1085,9 @@ public class GUI extends JFrame {
 		minuteBox.setEnabled(true);
 		secondBox.setEnabled(true);
 		fiveIntervalBox.setEnabled(true);
+		pomoNumberSessionBox.setEnabled(true);
+		pomoSessionBox.setEnabled(true);
+		pomoBreakBox.setEnabled(true);
 		startButton.setEnabled(true);
 		breakButton.setEnabled(false);
 		
@@ -1192,12 +1294,43 @@ public class GUI extends JFrame {
 			minuteBox.setVisible(false);
 			secondBox.setVisible(false);
 			fiveIntervalBox.setVisible(true);
+			
+			pomoNumberSessionBox.setVisible(false);
+			pomoSessionBox.setVisible(false);
+			pomoBreakBox.setVisible(false);
+			
+			pomoNumberSessionLabel.setVisible(false);
+			pomoSessionLabel.setVisible(false);
+			pomoBreakLabel.setVisible(false);
 		}
 		
 		if(profile.getSettings().getFocusMode() == 1) {
 			minuteBox.setVisible(true);
 			secondBox.setVisible(true);
 			fiveIntervalBox.setVisible(false);
+			
+			pomoNumberSessionBox.setVisible(false);
+			pomoSessionBox.setVisible(false);
+			pomoBreakBox.setVisible(false);
+			
+			pomoNumberSessionLabel.setVisible(false);
+			pomoSessionLabel.setVisible(false);
+			pomoBreakLabel.setVisible(false);
+		}
+		
+		
+		if(profile.getSettings().getFocusMode() == 2) {
+			minuteBox.setVisible(false);
+			secondBox.setVisible(false);
+			fiveIntervalBox.setVisible(false);
+			
+			pomoNumberSessionBox.setVisible(true);
+			pomoSessionBox.setVisible(true);
+			pomoBreakBox.setVisible(true);
+			
+			pomoNumberSessionLabel.setVisible(true);
+			pomoSessionLabel.setVisible(true);
+			pomoBreakLabel.setVisible(true);
 		}
 		
 	}
@@ -1469,6 +1602,8 @@ public class GUI extends JFrame {
 			return 0;
 		if(stringIndicator.equals("Custom Interval Countdown"))
 			return 1;
+		if(stringIndicator.equals("Pomodoro Mode"))
+			return 2;
 		
 		
 		return 0;
