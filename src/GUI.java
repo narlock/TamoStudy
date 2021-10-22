@@ -490,6 +490,9 @@ public class GUI extends JFrame {
 			}
 		}
 		
+		pomoSessionBox.addItem("01:00");
+		pomoBreakBox.addItem("01:00");
+		
 		
 		for(int i = 1; i <= 16; i++) {
 			pomoNumberSessionBox.addItem(i);
@@ -500,7 +503,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				pomoSessionNumber = pomoNumberSessionBox.getSelectedIndex() + 1;
+				pomoSessionNumber = pomoNumberSessionBox.getSelectedIndex();
 				System.out.println("pomoSessions: " + pomoSessionNumber);
 			}
 			
@@ -548,6 +551,8 @@ public class GUI extends JFrame {
 			//Button Action
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateTimerInformation();
+				
 				//Initial study values
 				updateTamoImage(profile.getTamo().getId(),4);
 				startButton.setBackground(Color.WHITE);
@@ -933,6 +938,30 @@ public class GUI extends JFrame {
 
 	}
 	
+	public void updateTimerInformation() {
+		if(profile.getSettings().getFocusMode() == 2) {
+			pomoSessionNumber = pomoNumberSessionBox.getSelectedIndex();
+			System.out.println("pomoSessions: " + pomoSessionNumber);
+			minuteTime.setText(""+pomoSessionBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+		}
+		
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteTime.setText(""+minuteBox.getSelectedItem());
+			secondTime.setText(""+secondBox.getSelectedItem());
+		}
+		
+		if(profile.getSettings().getFocusMode() == 0 ) {
+			minuteTime.setText(""+fiveIntervalBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+			
+		}
+		
+		min = Integer.parseInt(minuteTime.getText());
+		sec = Integer.parseInt(secondTime.getText());
+		
+	}
+
 	public void nextSession() {
 		if(profile.getSettings().getFocusMode() == 2) {
 			if(breakCondition == false) {
