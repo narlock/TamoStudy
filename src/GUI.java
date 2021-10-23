@@ -148,8 +148,6 @@ public class GUI extends JFrame {
 		if(this.death)
 			tamoDeath();
 		
-		this.soundsEnabled = false;
-		
 		if(profile.getSettings().getFocusMode() == 2) {
 			this.setSize(720,650);
 			this.setLocationRelativeTo(null);
@@ -180,43 +178,7 @@ public class GUI extends JFrame {
 		
 		if(this.death)
 			tamoDeath();
-		
-		this.soundsEnabled = false;
-		
-		if(profile.getSettings().getFocusMode() == 2) {
-			this.setSize(720,650);
-			this.setLocationRelativeTo(null);
-		} else {
-			this.setSize(720, 550);
-		}
-	}
-	
-	//TODO: Get rid of this constructor and all soundsBool to the profile file
-	public GUI(Profile p, File file, boolean soundsBool) {
-		this.death = false;
-		this.profile = p;
-		this.profileFile = file;
-		encryption = new Encryption();
-		
-		setUpFrame();
-		
-		updateHappyHunger();
-		
-		achievementUpdates();
-		
-		updateUserInformationToFile();
-		
-		initComponents();
-		
-		setUpGUI();
-		
-		updateGUI();
-		
-		if(this.death)
-			tamoDeath();
-		
-		this.soundsEnabled = soundsBool;
-		
+
 		if(profile.getSettings().getFocusMode() == 2) {
 			this.setSize(720,650);
 			this.setLocationRelativeTo(null);
@@ -678,7 +640,7 @@ public class GUI extends JFrame {
 							sessionMin = sessionMin + studyTimeMinutes;
 							sessionSec = sessionSec + studyTimeSeconds;
 							
-							if(soundsEnabled == true) {
+							if(profile.getSettings().getSessionSounds() == 1) {
 							
 								try {
 									//Get the url for the sound clip
@@ -913,6 +875,8 @@ public class GUI extends JFrame {
 				focusMode.addItem("Custom Interval Countdown");
 				focusMode.addItem("Pomodoro Mode");
 				
+				focusMode.setSelectedIndex(profile.getSettings().getFocusMode());
+				
 				JComboBox languageBox = new JComboBox();
 				languageBox.addItem("English");
 				languageBox.addItem("Español (Spanish)");
@@ -923,20 +887,26 @@ public class GUI extends JFrame {
 				languageBox.addItem("Français (French)");
 				languageBox.addItem("Türkçe (Turkish)");
 				
-				JToggleButton soundButton = new JToggleButton("OFF", false);
+				languageBox.setSelectedIndex(profile.getSettings().getLang().getIndicator());
+				
+				JButton soundButton = new JButton();
+					if(profile.getSettings().getSessionSounds() == 1)
+						soundButton.setText("ON");
+					else
+						soundButton.setText("OFF");
 				
 				soundButton.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						if (((JToggleButton) e.getSource()).isSelected() == true) {
-							System.out.println("Sound Button is now set to: True");
+						if (profile.getSettings().getSessionSounds() == 0) {
 							soundButton.setText("ON");
-							setSoundsEnabled(true);
+							profile.getSettings().setSessionSounds(1);
+								System.out.println("profile.getSettings().getSessionSounds() = " + profile.getSettings().getSessionSounds());
 						} else {
-							System.out.println("Sound Button is now set to: False");
 							soundButton.setText("OFF");
-							setSoundsEnabled(false);
+							profile.getSettings().setSessionSounds(0);
+								System.out.println("profile.getSettings().getSessionSounds() = " + profile.getSettings().getSessionSounds());
 						}
 							
 						
@@ -949,7 +919,7 @@ public class GUI extends JFrame {
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				optionsPanel.add(debugButton);
+				//optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
@@ -975,7 +945,7 @@ public class GUI extends JFrame {
 					
 					//Update and Reload GUI
 					updateUserInformationToFile();
-					GUI reloadedGUI = new GUI(profile, profileFile, soundsEnabled);
+					GUI reloadedGUI = new GUI(profile, profileFile);
 					hideWindow();
 					
 					
@@ -1051,16 +1021,27 @@ public class GUI extends JFrame {
 		}
 	}
 	
+	/*
+	 * 
+	 */
 	public void setCurrentSession() {
 		currentSession = pomoNumberSessionBox.getSelectedIndex() - pomoSessionNumber;
 		System.out.println("currentSession = " + (currentSession + 1));
 		currentSessionLabel.setText((currentSession + 1) + " / " + (pomoNumberSessionBox.getSelectedIndex() + 1));
 	}
 	
+	/*
+	 * setSoundsEnabled
+	 * condition checks whether sounds are enabled or not - boolean
+	 */
 	public void setSoundsEnabled(boolean condition) {
 		this.soundsEnabled = condition;
 	}
 	
+	/*
+	 * initButtonVisuals
+	 * Initalizes the Button Visuals
+	 */
 	public void initButtonVisuals() {
 		feedButton.setBackground(Color.WHITE);
 		feedButton.setBorderPainted(false);
@@ -1153,10 +1134,10 @@ public class GUI extends JFrame {
 	}
 	
 	/*
+	 * resetTimer
 	 * Method resets the timer
 	 */
 	public void resetTimer() {
-		//TODO: Fix this code so it keeps set pomodoro time according to set previously
 		
 		if(profile.getSettings().getFocusMode() == 0) {
 			min = 5;
@@ -1212,25 +1193,29 @@ public class GUI extends JFrame {
 	 * 
 	 * But eventually when added to a database, this method of updating system information will not be used to
 	 * rewrite the locally stored profile to the database. (because it would be inefficient then)
+	 * 
+	 * Decrypts input string, updates values, re-encrypts string
 	 */
 	private void updateUserInformationToFile() {
 		try {
-			//BufferedReader file = new BufferedReader(new FileReader("profiles.txt"));
+			//Open the file
 			BufferedReader file = new BufferedReader(new FileReader(profileFile));
 			StringBuffer inputBuffer = new StringBuffer();
 			String line;
 			
+			//Read the file, put output to inputBuffer
 			while((line = (file.readLine())) != null) {
 				inputBuffer.append(line);
 			}
 			
 			file.close();
+			
+			//Close file and decrypt user file
 			String inputStr = inputBuffer.toString();
 			String decryptedString = encryption.decrypt(inputStr);
 			
-			//System.out.println(inputStr); //DEBUG TO DISPLAY ORIGINAL FILE
-			
-			//split the string, by comma so username can be identified
+			//Split decrypted file into string array
+			//each element represents a specific setting inside of the profile text file
 			String[] inputtedString = decryptedString.split(",");
 			
 			
@@ -1239,37 +1224,42 @@ public class GUI extends JFrame {
 			int new_level = (profile.getTotalTime() / 86400);
 			profile.getTamo().setLevel(new_level);
 			
-			/*
+			/**
 			 * Rewriting Profile Information
+			 * @author Anthony Narlock
+			 * 
+			 * Key Guide:
+			 * [2] -> New Login String
+			 * [3] -> Total Time Studied in seconds
+			 * [4] -> Total Money
+			 * [5] -> Current Background Indicator
+			 * [6] -> GUI Background Color Indicator
+			 * 
+			 * [8] -> Settings / Focus Mode Indicator
+			 * [9] -> Settings / Language Indicator
+			 * [10] -> Settings / Session Sound Indicator
+			 * [11] -> Settings / Background Sound Indicator
+			 * [12] -> Tamo Name (string)
+			 * [13] -> Tamo ID (corresponding to Tamo Image)
+			 * [14] -> Tamo Happiness Integer
+			 * [15] -> Tamo Hunger Integer
+			 * [16] -> Achievement Indicator String
 			 */
 			
-			//Update login date
-			//System.out.println("DEBUG: Rewriting newloginString");
 			if(profile.getNewLoginString() == null) {
 				
 			} else {
 			inputtedString[2] = profile.getNewLoginString();
 			}
 			
-			//Rewrite TotalTime
-			//System.out.println("DEBUG: Rewriting Total Time = " + profile.getTotalTime());
 			inputtedString[3] = String.valueOf(profile.getTotalTime());
-			
-			//Rewrite TotalMoney
-			//System.out.println("DEBUG: Rewriting Total Money = " + profile.getMoney());
 			inputtedString[4] = String.valueOf(profile.getMoney());
-			
-			//Rewrite currentbackground
-			//System.out.println("DEBUG: Rewriting current bg");
 			inputtedString[5] = String.valueOf(profile.getCurrentBackground());
-			
-			//System.out.println("DEBUG: Rewriting guiColor");
 			inputtedString[6] = profile.getGuiColor();
 			
 			/*
 			 * Rewriting Profile Settings
 			 */
-			
 			inputtedString[8] = String.valueOf(profile.getSettings().getFocusMode());
 			inputtedString[9] = String.valueOf(profile.getSettings().getLang().getIndicator());
 			inputtedString[10] = String.valueOf(profile.getSettings().getSessionSounds());
@@ -1278,37 +1268,25 @@ public class GUI extends JFrame {
 			/*
 			 * Rewriting Tamo Information
 			 */
-			
-			//Rewrite Tamo Name
-			//System.out.println("DEBUG: Rewriting name = " + profile.getTamo().getName());
 			inputtedString[12] = profile.getTamo().getName();
-			
-			//System.out.println("DEBUG: Rewriting tamo ID");
 			inputtedString[13] = String.valueOf(profile.getTamo().getId());
-			
-			//System.out.println("DEBUG: Rewriting Happiness = " + profile.getTamo().getHappiness());
 			inputtedString[14] = String.valueOf(profile.getTamo().getHappiness());
-			
-			//System.out.println("DEBUG: Rewriting Hunger to = " + profile.getTamo().getHunger());
 			inputtedString[15] = String.valueOf(profile.getTamo().getHunger());
 			
 			/*
 			 * Rewriting Achievement String
 			 */
-			
 			inputtedString[16] = profile.getAhm().getAhmString();
 			
-			//join the string back together
-			decryptedString = String.join(",", inputtedString);
-			//System.out.println("after rewrite: " + inputStr); //DEBUG TO DISPLAY WRITTEN FILE
 			
+			//join the string back together and re-encrypt
+			decryptedString = String.join(",", inputtedString);
 			String encryptedStr = encryption.encrypt(decryptedString);
 			
-			//FileOutputStream fileOut = new FileOutputStream("profiles.txt");
+			//Overwrite the existing file to the File System
 			FileOutputStream fileOut = new FileOutputStream(profileFile);
 			fileOut.write(encryptedStr.getBytes());
 			fileOut.close();
-			
 			
 			}
 		catch (Exception e) {
@@ -1319,14 +1297,18 @@ public class GUI extends JFrame {
 	
 	
 	/*
+	 * updateStudyStats
 	 * Updates the totalTime studied for the user
 	 */
 	public void updateStudyStats(int min, int sec) {
 		int totalSeconds = (min * 60) + sec;
 		profile.setTotalTime(profile.getTotalTime() + totalSeconds);
 		
-		//Give money, every 3600 seconds (1 hour) = 50 Tamo Tokens
-		//Dev Note: This means that for every 72 seconds, 1 Tamo Token is earned.
+		/**
+		 * @author Anthony Narlock
+		 * NOTE: Give money, every 3600 seconds (1 hour) = 50 Tamo Tokens
+		 * This means that for every 72 seconds, 1 Tamo Token is earned.
+		 */
 		int earnedSessionMoney = ((50 * totalSeconds) / 3600);
 		profile.setMoney(profile.getMoney() + earnedSessionMoney);
 		
@@ -1348,21 +1330,17 @@ public class GUI extends JFrame {
 	}
 	
 	/*
+	 * updateGUI
 	 * Updates the GUI components
 	 */
 	public void updateGUI() {
 		//Update Last Login Date and compare to update happiness and hunger
 		//TODO
 		
-		//Update Labels
-		
+		//Update General Labels
 		moneyLabel.setText("" + profile.getMoney());
-		
 		tamoLevel.setText(profile.getSettings().getLang().getText(2) + ": " + profile.getTamo().getLevel());
-		//tamoHappiness.setText("Happiness: " + profile.getTamo().getHappiness() + "/10");
 		updateTamoHappiness(profile.getTamo().getHappiness());
-		
-		//tamoHunger.setText("Hunger: " + profile.getTamo().getHunger()  + "/10");
 		updateTamoHunger(profile.getTamo().getHunger());
 		
 		//Update Tamo Image
@@ -1442,7 +1420,6 @@ public class GUI extends JFrame {
 	 * 2 - sad
 	 * 3 - hungry
 	 * 4 - focus mode
-	 * TODO: Get an artist to create tamo images
 	 */
 	public void updateTamoImage(int tamoID, int num) {
 			if(num == 0) 
@@ -1458,6 +1435,7 @@ public class GUI extends JFrame {
 	}
 
 	/*
+	 * hideWindow
 	 * Hides the window
 	 */
 	public void hideWindow() {
@@ -1466,6 +1444,7 @@ public class GUI extends JFrame {
 	}
 
 	/*
+	 * setBackground
 	 * Changes the Tamo's background image
 	 */
 	public void setBackground(int num) {
@@ -1482,7 +1461,9 @@ public class GUI extends JFrame {
 	}
 	
 	/*
+	 * updateHappyHunger
 	 * Updates values based off of log in date
+	 * TODO: assign strike variables if hunger or happiness is below a certain threshold
 	 */
 	public void updateHappyHunger() {
 		//System.out.println("RUNNING UPDATEHAPPYHUNGER METHOD\n--------------------------");
@@ -1647,13 +1628,15 @@ public class GUI extends JFrame {
 		}
 	}
 	
-	
-	//The death of Tamo from inactivity or bad care
+	/*
+	 * TamoDeath
+	 * Will occur if the user is inactive from TamoStudy, or user takes
+	 * poor care of their Tamo (3 strikes are reached)
+	 */
 	public void tamoDeath() {
-		//System.out.println("Initiating Tamo Death");
-		
+		//Create the Death Panel
 		JPanel deathPanel = new JPanel();
-		deathPanel.setLayout(new GridLayout(5,1));
+			deathPanel.setLayout(new GridLayout(5,1));
 		JLabel deathMessage = new JLabel("Your Tamo didn't receive the care it needed and has passed.");
 		JLabel spaceLabel = new JLabel();
 		JLabel infoMessage = new JLabel("Your statistics for your previous Tamo will be reset.");
@@ -1669,19 +1652,21 @@ public class GUI extends JFrame {
 		Object[] options = {"Reset"};
 		
 		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, "Tamo Death", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")), options, options[0]);
+		
+		//User will be able to choose if they want to change the name of their Tamo
 		if(resultPane == 0) {
-			//System.out.println("Resetting Tamo");
 			resetTamo(newTamoNameField.getText());
 					
 		} else if(resultPane == JOptionPane.CLOSED_OPTION) {
-			//System.out.println("Resetting Tamo using original name");
 			resetTamo(profile.getTamo().getName());
 		}
 		
 	}
 	
-	
-	//Resets TamoStudy, will occur on after TamoDeath
+	/*
+	 * Resets Tamo in TamoStudy - all stats will be erased
+	 * Will occur upon TamoDeath
+	 */
 	public void resetTamo(String name) {
 		profile.setTotalTime(0);
 		profile.setMoney(0);
@@ -1697,6 +1682,10 @@ public class GUI extends JFrame {
 		GUI newGUI = new GUI(profile);
 	}
 	
+	/*
+	 * getFocusIndicator
+	 * Returns the index corresponding to the stringIndicator argument
+	 */
 	public int getFocusIndicator(String stringIndicator) {
 		if(stringIndicator.equals("5-Interval Countdown"))
 			return 0;
@@ -1709,6 +1698,10 @@ public class GUI extends JFrame {
 		return 0;
 	}
 	
+	/*
+	 * getLanguageIndicator
+	 * Returns the index corresponding to the languageString argument
+	 */
 	public int getLanguageIndicator(String languageString) {
 		if(languageString.equals("English"))
 			return 0;
