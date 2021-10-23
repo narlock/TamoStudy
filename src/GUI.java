@@ -460,18 +460,24 @@ public class GUI extends JFrame {
 		//Init Timer Combo Box items
 		for(int i = 0; i <= 60; i++) {
 			if(i < 10) {
-				minuteBox.addItem("0" + i);
 				secondBox.addItem("0" + i);
 			}
 			else {
-				minuteBox.addItem(i);
 				secondBox.addItem(i);
 			}
 			
 		}
 		
+		for(int i = 0; i <= 90; i++) {
+			if(i < 10) {
+				minuteBox.addItem("0" + i);
+			} else {
+				minuteBox.addItem(i);
+			}
+		}
+		
 		//Init 5 Increment Combo Box Items
-		for(int i = 5; i <= 60; i = i + 5) {
+		for(int i = 5; i <= 90; i = i + 5) {
 			if(i == 5)
 				fiveIntervalBox.addItem("0" + i + ":00");
 			else
@@ -983,6 +989,7 @@ public class GUI extends JFrame {
 				breakCondition = false;
 				pomoSessionNumber--;
 				
+				updateTamoImage(profile.getTamo().getId(),4);
 				startButton.doClick();
 			}
 		}
