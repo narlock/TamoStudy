@@ -151,7 +151,7 @@ public class GUI extends JFrame {
 		this.soundsEnabled = false;
 		
 		if(profile.getSettings().getFocusMode() == 2) {
-			this.setSize(720,600);
+			this.setSize(720,650);
 			this.setLocationRelativeTo(null);
 		} else {
 			this.setSize(720, 550);
@@ -184,7 +184,7 @@ public class GUI extends JFrame {
 		this.soundsEnabled = false;
 		
 		if(profile.getSettings().getFocusMode() == 2) {
-			this.setSize(720,600);
+			this.setSize(720,650);
 			this.setLocationRelativeTo(null);
 		} else {
 			this.setSize(720, 550);
@@ -218,7 +218,7 @@ public class GUI extends JFrame {
 		this.soundsEnabled = soundsBool;
 		
 		if(profile.getSettings().getFocusMode() == 2) {
-			this.setSize(720,600);
+			this.setSize(720,650);
 			this.setLocationRelativeTo(null);
 		} else {
 			this.setSize(720, 550);
@@ -394,11 +394,11 @@ public class GUI extends JFrame {
 		timerTextPanel.setBackground(profile.getColor());
 				
 		minuteTime = new JLabel("00");
-		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 48));
+		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 52));
 		spaceLabel = new JLabel(":");
-		spaceLabel.setFont(new Font ("Tahoma", Font.BOLD, 48));
+		spaceLabel.setFont(new Font ("Tahoma", Font.BOLD, 52));
 		secondTime = new JLabel("00");
-		secondTime.setFont(new Font ("Tahoma", Font.BOLD, 48));
+		secondTime.setFont(new Font ("Tahoma", Font.BOLD, 52));
 				
 		timerTextPanel.add(minuteTime);
 		timerTextPanel.add(spaceLabel);
@@ -431,7 +431,9 @@ public class GUI extends JFrame {
 			timerSetPanel.add(fiveIntervalBox);
 		}
 		
-		currentSessionLabel = new JLabel();
+		currentSessionLabel = new JLabel("Let's Focus!");
+		currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 20));
+		
 		pomoNumberSessionLabel = new JLabel("# Of Sessions");
 		pomoNumberSessionBox = new JComboBox();
 		
@@ -448,13 +450,16 @@ public class GUI extends JFrame {
 			
 			//Main Panels
 			JPanel topSetPanel = new JPanel();
+				topSetPanel.setLayout(new GridLayout(2,1));
+				JPanel topSetPanelTop = new JPanel();
+					JPanel topNumPanel = new JPanel();
+					JPanel topSessionPanel = new JPanel();
+					JPanel topBreakPanel = new JPanel();
+				JPanel topSetPanelBot = new JPanel();
+					//The Current Session Label is on this Panel
+				
 			JPanel botSetPanel = new JPanel();
 			JPanel numSessionPanel = new JPanel();
-			
-			//Sub Panels
-			JPanel topNumPanel = new JPanel();
-			JPanel topSessionPanel = new JPanel();
-			JPanel topBreakPanel = new JPanel();
 			
 			JPanel botNumPanel = new JPanel();
 			JPanel botSessionPanel = new JPanel();
@@ -462,12 +467,16 @@ public class GUI extends JFrame {
 			
 			
 			timerSetPanel.add(topSetPanel);
-				topSetPanel.add(topNumPanel);
-					topNumPanel.add(pomoNumberSessionLabel);
-				topSetPanel.add(topSessionPanel);
-					topSessionPanel.add(pomoSessionLabel);
-				topSetPanel.add(topBreakPanel);
-					topBreakPanel.add(pomoBreakLabel);
+			topSetPanel.add(topSetPanelBot);
+				topSetPanelBot.add(currentSessionLabel);	
+			topSetPanel.add(topSetPanelTop);
+					topSetPanelTop.add(topNumPanel);
+						topNumPanel.add(pomoNumberSessionLabel);
+					topSetPanelTop.add(topSessionPanel);
+						topSessionPanel.add(pomoSessionLabel);
+					topSetPanelTop.add(topBreakPanel);
+						topBreakPanel.add(pomoBreakLabel);
+				
 			timerSetPanel.add(botSetPanel);
 				botSetPanel.add(botNumPanel);
 					botNumPanel.add(pomoNumberSessionBox);
@@ -475,9 +484,6 @@ public class GUI extends JFrame {
 					botSessionPanel.add(pomoSessionBox);
 				botSetPanel.add(botBreakPanel);
 					botBreakPanel.add(pomoBreakBox);
-			//timerSetPanel.add(numSessionPanel);
-				numSessionPanel.add(currentSessionLabel);
-			
 		}
 		
 		
@@ -710,6 +716,7 @@ public class GUI extends JFrame {
 							if(profile.getSettings().getFocusMode() == 2 && pomoSessionNumber != 0) {
 								System.out.println("pomoSessionNumber: " + pomoSessionNumber);
 								nextSession();
+								setCurrentSession();
 							} else {
 								resetTimer();
 								timer.stop();
@@ -818,11 +825,6 @@ public class GUI extends JFrame {
 				statsPanel.add(starPanel);
 				statsPanel.add(usernameStatsLabel);
 				statsPanel.add(joinDateStatsLabel);
-				
-//				String statsMessage = profile.getSettings().getLang().getText(17) + ": " + totalHours +
-//									"\n" + profile.getSettings().getLang().getText(18) + ": " + totalSessionHours +
-//									"\n\n" + profile.getSettings().getLang().getText(19) + ": " + profile.getUsername() + 
-//									"\n" + profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate();
 				
 				JOptionPane.showMessageDialog(rootPane, statsPanel, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
@@ -947,7 +949,7 @@ public class GUI extends JFrame {
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				//optionsPanel.add(debugButton);
+				optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
@@ -1041,9 +1043,7 @@ public class GUI extends JFrame {
 				min = Integer.parseInt(minuteTime.getText());
 				sec = Integer.parseInt(secondTime.getText());
 				breakCondition = false;
-				pomoSessionNumber--;
-				
-				currentSessionLabel.setText(pomoSessionNumber + " / " + pomoNumberSessionBox.getSelectedIndex());
+				this.pomoSessionNumber--;
 				
 				updateTamoImage(profile.getTamo().getId(),4);
 				startButton.doClick();
@@ -1053,6 +1053,8 @@ public class GUI extends JFrame {
 	
 	public void setCurrentSession() {
 		currentSession = pomoNumberSessionBox.getSelectedIndex() - pomoSessionNumber;
+		System.out.println("currentSession = " + (currentSession + 1));
+		currentSessionLabel.setText((currentSession + 1) + " / " + (pomoNumberSessionBox.getSelectedIndex() + 1));
 	}
 	
 	public void setSoundsEnabled(boolean condition) {
@@ -1193,6 +1195,8 @@ public class GUI extends JFrame {
 		optionsButton.setEnabled(true);
 		ahmButton.setEnabled(true);
 		logOutButton.setEnabled(true);
+		
+		currentSessionLabel.setText("Let's Focus!");
 		
 	}
 	
