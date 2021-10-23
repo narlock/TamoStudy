@@ -149,7 +149,12 @@ public class GUI extends JFrame {
 		
 		this.soundsEnabled = false;
 		
-		this.setSize(720, 550);
+		if(profile.getSettings().getFocusMode() == 2) {
+			this.setSize(720,600);
+			this.setLocationRelativeTo(null);
+		} else {
+			this.setSize(720, 550);
+		}
 	}
 	
 	public GUI(Profile p, File file) {
@@ -177,7 +182,12 @@ public class GUI extends JFrame {
 		
 		this.soundsEnabled = false;
 		
-		this.setSize(720, 550);
+		if(profile.getSettings().getFocusMode() == 2) {
+			this.setSize(720,600);
+			this.setLocationRelativeTo(null);
+		} else {
+			this.setSize(720, 550);
+		}
 	}
 	
 	//TODO: Get rid of this constructor and all soundsBool to the profile file
@@ -206,7 +216,12 @@ public class GUI extends JFrame {
 		
 		this.soundsEnabled = soundsBool;
 		
-		this.setSize(720, 550);
+		if(profile.getSettings().getFocusMode() == 2) {
+			this.setSize(720,600);
+			this.setLocationRelativeTo(null);
+		} else {
+			this.setSize(720, 550);
+		}
 	}
 	
 	/*
@@ -366,6 +381,7 @@ public class GUI extends JFrame {
 		tamoPanel.add(tamoStatsPanel);
 	}
 	
+	
 	public void createTimerPanel() {
 		//Base Panel
 		timerPanel = new JPanel();
@@ -408,27 +424,57 @@ public class GUI extends JFrame {
 		fiveIntervalBox = new JComboBox();
 		fiveIntervalBox.setBackground(Color.WHITE);
 		
-		pomoNumberSessionLabel = new JLabel("# Of Sessions: ");
+		if(profile.getSettings().getFocusMode() == 1 || profile.getSettings().getFocusMode() == 0) {
+			timerSetPanel.add(minuteBox);
+			timerSetPanel.add(secondBox);
+			timerSetPanel.add(fiveIntervalBox);
+		}
+		
+		
+		pomoNumberSessionLabel = new JLabel("# Of Sessions");
 		pomoNumberSessionBox = new JComboBox();
 		
-		
-		pomoSessionLabel = new JLabel("Session Length: ");
+		pomoSessionLabel = new JLabel("Session Length");
 		pomoSessionBox = new JComboBox();
-		pomoBreakLabel = new JLabel("Break Length: ");
+		pomoBreakLabel = new JLabel("Break Length");
 		pomoBreakBox = new JComboBox();
 		pomoSessionBox.setBackground(Color.WHITE);
 		pomoBreakBox.setBackground(Color.WHITE);
-				
-		timerSetPanel.add(minuteBox);
-		timerSetPanel.add(secondBox);
-		timerSetPanel.add(fiveIntervalBox);
 		
-		timerSetPanel.add(pomoNumberSessionLabel);
-		timerSetPanel.add(pomoNumberSessionBox);
-		timerSetPanel.add(pomoSessionLabel);
-		timerSetPanel.add(pomoSessionBox);
-		timerSetPanel.add(pomoBreakLabel);
-		timerSetPanel.add(pomoBreakBox);
+		if(profile.getSettings().getFocusMode() == 2 ) {
+			timerSetPanel.setLayout(new GridLayout(2,1));
+			
+			//Main Panels
+			JPanel topSetPanel = new JPanel();
+			JPanel botSetPanel = new JPanel();
+			
+			//Sub Panels
+			JPanel topNumPanel = new JPanel();
+			JPanel topSessionPanel = new JPanel();
+			JPanel topBreakPanel = new JPanel();
+			
+			JPanel botNumPanel = new JPanel();
+			JPanel botSessionPanel = new JPanel();
+			JPanel botBreakPanel = new JPanel();
+			
+			timerSetPanel.add(topSetPanel);
+				topSetPanel.add(topNumPanel);
+					topNumPanel.add(pomoNumberSessionLabel);
+				topSetPanel.add(topSessionPanel);
+					topSessionPanel.add(pomoSessionLabel);
+				topSetPanel.add(topBreakPanel);
+					topBreakPanel.add(pomoBreakLabel);
+			timerSetPanel.add(botSetPanel);
+				botSetPanel.add(botNumPanel);
+					botNumPanel.add(pomoNumberSessionBox);
+				botSetPanel.add(botSessionPanel);
+					botSessionPanel.add(pomoSessionBox);
+				botSetPanel.add(botBreakPanel);
+					botBreakPanel.add(pomoBreakBox);
+			
+		}
+		
+		
 		
 		/*
 		 * Set Enabled Timer Method:
