@@ -80,8 +80,9 @@ public class GUI extends JFrame {
 	private JComboBox fiveIntervalBox;
 	
 	private JLabel pomoNumberSessionLabel, pomoSessionLabel, pomoBreakLabel;
+	private JLabel currentSessionLabel;
 	private JComboBox pomoNumberSessionBox, pomoSessionBox, pomoBreakBox;
-	private int pomoSessionNumber;
+	private int pomoSessionNumber, currentSession;
 	private boolean breakCondition;
 	
 	private JPanel timerButtonPanel;
@@ -430,7 +431,7 @@ public class GUI extends JFrame {
 			timerSetPanel.add(fiveIntervalBox);
 		}
 		
-		
+		currentSessionLabel = new JLabel();
 		pomoNumberSessionLabel = new JLabel("# Of Sessions");
 		pomoNumberSessionBox = new JComboBox();
 		
@@ -442,11 +443,13 @@ public class GUI extends JFrame {
 		pomoBreakBox.setBackground(Color.WHITE);
 		
 		if(profile.getSettings().getFocusMode() == 2 ) {
+			
 			timerSetPanel.setLayout(new GridLayout(2,1));
 			
 			//Main Panels
 			JPanel topSetPanel = new JPanel();
 			JPanel botSetPanel = new JPanel();
+			JPanel numSessionPanel = new JPanel();
 			
 			//Sub Panels
 			JPanel topNumPanel = new JPanel();
@@ -456,6 +459,7 @@ public class GUI extends JFrame {
 			JPanel botNumPanel = new JPanel();
 			JPanel botSessionPanel = new JPanel();
 			JPanel botBreakPanel = new JPanel();
+			
 			
 			timerSetPanel.add(topSetPanel);
 				topSetPanel.add(topNumPanel);
@@ -471,6 +475,8 @@ public class GUI extends JFrame {
 					botSessionPanel.add(pomoSessionBox);
 				botSetPanel.add(botBreakPanel);
 					botBreakPanel.add(pomoBreakBox);
+			//timerSetPanel.add(numSessionPanel);
+				numSessionPanel.add(currentSessionLabel);
 			
 		}
 		
@@ -604,6 +610,7 @@ public class GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				updateTimerInformation();
+				setCurrentSession();
 				
 				//Initial study values
 				updateTamoImage(profile.getTamo().getId(),4);
@@ -990,6 +997,7 @@ public class GUI extends JFrame {
 
 	}
 	
+
 	public void updateTimerInformation() {
 		if(profile.getSettings().getFocusMode() == 2) {
 			pomoSessionNumber = pomoNumberSessionBox.getSelectedIndex();
@@ -1035,10 +1043,16 @@ public class GUI extends JFrame {
 				breakCondition = false;
 				pomoSessionNumber--;
 				
+				currentSessionLabel.setText(pomoSessionNumber + " / " + pomoNumberSessionBox.getSelectedIndex());
+				
 				updateTamoImage(profile.getTamo().getId(),4);
 				startButton.doClick();
 			}
 		}
+	}
+	
+	public void setCurrentSession() {
+		currentSession = pomoNumberSessionBox.getSelectedIndex() - pomoSessionNumber;
 	}
 	
 	public void setSoundsEnabled(boolean condition) {
