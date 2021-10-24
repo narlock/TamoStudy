@@ -637,9 +637,9 @@ public class GUI extends JFrame {
 							updateStudyStats(studyTimeMinutes, studyTimeSeconds);
 							studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
 							
-							sessionMin = sessionMin + studyTimeMinutes;
-							sessionSec = sessionSec + studyTimeSeconds;
-							
+							tempMin = 0;
+							tempSec = 0;
+
 							if(profile.getSettings().getSessionSounds() == 1) {
 							
 								try {
