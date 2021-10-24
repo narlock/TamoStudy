@@ -16,12 +16,12 @@ Author: Anthony Narlock
 - Interactive virtual "Tamo" pet which needs food and happiness which can be maintained through focus sessions
 - Easy-to-use GUI system: Login welcome screen, Main landing screen, Food Shop, Background Shop, etc.
 - Creation of Multiple profiles through file I/O capabilities
-- Supports multiple languages (currently: Spanish, Portuguese, German, Japanese, French, & Dutch)
+- Supports multiple languages (currently: English, Spanish, Portuguese, German, Japanese, French, Turkish & Dutch)
 - More to come in the future :)
 
 ##
 
-[![Installation Guide](https://i.imgur.com/JEXOEwy.png)](https://www.youtube.com/watch?v=xNarVygElG0)
+[![Installation Guide](https://i.imgur.com/JEXOEwy.png)](https://youtu.be/Iu0N0but-NM)
 
 
 ## Original Concept Idea: 
