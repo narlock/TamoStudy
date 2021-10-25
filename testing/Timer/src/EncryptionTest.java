@@ -47,8 +47,10 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		EncryptionTest e = new EncryptionTest();
 		
-		System.out.println(e.decrypt("vuru6r2868736=37:26262}yG262;2;2868736=37:262jklg{rz282:"));
-		System.out.println(e.decrypt("zkyz2868736=36<2868736=36<2<6:>662???9<??2:2mxkkt26262626262zkyz282;276277777676"));
+		System.out.println(e.encrypt("Marie,2021-10-14,2021-10-14,41837,373,0,default,0,0,0,0,0,Francis,5,5,5,00000100"));
+		
+		System.out.println(e.decrypt("Sgxok2868737637:26272868737637:2Lxgtioy26262629=926262:7>9=262626266666766"));
+		System.out.println(e.decrypt("gtznut2868736?36?2868736?36?2=;?=>?276:?:262jklg{rz26282627262Royg282762;277766667"));
 	}
 	
 }

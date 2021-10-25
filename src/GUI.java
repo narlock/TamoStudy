@@ -885,6 +885,7 @@ public class GUI extends JFrame {
 				languageBox.addItem("日本語 (Japanese)");
 				languageBox.addItem("Nederlands (Dutch)");
 				languageBox.addItem("Français (French)");
+				languageBox.addItem("English (Chinese Spot)");
 				languageBox.addItem("Türkçe (Turkish)");
 				
 				languageBox.setSelectedIndex(profile.getSettings().getLang().getIndicator());
@@ -1719,6 +1720,8 @@ public class GUI extends JFrame {
 			return 6;
 		if(languageString.equals("汉语/漢語 (Chinese)"))
 			return 7;
+		if(languageString.equals("Türkçe (Turkish)"))
+			return 8;
 		
 		return 0;
 	}
