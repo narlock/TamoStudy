@@ -13,6 +13,7 @@ public class CheckForUpdates {
 	
 	public CheckForUpdates() {
 		currentReleases = new ArrayList<String>();
+		currentReleases.add("\"b2.4\"");
 		currentReleases.add("\"b2.1\"");
 		currentReleases.add("\"b2.0\"");
 		currentReleases.add("\"b1.1\"");
