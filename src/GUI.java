@@ -516,9 +516,6 @@ public class GUI extends JFrame {
 			}
 		}
 		
-		pomoSessionBox.addItem("01:00");
-		pomoBreakBox.addItem("01:00");
-		
 		
 		for(int i = 1; i <= 16; i++) {
 			pomoNumberSessionBox.addItem(i);
