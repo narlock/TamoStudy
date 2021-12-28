@@ -9,12 +9,12 @@ public class bgGUI extends JFrame {
 	private Profile p;
 	private File file;
 	
-	private JPanel northPanel, centerPanel;
+	private JPanel northPanel, centerPanel, southPanel;
 	private JPanel mainPanel;
 	private JLabel shopImage;
 	
 	private JPanel changeColorPanel, changeColorNorth, changeColorSouth;
-	private JLabel localBackgroundLabel;
+	private JLabel localBackgroundLabel, changeBackgroundLabel;
 	private JButton redButton, blueButton, greenButton, yellowButton, purpleButton, orangeButton, greyButton;
 	
 	private JPanel bg1Panel, bg2Panel, bg3Panel, bg4Panel, bg5Panel;
@@ -33,7 +33,7 @@ public class bgGUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(1280, 750);
+		this.setSize(900, 800);
 		
 	}
 	
@@ -48,7 +48,7 @@ public class bgGUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(1280, 750);
+		this.setSize(900, 800);
 		
 	}
 	
@@ -64,14 +64,14 @@ public class bgGUI extends JFrame {
 		
 		setUpGUI();
 		
-		this.setSize(1280, 750);
+		this.setSize(900, 800);
 	}
 	
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
 		this.setTitle(p.getSettings().getLang().getText(7) + " | TamoTokens: " + p.getMoney());
-		this.setSize(1280, 749);
+		this.setSize(900, 799);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -100,6 +100,7 @@ public class bgGUI extends JFrame {
 		changeColorSouth.setBackground(p.getColor());
 
 		localBackgroundLabel = new JLabel(p.getSettings().getLang().getText(30) + " (500 TamoTokens)");
+			localBackgroundLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		redButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-default.png")));
 		blueButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-blue.png")));
 		greenButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-green.png")));
@@ -108,10 +109,16 @@ public class bgGUI extends JFrame {
 		orangeButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-orange.png")));
 		greyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-grey.png")));
 		
+		changeBackgroundLabel = new JLabel("Change Tamo Background");
+			changeBackgroundLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
 		
 		//center panel
 		centerPanel = new JPanel();
 		centerPanel.setBackground(p.getColor());
+		
+		southPanel = new JPanel();
+		southPanel.setBackground(p.getColor());
 		
 		bg1Panel = new JPanel();
 		bg1Panel.setBackground(p.getColor());
@@ -124,17 +131,17 @@ public class bgGUI extends JFrame {
 		bg5Panel = new JPanel();
 		bg5Panel.setBackground(p.getColor());
 		
-		bg1 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg.png")));
-		bg2 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg2.png")));
-		bg3 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg3.png")));
-		bg4 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg4.png")));
-		bg5 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg5.png")));
+		bg1 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bgShop.png")));
+		bg2 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg2Shop.png")));
+		bg3 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg3Shop.png")));
+		bg4 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg4Shop.png")));
+		bg5 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("bg5Shop.png")));
 		
-		bg1button = new JButton(p.getSettings().getLang().getText(28) + " 1000 Tokens");
-		bg2button = new JButton(p.getSettings().getLang().getText(28) + " 1000 Tokens");
-		bg3button = new JButton(p.getSettings().getLang().getText(28) + " 1000 Tokens");
-		bg4button = new JButton(p.getSettings().getLang().getText(28) + " 1000 Tokens");
-		bg5button = new JButton(p.getSettings().getLang().getText(28) + " 5000 Tokens");
+		bg1button = new JButton(p.getSettings().getLang().getText(28) + " 1000");
+		bg2button = new JButton(p.getSettings().getLang().getText(28) + " 1000");
+		bg3button = new JButton(p.getSettings().getLang().getText(28) + " 1000");
+		bg4button = new JButton(p.getSettings().getLang().getText(28) + " 1000");
+		bg5button = new JButton(p.getSettings().getLang().getText(28) + " 5000");
 	
 		
 	}
@@ -273,16 +280,24 @@ public class bgGUI extends JFrame {
 	
 
 	public void setUpGUI() {
-		this.setLayout(new GridLayout(2,1));
-		//JPanel changeColorNorth, changeColorSouth;
-		// JLabel localBackgroundLabel;
+		this.setLayout(new GridLayout(3,1));
 		this.add(northPanel);
-		northPanel.setLayout(new GridLayout(1,2));
-		northPanel.add(mainPanel);
-		northPanel.add(changeColorPanel);
+		this.add(centerPanel);
+		this.add(southPanel);
 		
-		mainPanel.add(returnToFocus);
-		mainPanel.add(shopImage);
+		setUpTopPanel();
+		setUpCenterPanel();
+		setUpBottomPanel();
+		
+	}
+	
+	public void setUpTopPanel() {
+		northPanel.add(returnToFocus);
+		northPanel.add(shopImage);
+	}
+	
+	public void setUpCenterPanel() {
+		centerPanel.add(changeColorPanel);
 		
 		changeColorPanel.setLayout(new BorderLayout());
 		changeColorPanel.add(changeColorNorth, BorderLayout.NORTH);
@@ -298,29 +313,32 @@ public class bgGUI extends JFrame {
 		changeColorSouth.add(yellowButton);
 		changeColorSouth.add(greyButton);
 		
-		this.add(centerPanel);
-		centerPanel.setLayout(new GridLayout(1,5));
+		centerPanel.add(changeBackgroundLabel, BorderLayout.SOUTH);
 		
-		centerPanel.add(bg1Panel);
+	}
+	
+	public void setUpBottomPanel() {
+		southPanel.setLayout(new GridLayout(1,5));
+		
+		southPanel.add(bg1Panel);
 		bg1Panel.add(bg1);
 		bg1Panel.add(bg1button);
 		
-		centerPanel.add(bg2Panel);
+		southPanel.add(bg2Panel);
 		bg2Panel.add(bg2);
 		bg2Panel.add(bg2button);
 		
-		centerPanel.add(bg3Panel);
+		southPanel.add(bg3Panel);
 		bg3Panel.add(bg3);
 		bg3Panel.add(bg3button);
 		
-		centerPanel.add(bg4Panel);
+		southPanel.add(bg4Panel);
 		bg4Panel.add(bg4);
 		bg4Panel.add(bg4button);
 		
-		centerPanel.add(bg5Panel);
+		southPanel.add(bg5Panel);
 		bg5Panel.add(bg5);
 		bg5Panel.add(bg5button);
-		
 	}
 	
 	public void hideWindow() {

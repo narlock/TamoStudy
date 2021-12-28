@@ -2,6 +2,10 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class Countdown {
 	private static int seconds = 3600; //milliseconds
 	static Timer timer = new Timer();
@@ -34,5 +38,22 @@ public class Countdown {
 		return seconds;
 	}
 
-
+/*
+ * private JPanel northPanel, centerPanel;
+	private JPanel mainPanel;
+	private JLabel shopImage;
+	
+	private JPanel changeColorPanel, changeColorNorth, changeColorSouth;
+	private JLabel localBackgroundLabel;
+	private JButton redButton, blueButton, greenButton, yellowButton, purpleButton, orangeButton, greyButton;
+	
+	private JPanel bg1Panel, bg2Panel, bg3Panel, bg4Panel, bg5Panel;
+	
+	private JLabel bg1, bg2, bg3, bg4, bg5;
+	private JButton bg1button, bg2button, bg3button, bg4button, bg5button;
+	
+	private JButton returnToFocus;
+ */
+	
+	
 }

@@ -127,13 +127,16 @@ public class foodGUI extends JFrame {
 		shopImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("shop.png")));
 		tutorialLabel = new JLabel("Buy food for your Tamo!\nUpon purchase, Tamo will eat food.");
 		
-		food1InfoLabel = new JLabel("100 TamoTokens, 1 " + p.getSettings().getLang().getText(22));
+		food1InfoLabel = new JLabel("  100 TamoTokens - 1 " + p.getSettings().getLang().getText(22));
+			food1InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food1BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-onigiri.png")));
-
-		food2InfoLabel = new JLabel("200 TamoTokens, 3 " + p.getSettings().getLang().getText(22));
+	
+		food2InfoLabel = new JLabel("  200 TamoTokens - 3 " + p.getSettings().getLang().getText(22));
+			food2InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food2BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-plate.png")));
 		
-		food3InfoLabel = new JLabel("800 TamoTokens, 10 " + p.getSettings().getLang().getText(22));
+		food3InfoLabel = new JLabel("  800 TamoTokens - 10 " + p.getSettings().getLang().getText(22));
+			food3InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food3BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-cheesecake.png")));
 		
 		
