@@ -254,6 +254,25 @@ public class Profile {
 		return new Color(255,161,161);
 	}
 	
+	public Color getColorDark() {
+		if(this.guiColor.equals("default"))
+			return new Color(255,143,143);
+		if(this.guiColor.equals("blue"))
+			return new Color(143,143,255);
+		if(this.guiColor.equals("green"))
+			return new Color(143,255,143);
+		if(this.guiColor.equals("orange"))
+			return new Color(255,219,143);
+		if(this.guiColor.equals("purple"))
+			return new Color(236,143,255);
+		if(this.guiColor.equals("yellow"))
+			return new Color(255,255,143);
+		if(this.guiColor.equals("grey"))
+			return new Color(143,143,143);
+		
+		return new Color(255,143,143);
+	}
+	
 	@Override
 	public String toString() {
 		String profileInfo = username + "," + dateString + "," + lastLoginString + "," + totalTime

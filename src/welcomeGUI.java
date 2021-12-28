@@ -92,7 +92,7 @@ public class welcomeGUI extends JFrame {
 		UI.put("OptionPane.background", new Color(255,161,161));
 		UI.put("Panel.background", new Color(255,161,161));
 		
-		this.setTitle("TamoStudy | beta 2.4");
+		this.setTitle("TamoStudy | beta 3.0");
 		this.setSize(550,399);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -114,7 +114,7 @@ public class welcomeGUI extends JFrame {
 		encryption = new Encryption();
 		
 		fileChooser = new JFileChooser();
-		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("wel-welcome.png")));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("wel-welcome2.png")));
 		
 		topPanel = new JPanel();
 		centerPanel = new JPanel();
@@ -125,15 +125,15 @@ public class welcomeGUI extends JFrame {
 		
 		botLabel = new JLabel("alpha 0.5.0");
 		
-		createProfileButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-new_button.png")));
+		createProfileButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-new.png")));
 		createProfileButton.setBorderPainted(false);
 		createProfileButton.setFocusPainted(false);
 		createProfileButton.setContentAreaFilled(false);
-		existingLoginButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-load_button.png")));
+		existingLoginButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-load.png")));
 		existingLoginButton.setBorderPainted(false);
 		existingLoginButton.setFocusPainted(false);
 		existingLoginButton.setContentAreaFilled(false);
-		aboutButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-about.png")));
+		aboutButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("wel-option.png")));
 		aboutButton.setBorderPainted(false);
 		aboutButton.setFocusPainted(false);
 		aboutButton.setContentAreaFilled(false);
@@ -234,7 +234,10 @@ public class welcomeGUI extends JFrame {
 				rightPanel.setBackground(new Color(255,161,161));
 				rightPanel.setLayout(new GridLayout(4,1));
 				
-				JLabel label = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("about-about.png")));
+				JPanel optionsPanel = new JPanel();
+				optionsPanel.setLayout(new GridLayout(3,1));
+				
+				JLabel label = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("about-about2.png")));
 				JButton twitter_button = new JButton(new ImageIcon(getClass().getClassLoader().getResource("about-twitter.png")));
 				initButton(twitter_button);
 				
@@ -329,6 +332,11 @@ public class welcomeGUI extends JFrame {
 				
 				aboutPanel.add(label);
 				aboutPanel.add(rightPanel);
+				aboutPanel.add(optionsPanel, BorderLayout.SOUTH);
+					optionsPanel.add(checkForUpdatesButton);
+					JLabel spaceLabel = new JLabel();
+					optionsPanel.add(spaceLabel);
+					optionsPanel.add(updateProfile);
 				rightPanel.add(personal_button);
 				rightPanel.add(github_button);
 				rightPanel.add(twitter_button);
@@ -336,7 +344,7 @@ public class welcomeGUI extends JFrame {
 				
 				rootPane.setBackground(new Color(255,161,161));
 				
-				JOptionPane.showMessageDialog(rootPane, aboutPanel, "About TamoStudy", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(rootPane, aboutPanel, "Options - TamoStudy", JOptionPane.PLAIN_MESSAGE);
 			}
 			
 		});
@@ -490,8 +498,8 @@ public class welcomeGUI extends JFrame {
 		//topPanel.setBackground(new Color(255,161,161));
 		
 		//menu.add(updateProfile);
-		topPanel.add(checkForUpdatesButton);
-		topPanel.add(updateProfile);
+		//topPanel.add(checkForUpdatesButton);
+		//topPanel.add(updateProfile);
 	}
 	
 	public void addComponentsToCenterPanel() {

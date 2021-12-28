@@ -198,7 +198,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | beta 2.4");
+		this.setTitle("TamoStudy | beta 3.0");
 		this.setSize(720,549);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -349,11 +349,10 @@ public class GUI extends JFrame {
 		//Base Panel
 		timerPanel = new JPanel();
 		timerPanel.setLayout(new BorderLayout());
-		timerPanel.setBackground(profile.getColor());
 				
 		//timerTextPanel
 		timerTextPanel = new JPanel();
-		timerTextPanel.setBackground(profile.getColor());
+		timerTextPanel.setBackground(profile.getColorDark());
 				
 		minuteTime = new JLabel("00");
 		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 52));
@@ -368,7 +367,7 @@ public class GUI extends JFrame {
 				
 		//timerSetPanel
 		timerSetPanel = new JPanel();
-		timerSetPanel.setBackground(profile.getColor());
+		timerSetPanel.setBackground(profile.getColorDark());
 		
 		/*
 		 * Different Combo Boxes
@@ -413,19 +412,30 @@ public class GUI extends JFrame {
 			//Main Panels
 			JPanel topSetPanel = new JPanel();
 				topSetPanel.setLayout(new GridLayout(2,1));
+				topSetPanel.setBackground(profile.getColorDark());
 				JPanel topSetPanelTop = new JPanel();
+					topSetPanelTop.setBackground(profile.getColorDark());
 					JPanel topNumPanel = new JPanel();
+						topNumPanel.setBackground(profile.getColorDark());
 					JPanel topSessionPanel = new JPanel();
+						topSessionPanel.setBackground(profile.getColorDark());
 					JPanel topBreakPanel = new JPanel();
+						topBreakPanel.setBackground(profile.getColorDark());
 				JPanel topSetPanelBot = new JPanel();
+					topSetPanelBot.setBackground(profile.getColorDark());
 					//The Current Session Label is on this Panel
 				
 			JPanel botSetPanel = new JPanel();
+				botSetPanel.setBackground(profile.getColorDark());
 			JPanel numSessionPanel = new JPanel();
+				numSessionPanel.setBackground(profile.getColorDark());
 			
 			JPanel botNumPanel = new JPanel();
+				botNumPanel.setBackground(profile.getColorDark());
 			JPanel botSessionPanel = new JPanel();
+				botSessionPanel.setBackground(profile.getColorDark());
 			JPanel botBreakPanel = new JPanel();
+				botBreakPanel.setBackground(profile.getColorDark());
 			
 			
 			timerSetPanel.add(topSetPanel);
@@ -459,7 +469,7 @@ public class GUI extends JFrame {
 				
 		//timerButtonPanel
 		timerButtonPanel = new JPanel();
-		timerButtonPanel.setBackground(profile.getColor());
+		timerButtonPanel.setBackground(profile.getColorDark());
 				
 		startButton = new JButton(profile.getSettings().getLang().getText(3));
 		breakButton = new JButton(profile.getSettings().getLang().getText(4));
