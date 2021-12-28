@@ -64,13 +64,15 @@ public class ahmGUI extends JOptionPane {
 	
 	public void initComponents() {
 		guiPanel = new JPanel();
+		guiPanel.setBackground(profile.getColor());
 		guiPanel.setSize(550,720);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
 		
 		achievementPanel = new JPanel();
-		achievementPanel.setLayout(new GridLayout(11,1));
+		achievementPanel.setBackground(profile.getColor());
+		achievementPanel.setLayout(new GridLayout(4,2));
 		returnToFocus = new JButton(profile.getSettings().getLang().getText(23));
 		initButton(returnToFocus);
 		
