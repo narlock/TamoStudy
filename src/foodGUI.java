@@ -226,71 +226,74 @@ public class foodGUI extends JFrame {
 	}
 	
 	public void initComponentVisuals() {
-		returnToFocus.setBackground(Color.WHITE);
-		returnToFocus.setBorderPainted(false);
-		returnToFocus.setFocusPainted(false);
-		
-		returnToFocus.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(returnToFocus.isEnabled())
-		    		returnToFocus.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(returnToFocus.isEnabled())
-		    		returnToFocus.setBackground(Color.WHITE);
-		    }
-		});
-		
-		
-		
-		food1BuyButton.setBackground(Color.WHITE);
-		food1BuyButton.setBorderPainted(false);
-		food1BuyButton.setFocusPainted(false);
-		
-		food1BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(food1BuyButton.isEnabled())
-		    		food1BuyButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(food1BuyButton.isEnabled())
-		    		food1BuyButton.setBackground(Color.WHITE);
-		    }
-		});
-		
-		food2BuyButton.setBackground(Color.WHITE);
-		food2BuyButton.setBorderPainted(false);
-		food2BuyButton.setFocusPainted(false);
-		
-		food2BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(food2BuyButton.isEnabled())
-		    		food2BuyButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(food2BuyButton.isEnabled())
-		    		food2BuyButton.setBackground(Color.WHITE);
-		    }
-		});
-		
-		food3BuyButton.setBackground(Color.WHITE);
-		food3BuyButton.setBorderPainted(false);
-		food3BuyButton.setFocusPainted(false);
-		
-		food3BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(food3BuyButton.isEnabled())
-		    		food3BuyButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(food3BuyButton.isEnabled())
-		    		food3BuyButton.setBackground(Color.WHITE);
-		    }
-		});
+		if(System.getProperty("os.name").startsWith("Windows")) {
+			
+			returnToFocus.setBackground(Color.WHITE);
+			returnToFocus.setBorderPainted(false);
+			returnToFocus.setFocusPainted(false);
+			
+			returnToFocus.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(returnToFocus.isEnabled())
+			    		returnToFocus.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(returnToFocus.isEnabled())
+			    		returnToFocus.setBackground(Color.WHITE);
+			    }
+			});
+			
+			
+			
+			food1BuyButton.setBackground(Color.WHITE);
+			food1BuyButton.setBorderPainted(false);
+			food1BuyButton.setFocusPainted(false);
+			
+			food1BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(food1BuyButton.isEnabled())
+			    		food1BuyButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(food1BuyButton.isEnabled())
+			    		food1BuyButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			food2BuyButton.setBackground(Color.WHITE);
+			food2BuyButton.setBorderPainted(false);
+			food2BuyButton.setFocusPainted(false);
+			
+			food2BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(food2BuyButton.isEnabled())
+			    		food2BuyButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(food2BuyButton.isEnabled())
+			    		food2BuyButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			food3BuyButton.setBackground(Color.WHITE);
+			food3BuyButton.setBorderPainted(false);
+			food3BuyButton.setFocusPainted(false);
+			
+			food3BuyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(food3BuyButton.isEnabled())
+			    		food3BuyButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(food3BuyButton.isEnabled())
+			    		food3BuyButton.setBackground(Color.WHITE);
+			    }
+			});
+		}
 	}
 	
 	/*

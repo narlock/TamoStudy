@@ -234,7 +234,8 @@ public class GUI extends JFrame {
 		headPanel.setBackground(profile.getColor());
 		
 		headMenu = new JMenuBar();
-		headMenu.setBackground(Color.WHITE);
+		if(System.getProperty("os.name").startsWith("Windows"))
+			headMenu.setBackground(Color.WHITE);
 		profileMenu = new JMenu("Profile");	
 		
 		//Initialize Head Panel components
@@ -1051,85 +1052,90 @@ public class GUI extends JFrame {
 	 * Initalizes the Button Visuals
 	 */
 	public void initButtonVisuals() {
-		feedButton.setBackground(Color.WHITE);
-		feedButton.setBorderPainted(false);
-		feedButton.setFocusPainted(false);
+		String operatingSystem = System.getProperty("os.name");
 		
-		feedButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(feedButton.isEnabled())
-		    		feedButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(feedButton.isEnabled())
-		    		feedButton.setBackground(Color.WHITE);
-		    }
-		});
+		if(operatingSystem.startsWith("Windows")) {
 		
-		backgroundShopButton.setBackground(Color.WHITE);
-		backgroundShopButton.setBorderPainted(false);
-		backgroundShopButton.setFocusPainted(false);
-		
-		backgroundShopButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(backgroundShopButton.isEnabled())
-		    		backgroundShopButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(backgroundShopButton.isEnabled())
-		    		backgroundShopButton.setBackground(Color.WHITE);
-		    }
-		});
-		
-		logOutButton.setBackground(Color.WHITE);
-		logOutButton.setBorderPainted(false);
-		logOutButton.setFocusPainted(false);
-		
-		logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(logOutButton.isEnabled())
-		    		logOutButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(logOutButton.isEnabled())
-		    		logOutButton.setBackground(Color.WHITE);
-		    }
-		});
-		
-		startButton.setBackground(Color.WHITE);
-		startButton.setBorderPainted(false);
-		startButton.setFocusPainted(false);
-		
-		startButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(startButton.isEnabled())
-		    		startButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(startButton.isEnabled())
-		    		startButton.setBackground(Color.WHITE);
-		    }
-		});
-		
-		breakButton.setBackground(Color.WHITE);
-		breakButton.setBorderPainted(false);
-		breakButton.setFocusPainted(false);
-		
-		breakButton.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	if(breakButton.isEnabled())
-		    		breakButton.setBackground(Color.LIGHT_GRAY);
-		    }
-
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	if(breakButton.isEnabled())
-		    		breakButton.setBackground(Color.WHITE);
-		    }
-		});
+			feedButton.setBackground(Color.WHITE);
+			feedButton.setBorderPainted(false);
+			feedButton.setFocusPainted(false);
+			
+			feedButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(feedButton.isEnabled())
+			    		feedButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(feedButton.isEnabled())
+			    		feedButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			backgroundShopButton.setBackground(Color.WHITE);
+			backgroundShopButton.setBorderPainted(false);
+			backgroundShopButton.setFocusPainted(false);
+			
+			backgroundShopButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(backgroundShopButton.isEnabled())
+			    		backgroundShopButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(backgroundShopButton.isEnabled())
+			    		backgroundShopButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			logOutButton.setBackground(Color.WHITE);
+			logOutButton.setBorderPainted(false);
+			logOutButton.setFocusPainted(false);
+			
+			logOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(logOutButton.isEnabled())
+			    		logOutButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(logOutButton.isEnabled())
+			    		logOutButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			startButton.setBackground(Color.WHITE);
+			startButton.setBorderPainted(false);
+			startButton.setFocusPainted(false);
+			
+			startButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(startButton.isEnabled())
+			    		startButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(startButton.isEnabled())
+			    		startButton.setBackground(Color.WHITE);
+			    }
+			});
+			
+			breakButton.setBackground(Color.WHITE);
+			breakButton.setBorderPainted(false);
+			breakButton.setFocusPainted(false);
+			
+			breakButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			    public void mouseEntered(java.awt.event.MouseEvent evt) {
+			    	if(breakButton.isEnabled())
+			    		breakButton.setBackground(Color.LIGHT_GRAY);
+			    }
+	
+			    public void mouseExited(java.awt.event.MouseEvent evt) {
+			    	if(breakButton.isEnabled())
+			    		breakButton.setBackground(Color.WHITE);
+			    }
+			});
+		}
 		
 	}
 	
