@@ -1,6 +1,7 @@
 package guicomponents;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +19,7 @@ public class invItemPanel extends JPanel {
 									"color-purple.png", 
 									"color-yellow.png", 
 									"color-grey.png",
-									"inv-7.png", "inv-8.png","inv-9.png","inv-10.png","inv-11.png"};
+									"inv-7.png", "inv-8.png","inv-9.png","inv-a.png","inv-b.png"};
 	
 	private String[] itemTitle = {"Default Background Color",
 								"Blue Background Color",
@@ -45,8 +46,12 @@ public class invItemPanel extends JPanel {
 	}
 	
 	public void createPanel() {
-		this.add(itemImage, BorderLayout.CENTER);
-		this.add(useItem, BorderLayout.SOUTH);
+		this.setLayout(new GridLayout(2,1));
+		this.add(itemImage);
+		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.add(useItem);
+		this.add(bottomPanel);
 	}
 	
 	public invItemPanel getInvItemPanel() {

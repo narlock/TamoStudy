@@ -64,9 +64,39 @@ public class bgGUI extends JFrame {
 		
 		setUpGUI();
 		
+		inventoryConditions();
+		
 		this.setSize(900, 800);
 	}
 	
+	private void inventoryConditions() {
+		String invString = p.getInv().getInvString();
+		if(invString.contains("0"))
+			this.redButton.setEnabled(false);
+		if(invString.contains("1"))
+			this.blueButton.setEnabled(false);
+		if(invString.contains("2"))
+			this.greenButton.setEnabled(false);
+		if(invString.contains("3"))
+			this.orangeButton.setEnabled(false);
+		if(invString.contains("4"))
+			this.purpleButton.setEnabled(false);
+		if(invString.contains("5"))
+			this.yellowButton.setEnabled(false);
+		if(invString.contains("6"))
+			this.greyButton.setEnabled(false);
+		if(invString.contains("a"))
+			this.bg1button.setEnabled(false);
+		if(invString.contains("b"))
+			this.bg2button.setEnabled(false);
+		if(invString.contains("c"))
+			this.bg3button.setEnabled(false);
+		if(invString.contains("d"))
+			this.bg4button.setEnabled(false);
+		if(invString.contains("e"))
+			this.bg5button.setEnabled(false);
+	}
+
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		

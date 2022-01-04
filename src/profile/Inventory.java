@@ -1,6 +1,7 @@
 package profile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 
@@ -10,18 +11,26 @@ import java.util.ArrayList;
  */
 
 public class Inventory {
-	private final int MAX_INVENTORY_COUNT = 11;
 	
-	private int[] indicator;
-	private String[] stringIndicator;
 	private String invString;
 	private ArrayList<Item> items;
 	
-	private String[] itemIndicator = 
-		{"redBg","blueBg","greenBg","orangeBg","purpleBg","yellowBg","greyBg"
-				,"bg1","bg2","bg3","bg4","bg5"
-		};
-	
+	@SuppressWarnings("serial")
+	private final HashMap<String, String> dictionaryName = new HashMap<String, String>()
+	{{
+		put("0","redBg"); 
+		put("1","blueBg"); 
+		put("2","greenBg"); 
+		put("3","orangeBg"); 
+		put("4","purpleBg"); 
+		put("5","yellowBg"); 
+		put("6","greyBg"); 
+		put("7","bg1"); 
+		put("8","bg2"); 
+		put("9","bg3");
+		put("a","bg4");
+		put("b","bg5"); 
+	}};
 	/*
 	 * Default constructor - first time
 	 */
@@ -44,10 +53,9 @@ public class Inventory {
 		if(this.invString.equals("-1")) {
 			//Do nothing - no inventory
 		} else {
-			char[] ch = this.invString.toCharArray();
-			for(int i = 0; i < ch.length; i++) {
-				int num = Integer.parseInt(String.valueOf(ch[i])); //Converts char to int
-				items.add(new Item(itemIndicator[num], num)); //Adds item with associated (name, indicator)
+			String[] ch = this.invString.split("");
+			for (String value : ch) {
+				items.add(new Item(dictionaryName.get(value), value));
 			}
 		}
 	}
@@ -56,13 +64,13 @@ public class Inventory {
 	 * Add Item to inventory
 	 * Adds to arraylist, updates string
 	 */
-	public void addItem(int indicator) {
+	public void addItem(String indicator) {
 		if(this.invString.equals("-1")) {
-			this.invString = Integer.toString(indicator);
-			items.add(new Item(itemIndicator[indicator], indicator));
+			this.invString = indicator;
+			items.add(new Item(dictionaryName.get(indicator), indicator));
 		} else {
 			this.invString = this.invString + indicator; //appends to end
-			items.add(new Item(itemIndicator[indicator], indicator));
+			items.add(new Item(dictionaryName.get(indicator), indicator));
 		}
 	}
 	
