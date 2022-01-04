@@ -60,6 +60,7 @@ public class Profile {
 		this.tamo = new Tamo();
 		this.settings = new ProfileSettings(0);
 		this.ahm = new Achievements();
+		this.inv = new Inventory();
 	}
 	
 	/*
@@ -83,6 +84,7 @@ public class Profile {
 		this.tamo = new Tamo(tamoName);
 		this.settings = new ProfileSettings(lang);
 		this.ahm = new Achievements();
+		this.inv = new Inventory();
 	}
 	
 	
@@ -92,7 +94,7 @@ public class Profile {
 	 * The constructor that is used when a profile is being loaded
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String dateString, String lastLoginString, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm) {
+	public Profile(String username, String dateString, String lastLoginString, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm, Inventory loadInv) {
 		this.username = username;
 		this.dateString = dateString;
 		this.lastLoginString = lastLoginString;
@@ -105,6 +107,7 @@ public class Profile {
 		this.settings = settings;
 		this.tamo = tamo;
 		this.ahm = ahm;
+		this.inv = loadInv;
 	}
 
 	/*

@@ -27,10 +27,12 @@ public class Inventory {
 	 */
 	public Inventory() {
 		this.invString = "-1";
+		this.items = new ArrayList<Item>();
 	}
 	
 	public Inventory(String aline) {
 		this.invString = aline;
+		this.items = new ArrayList<Item>();
 		updateItemList();
 	}
 	
@@ -66,5 +68,9 @@ public class Inventory {
 	
 	public ArrayList<Item> getItemList() {
 		return items;
+	}
+	
+	public String getInvString() {
+		return invString;
 	}
 }

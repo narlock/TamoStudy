@@ -6,6 +6,7 @@
 
 import javax.swing.*;
 
+import guicomponents.invItemPanel;
 import profile.Item;
 
 import java.awt.*;
@@ -24,13 +25,15 @@ public class inventoryGUI extends JFrame {
 	private File file;
 	private GridBagConstraints gbc = new GridBagConstraints();
 	private ArrayList<Item> items;
+	private invItemPanel[] itemPanels;
 	
 	//North Panel Components
 	private JPanel northPanel;
 	private JButton returnToFocus;
 	
 	//Center Panel Components
-	private JPanel centerPanel;
+	private JPanel centerPanel, itemPanelMain;
+	private final JLabel NO_ITEMS = new JLabel("Inventory Empty");
 	
 	//South Panel Components
 	private JPanel southPanel;
@@ -94,11 +97,58 @@ public class inventoryGUI extends JFrame {
 	}
 	
 	public void initCenterComponents() {
-		
+		itemPanelMain = new JPanel();
+		initItemPanel();
 	}
 	
 	public void initSouthComponents() {
 		
+	}
+	
+	public void initItemPanel() {
+		itemPanels = new invItemPanel[items.size()];
+		
+		if(p.getInv().getInvString().equals("-1")) {
+			itemPanelMain.add(NO_ITEMS);
+		} else {
+			itemPanelMain.setLayout(new GridLayout(3,2));
+			
+			for(int i = 0; i < items.size(); i++) {
+				itemPanels[i] = new invItemPanel(items.get(i).getIndicator());
+				initButtonActions(itemPanels[i]);
+				itemPanelMain.add(itemPanels[i]);
+			}
+		}
+	}
+	
+	public void initButtonActions(invItemPanel item) {
+		//If the item is a background, add the background
+		if(item.getId() <= 6) {
+			item.getButton().addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int resultPane = JOptionPane.showConfirmDialog(null, "Are you sure?","Apply " + item.getItemTitle() + "?",
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					if(resultPane == JOptionPane.OK_OPTION) {
+						
+					}
+				}
+				
+			});
+		} else {
+			item.getButton().addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+		}
+				
+	//TODO If the item is already being used, disable the button
 	}
 	
 	/*
@@ -107,7 +157,10 @@ public class inventoryGUI extends JFrame {
 	public void setUpGUI() {
 		northPanel.add(returnToFocus);
 		
+		centerPanel.add(itemPanelMain);
+		
 		this.add(northPanel, BorderLayout.NORTH);
+		this.add(centerPanel, BorderLayout.CENTER);
 		
 	}
 	
