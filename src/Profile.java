@@ -36,6 +36,7 @@ public class Profile {
 	private Tamo tamo;
 	private ProfileSettings settings;
 	private Achievements ahm;
+	private Inventory inv;
 
 	
 	/*
@@ -279,5 +280,13 @@ public class Profile {
 						+ "," + money + "," + currentBackground + "," + guiColor + "," + warnings;
 		
 		return profileInfo;
+	}
+
+	public Inventory getInv() {
+		return inv;
+	}
+
+	public void setInv(Inventory inv) {
+		this.inv = inv;
 	}
 }

@@ -243,7 +243,6 @@ public class GUI extends JFrame {
 		optionsButton = new JMenuItem(profile.getSettings().getLang().getText(8), new ImageIcon(getClass().getClassLoader().getResource("menu-options.png")));
 		ahmButton = new JMenuItem(profile.getSettings().getLang().getText(21), new ImageIcon(getClass().getClassLoader().getResource("menu-ahm.png")));
 		inventoryButton = new JMenuItem("Inventory", new ImageIcon(getClass().getClassLoader().getResource("menu-inventory.png")));
-		inventoryButton.setEnabled(false);
 		
 		//Other Menu Options
 		feedButton = new JButton(profile.getSettings().getLang().getText(6));
@@ -612,6 +611,7 @@ public class GUI extends JFrame {
 				feedButton.setEnabled(false);
 				backgroundShopButton.setEnabled(false);
 				optionsButton.setEnabled(false);
+				inventoryButton.setEnabled(false);
 				ahmButton.setEnabled(false);
 				logOutButton.setEnabled(false);
 				
@@ -975,6 +975,15 @@ public class GUI extends JFrame {
 			}
 			
 		});
+		
+		inventoryButton.addActionListener(new ActionListener() {
+		 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				inventoryGUI invGui = new inventoryGUI(profile, profileFile);
+				hideWindow();
+			}
+		});
 
 	}
 	
@@ -1188,6 +1197,7 @@ public class GUI extends JFrame {
 		feedButton.setEnabled(true);
 		backgroundShopButton.setEnabled(true);
 		optionsButton.setEnabled(true);
+		inventoryButton.setEnabled(true);
 		ahmButton.setEnabled(true);
 		logOutButton.setEnabled(true);
 		
@@ -1258,6 +1268,7 @@ public class GUI extends JFrame {
 			 * [14] -> Tamo Happiness Integer
 			 * [15] -> Tamo Hunger Integer
 			 * [16] -> Achievement Indicator String
+			 * [17] -> Inventory String
 			 */
 			
 			if(profile.getNewLoginString() == null) {
