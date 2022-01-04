@@ -63,4 +63,8 @@ public class Inventory {
 			items.add(new Item(itemIndicator[indicator], indicator));
 		}
 	}
+	
+	public ArrayList<Item> getItemList() {
+		return items;
+	}
 }

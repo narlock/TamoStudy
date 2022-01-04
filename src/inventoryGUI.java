@@ -39,6 +39,7 @@ public class inventoryGUI extends JFrame {
 	public inventoryGUI(Profile profile, File profileFile) {
 		this.p = profile;
 		this.file = profileFile;
+		this.items = profile.getInv().getItemList();
 		
 		setUpFrame();
 		
