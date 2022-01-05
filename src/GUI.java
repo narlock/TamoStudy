@@ -185,6 +185,7 @@ public class GUI extends JFrame {
 		} else {
 			this.setSize(720, 550);
 		}
+		
 	}
 	
 	/*
@@ -1302,6 +1303,11 @@ public class GUI extends JFrame {
 			 * Rewriting Achievement String
 			 */
 			inputtedString[16] = profile.getAhm().getAhmString();
+			
+			/*
+			 * Rewriting Inventory String
+			 */
+			inputtedString[17] = profile.getInv().getInvString();
 			
 			
 			//join the string back together and re-encrypt

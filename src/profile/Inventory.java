@@ -35,7 +35,7 @@ public class Inventory {
 	 * Default constructor - first time
 	 */
 	public Inventory() {
-		this.invString = "-1";
+		this.invString = "-";
 		this.items = new ArrayList<Item>();
 	}
 	
@@ -50,7 +50,7 @@ public class Inventory {
 	 * to contain the property item contents
 	 */
 	public void updateItemList() {
-		if(this.invString.equals("-1")) {
+		if(this.invString.equals("-")) {
 			//Do nothing - no inventory
 		} else {
 			String[] ch = this.invString.split("");
@@ -65,7 +65,7 @@ public class Inventory {
 	 * Adds to arraylist, updates string
 	 */
 	public void addItem(String indicator) {
-		if(this.invString.equals("-1")) {
+		if(this.invString.equals("-")) {
 			this.invString = indicator;
 			items.add(new Item(dictionaryName.get(indicator), indicator));
 		} else {
@@ -80,5 +80,9 @@ public class Inventory {
 	
 	public String getInvString() {
 		return invString;
+	}
+	
+	public void setInvString(String str) {
+		this.invString = str;
 	}
 }

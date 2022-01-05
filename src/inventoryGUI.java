@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class inventoryGUI extends JFrame {
 	
@@ -36,10 +37,32 @@ public class inventoryGUI extends JFrame {
 	private final JLabel NO_ITEMS = new JLabel("Inventory Empty");
 	
 	//South Panel Components
-	private JPanel southPanel;
+	private JPanel southPanel, infoPanel;
+	private JLabel inventoryInfo, inventoryDesc;
+	
+	private final HashMap<Integer, String> guiMap = new HashMap<Integer, String>()
+	{{
+		put(0,"default"); 
+		put(1,"blue"); 
+		put(2,"green"); 
+		put(3,"orange"); 
+		put(4,"purple"); 
+		put(5,"yellow"); 
+		put(6,"grey"); 
+	}};
+	
+	private final HashMap<Integer, Integer> bgMap = new HashMap<Integer, Integer>()
+	{{
+		put(7,0); 
+		put(8,1); 
+		put(9,2); 
+		put(10,3); 
+		put(11,4); 
+	}};
 	
 	
 	public inventoryGUI(Profile profile, File profileFile) {
+		
 		this.p = profile;
 		this.file = profileFile;
 		this.items = profile.getInv().getItemList();
@@ -50,9 +73,20 @@ public class inventoryGUI extends JFrame {
 		
 		setUpGUI();
 		
+		inventoryConditions();
+		
 		this.setSize(550, 600);
+		
+		System.out.println("DEBUG: " + p.getInv().getInvString());
 	}
 	
+	private void inventoryConditions() {
+		//TODO Make so already applied items cannot be re-applied
+		String currentGuiColor = p.getGuiColor();
+		int currentBackground = p.getCurrentBackground();
+		
+	}
+
 	/*
 	 *  Sets up frame information, size, etc.
 	 */
@@ -102,13 +136,17 @@ public class inventoryGUI extends JFrame {
 	}
 	
 	public void initSouthComponents() {
+		infoPanel = new JPanel();
 		
+		inventoryInfo = new JLabel("Inventory Information");
+			//inventoryInfo.setFont(new Font("Tahoma", 14, Font.BOLD));
+		inventoryDesc = new JLabel("Select 'Use Item' to apply item in inventory.");
 	}
 	
 	public void initItemPanel() {
 		itemPanels = new invItemPanel[items.size()];
 		
-		if(p.getInv().getInvString().equals("-1")) {
+		if(p.getInv().getInvString().equals("-")) {
 			itemPanelMain.add(NO_ITEMS);
 		} else {
 			itemPanelMain.setLayout(new GridLayout(3,2));
@@ -126,12 +164,13 @@ public class inventoryGUI extends JFrame {
 		if(item.getId() <= 6) {
 			item.getButton().addActionListener(new ActionListener() {
 
-				@Override
 				public void actionPerformed(ActionEvent e) {
 					int resultPane = JOptionPane.showConfirmDialog(null, "Are you sure?","Apply " + item.getItemTitle() + "?",
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 					if(resultPane == JOptionPane.OK_OPTION) {
-						
+						p.setGuiColor(guiMap.get(item.getId()));
+						GUI Focus = new GUI(p,file);
+						hideWindow();
 					}
 				}
 				
@@ -141,7 +180,13 @@ public class inventoryGUI extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
+					int resultPane = JOptionPane.showConfirmDialog(null, "Are you sure?","Apply " + item.getItemTitle() + "?",
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					if(resultPane == JOptionPane.OK_OPTION) {
+						p.setCurrentBackground(bgMap.get(item.getId()));
+						GUI Focus = new GUI(p,file);
+						hideWindow();
+					}
 					
 				}
 				

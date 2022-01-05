@@ -108,6 +108,7 @@ public class Profile {
 		this.tamo = tamo;
 		this.ahm = ahm;
 		this.inv = loadInv;
+		
 	}
 
 	/*

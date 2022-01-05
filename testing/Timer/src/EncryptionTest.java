@@ -47,7 +47,7 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		EncryptionTest e = new EncryptionTest();
 
-		System.out.println(e.encrypt("Firebal,2022-01-04,2022-01-04,0,0,0,default,0,0,0,0,0,Lisa,1,5,5,00000000,0123456789ab"));
+		System.out.println(e.encrypt("Firebal,2022-01-04,2022-01-04,0,100000,0,default,0,0,0,0,0,Lisa,1,5,5,00000000,-"));
 		}
 	
 }

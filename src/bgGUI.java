@@ -85,15 +85,15 @@ public class bgGUI extends JFrame {
 			this.yellowButton.setEnabled(false);
 		if(invString.contains("6"))
 			this.greyButton.setEnabled(false);
-		if(invString.contains("a"))
+		if(invString.contains("7"))
 			this.bg1button.setEnabled(false);
-		if(invString.contains("b"))
+		if(invString.contains("8"))
 			this.bg2button.setEnabled(false);
-		if(invString.contains("c"))
+		if(invString.contains("9"))
 			this.bg3button.setEnabled(false);
-		if(invString.contains("d"))
+		if(invString.contains("a"))
 			this.bg4button.setEnabled(false);
-		if(invString.contains("e"))
+		if(invString.contains("b"))
 			this.bg5button.setEnabled(false);
 	}
 
@@ -198,8 +198,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(0);
 						p.setMoney(p.getMoney() - 1000);
-						
 						p.getAhm().setIndicator(4,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("7");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "7");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -221,8 +226,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(1);
 						p.setMoney(p.getMoney() - 1000);
-						
 						p.getAhm().setIndicator(4,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("8");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "8");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -244,8 +254,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(2);
 						p.setMoney(p.getMoney() - 1000);
-						
 						p.getAhm().setIndicator(4,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("9");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "9");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -267,8 +282,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
-						
 						p.getAhm().setIndicator(4,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("a");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "a");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -290,8 +310,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
-						
 						p.getAhm().setIndicator(4,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("b");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "b");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -386,8 +411,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("default");
 						p.setMoney(p.getMoney() - 500);
-						
 						p.getAhm().setIndicator(3,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("0");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "0");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -410,8 +440,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("blue");
 						p.setMoney(p.getMoney() - 500);
-						
 						p.getAhm().setIndicator(3,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("1");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "1");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -433,8 +468,13 @@ public class bgGUI extends JFrame {
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("green");
 						p.setMoney(p.getMoney() - 500);
-						
 						p.getAhm().setIndicator(3,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("2");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "2");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -459,6 +499,12 @@ public class bgGUI extends JFrame {
 						
 						p.getAhm().setIndicator(3,1);
 						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("3");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "3");
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -481,6 +527,12 @@ public class bgGUI extends JFrame {
 						p.setMoney(p.getMoney() - 500);
 						
 						p.getAhm().setIndicator(3,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("4");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "4");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
@@ -505,6 +557,12 @@ public class bgGUI extends JFrame {
 						
 						p.getAhm().setIndicator(3,1);
 						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("5");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "5");
+						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
 					}
@@ -527,6 +585,12 @@ public class bgGUI extends JFrame {
 						p.setMoney(p.getMoney() - 500);
 						
 						p.getAhm().setIndicator(3,1);
+						
+						//Add Item to inventory with string
+						if(p.getInv().getInvString().equals("-"))
+							p.getInv().setInvString("6");
+						else
+							p.getInv().setInvString(p.getInv().getInvString() + "6");
 						
 						GUI Focus = new GUI(p,file);
 						hideWindow();
