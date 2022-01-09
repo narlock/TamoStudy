@@ -861,11 +861,12 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JPanel optionsPanel = new JPanel();
 				//TODO Change back to 3,1 AFTER DEBUG SESSION IS OVER
-				optionsPanel.setLayout(new GridLayout(4,1));
+				optionsPanel.setLayout(new GridLayout(5,1));
 				
-				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel();
+				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel(), op4 = new JPanel();
 				JLabel focusModeLabel = new JLabel("Change Focus Mode");
 				JLabel langLabel = new JLabel("Change Language");
+				JLabel diffLabel = new JLabel("Change Difficulty");
 				JLabel soundsLabel = new JLabel("Sounds");
 				
 				JButton debugButton = new JButton("Debug");
@@ -899,6 +900,12 @@ public class GUI extends JFrame {
 				
 				languageBox.setSelectedIndex(profile.getSettings().getLang().getIndicator());
 				
+				JComboBox difficultyBox = new JComboBox();
+				difficultyBox.addItem("Peaceful");
+				difficultyBox.addItem("Challenging");
+				
+				difficultyBox.setSelectedIndex(profile.getSettings().getDifficulty());
+				
 				JButton soundButton = new JButton();
 					if(profile.getSettings().getSessionSounds() == 1)
 						soundButton.setText("ON");
@@ -926,6 +933,7 @@ public class GUI extends JFrame {
 				
 				optionsPanel.add(op1);
 				optionsPanel.add(op2);
+				optionsPanel.add(op4);
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
@@ -937,6 +945,9 @@ public class GUI extends JFrame {
 				op2.add(langLabel);
 				op2.add(languageBox);
 				
+				op4.add(diffLabel);
+				op4.add(difficultyBox);
+				
 				op3.add(soundsLabel);
 				op3.add(soundButton);
 				
@@ -947,11 +958,13 @@ public class GUI extends JFrame {
 					//Focus Mode
 					int focusModeIndicator = getFocusIndicator(focusMode.getSelectedItem().toString());
 					int languageIndicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
+					int difficultyIndicator = getDifficultyIndicator(difficultyBox.getSelectedItem().toString());
 					
 					//TODO Sounds on/off
 					
 					profile.getSettings().setFocusMode(focusModeIndicator);
 					profile.getSettings().getLang().setIndicator(languageIndicator);
+					profile.getSettings().setDifficulty(difficultyIndicator);
 					
 					//Update and Reload GUI
 					updateUserInformationToFile();
@@ -1668,7 +1681,8 @@ public class GUI extends JFrame {
 			profile.setConsecutiveLoginCount(0);
 			
 			//If the user does not log in for a week, they will recieve a strike
-			profile.setStrikeCount(profile.getStrikeCount() + 1);
+			if(profile.getSettings().getDifficulty() == 1)
+				profile.setStrikeCount(profile.getStrikeCount() + 1);
 			
 			if(profile.getStrikeCount() == 3)
 				this.death = true;
@@ -1833,6 +1847,20 @@ public class GUI extends JFrame {
 		
 		return 0;
 	}
+	
+	/*
+	 * getDifficultyIndicator
+	 * Returns the index corresponding to the difficultyString argument
+	 */
+	public int getDifficultyIndicator(String difficultyString) {
+		if(difficultyString.equals("Peaceful"))
+			return 0;
+		if(difficultyString.equals("Challenging"))
+			return 1;
+		
+		return 0;
+	}
+	
 	
 	/*
 	 * This method checks for updates for the achievements

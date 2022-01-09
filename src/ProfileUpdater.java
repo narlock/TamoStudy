@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProfileUpdater extends JFrame {
 	
@@ -84,8 +86,9 @@ public class ProfileUpdater extends JFrame {
 		imagePanel.setBackground(new Color(255,161,161));
 		
 		titleLabel = new JLabel("TamoStudy Profile Updater");
-		tamoInfoImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-		mainImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("use-profileUpdater.png")));
+		//tamoInfoImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+		tamoInfoImage = new JLabel();
+		mainImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("update.png")));
 		selectVersionLabel = new JLabel("Select Version:");
 		selectFileButton = new JButton("Open Profile File");
 		
@@ -95,6 +98,7 @@ public class ProfileUpdater extends JFrame {
 		//versionBox.addItem("alpha 0.5.0");
 		//versionBox.addItem("alpha 0.6.2");
 		versionBox.addItem("beta 1.1");
+		versionBox.addItem("beta 2.4");
 		
 		pathFileLabel = new JLabel("No File Opened");
 		
@@ -103,7 +107,7 @@ public class ProfileUpdater extends JFrame {
 	
 	public void initComponentFunctionality() {
 		
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 
 		selectFileButton.addActionListener(new ActionListener() {
 			@Override
@@ -183,6 +187,11 @@ public class ProfileUpdater extends JFrame {
 		
 		if(version == "beta 1.1") {
 			updateVersion(2);
+			return;
+		}
+		
+		if(version == "beta 2.4") {
+			updateVersion(3);
 			return;
 		}
 		
@@ -314,7 +323,9 @@ public class ProfileUpdater extends JFrame {
 
 					
 					String[] newDetails = new String[17];
+					String[] newerDetails = new String[21];
 					
+					//Updates to 2.4
 					newDetails[0] = oldDetails[0];
 					newDetails[1] = oldDetails[1];
 					newDetails[2] = oldDetails[8];
@@ -332,6 +343,81 @@ public class ProfileUpdater extends JFrame {
 					newDetails[14] = oldDetails[6];
 					newDetails[15] = oldDetails[7];
 					newDetails[16] = "00000100";
+					
+					update2to3(newDetails, newerDetails);
+					
+					System.out.println("\n");
+					
+					for(int i = 0; i < newerDetails.length; i++) {
+						System.out.print("newdetails["+i+"] = " + newerDetails[i] + ",");
+					}
+					
+					String newInfo = String.join(",", newerDetails);
+					System.out.println("\nnewinfo = " + newInfo);
+					newInfo = encryption.encrypt(newInfo);
+					
+					File fnew = new File(file.getAbsolutePath());
+					
+					try {
+						FileWriter writer = new FileWriter(fnew, false);
+						writer.write(newInfo);
+						writer.close();
+						return;
+						
+					} catch (IOException e) {
+						
+					} catch (ArrayIndexOutOfBoundsException e) {
+						
+					}
+					
+				}
+			}
+		}
+		
+		if(num == 3) {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			String line;
+			while ((line = (br.readLine())) != null) {
+				if(!line.equals("")) {
+					line = encryption.decrypt(line);
+					String[] oldDetails = line.split(",");
+					
+					for(int i = 0; i < oldDetails.length; i++) {
+						System.out.print("olddetails["+i+"] = " + oldDetails[i] + ",");
+					}
+
+					
+					String[] newDetails = new String[21];
+					
+					newDetails[0] = oldDetails[0];
+					newDetails[1] = oldDetails[1];
+					
+					//Apparently there was an unknown date bug in this version
+					//New date assigned
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					Date newDate = new Date();
+					String newDateString = formatter.format(newDate);
+					newDetails[2] = newDateString;
+					
+					newDetails[3] = "0"; //CONSECUTIVE LOGIN
+					newDetails[4] = oldDetails[3];
+					newDetails[5] = oldDetails[4];
+					newDetails[6] = oldDetails[5];
+					newDetails[7] = oldDetails[6];
+					newDetails[8] = "0"; //STRIKE COUNT
+					newDetails[9] = "0"; //SAME DAY CHECK
+					newDetails[10] = oldDetails[8];
+					newDetails[11] = oldDetails[9];
+					newDetails[12] = oldDetails[10];
+					newDetails[13] = oldDetails[11];
+					newDetails[14] = "0"; //DIFFICULTY
+					newDetails[15] = oldDetails[12];
+					newDetails[16] = oldDetails[13];
+					newDetails[17] = oldDetails[14];
+					newDetails[18] = oldDetails[15];
+					newDetails[19] = oldDetails[16]; //ACHIEVEMENT
+					newDetails[20] = "-";
 					
 					System.out.println("\n");
 					
@@ -363,6 +449,28 @@ public class ProfileUpdater extends JFrame {
 		
 	}
 	
+	private void update2to3(String[] oldDetails, String[] newDetails) {
+		newDetails[3] = "0"; //CONSECUTIVE LOGIN
+		newDetails[4] = oldDetails[3];
+		newDetails[5] = oldDetails[4];
+		newDetails[6] = oldDetails[5];
+		newDetails[7] = oldDetails[6];
+		newDetails[8] = "0"; //STRIKE COUNT
+		newDetails[9] = "0"; //SAME DAY CHECK
+		newDetails[10] = oldDetails[8];
+		newDetails[11] = oldDetails[9];
+		newDetails[12] = oldDetails[10];
+		newDetails[13] = oldDetails[11];
+		newDetails[14] = "0"; //DIFFICULTY
+		newDetails[15] = oldDetails[12];
+		newDetails[16] = oldDetails[13];
+		newDetails[17] = oldDetails[14];
+		newDetails[18] = oldDetails[15];
+		newDetails[19] = oldDetails[16]; //ACHIEVEMENT
+		newDetails[20] = "-";
+		
+	}
+
 	/*
 	 * Method hides the main windows and disposes it
 	 */
