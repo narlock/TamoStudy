@@ -42,6 +42,8 @@ public class Profile {
 	 * 3.0 Attributes
 	 */
 	private int consecutiveLoginCount;
+	private int sameDayCheck;
+	
 	private int strikeCount;
 	private Tamo[] tamoHistory;
 
@@ -69,6 +71,7 @@ public class Profile {
 		this.inv = new Inventory();
 		
 		this.consecutiveLoginCount = 0;
+		this.sameDayCheck = 0;
 		this.strikeCount = 0;
 		this.tamoHistory = null;
 	}
@@ -87,6 +90,8 @@ public class Profile {
 		this.money = 0;
 		this.last_login_date = new Date();
 		this.lastLoginString = formatter.format(last_login_date);
+		this.newLoginString = this.lastLoginString;
+		
 		this.currentBackground = 0;
 		this.guiColor = "default";
 		
@@ -96,6 +101,7 @@ public class Profile {
 		this.inv = new Inventory();
 		
 		this.consecutiveLoginCount = 0;
+		this.sameDayCheck = 0;
 		this.strikeCount = 0;
 		this.tamoHistory = null;
 	}
@@ -107,17 +113,21 @@ public class Profile {
 	 * The constructor that is used when a profile is being loaded
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String dateString, String lastLoginString, int consecCount, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm, Inventory loadInv) {
+	public Profile(String username, String dateString, String lastLoginString, int consecCount, int totalTime, int money, int currentBackground, String guiColor, int warnings, int sameDayCheck, ProfileSettings settings, Tamo tamo, Achievements ahm, Inventory loadInv) {
 		this.username = username;
 		this.dateString = dateString;
 		this.consecutiveLoginCount = consecCount;
 		
 		this.lastLoginString = lastLoginString;
+		this.new_login_date = new Date();
+		this.newLoginString = formatter.format(new_login_date);
+		
 		this.totalTime = totalTime;
 		this.money = money;
 		this.currentBackground = currentBackground;
 		this.guiColor = guiColor;
 		this.strikeCount = warnings;
+		this.sameDayCheck = sameDayCheck;
 		
 		this.settings = settings;
 		this.tamo = tamo;
@@ -289,7 +299,8 @@ public class Profile {
 	public String toString() {
 		String profileInfo = username + "," + dateString + "," + lastLoginString + "," 
 						+ consecutiveLoginCount + "," + totalTime
-						+ "," + money + "," + currentBackground + "," + guiColor + "," + strikeCount;
+						+ "," + money + "," + currentBackground + "," + guiColor + "," 
+						+ strikeCount + "," + sameDayCheck;
 		
 		return profileInfo;
 	}
@@ -329,5 +340,13 @@ public class Profile {
 	public String toStringTamoHistory() {
 		//TODO
 		return "-";
+	}
+
+	public int getSameDayCheck() {
+		return sameDayCheck;
+	}
+
+	public void setSameDayCheck(int sameDayCheck) {
+		this.sameDayCheck = sameDayCheck;
 	}
 }

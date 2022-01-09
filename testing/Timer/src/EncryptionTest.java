@@ -47,7 +47,8 @@ public class EncryptionTest {
 	public static void main(String[] args) {
 		EncryptionTest e = new EncryptionTest();
 
-		System.out.println(e.encrypt("Firebal,2022-01-04,2022-01-04,0,100000,0,default,0,0,0,0,0,Lisa,1,5,5,00000000,-"));
+		System.out.println(e.decrypt("loxkhgr2868836736?2868836736?262626262jklg{rz262626262626262royg282;2;26666666623"));
+		System.out.println(e.encrypt("firebal,2022-01-08,2022-01-08,0,0,0,0,default,0,0,0,0,0,0,0,lisa,2,5,5,00000000,-"));
 		}
 	
 }

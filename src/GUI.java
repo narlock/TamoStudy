@@ -1243,6 +1243,7 @@ public class GUI extends JFrame {
 			//each element represents a specific setting inside of the profile text file
 			String[] inputtedString = decryptedString.split(",");
 			
+			printInputtedString(inputtedString);
 			
 			//I didn't know where to put the code to update the level, so it's here:
 			//Every 24 hours, your tamo will gain 1 level
@@ -1261,68 +1262,69 @@ public class GUI extends JFrame {
 			 * [6] -> Current Background Indicator
 			 * [7] -> GUI Background Color Indicator
 			 * [8] -> Strike Count
+			 * [9] -> Same Day Check // Integer Boolean
 			 * 
-			 * [9] -> Settings / Focus Mode Indicator
-			 * [10] -> Settings / Language Indicator
-			 * [11] -> Settings / Session Sound Indicator
-			 * [12] -> Settings / Background Sound Indicator
-			 * [13] -> Settings / Difficulty
+			 * [10] -> Settings / Focus Mode Indicator
+			 * [11] -> Settings / Language Indicator
+			 * [12] -> Settings / Session Sound Indicator
+			 * [13] -> Settings / Background Sound Indicator
+			 * [14] -> Settings / Difficulty
 			 *
 			 *
-			 * [14] -> Tamo Name (string)
-			 * [15] -> Tamo ID (corresponding to Tamo Image)
-			 * [16] -> Tamo Happiness Integer
-			 * [17] -> Tamo Hunger Integer
+			 * [15] -> Tamo Name (string)
+			 * [16] -> Tamo ID (corresponding to Tamo Image)
+			 * [17] -> Tamo Happiness Integer
+			 * [18] -> Tamo Hunger Integer
 			 * 
-			 * [18] -> Achievement Indicator String
-			 * [19] -> Inventory String
+			 * [19] -> Achievement Indicator String
+			 * [20] -> Inventory String
 			 * 
 			 * TODO
-			 * [20] -> Tamo History
+			 * [21] -> Tamo History
 			 */
 			
 			if(profile.getNewLoginString() == null) {
 				
 			} else {
-			inputtedString[2] = profile.getNewLoginString();
+				inputtedString[2] = profile.getNewLoginString();
 			}
 			/*
-			 * Rewriting Consecutive Login Count 
+			 * Rewriting Profile Information
 			 */
 			inputtedString[3] = String.valueOf(profile.getConsecutiveLoginCount());
-			
 			inputtedString[4] = String.valueOf(profile.getTotalTime());
 			inputtedString[5] = String.valueOf(profile.getMoney());
 			inputtedString[6] = String.valueOf(profile.getCurrentBackground());
 			inputtedString[7] = profile.getGuiColor();
+			inputtedString[8] = String.valueOf(profile.getStrikeCount());
+			inputtedString[9] = String.valueOf(profile.getSameDayCheck());
 			
 			/*
 			 * Rewriting Profile Settings
 			 */
-			inputtedString[8] = String.valueOf(profile.getSettings().getFocusMode());
-			inputtedString[9] = String.valueOf(profile.getSettings().getLang().getIndicator());
-			inputtedString[10] = String.valueOf(profile.getSettings().getSessionSounds());
-			inputtedString[11] = String.valueOf(profile.getSettings().getBackgroundSounds());
-			inputtedString[12] = String.valueOf(profile.getSettings().getDifficulty());
+			inputtedString[10] = String.valueOf(profile.getSettings().getFocusMode());
+			inputtedString[11] = String.valueOf(profile.getSettings().getLang().getIndicator());
+			inputtedString[12] = String.valueOf(profile.getSettings().getSessionSounds());
+			inputtedString[13] = String.valueOf(profile.getSettings().getBackgroundSounds());
+			inputtedString[14] = String.valueOf(profile.getSettings().getDifficulty());
 			
 			/*
 			 * Rewriting Tamo Information
 			 */
-			inputtedString[13] = String.valueOf(profile.getStrikeCount());
-			inputtedString[14] = profile.getTamo().getName();
-			inputtedString[15] = String.valueOf(profile.getTamo().getId());
-			inputtedString[16] = String.valueOf(profile.getTamo().getHappiness());
-			inputtedString[17] = String.valueOf(profile.getTamo().getHunger());
+			inputtedString[15] = profile.getTamo().getName();
+			inputtedString[16] = String.valueOf(profile.getTamo().getId());
+			inputtedString[17] = String.valueOf(profile.getTamo().getHappiness());
+			inputtedString[18] = String.valueOf(profile.getTamo().getHunger());
 			
 			/*
 			 * Rewriting Achievement String
 			 */
-			inputtedString[18] = profile.getAhm().getAhmString();
+			inputtedString[19] = profile.getAhm().getAhmString();
 			
 			/*
 			 * Rewriting Inventory String
 			 */
-			inputtedString[19] = profile.getInv().getInvString();
+			inputtedString[20] = profile.getInv().getInvString();
 			
 			/*
 			 * [20] Rewriting Tamo History
@@ -1347,6 +1349,35 @@ public class GUI extends JFrame {
 		
 	
 	
+	private void printInputtedString(String[] profileDetails) {
+		System.out.println("GUI UPDATE USER INFORMATION TO FILE RUN: \n===========");
+		
+		System.out.println("0 - Name: " + profileDetails[0]);
+		System.out.println("1 - Join Date: " + profileDetails[1]);
+		System.out.println("2 - New Login String: " + profileDetails[2]);
+		System.out.println("3 - Consecutive Login Count: " + profileDetails[3]);
+		System.out.println("4 - Total Time Studied sec: " + profileDetails[4]);
+		System.out.println("5 - Total Money: " + profileDetails[5]);
+		System.out.println("6 - Current Background indicator: " + profileDetails[6]);
+		System.out.println("7 - GUI Background Color Indicator: " + profileDetails[7]);
+		System.out.println("8 - Strike Count: " + profileDetails[8]);
+		System.out.println("9 - Same Day Check: " + profileDetails[9]);
+		System.out.println("10 - Settings/Focus Mode Indicator: " + profileDetails[10]);
+		System.out.println("11 - Settings/Language Indicator: " + profileDetails[11]);
+		System.out.println("12 - Settings/SessionSoundIndicator: " + profileDetails[12]);
+		System.out.println("13 - Settings/BackgroundSoundIndicator: " + profileDetails[13]);
+		System.out.println("14 - Settings/DifficultyIndicator: " + profileDetails[14]);
+		System.out.println("15 - Tamo Name: " + profileDetails[15]);
+		System.out.println("16 - Tamo ID: " + profileDetails[16]);
+		System.out.println("17 - Tamo Happiness: " + profileDetails[17]);
+		System.out.println("18 - Tamo Hunger: " + profileDetails[18]);
+		System.out.println("19 - Achievement Indicator String: " + profileDetails[19]);
+		System.out.println("20 - Inventory String: " + profileDetails[20]);
+		
+		System.out.println("======================");
+		
+	}
+
 	/*
 	 * updateStudyStats
 	 * Updates the totalTime studied for the user
@@ -1531,15 +1562,19 @@ public class GUI extends JFrame {
 			start = LocalDate.parse(profile.getLastLoginString());
 			end = LocalDate.parse(profile.getNewLoginString());
 			first_day = false;
+			
+			System.out.println("LastLogin = " + start + "\nNewLogin = " + end);
+			
 		} catch (Exception e) {
-			//System.out.println("NOTICE: Profile does not have a last Login string, exception *first day of profile*");
+			System.out.println("NOTICE: Profile does not have a last Login string, exception *first day of profile*");
 		}
 		
 		
 		if(first_day == false) {
+			//Diff: the difference in days between the Last Login String and New Login String
 			long diff = ChronoUnit.DAYS.between(start,end);
 			
-			//System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
+			System.out.println("DEBUG: DIFFERENCE BETWEEN DAYS IS " + diff);
 		if(diff == 0) {
 			//If the user logs in on the same day, no changes will occur.
 			//System.out.println("DEBUG: Running difference = 0");
@@ -1566,6 +1601,9 @@ public class GUI extends JFrame {
 			} else {
 				profile.getTamo().setHappiness(happinessAfterDepletion);
 			}
+			
+			//If user logs in on consecutive day, consecutive day count will increase
+			profile.setConsecutiveLoginCount(profile.getConsecutiveLoginCount() + 1);
 		} 
 		
 		
@@ -1591,6 +1629,9 @@ public class GUI extends JFrame {
 			} else {
 				profile.getTamo().setHappiness(happinessAfterDepletion);
 			}
+			
+			//Consecutive days will reset since users time difference is not consecutive
+			profile.setConsecutiveLoginCount(0);
 		}
 			
 		if(diff > 3 && diff < 8) {
@@ -1612,6 +1653,9 @@ public class GUI extends JFrame {
 			} else {
 				profile.getTamo().setHappiness(happinessAfterDepletion);
 			}
+			
+			//Consecutive days will reset since users time difference is not consecutive
+			profile.setConsecutiveLoginCount(0);
 		}
 		
 		if(diff >= 8 && diff < 30) {
@@ -1619,6 +1663,15 @@ public class GUI extends JFrame {
 			//System.out.println("Running difference = 7+:");
 			profile.getTamo().setHunger(0);
 			profile.getTamo().setHappiness(1);
+			
+			//Consecutive days will reset since users time difference is not consecutive
+			profile.setConsecutiveLoginCount(0);
+			
+			//If the user does not log in for a week, they will recieve a strike
+			profile.setStrikeCount(profile.getStrikeCount() + 1);
+			
+			if(profile.getStrikeCount() == 3)
+				this.death = true;
 		}
 
 		if(diff >= 30) {
@@ -1628,6 +1681,10 @@ public class GUI extends JFrame {
 			//all of the info will be reset, the tamo will be wiped, and new tamo will be assigned
 			//will write to the profile file
 			//profile.setWarnings(3);
+			
+			//Consecutive days will reset since users time difference is not consecutive
+			profile.setConsecutiveLoginCount(0);
+			
 			this.death = true;
 			
 		}
@@ -1722,6 +1779,7 @@ public class GUI extends JFrame {
 		profile.setTotalTime(0);
 		profile.setMoney(0);
 		profile.setCurrentBackground(0);
+		profile.setStrikeCount(0);
 		profile.getTamo().setName(name);
 		profile.getTamo().setHappiness(5);
 		profile.getTamo().setHunger(5);

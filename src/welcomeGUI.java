@@ -623,22 +623,22 @@ public class welcomeGUI extends JFrame {
 				
 				String[] profileDetails = decrypt.split(","); 
 				
-				for(int i = 0; i < profileDetails.length; i++) {
-					System.out.println("profileDetails["+i+"] = " + profileDetails[i]);
-				}
+				printProfileDetails(profileDetails);
+				
 				//Constructor: Focus mode, language indicator, sessionSounds, backgroundSounds, difficulty
-				ProfileSettings loadSettings = new ProfileSettings(Integer.parseInt(profileDetails[9]), Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]), Integer.parseInt(profileDetails[12]), Integer.parseInt(profileDetails[13]));
+				ProfileSettings loadSettings = new ProfileSettings(Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]), Integer.parseInt(profileDetails[12]), Integer.parseInt(profileDetails[13]), Integer.parseInt(profileDetails[14]));
 				
 				//Constructor: stringIndicator
-				Achievements loadAhm = new Achievements(profileDetails[18]);
+				Achievements loadAhm = new Achievements(profileDetails[19]);
 				
 				//Constructor: stringIndicator
-				Inventory loadInv = new Inventory(profileDetails[19]);
+				Inventory loadInv = new Inventory(profileDetails[20]);
 				
-				Tamo loadTamo = new Tamo(profileDetails[14], Integer.parseInt(profileDetails[15]), Integer.parseInt(profileDetails[16]), Integer.parseInt(profileDetails[17]));
+				//Constructor: name, id, happy, hunger
+				Tamo loadTamo = new Tamo(profileDetails[15], Integer.parseInt(profileDetails[16]), Integer.parseInt(profileDetails[17]), Integer.parseInt(profileDetails[18]));
 				
-				//Constructor: Name, JoinDate, NewLoginString, ConsecCount, TotalTime, TotalMoney, CurrentBG, CurrentGUI, StrikeCount
-				Profile load = new Profile(profileDetails[0], profileDetails[1], profileDetails[2], Integer.parseInt(profileDetails[3]), Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[6]), profileDetails[7], Integer.parseInt(profileDetails[8]), loadSettings, loadTamo, loadAhm, loadInv);
+				//Constructor: Name, JoinDate, NewLoginString, ConsecCount, TotalTime, TotalMoney, CurrentBG, CurrentGUI, StrikeCount, sameDayCheck
+				Profile load = new Profile(profileDetails[0], profileDetails[1], profileDetails[2], Integer.parseInt(profileDetails[3]), Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[6]), profileDetails[7], Integer.parseInt(profileDetails[8]), Integer.parseInt(profileDetails[9]), loadSettings, loadTamo, loadAhm, loadInv);
 				br.close();
 				return load;
 			}
@@ -646,6 +646,36 @@ public class welcomeGUI extends JFrame {
 		return new Profile();
 	}
 	
+	private void printProfileDetails(String[] profileDetails) {
+		System.out.println("WELCOME SCREEN INFORMATION\n==================");
+		
+		System.out.println("0 - Name: " + profileDetails[0]);
+		System.out.println("1 - Join Date: " + profileDetails[1]);
+		System.out.println("2 - New Login String: " + profileDetails[2]);
+		System.out.println("3 - Consecutive Login Count: " + profileDetails[3]);
+		System.out.println("4 - Total Time Studied sec: " + profileDetails[4]);
+		System.out.println("5 - Total Money: " + profileDetails[5]);
+		System.out.println("6 - Current Background indicator: " + profileDetails[6]);
+		System.out.println("7 - GUI Background Color Indicator: " + profileDetails[7]);
+		System.out.println("8 - Strike Count: " + profileDetails[8]);
+		System.out.println("9 - Same Day Check: " + profileDetails[9]);
+		System.out.println("10 - Settings/Focus Mode Indicator: " + profileDetails[10]);
+		System.out.println("11 - Settings/Language Indicator: " + profileDetails[11]);
+		System.out.println("12 - Settings/SessionSoundIndicator: " + profileDetails[12]);
+		System.out.println("13 - Settings/BackgroundSoundIndicator: " + profileDetails[13]);
+		System.out.println("14 - Settings/DifficultyIndicator: " + profileDetails[14]);
+		System.out.println("15 - Tamo Name: " + profileDetails[15]);
+		System.out.println("16 - Tamo ID: " + profileDetails[16]);
+		System.out.println("17 - Tamo Happiness: " + profileDetails[17]);
+		System.out.println("18 - Tamo Hunger: " + profileDetails[18]);
+		System.out.println("19 - Achievement Indicator String: " + profileDetails[19]);
+		System.out.println("20 - Inventory String: " + profileDetails[20]);
+		
+		System.out.println("==========================");
+		
+		
+	}
+
 	public void initButton(JButton button) {
 		button.setBackground(Color.WHITE);
 		button.setBorderPainted(false);

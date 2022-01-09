@@ -91,7 +91,7 @@ public class Achievements {
 		
 		for(int i = 0; i < indicator.length; i++) {
 			stringIndicator[i] = ahmString.substring(i,i+1);
-			System.out.println("stringIndicator[" + i + "] = " + stringIndicator[i] );
+			//System.out.println("stringIndicator[" + i + "] = " + stringIndicator[i] );
 		}
 		 
 		for(int i = 0; i < indicator.length; i++) {
