@@ -31,12 +31,19 @@ public class Profile {
 	private int totalTime;
 	private int currentBackground;
 	private String guiColor;
-	private int warnings;
 	
 	private Tamo tamo;
 	private ProfileSettings settings;
 	private Achievements ahm;
 	private Inventory inv;
+	
+	/*
+	 * TODO
+	 * 3.0 Attributes
+	 */
+	private int consecutiveLoginCount;
+	private int strikeCount;
+	private Tamo[] tamoHistory;
 
 	
 	/*
@@ -55,12 +62,15 @@ public class Profile {
 		this.lastLoginString = formatter.format(last_login_date);
 		this.currentBackground = 0;
 		this.guiColor = "blue";
-		this.warnings = 4;
 		
 		this.tamo = new Tamo();
-		this.settings = new ProfileSettings(0);
+		this.settings = new ProfileSettings(0, 0);
 		this.ahm = new Achievements();
 		this.inv = new Inventory();
+		
+		this.consecutiveLoginCount = 0;
+		this.strikeCount = 0;
+		this.tamoHistory = null;
 	}
 	
 	/*
@@ -69,7 +79,7 @@ public class Profile {
 	 * The constructor that is used when a new profile is created
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String tamoName, int lang) {
+	public Profile(String username, String tamoName, int lang, int difficulty) {
 		this.username = username;
 		this.join_date = new Date();
 		this.dateString = formatter.format(join_date);
@@ -79,12 +89,15 @@ public class Profile {
 		this.lastLoginString = formatter.format(last_login_date);
 		this.currentBackground = 0;
 		this.guiColor = "default";
-		this.warnings = 0;
 		
 		this.tamo = new Tamo(tamoName);
-		this.settings = new ProfileSettings(lang);
+		this.settings = new ProfileSettings(lang, difficulty);
 		this.ahm = new Achievements();
 		this.inv = new Inventory();
+		
+		this.consecutiveLoginCount = 0;
+		this.strikeCount = 0;
+		this.tamoHistory = null;
 	}
 	
 	
@@ -94,15 +107,17 @@ public class Profile {
 	 * The constructor that is used when a profile is being loaded
 	 * Sets attributes of the profile accordingly
 	 */
-	public Profile(String username, String dateString, String lastLoginString, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm, Inventory loadInv) {
+	public Profile(String username, String dateString, String lastLoginString, int consecCount, int totalTime, int money, int currentBackground, String guiColor, int warnings, ProfileSettings settings, Tamo tamo, Achievements ahm, Inventory loadInv) {
 		this.username = username;
 		this.dateString = dateString;
+		this.consecutiveLoginCount = consecCount;
+		
 		this.lastLoginString = lastLoginString;
 		this.totalTime = totalTime;
 		this.money = money;
 		this.currentBackground = currentBackground;
 		this.guiColor = guiColor;
-		this.warnings = warnings;
+		this.strikeCount = warnings;
 		
 		this.settings = settings;
 		this.tamo = tamo;
@@ -230,14 +245,6 @@ public class Profile {
 	public void setGuiColor(String guiColor) {
 		this.guiColor = guiColor;
 	}
-
-	public int getWarnings() {
-		return warnings;
-	}
-
-	public void setWarnings(int warnings) {
-		this.warnings = warnings;
-	}
 	
 	
 	public Color getColor() {
@@ -280,8 +287,9 @@ public class Profile {
 	
 	@Override
 	public String toString() {
-		String profileInfo = username + "," + dateString + "," + lastLoginString + "," + totalTime
-						+ "," + money + "," + currentBackground + "," + guiColor + "," + warnings;
+		String profileInfo = username + "," + dateString + "," + lastLoginString + "," 
+						+ consecutiveLoginCount + "," + totalTime
+						+ "," + money + "," + currentBackground + "," + guiColor + "," + strikeCount;
 		
 		return profileInfo;
 	}
@@ -292,5 +300,34 @@ public class Profile {
 
 	public void setInv(Inventory inv) {
 		this.inv = inv;
+	}
+
+	public int getConsecutiveLoginCount() {
+		return consecutiveLoginCount;
+	}
+
+	public void setConsecutiveLoginCount(int consecutiveLoginCount) {
+		this.consecutiveLoginCount = consecutiveLoginCount;
+	}
+
+	public int getStrikeCount() {
+		return strikeCount;
+	}
+
+	public void setStrikeCount(int strikeCount) {
+		this.strikeCount = strikeCount;
+	}
+
+	public Tamo[] getTamoHistory() {
+		return tamoHistory;
+	}
+
+	public void setTamoHistory(Tamo[] tamoHistory) {
+		this.tamoHistory = tamoHistory;
+	}
+	
+	public String toStringTamoHistory() {
+		//TODO
+		return "-";
 	}
 }

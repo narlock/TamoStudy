@@ -43,7 +43,7 @@ public class welcomeGUI extends JFrame {
 	private File file;
 	private BufferedWriter bw;
 	
-	private JComboBox languageBox;
+	private JComboBox languageBox, difficultyBox;
 	
 	private JFileChooser fileChooser;
 	private Encryption encryption;
@@ -139,15 +139,19 @@ public class welcomeGUI extends JFrame {
 		aboutButton.setContentAreaFilled(false);
 
 		languageBox = new JComboBox();
-		languageBox.addItem("English");
-		languageBox.addItem("Español (Spanish)");
-		languageBox.addItem("Português (Portuguese)");
-		languageBox.addItem("Deutsche (German)");
-		languageBox.addItem("日本語 (Japanese)");
-		languageBox.addItem("Nederlands (Dutch)");
-		languageBox.addItem("Français (French)");
-		languageBox.addItem("Türkçe (Turkish)");
-		//languageBox.addItem("汉语/漢語 (Chinese)");
+			languageBox.addItem("English");
+			languageBox.addItem("Español (Spanish)");
+			languageBox.addItem("Português (Portuguese)");
+			languageBox.addItem("Deutsche (German)");
+			languageBox.addItem("日本語 (Japanese)");
+			languageBox.addItem("Nederlands (Dutch)");
+			languageBox.addItem("Français (French)");
+			languageBox.addItem("Türkçe (Turkish)");
+			//languageBox.addItem("汉语/漢語 (Chinese)");
+		
+		difficultyBox = new JComboBox();
+			difficultyBox.addItem("Peaceful");
+			difficultyBox.addItem("Challenging");
 	}
 	
 	/*
@@ -160,6 +164,7 @@ public class welcomeGUI extends JFrame {
 			JLabel usernameLabel = new JLabel("New username:");
 			JLabel tamoNameLabel = new JLabel("Enter your Tamo's name:");
 			JLabel languageLabel = new JLabel("Language:");
+			JLabel difficultyLabel = new JLabel("Difficulty:");
 			
 			JTextField usernameField = new JTextField("");
 			JTextField tamoNameField = new JTextField("");
@@ -172,6 +177,8 @@ public class welcomeGUI extends JFrame {
 				newProfilePanel.add(tamoNameField);
 				newProfilePanel.add(languageLabel);
 				newProfilePanel.add(languageBox);
+				newProfilePanel.add(difficultyLabel);
+				newProfilePanel.add(difficultyBox);
 				
 				int resultPane = JOptionPane.showConfirmDialog(null, newProfilePanel, "Create New Profile",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -179,8 +186,9 @@ public class welcomeGUI extends JFrame {
 					result = 1;
 					
 					int language_indicator = getLanguageIndicator(languageBox.getSelectedItem().toString());
+					int difficulty_indicator = getDifficultyIndicator(difficultyBox.getSelectedItem().toString());
 					
-					profile = new Profile(usernameField.getText(), tamoNameField.getText(), language_indicator);
+					profile = new Profile(usernameField.getText(), tamoNameField.getText(), language_indicator, difficulty_indicator);
 					
 					if(writeProfileToFile(profile) == 1) {
 						GUI Focus = new GUI(profile,file);
@@ -584,6 +592,15 @@ public class welcomeGUI extends JFrame {
 		return 0;
 	}
 	
+	public int getDifficultyIndicator(String difficultyString) {
+		if(difficultyString.equals("Peaceful"))
+			return 0;
+		if(difficultyString.equals("Challenging"))
+			return 1;
+		
+		return 0;
+	}
+	
 	public int selectFile() {
 		if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			this.file = fileChooser.getSelectedFile();
@@ -609,13 +626,19 @@ public class welcomeGUI extends JFrame {
 				for(int i = 0; i < profileDetails.length; i++) {
 					System.out.println("profileDetails["+i+"] = " + profileDetails[i]);
 				}
+				//Constructor: Focus mode, language indicator, sessionSounds, backgroundSounds, difficulty
+				ProfileSettings loadSettings = new ProfileSettings(Integer.parseInt(profileDetails[9]), Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]), Integer.parseInt(profileDetails[12]), Integer.parseInt(profileDetails[13]));
 				
-				ProfileSettings loadSettings = new ProfileSettings(Integer.parseInt(profileDetails[8]), Integer.parseInt(profileDetails[9]), Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]));
-				Achievements loadAhm = new Achievements(profileDetails[16]);
-				Inventory loadInv = new Inventory(profileDetails[17]);
-				Tamo loadTamo = new Tamo(profileDetails[12], Integer.parseInt(profileDetails[13]), Integer.parseInt(profileDetails[14]), Integer.parseInt(profileDetails[15]));
+				//Constructor: stringIndicator
+				Achievements loadAhm = new Achievements(profileDetails[18]);
 				
-				Profile load = new Profile(profileDetails[0], profileDetails[1], profileDetails[2], Integer.parseInt(profileDetails[3]), Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]), profileDetails[6], Integer.parseInt(profileDetails[7]), loadSettings, loadTamo, loadAhm, loadInv);
+				//Constructor: stringIndicator
+				Inventory loadInv = new Inventory(profileDetails[19]);
+				
+				Tamo loadTamo = new Tamo(profileDetails[14], Integer.parseInt(profileDetails[15]), Integer.parseInt(profileDetails[16]), Integer.parseInt(profileDetails[17]));
+				
+				//Constructor: Name, JoinDate, NewLoginString, ConsecCount, TotalTime, TotalMoney, CurrentBG, CurrentGUI, StrikeCount
+				Profile load = new Profile(profileDetails[0], profileDetails[1], profileDetails[2], Integer.parseInt(profileDetails[3]), Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[6]), profileDetails[7], Integer.parseInt(profileDetails[8]), loadSettings, loadTamo, loadAhm, loadInv);
 				br.close();
 				return load;
 			}

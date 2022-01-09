@@ -42,27 +42,36 @@ public class ProfileSettings {
 	private int backgroundSounds;
 	
 	/*
+	 * Difficulty
+	 * 0: Peaceful - Tamo will never pass
+	 * 1: Challenging - Tamo receives strikes and could pass
+	 */
+	private int difficulty;
+	
+	/*
 	 * Default Profile Settings
 	 * Focus Mode: 0
 	 * Language: set languageIndicator on creation
 	 * Sounds: Disabled
 	 */
-	public ProfileSettings(int languageIndicator) {
+	public ProfileSettings(int languageIndicator, int difficulty) {
 		this.focusMode = 0;
 		this.lang = new Language(languageIndicator);
 		this.sessionSounds = 0;
 		this.backgroundSounds = 0;
+		this.difficulty = difficulty;
 	}
 	
 	/*
 	 * Loaded Profile Settings
 	 * All attributes are set
 	 */
-	public ProfileSettings(int focusMode, int languageIndicator, int sessionSounds, int backgroundSounds) {
+	public ProfileSettings(int focusMode, int languageIndicator, int sessionSounds, int backgroundSounds, int difficulty) {
 		this.focusMode = focusMode;
 		this.lang = new Language(languageIndicator);
 		this.sessionSounds = sessionSounds;
 		this.backgroundSounds = backgroundSounds;
+		this.difficulty = difficulty;
 	}
 	
 	/*
@@ -103,8 +112,16 @@ public class ProfileSettings {
 	
 	@Override
 	public String toString() {
-		String settingsInfo = focusMode + "," + lang.getIndicator() + "," + sessionSounds + "," + backgroundSounds;
+		String settingsInfo = focusMode + "," + lang.getIndicator() + "," + sessionSounds + "," + backgroundSounds + "," + difficulty;
 		return settingsInfo;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
 	
 }

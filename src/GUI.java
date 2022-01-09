@@ -1255,21 +1255,30 @@ public class GUI extends JFrame {
 			 * 
 			 * Key Guide:
 			 * [2] -> New Login String
-			 * [3] -> Total Time Studied in seconds
-			 * [4] -> Total Money
-			 * [5] -> Current Background Indicator
-			 * [6] -> GUI Background Color Indicator
+			 * [3] -> (current) Consecutive Login Count
+			 * [4] -> Total Time Studied in seconds
+			 * [5] -> Total Money
+			 * [6] -> Current Background Indicator
+			 * [7] -> GUI Background Color Indicator
+			 * [8] -> Strike Count
 			 * 
-			 * [8] -> Settings / Focus Mode Indicator
-			 * [9] -> Settings / Language Indicator
-			 * [10] -> Settings / Session Sound Indicator
-			 * [11] -> Settings / Background Sound Indicator
-			 * [12] -> Tamo Name (string)
-			 * [13] -> Tamo ID (corresponding to Tamo Image)
-			 * [14] -> Tamo Happiness Integer
-			 * [15] -> Tamo Hunger Integer
-			 * [16] -> Achievement Indicator String
-			 * [17] -> Inventory String
+			 * [9] -> Settings / Focus Mode Indicator
+			 * [10] -> Settings / Language Indicator
+			 * [11] -> Settings / Session Sound Indicator
+			 * [12] -> Settings / Background Sound Indicator
+			 * [13] -> Settings / Difficulty
+			 *
+			 *
+			 * [14] -> Tamo Name (string)
+			 * [15] -> Tamo ID (corresponding to Tamo Image)
+			 * [16] -> Tamo Happiness Integer
+			 * [17] -> Tamo Hunger Integer
+			 * 
+			 * [18] -> Achievement Indicator String
+			 * [19] -> Inventory String
+			 * 
+			 * TODO
+			 * [20] -> Tamo History
 			 */
 			
 			if(profile.getNewLoginString() == null) {
@@ -1277,11 +1286,15 @@ public class GUI extends JFrame {
 			} else {
 			inputtedString[2] = profile.getNewLoginString();
 			}
+			/*
+			 * Rewriting Consecutive Login Count 
+			 */
+			inputtedString[3] = String.valueOf(profile.getConsecutiveLoginCount());
 			
-			inputtedString[3] = String.valueOf(profile.getTotalTime());
-			inputtedString[4] = String.valueOf(profile.getMoney());
-			inputtedString[5] = String.valueOf(profile.getCurrentBackground());
-			inputtedString[6] = profile.getGuiColor();
+			inputtedString[4] = String.valueOf(profile.getTotalTime());
+			inputtedString[5] = String.valueOf(profile.getMoney());
+			inputtedString[6] = String.valueOf(profile.getCurrentBackground());
+			inputtedString[7] = profile.getGuiColor();
 			
 			/*
 			 * Rewriting Profile Settings
@@ -1290,24 +1303,31 @@ public class GUI extends JFrame {
 			inputtedString[9] = String.valueOf(profile.getSettings().getLang().getIndicator());
 			inputtedString[10] = String.valueOf(profile.getSettings().getSessionSounds());
 			inputtedString[11] = String.valueOf(profile.getSettings().getBackgroundSounds());
+			inputtedString[12] = String.valueOf(profile.getSettings().getDifficulty());
 			
 			/*
 			 * Rewriting Tamo Information
 			 */
-			inputtedString[12] = profile.getTamo().getName();
-			inputtedString[13] = String.valueOf(profile.getTamo().getId());
-			inputtedString[14] = String.valueOf(profile.getTamo().getHappiness());
-			inputtedString[15] = String.valueOf(profile.getTamo().getHunger());
+			inputtedString[13] = String.valueOf(profile.getStrikeCount());
+			inputtedString[14] = profile.getTamo().getName();
+			inputtedString[15] = String.valueOf(profile.getTamo().getId());
+			inputtedString[16] = String.valueOf(profile.getTamo().getHappiness());
+			inputtedString[17] = String.valueOf(profile.getTamo().getHunger());
 			
 			/*
 			 * Rewriting Achievement String
 			 */
-			inputtedString[16] = profile.getAhm().getAhmString();
+			inputtedString[18] = profile.getAhm().getAhmString();
 			
 			/*
 			 * Rewriting Inventory String
 			 */
-			inputtedString[17] = profile.getInv().getInvString();
+			inputtedString[19] = profile.getInv().getInvString();
+			
+			/*
+			 * [20] Rewriting Tamo History
+			 * TODO
+			 */
 			
 			
 			//join the string back together and re-encrypt
