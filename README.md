@@ -4,11 +4,8 @@
 [![Github Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/releases/tag/b1.1)
 [![Latest Commit](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
 [![Discord Shield](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
-<html>
-  Developed by: <b>Anthony Narlock</b>
-  <br>
-</html>
 
+  > Developed by: <b>Anthony Narlock</b>
 
 - Website: https://anthonynarlock.com/TamoStudy.html
 - Instagram Page: https://www.instagram.com/tamostudy/
@@ -38,4 +35,4 @@ Project plans to include a GUI in which a user can create a username and passwor
 
 The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
 
-TamoStudy was created on January 30th, 2021
+> TamoStudy was created on January 30th, 2021
