@@ -897,6 +897,7 @@ public class GUI extends JFrame {
 				languageBox.addItem("Français (French)");
 				languageBox.addItem("English (Chinese Spot)");
 				languageBox.addItem("Türkçe (Turkish)");
+				languageBox.addItem("Gaeilge (Irish)");
 				
 				languageBox.setSelectedIndex(profile.getSettings().getLang().getIndicator());
 				
@@ -1844,6 +1845,8 @@ public class GUI extends JFrame {
 			return 7;
 		if(languageString.equals("Türkçe (Turkish)"))
 			return 8;
+		if(languageString.equals("Gaeilge (Irish)"))
+			return 9;
 		
 		return 0;
 	}

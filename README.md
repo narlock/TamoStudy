@@ -17,7 +17,7 @@
 - Interactive virtual "Tamo" pet which needs food and happiness which can be maintained through focus sessions
 - Easy-to-use GUI system: Login welcome screen, Main landing screen, Food Shop, Background Shop, etc.
 - Creation of Multiple profiles through file I/O capabilities
-- Supports multiple languages (currently: English, Spanish, Portuguese, German, Japanese, French, Turkish & Dutch)
+- Supports multiple languages (currently: English, Spanish, Portuguese, German, Japanese, French, Turkish, Dutch, and Irish)
 - More to come in the future :)
 
 ##

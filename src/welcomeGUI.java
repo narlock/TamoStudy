@@ -148,6 +148,7 @@ public class welcomeGUI extends JFrame {
 			languageBox.addItem("Français (French)");
 			languageBox.addItem("Türkçe (Turkish)");
 			//languageBox.addItem("汉语/漢語 (Chinese)");
+			languageBox.addItem("Gaeilge (Irish)");
 		
 		difficultyBox = new JComboBox();
 			difficultyBox.addItem("Peaceful");
@@ -588,6 +589,8 @@ public class welcomeGUI extends JFrame {
 			return 7;
 		if(languageString.equals("Türkçe (Turkish)"))
 			return 8;
+		if(languageString.equals("Gaeilge (Irish)"))
+			return 9;
 		
 		return 0;
 	}

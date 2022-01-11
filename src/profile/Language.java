@@ -8,18 +8,19 @@ package profile;
  * 
  * Language Credits:
  * English: myself (Anthony Narlock)
- * Spanish: oodsofnoodles
- * Portuguese: kathflowers
- * German: boba
+ * Spanish: 
+ * Portuguese: 
+ * German: 
  * Japanese: Marie
- * Dutch: Britt
+ * Dutch: 
  * French: Marie
- * Chinese: Currently no translator
+ * Chinese: 
+ * Turkish:
+ * Irish: Medkep
  */
 
 public class Language {
 
-	private final int INDEX = 50;
 	private int lang;
 	
 	/*
@@ -622,6 +623,400 @@ public class Language {
 			"TamoStudy'e art arda 30 gün boyunca giriş yap"
 		};
 	
+	/*
+	 * 3.0 General Title Array
+	 * 
+	 * Guide:
+	 * 
+	 * [0] -> N/A
+	 * [1] -> Profile
+	 * [2] -> Statistics
+	 * 		[3] -> Total Hours
+	 * 		[4] -> Total Hours in Session
+	 * 		[5] -> User
+	 * 		[6] -> Join Date
+	 * [7] -> Inventory
+	 * 		[8] -> Use Item
+	 * 		[9] -> Inventory Empty
+	 * [10] -> Achievements
+	 * 		[11] -> The beginning
+	 * 			[12] -> Reach total focus time of 3 hours
+	 * 		[13] -> Nothing can stop you!
+	 * 			[14] -> Reach total focus time of 1 day
+	 * 		[15] -> Never give up!
+	 * 			[16] -> Reach total focus time of 7 days
+	 * 		[17] -> Customizer 1
+	 * 			[18] -> Change your background color
+	 * 		[19] -> Customizer 2
+	 * 			[20] -> Change your Tamo's background
+	 * 		[21] -> From the beginning
+	 * 			[22] -> Updated profile using Tamo profile updater
+	 * 		[23] -> Tamo full
+	 * 			[24] -> Entering the food shop when Tamo is full
+	 * 		[25] -> Tamo Love
+	 * 			[26] -> Achieve maximum Tamo happiness
+	 * [27] -> Settings
+	 * 		[28] -> Change Focus Mode
+	 * 			[29] -> 5-Interval Countdown
+	 * 			[30] -> Custom Interval Countdown
+	 * 			[31] -> Pomodoro Mode
+	 * 		[32] -> Change Language
+	 * 		[33] -> Change Difficulty
+	 * 			[34] -> Peaceful
+	 * 			[35] -> Challenging
+	 * 		[36] -> Sounds
+	 * 			[37] -> ON
+	 * 			[38] -> OFF
+	 * [39] -> Food Store
+	 * 		[40] -> Hunger
+	 * 		[41] -> Tamo Tokens
+	 * 		[42] -> Can't complete purchase
+	 * 		[43] -> You don't have sufficient funds
+	 * 		[44] -> Can't enter food store
+	 * 		[45] -> Purchase for
+	 * [46] -> Background Store
+	 * 		[47] -> Change background color
+	 * 		[48] -> Change Tamo background
+	 * [49] -> Logout
+	 * 		[50] -> Logging out...
+	 * 		[51] -> Are you sure?
+	 * [52] -> Welcome
+	 * [53] -> Level
+	 * [54] -> Start Focus
+	 * [55] -> Break Focus
+	 * [56] -> Return to Focus
+	 * [57] -> Let's Focus!
+	 * [58] -> # Of Sessions
+	 * [59] -> Session Length
+	 * [60] -> Break Length
+	 * [61] -> Congratulations!
+	 * [62] -> Session Completed
+	 * 		[63] -> You focused for
+	 * 		[64] -> minute(s) and
+	 * 		[65] -> second(s)
+	 * 		[66] -> Maybe next time...
+	 * [67] -> Session Focus Broke
+	 */
+	
+	//English: Anthony
+	private String[] english = {
+		"PLACEHOLDER",
+		"Profile",
+		"Statistics",
+		"Total Hours",
+		"Total Hours in Session",
+		"User",
+		"Join Date",
+		"Inventory",
+		"Use Item",
+		"Inventory Empty",
+		"Achievements",
+		"The beginning",
+		"Reach total focus time of 3 hours",
+		"Nothing can stop you!",
+		"Reach total focus time of 1 day",
+		"Never give up!",
+		"Reach total focus time of 7 days",
+		"Customizer 1",
+		"Change your background color",
+		"Customizer 2",
+		"Change your Tamo's background",
+		"From the beginning",
+		"Updated profile using Tamo profile updater",
+		"Tamo full",
+		"Entering the food shop when Tamo is full",
+		"Tamo Love",
+		"Achieve maximum Tamo happiness",
+		"Settings",
+		"Change Focus Mode",
+		"5-Interval Countdown",
+		"Custom Interval Countdown",
+		"Pomodoro Mode",
+		"Change Language",
+		"Change Difficulty",
+		"Peaceful",
+		"Challenging",
+		"Sounds",
+		"ON",
+		"OFF",
+		"Food Store",
+		"Hunger",
+		"Tamo Tokens",
+		"Can't complete purchase",
+		"You don't have sufficient funds",
+		"Can't enter food store",
+		"Purchase for",
+		"Background Store",
+		"Change Background Color",
+		"Change Tamo Background",
+		"Logout",
+		"Logging out...",
+		"Are you sure?",
+		"Welcome",
+		"Level",
+		"Start Focus",
+		"Break Focus",
+		"Return to Focus",
+		"Let's Focus!",
+		"# Of Sessions",
+		"Session Length",
+		"Break Length",
+		"Congratulations!",
+		"Session Completed",
+		"You focused for",
+		"minute(s) and",
+		"second(s)",
+		"Maybe next time...",
+		"Session Focus Broke"
+	};
+	
+	//Spanish
+	private String[] spanish = {
+			
+	};
+	
+	//Portuguese
+	private String[] portuguese = {
+			
+	};
+	
+	//German
+	private String[] german = {
+			
+	};
+	
+	//Japanese: Marie
+	private String[] japanese = {
+		"PLACEHOLDER",
+		"プロファイル",
+		"統計",
+		"時間集計",
+		"今日のセッション時間集計",
+		"ユーザー",
+		"入会年月日",
+		"目録",
+		"アイテムを使う",
+		"空の目録",
+		"アチーブメント",
+		"始め",
+		"フォーカス時間の集計を３時間に達する",
+		"何も止められない！",
+		"フォーカス時間の集計を1日間に達する",
+		"ネバー・ギブ・アップ！",
+		"フォーカス時間の集計を７日間に達する",
+		"カストマイザー１",
+		"バックグラウンド色を変更する",
+		"カストマイザー２",
+		"タモのバックグラウンドを変更する",
+		"始めから",
+		"タモプロファイルアップデーターでプロファイルを更新する",
+		"タモフル",
+		"タモが満腹したまま、食料品店に行く",
+		"タモラブ",
+		"タモの幸せレベルを最高に達する",
+		"設定",
+		"フォーカスモードを変更する",
+		"5分間隔カウントダウン",
+		"カスタムの間隔カウントダウン",
+		"ポモドーロモード",
+		"言語を変更する",
+		"難易度を変更する",
+		"平和的",
+		"挑戦的",
+		"音",
+		"オン",
+		"オフ",
+		"食料品店",
+		"空腹",
+		"タモトークンズ",
+		"購入できない",
+		"お金不足",
+		"食料品店に入れない",
+		"で購入する", //Number must be at the front of this text
+		"バックグラウンドストア",
+		"バックグラウンド色を変更する",
+		"タモのバックグラウンドを変更する",
+		"ログアウト",
+		"ログアウト中",
+		"本当に？",
+		"ようこそ",
+		"レベル",
+		"フォーカスを始める",
+		"フォカスを止める",
+		"フォーカスに戻る",
+		"フォーカスしよう！",
+		"セッション数",
+		"セッションの長さ",
+		"ブレークの長さ",
+		"おめでとうございます！",
+		"セッション完成",
+		"フォーカスしました",
+		"分", //Number must be at the front of this text
+		"秒", //Number must be at the front of this text
+		"今度かもしれない…",
+		"フォーカスセッション中断"	
+	};
+	
+	//Dutch: 
+	private String[] dutch = {
+			
+	};
+	
+	//French: Marie
+	private String[] french = {
+		"PLACEHOLDER",
+		"Profil",
+		"Statistiques",
+		"Total d'heures",
+		"Total d'heures en session",
+		"Utilisateur",
+		"Date d'inscription",
+		"Inventaire",
+		"Utiliser l'objet",
+		"Inventaire vide",
+		"Succès",
+		"Le début",
+		"Atteignez un temps de concentration total de 3 heures",
+		"Rien ne peut vous arrêter !",
+		"Atteignez un temps de concentration total de 1 jour",
+		"N'abandonnez jamais !",
+		"Atteignez un temps de concentration total de 7 jours",
+		"Personnalisateur 1",
+		"Changez la couleur d'arrière-plan de votre Tamo",
+		"Personnalisateur 2",
+		"Changez l'arrière-plan de votre Tamo",
+		"Depuis le début",
+		"Profil TamoStudy mis à jour",
+		"Tamo plein",
+		"Entrez dans la supérette lorsque votre Tamo est plein",
+		"Amour de Tamo",
+		"Atteignez le niveau de bonheur maximal de votre Tamo",
+		"Paramètres",
+		"Changer le mode de concentration",
+		"Intervalle de 5mn",
+		"Compte à rebours personnalisé",
+		"Mode pomodoro",
+		"Changer la langue",
+		"Changer la difficulté",
+		"Paisible",
+		"Challengeant",
+		"Son",
+		"Avec",
+		"Sans",
+		"Supérette",
+		"Faim",
+		"Jetons Tamo",
+		"Impossible de compléter l'achat",
+		"Fonds insuffisants",
+		"Impossible d'entrer dans la supérette",
+		"Acheter pour",
+		"Magasin d'arrière-plan",
+		"Changer la couleur d'arrière-plan",
+		"Changer l'arrière-plan du Tamo",
+		"Se déconnecter",
+		"Déconnexion",
+		"Êtes-vous sûr(e) ?",
+		"Bienvenue",
+		"Niveau",
+		"Commencer la concentration",
+		"Interrompre la concentration",
+		"Retourner à la concentration",
+		"Concentrons-nous !",
+		"Nombre de sessions",
+		"Durée de la session",
+		"Durée de la pause",
+		"Félicitations !",
+		"Session complétée",
+		"Vous vous êtes concentré(e) pendant",
+		"minute(s) et",
+		"seconde(s)",
+		"La prochaine fois peut-être...",
+		"Session interrompue"
+	};
+	
+	//Chinese:
+	private String[] chinese = {
+			
+	};
+	
+	//Turkish:
+	private String[] turkish = {
+			
+	};
+	
+	//Irish: Medkep
+	private String[] irish = {
+		"PLACEHOLDER",
+		"Prófíl",
+		"Staitisticí",
+		"Uaireanta iomlána",
+		"Uaireanta iomlána sa seisiún",
+		"Úsáideoir",
+		"Dáta tosaigh",
+		"Fardal",
+		"Bain úsaid as mir",
+		"Fardal folamh",
+		"Éachtaí",
+		"An tús",
+		"Am fócais iomlán 3 uair an chloig a bhaint amach",
+		"Níl aon rud chun stop a chur ort ",
+		"Am fócais iomlán 1 lá a bhaint amach",
+		"Riamh a thabhairt suas!",
+		"Am fócais iomlán 7 lá a bhaint amach",
+		"Saincheaptha 1",
+		"Aithrigh an dath cúlra",
+		"Saincheaptha 2",
+		"Aithrigh an cúlra do chuid Tamo",
+		"As an tús",
+		"Próifíl a nuashonrú ag baint úsáide as úrachadhóir próifíl Tamo",
+		"Tamo lán",
+		"Entering the food shop when Tamo is full - Ag dul isteach sa siopa bia nuair atá do Tamo lán",
+		"Grá Tamo",
+		"Sonas Tamo uasta a bhaint amach",
+		"Socruithe",
+		"Aithraigh modh fócais",
+		"Comhaireamh síos 5-eatramh",
+		"Comhaireamh síos eatramh saincheaptha",
+		"Modh Pomodoro",
+		"Aithraigh teanga",
+		"Aithrú an dheacracht",
+		"Síochanta",
+		"Dúshlánach",
+		"Fuaim",
+		"Cas ar",
+		"Múch",
+		"Siopa bia",
+		"Ocras",
+		"Boinn Tamo",
+		"Can't complete purchase",
+		"Níl go leor boinn Tamo agat",
+		"Níl chead agat dul isteach sa siopa bia",
+		"Faigh ar feadh",
+		"Siopa cúlra",
+		"Aithrigh an dath cúlra",
+		"Aithrigh an cúlra do chuid Tamo",
+		"Logáil amach",
+		"Ag logáil amach...",
+		"An bhfuil tú cinnte?",
+		"Fáilte",
+		"Leibhéal",
+		"Tosú ag díriú",
+		"Stop ag díriú",
+		"Filleadh go dtí díriú",
+		"Déanaimis díriú!",
+		"Seisiún/í",
+		"Fad seisiún",
+		"Fad briseadh",
+		"Comhghairdeas!",
+		"Seisiún críochnaithe",
+		"Bhí tú ag díriú i gcomhair",
+		"Nóiméad agus",
+		"Soicind",
+		"B'fhéidir an chéad uair eile ansin",
+		"Bhris fócas seisiún"
+	};
+	
+	
 	
 	public Language() {
 		this.lang = 0;
@@ -703,6 +1098,33 @@ public class Language {
 			return frenchAhmDesc[num];
 		if(lang == 8)
 			return turkishAhmDesc[num];
+		
+		return null;
+	}
+	
+	/*
+	 * get
+	 * method return indicated text from specified language (from profile)
+	 */
+	public String get(int num) {
+		if(lang == 0)
+			return english[num];
+		if(lang == 1)
+			return spanish[num];
+		if(lang == 2)
+			return portuguese[num];
+		if(lang == 3)
+			return german[num];
+		if(lang == 4)
+			return japanese[num];
+		if(lang == 5)
+			return dutch[num];
+		if(lang == 6)
+			return french[num];
+		if(lang == 8)
+			return turkish[num];
+		if(lang == 9)
+			return irish[num];
 		
 		return null;
 	}
