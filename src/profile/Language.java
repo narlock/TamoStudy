@@ -988,7 +988,7 @@ public class Language {
 		"Siopa bia",
 		"Ocras",
 		"Boinn Tamo",
-		"Can't complete purchase",
+		"Níl feidir cheannach a críochnú",
 		"Níl go leor boinn Tamo agat",
 		"Níl chead agat dul isteach sa siopa bia",
 		"Faigh ar feadh",

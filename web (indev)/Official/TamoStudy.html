@@ -1,78 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>TamoStudy - ANTHONY NARLOCK</title>
-    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
-
-    <style>
-        body {
-            top: 0;
-            left: 0;
-            width: 99%;
-            height: 97%;
-            position: absolute;
-            display: table
-        }
-
-        p {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-        }
-        
-    </style>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="tamo_favicon.png">
+    <title>TamoStudy</title>
 </head>
+<body>
+    <div class="nav-container">
+        <header>
+            <a href="index.html" class="logo">
+                <ul>
+                    <li><img src="tamo_favicon.png"></li>
+                    <li><img src="head_logo.png" class="title-logo"></li>
+                </ul>
+            </a>
 
-<body style="background-color:lavender;">
-    <p>
-        <!--<font size="7"><i><b>TamoStudy</b></i></font> <br>-->
-        <img src="./assets/tamo_logo.png"><br>
+            <nav class="nav-selection">
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="https://github.com/narlock/TamoStudy/releases/">download</a></li>
+                    <li><a href="TSDemo.html">web TamoStudy</a></li>
+                    <li><a href="#">contributers</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
 
-        <br>
-        <img src="./assets/tamo.png"><br>
-        <br>
+    <div class="hero-download">
+        <div class="hero-design"><a href="https://github.com/narlock/TamoStudy/releases/"><img src="hero.png"></a></div>
+    </div>
 
-        <a href="https://github.com/narlock/TamoStudy/releases"><img src="./assets/download.png"></a> <br>
-        <br>
-        <b><i>Supported Platforms:</i> </b> Windows, macOS, Linux <i>(Java Version 1.8.0)</i> <br />
+    <section class="features" id="features-anchor">
+        <div class="features-container">
+            <ul>
+                <li class=transition1>
+                    <div class="icon-container one">
+                        <img src="features1.png" alt="feature1 icon">
+                    </div>
+                    <p class="features-title">Set a timer for how long you want to study.</p>
+                </li>
+                <li class=transition1>
+                    <div class="icon-container two">
+                        <img src="features2.png" alt="feature2 icon">
+                    </div>
+                    <p class="features-title">Earn TamoTokens everytime you study.</p>
+                </li>
+                <li class=transition1>
+                    <div class="icon-container three">
+                        <img src="features3.png" alt="feature3 icon">
+                    </div>
+                    <p class="features-title">Feed your Tamo and keep them happy!</p>
+                </li>
+            </ul>
+        </div>
+    </section>
 
-        <br />Want to support TamoStudy? Leave a <b>Star</b> on the <a href="https://github.com/narlock/TamoStudy"><b>GitHub Repository</b></a>
-        <br> Want to support further? Become a Supporter on my <a href="https://patreon.com/narlock"><b>Patreon!</b></a>
+    <div class="nav-footer">
+        <footer>
+            <ul id=links>
+                <li><a href="https://github.com/narlock/"><img src="github.png" alt="GitHub Account Icon" width="100" height="100"></a></li>
+                <li><a href="http://discord.gg/eEbEYbXaNS"><img src="discord.png" alt="TamoStudy Discord Server Icon" width="100" height="100"></a></li>
+                <li><a href="https://patreon.com/narlock/"><img src="patreon.png" alt="Patreon Account Icon" width="100" height="100"></a></li>
+                <li><a href="https://instagram.com/tamostudy/"><img src="instagram.png" alt="instagram Account Icon" width="100" height="100"></a></li>
+            </ul>
+            <a href="http://anthonynarlock.com/" id=foot_text>narlock Software // anthonynarlock.com</a>
+        </footer>
+    </div>
 
-        <br>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js" integrity="sha512-CPA5LMoJI/a5HkSIAKcBtFXe4gqGjPUL2ExF/3PmhrrHI17wod9xOqqF+0WZQRKIIq0KwF8oG5BaiWobtrke3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <br />For immediate updates, discussion, and more, join the <a href="https://tinyurl.com/TamoDiscord"><b>TamoStudy Discord Server</b></a>
-        <br><br>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        var t1 = gsap.timeline();
 
-        <a href="https://github.com/narlock/TamoStudy"><img src="./assets/button-github.png"></a>
-        <a href="https://tinyurl.com/TamoDiscord"><img src="./assets/button-discord.png"></a>
-        <a href="https://patreon.com/narlock"><img src="./assets/button-patreon.png"></a>
-        <a href="https://instagram.com/TamoStudy"><img src="./assets/instagram-button.png"></a>
+        t1.from('.content', {
+            y: '-30%',
+            opacity: 0,
+            duration: 2,
+            ease: Power4.easeOut
+        })
+        t1.from('.stagger1', {
+            opacity: 0,
+            y: -50,
+            stagger: .3,
+            ease: Power4.easeOut,
+            duration: 1
+        }, "-=1.5")
+        t1.from('.hero-design',{
+            opacity: 0, y:50, ease: Power4.easeOut, duration: 2
+        }, "-=2")
 
-        <br>
+        gsap.from(".transition1", {
+            scrollTrigger: {
+                trigger: '.transition1',
+                start: "top bottom"
+            },
+            y:50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: .3
+        })
 
-        
-        <!-- <iframe src="https://discord.com/widget?id=821757961830793236&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>-->
-        <br>
-        <a href="TSDemo.html"><b>Try TamoStudy Web</b></a>
-        <br>
-        <br>
-        <br>
-
-        <a href="index.html">home</a> |
-        <a href="about.html">about</a> |
-        <a href="projects.html">projects</a> |
-        <a href="faq.html">faq</a> |
-        <a href="https://www.youtube.com/channel/UCXMqF8Nz5-cMcrI-aY21GzA">youtube</a> |
-        <a href="https://www.linkedin.com/in/anthonynarlock/">linkedin</a> |
-        <a href="https://github.com/narlock">github</a>
-
-        <br>
-        <br>
-
-
-    </p>
+        gsap.from(".transition3", {
+            scrollTrigger: {
+                trigger: '.transition3',
+                start: "top bottom"
+            },
+            y:50,
+            opacity: 0,
+            duration: 1.2,
+            stagger: .6
+        })
+    </script>
 </body>
 </html>

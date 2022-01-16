@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', 'Tahoma';
+    background-color: rgb(48, 48, 48);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: red;
+}
+
+.nav-footer {
+    background: rgb(44, 58, 65);
+}
+
+footer {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+ul#links {
+    min-width: 400px;
+	list-style: none;
+	padding-top: 20px;
+}
+
+ul#links li {
+    display: inline;
+}
+
+.nav-container {
+    background: rgb(44, 58, 65);
+}
+
+header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 2em;
+}
+
+header .logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+
+header .logo img {
+    margin-top: -4%;
+    margin-left: 5%;
+}
+
+
+header .logo ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+header .logo ul li {
+    display: block;
+    padding: 0 1em;
+}
+
+.nav-selection ul li {
+    display: inline-block;
+}
+
+.nav-selection ul a {
+    display: block;
+    padding: 0 1em;
+}
+
+.hero-download img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+  height: auto;
+}
+
+.features-container ul li {
+    background: rgb(109, 109, 109);
+    padding: 2em;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  
+.features-container ul li .icon-container {
+    height: 100px;
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
+    margin: 0 auto;
+}
+
+.features-container ul li .icon-container.one {
+    width: 90px;
+  }
+  
+  .features-container ul li .icon-container.two {
+    width: 100px;
+  }
+  
+  .features-container ul li .icon-container.three {
+    width: 80px;
+  }
+  
+  .features-container ul li .features-title {
+    color:white;
+  }
+
+  
+
+  @media only screen and (max-width: 799px) {
+    header .logo .title-logo {
+        width: 350px;
+        height: auto;
+        margin-top: -2%;
+        margin-left: -10%;
+    }
+    
+    .nav-selection {
+        display: none;
+    }
+
+    .hero-download img {
+        width: 500px;
+        height: auto;
+      }
+    
+    .features-container ul {
+        margin-left: 120px;
+        margin-right: 120px;
+      }
+  }
+
+  @media only screen and (max-width: 550px) {
+    header .logo .title-logo {
+        margin-top: 0%;
+        margin-left: -10%;
+        width: 300px;
+        height: auto;
+    }
+
+    .hero-download img {
+        width: 450px;
+        height: auto;
+      }
+    
+    .nav-selection {
+        display: none;
+    }
+    
+    
+    .features-container ul {
+        margin-left: 100px;
+        margin-right: 100px;
+      }
+  }
+
+  @media only screen and (min-width: 800px) {
+    .featured, .portfolio {
+      text-align: left;
+    }
+    .featured, .portfolio-container {
+      display: -ms-grid;
+      display: grid;
+      -ms-grid-columns: 40% auto;
+          grid-template-columns: 40% auto;
+    }
+    .left, .portfolio-left {
+      display: -ms-grid;
+      display: grid;
+      place-content: center;
+    }
+    .right {
+      margin-left: 2em;
+      margin-top: 1em;
+    }
+    .features {
+      margin-top: -5em;
+      padding-top: 7em;
+      place-content: center;
+    }
+    .features-container ul {
+      display: -ms-grid;
+      display: grid;
+      -ms-grid-columns: (auto)[3];
+          grid-template-columns: repeat(3, auto);
+      grid-gap: 3em;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .features-container li {
+        height: 100;
+        width: 100;
+    }
+
+    .features-title {
+        place-content: center;
+    }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    
+    
+    .features-container ul {
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+  }
+
+  @media only screen and (min-width: 1900px) {
+
+    .features-container ul {
+        margin-left: 400px;
+        margin-right: 400px;
+      }
+  }
