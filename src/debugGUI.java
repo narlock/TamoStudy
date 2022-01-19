@@ -5,6 +5,16 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.swing.*;
 
+/**
+ * debugGUI
+ * @author antho
+ * 
+ * developer debug menu, allows for profile information
+ * to be changed through the program without having 
+ * to decrypt the text file
+ *
+ */
+
 public class debugGUI extends JFrame {
 	private JLabel[] labels = {
 			new JLabel("Username"),

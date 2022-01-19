@@ -7,6 +7,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * CheckForUpdates
+ * @author antho
+ * 
+ * This class implements a checkForUpdates object
+ * which contains a stored version list in which
+ * correspond to releases that are on the github repository
+ * 
+ * the httpurl connection will identify all of the releases
+ * that the github contains
+ * 
+ * if they are not equal, a new update will be signaled.
+ *
+ */
 public class CheckForUpdates {
 	
 	private ArrayList<String> currentReleases;

@@ -5,6 +5,16 @@ import java.io.File;
 
 import javax.swing.*;
 
+/**
+ * bgGUI
+ * @author antho
+ * 
+ * This is the background store graphical user interface
+ * allows players to purchase cosmetics to change settings
+ * used with the TamoTokens that they earn from focusing
+ *
+ */
+
 public class bgGUI extends JFrame {
 	private Profile p;
 	private File file;

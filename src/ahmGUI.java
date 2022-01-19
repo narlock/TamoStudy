@@ -5,6 +5,14 @@ import static javax.swing.ScrollPaneConstants.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * Achivement GUI
+ * @author antho
+ * 
+ * This is the graphical user interface for the achievements page
+ *
+ */
+
 public class ahmGUI extends JOptionPane {
 	
 	private Profile profile;
