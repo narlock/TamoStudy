@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+* {
+    font-family: 'Poppins', 'Tahoma';
+}
+
+body {
+    background-color: lavender;
+}
+
+nav {
+    border: 2px solid black;
+    border-collapse: collapse;
+    display: flex;
+    background: rgb(150, 0, 0);
+    margin: auto;
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+}
+
+nav a {
+    display: inline;
+    margin-left: 2em;
+    padding-right: 2em;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 2px 2px black;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+nav a:hover span {
+    color: yellow;
+}
+
+.desc {
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    padding: 10px;
+    width:max-content;
+    margin: auto;
+}
+
+ul {
+    list-style: none;
+    flex-grow: 1;
+    text-align: center; 
+    width: 300px;
+}
+
+.main h2 {
+    font-size: large;
+    font-weight: normal;
+    color: black;
+    border-bottom: solid 0.3rem rgb(161,161,255);
+}
+
+.main img {
+    margin: auto 1em;
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+}
+
+.timeDiv {
+    text-align: center;
+}
+
+.time {
+    font-size: xxx-large;
+    border-radius:15px;
+    border: 2px solid black;
+    background-color: rgb(255,161,161);
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.tred { color: rgb(255,161,161); }
+.tblue { color: rgb(161,161,255) }
+.tgreen { color: rgb(161,255,161);; }
+.tyellow { color: rgb(255, 248, 161); }
