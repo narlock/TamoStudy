@@ -29,50 +29,50 @@ public class Language {
 	 */
 	
 	private String[] englishText = {
-			"INVALID_KEY_TEXT",
-			"Welcome",
-			"Level",
-			"Start Focus",
-			"Break Focus",
-			"Statistics",
-			"Food Store",
-			"Background Store",
-			"Options",
-			"Logout",
-			"Congratulations!",
-			"Session Completed",
-			"You focused for",
-			"minutes(s) and",
-			"seconds(s)",
-			"Maybe next time...",
-			"Session Focus Broke",
-			"Total Hours",
-			"Total Hours in Session",
-			"User",
-			"Join Date",
-			"Achievements",
-			"Hunger",
-			"Return To Focus",
-			"Can't Complete Purchase",
-			"You don't have sufficient funds",
-			"Can't enter food store",
-			"Your Tamo is full!",
-			"Purchase for",
-			"TamoTokens",
-			"Change Background Color",
-			"Change Focus Mode",
-			"5-Minute Countdown",
-			"Custom Countdown",
-			"Change Language",
-			"Sounds",
-			"Off",
-			"On",
-			"Logging out...",
-			"Are you sure?",
-			"OK",
-			"Cancel",
-			"Yes",
-			"No",
+			"INVALID_KEY_TEXT", //0
+			"Welcome", //1
+			"Level", //2
+			"Start Focus", //3
+			"Break Focus", //4
+			"Statistics", //5
+			"Food Store", //6
+			"Background Store", //7
+			"Options", //8
+			"Logout", //9
+			"Congratulations!", //10
+			"Session Completed", //11
+			"You focused for", //12
+			"minutes(s) and", //13
+			"seconds(s)", //14
+			"Maybe next time...", //15
+			"Session Focus Broke", //16
+			"Total Hours", //17
+			"Total Hours in Session", //18
+			"User", //19
+			"Join Date", //20
+			"Achievements", //21
+			"Hunger", //22
+			"Return To Focus", //23
+			"Can't Complete Purchase", //24
+			"You don't have sufficient funds", //25
+			"Can't enter food store", //26
+			"Your Tamo is full!", //27
+			"Purchase for", //28
+			"TamoTokens", //29
+			"Change Background Color", //30
+			"Change Focus Mode", //31
+			"5-Minute Countdown", //32
+			"Custom Countdown", //33
+			"Change Language", //34
+			"Sounds", //35
+			"Off", //36
+			"On", //37
+			"Logging out...", //38
+			"Are you sure?", //39
+			"OK", //40
+			"Cancel", //41
+			"Yes", //42
+			"No", //43
 	};	
 	private String[] spanishText = {
 			"INVALID_KEY_TEXT",

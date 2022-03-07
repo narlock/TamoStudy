@@ -44,44 +44,46 @@ public class ahmPanel extends JPanel {
 		//TODO change to Language Indicator
 		
 		if(id == 0) {
-			this.ahmTitle.setText(lang.getAhmTitle(0));
-			this.ahmDesc.setText(lang.getAhmDesc(0));
+			this.ahmTitle.setText(lang.get(11));
+			this.ahmDesc.setText(lang.get(12));
 		}
 		
 		if(id == 1) {
-			this.ahmTitle.setText(lang.getAhmTitle(1));
-			this.ahmDesc.setText(lang.getAhmDesc(1));
+			this.ahmTitle.setText(lang.get(13));
+			this.ahmDesc.setText(lang.get(14));
 		}
 		
 		if(id == 2) {
-			this.ahmTitle.setText(lang.getAhmTitle(2));
-			this.ahmDesc.setText(lang.getAhmDesc(2));
+			this.ahmTitle.setText(lang.get(15));
+			this.ahmDesc.setText(lang.get(16));
 		}
 		
 		if(id == 3) {
-			this.ahmTitle.setText(lang.getAhmTitle(3));
-			this.ahmDesc.setText(lang.getAhmDesc(3));
+			this.ahmTitle.setText(lang.get(17));
+			this.ahmDesc.setText(lang.get(18));
 		}
 		
 		if(id == 4) {
-			this.ahmTitle.setText(lang.getAhmTitle(4));
-			this.ahmDesc.setText(lang.getAhmDesc(4));
+			this.ahmTitle.setText(lang.get(19));
+			this.ahmDesc.setText(lang.get(20));
 		}
 		
 		if(id == 5) {
-			this.ahmTitle.setText(lang.getAhmTitle(5));
-			this.ahmDesc.setText(lang.getAhmDesc(5));
+			this.ahmTitle.setText(lang.get(21));
+			this.ahmDesc.setText(lang.get(22));
 		}
 		
 		if(id == 6) {
-			this.ahmTitle.setText(lang.getAhmTitle(6));
-			this.ahmDesc.setText(lang.getAhmDesc(6));
+			this.ahmTitle.setText(lang.get(23));
+			this.ahmDesc.setText(lang.get(24));
 		}
 		
 		if(id == 7) {
-			this.ahmTitle.setText(lang.getAhmTitle(7));
-			this.ahmDesc.setText(lang.getAhmDesc(7));
+			this.ahmTitle.setText(lang.get(25));
+			this.ahmDesc.setText(lang.get(26));
 		}
+		
+		//Unused Achievements
 		
 		if(id == 8) {
 			this.ahmTitle.setText(lang.getAhmTitle(8));

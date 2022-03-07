@@ -199,7 +199,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | beta 3.0");
+		this.setTitle("TamoStudy | beta 3.1");
 		this.setSize(720,549);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -237,18 +237,18 @@ public class GUI extends JFrame {
 		headMenu = new JMenuBar();
 		if(System.getProperty("os.name").startsWith("Windows"))
 			headMenu.setBackground(Color.WHITE);
-		profileMenu = new JMenu("Profile");	
+		profileMenu = new JMenu(profile.getSettings().getLang().get(1));	
 		
 		//Initialize Head Panel components
-		statsButton = new JMenuItem(profile.getSettings().getLang().getText(5), new ImageIcon(getClass().getClassLoader().getResource("menu-stats.png")));
-		optionsButton = new JMenuItem(profile.getSettings().getLang().getText(8), new ImageIcon(getClass().getClassLoader().getResource("menu-options.png")));
-		ahmButton = new JMenuItem(profile.getSettings().getLang().getText(21), new ImageIcon(getClass().getClassLoader().getResource("menu-ahm.png")));
-		inventoryButton = new JMenuItem("Inventory", new ImageIcon(getClass().getClassLoader().getResource("menu-inventory.png")));
+		statsButton = new JMenuItem(profile.getSettings().getLang().get(2), new ImageIcon(getClass().getClassLoader().getResource("menu-stats.png")));
+		optionsButton = new JMenuItem(profile.getSettings().getLang().get(27), new ImageIcon(getClass().getClassLoader().getResource("menu-options.png")));
+		ahmButton = new JMenuItem(profile.getSettings().getLang().get(10), new ImageIcon(getClass().getClassLoader().getResource("menu-ahm.png")));
+		inventoryButton = new JMenuItem(profile.getSettings().getLang().get(7), new ImageIcon(getClass().getClassLoader().getResource("menu-inventory.png")));
 		
 		//Other Menu Options
-		feedButton = new JButton(profile.getSettings().getLang().getText(6));
-		backgroundShopButton = new JButton(profile.getSettings().getLang().getText(7));
-		logOutButton = new JButton(profile.getSettings().getLang().getText(9));
+		feedButton = new JButton(profile.getSettings().getLang().get(39));
+		backgroundShopButton = new JButton(profile.getSettings().getLang().get(46));
+		logOutButton = new JButton(profile.getSettings().getLang().get(49));
 
 		shopBox = new JComboBox();
 		
@@ -298,7 +298,7 @@ public class GUI extends JFrame {
 		tamoStatsPanel.setLayout(new GridLayout(6,1));
 		tamoStatsPanel.setBackground(profile.getColor());
 				
-		profileName = new JLabel(profile.getSettings().getLang().getText(1) + ", " + profile.getUsername());
+		profileName = new JLabel(profile.getSettings().getLang().get(52) + ", " + profile.getUsername());
 		if(profile.getSettings().getLang().getIndicator() == 4 || profile.getSettings().getLang().getIndicator() == 7)
 			profileName.setFont(new Font("Times New Roman", Font.PLAIN, 24));
 		else
@@ -312,7 +312,7 @@ public class GUI extends JFrame {
 		
 		tamoName = new JLabel("Tamo: " + profile.getTamo().getName());
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoLevel = new JLabel(profile.getSettings().getLang().getText(2) + profile.getTamo().getLevel());
+		tamoLevel = new JLabel(profile.getSettings().getLang().get(53) + profile.getTamo().getLevel());
 		tamoLevel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		//tamoHappiness = new JLabel("Happiness: " + profile.getTamo().getHappiness() + "/10");
@@ -393,15 +393,15 @@ public class GUI extends JFrame {
 			timerSetPanel.add(fiveIntervalBox);
 		}
 		
-		currentSessionLabel = new JLabel("Let's Focus!");
+		currentSessionLabel = new JLabel(profile.getSettings().getLang().get(57));
 		currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 20));
 		
-		pomoNumberSessionLabel = new JLabel("# Of Sessions");
+		pomoNumberSessionLabel = new JLabel(profile.getSettings().getLang().get(58));
 		pomoNumberSessionBox = new JComboBox();
 		
-		pomoSessionLabel = new JLabel("Session Length");
+		pomoSessionLabel = new JLabel(profile.getSettings().getLang().get(59));
 		pomoSessionBox = new JComboBox();
-		pomoBreakLabel = new JLabel("Break Length");
+		pomoBreakLabel = new JLabel(profile.getSettings().getLang().get(60));
 		pomoBreakBox = new JComboBox();
 		pomoSessionBox.setBackground(Color.WHITE);
 		pomoBreakBox.setBackground(Color.WHITE);
@@ -472,8 +472,8 @@ public class GUI extends JFrame {
 		timerButtonPanel = new JPanel();
 		timerButtonPanel.setBackground(profile.getColorDark());
 				
-		startButton = new JButton(profile.getSettings().getLang().getText(3));
-		breakButton = new JButton(profile.getSettings().getLang().getText(4));
+		startButton = new JButton(profile.getSettings().getLang().get(54));
+		breakButton = new JButton(profile.getSettings().getLang().get(55));
 
 		timerButtonPanel.add(startButton);
 		timerButtonPanel.add(breakButton);
@@ -644,7 +644,8 @@ public class GUI extends JFrame {
 							studyTimeMinutes = tempMin;
 							studyTimeSeconds = tempSec;
 							updateStudyStats(studyTimeMinutes, studyTimeSeconds);
-							studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
+							//studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
+							studyMessage = profile.getSettings().getLang().get(62) + "\n" + profile.getSettings().getLang().get(63) + " " + profile.getSettings().getLang().get(64) + " " + profile.getSettings().getLang().get(65) + ".";
 							
 							tempMin = 0;
 							tempSec = 0;
@@ -669,7 +670,7 @@ public class GUI extends JFrame {
 									clip.loop(Clip.LOOP_CONTINUOUSLY);
 									
 									//loop will end when user hits ok dialog
-									JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+									JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 									clip.stop();
 									
 								} catch (Exception ex2) {
@@ -677,7 +678,7 @@ public class GUI extends JFrame {
 								}
 							
 							} else {
-								JOptionPane.showMessageDialog(rootPane, studyMessage, "Congratulations!", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+								JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 								
 							}
 							//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
@@ -733,7 +734,8 @@ public class GUI extends JFrame {
 				}
 				
 				updateStudyStats(studyTimeMinutes, studyTimeSeconds);
-				studyMessage = "Session Focus Broke\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
+				//studyMessage = "Session Focus Broke\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
+				studyMessage = profile.getSettings().getLang().get(67) + "\n" + profile.getSettings().getLang().get(63) + " " + profile.getSettings().getLang().get(64) + " " + profile.getSettings().getLang().get(65) + ".";
 				
 				sessionMin = sessionMin + studyTimeMinutes;
 				sessionSec = sessionSec + studyTimeSeconds;
@@ -741,7 +743,7 @@ public class GUI extends JFrame {
 				resetTimer();
 				timer.stop();
 				
-				JOptionPane.showMessageDialog(rootPane, studyMessage, "Maybe next time...", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(66), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -775,8 +777,8 @@ public class GUI extends JFrame {
 				totalSessionHours = Math.round(totalSessionHours * 100.0) / 100.0;
 				
 				//Create statspanel components
-				JLabel totalHoursLabel = new JLabel(profile.getSettings().getLang().getText(17) + ": " + totalHours);
-				JLabel totalHoursSessionLabel = new JLabel(profile.getSettings().getLang().getText(18) + ": " + totalSessionHours);
+				JLabel totalHoursLabel = new JLabel(profile.getSettings().getLang().get(3) + ": " + totalHours);
+				JLabel totalHoursSessionLabel = new JLabel(profile.getSettings().getLang().get(4) + ": " + totalSessionHours);
 				
 				JPanel starPanel = new JPanel();
 				starPanel.setLayout(new GridLayout());
@@ -788,8 +790,8 @@ public class GUI extends JFrame {
 				
 				starPanel.add(ahmStarLabel);
 				
-				JLabel usernameStatsLabel = new JLabel(profile.getSettings().getLang().getText(19) + ": " + profile.getUsername());
-				JLabel joinDateStatsLabel = new JLabel(profile.getSettings().getLang().getText(20) + ": " + profile.getJoinDate());
+				JLabel usernameStatsLabel = new JLabel(profile.getSettings().getLang().get(5) + ": " + profile.getUsername());
+				JLabel joinDateStatsLabel = new JLabel(profile.getSettings().getLang().get(6) + ": " + profile.getJoinDate());
 				
 				statsPanel.add(totalHoursLabel);
 				statsPanel.add(totalHoursSessionLabel);
@@ -797,7 +799,7 @@ public class GUI extends JFrame {
 				statsPanel.add(usernameStatsLabel);
 				statsPanel.add(joinDateStatsLabel);
 				
-				JOptionPane.showMessageDialog(rootPane, statsPanel, profile.getSettings().getLang().getText(5), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				JOptionPane.showMessageDialog(rootPane, statsPanel, profile.getSettings().getLang().get(2), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				
 			}
 			
@@ -841,7 +843,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().getText(39), profile.getSettings().getLang().getText(38),
+				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().get(51), profile.getSettings().getLang().get(50),
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(resultPane == JOptionPane.OK_OPTION) {
 					welcomeGUI welcome = new welcomeGUI(1);
@@ -864,10 +866,10 @@ public class GUI extends JFrame {
 				optionsPanel.setLayout(new GridLayout(5,1));
 				
 				JPanel op1 = new JPanel(), op2 = new JPanel(), op3 = new JPanel(), op4 = new JPanel();
-				JLabel focusModeLabel = new JLabel("Change Focus Mode");
-				JLabel langLabel = new JLabel("Change Language");
-				JLabel diffLabel = new JLabel("Change Difficulty");
-				JLabel soundsLabel = new JLabel("Sounds");
+				JLabel focusModeLabel = new JLabel(profile.getSettings().getLang().get(28));
+				JLabel langLabel = new JLabel(profile.getSettings().getLang().get(32));
+				JLabel diffLabel = new JLabel(profile.getSettings().getLang().get(33));
+				JLabel soundsLabel = new JLabel(profile.getSettings().getLang().get(36));
 				
 				JButton debugButton = new JButton("Debug");
 				debugButton.addActionListener(new ActionListener() {
@@ -881,9 +883,9 @@ public class GUI extends JFrame {
 				});
 				
 				JComboBox focusMode = new JComboBox();
-				focusMode.addItem("5-Interval Countdown");
-				focusMode.addItem("Custom Interval Countdown");
-				focusMode.addItem("Pomodoro Mode");
+				focusMode.addItem(profile.getSettings().getLang().get(29));
+				focusMode.addItem(profile.getSettings().getLang().get(30));
+				focusMode.addItem(profile.getSettings().getLang().get(31));
 				
 				focusMode.setSelectedIndex(profile.getSettings().getFocusMode());
 				
@@ -902,27 +904,27 @@ public class GUI extends JFrame {
 				languageBox.setSelectedIndex(profile.getSettings().getLang().getIndicator());
 				
 				JComboBox difficultyBox = new JComboBox();
-				difficultyBox.addItem("Peaceful");
-				difficultyBox.addItem("Challenging");
+				difficultyBox.addItem(profile.getSettings().getLang().get(34));
+				difficultyBox.addItem(profile.getSettings().getLang().get(35));
 				
 				difficultyBox.setSelectedIndex(profile.getSettings().getDifficulty());
 				
 				JButton soundButton = new JButton();
 					if(profile.getSettings().getSessionSounds() == 1)
-						soundButton.setText("ON");
+						soundButton.setText(profile.getSettings().getLang().get(37));
 					else
-						soundButton.setText("OFF");
+						soundButton.setText(profile.getSettings().getLang().get(38));
 				
 				soundButton.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						if (profile.getSettings().getSessionSounds() == 0) {
-							soundButton.setText("ON");
+							soundButton.setText(profile.getSettings().getLang().get(37));
 							profile.getSettings().setSessionSounds(1);
 								System.out.println("profile.getSettings().getSessionSounds() = " + profile.getSettings().getSessionSounds());
 						} else {
-							soundButton.setText("OFF");
+							soundButton.setText(profile.getSettings().getLang().get(38));
 							profile.getSettings().setSessionSounds(0);
 								System.out.println("profile.getSettings().getSessionSounds() = " + profile.getSettings().getSessionSounds());
 						}
@@ -952,7 +954,7 @@ public class GUI extends JFrame {
 				op3.add(soundsLabel);
 				op3.add(soundButton);
 				
-				int result = JOptionPane.showConfirmDialog(rootPane, optionsPanel, "Options", JOptionPane.PLAIN_MESSAGE, 0, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				int result = JOptionPane.showConfirmDialog(rootPane, optionsPanel, profile.getSettings().getLang().get(27), JOptionPane.PLAIN_MESSAGE, 0, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(result == 0) {
 					//Change Settings
 					
@@ -1216,7 +1218,7 @@ public class GUI extends JFrame {
 		ahmButton.setEnabled(true);
 		logOutButton.setEnabled(true);
 		
-		currentSessionLabel.setText("Let's Focus!");
+		currentSessionLabel.setText(profile.getSettings().getLang().get(57));
 		
 	}
 	
@@ -1435,7 +1437,7 @@ public class GUI extends JFrame {
 		
 		//Update General Labels
 		moneyLabel.setText("" + profile.getMoney());
-		tamoLevel.setText(profile.getSettings().getLang().getText(2) + ": " + profile.getTamo().getLevel());
+		tamoLevel.setText(profile.getSettings().getLang().get(53) + ": " + profile.getTamo().getLevel());
 		updateTamoHappiness(profile.getTamo().getHappiness());
 		updateTamoHunger(profile.getTamo().getHunger());
 		
@@ -1817,6 +1819,12 @@ public class GUI extends JFrame {
 			return 1;
 		if(stringIndicator.equals("Pomodoro Mode"))
 			return 2;
+		if(stringIndicator.equals(profile.getSettings().getLang().get(29)))
+			return 0;
+		if(stringIndicator.equals(profile.getSettings().getLang().get(30)))
+			return 1;
+		if(stringIndicator.equals(profile.getSettings().getLang().get(31)))
+			return 2;
 		
 		
 		return 0;
@@ -1859,6 +1867,10 @@ public class GUI extends JFrame {
 		if(difficultyString.equals("Peaceful"))
 			return 0;
 		if(difficultyString.equals("Challenging"))
+			return 1;
+		if(difficultyString.equals(profile.getSettings().getLang().get(34)))
+			return 0;
+		if(difficultyString.equals(profile.getSettings().getLang().get(35)))
 			return 1;
 		
 		return 0;

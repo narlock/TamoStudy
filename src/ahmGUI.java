@@ -81,7 +81,7 @@ public class ahmGUI extends JOptionPane {
 		achievementPanel = new JPanel();
 		achievementPanel.setBackground(profile.getColor());
 		achievementPanel.setLayout(new GridLayout(4,2));
-		returnToFocus = new JButton(profile.getSettings().getLang().getText(23));
+		returnToFocus = new JButton(profile.getSettings().getLang().get(56));
 		initButton(returnToFocus);
 		
 	}
@@ -123,6 +123,6 @@ public class ahmGUI extends JOptionPane {
 	
 	
 	public void showConfirmDialog() {
-		JOptionPane.showMessageDialog(null, achievementPanel, profile.getUsername() + "'s Achievements", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, achievementPanel, profile.getSettings().getLang().get(10) + ": " + profile.getUsername() , JOptionPane.PLAIN_MESSAGE);
 	}
 }

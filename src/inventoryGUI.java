@@ -117,7 +117,7 @@ public class inventoryGUI extends JFrame {
 	}
 	
 	public void initNorthComponents() {
-		returnToFocus = new JButton(p.getSettings().getLang().getText(23));
+		returnToFocus = new JButton(p.getSettings().getLang().get(56));
 		initButtonVisual(returnToFocus);
 		returnToFocus.addActionListener(new ActionListener() {
 

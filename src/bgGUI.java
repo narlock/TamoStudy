@@ -110,7 +110,7 @@ public class bgGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
-		this.setTitle(p.getSettings().getLang().getText(7) + " | TamoTokens: " + p.getMoney());
+		this.setTitle(p.getSettings().getLang().get(46) + " | TamoTokens: " + p.getMoney());
 		this.setSize(900, 799);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -128,7 +128,7 @@ public class bgGUI extends JFrame {
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(p.getColor());
-		returnToFocus = new JButton(p.getSettings().getLang().getText(23));
+		returnToFocus = new JButton(p.getSettings().getLang().get(56));
 		shopImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("shop.png")));
 		
 		//Change background Panel
@@ -139,7 +139,7 @@ public class bgGUI extends JFrame {
 		changeColorSouth = new JPanel();
 		changeColorSouth.setBackground(p.getColor());
 
-		localBackgroundLabel = new JLabel(p.getSettings().getLang().getText(30) + " (500 TamoTokens)");
+		localBackgroundLabel = new JLabel(p.getSettings().getLang().get(47) + " (500 TamoTokens)");
 			localBackgroundLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		redButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-default.png")));
 		blueButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-blue.png")));
@@ -149,7 +149,7 @@ public class bgGUI extends JFrame {
 		orangeButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-orange.png")));
 		greyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("color-grey.png")));
 		
-		changeBackgroundLabel = new JLabel("Change Tamo Background");
+		changeBackgroundLabel = new JLabel(p.getSettings().getLang().get(48));
 			changeBackgroundLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		
@@ -203,8 +203,9 @@ public class bgGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//If user has sufficient funds to make purchase
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 1000 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 1000 " + p.getSettings().getLang().getText(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(0);
 						p.setMoney(p.getMoney() - 1000);
@@ -220,7 +221,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -232,7 +233,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 1000 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 1000 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(1);
 						p.setMoney(p.getMoney() - 1000);
@@ -248,7 +249,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -260,7 +261,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 1000 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 1000 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(2);
 						p.setMoney(p.getMoney() - 1000);
@@ -276,7 +277,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -288,7 +289,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 1000 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(51), p.getSettings().getLang().getText(45) + " 1000 " + p.getSettings().getLang().getText(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
@@ -304,7 +305,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -316,7 +317,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 5000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 5000 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(51), p.getSettings().getLang().get(45) + " 5000 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
@@ -332,7 +333,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(44), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -417,7 +418,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("default");
 						p.setMoney(p.getMoney() - 500);
@@ -433,7 +434,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -446,7 +447,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("blue");
 						p.setMoney(p.getMoney() - 500);
@@ -462,7 +463,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -474,7 +475,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("green");
 						p.setMoney(p.getMoney() - 500);
@@ -490,7 +491,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -502,7 +503,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("orange");
 						p.setMoney(p.getMoney() - 500);
@@ -519,7 +520,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -531,7 +532,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("purple");
 						p.setMoney(p.getMoney() - 500);
@@ -548,7 +549,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -560,7 +561,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("yellow");
 						p.setMoney(p.getMoney() - 500);
@@ -577,7 +578,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -589,7 +590,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 500 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 500 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 500 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setGuiColor("grey");
 						p.setMoney(p.getMoney() - 500);
@@ -606,7 +607,7 @@ public class bgGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}

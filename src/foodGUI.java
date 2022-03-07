@@ -87,7 +87,7 @@ public class foodGUI extends JFrame {
 	public void setUpFrame() {
 		ImageIcon logo = new ImageIcon(getClass().getClassLoader().getResource("ico.png"));
 		
-		this.setTitle(p.getSettings().getLang().getText(6) + " | Tamo Tokens: " + p.getMoney());
+		this.setTitle(p.getSettings().getLang().get(39) + " | Tamo Tokens: " + p.getMoney());
 		this.setSize(720, 299);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -109,7 +109,7 @@ public class foodGUI extends JFrame {
 		//Init South panel components
 		southPanel = new JPanel();
 		southPanel.setBackground(p.getColor());
-		returnToFocus = new JButton(p.getSettings().getLang().getText(23));
+		returnToFocus = new JButton(p.getSettings().getLang().get(56));
 		
 		//Init Center Panel Components
 		centerPanel = new JPanel();
@@ -127,15 +127,15 @@ public class foodGUI extends JFrame {
 		shopImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("shop.png")));
 		tutorialLabel = new JLabel("Buy food for your Tamo!\nUpon purchase, Tamo will eat food.");
 		
-		food1InfoLabel = new JLabel("  100 TamoTokens - 1 " + p.getSettings().getLang().getText(22));
+		food1InfoLabel = new JLabel("  100 TamoTokens - 1 " + p.getSettings().getLang().get(40));
 			food1InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food1BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-onigiri.png")));
 	
-		food2InfoLabel = new JLabel("  200 TamoTokens - 3 " + p.getSettings().getLang().getText(22));
+		food2InfoLabel = new JLabel("  200 TamoTokens - 3 " + p.getSettings().getLang().get(40));
 			food2InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food2BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-plate.png")));
 		
-		food3InfoLabel = new JLabel("  800 TamoTokens - 10 " + p.getSettings().getLang().getText(22));
+		food3InfoLabel = new JLabel("  800 TamoTokens - 10 " + p.getSettings().getLang().get(40));
 			food3InfoLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		food3BuyButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("food-cheesecake.png")));
 		
@@ -149,7 +149,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 100 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 100 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 100 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.getTamo().setHunger(p.getTamo().getHunger() + 1);
 						p.setMoney(p.getMoney() - 100);
@@ -158,7 +158,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -170,7 +170,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 200 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 200 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 200 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						if(p.getTamo().getHunger() > 7) {
 							p.getTamo().setHunger(10);
@@ -184,7 +184,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
@@ -196,7 +196,7 @@ public class foodGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 800 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(39), p.getSettings().getLang().getText(28) + " 800 " + p.getSettings().getLang().getText(29),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 800 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.getTamo().setHunger(10);
 						p.setMoney(p.getMoney() - 800);
@@ -205,7 +205,7 @@ public class foodGUI extends JFrame {
 						hideWindow();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, p.getSettings().getLang().getText(25), p.getSettings().getLang().getText(24), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+					JOptionPane.showMessageDialog(null, p.getSettings().getLang().get(43), p.getSettings().getLang().get(42), JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				}
 				
 			}
