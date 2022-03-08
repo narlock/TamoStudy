@@ -256,6 +256,11 @@ public class Profile {
 		this.guiColor = guiColor;
 	}
 	
+	public void setLoginDate(Date d) {
+		this.new_login_date = d;
+	}
+	
+	
 	
 	public Color getColor() {
 		if(this.guiColor.equals("default"))

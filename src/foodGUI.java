@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.*;
 
@@ -238,6 +240,17 @@ public class foodGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Ensures user will make a new date
+				/**
+				 * NO CLUE IF THIS WORKS...
+				 * TESTING TO TRY AND MAKE A NEW DATE TO THE PROFILE
+				 */
+				System.out.println("New Date:");
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				p.setLoginDate(new Date());
+				p.setNewLoginString(formatter.format(p.getLast_login_date()));
+				System.out.println("New login string on FOOD GUI: " + p.getNewLoginString());
+				
 				GUI Focus = new GUI(p,file);
 				hideWindow();
 				

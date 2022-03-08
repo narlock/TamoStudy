@@ -960,7 +960,7 @@ public class GUI extends JFrame {
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				//optionsPanel.add(debugButton);
+				optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
