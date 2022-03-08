@@ -12,6 +12,8 @@ import profile.Item;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,7 +102,26 @@ public class inventoryGUI extends JFrame {
 		this.setVisible(true);
 		this.setBackground(p.getColorDark());
 		this.setIconImage(logo.getImage());
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Set so the window adapter takes care of terminating
+		
+		/**
+		 * This window listener provides
+		 * functionality that asks "are you sure" before
+		 * the user is to exit TamoStudy
+		 */
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int resultPane = JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(50),
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				if(resultPane == JOptionPane.OK_OPTION) {
+					System.exit(0);
+					
+				} else {
+					//System.out.println("Cancelled");
+				}
+			}
+		});
 	}
 	
 	/*

@@ -204,8 +204,28 @@ public class GUI extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Set so the window adapter takes care of terminating
 		this.setIconImage(logo.getImage());
+		
+		
+		/**
+		 * This window listener provides
+		 * functionality that asks "are you sure" before
+		 * the user is to exit TamoStudy
+		 */
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int resultPane = JOptionPane.showConfirmDialog(null, profile.getSettings().getLang().get(51), profile.getSettings().getLang().get(50),
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+				if(resultPane == JOptionPane.OK_OPTION) {
+					System.exit(0);
+					
+				} else {
+					//System.out.println("Cancelled");
+				}
+			}
+		});
 		
 	}
 	
