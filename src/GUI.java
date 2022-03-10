@@ -670,11 +670,13 @@ public class GUI extends JFrame {
 							tempMin = 0;
 							tempSec = 0;
 
-							if(profile.getSettings().getSessionSounds() == 1) {
+							if(profile.getSettings().getSessionSounds() >= 1) {
 							
 								try {
 									//Get the url for the sound clip
-									URL url = this.getClass().getClassLoader().getResource("end2.wav");
+									String soundPath = getSoundPath(profile.getSettings().getSessionSounds());
+									
+									URL url = this.getClass().getClassLoader().getResource(soundPath);
 									AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
 									
 									//get the clip from the url
@@ -929,8 +931,13 @@ public class GUI extends JFrame {
 				
 				difficultyBox.setSelectedIndex(profile.getSettings().getDifficulty());
 				
+				JComboBox soundChooser = new JComboBox();
+				soundChooser.addItem("Soft Alarm");
+				soundChooser.addItem("Trad Alarm");
+				soundChooser.addItem("Pac");
+				
 				JButton soundButton = new JButton();
-					if(profile.getSettings().getSessionSounds() == 1)
+					if(profile.getSettings().getSessionSounds() >= 1)
 						soundButton.setText(profile.getSettings().getLang().get(37));
 					else
 						soundButton.setText(profile.getSettings().getLang().get(38));
@@ -941,7 +948,8 @@ public class GUI extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						if (profile.getSettings().getSessionSounds() == 0) {
 							soundButton.setText(profile.getSettings().getLang().get(37));
-							profile.getSettings().setSessionSounds(1);
+							//profile.getSettings().setSessionSounds(1);
+							profile.getSettings().setSessionSounds(getSoundIndicator(soundChooser.getSelectedItem().toString()));
 								System.out.println("profile.getSettings().getSessionSounds() = " + profile.getSettings().getSessionSounds());
 						} else {
 							soundButton.setText(profile.getSettings().getLang().get(38));
@@ -954,13 +962,14 @@ public class GUI extends JFrame {
 					
 				});
 				
+				
 				optionsPanel.add(op1);
 				optionsPanel.add(op2);
 				optionsPanel.add(op4);
 				optionsPanel.add(op3);
 				
 				//TODO REMOVE THIS LATER
-				optionsPanel.add(debugButton);
+				//optionsPanel.add(debugButton);
 				
 				op1.add(focusModeLabel);
 				op1.add(focusMode);
@@ -973,6 +982,7 @@ public class GUI extends JFrame {
 				
 				op3.add(soundsLabel);
 				op3.add(soundButton);
+				op3.add(soundChooser);
 				
 				int result = JOptionPane.showConfirmDialog(rootPane, optionsPanel, profile.getSettings().getLang().get(27), JOptionPane.PLAIN_MESSAGE, 0, new ImageIcon(getClass().getClassLoader().getResource("info.png")));
 				if(result == 0) {
@@ -984,6 +994,10 @@ public class GUI extends JFrame {
 					int difficultyIndicator = getDifficultyIndicator(difficultyBox.getSelectedItem().toString());
 					
 					//TODO Sounds on/off
+					if(profile.getSettings().getSessionSounds() >= 1) {
+						System.out.println("setting in methdwidw");
+						profile.getSettings().setSessionSounds(getSoundIndicator(soundChooser.getSelectedItem().toString()));
+					}
 					
 					profile.getSettings().setFocusMode(focusModeIndicator);
 					profile.getSettings().getLang().setIndicator(languageIndicator);
@@ -1848,6 +1862,36 @@ public class GUI extends JFrame {
 		
 		
 		return 0;
+	}
+	
+	/*
+	 * getSoundIndicator
+	 * Returns the index corresponding with the sound number
+	 */
+	public int getSoundIndicator(String soundIndicator) {
+		if(soundIndicator.equals("Soft Alarm"))
+			return 1;
+		if(soundIndicator.equals("Trad Alarm"))
+			return 2;
+		if(soundIndicator.equals("Pac"))
+			return 3;
+		
+		return 1;
+	}
+	
+	/**
+	 * getSoundPath
+	 * Returns the string corresponding to sound selected
+	 */
+	public String getSoundPath(int indicator) {
+		if(indicator == 1)
+			return "end3.wav";
+		if(indicator == 2)
+			return "end4.wav";
+		if(indicator == 3)
+			return "end2.wav";
+		
+		return "end3.wav";
 	}
 	
 	/*
