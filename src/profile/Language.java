@@ -9,12 +9,12 @@ package profile;
  * Language Credits:
  * English: myself (Anthony Narlock)
  * Spanish: Marie
- * Portuguese: 
+ * Portuguese: kathflowers
  * German: boba
  * Japanese: Marie
- * Dutch: 
+ * Dutch: Britt
  * French: Marie
- * Chinese: 
+ * Chinese: n/a
  * Turkish: Eno
  * Irish: Medkep
  */
@@ -1059,7 +1059,74 @@ public class Language {
 	
 	//Dutch: 
 	private String[] dutch = {
-			
+		"PLACEHOLDER",
+		"Profiel",
+		"Statistieken",
+		"Totaal aantal uren",
+		"Totaal aantal uren in sessie",
+		"Gebruiker",
+		"Lid sinds",
+		"Inventaris",
+		"Gebruik item",
+		"Lege inventaris",
+		"Prestaties",
+		"Het begin",
+		"Haal een totale focustijd van 3 uur",
+		"Niets houdt je tegen!",
+		"Haal een totale focustijd van 1 dag",
+		"Geef nooit op!",
+		"Haal een totale focustijd van 7 dagen",
+		"Customizer 1",
+		"Verander je achtergrondkleur",
+		"Customizer 2",
+		"Verander de achtergrond van je Tamo",
+		"Vanaf het begin",
+		"Aangepast profiel met gebruik van de Tamo profiel-updater",
+		"Tamo zit vol",
+		"Entering the food shop when Tamo is full - Shop binnengaan wanneer Tamo vol zit",
+		"Tamo liefde",
+		"Behaal maximaal Tamo geluk",
+		"Instellingen",
+		"Verander de Focus Modus",
+		"5-interval aftelklok",
+		"Aangepast interval aftelklok",
+		"Pomodoro Modus",
+		"Verander de taal",
+		"Verander de moeilijkheidsgraad",
+		"Kalm",
+		"Uitdagend",
+		"Geluiden",
+		"AAN",
+		"UIT",
+		"Shop voedse",
+		"Honger",
+		"Tamo Munten",
+		"Kan aankoop niet voltooien",
+		"Je hebt niet genoeg munten",
+		"Kan niet binnen",
+		"Koop voor",
+		"Achtergrond shop",
+		"Verander achtergrondkleur",
+		"Verander de achtergrond van Tamo",
+		"Uitloggen",
+		"Aan het uitloggen…",
+		"Ben je zeker?",
+		"Welkom",
+		"Level",
+		"Start Focus",
+		"Pauzeer Focus",
+		"Keer terug naar Focus",
+		"Laten we focussen!",
+		"Aantal sessies",
+		"Lengte van de sessie",
+		"Lengte van de pauze",
+		"Gefeliciteerd!",
+		"Sessie compleet",
+		"Je was gefocust voor",
+		"minu(u)t(en) en",
+		"second(en)",
+		"Misschien volgende keer...",
+		"Focus onderbroken"
 	};
 	
 	//French: Marie
