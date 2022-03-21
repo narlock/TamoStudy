@@ -665,7 +665,7 @@ public class GUI extends JFrame {
 							studyTimeSeconds = tempSec;
 							updateStudyStats(studyTimeMinutes, studyTimeSeconds);
 							//studyMessage = "Session Completed\nYou focused for " + studyTimeMinutes + " minute(s) and " + studyTimeSeconds + " second(s).";
-							studyMessage = profile.getSettings().getLang().get(62) + "\n" + profile.getSettings().getLang().get(63) + " " + profile.getSettings().getLang().get(64) + " " + profile.getSettings().getLang().get(65) + ".";
+							studyMessage = profile.getSettings().getLang().get(62) + "\n" + profile.getSettings().getLang().get(63) + " " + studyTimeMinutes + " " + profile.getSettings().getLang().get(64) + " " + studyTimeSeconds + " " + profile.getSettings().getLang().get(65) + ".";
 							
 							tempMin = 0;
 							tempSec = 0;
