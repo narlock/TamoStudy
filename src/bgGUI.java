@@ -310,7 +310,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 1000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(51), p.getSettings().getLang().getText(45) + " 1000 " + p.getSettings().getLang().getText(41),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 1000 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(3);
 						p.setMoney(p.getMoney() - 1000);
@@ -338,7 +338,7 @@ public class bgGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(p.getMoney() - 5000 >= 0) {
-					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().getText(51), p.getSettings().getLang().get(45) + " 5000 " + p.getSettings().getLang().get(41),
+					if(JOptionPane.showConfirmDialog(null, p.getSettings().getLang().get(51), p.getSettings().getLang().get(45) + " 5000 " + p.getSettings().getLang().get(41),
 							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						p.setCurrentBackground(4);
 						p.setMoney(p.getMoney() - 5000);
