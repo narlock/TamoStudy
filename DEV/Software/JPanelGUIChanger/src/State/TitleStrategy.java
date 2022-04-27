@@ -10,7 +10,7 @@ import javax.imageio.*;
 import java.net.*;
 
 public class TitleStrategy extends StateStrategy {
-	private ImageIcon heroImage = new ImageIcon(getClass().getClassLoader().getResource("title-small.gif")); //Import image;
+	private ImageIcon heroImage = new ImageIcon(getClass().getClassLoader().getResource("TITLE_SMALL.gif")); //Import image;
 	
 	@Override
 	public void setPanel() {

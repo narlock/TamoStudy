@@ -19,12 +19,14 @@ public class MainGUI extends JFrame {
 	 * MainGUI the "Context"
 	 */
 	
-	private boolean openedSideBar; //State of the sidebar being opened
-	private JPanel sidePanel; //The sidebar panel
-	private JPanel openSidePanel; //The openSideBar panel
-	private StateStrategy strategy; //The center strategy state
-									//This is what is rendered on
-									//center of the screen.
+	private boolean openedSideBar; 								//State of the sidebar being opened
+	private JPanel sidePanel; 									//The sidebar panel
+	private JPanel openSidePanel; 								//The openSideBar panel
+	private StateStrategy strategy; 							//The center strategy state
+																//This is what is rendered on
+																//center of the screen.
+	private static final String 								//Line Divider for some JLabels
+		DIVIDER_STRING = "     ━━━━━━━━━━━━━━━━━━━━━     ";
 
 	/**
 	 * @brief Main Constructor
@@ -81,8 +83,8 @@ public class MainGUI extends JFrame {
 		 * Setting up the Side Panel
 		 */
 		
-		JLabel thematicBreak = new JLabel("     ━━━━━━━━━━━━━━━━━━━━━     ");
-		JLabel thematicBreak2 = new JLabel("     ━━━━━━━━━━━━━━━━━━━━━     ");
+		JLabel thematicBreak = new JLabel(DIVIDER_STRING);
+		JLabel thematicBreak2 = new JLabel(DIVIDER_STRING);
 		setUpLabelComponent(thematicBreak, 1);
 		setUpLabelComponent(thematicBreak2, 1);
 		
