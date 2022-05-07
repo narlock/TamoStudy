@@ -245,11 +245,11 @@ public class foodGUI extends JFrame {
 				 * NO CLUE IF THIS WORKS...
 				 * TESTING TO TRY AND MAKE A NEW DATE TO THE PROFILE
 				 */
-				System.out.println("New Date:");
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				p.setLoginDate(new Date());
-				p.setNewLoginString(formatter.format(p.getLast_login_date()));
-				System.out.println("New login string on FOOD GUI: " + p.getNewLoginString());
+				//System.out.println("New Date:");
+				//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				//p.setLoginDate(new Date());
+				//p.setNewLoginString(formatter.format(p.getLast_login_date()));
+				//System.out.println("New login string on FOOD GUI: " + p.getNewLoginString());
 				
 				GUI Focus = new GUI(p,file);
 				hideWindow();
