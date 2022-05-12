@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import State.ShopStrategy;
 import State.StateStrategy;
 import State.StudyFocusStrategy;
 import State.TitleStrategy;
@@ -53,7 +54,6 @@ public class MainGUI extends JFrame {
 	 * Will 'repaint' the main panel.
 	 */
 	public void recall(StateStrategy newStrategy) {
-		System.out.println("TEST");
 		this.remove(strategy);
 		strategy = newStrategy;
 		this.add(strategy, BorderLayout.CENTER);
@@ -97,6 +97,7 @@ public class MainGUI extends JFrame {
 		titleCardButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Title Card");
 				updateSideBar();
 				StateStrategy newStrategy = new TitleStrategy();
 				recall(newStrategy);
@@ -108,6 +109,7 @@ public class MainGUI extends JFrame {
 		focusButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy();
 				recall(newStrategy);
@@ -117,6 +119,15 @@ public class MainGUI extends JFrame {
 		JButton shopButton = new JButton("Shop");
 		setUpButtonComponent(shopButton);
 		//TODO implement shop Button to change strategy
+		shopButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Shop");
+				updateSideBar();
+				StateStrategy newStrategy = new ShopStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton themesButton = new JButton("Themes");
 		setUpButtonComponent(themesButton);
@@ -175,6 +186,7 @@ public class MainGUI extends JFrame {
 		openSideLabel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Menu was updated!");
 				updateSideBar();
 			}
 		});
