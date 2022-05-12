@@ -15,19 +15,15 @@ public class StudyFocusStrategy extends StateStrategy {
 	 * Right Panel is the Timer Panel
 	 */
 	
+	//Separators
+	private JLabel transparentComponent, transparentComponent2, transparentComponent3;
+	private JLabel textSpace, textSpace2;	
+	
 	//Tamo Panel
 	private JPanel tamoPanel;
-	
-	private JPanel tamoImagePanel;
-	private JLabel imageLabel, backgroundImageLabel;
-	
-	private JPanel tamoNameLevelPanel;
 	private JLabel tamoName, tamoLevel;
-	
-	private JPanel moneyPanel;
+	private JLabel imageLabel, backgroundImageLabel;
 	private JLabel moneyLabel, moneyImageLabel;
-	
-	private JPanel tamoStatsPanel;
 	private JLabel tamoHappiness, tamoHunger;
 	
 	//Timer Panel
@@ -38,7 +34,7 @@ public class StudyFocusStrategy extends StateStrategy {
 	private JLabel currentSessionLabel;
 	
 	//The timer set panel will be different depending on user's mode
-	private JPanel timerSetPanel;
+	private JPanel timerSetPanel, timerSetTextPanel, timerSetBoxPanel;
 	private JLabel pomoNumberSessionLabel, pomoSessionLabel, pomoBreakLabel;
 	private JComboBox pomoNumberSessionBox, pomoSessionBox, pomoBreakBox;
 	
@@ -55,53 +51,57 @@ public class StudyFocusStrategy extends StateStrategy {
 	}
 	
 	public void createTamoPanel() {
-		tamoPanel = new JPanel(); 							  //Base Tamo Panel
-		tamoPanel.setLayout(new BorderLayout());			  //BorderLayout
+		tamoPanel = new JPanel(); 							  				//Base Tamo Panel
+		tamoPanel.setLayout(new BoxLayout(tamoPanel, BoxLayout.Y_AXIS));	//BorderLayout
 			tamoPanel.setBackground(new Color(78,78,78));
 		
-		//Top Components
-		tamoNameLevelPanel = new JPanel();
-			tamoNameLevelPanel.setBackground(new Color(78,78,78));
+		//Space Component
+		transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
+		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		tamoPanel.add(transparentComponent);
+			
+		//Name-Level Components
 		tamoName = new JLabel("Lisa | Level: 24");
 			tamoName.setForeground(Color.WHITE);
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		//tamoLevel = new JLabel("| Level: 24");
-		tamoNameLevelPanel.add(tamoName);					   //Add Label to subPanel
-		tamoPanel.add(tamoNameLevelPanel, BorderLayout.NORTH); //Add to tamoPanel
+		tamoName.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		tamoPanel.add(tamoName); //Add to tamoPanel
 		
-		//Middle Components
-		tamoImagePanel = new JPanel();
-			tamoImagePanel.setBackground(new Color(78,78,78));
-		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
-		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("BG-1.png")));
+		//Tamo-Images Components
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1_OLD.gif")));
+		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("BG-OLD.png")));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		imageLabel.setSize(imageLabel.getPreferredSize());
 		backgroundImageLabel.add(imageLabel, gbc);
-		tamoImagePanel.add(backgroundImageLabel);
-		tamoPanel.add(tamoImagePanel, BorderLayout.CENTER);
+		backgroundImageLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		tamoPanel.add(backgroundImageLabel); //Add to tamoPanel
 		
-		//Bottom Components
-		tamoStatsPanel = new JPanel();
-			tamoStatsPanel.setBackground(new Color(78,78,78));
-		tamoStatsPanel.setLayout(new GridLayout(2,1));
+		//Happy-Hunger Components
 		tamoHappiness = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HAPPY_10.png")));
+			tamoHappiness.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		tamoHunger = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER_10.png")));
-		tamoStatsPanel.add(tamoHappiness);
-		tamoStatsPanel.add(tamoHunger);
-		tamoPanel.add(tamoStatsPanel, BorderLayout.SOUTH);
+			tamoHunger.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		tamoPanel.add(tamoHappiness); //Add to tamoPanel
+		tamoPanel.add(tamoHunger); //Add to tamoPanel
 		
 		this.add(tamoPanel); //Will add in first cell of GridLayout
 	}
 	
 	public void createTimerPanel() {
 		timerPanel = new JPanel();
+		timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.Y_AXIS));
 			timerPanel.setBackground(new Color(78,78,78));
-		timerPanel.setLayout(new BorderLayout());
+		
+		//Space Component
+		transparentComponent2 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT2.png")));
+		transparentComponent2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		timerPanel.add(transparentComponent2); //timerPanel
 		
 		//timerTextPanel
 		timerTextPanel = new JPanel();
 			timerTextPanel.setBackground(new Color(78,78,78));
+			timerTextPanel.setLayout(new BoxLayout(timerTextPanel, BoxLayout.X_AXIS));
 		
 		minuteTime = new JLabel("00");
 			minuteTime.setForeground(Color.WHITE);
@@ -116,89 +116,82 @@ public class StudyFocusStrategy extends StateStrategy {
 		timerTextPanel.add(spaceLabel);
 		timerTextPanel.add(secondTime);
 		
-		//timerSetPanel
-		timerSetPanel = new JPanel();
-			timerSetPanel.setBackground(new Color(78,78,78));
-		timerSetPanel.setLayout(new GridLayout(3,1));
-		timerSetPanel.add(timerTextPanel,BorderLayout.NORTH);
+		timerPanel.add(timerTextPanel); //timerPanel
 		
+		//Session Label
 		currentSessionLabel = new JLabel("2 / 12");
 			currentSessionLabel.setForeground(Color.WHITE);
-		currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 20));
-		pomoNumberSessionLabel = new JLabel("# Of Sessions");
-			pomoNumberSessionLabel.setForeground(Color.WHITE);
-		pomoNumberSessionBox = new JComboBox();
-		pomoSessionLabel = new JLabel("Session Length");
+			currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 25));
+			currentSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		timerPanel.add(currentSessionLabel);
+		
+		//Space Component
+		transparentComponent3 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
+		transparentComponent3.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		timerPanel.add(transparentComponent3);
+		
+		//timerSetText Panel	
+		pomoSessionLabel = new JLabel("# Of Sessions     Session Length     Break Length");
 			pomoSessionLabel.setForeground(Color.WHITE);
+			pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		
+		timerPanel.add(pomoSessionLabel);
+		
+		//timerSetBox Panel
+		timerSetBoxPanel = new JPanel();
+			timerSetBoxPanel.setBackground(new Color(78,78,78));
+		//timerSetBoxPanel.setLayout(new BoxLayout(timerSetBoxPanel, BoxLayout.X_AXIS));
+		
+		pomoNumberSessionBox = new JComboBox();
+			pomoNumberSessionBox.setBackground(Color.WHITE);
 		pomoSessionBox = new JComboBox();
-		pomoBreakLabel = new JLabel("Break Length");
-			pomoBreakLabel.setForeground(Color.WHITE);
+			pomoSessionBox.setBackground(Color.WHITE);
 		pomoBreakBox = new JComboBox();
-		pomoSessionBox.setBackground(Color.WHITE);
-		pomoBreakBox.setBackground(Color.WHITE);
-		
-		//Main Panels
-		JPanel topSetPanel = new JPanel();
-			topSetPanel.setBackground(new Color(78,78,78));
-			topSetPanel.setLayout(new GridLayout(2,1));
-			JPanel topSetPanelTop = new JPanel();
-				topSetPanelTop.setBackground(new Color(78,78,78));
-				JPanel topNumPanel = new JPanel();
-					topNumPanel.setBackground(new Color(78,78,78));
-				JPanel topSessionPanel = new JPanel();
-					topSessionPanel.setBackground(new Color(78,78,78));
-				JPanel topBreakPanel = new JPanel();
-					topBreakPanel.setBackground(new Color(78,78,78));
-			JPanel topSetPanelBot = new JPanel();
-				topSetPanelBot.setBackground(new Color(78,78,78));
-				//The Current Session Label is on this Panel
+			pomoBreakBox.setBackground(Color.WHITE);
 			
-		JPanel botSetPanel = new JPanel();
-			botSetPanel.setBackground(new Color(78,78,78));
+		textSpace = new JLabel("           ");
+		textSpace2 = new JLabel("           ");
+			
+		timerSetBoxPanel.add(pomoNumberSessionBox);
+		timerSetBoxPanel.add(textSpace);
+		timerSetBoxPanel.add(pomoSessionBox);
+		timerSetBoxPanel.add(textSpace2);
+		timerSetBoxPanel.add(pomoBreakBox);
 		
-		JPanel botNumPanel = new JPanel();
-			botNumPanel.setBackground(new Color(78,78,78));
-		JPanel botSessionPanel = new JPanel();
-			botSessionPanel.setBackground(new Color(78,78,78));
-		JPanel botBreakPanel = new JPanel();
-			botBreakPanel.setBackground(new Color(78,78,78));
-		
-		
-		timerSetPanel.add(topSetPanel);
-		topSetPanel.add(topSetPanelBot);
-			topSetPanelBot.add(currentSessionLabel);	
-		topSetPanel.add(topSetPanelTop);
-				topSetPanelTop.add(topNumPanel);
-					topNumPanel.add(pomoNumberSessionLabel);
-				topSetPanelTop.add(topSessionPanel);
-					topSessionPanel.add(pomoSessionLabel);
-				topSetPanelTop.add(topBreakPanel);
-					topBreakPanel.add(pomoBreakLabel);
-		timerSetPanel.add(botSetPanel);
-		botSetPanel.add(botNumPanel);
-			botNumPanel.add(pomoNumberSessionBox);
-		botSetPanel.add(botSessionPanel);
-			botSessionPanel.add(pomoSessionBox);
-		botSetPanel.add(botBreakPanel);
-			botBreakPanel.add(pomoBreakBox);
+		timerPanel.add(timerSetBoxPanel);
 			
 		//Button Panel
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(new Color(78,78,78));
+		//timerButtonPanel.setLayout(new BoxLayout(timerButtonPanel, BoxLayout.X_AXIS));
+			
 		startFocusButton = new JButton("Start Focus");
 		breakFocusButton = new JButton("Break Focus");
 		timerButtonPanel.add(startFocusButton);
 		timerButtonPanel.add(breakFocusButton);
 		
+		timerPanel.add(timerButtonPanel);
 		
-		timerPanel.add(timerSetPanel,BorderLayout.CENTER);
-		timerPanel.add(timerButtonPanel,BorderLayout.SOUTH);
 		this.add(timerPanel);
 	}
 
 	@Override
 	public void setActions() {
+		//Init Pomodoro Box Items
+		for(int i = 5; i <= 60; i = i + 5) {
+			if(i == 5) {
+				pomoSessionBox.addItem("0" + i + ":00");
+				pomoBreakBox.addItem("0" + i + ":00");
+			}
+			else {
+				pomoSessionBox.addItem(i + ":00");
+				pomoBreakBox.addItem(i + ":00");
+			}
+		}
 		
+		for(int i = 1; i <= 16; i++) {
+			pomoNumberSessionBox.addItem(i);
+		}
 		
 	}
 	

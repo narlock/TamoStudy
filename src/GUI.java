@@ -199,7 +199,7 @@ public class GUI extends JFrame {
 		UI.put("OptionPane.background", profile.getColor());
 		UI.put("Panel.background", profile.getColor());
 		
-		this.setTitle("TamoStudy | beta 3.1");
+		this.setTitle("TamoStudy | beta 3.2");
 		this.setSize(720,549);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
