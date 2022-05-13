@@ -12,6 +12,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import resources.TextBubbleBorder;
+
 /**
  * @author Anthony Narlock
  * ShopStrategy
@@ -41,7 +43,10 @@ public class ShopStrategy extends StateStrategy {
 	private JPanel mainPanel, tokenPanel;
 	private JLabel shopImageLabel, tokenImageLabel;
 	private JLabel tokenDisplayLabel;
-	private JLabel messageBox;
+	
+	private JPanel messagePanel;
+	private JLabel kathImage;
+	private JLabel messageText;
 	
 	//bgPanel
 	private JPanel bgPanel;
@@ -50,7 +55,7 @@ public class ShopStrategy extends StateStrategy {
 
 	@Override
 	public void setPanel() {
-		this.setLayout(new GridLayout(1,3));
+		this.setLayout(new GridLayout(1,3,20,20));
 		this.setBackground(new Color(78,78,78));
 		createFoodPanel();
 		createMainPanel();
@@ -95,6 +100,24 @@ public class ShopStrategy extends StateStrategy {
 			shopImageLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		mainPanel.add(shopImageLabel);
 		
+		messagePanel = new JPanel();
+			messagePanel.setBackground(new Color(78,78,78));
+			messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
+			messagePanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		kathImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("KATH_MSG.png")));
+			kathImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		messageText = new JLabel("<html>Hello!<br>Welcome to the Shop!</html>");
+			messageText.setOpaque(true);
+			messageText.setBackground(Color.WHITE);
+			messageText.setForeground(Color.BLACK);
+			messageText.setBorder(new TextBubbleBorder(Color.BLACK, 1, 6, 10, false));
+			messageText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		messagePanel.add(messageText);
+		messagePanel.add(kathImage);
+		mainPanel.add(messagePanel);
+		
+		mainPanel.add(createSpaceLabel());
+		
 		tokenPanel = new JPanel();
 			tokenPanel.setBackground(new Color(78,78,78));
 		tokenImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
@@ -104,6 +127,7 @@ public class ShopStrategy extends StateStrategy {
 		tokenPanel.add(tokenImageLabel);
 		tokenPanel.add(tokenDisplayLabel);
 		mainPanel.add(tokenPanel);
+		
 		
 		this.add(mainPanel);
 	}
