@@ -1,6 +1,15 @@
 package State;
 
 import java.awt.*;
+
+/**
+ * @author Anthony Narlock
+ * StudyFocusStrategy
+ * 
+ * This is a concrete StateStrategy which is a JPanel
+ * that will display the user interface for Study/Focus
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -61,15 +70,15 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(transparentComponent);
 			
 		//Name-Level Components
-		tamoName = new JLabel("Lisa | Level: 24");
+		tamoName = new JLabel("Lisa • Level: 24");
 			tamoName.setForeground(Color.WHITE);
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoName.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		tamoPanel.add(tamoName); //Add to tamoPanel
 		
 		//Tamo-Images Components
-		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1_OLD.gif")));
-		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("BG-OLD.png")));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
+		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("BG_1.png")));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		imageLabel.setSize(imageLabel.getPreferredSize());
@@ -163,7 +172,6 @@ public class StudyFocusStrategy extends StateStrategy {
 		//Button Panel
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(new Color(78,78,78));
-		//timerButtonPanel.setLayout(new BoxLayout(timerButtonPanel, BoxLayout.X_AXIS));
 			
 		startFocusButton = new JButton("Start Focus");
 		breakFocusButton = new JButton("Break Focus");
