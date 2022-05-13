@@ -4,9 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import State.AboutStrategy;
+import State.AchievementsStrategy;
+import State.ChangeLogStrategy;
+import State.InventoryStrategy;
+import State.SettingsStrategy;
 import State.ShopStrategy;
 import State.StateStrategy;
+import State.StatisticsStrategy;
 import State.StudyFocusStrategy;
+import State.ThemeStrategy;
 import State.TitleStrategy;
 
 /**
@@ -132,30 +139,94 @@ public class MainGUI extends JFrame {
 		JButton themesButton = new JButton("Themes");
 		setUpButtonComponent(themesButton);
 		//TODO implement theme Button to change strategy
+		themesButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Themes");
+				updateSideBar();
+				StateStrategy newStrategy = new ThemeStrategy();
+				recall(newStrategy);
+			}
+		});
+		
 		
 		JButton inventoryButton = new JButton("Inventory");
 		setUpButtonComponent(inventoryButton);
 		//TODO implement inventory Button to change strategy
+		inventoryButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Inventory");
+				updateSideBar();
+				StateStrategy newStrategy = new InventoryStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton statsButton = new JButton("Statistics");
 		setUpButtonComponent(statsButton);
 		//TODO implement stats Button to change strategy
+		statsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Statistics");
+				updateSideBar();
+				StateStrategy newStrategy = new StatisticsStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton achievementsButton = new JButton("Achievements");
 		setUpButtonComponent(achievementsButton);
 		//TODO implement ahm button to change strategy
+		achievementsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Achievements");
+				updateSideBar();
+				StateStrategy newStrategy = new AchievementsStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton settingsButton = new JButton("Settings");
 		setUpButtonComponent(settingsButton);
 		//TODO implement settings Button to change strategy
+		settingsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Settings");
+				updateSideBar();
+				StateStrategy newStrategy = new SettingsStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton changeLogButton = new JButton("Change Log");
 		setUpButtonComponent(changeLogButton);
 		//TODO implement change log button to change strategy
+		changeLogButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to Change Log");
+				updateSideBar();
+				StateStrategy newStrategy = new ChangeLogStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		JButton aboutButton = new JButton("About");
 		setUpButtonComponent(aboutButton);
 		//TODO implement about button to change strategy
+		aboutButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("[TAMOSTUDY] Changing Strategy to About");
+				updateSideBar();
+				StateStrategy newStrategy = new AboutStrategy();
+				recall(newStrategy);
+			}
+		});
 		
 		
 		sidePanel.add(titleCardButton);

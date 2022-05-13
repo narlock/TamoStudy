@@ -110,7 +110,7 @@ public class ShopStrategy extends StateStrategy {
 			messageText.setOpaque(true);
 			messageText.setBackground(Color.WHITE);
 			messageText.setForeground(Color.BLACK);
-			messageText.setBorder(new TextBubbleBorder(Color.BLACK, 1, 6, 10, false));
+			messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, false));
 			messageText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		messagePanel.add(messageText);
 		messagePanel.add(kathImage);
