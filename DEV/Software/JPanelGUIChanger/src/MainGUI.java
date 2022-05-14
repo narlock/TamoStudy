@@ -35,6 +35,14 @@ public class MainGUI extends JFrame {
 																//center of the screen.
 	private static final String 								//Line Divider for some JLabels
 		DIVIDER_STRING = "     ━━━━━━━━━━━━━━━━━━━━━     ";
+	
+	/**
+	 * Profile Components
+	 */
+	//TODO change these to be initialized when profile is loaded
+	//To keep track of different options
+	private Color mainColor = new Color(64,64,64); 		//DEFAULT
+	private Color textColor = new Color(153,153,153);	//DEFAULT
 
 	/**
 	 * @brief Main Constructor
@@ -50,6 +58,7 @@ public class MainGUI extends JFrame {
 		initComponentsToFrame();
 		
 		//Hopefully fixes Swing issues on painting
+		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(800,600);
 		this.repaint();
 	}
@@ -96,7 +105,7 @@ public class MainGUI extends JFrame {
 		setUpLabelComponent(thematicBreak2, 1);
 		
 		sidePanel = new JPanel();
-		sidePanel.setBackground(new Color(64,64,64));
+		sidePanel.setBackground(mainColor);
 		sidePanel.setLayout(new GridLayout(15,1));
 		
 		JButton titleCardButton = new JButton("Title Card");
@@ -217,6 +226,7 @@ public class MainGUI extends JFrame {
 		
 		JButton aboutButton = new JButton("About");
 		setUpButtonComponent(aboutButton);
+		
 		//TODO implement about button to change strategy
 		aboutButton.addActionListener(new ActionListener() {
 			@Override
@@ -248,7 +258,7 @@ public class MainGUI extends JFrame {
 		 * Setting up openSidePanel
 		 */
 		openSidePanel = new JPanel();
-		openSidePanel.setBackground(new Color(64,64,64));
+		openSidePanel.setBackground(mainColor);
 		
 		//openSidePanel component
 		
@@ -288,25 +298,25 @@ public class MainGUI extends JFrame {
 	}
 	
 	public void setUpLabelComponent(JLabel label) {
-		label.setForeground(new Color(153,153,153));
+		label.setForeground(textColor);
 		label.setFont(new Font("Arial", Font.BOLD, 16));
 	}
 	
 	public void setUpLabelComponent(JLabel label, int num) {
-		label.setForeground(new Color(153,153,153));
+		label.setForeground(textColor);
 	}
 	
 	public void setUpButtonComponent(JButton button) {
 		button.setBorderPainted(false);
-		button.setBackground(new Color(64,64,64));
-		button.setForeground(new Color(153,153,153));
+		button.setBackground(mainColor);
+		button.setForeground(textColor);
 		button.setFocusPainted(false);
 		button.setFont(new Font("Arial", Font.BOLD, 16));
 	}
 	
 	public void setUpButtonComponent(JButton button, int num) {
-		button.setBackground(new Color(64,64,64));
-		button.setForeground(new Color(153,153,153));
+		button.setBackground(mainColor);
+		button.setForeground(textColor);
 		button.setFocusPainted(false);
 		button.setFont(new Font("Arial", Font.BOLD, 16));
 	}

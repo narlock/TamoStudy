@@ -23,7 +23,7 @@ public class TitleStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		//Set the background color
-		this.setBackground(new Color(78,78,78));
+		this.setBackground(subColor);
 	}
 
 	@Override

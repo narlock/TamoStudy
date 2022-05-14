@@ -76,6 +76,11 @@ public class ShopStrategy extends StateStrategy {
 		foodPanel.add(foodShopLabel);
 		
 		//For each food item, we will add them
+		
+		//TODO
+		//Make it so depending on the month, there will be different
+		//backgrounds in which the player can choose to have....
+		
 		foodItems = new JPanel[3];
 		foodItems[0] = createFoodItemPanel(1, "FOOD_1.png", 100);
 		foodItems[1] = createFoodItemPanel(3, "FOOD_3.png", 200);
