@@ -56,7 +56,7 @@ public class ShopStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new GridLayout(1,3,20,20));
-		this.setBackground(new Color(78,78,78));
+		this.setBackground(subColor);
 		createFoodPanel();
 		createMainPanel();
 		createBgPanel();
@@ -65,12 +65,12 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the food panel
 	public void createFoodPanel() {
 		foodPanel = new JPanel();
-			foodPanel.setBackground(new Color(78,78,78));
+			foodPanel.setBackground(subColor);
 			foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS));
 		
 		foodShopLabel = new JLabel("Food Shop");
-			foodShopLabel.setForeground(Color.WHITE);
-			foodShopLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+			foodShopLabel.setForeground(textColor);
+			foodShopLabel.setFont(fontBoldReg);
 			foodShopLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		foodPanel.add(foodShopLabel);
@@ -98,7 +98,7 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the main panel
 	public void createMainPanel() {
 		mainPanel = new JPanel();
-			mainPanel.setBackground(new Color(78,78,78));
+			mainPanel.setBackground(subColor);
 			mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		
 		shopImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("KATH_SHOP.png")));
@@ -106,7 +106,7 @@ public class ShopStrategy extends StateStrategy {
 		mainPanel.add(shopImageLabel);
 		
 		messagePanel = new JPanel();
-			messagePanel.setBackground(new Color(78,78,78));
+			messagePanel.setBackground(subColor);
 			messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 			messagePanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		kathImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("KATH_MSG.png")));
@@ -124,11 +124,11 @@ public class ShopStrategy extends StateStrategy {
 		mainPanel.add(createSpaceLabel());
 		
 		tokenPanel = new JPanel();
-			tokenPanel.setBackground(new Color(78,78,78));
+			tokenPanel.setBackground(subColor);
 		tokenImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		tokenDisplayLabel = new JLabel("1727");
 			tokenDisplayLabel.setForeground(Color.WHITE);
-			tokenDisplayLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+			tokenDisplayLabel.setFont(fontBoldReg);
 		tokenPanel.add(tokenImageLabel);
 		tokenPanel.add(tokenDisplayLabel);
 		mainPanel.add(tokenPanel);
@@ -140,11 +140,11 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the background panel
 	public void createBgPanel() {
 		bgPanel = new JPanel();
-			bgPanel.setBackground(new Color(78,78,78));
+			bgPanel.setBackground(subColor);
 			bgPanel.setLayout(new BoxLayout(bgPanel, BoxLayout.Y_AXIS));
 		bgShopLabel = new JLabel("Backgrounds");
 			bgShopLabel.setForeground(Color.WHITE);
-			bgShopLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
+			bgShopLabel.setFont(fontBoldReg);
 			bgShopLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		bgPanel.add(bgShopLabel);
 		
@@ -173,19 +173,19 @@ public class ShopStrategy extends StateStrategy {
 		JPanel itemPanel = new JPanel();
 		itemPanel.setLayout(new GridLayout(1,2));
 		itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		itemPanel.setBackground(new Color(108,108,108));
+		itemPanel.setBackground(layerColor);
 		
 		JLabel imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		itemPanel.add(imageLabel);
 		JPanel infoPanel = new JPanel();
 			infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-			infoPanel.setBackground(new Color(108,108,108));
+			infoPanel.setBackground(layerColor);
 		JPanel tokenPanel = new JPanel();
 			tokenPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			tokenPanel.setBackground(new Color(108,108,108));
+			tokenPanel.setBackground(layerColor);
 		JLabel tokenImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		JLabel priceLabel = new JLabel("" + price);
-			priceLabel.setForeground(Color.WHITE);
+			priceLabel.setForeground(textColor);
 		tokenPanel.add(tokenImage);
 		tokenPanel.add(priceLabel);
 		infoPanel.add(tokenPanel);
@@ -201,19 +201,19 @@ public class ShopStrategy extends StateStrategy {
 		JPanel foodPanel = new JPanel();
 			foodPanel.setLayout(new GridLayout(1,2));
 			foodPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-			foodPanel.setBackground(new Color(108,108,108));
+			foodPanel.setBackground(layerColor);
 			
 		JLabel foodImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		foodPanel.add(foodImageLabel);
 		JPanel infoPanel = new JPanel();
 			infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-			infoPanel.setBackground(new Color(108,108,108));
+			infoPanel.setBackground(layerColor);
 		JPanel tokenPanel = new JPanel();
 			tokenPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			tokenPanel.setBackground(new Color(108,108,108));
+			tokenPanel.setBackground(layerColor);
 		JLabel tokenImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		JLabel foodPriceLabel = new JLabel("" + price + " | " + hunger);
-			foodPriceLabel.setForeground(Color.WHITE);
+			foodPriceLabel.setForeground(textColor);
 		tokenPanel.add(tokenImage);
 		tokenPanel.add(foodPriceLabel);
 		infoPanel.add(tokenPanel);

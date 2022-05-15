@@ -72,14 +72,8 @@ public class EncryptionTest {
 		System.out.println(e.decrypt("gtznut2868736?36?2868736?36?27:9>?:;27?=:6262jklg{rz26282627262Royg282762;277766667"));
 		System.out.println(e.encrypt("anthony,2021-09-09,2022-01-09,1438945,19740,0,default,0,2,0,1,0,Lisa,2,10,5,11100001"));
 		
-		System.out.println(e.decrypt("zkyz2868836736?2626287262;2;2868836736?262jklg{rz2926"));
-		System.out.println(e.encrypt("tq121,2022-01-09,2021-12-31,0,0,0,default,0,0,0,0,0,23121,2,5,5,00000000"));
-		
-		System.out.println(e.decrypt("loxkhgr2868836736>2868836736?272626262jklg{rz262628262626262royg28292926666666623"));
-		System.out.println(e.decrypt("gtznut2868836737728688367377262626262jklg{rz262626262626262royg282;2;26666666623"));
-		System.out.println(e.decrypt("Sgxok286873773772868836737726262626276===926262626262626262626262<23"));
-		
-		System.out.println(e.encrypt("Marie,2021-11-11,2022-01-11,0,107773,5000,0,default,0,0,0,0,0,0,0,Francis,1,5,5,00001000,-"));
+		System.out.println("Reemz");
+		System.out.println(e.decrypt("Qgxosg2868836:3762868836:379262629276?;8;2767>26262626262626262626262623"))
 	}
 	
 }

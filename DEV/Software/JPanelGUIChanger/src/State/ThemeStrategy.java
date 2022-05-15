@@ -20,16 +20,14 @@ public class ThemeStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(new Color(78,78,78));
+		this.setBackground(subColor);
 		
 		themeHeaderLabel = new JLabel("Themes");
-			themeHeaderLabel.setForeground(Color.WHITE);
-			themeHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
-			themeHeaderLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		setUpLabelComponent(themeHeaderLabel);
 		this.add(themeHeaderLabel);
 		
 		themePanel = new JPanel();
-			themePanel.setBackground(new Color(78,78,78));
+			themePanel.setBackground(subColor);
 			
 		themePanel.add(themePanel("Dark Mode", "DARK_MODE.png"));
 		themePanel.add(themePanel("Light Mode", "LIGHT_MODE.png"));
@@ -37,13 +35,11 @@ public class ThemeStrategy extends StateStrategy {
 		this.add(themePanel);
 		
 		themeHeaderClassicLabel = new JLabel("Classic Themes");
-			themeHeaderClassicLabel.setForeground(Color.WHITE);
-			themeHeaderClassicLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
-			themeHeaderClassicLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		setUpLabelComponent(themeHeaderClassicLabel);
 		this.add(themeHeaderClassicLabel);
 		
 		themePanel2 = new JPanel();
-		themePanel2.setBackground(new Color(78,78,78));
+		themePanel2.setBackground(subColor);
 		
 		themePanel2.add(themePanel("Classic Mode", "CLASSIC_MODE.png"));
 		themePanel2.add(themePanel("Classic Blue", "CLASSIC_BLUE_MODE.png"));
@@ -51,7 +47,7 @@ public class ThemeStrategy extends StateStrategy {
 		this.add(themePanel2);
 		
 		themePanel3 = new JPanel();
-		themePanel3.setBackground(new Color(78,78,78));
+		themePanel3.setBackground(subColor);
 		
 		themePanel3.add(themePanel("Classic Green", "CLASSIC_GREEN_MODE.png"));
 		themePanel3.add(themePanel("Classic Yellow", "CLASSIC_YELLOW_MODE.png"));
@@ -59,7 +55,7 @@ public class ThemeStrategy extends StateStrategy {
 		this.add(themePanel3);
 		
 		themePanel4 = new JPanel();
-		themePanel4.setBackground(new Color(78,78,78));
+		themePanel4.setBackground(subColor);
 		
 		themePanel4.add(themePanel("PLACEHOLDER", "DARK_MODE.png"));
 		themePanel4.add(themePanel("PLACEHOLDER", "DARK_MODE.png"));
@@ -87,6 +83,12 @@ public class ThemeStrategy extends StateStrategy {
 		panel.add(select);
 		
 		return panel;
+	}
+	
+	public void setUpLabelComponent(JLabel label) {
+		label.setForeground(textColor);
+		label.setFont(fontBoldReg);
+		label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	}
 
 }

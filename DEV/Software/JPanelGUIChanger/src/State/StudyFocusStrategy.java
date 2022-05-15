@@ -16,7 +16,7 @@ import javax.swing.*;
 
 public class StudyFocusStrategy extends StateStrategy {
 	//GridBagConstraints for the Tamo's image and background labels
-		private GridBagConstraints gbc = new GridBagConstraints();
+	private GridBagConstraints gbc = new GridBagConstraints();
 	
 	/**
 	 * The Study Focus Panel
@@ -25,14 +25,12 @@ public class StudyFocusStrategy extends StateStrategy {
 	 */
 	
 	//Separators
-	private JLabel transparentComponent, transparentComponent2, transparentComponent3;
 	private JLabel textSpace, textSpace2;	
 	
 	//Tamo Panel
 	private JPanel tamoPanel;
 	private JLabel tamoName, tamoLevel;
 	private JLabel imageLabel, backgroundImageLabel;
-	private JLabel moneyLabel, moneyImageLabel;
 	private JLabel tamoHappiness, tamoHunger;
 	
 	//Timer Panel
@@ -43,18 +41,17 @@ public class StudyFocusStrategy extends StateStrategy {
 	private JLabel currentSessionLabel;
 	
 	//The timer set panel will be different depending on user's mode
-	private JPanel timerSetPanel, timerSetTextPanel, timerSetBoxPanel;
+	private JPanel timerSetBoxPanel;
 	private JLabel pomoNumberSessionLabel, pomoSessionLabel, pomoBreakLabel;
 	private JComboBox pomoNumberSessionBox, pomoSessionBox, pomoBreakBox;
 	
 	private JPanel timerButtonPanel;
 	private JButton startFocusButton, breakFocusButton;
 	
-	
 	@Override
 	public void setPanel() {
 		this.setLayout(new GridLayout(1,2));
-		this.setBackground(new Color(78,78,78));
+		this.setBackground(subColor);
 		createTamoPanel();
 		createTimerPanel();
 	}
@@ -62,12 +59,10 @@ public class StudyFocusStrategy extends StateStrategy {
 	public void createTamoPanel() {
 		tamoPanel = new JPanel(); 							  				//Base Tamo Panel
 		tamoPanel.setLayout(new BoxLayout(tamoPanel, BoxLayout.Y_AXIS));	//BorderLayout
-			tamoPanel.setBackground(new Color(78,78,78));
+			tamoPanel.setBackground(subColor);
 		
-		//Space Component
-		transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
-		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		tamoPanel.add(transparentComponent);
+		//Space Component - calls parent function
+		tamoPanel.add(createSpaceLabel(0));
 			
 		//Name-Level Components
 		tamoName = new JLabel("Lisa • Level: 24");
@@ -103,9 +98,7 @@ public class StudyFocusStrategy extends StateStrategy {
 			timerPanel.setBackground(new Color(78,78,78));
 		
 		//Space Component
-		transparentComponent2 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT2.png")));
-		transparentComponent2.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		timerPanel.add(transparentComponent2); //timerPanel
+		timerPanel.add(createSpaceLabel(1)); //timerPanel
 		
 		//timerTextPanel
 		timerTextPanel = new JPanel();
@@ -135,9 +128,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		timerPanel.add(currentSessionLabel);
 		
 		//Space Component
-		transparentComponent3 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
-		transparentComponent3.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		timerPanel.add(transparentComponent3);
+		timerPanel.add(createSpaceLabel(0));
 		
 		//timerSetText Panel	
 		pomoSessionLabel = new JLabel("# Of Sessions     Session Length     Break Length");
