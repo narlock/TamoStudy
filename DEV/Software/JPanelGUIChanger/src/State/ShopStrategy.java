@@ -55,7 +55,7 @@ public class ShopStrategy extends StateStrategy {
 
 	@Override
 	public void setPanel() {
-		this.setLayout(new GridLayout(1,3,20,20));
+		this.setLayout(new GridLayout(1,3,30,30));
 		this.setBackground(subColor);
 		createFoodPanel();
 		createMainPanel();
