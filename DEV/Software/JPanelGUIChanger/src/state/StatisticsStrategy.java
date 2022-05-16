@@ -50,15 +50,15 @@ public class StatisticsStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 	
 		//Add Space
 		this.add(createSpaceLabel(0));
 		
 		//Add Header
-		headerLabel = new JLabel("Statistics");
-			headerLabel.setFont(fontBoldReg);
-			headerLabel.setForeground(textColor);
+		headerLabel = new JLabel(profile.getLanguage().statsText[0]);
+			headerLabel.setFont(theme.fontBoldReg);
+			headerLabel.setForeground(theme.textColor);
 			headerLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		this.add(headerLabel);
 		
@@ -73,11 +73,11 @@ public class StatisticsStrategy extends StateStrategy {
 	public void createTamoPanel() {
 		tamoPanel = new JPanel();
 			tamoPanel.setLayout(new BoxLayout(tamoPanel, BoxLayout.Y_AXIS));
-			tamoPanel.setBackground(subColor);
+			tamoPanel.setBackground(theme.subColor);
 		
 		//Name Component
 		tamoNameLabel = new JLabel("Lisa");
-			tamoNameLabel.setForeground(textColor);
+			tamoNameLabel.setForeground(theme.textColor);
 			tamoNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			tamoNameLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		tamoPanel.add(tamoNameLabel);
@@ -98,32 +98,32 @@ public class StatisticsStrategy extends StateStrategy {
 	public void createStatsPanel() {
 		statsPanel = new JPanel();
 			statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
-			statsPanel.setBackground(subColor);
+			statsPanel.setBackground(theme.subColor);
 		
 		//Space Component
 		statsPanel.add(createSpaceLabel(0));
 		
 		//Statistics Components
-		usernameLabel = new JLabel("Username: Anthony");
+		usernameLabel = new JLabel(profile.getLanguage().statsText[1] + ": Anthony");
 		setUpLabelComponent(usernameLabel);
 		statsPanel.add(usernameLabel);
 		
-		joinDateLabel = new JLabel("Join Date: 2022-05-07");
+		joinDateLabel = new JLabel(profile.getLanguage().statsText[2] + ": 2022-05-07");
 		setUpLabelComponent(joinDateLabel);
 		statsPanel.add(joinDateLabel);
 		
 			//space
 		statsPanel.add(createSpaceLabel(0));
 		
-		totalFocusHoursLabel = new JLabel("Total Focus Hours: 1727");
+		totalFocusHoursLabel = new JLabel(profile.getLanguage().statsText[3] + ": 1727");
 		setUpLabelComponent(totalFocusHoursLabel);
 		statsPanel.add(totalFocusHoursLabel);
 		
-		unlockedAchievementsLabel = new JLabel("Achievements Unlocked: 12/20");
+		unlockedAchievementsLabel = new JLabel(profile.getLanguage().statsText[4] + ": 12/20");
 		setUpLabelComponent(unlockedAchievementsLabel);
 		statsPanel.add(unlockedAchievementsLabel);
 		
-		tamoLevelLabel = new JLabel("Tamo Level: 24");
+		tamoLevelLabel = new JLabel(profile.getLanguage().statsText[5] + ": 24");
 		setUpLabelComponent(tamoLevelLabel);
 		statsPanel.add(tamoLevelLabel);
 		
@@ -148,8 +148,8 @@ public class StatisticsStrategy extends StateStrategy {
 	}
 	
 	public void setUpLabelComponent(JLabel label) {
-		label.setForeground(textColor);
-		label.setFont(fontPlainReg);
+		label.setForeground(theme.textColor);
+		label.setFont(theme.fontPlainReg);
 		label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	}
 

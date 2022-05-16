@@ -13,8 +13,10 @@ public class InventoryStrategy extends StateStrategy {
 
 	@Override
 	public void setPanel() {
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		this.add(new JLabel("Inventory Empty"));
+		
+		//TODO
 		
 	}
 

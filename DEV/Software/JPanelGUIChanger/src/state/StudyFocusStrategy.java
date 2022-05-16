@@ -58,7 +58,7 @@ public class StudyFocusStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new GridLayout(1,2));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		createTamoPanel();
 		createTimerPanel();
 	}
@@ -66,13 +66,13 @@ public class StudyFocusStrategy extends StateStrategy {
 	public void createTamoPanel() {
 		tamoPanel = new JPanel(); 							  				//Base Tamo Panel
 		tamoPanel.setLayout(new BoxLayout(tamoPanel, BoxLayout.Y_AXIS));	//BorderLayout
-			tamoPanel.setBackground(subColor);
+			tamoPanel.setBackground(theme.subColor);
 		
 		//Space Component - calls parent function
 		tamoPanel.add(createSpaceLabel(0));
 			
 		//Name-Level Components
-		tamoName = new JLabel("Lisa • Level: 24");
+		tamoName = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": 24");
 			tamoName.setForeground(Color.WHITE);
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoName.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -138,7 +138,9 @@ public class StudyFocusStrategy extends StateStrategy {
 		timerPanel.add(createSpaceLabel(0));
 		
 		//timerSetText Panel	
-		pomoSessionLabel = new JLabel("# Of Sessions     Session Length     Break Length");
+		pomoSessionLabel = new JLabel(profile.getLanguage().focusText[1] + "     " 
+						+ profile.getLanguage().focusText[2] + "     " 
+						+ profile.getLanguage().focusText[3]);
 			pomoSessionLabel.setForeground(Color.WHITE);
 			pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
@@ -171,8 +173,8 @@ public class StudyFocusStrategy extends StateStrategy {
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(new Color(78,78,78));
 			
-		startFocusButton = new JButton("Start Focus");
-		breakFocusButton = new JButton("Break Focus");
+		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
+		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);
 		timerButtonPanel.add(startFocusButton);
 		timerButtonPanel.add(breakFocusButton);
 		

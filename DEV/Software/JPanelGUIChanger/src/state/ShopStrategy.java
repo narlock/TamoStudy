@@ -62,7 +62,7 @@ public class ShopStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new GridLayout(1,3,30,30));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		createFoodPanel();
 		createMainPanel();
 		createBgPanel();
@@ -71,12 +71,12 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the food panel
 	public void createFoodPanel() {
 		foodPanel = new JPanel();
-			foodPanel.setBackground(subColor);
+			foodPanel.setBackground(theme.subColor);
 			foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS));
 		
-		foodShopLabel = new JLabel("Food Shop");
-			foodShopLabel.setForeground(textColor);
-			foodShopLabel.setFont(fontBoldReg);
+		foodShopLabel = new JLabel(profile.getLanguage().shopText[0]);
+			foodShopLabel.setForeground(theme.textColor);
+			foodShopLabel.setFont(theme.fontBoldReg);
 			foodShopLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		foodPanel.add(foodShopLabel);
@@ -104,7 +104,7 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the main panel
 	public void createMainPanel() {
 		mainPanel = new JPanel();
-			mainPanel.setBackground(subColor);
+			mainPanel.setBackground(theme.subColor);
 			mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		
 		shopImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("KATH_SHOP.png")));
@@ -112,12 +112,16 @@ public class ShopStrategy extends StateStrategy {
 		mainPanel.add(shopImageLabel);
 		
 		messagePanel = new JPanel();
-			messagePanel.setBackground(subColor);
+			messagePanel.setBackground(theme.subColor);
 			messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 			messagePanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		kathImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("KATH_MSG.png")));
 			kathImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			
+		//TODO Dynamically change this..
+		//Make a method that changes it based off of an indicator since we need HTML...
 		messageText = new JLabel("<html>Hello!<br>Welcome to the Shop!</html>");
+		
 			messageText.setOpaque(true);
 			messageText.setBackground(Color.WHITE);
 			messageText.setForeground(Color.BLACK);
@@ -130,11 +134,11 @@ public class ShopStrategy extends StateStrategy {
 		mainPanel.add(createSpaceLabel());
 		
 		tokenPanel = new JPanel();
-			tokenPanel.setBackground(subColor);
+			tokenPanel.setBackground(theme.subColor);
 		tokenImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		tokenDisplayLabel = new JLabel("1727");
 			tokenDisplayLabel.setForeground(Color.WHITE);
-			tokenDisplayLabel.setFont(fontBoldReg);
+			tokenDisplayLabel.setFont(theme.fontBoldReg);
 		tokenPanel.add(tokenImageLabel);
 		tokenPanel.add(tokenDisplayLabel);
 		mainPanel.add(tokenPanel);
@@ -146,11 +150,11 @@ public class ShopStrategy extends StateStrategy {
 	//Creates the background panel
 	public void createBgPanel() {
 		bgPanel = new JPanel();
-			bgPanel.setBackground(subColor);
+			bgPanel.setBackground(theme.subColor);
 			bgPanel.setLayout(new BoxLayout(bgPanel, BoxLayout.Y_AXIS));
-		bgShopLabel = new JLabel("Backgrounds");
+		bgShopLabel = new JLabel(profile.getLanguage().shopText[1]);
 			bgShopLabel.setForeground(Color.WHITE);
-			bgShopLabel.setFont(fontBoldReg);
+			bgShopLabel.setFont(theme.fontBoldReg);
 			bgShopLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		bgPanel.add(bgShopLabel);
 		
@@ -179,23 +183,23 @@ public class ShopStrategy extends StateStrategy {
 		JPanel itemPanel = new JPanel();
 		itemPanel.setLayout(new GridLayout(1,2));
 		itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		itemPanel.setBackground(layerColor);
+		itemPanel.setBackground(theme.layerColor);
 		
 		JLabel imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		itemPanel.add(imageLabel);
 		JPanel infoPanel = new JPanel();
 			infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-			infoPanel.setBackground(layerColor);
+			infoPanel.setBackground(theme.layerColor);
 		JPanel tokenPanel = new JPanel();
 			tokenPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			tokenPanel.setBackground(layerColor);
+			tokenPanel.setBackground(theme.layerColor);
 		JLabel tokenImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		JLabel priceLabel = new JLabel("" + price);
-			priceLabel.setForeground(textColor);
+			priceLabel.setForeground(theme.textColor);
 		tokenPanel.add(tokenImage);
 		tokenPanel.add(priceLabel);
 		infoPanel.add(tokenPanel);
-		JButton purchaseButton = new JButton("Purchase");
+		JButton purchaseButton = new JButton(profile.getLanguage().shopText[4]);
 			purchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		infoPanel.add(purchaseButton);
 		itemPanel.add(infoPanel);
@@ -207,23 +211,23 @@ public class ShopStrategy extends StateStrategy {
 		JPanel foodPanel = new JPanel();
 			foodPanel.setLayout(new GridLayout(1,2));
 			foodPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-			foodPanel.setBackground(layerColor);
+			foodPanel.setBackground(theme.layerColor);
 			
 		JLabel foodImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		foodPanel.add(foodImageLabel);
 		JPanel infoPanel = new JPanel();
 			infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-			infoPanel.setBackground(layerColor);
+			infoPanel.setBackground(theme.layerColor);
 		JPanel tokenPanel = new JPanel();
 			tokenPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-			tokenPanel.setBackground(layerColor);
+			tokenPanel.setBackground(theme.layerColor);
 		JLabel tokenImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		JLabel foodPriceLabel = new JLabel("" + price + " | " + hunger);
-			foodPriceLabel.setForeground(textColor);
+			foodPriceLabel.setForeground(theme.textColor);
 		tokenPanel.add(tokenImage);
 		tokenPanel.add(foodPriceLabel);
 		infoPanel.add(tokenPanel);
-		JButton foodPurchaseButton = new JButton("Purchase");
+		JButton foodPurchaseButton = new JButton(profile.getLanguage().shopText[4]);
 			foodPurchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		infoPanel.add(foodPurchaseButton);
 		foodPanel.add(infoPanel);

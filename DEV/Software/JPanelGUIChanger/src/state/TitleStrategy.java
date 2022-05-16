@@ -19,6 +19,7 @@ import java.net.*;
  */
 
 public class TitleStrategy extends StateStrategy {
+	
 	public TitleStrategy(Profile profile) {
 		super(profile);
 	}
@@ -29,7 +30,7 @@ public class TitleStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		//Set the background color
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class TitleStrategy extends StateStrategy {
 		
 		//Never give up text drawing
 		g.setFont(new Font("Tahoma", Font.BOLD, 16));
-		g.setColor(new Color(153,153,153));
+		g.setColor(theme.layerTextColor);
 		g.drawString(profile.getLanguage().titleText[0], 333, 500);
 	}
 	

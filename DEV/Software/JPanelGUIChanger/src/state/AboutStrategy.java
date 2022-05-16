@@ -26,7 +26,7 @@ public class AboutStrategy extends StateStrategy {
 	
 	@Override
 	public void setPanel() {
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		this.add(createSpaceLabel(0));
@@ -36,7 +36,7 @@ public class AboutStrategy extends StateStrategy {
 		this.add(heroImage);
 		
 		socialsPanel = new JPanel();
-			socialsPanel.setBackground(subColor);
+			socialsPanel.setBackground(theme.subColor);
 		
 		anthonyWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
 		tamoWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));

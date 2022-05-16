@@ -33,11 +33,11 @@ public class AchievementsStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		
-		achievementsHeaderLabel = new JLabel("Achievements");
-			achievementsHeaderLabel.setForeground(textColor);
-			achievementsHeaderLabel.setFont(fontBoldReg);
+		achievementsHeaderLabel = new JLabel(profile.getLanguage().text[8]);
+			achievementsHeaderLabel.setForeground(theme.textColor);
+			achievementsHeaderLabel.setFont(theme.fontBoldReg);
 			achievementsHeaderLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		this.add(achievementsHeaderLabel);
 		
@@ -46,11 +46,11 @@ public class AchievementsStrategy extends StateStrategy {
 		hoursPanel = new JPanel();
 		setPanelComponent(hoursPanel);
 		hoursPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[0], profile.getLanguage().ahmText[0], "AHM_1.png"));
 		hoursPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[1], profile.getLanguage().ahmText[1], "AHM_1.png"));
 		hoursPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[2], profile.getLanguage().ahmText[2], "AHM_1.png"));
 		this.add(hoursPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -58,11 +58,11 @@ public class AchievementsStrategy extends StateStrategy {
 		customPanel = new JPanel();
 		setPanelComponent(customPanel);
 		customPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[3], profile.getLanguage().ahmText[3], "AHM_1.png"));
 		customPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[4], profile.getLanguage().ahmText[4], "AHM_1.png"));
 		customPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[5], profile.getLanguage().ahmText[5], "AHM_1.png"));
 		this.add(customPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -70,11 +70,11 @@ public class AchievementsStrategy extends StateStrategy {
 		maxPanel = new JPanel();
 		setPanelComponent(maxPanel);
 		maxPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[6], profile.getLanguage().ahmText[6], "AHM_1.png"));
 		maxPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[7], profile.getLanguage().ahmText[7], "AHM_1.png"));
 		maxPanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[8], profile.getLanguage().ahmText[8], "AHM_1.png"));
 		this.add(maxPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -82,11 +82,11 @@ public class AchievementsStrategy extends StateStrategy {
 		timePanel = new JPanel();
 		setPanelComponent(timePanel);
 		timePanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[9], profile.getLanguage().ahmText[9], "AHM_1.png"));
 		timePanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[10], profile.getLanguage().ahmText[10], "AHM_1.png"));
 		timePanel.add(createAchievementLabel(
-				"The Beginning", "<html>Reach total focus time<br> of 3 hours</html>", "AHM_1.png"));
+				profile.getLanguage().ahmTitle[11], profile.getLanguage().ahmText[11], "AHM_1.png"));
 		this.add(timePanel);
 		
 		this.add(createSpaceLabel(0));
@@ -100,26 +100,26 @@ public class AchievementsStrategy extends StateStrategy {
 	
 	public void setPanelComponent(JPanel panel) {
 		panel.setLayout(new GridLayout(1,3,30,30));
-		panel.setBackground(subColor);
+		panel.setBackground(theme.subColor);
 		panel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	}
 	
 	public JPanel createAchievementLabel(String title, String desc, String imageUrl) {
 		JPanel panel = new JPanel();
-			panel.setBackground(layerColor);
+			panel.setBackground(theme.layerColor);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 			panel.setLayout(new BorderLayout());
 		JLabel imgLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		
 		JPanel textPanel = new JPanel();
-			textPanel.setBackground(layerColor);
+			textPanel.setBackground(theme.layerColor);
 			textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
 			
 		JLabel achievementLabel = new JLabel(title);
-			achievementLabel.setForeground(textColor);
+			achievementLabel.setForeground(theme.textColor);
 			achievementLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		JLabel descLabel = new JLabel(desc);
-			descLabel.setForeground(textColor);
+		JLabel descLabel = new JLabel("<html>" + desc + "</html>");
+			descLabel.setForeground(theme.textColor);
 			descLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			
 		textPanel.add(achievementLabel);

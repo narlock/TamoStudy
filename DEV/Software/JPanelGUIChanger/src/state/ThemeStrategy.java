@@ -27,45 +27,45 @@ public class ThemeStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		
-		themeHeaderLabel = new JLabel("Themes");
+		themeHeaderLabel = new JLabel(profile.getLanguage().themesText[0]);
 		setUpLabelComponent(themeHeaderLabel);
 		this.add(themeHeaderLabel);
 		
 		themePanel = new JPanel();
-			themePanel.setBackground(subColor);
+			themePanel.setBackground(theme.subColor);
 			
-		themePanel.add(themePanel("Dark Mode", "DARK_MODE.png"));
-		themePanel.add(themePanel("Light Mode", "LIGHT_MODE.png"));
+		themePanel.add(themePanel(profile.getLanguage().themesText[2], "DARK_MODE.png"));
+		themePanel.add(themePanel(profile.getLanguage().themesText[3], "LIGHT_MODE.png"));
 		
 		this.add(themePanel);
 		
-		themeHeaderClassicLabel = new JLabel("Classic Themes");
+		themeHeaderClassicLabel = new JLabel(profile.getLanguage().themesText[4]);
 		setUpLabelComponent(themeHeaderClassicLabel);
 		this.add(themeHeaderClassicLabel);
 		
 		themePanel2 = new JPanel();
-		themePanel2.setBackground(subColor);
+		themePanel2.setBackground(theme.subColor);
 		
-		themePanel2.add(themePanel("Classic Mode", "CLASSIC_MODE.png"));
-		themePanel2.add(themePanel("Classic Blue", "CLASSIC_BLUE_MODE.png"));
+		themePanel2.add(themePanel(profile.getLanguage().themesText[5], "CLASSIC_MODE.png"));
+		themePanel2.add(themePanel(profile.getLanguage().themesText[6], "CLASSIC_BLUE_MODE.png"));
 		
 		this.add(themePanel2);
 		
 		themePanel3 = new JPanel();
-		themePanel3.setBackground(subColor);
+		themePanel3.setBackground(theme.subColor);
 		
-		themePanel3.add(themePanel("Classic Green", "CLASSIC_GREEN_MODE.png"));
-		themePanel3.add(themePanel("Classic Yellow", "CLASSIC_YELLOW_MODE.png"));
+		themePanel3.add(themePanel(profile.getLanguage().themesText[7], "CLASSIC_GREEN_MODE.png"));
+		themePanel3.add(themePanel(profile.getLanguage().themesText[8], "CLASSIC_YELLOW_MODE.png"));
 		
 		this.add(themePanel3);
 		
 		themePanel4 = new JPanel();
-		themePanel4.setBackground(subColor);
+		themePanel4.setBackground(theme.subColor);
 		
-		themePanel4.add(themePanel("PLACEHOLDER", "DARK_MODE.png"));
-		themePanel4.add(themePanel("PLACEHOLDER", "DARK_MODE.png"));
+		themePanel4.add(themePanel(profile.getLanguage().themesText[9], "DARK_MODE.png"));
+		themePanel4.add(themePanel(profile.getLanguage().themesText[10], "DARK_MODE.png"));
 		
 		this.add(themePanel4);
 		
@@ -83,7 +83,7 @@ public class ThemeStrategy extends StateStrategy {
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		JLabel nameLabel = new JLabel(name);
 		JLabel imgLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
-		JButton select = new JButton("Select");
+		JButton select = new JButton(profile.getLanguage().themesText[1]);
 		
 		panel.add(nameLabel);
 		panel.add(imgLabel);
@@ -93,8 +93,8 @@ public class ThemeStrategy extends StateStrategy {
 	}
 	
 	public void setUpLabelComponent(JLabel label) {
-		label.setForeground(textColor);
-		label.setFont(fontBoldReg);
+		label.setForeground(theme.textColor);
+		label.setFont(theme.fontBoldReg);
 		label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	}
 

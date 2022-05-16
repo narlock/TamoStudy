@@ -46,55 +46,71 @@ public class SettingsStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(subColor);
+		this.setBackground(theme.subColor);
 		
 		//Header
-		settingsHeaderLabel = new JLabel("Settings");
-			settingsHeaderLabel.setFont(fontBoldReg);
-			settingsHeaderLabel.setForeground(textColor);
+		settingsHeaderLabel = new JLabel(profile.getLanguage().text[9]);
+			settingsHeaderLabel.setFont(theme.fontBoldReg);
+			settingsHeaderLabel.setForeground(theme.textColor);
 			settingsHeaderLabel.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(settingsHeaderLabel);
 		this.add(createSpaceLabel(0));
 		
 		optionsPanel = new JPanel();
-		optionsPanel.setBackground(subColor);
+		optionsPanel.setBackground(theme.subColor);
 		optionsPanel.setLayout(new GridLayout(5,1,20,20));
 		
 		//Settings
 		focusSettingPanel = new JPanel();
-			focusSettingPanel.setBackground(subColor);
-		focusSettingLabel = new JLabel("Change Focus Mode");
-			focusSettingLabel.setForeground(textColor);
+			focusSettingPanel.setBackground(theme.subColor);
+		focusSettingLabel = new JLabel(profile.getLanguage().settingsText[0]);
+			focusSettingLabel.setForeground(theme.textColor);
 		focusSettingBox = new JComboBox();
-			focusSettingBox.addItem("Pomodoro Mode");
+			focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
+			focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
+			focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
+			focusSettingBox.addItem(profile.getLanguage().settingsText[7]);
 		focusSettingPanel.add(focusSettingLabel);
 		focusSettingPanel.add(focusSettingBox);
 		
 		languageSettingPanel = new JPanel();
-			languageSettingPanel.setBackground(subColor);
-		languageSettingLabel = new JLabel("Choose Language");
-			languageSettingLabel.setForeground(textColor);
+			languageSettingPanel.setBackground(theme.subColor);
+		languageSettingLabel = new JLabel(profile.getLanguage().settingsText[1]);
+			languageSettingLabel.setForeground(theme.textColor);
 		languageSettingBox = new JComboBox();
-			languageSettingBox.addItem("Português (Portuguese)");
+			languageSettingBox.addItem(profile.getLanguage().settingsText[8]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[9]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[10]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[11]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[12]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[13]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[14]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[15]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[16]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[17]);
+			languageSettingBox.addItem(profile.getLanguage().settingsText[18]);
 		languageSettingPanel.add(languageSettingLabel);
 		languageSettingPanel.add(languageSettingBox);
 		
 		difficultySettingPanel = new JPanel();
-			difficultySettingPanel.setBackground(subColor);
-		difficultySettingLabel = new JLabel("Difficulty");
-			difficultySettingLabel.setForeground(textColor);
+			difficultySettingPanel.setBackground(theme.subColor);
+		difficultySettingLabel = new JLabel(profile.getLanguage().settingsText[2]);
+			difficultySettingLabel.setForeground(theme.textColor);
 		difficultySettingBox = new JComboBox();
-			difficultySettingBox.addItem("Challenging");
+			difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
+			difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
 		difficultySettingPanel.add(difficultySettingLabel);
 		difficultySettingPanel.add(difficultySettingBox);
 		
 		soundSettingPanel = new JPanel();
-			soundSettingPanel.setBackground(subColor);
-		soundSettingLabel = new JLabel("Sounds");
-			soundSettingLabel.setForeground(textColor);
-		soundSettingONOFFButton = new JButton("OFF");
+			soundSettingPanel.setBackground(theme.subColor);
+		soundSettingLabel = new JLabel(profile.getLanguage().settingsText[3]);
+			soundSettingLabel.setForeground(theme.textColor);
+		soundSettingONOFFButton = new JButton(profile.getLanguage().settingsText[21]);
 		soundSettingBox = new JComboBox();
-			soundSettingBox.addItem("Soft Alarm");
+			soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
+			soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
+			soundSettingBox.addItem(profile.getLanguage().settingsText[25]);
 		soundSettingPanel.add(soundSettingLabel);
 		soundSettingPanel.add(soundSettingONOFFButton);
 		soundSettingPanel.add(soundSettingBox);
@@ -106,7 +122,7 @@ public class SettingsStrategy extends StateStrategy {
 		
 		this.add(optionsPanel);
 		
-		saveChanges = new JButton("Save Changes");
+		saveChanges = new JButton(profile.getLanguage().settingsText[26]);
 			saveChanges.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(saveChanges);
 		this.add(createSpaceLabel(1));

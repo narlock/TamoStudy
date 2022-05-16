@@ -5,6 +5,7 @@ import java.util.Date;
 
 import language.EnglishStrategy;
 import language.LanguageStrategy;
+import resources.Theme;
 
 /**
  * @author: Anthony Narlock
@@ -38,6 +39,7 @@ public class Profile {
 	
 	public Profile() {
 		this.lang = new EnglishStrategy();
+		this.themeIndicator = 0;
 	}
 	
 	public LanguageStrategy getLanguage() {
@@ -47,6 +49,14 @@ public class Profile {
 		 * profile.getLanguage().<our Text array>[indicator];
 		 */
 		return lang;
+	}
+	
+	/**
+	 * getThemeIndicator
+	 * @return a new Theme object with respective indicator
+	 */
+	public Theme getThemeIndicator() {
+		return new Theme(themeIndicator);
 	}
 	
 }

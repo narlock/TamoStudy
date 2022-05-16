@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.*;
 
 import profile.Profile;
+import resources.Theme;
 
 /**
  * StateStrategy
@@ -15,29 +16,16 @@ import profile.Profile;
 
 public abstract class StateStrategy extends JPanel {
 	
-	//TODO
-	//Make a colors class that will be replace this access....
-	//A StateStrategy will have a colors class... From here,
-	//upon calling.. we'll be able to store the colors differently
-	//so they can change..
-	protected Color subColor = new Color(78,78,78); //DEFAULT
-	protected Color layerColor = new Color(108, 108, 108);
-	protected Color textColor = Color.WHITE;
-	protected Font fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
-	protected Font fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
-	
 	/**
 	 * Profile Components
 	 */
-	//TODO change these to be initialized when profile is loaded
-	//To keep track of different options
-	//protected means that the other child classes can use it
-	//as if it is an attribute
 	public Profile profile;
+	public Theme theme; //For colors
 	
 	//Default Constructor
 	public StateStrategy(Profile profile) {
 		this.profile = profile;
+		this.theme = profile.getThemeIndicator(); //For theme colors
 		setPanel();
 		setActions();
 	}
