@@ -4,16 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import State.AboutStrategy;
-import State.AchievementsStrategy;
-import State.InventoryStrategy;
-import State.SettingsStrategy;
-import State.ShopStrategy;
-import State.StateStrategy;
-import State.StatisticsStrategy;
-import State.StudyFocusStrategy;
-import State.ThemeStrategy;
-import State.TitleStrategy;
+import profile.Profile;
+import state.AboutStrategy;
+import state.AchievementsStrategy;
+import state.InventoryStrategy;
+import state.SettingsStrategy;
+import state.ShopStrategy;
+import state.StateStrategy;
+import state.StatisticsStrategy;
+import state.StudyFocusStrategy;
+import state.ThemeStrategy;
+import state.TitleStrategy;
 
 /**
  * MainGUI
@@ -40,6 +41,8 @@ public class MainGUI extends JFrame {
 	 */
 	//TODO change these to be initialized when profile is loaded
 	//To keep track of different options
+	private Profile profile;
+	
 	private Color mainColor = new Color(64,64,64); 		//DEFAULT
 	private Color textColor = new Color(153,153,153);	//DEFAULT
 
@@ -48,8 +51,9 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		//Sets the attributes accordingly
-		strategy = new TitleStrategy();
 		openedSideBar = true;
+		profile = new Profile(); //TODO Update this so it loads/New profile
+		strategy = new TitleStrategy(profile);
 		
 		//Initializes the GUI components
 		initFrame();
@@ -114,7 +118,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Title Card");
 				updateSideBar();
-				StateStrategy newStrategy = new TitleStrategy();
+				StateStrategy newStrategy = new TitleStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -126,7 +130,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
 				updateSideBar();
-				StateStrategy newStrategy = new StudyFocusStrategy();
+				StateStrategy newStrategy = new StudyFocusStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -139,7 +143,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Shop");
 				updateSideBar();
-				StateStrategy newStrategy = new ShopStrategy();
+				StateStrategy newStrategy = new ShopStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -152,7 +156,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Themes");
 				updateSideBar();
-				StateStrategy newStrategy = new ThemeStrategy();
+				StateStrategy newStrategy = new ThemeStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -166,7 +170,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Inventory");
 				updateSideBar();
-				StateStrategy newStrategy = new InventoryStrategy();
+				StateStrategy newStrategy = new InventoryStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -179,7 +183,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Statistics");
 				updateSideBar();
-				StateStrategy newStrategy = new StatisticsStrategy();
+				StateStrategy newStrategy = new StatisticsStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -192,7 +196,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Achievements");
 				updateSideBar();
-				StateStrategy newStrategy = new AchievementsStrategy();
+				StateStrategy newStrategy = new AchievementsStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -205,7 +209,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Settings");
 				updateSideBar();
-				StateStrategy newStrategy = new SettingsStrategy();
+				StateStrategy newStrategy = new SettingsStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -219,7 +223,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to About");
 				updateSideBar();
-				StateStrategy newStrategy = new AboutStrategy();
+				StateStrategy newStrategy = new AboutStrategy(profile);
 				recall(newStrategy);
 			}
 		});
@@ -257,7 +261,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JLabel welcomeUserLabel = new JLabel("Welcome, user!");
+		JLabel welcomeUserLabel = new JLabel(profile.getLanguage().text[1]);
 		setUpLabelComponent(welcomeUserLabel);
 		
 		openSidePanel.add(openSideLabel);

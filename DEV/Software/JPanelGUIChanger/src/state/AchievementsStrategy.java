@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,8 +12,15 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
+
 public class AchievementsStrategy extends StateStrategy {
 	
+	public AchievementsStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
+
 	//Header
 	private JLabel achievementsHeaderLabel;
 	

@@ -1,8 +1,15 @@
-package State;
+package state;
 
 import javax.swing.JLabel;
 
+import profile.Profile;
+
 public class InventoryStrategy extends StateStrategy {
+
+	public InventoryStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void setPanel() {

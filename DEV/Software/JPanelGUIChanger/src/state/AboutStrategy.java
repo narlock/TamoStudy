@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
@@ -10,7 +10,13 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
+
 public class AboutStrategy extends StateStrategy {
+
+	public AboutStrategy(Profile profile) {
+		super(profile);
+	}
 
 	private JPanel socialsPanel;
 	private JButton anthonyWebButton, tamoWebButton,

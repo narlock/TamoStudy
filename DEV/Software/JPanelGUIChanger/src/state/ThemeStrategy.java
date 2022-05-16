@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +11,14 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
+
 public class ThemeStrategy extends StateStrategy {
+
+	public ThemeStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
 
 	private JLabel themeHeaderLabel, themeHeaderClassicLabel;
 	private JPanel themePanel, themePanel2, themePanel3, themePanel4;

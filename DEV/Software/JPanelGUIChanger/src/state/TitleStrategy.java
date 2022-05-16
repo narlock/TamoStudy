@@ -1,8 +1,10 @@
-package State;
+package state;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+
+import profile.Profile;
 
 import java.io.*;
 import javax.imageio.*;
@@ -17,6 +19,10 @@ import java.net.*;
  */
 
 public class TitleStrategy extends StateStrategy {
+	public TitleStrategy(Profile profile) {
+		super(profile);
+	}
+
 	//Hero image
 	private ImageIcon heroImage = new ImageIcon(getClass().getClassLoader().getResource("TITLE_SMALL.gif")); //Import image;
 	
@@ -40,7 +46,7 @@ public class TitleStrategy extends StateStrategy {
 		//Never give up text drawing
 		g.setFont(new Font("Tahoma", Font.BOLD, 16));
 		g.setColor(new Color(153,153,153));
-		g.drawString("Never give up!", 333, 500);
+		g.drawString(profile.getLanguage().titleText[0], 333, 500);
 	}
 	
 	

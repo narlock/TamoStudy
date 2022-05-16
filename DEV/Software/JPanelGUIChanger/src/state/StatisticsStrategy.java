@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +13,14 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
+
 public class StatisticsStrategy extends StateStrategy {
+
+	public StatisticsStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
 
 	//GridBagConstraints for the Tamo's image and background labels
 	private GridBagConstraints gbc = new GridBagConstraints();

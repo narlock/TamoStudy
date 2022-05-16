@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -10,7 +10,14 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
+
 public class SettingsStrategy extends StateStrategy {
+
+	public SettingsStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
 
 	private JLabel settingsHeaderLabel;
 	

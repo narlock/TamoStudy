@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import profile.Profile;
 import resources.TextBubbleBorder;
 
 /**
@@ -24,6 +25,11 @@ import resources.TextBubbleBorder;
 
 public class ShopStrategy extends StateStrategy {
 	
+	public ShopStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Shop Panel
 	 * 

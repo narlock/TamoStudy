@@ -1,9 +1,11 @@
-package State;
+package state;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.*;
+
+import profile.Profile;
 
 /**
  * StateStrategy
@@ -31,10 +33,11 @@ public abstract class StateStrategy extends JPanel {
 	//To keep track of different options
 	//protected means that the other child classes can use it
 	//as if it is an attribute
-	
+	public Profile profile;
 	
 	//Default Constructor
-	public StateStrategy() {
+	public StateStrategy(Profile profile) {
+		this.profile = profile;
 		setPanel();
 		setActions();
 	}

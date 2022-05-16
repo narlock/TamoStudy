@@ -1,4 +1,4 @@
-package State;
+package state;
 
 import java.awt.*;
 
@@ -14,7 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import profile.Profile;
+
 public class StudyFocusStrategy extends StateStrategy {
+	public StudyFocusStrategy(Profile profile) {
+		super(profile);
+		// TODO Auto-generated constructor stub
+	}
+
 	//GridBagConstraints for the Tamo's image and background labels
 	private GridBagConstraints gbc = new GridBagConstraints();
 	
