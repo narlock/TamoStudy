@@ -16,30 +16,159 @@ public class Profile {
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	
 	//Immutable
-	private String username;
-	private Date joinDate;
+	private String username;				//Username field
+	private Date joinDate;					//User's join date
 		private String joinDateString;
 	
 	//Mutable
-	private Date lastLoginDate;
+	private Date lastLoginDate;				//Previous Login Date
 		private String lastLoginDateString;
-	private Date newLoginDate;
-		private String newLoginDateString;
+	private Date newLoginDate;				//Newly generated login date
+		private String newLoginDateString;	//used to compare days since login
 	
-	private int tamoTokens;
-	private int totalTime;
-	private int bgIndicator;
-	private int themeIndicator;
-	private int strikes;
+	private int tamoTokens;					//amount of Tamo Tokens
+	private int totalTime;					//amount of total focus time
+	private int bgIndicator;				//background Integer indicator
+	private int themeIndicator;				//theme Integer indicator
+	private int strikes;					//profile strikes
 	
-	private Tamo tamo;
-	private LanguageStrategy lang;
-	private Achievements ahm;
+	private Tamo tamo;						//user's Tamo
+	
+	private LanguageStrategy lang;			//user's language
+	private int languageIndicator;
+	
+	private String ahmString; 				
+											// ahmString is a String that will be flagged depending
+											// on what achievements have been earned/not earned.
+											// Like a light switch, this string could look like
+											// "110010100110", where each digit is an achievement.
+											// 0 means it has not been achieved,
+											// 1 means it has been achieved.
 	private Settings settings;
 	
+	//Default [TESTING] Constructor
 	public Profile() {
-		this.lang = new EnglishStrategy();
+		this.username = "Anthony";
+		this.joinDateString = "2020-01-31";
+		this.tamoTokens = 5000;
+		this.totalTime = 12345678;
+		this.bgIndicator = 0;
 		this.themeIndicator = 0;
+		this.strikes = 0;
+		this.tamo = new Tamo("Lisa");
+		this.languageIndicator = 0;
+		this.lang = setLanguageStrategy(languageIndicator);
+		this.ahmString = "000000000000000";
+		this.settings = new Settings();
+	}
+	
+	//New Profile Constructor - Created by initial 'Welcome' interface
+	public Profile(String username, String tamoName, int languageIndicator, int difficulty) {
+		//TODO
+	}
+	
+	//Load Profile Constructor
+	public Profile(
+			String username,
+			String joinDateString,
+			String lastLoginDateString,
+			int tamoTokens,
+			int totalTime,
+			int bgIndicator,
+			int themeIndicator,
+			int strikes,
+			String tamoName,
+			int tamoHappiness,
+			int tamoHunger,
+			int tamoId,
+			int languageIndicator,
+			String ahmString
+		) {
+		
+		this.username = username;
+		this.joinDateString = joinDateString;
+		this.lastLoginDateString = lastLoginDateString;
+		
+		//TODO
+		//Modify the dates accordingly
+		
+		this.tamoTokens = tamoTokens;
+		this.totalTime = totalTime;
+		this.bgIndicator = bgIndicator;
+		this.themeIndicator = themeIndicator;
+		this.strikes = strikes;
+		
+		this.tamo = new Tamo(tamoName, tamoHappiness, tamoHunger, tamoId);
+		this.languageIndicator = languageIndicator;
+		this.lang = setLanguageStrategy(languageIndicator);
+		
+		this.ahmString = ahmString;
+	}
+	
+	//Getter/Setter Methods
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getJoinDateString() {
+		return joinDateString;
+	}
+
+	public String getLastLoginDateString() {
+		return lastLoginDateString;
+	}
+
+	public String getNewLoginDateString() {
+		return newLoginDateString;
+	}
+
+	public void setNewLoginDateString(String newLoginDateString) {
+		this.newLoginDateString = newLoginDateString;
+	}
+
+	public int getTamoTokens() {
+		return tamoTokens;
+	}
+
+	public void setTamoTokens(int tamoTokens) {
+		this.tamoTokens = tamoTokens;
+	}
+
+	public int getTotalTime() {
+		return totalTime;
+	}
+
+	public void setTotalTime(int totalTime) {
+		this.totalTime = totalTime;
+	}
+
+	public int getBgIndicator() {
+		return bgIndicator;
+	}
+
+	public void setBgIndicator(int bgIndicator) {
+		this.bgIndicator = bgIndicator;
+	}
+
+	public int getStrikes() {
+		return strikes;
+	}
+
+	public void setStrikes(int strikes) {
+		this.strikes = strikes;
+	}
+
+	public Tamo getTamo() {
+		return tamo;
+	}
+	
+	public LanguageStrategy setLanguageStrategy(int languageIndicator) {
+		//English
+		if(languageIndicator == 0)
+			return new EnglishStrategy();
+		else
+			return new EnglishStrategy();
 	}
 	
 	public LanguageStrategy getLanguage() {
@@ -57,6 +186,18 @@ public class Profile {
 	 */
 	public Theme getThemeIndicator() {
 		return new Theme(themeIndicator);
+	}
+
+	public String getAhmString() {
+		return ahmString;
+	}
+
+	public void setAhmString(String ahmString) {
+		this.ahmString = ahmString;
+	}
+
+	public Settings getSettings() {
+		return settings;
 	}
 	
 }
