@@ -58,7 +58,7 @@ public class Profile {
 		this.tamo = new Tamo("Lisa");
 		this.languageIndicator = 0;
 		this.lang = setLanguageStrategy(languageIndicator);
-		this.ahmString = "000000100000000";
+		this.ahmString = "110010100000000";
 		this.settings = new Settings();
 	}
 	

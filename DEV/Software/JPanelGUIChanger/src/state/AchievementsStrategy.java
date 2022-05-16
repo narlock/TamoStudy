@@ -60,11 +60,11 @@ public class AchievementsStrategy extends StateStrategy {
 		hoursPanel = new JPanel();
 		setPanelComponent(hoursPanel);
 		hoursPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[0], profile.getLanguage().ahmText[0], "AHM_6.png", "AHM_6.png", earnedAchievements[0]));
+				profile.getLanguage().ahmTitle[0], profile.getLanguage().ahmText[0], "AHM_012.png", "AHM_0A.png", earnedAchievements[0]));
 		hoursPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[1], profile.getLanguage().ahmText[1], "AHM_6.png", "AHM_6.png", earnedAchievements[1]));
+				profile.getLanguage().ahmTitle[1], profile.getLanguage().ahmText[1], "AHM_012.png", "AHM_1A.png", earnedAchievements[1]));
 		hoursPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[2], profile.getLanguage().ahmText[2], "AHM_6.png", "AHM_6.png", earnedAchievements[2]));
+				profile.getLanguage().ahmTitle[2], profile.getLanguage().ahmText[2], "AHM_012.png", "AHM_2A.png", earnedAchievements[2]));
 		this.add(hoursPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -72,11 +72,11 @@ public class AchievementsStrategy extends StateStrategy {
 		customPanel = new JPanel();
 		setPanelComponent(customPanel);
 		customPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[3], profile.getLanguage().ahmText[3], "AHM_6.png", "AHM_6.png", earnedAchievements[3]));
+				profile.getLanguage().ahmTitle[3], profile.getLanguage().ahmText[3], "AHM_P.png", "AHM_PA.png", earnedAchievements[3]));
 		customPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[4], profile.getLanguage().ahmText[4], "AHM_6.png", "AHM_6.png", earnedAchievements[4]));
+				profile.getLanguage().ahmTitle[4], profile.getLanguage().ahmText[4], "AHM_4.png", "AHM_4A.png", earnedAchievements[4]));
 		customPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[5], profile.getLanguage().ahmText[5], "AHM_6.png", "AHM_6.png", earnedAchievements[5]));
+				profile.getLanguage().ahmTitle[5], profile.getLanguage().ahmText[5], "AHM_5.png", "AHM_5A.png", earnedAchievements[5]));
 		this.add(customPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -86,9 +86,9 @@ public class AchievementsStrategy extends StateStrategy {
 		maxPanel.add(createAchievementLabel(
 				profile.getLanguage().ahmTitle[6], profile.getLanguage().ahmText[6], "AHM_6.png", "AHM_6A.png", earnedAchievements[6]));
 		maxPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[7], profile.getLanguage().ahmText[7], "AHM_6.png", "AHM_6A.png", earnedAchievements[7]));
+				profile.getLanguage().ahmTitle[7], profile.getLanguage().ahmText[7], "AHM_7.png", "AHM_7A.png", earnedAchievements[7]));
 		maxPanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[8], profile.getLanguage().ahmText[8], "AHM_6.png", "AHM_6A.png", earnedAchievements[8]));
+				profile.getLanguage().ahmTitle[8], profile.getLanguage().ahmText[8], "AHM_8.png", "AHM_8A.png", earnedAchievements[8]));
 		this.add(maxPanel);
 		
 		this.add(createSpaceLabel(0));
@@ -96,11 +96,11 @@ public class AchievementsStrategy extends StateStrategy {
 		timePanel = new JPanel();
 		setPanelComponent(timePanel);
 		timePanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[9], profile.getLanguage().ahmText[9], "AHM_6.png", "AHM_6A.png", earnedAchievements[9]));
+				profile.getLanguage().ahmTitle[9], profile.getLanguage().ahmText[9], "AHM_P.png", "AHM_PA.png", earnedAchievements[9]));
 		timePanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[10], profile.getLanguage().ahmText[10], "AHM_6.png", "AHM_6A.png", earnedAchievements[10]));
+				profile.getLanguage().ahmTitle[10], profile.getLanguage().ahmText[10], "AHM_P.png", "AHM_PA.png", earnedAchievements[10]));
 		timePanel.add(createAchievementLabel(
-				profile.getLanguage().ahmTitle[11], profile.getLanguage().ahmText[11], "AHM_6.png", "AHM_6A.png", earnedAchievements[11]));
+				profile.getLanguage().ahmTitle[11], profile.getLanguage().ahmText[11], "AHM_P.png", "AHM_PA.png", earnedAchievements[11]));
 		this.add(timePanel);
 		
 		this.add(createSpaceLabel(0));
