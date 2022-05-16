@@ -73,7 +73,7 @@ public class StudyFocusStrategy extends StateStrategy {
 			
 		//Name-Level Components
 		tamoName = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": 24");
-			tamoName.setForeground(Color.WHITE);
+			tamoName.setForeground(theme.textColor);
 		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoName.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		tamoPanel.add(tamoName); //Add to tamoPanel
@@ -102,24 +102,24 @@ public class StudyFocusStrategy extends StateStrategy {
 	public void createTimerPanel() {
 		timerPanel = new JPanel();
 		timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.Y_AXIS));
-			timerPanel.setBackground(new Color(78,78,78));
+			timerPanel.setBackground(theme.subColor);
 		
 		//Space Component
 		timerPanel.add(createSpaceLabel(1)); //timerPanel
 		
 		//timerTextPanel
 		timerTextPanel = new JPanel();
-			timerTextPanel.setBackground(new Color(78,78,78));
+			timerTextPanel.setBackground(theme.subColor);
 			timerTextPanel.setLayout(new BoxLayout(timerTextPanel, BoxLayout.X_AXIS));
 		
 		minuteTime = new JLabel("00");
-			minuteTime.setForeground(Color.WHITE);
+			minuteTime.setForeground(theme.textColor);
 		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 96));
 		spaceLabel = new JLabel(":");
-			spaceLabel.setForeground(Color.WHITE);
+			spaceLabel.setForeground(theme.textColor);
 		spaceLabel.setFont(new Font ("Tahoma", Font.BOLD, 96));
 		secondTime = new JLabel("00");
-			secondTime.setForeground(Color.WHITE);
+			secondTime.setForeground(theme.textColor);
 		secondTime.setFont(new Font ("Tahoma", Font.BOLD, 96));
 		timerTextPanel.add(minuteTime);
 		timerTextPanel.add(spaceLabel);
@@ -129,7 +129,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		
 		//Session Label
 		currentSessionLabel = new JLabel("2 / 12");
-			currentSessionLabel.setForeground(Color.WHITE);
+			currentSessionLabel.setForeground(theme.textColor);
 			currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 25));
 			currentSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		timerPanel.add(currentSessionLabel);
@@ -141,14 +141,14 @@ public class StudyFocusStrategy extends StateStrategy {
 		pomoSessionLabel = new JLabel(profile.getLanguage().focusText[1] + "     " 
 						+ profile.getLanguage().focusText[2] + "     " 
 						+ profile.getLanguage().focusText[3]);
-			pomoSessionLabel.setForeground(Color.WHITE);
+			pomoSessionLabel.setForeground(theme.textColor);
 			pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		timerPanel.add(pomoSessionLabel);
 		
 		//timerSetBox Panel
 		timerSetBoxPanel = new JPanel();
-			timerSetBoxPanel.setBackground(new Color(78,78,78));
+			timerSetBoxPanel.setBackground(theme.subColor);
 		//timerSetBoxPanel.setLayout(new BoxLayout(timerSetBoxPanel, BoxLayout.X_AXIS));
 		
 		pomoNumberSessionBox = new JComboBox();
@@ -171,7 +171,7 @@ public class StudyFocusStrategy extends StateStrategy {
 			
 		//Button Panel
 		timerButtonPanel = new JPanel();
-			timerButtonPanel.setBackground(new Color(78,78,78));
+			timerButtonPanel.setBackground(theme.subColor);
 			
 		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
 		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);

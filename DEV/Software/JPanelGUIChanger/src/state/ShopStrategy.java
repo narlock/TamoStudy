@@ -137,7 +137,7 @@ public class ShopStrategy extends StateStrategy {
 			tokenPanel.setBackground(theme.subColor);
 		tokenImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
 		tokenDisplayLabel = new JLabel("1727");
-			tokenDisplayLabel.setForeground(Color.WHITE);
+			tokenDisplayLabel.setForeground(theme.textColor);
 			tokenDisplayLabel.setFont(theme.fontBoldReg);
 		tokenPanel.add(tokenImageLabel);
 		tokenPanel.add(tokenDisplayLabel);
@@ -153,7 +153,7 @@ public class ShopStrategy extends StateStrategy {
 			bgPanel.setBackground(theme.subColor);
 			bgPanel.setLayout(new BoxLayout(bgPanel, BoxLayout.Y_AXIS));
 		bgShopLabel = new JLabel(profile.getLanguage().shopText[1]);
-			bgShopLabel.setForeground(Color.WHITE);
+			bgShopLabel.setForeground(theme.textColor);
 			bgShopLabel.setFont(theme.fontBoldReg);
 			bgShopLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		bgPanel.add(bgShopLabel);
