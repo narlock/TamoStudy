@@ -6,7 +6,6 @@ import javax.swing.*;
 
 import State.AboutStrategy;
 import State.AchievementsStrategy;
-import State.ChangeLogStrategy;
 import State.InventoryStrategy;
 import State.SettingsStrategy;
 import State.ShopStrategy;
@@ -211,19 +210,6 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton changeLogButton = new JButton("Change Log");
-		setUpButtonComponent(changeLogButton);
-		//TODO implement change log button to change strategy
-		changeLogButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("[TAMOSTUDY] Changing Strategy to Change Log");
-				updateSideBar();
-				StateStrategy newStrategy = new ChangeLogStrategy();
-				recall(newStrategy);
-			}
-		});
-		
 		JButton aboutButton = new JButton("About");
 		setUpButtonComponent(aboutButton);
 		
@@ -249,7 +235,6 @@ public class MainGUI extends JFrame {
 		sidePanel.add(achievementsButton);
 		sidePanel.add(thematicBreak2);
 		sidePanel.add(settingsButton);
-		sidePanel.add(changeLogButton);
 		sidePanel.add(aboutButton);
 		
 		

@@ -1,10 +1,13 @@
 package State;
 
+import javax.swing.JLabel;
+
 public class InventoryStrategy extends StateStrategy {
 
 	@Override
 	public void setPanel() {
-		// TODO Auto-generated method stub
+		this.setBackground(subColor);
+		this.add(new JLabel("Inventory Empty"));
 		
 	}
 
