@@ -2,6 +2,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
+
 import javax.swing.*;
 
 import profile.Profile;
@@ -45,8 +47,12 @@ public class MainGUI extends JFrame {
 	private Profile profile;
 	public Theme theme;
 	
-	//private Color mainColor = new Color(64,64,64); 		//DEFAULT
-	//private Color layerTextColor = new Color(153,153,153);	//DEFAULT
+	//Used to track the components so we can update them
+	private Stack<JPanel> panels;
+	private Stack<JButton> buttons;
+	private Stack<JLabel> labels;
+	private JButton openSideLabel; //Menu Button
+	private Stack<JLabel> breaks; //Thematic breaks
 
 	/**
 	 * @brief Main Constructor
@@ -57,6 +63,10 @@ public class MainGUI extends JFrame {
 		profile = new Profile(); //TODO Update this so it loads/New profile
 		theme = profile.getThemeIndicator(); //For colors
 		strategy = new TitleStrategy(profile);
+		panels = new Stack<>();
+		buttons = new Stack<>();
+		labels = new Stack<>();
+		breaks = new Stack<>();
 		
 		//Initializes the GUI components
 		initFrame();
@@ -76,6 +86,7 @@ public class MainGUI extends JFrame {
 	 * Will 'repaint' the main panel.
 	 */
 	public void recall(StateStrategy newStrategy) {
+		ensureThemeColor();
 		this.remove(strategy);
 		strategy = newStrategy;
 		this.add(strategy, BorderLayout.CENTER);
@@ -92,7 +103,7 @@ public class MainGUI extends JFrame {
 		this.setSize(800,599);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
@@ -109,10 +120,13 @@ public class MainGUI extends JFrame {
 		JLabel thematicBreak2 = new JLabel(DIVIDER_STRING);
 		setUpLabelComponent(thematicBreak, 1);
 		setUpLabelComponent(thematicBreak2, 1);
+		breaks.push(thematicBreak);
+		breaks.push(thematicBreak2);
 		
 		sidePanel = new JPanel();
 		sidePanel.setBackground(theme.mainColor);
 		sidePanel.setLayout(new GridLayout(15,1));
+		panels.push(sidePanel);
 		
 		JButton titleCardButton = new JButton(profile.getLanguage().text[2]);
 		setUpButtonComponent(titleCardButton);
@@ -125,6 +139,7 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(titleCardButton);
 		
 		JButton focusButton = new JButton(profile.getLanguage().text[3]);
 		setUpButtonComponent(focusButton);
@@ -137,10 +152,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(focusButton);
 		
 		JButton shopButton = new JButton(profile.getLanguage().text[4]);
 		setUpButtonComponent(shopButton);
-		//TODO implement shop Button to change strategy
 		shopButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -150,10 +165,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(shopButton);
 		
 		JButton themesButton = new JButton(profile.getLanguage().text[5]);
 		setUpButtonComponent(themesButton);
-		//TODO implement theme Button to change strategy
 		themesButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -163,11 +178,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
-		
+		buttons.push(themesButton);
 		
 		JButton inventoryButton = new JButton(profile.getLanguage().text[6]);
 		setUpButtonComponent(inventoryButton);
-		//TODO implement inventory Button to change strategy
 		inventoryButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,10 +191,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(inventoryButton);
 		
 		JButton statsButton = new JButton(profile.getLanguage().text[7]);
 		setUpButtonComponent(statsButton);
-		//TODO implement stats Button to change strategy
 		statsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -190,10 +204,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(statsButton);
 		
 		JButton achievementsButton = new JButton(profile.getLanguage().text[8]);
 		setUpButtonComponent(achievementsButton);
-		//TODO implement ahm button to change strategy
 		achievementsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -203,10 +217,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(achievementsButton);
 		
 		JButton settingsButton = new JButton(profile.getLanguage().text[9]);
 		setUpButtonComponent(settingsButton);
-		//TODO implement settings Button to change strategy
 		settingsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -216,11 +230,10 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
+		buttons.push(settingsButton);
 		
 		JButton aboutButton = new JButton(profile.getLanguage().text[10]);
 		setUpButtonComponent(aboutButton);
-		
-		//TODO implement about button to change strategy
 		aboutButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -230,7 +243,7 @@ public class MainGUI extends JFrame {
 				recall(newStrategy);
 			}
 		});
-		
+		buttons.push(aboutButton);
 		
 		sidePanel.add(titleCardButton);
 		sidePanel.add(focusButton);
@@ -244,17 +257,16 @@ public class MainGUI extends JFrame {
 		sidePanel.add(settingsButton);
 		sidePanel.add(aboutButton);
 		
-		
-		
 		/**
 		 * Setting up openSidePanel
 		 */
 		openSidePanel = new JPanel();
 		openSidePanel.setBackground(theme.mainColor);
+		panels.add(openSidePanel);
 		
 		//openSidePanel component
 		
-		JButton openSideLabel = new JButton(profile.getLanguage().text[0]);
+		openSideLabel = new JButton(profile.getLanguage().text[0]);
 		setUpButtonComponent(openSideLabel, 1);
 		openSideLabel.addActionListener(new ActionListener() {
 			@Override
@@ -266,6 +278,7 @@ public class MainGUI extends JFrame {
 		
 		JLabel welcomeUserLabel = new JLabel(profile.getLanguage().text[1] + profile.getUsername());
 		setUpLabelComponent(welcomeUserLabel);
+		labels.push(welcomeUserLabel);
 		
 		openSidePanel.add(openSideLabel);
 		openSidePanel.add(welcomeUserLabel);
@@ -311,5 +324,21 @@ public class MainGUI extends JFrame {
 		button.setForeground(theme.layerTextColor);
 		button.setFocusPainted(false);
 		button.setFont(new Font("Arial", Font.BOLD, 16));
+	}
+	
+	/**
+	 * ensureThemeColor
+	 * @brief makes sure the colors are set
+	 */
+	public void ensureThemeColor() {
+		if(!this.theme.checkEqualityWith(profile.getThemeIndicator())) {
+			this.theme = profile.getThemeIndicator();
+			System.out.println("[TAMOSTUDY] Updating Theme...");
+			setUpButtonComponent(openSideLabel, 1);
+			for(JPanel panel : panels) { panel.setBackground(theme.mainColor); }
+			for(JButton button : buttons) { setUpButtonComponent(button); }
+			for(JLabel label : labels) { setUpLabelComponent(label); }
+			for(JLabel thematicBreak : breaks) { setUpLabelComponent(thematicBreak, 1); }
+		}
 	}
 }

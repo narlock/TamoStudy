@@ -53,17 +53,19 @@ public class EnglishStrategy extends LanguageStrategy {
 		this.shopText = engShopText;
 		
 		String[] engThemeText = {
-			"Themes",
-			"Select",
 			"Dark Mode",
 			"Light Mode",
-			"Classic Themes",
 			"Classic Red",
 			"Classic Blue",
 			"Classic Green",
 			"Classic Yellow",
 			"Classic Orange",
-			"Classic Purple"
+			"Classic Purple",
+			"Themes",
+			"Select",
+			"Classic Themes",
+			"Theme changed to ",
+			"Enter new screen to see changes!"
 		};
 		this.themesText = engThemeText;
 		

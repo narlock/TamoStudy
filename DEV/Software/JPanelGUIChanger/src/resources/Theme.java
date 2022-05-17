@@ -98,4 +98,8 @@ public class Theme {
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
 		}	
 	}
+	
+	public boolean checkEqualityWith(Theme other) {
+		return this.mainColor.equals(other.mainColor);
+	}
 }

@@ -200,6 +200,10 @@ public class Profile {
 	public Theme getThemeIndicator() {
 		return new Theme(themeIndicator);
 	}
+	
+	public void setThemeIndicator(int themeIndicator) {
+		this.themeIndicator = themeIndicator;
+	}
 
 	public String getAhmString() {
 		return ahmString;
