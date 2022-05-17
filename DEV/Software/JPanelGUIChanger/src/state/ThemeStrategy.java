@@ -93,7 +93,6 @@ public class ThemeStrategy extends StateStrategy {
 		
 		JButton select = new JButton(profile.getLanguage().themesText[9]);
 		select.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(imageUrl.equals("DARK_MODE.png")) { themeChanged(0); }

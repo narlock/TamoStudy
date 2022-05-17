@@ -174,6 +174,13 @@ public class StudyFocusStrategy extends StateStrategy {
 			timerButtonPanel.setBackground(theme.subColor);
 			
 		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
+		startFocusButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hello from StudyFocusStrategy");
+			}
+		});
+		
 		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);
 		timerButtonPanel.add(startFocusButton);
 		timerButtonPanel.add(breakFocusButton);
@@ -201,6 +208,10 @@ public class StudyFocusStrategy extends StateStrategy {
 			pomoNumberSessionBox.addItem(i);
 		}
 		
+	}
+	
+	public JButton getStartButton() {
+		return startFocusButton;
 	}
 	
 }

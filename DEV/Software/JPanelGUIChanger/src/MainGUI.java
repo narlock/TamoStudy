@@ -53,6 +53,9 @@ public class MainGUI extends JFrame {
 	private Stack<JLabel> labels;
 	private JButton openSideLabel; //Menu Button
 	private Stack<JLabel> breaks; //Thematic breaks
+	
+	//Specific Function Components
+	private JButton startFocusButton;
 
 	/**
 	 * @brief Main Constructor
@@ -149,6 +152,10 @@ public class MainGUI extends JFrame {
 				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy(profile);
+				
+				startFocusButton = ((StudyFocusStrategy) newStrategy).getStartButton();
+				setStudyComponentFunctions();
+				
 				recall(newStrategy);
 			}
 		});
@@ -340,5 +347,24 @@ public class MainGUI extends JFrame {
 			for(JLabel label : labels) { setUpLabelComponent(label); }
 			for(JLabel thematicBreak : breaks) { setUpLabelComponent(thematicBreak, 1); }
 		}
+	}
+	
+	/**
+	 * setStudyComponentFunctions
+	 * The point of this is to disable the buttons
+	 * on the outside when the start button is selected
+	 */
+	public void setStudyComponentFunctions() {
+		startFocusButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hello from MainGUI");
+				//TODO Disable the buttons during study session
+				//I will need to make some timer variable in this GUI that signals
+				//when a session is over... They must be the same....??
+			}
+			
+		});
 	}
 }
