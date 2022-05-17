@@ -76,7 +76,7 @@ public class StatisticsStrategy extends StateStrategy {
 			tamoPanel.setBackground(theme.subColor);
 		
 		//Name Component
-		tamoNameLabel = new JLabel("Lisa");
+		tamoNameLabel = new JLabel(profile.getTamo().getName());
 			tamoNameLabel.setForeground(theme.textColor);
 			tamoNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			tamoNameLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -104,26 +104,34 @@ public class StatisticsStrategy extends StateStrategy {
 		statsPanel.add(createSpaceLabel(0));
 		
 		//Statistics Components
-		usernameLabel = new JLabel(profile.getLanguage().statsText[1] + ": Anthony");
+		usernameLabel = new JLabel(profile.getLanguage().statsText[1] + ": " + profile.getUsername());
 		setUpLabelComponent(usernameLabel);
 		statsPanel.add(usernameLabel);
 		
-		joinDateLabel = new JLabel(profile.getLanguage().statsText[2] + ": 2022-05-07");
+		joinDateLabel = new JLabel(profile.getLanguage().statsText[2] + ": " + profile.getJoinDateString());
 		setUpLabelComponent(joinDateLabel);
 		statsPanel.add(joinDateLabel);
 		
 			//space
 		statsPanel.add(createSpaceLabel(0));
 		
-		totalFocusHoursLabel = new JLabel(profile.getLanguage().statsText[3] + ": 1727");
+		totalFocusHoursLabel = new JLabel(profile.getLanguage().statsText[3] + ": " + Double.toString(profile.getTotalFocusHours()));
 		setUpLabelComponent(totalFocusHoursLabel);
 		statsPanel.add(totalFocusHoursLabel);
 		
-		unlockedAchievementsLabel = new JLabel(profile.getLanguage().statsText[4] + ": 12/20");
+		//Loop to determine how many achievements have been earned
+		int earned = 0;
+		String[] ahms = profile.getAhmString().split("");
+		for(String ahm : ahms) {
+			if(ahm.equals("1"))
+				earned++;
+		}
+		
+		unlockedAchievementsLabel = new JLabel(profile.getLanguage().statsText[4] + ": " + earned + "/12");
 		setUpLabelComponent(unlockedAchievementsLabel);
 		statsPanel.add(unlockedAchievementsLabel);
 		
-		tamoLevelLabel = new JLabel(profile.getLanguage().statsText[5] + ": 24");
+		tamoLevelLabel = new JLabel(profile.getLanguage().statsText[5] + ": " + Integer.toString(profile.getTamoLevel()));
 		setUpLabelComponent(tamoLevelLabel);
 		statsPanel.add(tamoLevelLabel);
 		

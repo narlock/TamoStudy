@@ -120,7 +120,8 @@ public class ShopStrategy extends StateStrategy {
 			
 		//TODO Dynamically change this..
 		//Make a method that changes it based off of an indicator since we need HTML...
-		messageText = new JLabel("<html>Hello!<br>Welcome to the Shop!</html>");
+		messageText = new JLabel("<html>" + profile.getLanguage().shopText[2] 
+				+ "<br>" + profile.getLanguage().shopText[3] + "</html>");
 		
 			messageText.setOpaque(true);
 			messageText.setBackground(Color.WHITE);
@@ -136,7 +137,7 @@ public class ShopStrategy extends StateStrategy {
 		tokenPanel = new JPanel();
 			tokenPanel.setBackground(theme.subColor);
 		tokenImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_TOKEN.png")));
-		tokenDisplayLabel = new JLabel("1727");
+		tokenDisplayLabel = new JLabel(Integer.toString(profile.getTamoTokens()));
 			tokenDisplayLabel.setForeground(theme.textColor);
 			tokenDisplayLabel.setFont(theme.fontBoldReg);
 		tokenPanel.add(tokenImageLabel);

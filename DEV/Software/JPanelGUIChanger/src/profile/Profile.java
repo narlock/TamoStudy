@@ -1,5 +1,6 @@
 package profile;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +15,13 @@ import resources.Theme;
 
 public class Profile {
 	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	
+	//The file that we will write to
+	//More convenient to just store the file with the profile
+	//This way we don't need to pass both and we can just
+	//rewrite profile file inside of the profile file
+	//TODO
+	private File file;
 	
 	//Immutable
 	private String username;				//Username field
@@ -103,6 +111,11 @@ public class Profile {
 		this.lang = setLanguageStrategy(languageIndicator);
 		
 		this.ahmString = ahmString;
+	}
+	
+	//TODO method to update the file
+	public void updateFile() {
+		//TODO Will write to the file and update its contents
 	}
 	
 	//Getter/Setter Methods
@@ -198,6 +211,24 @@ public class Profile {
 
 	public Settings getSettings() {
 		return settings;
+	}
+	
+	/**
+	 * getTamoLevel
+	 * @return the Tamo level
+	 */
+	public int getTamoLevel() {
+		return (totalTime / 86400);
+	}
+	
+	/**
+	 * getTotalFocusHours
+	 * @return totalTime in hours
+	 */
+	public double getTotalFocusHours() {
+		double totalHours = totalTime * 0.000277778;
+		totalHours = Math.round(totalHours * 100.0) / 100.0;
+		return totalHours;
 	}
 	
 }

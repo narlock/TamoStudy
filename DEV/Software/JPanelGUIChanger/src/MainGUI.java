@@ -114,7 +114,7 @@ public class MainGUI extends JFrame {
 		sidePanel.setBackground(theme.mainColor);
 		sidePanel.setLayout(new GridLayout(15,1));
 		
-		JButton titleCardButton = new JButton("Title Card");
+		JButton titleCardButton = new JButton(profile.getLanguage().text[2]);
 		setUpButtonComponent(titleCardButton);
 		titleCardButton.addActionListener(new ActionListener() {
 			@Override
@@ -126,7 +126,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton focusButton = new JButton("Focus");
+		JButton focusButton = new JButton(profile.getLanguage().text[3]);
 		setUpButtonComponent(focusButton);
 		focusButton.addActionListener(new ActionListener() {
 			@Override
@@ -138,7 +138,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton shopButton = new JButton("Shop");
+		JButton shopButton = new JButton(profile.getLanguage().text[4]);
 		setUpButtonComponent(shopButton);
 		//TODO implement shop Button to change strategy
 		shopButton.addActionListener(new ActionListener() {
@@ -151,7 +151,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton themesButton = new JButton("Themes");
+		JButton themesButton = new JButton(profile.getLanguage().text[5]);
 		setUpButtonComponent(themesButton);
 		//TODO implement theme Button to change strategy
 		themesButton.addActionListener(new ActionListener() {
@@ -165,7 +165,7 @@ public class MainGUI extends JFrame {
 		});
 		
 		
-		JButton inventoryButton = new JButton("Inventory");
+		JButton inventoryButton = new JButton(profile.getLanguage().text[6]);
 		setUpButtonComponent(inventoryButton);
 		//TODO implement inventory Button to change strategy
 		inventoryButton.addActionListener(new ActionListener() {
@@ -178,7 +178,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton statsButton = new JButton("Statistics");
+		JButton statsButton = new JButton(profile.getLanguage().text[7]);
 		setUpButtonComponent(statsButton);
 		//TODO implement stats Button to change strategy
 		statsButton.addActionListener(new ActionListener() {
@@ -191,7 +191,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton achievementsButton = new JButton("Achievements");
+		JButton achievementsButton = new JButton(profile.getLanguage().text[8]);
 		setUpButtonComponent(achievementsButton);
 		//TODO implement ahm button to change strategy
 		achievementsButton.addActionListener(new ActionListener() {
@@ -204,7 +204,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton settingsButton = new JButton("Settings");
+		JButton settingsButton = new JButton(profile.getLanguage().text[9]);
 		setUpButtonComponent(settingsButton);
 		//TODO implement settings Button to change strategy
 		settingsButton.addActionListener(new ActionListener() {
@@ -217,7 +217,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JButton aboutButton = new JButton("About");
+		JButton aboutButton = new JButton(profile.getLanguage().text[10]);
 		setUpButtonComponent(aboutButton);
 		
 		//TODO implement about button to change strategy
@@ -254,7 +254,7 @@ public class MainGUI extends JFrame {
 		
 		//openSidePanel component
 		
-		JButton openSideLabel = new JButton("MENU");
+		JButton openSideLabel = new JButton(profile.getLanguage().text[0]);
 		setUpButtonComponent(openSideLabel, 1);
 		openSideLabel.addActionListener(new ActionListener() {
 			@Override
@@ -264,7 +264,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
-		JLabel welcomeUserLabel = new JLabel(profile.getLanguage().text[1]);
+		JLabel welcomeUserLabel = new JLabel(profile.getLanguage().text[1] + profile.getUsername());
 		setUpLabelComponent(welcomeUserLabel);
 		
 		openSidePanel.add(openSideLabel);
