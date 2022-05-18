@@ -1,5 +1,10 @@
 package profile;
 
+/**
+ * @author Anthony Narlock (narlock)
+ * Profile Settings class. Contains changeable settings
+ */
+
 public class Settings {
 	private int focusMode;					//0 for 5 min Interval
 											//1 for Custom interval

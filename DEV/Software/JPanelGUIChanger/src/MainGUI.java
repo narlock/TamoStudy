@@ -22,7 +22,7 @@ import state.TitleStrategy;
 
 /**
  * MainGUI
- * @author Anthony Narlock
+ * @author Anthony Narlock (narlock)
  * @brief The Context and Main Frame of Program
  */
 
@@ -31,6 +31,7 @@ public class MainGUI extends JFrame {
 	 * MainGUI the "Context"
 	 */
 	
+	//Primary Components of the MainGUI
 	private boolean openedSideBar; 								//State of the sidebar being opened
 	private JPanel sidePanel; 									//The sidebar panel
 	private JPanel openSidePanel; 								//The openSideBar panel
@@ -48,18 +49,24 @@ public class MainGUI extends JFrame {
 	private Profile profile;
 	public Theme theme;
 	
-	//Used to track the components so we can update them
+	//Used to track the components on sidebar so we can update them accordingly
 	private Stack<JPanel> panels;
 	private Stack<JButton> buttons;
 	private Stack<JLabel> labels;
 	private JButton openSideLabel; //Menu Button
 	private Stack<JLabel> breaks; //Thematic breaks
 	
-	//Specific Function Components
+	/**
+	 * Specific Function Components
+	 * 
+	 * These are member variables that correspond to
+	 * the objects that are in the specific strategies
+	 * in which we need to interact with the MainGUI.
+	 */
 	
 	//StudyFocusStrategy
-	private JButton startFocusButton;
-	private JComponent[] strategyComponents;
+	private JButton startFocusButton;			//Start focus button
+	private JButton breakFocusButton;			//Break focus button
 	
 	//ThemeStrategy
 	private Stack<JButton> selectButtons;
@@ -67,6 +74,7 @@ public class MainGUI extends JFrame {
 
 	/**
 	 * @brief Main Constructor
+	 * Sets the default values, will be used on new profile
 	 */
 	public MainGUI() {
 		//Sets the attributes accordingly
@@ -86,9 +94,12 @@ public class MainGUI extends JFrame {
 		
 		//Hopefully fixes Swing issues on painting
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
-		this.setSize(800,600);
+		this.setSize(800,600);	//Resize properly so display is correct
 		this.repaint();
 	}
+	
+	//TODO Make Load Constructor
+	//Sets values based off of profile
 	
 	/**
 	 * recall
@@ -100,13 +111,12 @@ public class MainGUI extends JFrame {
 		this.remove(strategy);
 		strategy = newStrategy;
 		this.add(strategy, BorderLayout.CENTER);
-		checkInstanceOf();
 		this.repaint();
 	}
 	
 	/**
 	 * initFrame
-	 * @brief Initializes the JFrame
+	 * @brief Initializes the main JFrame
 	 */
 	public void initFrame() {
 		this.setTitle("TamoStudy Beta v4.0");
@@ -120,6 +130,7 @@ public class MainGUI extends JFrame {
 	
 	/**
 	 * initSidePanels
+	 * @brief Initializes the side panel
 	 */
 	public void initSidePanels() {
 		
@@ -127,6 +138,7 @@ public class MainGUI extends JFrame {
 		 * Setting up the Side Panel
 		 */
 		
+		//Initializes the thematic breaks
 		JLabel thematicBreak = new JLabel(DIVIDER_STRING);
 		JLabel thematicBreak2 = new JLabel(DIVIDER_STRING);
 		setUpLabelComponent(thematicBreak, 1);
@@ -134,10 +146,15 @@ public class MainGUI extends JFrame {
 		breaks.push(thematicBreak);
 		breaks.push(thematicBreak2);
 		
+		//Initializes Side Panel
 		sidePanel = new JPanel();
 		sidePanel.setBackground(theme.mainColor);
 		sidePanel.setLayout(new GridLayout(15,1));
 		panels.push(sidePanel);
+		
+		//Initializes each of the side buttons
+		//Includes dynamic functionality as needed to communicate
+		//with it's respective strategy
 		
 		JButton titleCardButton = new JButton(profile.getLanguage().text[2]);
 		setUpButtonComponent(titleCardButton);
@@ -161,6 +178,8 @@ public class MainGUI extends JFrame {
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy(profile);
 				
+				//Functionality to communicate between
+				//TODO Set up the actual timer inside this class...
 				startFocusButton = ((StudyFocusStrategy) newStrategy).getStartButton();
 				setStudyComponentFunctions();
 				
@@ -279,6 +298,7 @@ public class MainGUI extends JFrame {
 		});
 		buttons.push(aboutButton);
 		
+		//adds components to the sidePanel
 		sidePanel.add(titleCardButton);
 		sidePanel.add(focusButton);
 		sidePanel.add(thematicBreak);
@@ -386,15 +406,9 @@ public class MainGUI extends JFrame {
 				//TODO Disable the buttons during study session
 				//I will need to make some timer variable in this GUI that signals
 				//when a session is over... They must be the same....??
+				startFocusButton.setText("Hello World");
 			}
 			
 		});
-	}
-	
-	/**
-	 * Check Instance
-	 */
-	public void checkInstanceOf() {
-		//System.out.println(strategy instanceof ThemeStrategy);
 	}
 }

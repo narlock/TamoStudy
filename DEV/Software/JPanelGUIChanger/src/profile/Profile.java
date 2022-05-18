@@ -9,7 +9,7 @@ import language.LanguageStrategy;
 import resources.Theme;
 
 /**
- * @author: Anthony Narlock
+ * @author Anthony Narlock (narlock)
  * @description: Profile Object class
  */
 

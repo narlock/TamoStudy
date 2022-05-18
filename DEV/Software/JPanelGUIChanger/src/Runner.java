@@ -1,6 +1,6 @@
 /**
  * Runner
- * @author Anthony Narlock
+ * @author Anthony Narlock (narlock)
  * @brief Runs the Main loop of the project
  */
 

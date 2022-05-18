@@ -2,6 +2,8 @@ package language;
 
 public abstract class LanguageStrategy {
 	/**
+	 * @author Anthony Narlock (narlock)
+	 * 
 	 * LanguageStrategy
 	 * Stores the language contents for each
 	 * language in TamoStudy

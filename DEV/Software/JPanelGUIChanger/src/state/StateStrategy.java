@@ -12,6 +12,11 @@ import resources.Theme;
  * StateStrategy
  * @author Anthony Narlock
  * @brief Abstract Implementation of the StateStrategy JPanel
+ * 
+ * This class is the "Main" panel of the MainGUI. It's state can change
+ * depending on which area we are in.
+ * 
+ * Each implementation of a state is located in a concrete class.
  */
 
 public abstract class StateStrategy extends JPanel {
@@ -52,9 +57,5 @@ public abstract class StateStrategy extends JPanel {
 		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		return transparentComponent;
-	}
-	
-	public Theme sendTheme() {
-		return theme;
 	}
 }

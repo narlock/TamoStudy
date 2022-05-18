@@ -3,6 +3,11 @@ package resources;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * @author Anthony Narlock (narlock)
+ * Theme, contains information about the Colors for current Theme
+ */
+
 public class Theme {
 	
 	/**

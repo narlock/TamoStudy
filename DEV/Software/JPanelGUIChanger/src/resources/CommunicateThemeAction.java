@@ -8,6 +8,12 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * @author Anthony Narlock (narlock)
+ * CommunicateThemeAction communicates theme actions
+ * with MainGUI and ThemeStrategy
+ */
+
 public class CommunicateThemeAction {
 	
 	private Theme theme;

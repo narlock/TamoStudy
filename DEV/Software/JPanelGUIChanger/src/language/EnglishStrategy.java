@@ -65,7 +65,6 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Select",
 			"Classic Themes",
 			"Theme changed to ",
-			"Enter new screen to see changes!"
 		};
 		this.themesText = engThemeText;
 		

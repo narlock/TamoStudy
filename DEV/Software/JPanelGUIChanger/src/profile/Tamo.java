@@ -2,6 +2,11 @@ package profile;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * @author Anthony Narlock (narlock)
+ * Tamo Object Class
+ */
+
 public class Tamo {
 	/**
 	 * Tamo Attributes

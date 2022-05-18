@@ -8,6 +8,11 @@ import javax.swing.JComponent;
 
 import language.LanguageStrategy;
 
+/**
+ * @author Anthony Narlock (narlock)
+ * CommunicateFocusAction
+ */
+
 public class CommunicateFocusAction {
 	
 	/**
@@ -32,7 +37,7 @@ public class CommunicateFocusAction {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hello from Actiom.java");
+				System.out.println("Hello from Action.java");
 				
 			}
 			
@@ -41,7 +46,7 @@ public class CommunicateFocusAction {
 	
 	/**
 	 * This is a member function of the Action class
-	 * that will be called after the 
+	 * that will be called after the timer is finished in MainGUI.
 	 */
 	public void signalEndOfTimer() {
 		
