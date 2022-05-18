@@ -38,7 +38,8 @@ public class StudyFocusStrategy extends StateStrategy {
 	private JPanel tamoPanel;
 	private JLabel tamoName, tamoLevel;
 	private JLabel imageLabel, backgroundImageLabel;
-	private JLabel tamoHappiness, tamoHunger;
+	
+	private JPanel tamoHappiness, tamoHunger;
 	
 	//Timer Panel
 	private JPanel timerPanel;
@@ -89,10 +90,28 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(backgroundImageLabel); //Add to tamoPanel
 		
 		//Happy-Hunger Components
-		tamoHappiness = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HAPPY_10.png")));
+		tamoHappiness = new JPanel();
+			tamoHappiness.setBackground(theme.subColor);
+			if(profile.getTamo().getHappiness() == 0) {
+				//TODO get some indicator of 0 happy
+			} else {
+				for(int i = 0; i < profile.getTamo().getHappiness(); i++) {
+					tamoHappiness.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HAPPY.png"))));
+				}
+			}
 			tamoHappiness.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		tamoHunger = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER_10.png")));
+			
+		tamoHunger = new JPanel();
+			tamoHunger.setBackground(theme.subColor);
+			if(profile.getTamo().getHunger() == 0) {
+				//TODO get some indicator of 0 happy
+			} else {
+				for(int i = 0; i < profile.getTamo().getHappiness(); i++) {
+					tamoHunger.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png"))));
+				}
+			}
 			tamoHunger.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			
 		tamoPanel.add(tamoHappiness); //Add to tamoPanel
 		tamoPanel.add(tamoHunger); //Add to tamoPanel
 		
