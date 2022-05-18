@@ -296,7 +296,10 @@ public class ShopStrategy extends StateStrategy {
 					messagePanel.add(optionPanel);
 					
 				} else {
-					
+					if(!(profile.getTamoTokens() - price >= 0))
+						messageText.setText("<html>" + profile.getLanguage().shopText[5] + "</html>");
+					else
+						messageText.setText("<html>" + profile.getLanguage().shopText[6] + "</html>");
 				}
 			}
 		});
