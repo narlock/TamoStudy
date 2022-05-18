@@ -96,6 +96,8 @@ public class MainGUI extends JFrame {
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(800,600);	//Resize properly so display is correct
 		this.repaint();
+		
+		profile.printInfo();
 	}
 	
 	//TODO Make Load Constructor

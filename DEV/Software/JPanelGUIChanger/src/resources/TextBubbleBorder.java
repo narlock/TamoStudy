@@ -90,11 +90,11 @@ public class TextBubbleBorder extends AbstractBorder
         if (left)
         {
             // left point
-            pointer.addPoint(strokePad + radii + pointerPad, bottomLineY);
+            pointer.addPoint(strokePad + radii + pointerPad + 80, bottomLineY);
             // right point
-            pointer.addPoint(strokePad + radii + pointerPad + pointerSize, bottomLineY);
+            pointer.addPoint(strokePad + radii + pointerPad + pointerSize + 80, bottomLineY);
             // bottom point
-            pointer.addPoint(strokePad + radii + pointerPad + (pointerSize / 2), height - strokePad);
+            pointer.addPoint(strokePad + radii + pointerPad + (pointerSize / 2) + 80, height - strokePad);
         }
         else
         {

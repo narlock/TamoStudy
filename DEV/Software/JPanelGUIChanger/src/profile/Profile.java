@@ -21,7 +21,8 @@ public class Profile {
 	//This way we don't need to pass both and we can just
 	//rewrite profile file inside of the profile file
 	//TODO
-	private File file;
+	private File file;						//the file associated with the profile
+	private ProfileReaderWriter	rw;			//the reader writer for the profile
 	
 	//Immutable
 	private String username;				//Username field
@@ -233,6 +234,36 @@ public class Profile {
 		double totalHours = totalTime * 0.000277778;
 		totalHours = Math.round(totalHours * 100.0) / 100.0;
 		return totalHours;
+	}
+	
+	/**
+	 * printInfo
+	 * Prints the Profile Information
+	 */
+	public void printInfo() {
+		System.out.println(
+				"===PROFILE INFORMATION===" +
+				"\nusername: " + username +
+				"\njoinDate: " + joinDateString +
+				"\nlastLoginDateString: " + lastLoginDateString +
+				"\nnewLoginDateString: " + newLoginDateString +
+				"\ntamoTokens: " + Integer.toString(tamoTokens) +
+				"\ntotalTime: " + Integer.toString(totalTime) + 
+				"\nbgIndicator: " + Integer.toString(bgIndicator) +
+				"\nthemeIndicator: " + Integer.toString(themeIndicator) +
+				"\nstrikes: " + Integer.toString(strikes) +
+				"\nTamo/name: " + tamo.getName() + 
+				"\nTamo/happiness: " + tamo.getHappiness() +
+				"\nTamo/hunger: " + tamo.getHunger() + 
+				"\nTamo/id: " + tamo.getId() +
+				"\nlanguageIndicator: " + languageIndicator +
+				"\nahmString: " + ahmString +
+				"\nSettings/focusMode: " + settings.getFocusMode() +
+				"\nSettings/sessionSoundIndicator: " + settings.getSessionSoundIndicator() +
+				"\nSettings/backgroundSoundIndicator: " + settings.getBackgroundSoundIndicator() +
+				"\nSettings/difficulty: " + settings.getDifficulty() +
+				"\n========================="
+				);
 	}
 	
 }

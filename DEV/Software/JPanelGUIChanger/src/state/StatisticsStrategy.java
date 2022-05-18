@@ -49,6 +49,8 @@ public class StatisticsStrategy extends StateStrategy {
 	
 	@Override
 	public void setPanel() {
+		profile.printInfo();
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(theme.subColor);
 	

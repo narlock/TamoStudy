@@ -41,14 +41,19 @@ public class EnglishStrategy extends LanguageStrategy {
 		String engShopText[] = {
 			"Food Shop",
 			"Backgrounds",
-			"Hello!",
+			"Hello! I am Kath.",
 			"Welcome to the shop!",
 			"Purchase",
 			"You don't have sufficient funds!",
 			"Your Tamo is full!",
 			"Are you sure?",
 			"for",
-			"TamoTokens?"
+			"TamoTokens?",
+			"and",
+			"Is there anything",
+			"I can help you with?",
+			"YES",
+			"NO"
 		};
 		this.shopText = engShopText;
 		

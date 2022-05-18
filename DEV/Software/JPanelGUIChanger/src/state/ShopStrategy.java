@@ -3,6 +3,8 @@ package state;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -126,13 +128,13 @@ public class ShopStrategy extends StateStrategy {
 			messageText.setOpaque(true);
 			messageText.setBackground(Color.WHITE);
 			messageText.setForeground(Color.BLACK);
-			messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, false));
+			messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
 			messageText.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		messagePanel.add(messageText);
 		messagePanel.add(kathImage);
 		mainPanel.add(messagePanel);
 		
-		mainPanel.add(createSpaceLabel());
+		//mainPanel.add(createSpaceLabel());
 		
 		tokenPanel = new JPanel();
 			tokenPanel.setBackground(theme.subColor);
@@ -230,6 +232,7 @@ public class ShopStrategy extends StateStrategy {
 		infoPanel.add(tokenPanel);
 		JButton foodPurchaseButton = new JButton(profile.getLanguage().shopText[4]);
 			foodPurchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			setFoodButtonAction(foodPurchaseButton, price, hunger);
 		infoPanel.add(foodPurchaseButton);
 		foodPanel.add(infoPanel);
 		
@@ -242,6 +245,61 @@ public class ShopStrategy extends StateStrategy {
 		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		return transparentComponent;
+	}
+	
+	public void setFoodButtonAction(JButton button, int price, int hunger) {
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//If I can purchase the Food item
+				if(profile.getTamoTokens() - price >= 0 && profile.getTamo().getHunger() != 10) {
+					
+					messageText.setText("<html>" + profile.getLanguage().shopText[4] + " " + profile.getLanguage().shopText[8] + "<br>" + price + " " + profile.getLanguage().shopText[9] + "</html>");
+					JPanel optionPanel = new JPanel();
+						optionPanel.setBackground(theme.subColor);
+					JButton confirmPurchase = new JButton(profile.getLanguage().shopText[13]);
+						confirmPurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+						confirmPurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						confirmPurchase.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								//Update Tamo Tokens
+								profile.setTamoTokens(profile.getTamoTokens() - price); 				//Subtract the amount from my total
+								tokenDisplayLabel.setText(Integer.toString(profile.getTamoTokens())); 	//Update the total number of tamoTokens
+								
+								//Update Food
+								if(profile.getTamo().getHunger() + hunger >= 10) { profile.getTamo().setHunger(10); }
+								else { profile.getTamo().setHunger(profile.getTamo().getHunger() + hunger); }
+								
+								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
+								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
+								messagePanel.remove(optionPanel);
+							}
+							
+						});
+					JButton declinePurchase = new JButton(profile.getLanguage().shopText[14]);
+						declinePurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+						declinePurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						declinePurchase.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
+								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
+								messagePanel.remove(optionPanel);
+							}
+						});
+						
+					messageText.setBorder(new TextBubbleBorder(Color.RED, 2, 6, 10, true));
+					optionPanel.add(confirmPurchase);
+					optionPanel.add(declinePurchase);
+					messagePanel.add(optionPanel);
+					
+				} else {
+					
+				}
+			}
+		});
 	}
 
 }

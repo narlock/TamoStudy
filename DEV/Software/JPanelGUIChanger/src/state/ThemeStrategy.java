@@ -45,7 +45,7 @@ public class ThemeStrategy extends StateStrategy {
 		
 		ensuranceLabel = new JLabel("");
 		ensuranceLabel.setForeground(new Color(10, 153, 0));
-		ensuranceLabel.setFont(theme.fontBoldReg);
+		ensuranceLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ensuranceLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		this.add(ensuranceLabel);
 		
