@@ -7,6 +7,7 @@ import java.util.Stack;
 import javax.swing.*;
 
 import profile.Profile;
+import resources.CommunicateThemeAction;
 import resources.Theme;
 import state.AboutStrategy;
 import state.AchievementsStrategy;
@@ -55,7 +56,14 @@ public class MainGUI extends JFrame {
 	private Stack<JLabel> breaks; //Thematic breaks
 	
 	//Specific Function Components
+	
+	//StudyFocusStrategy
 	private JButton startFocusButton;
+	private JComponent[] strategyComponents;
+	
+	//ThemeStrategy
+	private Stack<JButton> selectButtons;
+	private CommunicateThemeAction themeAction;
 
 	/**
 	 * @brief Main Constructor
@@ -89,10 +97,10 @@ public class MainGUI extends JFrame {
 	 * Will 'repaint' the main panel.
 	 */
 	public void recall(StateStrategy newStrategy) {
-		ensureThemeColor();
 		this.remove(strategy);
 		strategy = newStrategy;
 		this.add(strategy, BorderLayout.CENTER);
+		checkInstanceOf();
 		this.repaint();
 	}
 	
@@ -106,7 +114,7 @@ public class MainGUI extends JFrame {
 		this.setSize(800,599);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
@@ -182,6 +190,25 @@ public class MainGUI extends JFrame {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Themes");
 				updateSideBar();
 				StateStrategy newStrategy = new ThemeStrategy(profile);
+				
+				//Actions that affect MainGUI
+				selectButtons = ((ThemeStrategy) newStrategy).getSelectButtons();
+				for(JButton button : selectButtons) {
+					button.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(button.getText().equals("<html>Select<br>Dark Mode</html>")) { themeChanged(0); }
+							else if(button.getText().equals("<html>Select<br>Light Mode</html>")) { themeChanged(1); }
+							else if(button.getText().equals("<html>Select<br>Classic Red</html>")) { themeChanged(2); }
+							else if(button.getText().equals("<html>Select<br>Classic Blue</html>")) { themeChanged(3); }
+							else if(button.getText().equals("<html>Select<br>Classic Green</html>")) { themeChanged(4); }
+							else if(button.getText().equals("<html>Select<br>Classic Yellow</html>")) { themeChanged(5); }
+							else if(button.getText().equals("<html>Select<br>Classic Orange</html>")) { themeChanged(1); }
+							else if(button.getText().equals("<html>Select<br>Classic Purple</html>")) { themeChanged(1); }
+						}
+					});
+				}
 				recall(newStrategy);
 			}
 		});
@@ -334,19 +361,15 @@ public class MainGUI extends JFrame {
 	}
 	
 	/**
-	 * ensureThemeColor
-	 * @brief makes sure the colors are set
+	 * themeChanged
+	 * @brief Indicates the theme has changed
+	 * @param i
 	 */
-	public void ensureThemeColor() {
-		if(!this.theme.checkEqualityWith(profile.getThemeIndicator())) {
-			this.theme = profile.getThemeIndicator();
-			System.out.println("[TAMOSTUDY] Updating Theme...");
-			setUpButtonComponent(openSideLabel, 1);
-			for(JPanel panel : panels) { panel.setBackground(theme.mainColor); }
-			for(JButton button : buttons) { setUpButtonComponent(button); }
-			for(JLabel label : labels) { setUpLabelComponent(label); }
-			for(JLabel thematicBreak : breaks) { setUpLabelComponent(thematicBreak, 1); }
-		}
+	public void themeChanged(int i) {
+		profile.setThemeIndicator(i);
+		theme = profile.getThemeIndicator();
+		themeAction = new CommunicateThemeAction(theme, openSideLabel, panels, buttons, labels, breaks);
+		themeAction.updateMainGUI();
 	}
 	
 	/**
@@ -366,5 +389,12 @@ public class MainGUI extends JFrame {
 			}
 			
 		});
+	}
+	
+	/**
+	 * Check Instance
+	 */
+	public void checkInstanceOf() {
+		//System.out.println(strategy instanceof ThemeStrategy);
 	}
 }

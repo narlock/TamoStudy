@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -14,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import resources.CommunicateThemeAction;
+import resources.Theme;
 
 public class ThemeStrategy extends StateStrategy {
 
@@ -25,14 +28,24 @@ public class ThemeStrategy extends StateStrategy {
 	private JLabel themeHeaderLabel, themeHeaderClassicLabel, ensuranceLabel;
 	private JPanel themePanel, themePanel2, themePanel3, themePanel4;
 	
+	private CommunicateThemeAction action;
+	private Stack<JLabel> tlabels;
+	private Stack<JPanel> tpanels;
+	
+	private Stack<JButton> selectButtons;
+	private boolean changeReceived;
+	
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(theme.subColor);
 		
+		changeReceived = false;
+		selectButtons = new Stack<>();
+		
 		ensuranceLabel = new JLabel("");
-		ensuranceLabel.setForeground(Color.GREEN);
-		ensuranceLabel.setFont(theme.fontPlainReg);
+		ensuranceLabel.setForeground(new Color(10, 153, 0));
+		ensuranceLabel.setFont(theme.fontBoldReg);
 		ensuranceLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		this.add(ensuranceLabel);
 		
@@ -81,6 +94,17 @@ public class ThemeStrategy extends StateStrategy {
 	@Override
 	public void setActions() {
 		// TODO Auto-generated method stub
+		tlabels = new Stack<>();
+		tlabels.push(themeHeaderLabel);
+		tlabels.push(themeHeaderClassicLabel);
+		//tlabels.push(ensuranceLabel);
+		
+		tpanels = new Stack<>();
+		tpanels.push(this);
+		tpanels.push(themePanel);
+		tpanels.push(themePanel2);
+		tpanels.push(themePanel3);
+		tpanels.push(themePanel4);
 		
 	}
 	
@@ -91,7 +115,7 @@ public class ThemeStrategy extends StateStrategy {
 		JLabel nameLabel = new JLabel(name);
 		JLabel imgLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		
-		JButton select = new JButton(profile.getLanguage().themesText[9]);
+		JButton select = new JButton("<html>" + profile.getLanguage().themesText[9] + "<br>" + name + "</html>");
 		select.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -105,6 +129,7 @@ public class ThemeStrategy extends StateStrategy {
 				else if(imageUrl.equals("LIGHT_MODE.png")) { themeChanged(1); }
 			}
 		});
+		selectButtons.push(select);
 		
 		panel.add(nameLabel);
 		panel.add(imgLabel);
@@ -121,9 +146,19 @@ public class ThemeStrategy extends StateStrategy {
 	
 	public void themeChanged(int i) {
 		profile.setThemeIndicator(i);
+		theme = profile.getThemeIndicator();
 		ensuranceLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		ensuranceLabel.setText("<html>" + profile.getLanguage().themesText[11] + profile.getLanguage().themesText[i] + "<br>" + profile.getLanguage().themesText[12] +"</html>");
+		ensuranceLabel.setText(profile.getLanguage().themesText[11] + profile.getLanguage().themesText[i]);
 		ensuranceLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		
+		action = new CommunicateThemeAction(theme, tlabels, tpanels);
+		action.updateThemeStrategy();
+	
+		
 	}
-
+	
+	public Stack<JButton> getSelectButtons() {
+		return selectButtons;
+	}
+	
 }

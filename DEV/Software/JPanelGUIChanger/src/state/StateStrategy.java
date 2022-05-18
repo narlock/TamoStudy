@@ -54,6 +54,7 @@ public abstract class StateStrategy extends JPanel {
 		return transparentComponent;
 	}
 	
-	
-	
+	public Theme sendTheme() {
+		return theme;
+	}
 }

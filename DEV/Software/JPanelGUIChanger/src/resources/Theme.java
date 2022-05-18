@@ -16,6 +16,8 @@ public class Theme {
 	public Font fontPlainReg;
 	public Font fontBoldReg;
 	
+	public String type;
+	
 	public Theme(int indicator) {
 		//Dark Mode
 		if(indicator == 0) {
@@ -26,6 +28,7 @@ public class Theme {
 			layerTextColor = new Color(153,153,153);
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Dark";
 		}
 		//Light Mode
 		else if(indicator == 1) {
@@ -36,6 +39,7 @@ public class Theme {
 			layerTextColor = Color.BLACK;
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Light";
 		}
 		//Classic Red
 		else if(indicator == 2) {
@@ -46,6 +50,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Red";
 		}
 		//Classic Blue
 		else if(indicator == 3) {
@@ -56,6 +61,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Blue";
 		}
 		//Classic Green
 		else if(indicator == 4) {
@@ -66,6 +72,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Green";
 		}
 		//Classic Yellow
 		else if(indicator == 5) {
@@ -76,6 +83,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Yellow";
 		}	
 		//Classic Orange
 		else if(indicator == 6) {
@@ -86,6 +94,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Orange";
 		}
 		//Classic Purple
 		else if(indicator == 7) {
@@ -96,6 +105,7 @@ public class Theme {
 			layerTextColor = new Color(64,64,64); 
 			fontPlainReg = new Font("Tahoma", Font.PLAIN, 24);
 			fontBoldReg = new Font("Tahoma", Font.BOLD, 24);
+			type = "Purple";
 		}	
 	}
 	
