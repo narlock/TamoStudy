@@ -78,7 +78,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(createSpaceLabel(0));
 			
 		//Name-Level Components
-		tamoNameLevelLabel = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": 24");
+		tamoNameLevelLabel = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": " + Integer.toString(profile.getTamoLevel()));
 			tamoNameLevelLabel.setForeground(theme.textColor);
 		tamoNameLevelLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoNameLevelLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -226,16 +226,9 @@ public class StudyFocusStrategy extends StateStrategy {
 		//Button Panel
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(theme.subColor);
-			//timerButtonPanel.setLayout(new BoxLayout(timerButtonPanel, BoxLayout.Y_AXIS));
 			
 		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
 			startFocusButton.setFont(theme.fontBoldRegSmall);
-		startFocusButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hello from StudyFocusStrategy");
-			}
-		});
 		
 		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);
 			breakFocusButton.setFont(theme.fontBoldRegSmall);

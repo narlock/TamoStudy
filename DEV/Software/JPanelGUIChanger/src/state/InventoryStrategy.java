@@ -76,6 +76,7 @@ public class InventoryStrategy extends StateStrategy {
 				panel.setForeground(theme.layerColor);
 				panel.setBorder(new BubbleBorder(Color.BLACK, 2, 6, 10, true));
 			
+				System.out.println("DEBUG--- name is " + name + ", imageurl is " + imageUrl);
 			JLabel imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 				imageLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			panel.add(imageLabel);

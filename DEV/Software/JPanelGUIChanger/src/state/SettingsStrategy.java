@@ -85,6 +85,7 @@ public class SettingsStrategy extends StateStrategy {
 			focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[7]);
 			focusSettingBox.setSelectedIndex(profile.getSettings().getFocusMode());
+			displayUnsavedChanges(focusSettingBox);
 		focusSettingPanel.add(focusSettingLabel);
 		focusSettingPanel.add(focusSettingBox);
 		
@@ -107,6 +108,7 @@ public class SettingsStrategy extends StateStrategy {
 			languageSettingBox.addItem(profile.getLanguage().settingsText[17]);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[18]);
 			languageSettingBox.setSelectedIndex(profile.getLanguageIndicator());
+			displayUnsavedChanges(languageSettingBox);
 		languageSettingPanel.add(languageSettingLabel);
 		languageSettingPanel.add(languageSettingBox);
 		
@@ -119,6 +121,7 @@ public class SettingsStrategy extends StateStrategy {
 			difficultySettingBox.setFont(theme.fontBoldRegSmall);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
+			displayUnsavedChanges(difficultySettingBox);
 		difficultySettingPanel.add(difficultySettingLabel);
 		difficultySettingPanel.add(difficultySettingBox);
 		
@@ -132,6 +135,7 @@ public class SettingsStrategy extends StateStrategy {
 			soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[25]);
+			displayUnsavedChanges(soundSettingBox);
 		soundSettingPanel.add(soundSettingLabel);
 		soundSettingPanel.add(soundSettingBox);
 			
@@ -151,11 +155,12 @@ public class SettingsStrategy extends StateStrategy {
 
 	@Override
 	public void setActions() {
+		
 		saveChanges.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageLabel.setText("Changes saved!");
+				messageLabel.setText(profile.getLanguage().settingsText[27]);
 				
 				//Update focus mode
 				profile.getSettings().setFocusMode(focusSettingBox.getSelectedIndex());
@@ -175,6 +180,20 @@ public class SettingsStrategy extends StateStrategy {
 			
 		});
 		
+	}
+	
+	//Upon selecting something from a JComboBox
+	//The messageLabel will indicate that there are unsaved changes
+	public void displayUnsavedChanges(JComboBox box) {
+		box.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				messageLabel.setText(profile.getLanguage().settingsText[28]);
+				
+			}
+			
+		});
 	}
 
 }

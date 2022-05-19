@@ -60,7 +60,8 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Is there anything",
 			"I can help you with?",
 			"YES",
-			"NO"
+			"NO",
+			"You already own this item!"
 		};
 		this.shopText = engShopText;
 		
@@ -124,9 +125,9 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Updated from a previous<br>TamoStudy version",
 			"Achieve maximum Tamo hunger",
 			"Achieve maximum Tamo happiness",
-			"Achievement Text 10",
-			"Achievement Text 11",
-			"Achievement Text 12"
+			"We don't know much about this achievement",
+			"We don't know much about this achievement",
+			"We don't know much about this achievement"
 		};
 		this.ahmText = engAhmText;
 		
@@ -157,7 +158,9 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Soft Alarm",
 			"Trad Alarm",
 			"Pac Alarm",
-			"Save Changes"
+			"Save Changes",
+			"Changes Saved!",
+			"You have unsaved changes."
 		};
 		this.settingsText = engSettingsText;
 		

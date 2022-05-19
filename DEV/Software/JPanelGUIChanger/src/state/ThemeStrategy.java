@@ -112,6 +112,7 @@ public class ThemeStrategy extends StateStrategy {
 		JPanel panel = new JPanel();
 			panel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+			panel.setBackground(Color.WHITE);
 		JLabel nameLabel = new JLabel(name);
 		JLabel imgLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		
@@ -154,7 +155,7 @@ public class ThemeStrategy extends StateStrategy {
 		action = new CommunicateThemeAction(theme, tlabels, tpanels);
 		action.updateThemeStrategy();
 	
-		
+		//TODO Update the profile file
 	}
 	
 	public Stack<JButton> getSelectButtons() {

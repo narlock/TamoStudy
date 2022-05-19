@@ -163,9 +163,9 @@ public class ShopStrategy extends StateStrategy {
 		
 		//For each food item, we will add them
 		bgItems = new JPanel[4];
-		bgItems[0] = createItemPanel(2, "SHOP_BG_2.png", 1000);
-		bgItems[1] = createItemPanel(3, "SHOP_BG_3.png", 1000);
-		bgItems[2] = createItemPanel(4, "SHOP_BG_4.png", 1000);
+		bgItems[0] = createItemPanel(1, "SHOP_BG_2.png", 1000);
+		bgItems[1] = createItemPanel(2, "SHOP_BG_3.png", 1000);
+		bgItems[2] = createItemPanel(3, "SHOP_BG_4.png", 1000);
 		
 		bgPanel.add(createSpaceLabel());
 		for(int i = 0; i < foodItems.length; i++) {
@@ -203,6 +203,7 @@ public class ShopStrategy extends StateStrategy {
 		tokenPanel.add(priceLabel);
 		infoPanel.add(tokenPanel);
 		JButton purchaseButton = new JButton(profile.getLanguage().shopText[4]);
+			setBackgroundButtonAction(purchaseButton, price, indicator);
 			purchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		infoPanel.add(purchaseButton);
 		itemPanel.add(infoPanel);
@@ -271,6 +272,7 @@ public class ShopStrategy extends StateStrategy {
 								//Update Food
 								if(profile.getTamo().getHunger() + hunger >= 10) { profile.getTamo().setHunger(10); }
 								else { profile.getTamo().setHunger(profile.getTamo().getHunger() + hunger); }
+								//TODO Update the profile file
 								
 								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
 								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
@@ -302,6 +304,66 @@ public class ShopStrategy extends StateStrategy {
 						messageText.setText("<html>" + profile.getLanguage().shopText[6] + "</html>");
 				}
 			}
+		});
+	}
+	
+	public void setBackgroundButtonAction(JButton button, int price, int indicator) {
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Check if the user already has the background in inventory
+				if(profile.getTamoTokens() - price >= 0 && profile.containsItem(indicator) == false) {
+					messageText.setText("<html>" + profile.getLanguage().shopText[4] + " " + profile.getLanguage().shopText[8] + "<br>" + price + " " + profile.getLanguage().shopText[9] + "</html>");
+					JPanel optionPanel = new JPanel();
+						optionPanel.setBackground(theme.subColor);
+					JButton confirmPurchase = new JButton(profile.getLanguage().shopText[13]);
+						confirmPurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+						confirmPurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						confirmPurchase.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								//Update Tamo Tokens
+								profile.setTamoTokens(profile.getTamoTokens() - price); 				//Subtract the amount from my total
+								tokenDisplayLabel.setText(Integer.toString(profile.getTamoTokens())); 	//Update the total number of tamoTokens
+								
+								//Put the Item in profile inventory
+								profile.setInvString(profile.getInvString() + Integer.toString(indicator));
+								//TODO update the file
+								
+								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
+								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
+								messagePanel.remove(optionPanel);
+							}
+							
+						});
+					JButton declinePurchase = new JButton(profile.getLanguage().shopText[14]);
+						declinePurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+						declinePurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						declinePurchase.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
+								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
+								messagePanel.remove(optionPanel);
+							}
+						});
+						
+					messageText.setBorder(new TextBubbleBorder(Color.RED, 2, 6, 10, true));
+					optionPanel.add(confirmPurchase);
+					optionPanel.add(declinePurchase);
+					messagePanel.add(optionPanel);
+				}
+				else {
+					if(!(profile.getTamoTokens() - price >= 0))
+						messageText.setText("<html>" + profile.getLanguage().shopText[5] + "</html>");
+					else
+						messageText.setText("<html>" + profile.getLanguage().shopText[15] + "</html>");
+				}
+			}
+			
 		});
 	}
 

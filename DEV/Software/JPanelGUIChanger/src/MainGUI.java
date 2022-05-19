@@ -53,6 +53,7 @@ public class MainGUI extends JFrame {
 	//To keep track of different options
 	private Profile profile;
 	public Theme theme;
+	public UIManager UI;
 	
 	//Used to track the components on sidebar so we can update them accordingly
 	private Stack<JPanel> panels;
@@ -101,6 +102,11 @@ public class MainGUI extends JFrame {
 		buttons = new Stack<>();
 		labels = new Stack<>();
 		breaks = new Stack<>();
+		
+		//UI Manager to change option pane colors
+		UI = new UIManager();
+		UI.put("OptionPane.background", theme.layerColor);
+		UI.put("Panel.background", theme.layerColor);
 		
 		//Initializes the GUI components
 		initFrame();
@@ -423,6 +429,9 @@ public class MainGUI extends JFrame {
 		theme = profile.getThemeIndicator();
 		themeAction = new CommunicateThemeAction(theme, openSideLabel, panels, buttons, labels, breaks);
 		themeAction.updateMainGUI();
+		
+		UI.put("OptionPane.background", theme.layerColor);
+		UI.put("Panel.background", theme.layerColor);
 	}
 	
 	/**
@@ -555,7 +564,7 @@ public class MainGUI extends JFrame {
 				
 				if(min < 0) {
 					
-					//profile.updateStudyStats(tempMin, tempSec);
+					profile.updateStudyStats(tempMin, tempSec);
 					String studyMessage = "Session Completed!";
 					
 					tempMin = 0;

@@ -68,7 +68,7 @@ public class Profile {
 		this.username = "Anthony";
 		this.joinDateString = "2020-01-31";
 		this.tamoTokens = 5000;
-		this.totalTime = 12345678;
+		this.totalTime = 0;
 		this.bgIndicator = 0;
 		this.themeIndicator = 0;
 		this.strikes = 0;
@@ -238,6 +238,18 @@ public class Profile {
 	public void setInvString(String invString) {
 		this.invString = invString;
 	}
+	
+	public boolean containsItem(int indicator) {
+		String stringIndicator = Integer.toString(indicator);
+		String[] items = invString.split("");
+		
+		for(String item : items) {
+			if(item.equals(stringIndicator))
+				return true;
+		}
+		
+		return false;
+	}
 
 	public Settings getSettings() {
 		return settings;
@@ -273,6 +285,34 @@ public class Profile {
 		else if(bgIndicator == 4)
 			return "BG_4.png";
 		return null;
+	}
+	
+	/**
+	 * updateStudyStats
+	 * @brief updates the study stats
+	 * @param tempMin
+	 * @param tempSec
+	 */
+	public void updateStudyStats(int min, int sec) {
+		//Update time
+		int totalSeconds = (min * 60) + sec;
+		totalTime = totalTime + totalSeconds;
+		
+		//Update tokens
+		//Every 3600 seconds, 50 Tamo tokens are earned
+		//(72 seconds is 1 Tamo token)
+		int earnedSessionTokens = ((50 * totalSeconds) / 3600);
+		tamoTokens = tamoTokens + earnedSessionTokens;
+		
+		//Update tamo happiness
+		int happinessEarned = 0;
+		if(!(tamo.getHappiness() == 10)) {
+			happinessEarned = (totalSeconds / 1800);
+			if(tamo.getHappiness() + happinessEarned >= 10) { tamo.setHappiness(10); }
+			else { tamo.setHappiness(tamo.getHappiness() + happinessEarned); }
+		}
+		
+		//TODO Update the file
 	}
 	
 	/**

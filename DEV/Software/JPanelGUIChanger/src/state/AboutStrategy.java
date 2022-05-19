@@ -1,7 +1,14 @@
 package state;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -38,10 +45,10 @@ public class AboutStrategy extends StateStrategy {
 		socialsPanel = new JPanel();
 			socialsPanel.setBackground(theme.subColor);
 		
-		anthonyWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
-		tamoWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
-		gitWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
-		instaWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
+		anthonyWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("FAVICON.png")));
+		tamoWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")));
+		gitWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("GITHUB.png")));
+		instaWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("INSTAGRAM.png")));
 		discordButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
 		
 		socialsPanel.add(anthonyWebButton);
@@ -55,8 +62,21 @@ public class AboutStrategy extends StateStrategy {
 
 	@Override
 	public void setActions() {
-		// TODO Auto-generated method stub
-		
+		setActionForLink(anthonyWebButton, "https://anthonynarlock.com/");
+		setActionForLink(tamoWebButton, "http://tamostudy.com/");
+		setActionForLink(gitWebButton, "https://github.com/narlock/TamoStudy");
+		setActionForLink(instaWebButton, "https://instagram.com/TamoStudy");
+		setActionForLink(discordButton, "https://discord.gg/eEbEYbXaNS");
+	}
+	
+	public void setActionForLink(JButton button, String url) {
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try { Desktop.getDesktop().browse(new URL(url).toURI()); } 
+				catch (Exception e1) { e1.printStackTrace(); }
+			}
+		});
 	}
 
 }
