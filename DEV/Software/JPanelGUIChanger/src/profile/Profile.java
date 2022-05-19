@@ -192,8 +192,10 @@ public class Profile {
 		//English
 		if(languageIndicator == 0)
 			return new EnglishStrategy();
-		else
+		else {
+			this.languageIndicator = 0;
 			return new EnglishStrategy();
+		}
 	}
 	
 	public LanguageStrategy getLanguage() {
@@ -203,6 +205,10 @@ public class Profile {
 		 * profile.getLanguage().<our Text array>[indicator];
 		 */
 		return lang;
+	}
+	
+	public int getLanguageIndicator() {
+		return languageIndicator;
 	}
 	
 	/**

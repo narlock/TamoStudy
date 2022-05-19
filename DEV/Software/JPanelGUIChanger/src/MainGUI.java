@@ -2,8 +2,13 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Stack;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 
 import profile.Profile;
@@ -65,6 +70,16 @@ public class MainGUI extends JFrame {
 	 */
 	
 	//StudyFocusStrategy
+	private Timer timer;
+	private int min, sec, studyMin, studySec, tempSec, tempMin;
+	private JLabel minuteTime, secondTime;
+	private JComboBox minuteBox, secondBox, pomoSessionBox, pomoBreakBox, pomoNumberSessionBox;
+	
+	//POMODORO
+	private JLabel currentSessionLabel;
+	private int currentPomodoroSession, totalPomodoroSessions, remainingPomodoroSessions;
+	private boolean breakCondition;
+	
 	private JButton startFocusButton;			//Start focus button
 	private JButton breakFocusButton;			//Break focus button
 	
@@ -180,9 +195,25 @@ public class MainGUI extends JFrame {
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy(profile);
 				
-				//Functionality to communicate between
-				//TODO Set up the actual timer inside this class...
+				//Components to communicate with this GUI
 				startFocusButton = ((StudyFocusStrategy) newStrategy).getStartButton();
+				breakFocusButton = ((StudyFocusStrategy) newStrategy).getBreakButton();
+				minuteTime = ((StudyFocusStrategy) newStrategy).getMinuteTimeLabel();
+				secondTime = ((StudyFocusStrategy) newStrategy).getSecondTimeLabel();
+				
+				//Interval Count down
+				if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 1) {
+					minuteBox = ((StudyFocusStrategy) newStrategy).getMinuteBox();
+					secondBox = ((StudyFocusStrategy) newStrategy).getSecondBox();
+				}
+				
+				//Pomodoro
+				if(profile.getSettings().getFocusMode() == 2) {
+					pomoSessionBox = ((StudyFocusStrategy) newStrategy).getPomoSessionBox();
+					pomoBreakBox = ((StudyFocusStrategy) newStrategy).getPomoBreakBox();
+					pomoNumberSessionBox = ((StudyFocusStrategy) newStrategy).getPomoNumberSessionBox();
+					currentSessionLabel = ((StudyFocusStrategy) newStrategy).getCurrentSessionLabel();
+				}
 				setStudyComponentFunctions();
 				
 				recall(newStrategy);
@@ -225,8 +256,8 @@ public class MainGUI extends JFrame {
 							else if(button.getText().equals("<html>Select<br>Classic Blue</html>")) { themeChanged(3); }
 							else if(button.getText().equals("<html>Select<br>Classic Green</html>")) { themeChanged(4); }
 							else if(button.getText().equals("<html>Select<br>Classic Yellow</html>")) { themeChanged(5); }
-							else if(button.getText().equals("<html>Select<br>Classic Orange</html>")) { themeChanged(1); }
-							else if(button.getText().equals("<html>Select<br>Classic Purple</html>")) { themeChanged(1); }
+							else if(button.getText().equals("<html>Select<br>Classic Orange</html>")) { themeChanged(6); }
+							else if(button.getText().equals("<html>Select<br>Classic Purple</html>")) { themeChanged(7); }
 						}
 					});
 				}
@@ -400,17 +431,272 @@ public class MainGUI extends JFrame {
 	 * on the outside when the start button is selected
 	 */
 	public void setStudyComponentFunctions() {
+		breakFocusButton.setEnabled(false);
+		
+		//Start Button
 		startFocusButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hello from MainGUI");
-				//TODO Disable the buttons during study session
-				//I will need to make some timer variable in this GUI that signals
-				//when a session is over... They must be the same....??
-				startFocusButton.setText("Hello World");
+				//Update Timer Information
+				updateTimerInformation();
+				
+				//Set Information, TamoImage, study/Temp Min/Sec
+				setFocusInformation();
+				
+				//Disable Buttons
+				disableFocusButtons();
+				
+				//Create Timer
+				createTimer();
 			}
 			
 		});
+		
+		breakFocusButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Tamo Loses happiness upon breaking session
+				if(profile.getTamo().getHappiness() > 1) {
+					profile.getTamo().setHappiness(profile.getTamo().getHappiness() - 1);
+				}
+				
+				//profile.updateStudyStats(tempMin, tempSec);
+				
+				resetTimer();
+				timer.stop();
+				
+				JOptionPane.showMessageDialog(rootPane, "studyMessage", "secondParam", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png")));
+			}
+			
+		});
+	}
+	
+	//Step 1 - Update Timer Information
+	public void updateTimerInformation() {
+		
+		//Custom Count down
+		if(profile.getSettings().getFocusMode() == 0 ) {
+			minuteTime.setText(""+minuteBox.getSelectedItem());
+			secondTime.setText(""+secondBox.getSelectedItem());
+		}
+		
+		//5 min interval
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteTime.setText(""+minuteBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+		}
+		
+		//pomodoro
+		if(profile.getSettings().getFocusMode() == 2) {
+			totalPomodoroSessions = pomoNumberSessionBox.getSelectedIndex();
+			System.out.println("pomoSessions: " + totalPomodoroSessions);
+			minuteTime.setText(""+pomoSessionBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+		}
+		
+		min = Integer.parseInt(minuteTime.getText());
+		sec = Integer.parseInt(secondTime.getText());
+	}
+	
+	//Step 2 - Set Information, TamoImage, etc.
+	public void setFocusInformation() {
+		//Pomodoro sets the time information
+		if(profile.getSettings().getFocusMode() == 2) { setCurrentSession(); }
+		
+		//TODO Update Tamo Image to focus mode
+		
+		//Initialize other values
+		studyMin = Integer.parseInt(minuteTime.getText());
+		studySec = Integer.parseInt(secondTime.getText());
+		tempSec = -1;
+		tempMin = 0;
+	}
+	
+	//Step 3 - Disable Buttons
+	public void disableFocusButtons() {
+		//Disable Focus Components
+		
+		if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 1)
+			minuteBox.setEnabled(false);
+		if(profile.getSettings().getFocusMode() == 0)
+			secondBox.setEnabled(false);
+		if(profile.getSettings().getFocusMode() == 2) {
+			pomoNumberSessionBox.setEnabled(false);
+			pomoSessionBox.setEnabled(false);
+			pomoBreakBox.setEnabled(false);
+		}
+		
+		startFocusButton.setEnabled(false);
+		breakFocusButton.setEnabled(true);
+		
+		//Disable openSideBar Components
+		for(JButton button : buttons) { button.setEnabled(false); }
+	}
+	
+	//Step 4 - Create Timer
+	public void createTimer() {
+		timer = new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Set how long studied for variables
+				tempSec = tempSec + 1;
+				if(tempSec == 60) {
+					tempMin = tempMin + 1;
+					tempSec = 0;
+				}
+				
+				if(sec == 0) {
+					sec = 60;
+					min--;
+				}
+				
+				if(min < 0) {
+					
+					//profile.updateStudyStats(tempMin, tempSec);
+					String studyMessage = "Session Completed!";
+					
+					tempMin = 0;
+					tempSec = 0;
+
+//					if(profile.getSettings().getSessionSounds() >= 1) {
+//					
+//						try {
+//							//Get the url for the sound clip
+//							String soundPath = getSoundPath(profile.getSettings().getSessionSounds());
+//							
+//							URL url = this.getClass().getClassLoader().getResource(soundPath);
+//							AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+//							
+//							//get the clip from the url
+//							Clip clip = AudioSystem.getClip();
+//							clip.open(audioIn);
+//							
+//							//volume control - make the sound quieter
+//							FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//					        volume.setValue(-1 * 20);
+//							
+//					        //start and loop the clip
+//							clip.start();
+//							clip.loop(Clip.LOOP_CONTINUOUSLY);
+//							
+//							//loop will end when user hits ok dialog
+//							JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+//							clip.stop();
+//							
+//						} catch (Exception ex2) {
+//							ex2.printStackTrace();
+//						}
+//					
+//					} else {
+//						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
+//						
+//					}
+					JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("HAPPY.png")));
+					//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
+					
+					if(profile.getSettings().getFocusMode() == 2 && totalPomodoroSessions != 0) {
+						System.out.println("pomoSessionNumber: " + totalPomodoroSessions);
+						nextSession();
+						setCurrentSession();
+					} else {
+						resetTimer();
+						timer.stop();
+					}
+				} 
+				else {
+					sec--;
+					if(sec < 10) {
+						secondTime.setText("0" + sec);
+					}
+					else {
+						secondTime.setText("" + sec);
+					}
+					if(min < 10) {
+						minuteTime.setText("0" + min);
+					}
+					else {
+						minuteTime.setText("" + min);
+					}
+				}
+				
+			}
+			
+		});
+		timer.start();
+	}
+	
+	public void resetTimer() {
+		if(profile.getSettings().getFocusMode() == 0) {
+			minuteBox.setEnabled(true);
+			secondBox.setEnabled(true);
+			
+			minuteTime.setText(minuteBox.getSelectedItem().toString());
+			secondTime.setText(secondBox.getSelectedItem().toString());
+		}
+		
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteBox.setEnabled(true);
+			minuteBox.setSelectedIndex(0);
+			
+			minuteTime.setText(minuteBox.getSelectedItem().toString().toString().substring(0,2));
+			secondTime.setText("00");
+		}
+		
+		if(profile.getSettings().getFocusMode() == 2) {
+			currentSessionLabel.setText(profile.getLanguage().focusText[11]);
+			
+			minuteTime.setText("00");
+			secondTime.setText("00");
+			
+			pomoNumberSessionBox.setEnabled(true);
+			pomoSessionBox.setEnabled(true);
+			pomoBreakBox.setEnabled(true);
+		}
+		
+		//Enable focus/break buttons
+		startFocusButton.setEnabled(true);
+		breakFocusButton.setEnabled(false);
+		
+		//Disable openSideBar Components
+		for(JButton button : buttons) { button.setEnabled(true); }
+	}
+	
+	public void nextSession() {
+		if(breakCondition == false) {
+			//Start Break Timer
+			minuteTime.setText(""+pomoBreakBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+			min = Integer.parseInt(minuteTime.getText());
+			sec = Integer.parseInt(secondTime.getText());
+			breakCondition = true;
+			
+			startFocusButton.doClick();
+		}
+		else {
+			//End Break Timer, begin next session timer
+			minuteTime.setText(""+pomoSessionBox.getSelectedItem());
+			minuteTime.setText(minuteTime.getText().substring(0,2));
+			min = Integer.parseInt(minuteTime.getText());
+			sec = Integer.parseInt(secondTime.getText());
+			breakCondition = false;
+			this.totalPomodoroSessions--;
+			
+			//UPDATE TAMO IMAGE
+			startFocusButton.doClick();
+		}
+	}
+	
+	public void setCurrentSession() {
+		if(breakCondition) {
+			currentSessionLabel.setText(profile.getLanguage().focusText[12]);
+		} else {
+			currentPomodoroSession = pomoNumberSessionBox.getSelectedIndex() - totalPomodoroSessions;
+			System.out.println("currentSession = " + (currentPomodoroSession + 1));
+			currentSessionLabel.setText((currentPomodoroSession + 1) + " / " + (pomoNumberSessionBox.getSelectedIndex() + 1));
+		}
+		
 	}
 }

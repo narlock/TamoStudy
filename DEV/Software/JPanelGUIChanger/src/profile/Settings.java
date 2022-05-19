@@ -26,10 +26,10 @@ public class Settings {
 	
 	//Default constructor; default settings
 	public Settings() {
-		this.focusMode = 0;
+		this.focusMode = 1;
 		this.sessionSoundIndicator = 0;
 		this.backgroundSoundIndicator = 0;
-		this.difficulty = 0;
+		this.difficulty = 1;
 	}
 	
 	//Load constructor

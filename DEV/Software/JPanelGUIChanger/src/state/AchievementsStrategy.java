@@ -131,10 +131,10 @@ public class AchievementsStrategy extends StateStrategy {
 			
 		JLabel achievementLabel = new JLabel("<html>" + title + "</html>");
 			achievementLabel.setForeground(theme.textColor);
-			achievementLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+			achievementLabel.setFont(new Font("Arial", Font.BOLD, 16));
 		JLabel descLabel = new JLabel("<html>" + desc + "</html>");
 			descLabel.setForeground(theme.textColor);
-			descLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			descLabel.setFont(new Font("Arial", Font.PLAIN, 12));
 			
 		textPanel.add(achievementLabel);
 		textPanel.add(descLabel);

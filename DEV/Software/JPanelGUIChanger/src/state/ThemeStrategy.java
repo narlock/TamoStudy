@@ -45,7 +45,7 @@ public class ThemeStrategy extends StateStrategy {
 		
 		ensuranceLabel = new JLabel("");
 		ensuranceLabel.setForeground(new Color(10, 153, 0));
-		ensuranceLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		ensuranceLabel.setFont(theme.fontBoldRegSmall);
 		ensuranceLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		this.add(ensuranceLabel);
 		
@@ -84,8 +84,8 @@ public class ThemeStrategy extends StateStrategy {
 		themePanel4 = new JPanel();
 		themePanel4.setBackground(theme.subColor);
 		
-		themePanel4.add(themePanel(profile.getLanguage().themesText[6], "DARK_MODE.png"));
-		themePanel4.add(themePanel(profile.getLanguage().themesText[7], "DARK_MODE.png"));
+		themePanel4.add(themePanel(profile.getLanguage().themesText[6], "CLASSIC_ORANGE_MODE.png"));
+		themePanel4.add(themePanel(profile.getLanguage().themesText[7], "CLASSIC_PURPLE_MODE.png"));
 		
 		this.add(themePanel4);
 		
@@ -125,8 +125,8 @@ public class ThemeStrategy extends StateStrategy {
 				else if(imageUrl.equals("CLASSIC_BLUE_MODE.png")) { themeChanged(3); }
 				else if(imageUrl.equals("CLASSIC_GREEN_MODE.png")) { themeChanged(4); }
 				else if(imageUrl.equals("CLASSIC_YELLOW_MODE.png")) { themeChanged(5); }
-				else if(imageUrl.equals("LIGHT_MODE.png")) { themeChanged(1); }
-				else if(imageUrl.equals("LIGHT_MODE.png")) { themeChanged(1); }
+				else if(imageUrl.equals("CLASSIC_ORANGE_MODE.png")) { themeChanged(6); }
+				else if(imageUrl.equals("CLASSIC_PURPLE_MODE.png")) { themeChanged(7); }
 			}
 		});
 		selectButtons.push(select);

@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import profile.Profile;
+import resources.BubbleBorder;
 
 public class StudyFocusStrategy extends StateStrategy {
 	public StudyFocusStrategy(Profile profile) {
@@ -31,12 +32,9 @@ public class StudyFocusStrategy extends StateStrategy {
 	 * Right Panel is the Timer Panel
 	 */
 	
-	//Separators
-	private JLabel textSpace, textSpace2;	
-	
 	//Tamo Panel
 	private JPanel tamoPanel;
-	private JLabel tamoName, tamoLevel;
+	private JLabel tamoNameLevelLabel;
 	private JLabel imageLabel, backgroundImageLabel;
 	
 	private JPanel tamoHappiness, tamoHunger;
@@ -44,12 +42,19 @@ public class StudyFocusStrategy extends StateStrategy {
 	//Timer Panel
 	private JPanel timerPanel;
 	
-	private JPanel timerTextPanel;
+	private JPanel timerTextPanel, timerStreamPanel;
 	private JLabel minuteTime, secondTime, spaceLabel;
 	private JLabel currentSessionLabel;
 	
 	//The timer set panel will be different depending on user's mode
 	private JPanel timerSetBoxPanel;
+	
+	//Interval Timer Countdown
+	//The difference is only the values in the 5-min and custom
+	//the second box will NOT appear in 5-min interval mode
+	private JComboBox minuteBox, secondBox;
+	
+	//Pomodoro Mode
 	private JLabel pomoNumberSessionLabel, pomoSessionLabel, pomoBreakLabel;
 	private JComboBox pomoNumberSessionBox, pomoSessionBox, pomoBreakBox;
 	
@@ -73,11 +78,11 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(createSpaceLabel(0));
 			
 		//Name-Level Components
-		tamoName = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": 24");
-			tamoName.setForeground(theme.textColor);
-		tamoName.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		tamoName.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		tamoPanel.add(tamoName); //Add to tamoPanel
+		tamoNameLevelLabel = new JLabel("Lisa - " + profile.getLanguage().focusText[0] + ": 24");
+			tamoNameLevelLabel.setForeground(theme.textColor);
+		tamoNameLevelLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		tamoNameLevelLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		tamoPanel.add(tamoNameLevelLabel); //Add to tamoPanel
 		
 		//Tamo-Images Components
 		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
@@ -106,7 +111,7 @@ public class StudyFocusStrategy extends StateStrategy {
 			if(profile.getTamo().getHunger() == 0) {
 				//TODO get some indicator of 0 happy
 			} else {
-				for(int i = 0; i < profile.getTamo().getHappiness(); i++) {
+				for(int i = 0; i < profile.getTamo().getHunger(); i++) {
 					tamoHunger.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png"))));
 				}
 			}
@@ -114,6 +119,7 @@ public class StudyFocusStrategy extends StateStrategy {
 			
 		tamoPanel.add(tamoHappiness); //Add to tamoPanel
 		tamoPanel.add(tamoHunger); //Add to tamoPanel
+		tamoPanel.add(createSpaceLabel(1));
 		
 		this.add(tamoPanel); //Will add in first cell of GridLayout
 	}
@@ -124,75 +130,106 @@ public class StudyFocusStrategy extends StateStrategy {
 			timerPanel.setBackground(theme.subColor);
 		
 		//Space Component
-		timerPanel.add(createSpaceLabel(1)); //timerPanel
+		timerPanel.add(createSpaceLabel(0)); //timerPanel
+		
+		timerStreamPanel = new JPanel();
+			timerStreamPanel.setBackground(theme.layerColor);
+			timerStreamPanel.setLayout(new BoxLayout(timerStreamPanel, BoxLayout.Y_AXIS));
+			timerStreamPanel.setBorder(new BubbleBorder(Color.BLACK, 3, 20, 10, true));
 		
 		//timerTextPanel
 		timerTextPanel = new JPanel();
-			timerTextPanel.setBackground(theme.subColor);
+			timerTextPanel.setBackground(theme.layerColor);
 			timerTextPanel.setLayout(new BoxLayout(timerTextPanel, BoxLayout.X_AXIS));
 		
 		minuteTime = new JLabel("00");
 			minuteTime.setForeground(theme.textColor);
-		minuteTime.setFont(new Font ("Tahoma", Font.BOLD, 96));
+		minuteTime.setFont(new Font ("Arial", Font.BOLD, 96));
 		spaceLabel = new JLabel(":");
 			spaceLabel.setForeground(theme.textColor);
-		spaceLabel.setFont(new Font ("Tahoma", Font.BOLD, 96));
+		spaceLabel.setFont(new Font ("Arial", Font.BOLD, 96));
 		secondTime = new JLabel("00");
 			secondTime.setForeground(theme.textColor);
-		secondTime.setFont(new Font ("Tahoma", Font.BOLD, 96));
+		secondTime.setFont(new Font ("Arial", Font.BOLD, 96));
 		timerTextPanel.add(minuteTime);
 		timerTextPanel.add(spaceLabel);
 		timerTextPanel.add(secondTime);
 		
-		timerPanel.add(timerTextPanel); //timerPanel
+		timerStreamPanel.add(timerTextPanel);
+		//timerPanel.add(timerTextPanel); //timerPanel
 		
-		//Session Label
-		currentSessionLabel = new JLabel("2 / 12");
+		//Session Label - POMODORO ONLY
+		if(profile.getSettings().getFocusMode() == 2) {
+			currentSessionLabel = new JLabel(profile.getLanguage().focusText[11]);
 			currentSessionLabel.setForeground(theme.textColor);
 			currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 25));
 			currentSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		timerPanel.add(currentSessionLabel);
+			timerStreamPanel.add(currentSessionLabel);
+		}
+		
+		timerPanel.add(timerStreamPanel);
 		
 		//Space Component
 		timerPanel.add(createSpaceLabel(0));
 		
-		//timerSetText Panel	
-		pomoSessionLabel = new JLabel(profile.getLanguage().focusText[1] + "     " 
-						+ profile.getLanguage().focusText[2] + "     " 
-						+ profile.getLanguage().focusText[3]);
+		//timerSetBox Panel Initialization
+		timerSetBoxPanel = new JPanel();
+			timerSetBoxPanel.setBackground(theme.subColor);
+			
+		//timerSetPanel - CUSTOM INTERVAL COUNTDOWN
+		if(profile.getSettings().getFocusMode() == 0) {
+			minuteBox = new JComboBox();
+				minuteBox.setFont(theme.fontBoldRegSmall);
+			secondBox = new JComboBox();
+				secondBox.setFont(theme.fontBoldRegSmall);
+			
+			timerSetBoxPanel.add(minuteBox);
+			timerSetBoxPanel.add(secondBox);
+			
+			timerPanel.add(timerSetBoxPanel);
+		}
+		
+		//timerSetPanel - 5 MIN INTERVAL COUNTDOWN
+		if(profile.getSettings().getFocusMode() == 1) {
+			minuteBox = new JComboBox();
+				minuteBox.setFont(theme.fontBoldRegSmall);
+			timerSetBoxPanel.add(minuteBox);
+			
+			timerPanel.add(timerSetBoxPanel);
+		}
+		
+		//timerSetPanel - POMODORO
+		if(profile.getSettings().getFocusMode() == 2) {
+			pomoSessionLabel = new JLabel(profile.getLanguage().focusText[1] + "     " 
+					+ profile.getLanguage().focusText[2] + "     " 
+					+ profile.getLanguage().focusText[3]);
 			pomoSessionLabel.setForeground(theme.textColor);
 			pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
-		timerPanel.add(pomoSessionLabel);
-		
-		//timerSetBox Panel
-		timerSetBoxPanel = new JPanel();
-			timerSetBoxPanel.setBackground(theme.subColor);
-		//timerSetBoxPanel.setLayout(new BoxLayout(timerSetBoxPanel, BoxLayout.X_AXIS));
-		
-		pomoNumberSessionBox = new JComboBox();
-			pomoNumberSessionBox.setBackground(Color.WHITE);
-		pomoSessionBox = new JComboBox();
-			pomoSessionBox.setBackground(Color.WHITE);
-		pomoBreakBox = new JComboBox();
-			pomoBreakBox.setBackground(Color.WHITE);
+			timerPanel.add(pomoSessionLabel);
+
+			//Set Boxes
+			pomoNumberSessionBox = new JComboBox();
+				pomoNumberSessionBox.setBackground(Color.WHITE);
+			pomoSessionBox = new JComboBox();
+				pomoSessionBox.setBackground(Color.WHITE);
+			pomoBreakBox = new JComboBox();
+				pomoBreakBox.setBackground(Color.WHITE);
+				
+			timerSetBoxPanel.add(pomoNumberSessionBox);
+			timerSetBoxPanel.add(pomoSessionBox);
+			timerSetBoxPanel.add(pomoBreakBox);
 			
-		textSpace = new JLabel("           ");
-		textSpace2 = new JLabel("           ");
-			
-		timerSetBoxPanel.add(pomoNumberSessionBox);
-		timerSetBoxPanel.add(textSpace);
-		timerSetBoxPanel.add(pomoSessionBox);
-		timerSetBoxPanel.add(textSpace2);
-		timerSetBoxPanel.add(pomoBreakBox);
-		
-		timerPanel.add(timerSetBoxPanel);
+			timerPanel.add(timerSetBoxPanel);
+		}
 			
 		//Button Panel
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(theme.subColor);
+			//timerButtonPanel.setLayout(new BoxLayout(timerButtonPanel, BoxLayout.Y_AXIS));
 			
 		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
+			startFocusButton.setFont(theme.fontBoldRegSmall);
 		startFocusButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -201,6 +238,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		});
 		
 		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);
+			breakFocusButton.setFont(theme.fontBoldRegSmall);
 		timerButtonPanel.add(startFocusButton);
 		timerButtonPanel.add(breakFocusButton);
 		
@@ -211,26 +249,96 @@ public class StudyFocusStrategy extends StateStrategy {
 
 	@Override
 	public void setActions() {
-		//Init Pomodoro Box Items
-		for(int i = 5; i <= 60; i = i + 5) {
-			if(i == 5) {
-				pomoSessionBox.addItem("0" + i + ":00");
-				pomoBreakBox.addItem("0" + i + ":00");
+		//CUSTOTM COUNTDOWN ACTIONS
+		if(profile.getSettings().getFocusMode() == 0) {
+			for(int i = 0; i <= 60; i++) {
+				if(i < 10) {
+					secondBox.addItem("0" + i);
+				}
+				else {
+					secondBox.addItem(i);
+				}
+				
 			}
-			else {
-				pomoSessionBox.addItem(i + ":00");
-				pomoBreakBox.addItem(i + ":00");
+			
+			for(int i = 0; i <= 90; i++) {
+				if(i < 10) {
+					minuteBox.addItem("0" + i);
+				} else {
+					minuteBox.addItem(i);
+				}
 			}
+			
+			minuteBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					minuteTime.setText(""+minuteBox.getSelectedItem());
+				}
+			});
+			
+			secondBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					secondTime.setText(""+secondBox.getSelectedItem());
+				}
+			});
 		}
 		
-		for(int i = 1; i <= 16; i++) {
-			pomoNumberSessionBox.addItem(i);
+		//5MIN COUNTDOWN ACTIONS
+		if(profile.getSettings().getFocusMode() == 1) {
+			for(int i = 5; i <= 90; i = i + 5) {
+				if(i == 5)
+					minuteBox.addItem("0" + i + ":00");
+				else
+					minuteBox.addItem(i + ":00");
+			}
+			
+			minuteBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					minuteTime.setText(minuteBox.getSelectedItem().toString().substring(0,2));
+				}
+			});
+		}
+		
+		//POMODORO ACTIONS
+		if(profile.getSettings().getFocusMode() == 2) {
+			pomoSessionBox.addItem("01:00");
+			pomoBreakBox.addItem("01:00");
+			
+			for(int i = 5; i <= 90; i = i + 5) {
+				if(i == 5) {
+					pomoSessionBox.addItem("0" + i + ":00");
+					pomoBreakBox.addItem("0" + i + ":00");
+				}
+				else {
+					pomoSessionBox.addItem(i + ":00");
+					pomoBreakBox.addItem(i + ":00");
+				}
+			}
+			
+			for(int i = 1; i <= 16; i++) {
+				pomoNumberSessionBox.addItem(i);
+			}
+			
+			pomoSessionBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					minuteTime.setText(""+pomoSessionBox.getSelectedItem());
+					minuteTime.setText(minuteTime.getText().substring(0,2));
+				}
+			});
 		}
 		
 	}
 	
-	public JButton getStartButton() {
-		return startFocusButton;
-	}
+	//Getters for MainGUI
+	public JButton getStartButton() { return startFocusButton; }
+	public JButton getBreakButton() { return breakFocusButton; }
+	public JLabel getMinuteTimeLabel() { return minuteTime; }
+	public JLabel getSecondTimeLabel() { return secondTime; }
+	public JComboBox getMinuteBox() { return minuteBox; }
+	public JComboBox getSecondBox() { return secondBox; }
+	public JComboBox getPomoSessionBox() { return pomoSessionBox; }
+	public JComboBox getPomoBreakBox() { return pomoBreakBox; }
+	public JComboBox getPomoNumberSessionBox() { return pomoNumberSessionBox; }
+	public JLabel getCurrentSessionLabel() { return currentSessionLabel; }
 	
 }

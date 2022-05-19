@@ -40,6 +40,8 @@ public class EnglishStrategy extends LanguageStrategy {
 			"You focused for",
 			"minutes(s) and",
 			"seconds(s)",
+			"Let's Focus!",
+			"Break"
 		};
 		this.focusText = engFocusText;
 		
@@ -132,7 +134,7 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Change Focus Mode",
 			"Change Language",
 			"Change Difficulty",
-			"Sounds",
+			"Alarm Sound",
 			"Custom Interval Countdown",
 			"5-Interval Countdown",
 			"Pomodoro Mode",
