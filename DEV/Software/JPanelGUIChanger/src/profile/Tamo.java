@@ -26,7 +26,7 @@ public class Tamo {
 	//Will only run when new profile is made
 	public Tamo(String name) {
 		this.name = name;
-		this.happiness = 10;
+		this.happiness = 5;
 		this.hunger = 5;
 		this.id = ThreadLocalRandom.current().nextInt(1, 3 + 1);
 	}
@@ -71,53 +71,45 @@ public class Tamo {
 		this.id = id;
 	}
 	
-	public String getImageUrl(int indicator) {
-		/**
-		 * The parameter 'indicator' is an integer
-		 * that represents which mood the tamo is in.
-		 * 0 -> normal (gif)
-		 * 1 -> happy (gif)
-		 * 2 -> sad (png)
-		 * 3 -> hungry (png)
-		 * 4 -> focus (png)
-		 */
+	public String getImageUrl(boolean inFocus) {
 		
+		//Gets appropriate Tamo Image
 		switch (id) {
 		case 0:
 			//Alpha Tamo
-			if(indicator == 0) { return "TAMO_NORMAL_0.png"; }
-			if(indicator == 1) { return "TAMO_HAPPY_0.png"; }
-			if(indicator == 2) { return "TAMO_SAD_0.png"; }
-			if(indicator == 3) { return "TAMO_HUNGRY_0.png"; }
-			if(indicator == 4) { return "TAMO_FOCUS_0.png"; }
+			if(inFocus) { return "TAMO_FOCUS_0.png"; }
+			if(happiness <= 3) { return "TAMO_SAD_0.png"; }
+			if(hunger <= 3) { return "TAMO_HUNGRY_0.png"; }
+			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_0.png"; }
+			if(happiness > 6) { return "TAMO_HAPPY_0.png"; }
 		case 1:
 			//Beta Tamo
-			if(indicator == 0) { return "TAMO_NORMAL_1.gif"; }
-			if(indicator == 1) { return "TAMO_HAPPY_1.gif"; }
-			if(indicator == 2) { return "TAMO_SAD_1.png"; }
-			if(indicator == 3) { return "TAMO_HUNGRY_1.png"; }
-			if(indicator == 4) { return "TAMO_FOCUS_1.png"; }
+			if(inFocus) { return "TAMO_FOCUS_1.png"; }
+			if(happiness <= 3) { return "TAMO_SAD_1.png"; }
+			if(hunger <= 3) { return "TAMO_HUNGRY_1.png"; }
+			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_1.gif"; }
+			if(happiness > 6) { return "TAMO_HAPPY_1.gif"; }
 		case 2:
 			//Bee
-			if(indicator == 0) { return "TAMO_NORMAL_2.gif"; }
-			if(indicator == 1) { return "TAMO_HAPPY_2.gif"; }
-			if(indicator == 2) { return "TAMO_SAD_2.png"; }
-			if(indicator == 3) { return "TAMO_HUNGRY_2.png"; }
-			if(indicator == 4) { return "TAMO_FOCUS_2.png"; }
+			if(inFocus) { return "TAMO_FOCUS_2.png"; }
+			if(happiness <= 3) { return "TAMO_SAD_2.png"; }
+			if(hunger <= 3) { return "TAMO_HUNGRY_2.png"; }
+			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_2.gif"; }
+			if(happiness > 6) { return "TAMO_HAPPY_2.gif"; }
 		case 3:
 			//Bear
-			if(indicator == 0) { return "TAMO_NORMAL_3.gif"; }
-			if(indicator == 1) { return "TAMO_HAPPY_3.gif"; }
-			if(indicator == 2) { return "TAMO_SAD_3.png"; }
-			if(indicator == 3) { return "TAMO_HUNGRY_3.png"; }
-			if(indicator == 4) { return "TAMO_FOCUS_3.png"; }
+			if(inFocus) { return "TAMO_FOCUS_3.png"; }
+			if(happiness <= 3) { return "TAMO_SAD_3.png"; }
+			if(hunger <= 3) { return "TAMO_HUNGRY_3.png"; }
+			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_3.gif"; }
+			if(happiness > 6) { return "TAMO_HAPPY_3.gif"; }
 		case 4:
-			//Snake
-			if(indicator == 0) { return "TAMO_NORMAL_4.gif"; }
-			if(indicator == 1) { return "TAMO_HAPPY_4.gif"; }
-			if(indicator == 2) { return "TAMO_SAD_4.png"; }
-			if(indicator == 3) { return "TAMO_HUNGRY_4.png"; }
-			if(indicator == 4) { return "TAMO_FOCUS_4.png"; }
+			//TODO Snake
+			if(inFocus) { return "TAMO_FOCUS_4.png"; }
+			if(happiness <= 3) { return "TAMO_SAD_4.png"; }
+			if(hunger <= 3) { return "TAMO_HUNGRY_4.png"; }
+			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_4.gif"; }
+			if(happiness > 6) { return "TAMO_HAPPY_4.gif"; }
 		}
 		
 		//If none match, return null

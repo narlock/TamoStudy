@@ -85,7 +85,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(tamoNameLevelLabel); //Add to tamoPanel
 		
 		//Tamo-Images Components
-		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
 		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getBgUrl())));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());
@@ -333,5 +333,6 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JComboBox getPomoBreakBox() { return pomoBreakBox; }
 	public JComboBox getPomoNumberSessionBox() { return pomoNumberSessionBox; }
 	public JLabel getCurrentSessionLabel() { return currentSessionLabel; }
+	public JLabel getTamoImageLabel() { return imageLabel; }
 	
 }

@@ -85,7 +85,7 @@ public class StatisticsStrategy extends StateStrategy {
 		tamoPanel.add(tamoNameLabel);
 		
 		//Tamo-Image Components
-		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
+		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
 		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getBgUrl())));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());

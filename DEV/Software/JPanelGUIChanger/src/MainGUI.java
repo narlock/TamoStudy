@@ -81,6 +81,7 @@ public class MainGUI extends JFrame {
 	private int currentPomodoroSession, totalPomodoroSessions, remainingPomodoroSessions;
 	private boolean breakCondition;
 	
+	private JLabel  tamoImageLabel;
 	private JButton startFocusButton;			//Start focus button
 	private JButton breakFocusButton;			//Break focus button
 	
@@ -206,6 +207,7 @@ public class MainGUI extends JFrame {
 				breakFocusButton = ((StudyFocusStrategy) newStrategy).getBreakButton();
 				minuteTime = ((StudyFocusStrategy) newStrategy).getMinuteTimeLabel();
 				secondTime = ((StudyFocusStrategy) newStrategy).getSecondTimeLabel();
+				tamoImageLabel = ((StudyFocusStrategy) newStrategy).getTamoImageLabel();
 				
 				//Interval Count down
 				if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 1) {
@@ -515,6 +517,7 @@ public class MainGUI extends JFrame {
 		if(profile.getSettings().getFocusMode() == 2) { setCurrentSession(); }
 		
 		//TODO Update Tamo Image to focus mode
+		tamoImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(true))));
 		
 		//Initialize other values
 		studyMin = Integer.parseInt(minuteTime.getText());
@@ -637,6 +640,8 @@ public class MainGUI extends JFrame {
 		timer.start();
 	}
 	
+	//Resets the timer
+	//Called either when 'Break' is clicked or end of regular session
 	public void resetTimer() {
 		if(profile.getSettings().getFocusMode() == 0) {
 			minuteBox.setEnabled(true);
@@ -665,6 +670,9 @@ public class MainGUI extends JFrame {
 			pomoBreakBox.setEnabled(true);
 		}
 		
+		//Update Tamo Image
+		tamoImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
+		
 		//Enable focus/break buttons
 		startFocusButton.setEnabled(true);
 		breakFocusButton.setEnabled(false);
@@ -673,6 +681,7 @@ public class MainGUI extends JFrame {
 		for(JButton button : buttons) { button.setEnabled(true); }
 	}
 	
+	//Indicates next session of Pomodoro Mode
 	public void nextSession() {
 		if(breakCondition == false) {
 			//Start Break Timer
@@ -694,10 +703,12 @@ public class MainGUI extends JFrame {
 			this.totalPomodoroSessions--;
 			
 			//UPDATE TAMO IMAGE
+			tamoImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
 			startFocusButton.doClick();
 		}
 	}
 	
+	//Sets the current session in Pomodoro Mode
 	public void setCurrentSession() {
 		if(breakCondition) {
 			currentSessionLabel.setText(profile.getLanguage().focusText[12]);
