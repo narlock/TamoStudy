@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import resources.BubbleBorder;
+import resources.TextBubbleBorder;
 
 public class AchievementsStrategy extends StateStrategy {
 	
@@ -67,7 +69,7 @@ public class AchievementsStrategy extends StateStrategy {
 				profile.getLanguage().ahmTitle[2], profile.getLanguage().ahmText[2], "AHM_012.png", "AHM_2A.png", earnedAchievements[2]));
 		this.add(hoursPanel);
 		
-		this.add(createSpaceLabel(0));
+		//this.add(createSpaceLabel(0));
 		
 		customPanel = new JPanel();
 		setPanelComponent(customPanel);
@@ -79,7 +81,7 @@ public class AchievementsStrategy extends StateStrategy {
 				profile.getLanguage().ahmTitle[5], profile.getLanguage().ahmText[5], "AHM_5.png", "AHM_5A.png", earnedAchievements[5]));
 		this.add(customPanel);
 		
-		this.add(createSpaceLabel(0));
+		//this.add(createSpaceLabel(0));
 		
 		maxPanel = new JPanel();
 		setPanelComponent(maxPanel);
@@ -91,7 +93,7 @@ public class AchievementsStrategy extends StateStrategy {
 				profile.getLanguage().ahmTitle[8], profile.getLanguage().ahmText[8], "AHM_8.png", "AHM_8A.png", earnedAchievements[8]));
 		this.add(maxPanel);
 		
-		this.add(createSpaceLabel(0));
+		//this.add(createSpaceLabel(0));
 		
 		timePanel = new JPanel();
 		setPanelComponent(timePanel);
@@ -107,7 +109,7 @@ public class AchievementsStrategy extends StateStrategy {
 	}
 	
 	public void setPanelComponent(JPanel panel) {
-		panel.setLayout(new GridLayout(1,3,30,30));
+		panel.setLayout(new GridLayout(1,3,10,10));
 		panel.setBackground(theme.subColor);
 		panel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	}
@@ -115,7 +117,7 @@ public class AchievementsStrategy extends StateStrategy {
 	public JPanel createAchievementLabel(String title, String desc, String imageUrl, String imageUrlEarned, String indicator) {
 		JPanel panel = new JPanel();
 			panel.setBackground(theme.layerColor);
-			panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+			panel.setBorder(new BubbleBorder(Color.BLACK, 2, 6, 10, true));
 			panel.setLayout(new BorderLayout());
 		JLabel imgLabel;
 		if(indicator.equals("1"))
@@ -127,7 +129,7 @@ public class AchievementsStrategy extends StateStrategy {
 			textPanel.setBackground(theme.layerColor);
 			textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
 			
-		JLabel achievementLabel = new JLabel(title);
+		JLabel achievementLabel = new JLabel("<html>" + title + "</html>");
 			achievementLabel.setForeground(theme.textColor);
 			achievementLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		JLabel descLabel = new JLabel("<html>" + desc + "</html>");

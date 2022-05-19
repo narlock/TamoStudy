@@ -81,7 +81,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		
 		//Tamo-Images Components
 		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMO_NORMAL_1.gif")));
-		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("BG_1.png")));
+		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getBgUrl())));
 		
 		backgroundImageLabel.setLayout(new GridBagLayout());
 		imageLabel.setSize(imageLabel.getPreferredSize());

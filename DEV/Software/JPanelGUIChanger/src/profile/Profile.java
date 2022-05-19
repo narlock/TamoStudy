@@ -53,6 +53,14 @@ public class Profile {
 											// "110010100110", where each digit is an achievement.
 											// 0 means it has not been achieved,
 											// 1 means it has been achieved.
+	
+	private String invString;				//This is the inventory string. Similar to the achievementString
+											//this is a string that will be separated to determine the items
+											//in the inventory. The items will be turned into item panesl
+											//and will be able to be selected/used in the inventory menu
+											//each item has a string that corresponds to it
+											//for example, the default background is "0".
+	
 	private Settings settings;
 	
 	//Default [TESTING] Constructor
@@ -68,6 +76,7 @@ public class Profile {
 		this.languageIndicator = 0;
 		this.lang = setLanguageStrategy(languageIndicator);
 		this.ahmString = "110010100000000";
+		this.invString = "01";
 		this.settings = new Settings();
 	}
 	
@@ -91,7 +100,8 @@ public class Profile {
 			int tamoHunger,
 			int tamoId,
 			int languageIndicator,
-			String ahmString
+			String ahmString,
+			String invString
 		) {
 		
 		this.username = username;
@@ -112,6 +122,7 @@ public class Profile {
 		this.lang = setLanguageStrategy(languageIndicator);
 		
 		this.ahmString = ahmString;
+		this.invString = invString;
 	}
 	
 	//TODO method to update the file
@@ -214,6 +225,14 @@ public class Profile {
 		this.ahmString = ahmString;
 	}
 
+	public String getInvString() {
+		return invString;
+	}
+
+	public void setInvString(String invString) {
+		this.invString = invString;
+	}
+
 	public Settings getSettings() {
 		return settings;
 	}
@@ -234,6 +253,20 @@ public class Profile {
 		double totalHours = totalTime * 0.000277778;
 		totalHours = Math.round(totalHours * 100.0) / 100.0;
 		return totalHours;
+	}
+	
+	public String getBgUrl() {
+		if(bgIndicator == 0)
+			return "BG_1.png";
+		else if(bgIndicator == 1)
+			return "BG_2.png";
+		else if(bgIndicator == 2)
+			return "BG_3.png";
+		else if(bgIndicator == 3)
+			return "BG_4.png";
+		else if(bgIndicator == 4)
+			return "BG_4.png";
+		return null;
 	}
 	
 	/**

@@ -2,6 +2,11 @@ package language;
 
 public class EnglishStrategy extends LanguageStrategy {
 	
+	/**
+	 * @author Anthony Narlock (narlock)
+	 * @translator Anthony Narlock
+	 */
+	
 	public EnglishStrategy() {
 		String engText[] = {
 			"MENU",
@@ -75,7 +80,9 @@ public class EnglishStrategy extends LanguageStrategy {
 		
 		String[] engInvText = {
 			"Inventory Empty",
-			"Select"
+			"Select",
+			"Background changed!",
+			"Inventory"
 		};
 		this.inventoryText = engInvText;
 		
