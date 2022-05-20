@@ -1,13 +1,21 @@
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import language.EnglishStrategy;
 import language.LanguageStrategy;
 
 public class Test {
 	public static void main(String[] args) {
-		LanguageStrategy lang = new EnglishStrategy();
+		String[] myArr = {"0","1","2","3"};
 		
-		for(int i = 0; i < lang.text.length; i++) {
-			System.out.println(lang.text[i]);
+		int indicator = 4;
+		
+		StringBuilder builder = new StringBuilder();
+		for(String s : myArr) {
+		    builder.append(s);
 		}
+		String str = builder.toString();
 		
+		System.out.println(str);
 	}
 }

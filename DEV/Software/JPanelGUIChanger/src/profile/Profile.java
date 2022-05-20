@@ -230,6 +230,20 @@ public class Profile {
 	public void setAhmString(String ahmString) {
 		this.ahmString = ahmString;
 	}
+	
+	public void getAchievement(int i) {
+		//i represents the index of the achievement
+		String[] achievements = ahmString.split("");
+		achievements[i] = "1"; //the achievement has been gotten
+		StringBuilder builder = new StringBuilder();
+		for(String s : achievements) { builder.append(s); }
+		ahmString = builder.toString();
+	}
+	
+	public String getAhmIndicator(int i) {
+		String[] achievements = ahmString.split("");
+		return achievements[i];
+	}
 
 	public String getInvString() {
 		return invString;

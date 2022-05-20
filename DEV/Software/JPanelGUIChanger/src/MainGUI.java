@@ -719,4 +719,22 @@ public class MainGUI extends JFrame {
 		}
 		
 	}
+	
+	/**
+	 * checkForNewAchievements
+	 * @brief This message runs on route changes
+	 * to update the user in case they have received
+	 * a new achievement.
+	 */
+	public void checkForNewAchievements() {
+		//Reach 3 hours focus time
+		if(profile.getTotalTime() >= 10800 && profile.getAhmIndicator(0).equals("0"))
+			profile.getAchievement(0);
+		//Reach 1 day focus time
+		if(profile.getTotalTime() >= 86400 && profile.getAhmIndicator(1).equals("0"))
+			profile.getAchievement(1);
+		//Reach 7 day focus time
+		if(profile.getTotalTime() >= 604800 && profile.getAhmIndicator(2).equals("0"))
+			profile.getAchievement(1);
+	}
 }
