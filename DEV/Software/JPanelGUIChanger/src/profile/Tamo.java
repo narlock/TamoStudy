@@ -28,7 +28,7 @@ public class Tamo {
 		this.name = name;
 		this.happiness = 5;
 		this.hunger = 5;
-		this.id = ThreadLocalRandom.current().nextInt(1, 3 + 1);
+		this.id = ThreadLocalRandom.current().nextInt(1, 4 + 1);
 	}
 	
 	//Load Tamo Constructor

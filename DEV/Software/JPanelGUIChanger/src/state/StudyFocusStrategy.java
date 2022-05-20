@@ -85,6 +85,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(tamoNameLevelLabel); //Add to tamoPanel
 		
 		//Tamo-Images Components
+		System.out.println(profile.getTamo().getImageUrl(false));
 		imageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
 		backgroundImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(profile.getBgUrl())));
 		
