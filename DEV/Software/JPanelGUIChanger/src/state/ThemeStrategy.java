@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
@@ -128,6 +129,7 @@ public class ThemeStrategy extends StateStrategy {
 				else if(imageUrl.equals("CLASSIC_YELLOW_MODE.png")) { themeChanged(5); }
 				else if(imageUrl.equals("CLASSIC_ORANGE_MODE.png")) { themeChanged(6); }
 				else if(imageUrl.equals("CLASSIC_PURPLE_MODE.png")) { themeChanged(7); }
+				checkThemeAchievement();
 			}
 		});
 		selectButtons.push(select);
@@ -160,6 +162,14 @@ public class ThemeStrategy extends StateStrategy {
 	
 	public Stack<JButton> getSelectButtons() {
 		return selectButtons;
+	}
+	
+	public void checkThemeAchievement() {
+		//Reach 3 hours focus time
+		if(profile.getAhmIndicator(4).equals("0")) {
+			profile.getAchievement(4);
+			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[4], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
 	}
 	
 }

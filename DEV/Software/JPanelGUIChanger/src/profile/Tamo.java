@@ -26,7 +26,7 @@ public class Tamo {
 	//Will only run when new profile is made
 	public Tamo(String name) {
 		this.name = name;
-		this.happiness = 5;
+		this.happiness = 10;
 		this.hunger = 5;
 		this.id = ThreadLocalRandom.current().nextInt(1, 4 + 1);
 	}

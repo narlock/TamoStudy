@@ -19,7 +19,8 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Statistics",
 			"Achievements",
 			"Settings",
-			"About"
+			"About",
+			"Achievement Unlocked"
 		};
 		this.text = engText;
 		
@@ -160,7 +161,8 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Pac Alarm",
 			"Save Changes",
 			"Changes Saved!",
-			"You have unsaved changes."
+			"You have unsaved changes.",
+			"Achievement Notifications"
 		};
 		this.settingsText = engSettingsText;
 		

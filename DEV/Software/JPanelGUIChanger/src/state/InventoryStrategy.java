@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
@@ -89,6 +90,7 @@ public class InventoryStrategy extends StateStrategy {
 				public void actionPerformed(ActionEvent e) {
 					profile.setBgIndicator(Integer.parseInt(name));
 					messageLabel.setText(profile.getLanguage().inventoryText[2]);
+					checkBackgroundAchievement();
 				}
 				
 			});
@@ -111,6 +113,14 @@ public class InventoryStrategy extends StateStrategy {
 			return "SHOP_BG_5.png";
 		
 		return null;
+	}
+	
+	public void checkBackgroundAchievement() {
+		//Reach 3 hours focus time
+		if(profile.getAhmIndicator(5).equals("0")) {
+			profile.getAchievement(5);
+			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[5], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
 	}
 
 }

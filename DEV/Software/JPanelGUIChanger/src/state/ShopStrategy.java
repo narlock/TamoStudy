@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
@@ -277,6 +278,9 @@ public class ShopStrategy extends StateStrategy {
 								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
 								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
 								messagePanel.remove(optionPanel);
+								
+								//Check Achievement
+								checkTamoHungerAchievement();
 							}
 							
 						});
@@ -365,6 +369,13 @@ public class ShopStrategy extends StateStrategy {
 			}
 			
 		});
+	}
+	
+	public void checkTamoHungerAchievement() {
+		if(profile.getTamo().getHunger() == 10 && profile.getAhmIndicator(7).equals("0")) {
+			profile.getAchievement(7);
+			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[7], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
 	}
 
 }

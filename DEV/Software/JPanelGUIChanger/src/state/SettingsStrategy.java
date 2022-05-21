@@ -44,6 +44,10 @@ public class SettingsStrategy extends StateStrategy {
 	private JLabel soundSettingLabel;
 	private JComboBox soundSettingBox;
 	
+	private JPanel ahmNotificationsPanel;
+	private JLabel ahmNotificationsLabel;
+	private JButton ahmNotificationsButton;
+	
 	private JButton saveChanges;
 	
 	
@@ -138,6 +142,22 @@ public class SettingsStrategy extends StateStrategy {
 			displayUnsavedChanges(soundSettingBox);
 		soundSettingPanel.add(soundSettingLabel);
 		soundSettingPanel.add(soundSettingBox);
+		
+		ahmNotificationsPanel = new JPanel();
+			ahmNotificationsPanel.setBackground(theme.subColor);
+		ahmNotificationsLabel = new JLabel(profile.getLanguage().settingsText[29]);
+			ahmNotificationsLabel.setFont(theme.fontBoldRegSmall);
+			ahmNotificationsLabel.setForeground(theme.textColor);
+		
+		String labelText;
+		if(profile.getSettings().getShowAhmNotifications() == 0) {
+			labelText = profile.getLanguage().settingsText[21];
+		} else {
+			labelText = profile.getLanguage().settingsText[22];
+		}
+		ahmNotificationsButton = new JButton(labelText);
+			ahmNotificationsButton.setFont(theme.fontBoldRegSmall);
+			ahmNotificationsButton.setForeground(theme.textColor);
 			
 		optionsPanel.add(focusSettingPanel);
 		optionsPanel.add(languageSettingPanel);
@@ -156,6 +176,21 @@ public class SettingsStrategy extends StateStrategy {
 	@Override
 	public void setActions() {
 		
+		ahmNotificationsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(ahmNotificationsButton.getText().equals(profile.getLanguage().settingsText[21])) {
+					ahmNotificationsButton.setText(profile.getLanguage().settingsText[22]);
+					messageLabel.setText(profile.getLanguage().settingsText[28]);
+				} else {
+					ahmNotificationsButton.setText(profile.getLanguage().settingsText[21]);
+					messageLabel.setText(profile.getLanguage().settingsText[28]);
+				}
+			}
+			
+		});
+		
 		saveChanges.addActionListener(new ActionListener() {
 
 			@Override
@@ -173,6 +208,13 @@ public class SettingsStrategy extends StateStrategy {
 				
 				//Update Sounds
 				profile.getSettings().setSessionSoundIndicator(soundSettingBox.getSelectedIndex());
+				
+				//Update Achievement Notifications
+				if(ahmNotificationsButton.getText().equals(profile.getLanguage().settingsText[21])) {
+					profile.getSettings().setShowAhmNotifications(0);
+				} else {
+					profile.getSettings().setShowAhmNotifications(1);
+				}
 				
 				//TODO
 				//Write the information to the profile's file

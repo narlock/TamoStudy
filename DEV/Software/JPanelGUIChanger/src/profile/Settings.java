@@ -24,23 +24,29 @@ public class Settings {
 	private int difficulty;					//0 for Peaceful
 											//1 for Challenging
 	
+	private int showAhmNotifications;		//0 for NO
+											//1 for YES
+	
 	//Default constructor; default settings
 	public Settings() {
 		this.focusMode = 1;
 		this.sessionSoundIndicator = 0;
 		this.backgroundSoundIndicator = 0;
 		this.difficulty = 1;
+		this.showAhmNotifications = 1;
 	}
 	
 	//Load constructor
 	public Settings(int focusMode, 
 			int sessionSoundIndicator, 
 			int backgroundSoundIndicator,
-			int difficulty) {
+			int difficulty,
+			int showAhmNotifications) {
 		this.focusMode = focusMode;
 		this.sessionSoundIndicator = sessionSoundIndicator;
 		this.backgroundSoundIndicator = backgroundSoundIndicator;
 		this.difficulty = difficulty;
+		this.showAhmNotifications = showAhmNotifications;
 	}
 
 	public int getFocusMode() {
@@ -73,5 +79,13 @@ public class Settings {
 
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public int getShowAhmNotifications() {
+		return showAhmNotifications;
+	}
+
+	public void setShowAhmNotifications(int showAhmNotifications) {
+		this.showAhmNotifications = showAhmNotifications;
 	}
 }
