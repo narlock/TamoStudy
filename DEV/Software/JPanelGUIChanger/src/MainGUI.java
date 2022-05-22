@@ -119,7 +119,7 @@ public class MainGUI extends JFrame {
 		this.setSize(800,600);	//Resize properly so display is correct
 		this.repaint();
 		
-		profile.printInfo();
+		//profile.printInfo();
 		checkForNewAchievements();
 	}
 	

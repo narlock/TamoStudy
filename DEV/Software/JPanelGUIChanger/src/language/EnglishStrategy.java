@@ -166,5 +166,13 @@ public class EnglishStrategy extends LanguageStrategy {
 		};
 		this.settingsText = engSettingsText;
 		
+		
+		String[] engDeathText = {
+			"Tamo Death",
+			"Your Tamo didn't receive the care it needed and has passed",
+			"Your statistics for your previous Tamo will be reset",
+			"Enter new Tamo name: "
+		};
+		this.deathText = engDeathText;
 	}
 }

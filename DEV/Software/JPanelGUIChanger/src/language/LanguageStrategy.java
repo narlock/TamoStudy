@@ -27,5 +27,6 @@ public abstract class LanguageStrategy {
 	public String[] ahmText;
 	public String[] settingsText;
 	public String[] aboutText;
+	public String[] deathText;
 	
 }

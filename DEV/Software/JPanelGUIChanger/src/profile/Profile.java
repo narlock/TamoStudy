@@ -1,8 +1,18 @@
 package profile;
 
+import java.awt.GridLayout;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import language.EnglishStrategy;
 import language.HindiStrategy;
@@ -31,6 +41,7 @@ public class Profile {
 		private String joinDateString;
 	
 	//Mutable
+	private boolean firstDay;				//Indicates first day of account
 	private Date lastLoginDate;				//Previous Login Date
 		private String lastLoginDateString;
 	private Date newLoginDate;				//Newly generated login date
@@ -67,24 +78,58 @@ public class Profile {
 	//Default [TESTING] Constructor
 	public Profile() {
 		this.username = "Anthony";
-		this.joinDateString = "2020-01-31";
+		this.joinDate = new Date();
+		this.joinDateString = formatter.format(joinDate);
 		this.tamoTokens = 5000;
 		this.totalTime = 0;
 		this.bgIndicator = 0;
 		this.themeIndicator = 0;
-		this.strikes = 0;
+		this.strikes = 3;
 		this.tamo = new Tamo("Lisa");
 		this.languageIndicator = 0;
 		this.lang = setLanguageStrategy(languageIndicator);
-		this.ahmString = "000000000000000";
+		this.ahmString = "00000000000";
 		this.invString = "01";
-		this.settings = new Settings();
+		this.settings = new Settings(1);
+		
+		//On a new profile, they will be the same!
+		this.lastLoginDateString = "2022-05-19";
+		
+		
+		//Date
+		this.firstDay = false;
+		this.newLoginDate = new Date();
+		this.newLoginDateString = formatter.format(newLoginDate);
+		getDaysDifference();
 	}
 	
 	//New Profile Constructor - Created by initial 'Welcome' interface
 	public Profile(String username, String tamoName, int languageIndicator, int difficulty) {
 		//TODO
+		this.username = username;
+		this.joinDate = new Date();
+		this.joinDateString = formatter.format(joinDate);
+		this.tamoTokens = 0;
+		this.totalTime = 0;
+		this.bgIndicator = 0;
+		this.themeIndicator = 0;
+		this.strikes = 0;
+		this.tamo = new Tamo(tamoName);
+		this.languageIndicator = languageIndicator;
+		this.lang = setLanguageStrategy(languageIndicator);
+		this.ahmString = "000000000000";
+		this.invString = "0";
+		this.settings = new Settings(difficulty);
+		
+		//Date stuff
+		this.firstDay = true;
+		this.lastLoginDate = new Date(); //Upon first login, this will be the last login
+		
+		//On a new profile, they will be the same!
+		this.lastLoginDateString = formatter.format(lastLoginDate);
+		this.newLoginDateString = formatter.format(lastLoginDate);
 	}
+	
 	
 	//Load Profile Constructor
 	public Profile(
@@ -109,9 +154,6 @@ public class Profile {
 		this.joinDateString = joinDateString;
 		this.lastLoginDateString = lastLoginDateString;
 		
-		//TODO
-		//Modify the dates accordingly
-		
 		this.tamoTokens = tamoTokens;
 		this.totalTime = totalTime;
 		this.bgIndicator = bgIndicator;
@@ -124,6 +166,13 @@ public class Profile {
 		
 		this.ahmString = ahmString;
 		this.invString = invString;
+		
+		//TODO
+		//Modify the dates accordingly
+		this.firstDay = false;
+		this.newLoginDate = new Date();
+		this.newLoginDateString = formatter.format(newLoginDate);
+		getDaysDifference();
 	}
 	
 	//TODO method to update the file
@@ -233,14 +282,14 @@ public class Profile {
 	}
 	
 	public void getAchievement(int i) {
-		System.out.println("[TAMOSTUDY] DEBUG AhmString Before: " + ahmString);
+		//System.out.println("[TAMOSTUDY] DEBUG AhmString Before: " + ahmString);
 		//i represents the index of the achievement
 		String[] achievements = ahmString.split("");
 		achievements[i] = "1"; //the achievement has been gotten
 		StringBuilder builder = new StringBuilder();
 		for(String s : achievements) { builder.append(s); }
 		ahmString = builder.toString();
-		System.out.println("[TAMOSTUDY] DEBUG AhmString Before: " + ahmString);
+		//System.out.println("[TAMOSTUDY] DEBUG AhmString Before: " + ahmString);
 	}
 	
 	public String getAhmIndicator(int i) {
@@ -330,6 +379,124 @@ public class Profile {
 		}
 		
 		//TODO Update the file
+	}
+	
+	/**
+	 * checkStrikeStatus
+	 * @param daysDifference
+	 * Applies strikes if the profile earned them
+	 */
+	public void checkStrikeStatus(long daysDifference) {
+		//Update Happy/Hunger
+		if(daysDifference == 1) {
+			tamo.setHappiness(tamo.getHappiness() - 1);
+			tamo.setHunger(tamo.getHunger() - 1);
+		} else if(daysDifference >= 2 && daysDifference <= 3) {
+			tamo.setHappiness(tamo.getHappiness() - 2);
+			tamo.setHunger(tamo.getHunger() - 2);
+		} else if(daysDifference >= 4 && daysDifference <= 7) {
+			tamo.setHappiness(tamo.getHappiness() - 3);
+			tamo.setHunger(tamo.getHunger() - 3);
+		} else if(daysDifference >= 8 && daysDifference <= 30) {
+			tamo.setHappiness(0);
+			tamo.setHunger(0);
+		}
+		
+		//Update Strikes
+		int strikesApplied = 0;
+		if(tamo.getHunger() < 2)
+			strikesApplied++;
+		
+		if(tamo.getHappiness() < 2)
+			strikesApplied++;
+		
+		strikes = strikes + strikesApplied;
+		
+		//Check if strikes is enough to cause Tamo Death
+		if((strikes >= 3 || daysDifference > 30) && (settings.getDifficulty() == 1)) {
+			tamoDeath();
+		} else if(settings.getDifficulty() == 1) {
+			System.out.println("[TAMOSTUDY/PROFILE] Applied Strikes=" + strikesApplied + ", Total=" + strikes);
+		}
+			
+	}
+	
+	/**
+	 * getDaysDifference
+	 * Determines the difference in when the user previously
+	 * logged in with the current date.
+	 * 
+	 * Calls checkStrikeStatus to apply strikes accordingly.
+	 * Updates the lastLoginDateString
+	 */
+	public void getDaysDifference() {
+		LocalDate start = null;
+		LocalDate end = null;
+		
+		try {
+			start = LocalDate.parse(lastLoginDateString);
+			end = LocalDate.parse(newLoginDateString);
+			System.out.println("[TAMOSTUDY/PROFILE] start="+start+", end="+end);
+		} catch (Exception e) { e.printStackTrace(); }
+		
+		long diff = ChronoUnit.DAYS.between(start, end);
+		System.out.println("[TAMOSTUDY/PROFILE] Difference is " + diff);
+		
+		checkStrikeStatus(diff);
+		
+		this.lastLoginDateString = newLoginDateString;
+	}
+	
+	/**
+	 * tamoDeath
+	 * Resets Tamo and user starts with a new Tamo
+	 * Stats are erased.
+	 */
+	public void tamoDeath() {
+		//Create the Death Panel
+		JPanel deathPanel = new JPanel();
+			deathPanel.setLayout(new GridLayout(5,1));
+		JLabel deathMessage = new JLabel(lang.deathText[1]);
+		JLabel spaceLabel = new JLabel();
+		JLabel infoMessage = new JLabel(lang.deathText[2]);
+		JLabel newTamoMessage = new JLabel(lang.deathText[3]);
+		JTextField newTamoNameField = new JTextField(10);
+		
+		deathPanel.add(deathMessage);
+		deathPanel.add(infoMessage);
+		deathPanel.add(spaceLabel);
+		deathPanel.add(newTamoMessage);
+		deathPanel.add(newTamoNameField);
+		
+		Object[] options = {"Reset"};
+		
+		int resultPane = JOptionPane.showOptionDialog(null, deathPanel, lang.deathText[0], JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("info.png")), options, options[0]);
+		
+		//User will be able to choose if they want to change the name of their Tamo
+		if(resultPane == 0) {
+			totalTime = 0;
+			tamoTokens = 0;
+			bgIndicator = 0;
+			strikes = 0;
+			tamo.setName(newTamoNameField.getText());
+			tamo.setHappiness(5);
+			tamo.setHunger(5);
+			tamo.setId(ThreadLocalRandom.current().nextInt(1, 4 + 1));
+			
+			//TODO Update File
+					
+		} else if(resultPane == JOptionPane.CLOSED_OPTION) {
+			totalTime = 0;
+			tamoTokens = 0;
+			bgIndicator = 0;
+			strikes = 0;
+			//Tamo's name will be the same
+			tamo.setHappiness(5);
+			tamo.setHunger(5);
+			tamo.setId(ThreadLocalRandom.current().nextInt(1, 4 + 1));
+			
+			//TODO Update File
+		}
 	}
 	
 	/**

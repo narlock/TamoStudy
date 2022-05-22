@@ -46,10 +46,15 @@ public class AboutStrategy extends StateStrategy {
 			socialsPanel.setBackground(theme.subColor);
 		
 		anthonyWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("FAVICON.png")));
+			setUpJButtonComponent(anthonyWebButton);
 		tamoWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")));
+			setUpJButtonComponent(tamoWebButton);
 		gitWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("GITHUB.png")));
+			setUpJButtonComponent(gitWebButton);
 		instaWebButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("INSTAGRAM.png")));
+			setUpJButtonComponent(instaWebButton);
 		discordButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
+			setUpJButtonComponent(discordButton);
 		
 		socialsPanel.add(anthonyWebButton);
 		socialsPanel.add(tamoWebButton);
@@ -77,6 +82,13 @@ public class AboutStrategy extends StateStrategy {
 				catch (Exception e1) { e1.printStackTrace(); }
 			}
 		});
+	}
+	
+	public void setUpJButtonComponent(JButton button) {
+		button.setBorderPainted(false);
+		button.setBackground(theme.mainColor);
+		button.setForeground(theme.layerTextColor);
+		button.setFocusPainted(false);
 	}
 
 }

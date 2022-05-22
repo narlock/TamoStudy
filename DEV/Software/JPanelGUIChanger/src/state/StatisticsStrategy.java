@@ -140,7 +140,7 @@ public class StatisticsStrategy extends StateStrategy {
 		//TODO
 		//Make this into a for loop, say, for each star, lets
 		//create a new jlabel with the star!
-		statsPanel.add(createStarLabel());
+		statsPanel.add(createStarLabel(earned));
 		
 		mainPanel.add(statsPanel);
 	}
@@ -151,10 +151,25 @@ public class StatisticsStrategy extends StateStrategy {
 		
 	}
 	
-	public JLabel createStarLabel() {
-		JLabel star = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("STAR.png")));
+	public JLabel createStarLabel(int earned) {
+		int numOfStars = 0;
+		if(earned == 12)
+			numOfStars++;
+		
+		if(profile.getTotalFocusHours() >= 720)
+			numOfStars++;
+		
+		if(numOfStars == 1) {
+			JLabel star = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("STAR.png")));
 			star.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		return star;
+			return star;
+		} else if(numOfStars == 2) {
+			JLabel star = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("STAR2.png")));
+			star.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			return star;
+		}
+			
+		return new JLabel("");
 	}
 	
 	public void setUpLabelComponent(JLabel label) {

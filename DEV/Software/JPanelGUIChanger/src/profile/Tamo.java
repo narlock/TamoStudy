@@ -26,7 +26,7 @@ public class Tamo {
 	//Will only run when new profile is made
 	public Tamo(String name) {
 		this.name = name;
-		this.happiness = 10;
+		this.happiness = 5;
 		this.hunger = 5;
 		this.id = ThreadLocalRandom.current().nextInt(1, 4 + 1);
 	}
@@ -38,7 +38,8 @@ public class Tamo {
 		this.hunger = hunger;
 		this.id = id;
 	}
-
+	
+	//Getters and Setters
 	public String getName() {
 		return name;
 	}
@@ -71,6 +72,11 @@ public class Tamo {
 		this.id = id;
 	}
 	
+	/**
+	 * getImageUrl
+	 * @param inFocus
+	 * @return the correct image URL
+	 */
 	public String getImageUrl(boolean inFocus) {
 		
 		//Gets appropriate Tamo Image
@@ -104,7 +110,7 @@ public class Tamo {
 			if(happiness > 3 && happiness <= 6) { return "TAMO_NORMAL_3.gif"; }
 			if(happiness > 6) { return "TAMO_HAPPY_3.gif"; }
 		case 4:
-			//TODO Snake
+			//Snake
 			if(inFocus) { return "TAMO_FOCUS_4.png"; }
 			if(happiness <= 3) { return "TAMO_SAD_4.png"; }
 			if(hunger <= 3) { return "TAMO_HUNGRY_4.png"; }

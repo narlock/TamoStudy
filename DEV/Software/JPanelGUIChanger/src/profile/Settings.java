@@ -28,11 +28,11 @@ public class Settings {
 											//1 for YES
 	
 	//Default constructor; default settings
-	public Settings() {
+	public Settings(int difficulty) {
 		this.focusMode = 1;
 		this.sessionSoundIndicator = 0;
 		this.backgroundSoundIndicator = 0;
-		this.difficulty = 1;
+		this.difficulty = difficulty;
 		this.showAhmNotifications = 1;
 	}
 	
