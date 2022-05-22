@@ -96,7 +96,7 @@ public class Profile {
 		this.strikes = 3;
 		this.tamo = new Tamo("Lisa");
 		this.languageIndicator = 0;
-		this.lang = setLanguageStrategy(languageIndicator);
+		setLanguageStrategy(languageIndicator);
 		this.ahmString = "000000000000";
 		this.invString = "01";
 		this.settings = new Settings(0);
@@ -125,7 +125,7 @@ public class Profile {
 		this.strikes = 0;
 		this.tamo = new Tamo(tamoName);
 		this.languageIndicator = languageIndicator;
-		this.lang = setLanguageStrategy(languageIndicator);
+		setLanguageStrategy(languageIndicator);
 		this.ahmString = "000000000000";
 		this.invString = "0";
 		this.settings = new Settings(difficulty);
@@ -171,7 +171,7 @@ public class Profile {
 		
 		this.tamo = new Tamo(tamoName, tamoHappiness, tamoHunger, tamoId);
 		this.languageIndicator = languageIndicator;
-		this.lang = setLanguageStrategy(languageIndicator);
+		setLanguageStrategy(languageIndicator);
 		
 		this.ahmString = ahmString;
 		this.invString = invString;
@@ -247,22 +247,22 @@ public class Profile {
 		return tamo;
 	}
 	
-	public LanguageStrategy setLanguageStrategy(int languageIndicator) {
+	public void setLanguageStrategy(int languageIndicator) {
 		//English
-		if(languageIndicator == 0) { return new EnglishStrategy(); }
-		else if(languageIndicator == 1) { return new SpanishStrategy(); }
-		else if(languageIndicator == 2) { return new PortugueseStrategy(); }
-		else if(languageIndicator == 3) { return new GermanStrategy(); }
-		else if(languageIndicator == 4) { return new FrenchStrategy(); }
-		else if(languageIndicator == 5) { return new DutchStrategy(); }
-		else if(languageIndicator == 6) { return new TurkishStrategy(); }
-		else if(languageIndicator == 7) { return new IrishStrategy(); }
-		else if(languageIndicator == 8) { return new HindiStrategy(); }
-		else if(languageIndicator == 9) { return new JapaneseStrategy(); }
-		else if(languageIndicator == 10) { return new ChineseStrategy(); }
+		if(languageIndicator == 0) { this.lang = new EnglishStrategy(); }
+		else if(languageIndicator == 1) { this.lang = new SpanishStrategy(); }
+		else if(languageIndicator == 2) { this.lang = new PortugueseStrategy(); }
+		else if(languageIndicator == 3) { this.lang = new GermanStrategy(); }
+		else if(languageIndicator == 4) { this.lang = new FrenchStrategy(); }
+		else if(languageIndicator == 5) { this.lang = new DutchStrategy(); }
+		else if(languageIndicator == 6) { this.lang = new TurkishStrategy(); }
+		else if(languageIndicator == 7) { this.lang = new IrishStrategy(); }
+		else if(languageIndicator == 8) { this.lang = new HindiStrategy(); }
+		else if(languageIndicator == 9) { this.lang = new JapaneseStrategy(); }
+		else if(languageIndicator == 10) { this.lang = new ChineseStrategy(); }
 		else {
 			this.languageIndicator = 0;
-			return new EnglishStrategy();
+			this.lang = new EnglishStrategy();
 		}
 	}
 	
@@ -277,6 +277,10 @@ public class Profile {
 	
 	public int getLanguageIndicator() {
 		return languageIndicator;
+	}
+	
+	public void setLanguageIndicator(int languageIndicator) {
+		this.languageIndicator = languageIndicator;
 	}
 	
 	/**

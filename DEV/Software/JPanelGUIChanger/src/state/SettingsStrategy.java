@@ -206,6 +206,7 @@ public class SettingsStrategy extends StateStrategy {
 				profile.getSettings().setFocusMode(focusSettingBox.getSelectedIndex());
 				
 				//Update language indicator
+				profile.setLanguageIndicator(languageSettingBox.getSelectedIndex());
 				profile.setLanguageStrategy(languageSettingBox.getSelectedIndex());
 				
 				//Update Difficulty
@@ -243,4 +244,13 @@ public class SettingsStrategy extends StateStrategy {
 		});
 	}
 
+	
+	//Returns the save changes button
+	public JButton getSaveChangesButton() {
+		return saveChanges;
+	}
+	
+	public int getLanguageIndicatorFromBox() {
+		return languageSettingBox.getSelectedIndex();
+	}
 }

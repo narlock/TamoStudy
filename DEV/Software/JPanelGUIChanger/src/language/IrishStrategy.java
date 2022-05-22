@@ -25,7 +25,7 @@ public class IrishStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"Ná tabhair suas!"
 		};
 		this.titleText = engTitleText;
 	
@@ -183,8 +183,11 @@ public class IrishStrategy extends LanguageStrategy {
 			"Your statistics for your previous Tamo will be reset",
 			"Enter new Tamo name: "
 		};
-		this.deathText = engDeathText;
-		
-		
+		this.deathText = engDeathText;	
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Irish");
 	}
 }

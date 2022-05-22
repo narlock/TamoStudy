@@ -25,7 +25,7 @@ public class HindiStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"कभी हार मत मानो!"
 		};
 		this.titleText = engTitleText;
 	
@@ -184,7 +184,10 @@ public class HindiStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Hindi");
 	}
 }

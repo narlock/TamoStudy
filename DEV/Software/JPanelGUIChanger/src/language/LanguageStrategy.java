@@ -29,4 +29,6 @@ public abstract class LanguageStrategy {
 	public String[] aboutText;
 	public String[] deathText;
 	
+	public abstract void printCurrentLanguage();
+	
 }

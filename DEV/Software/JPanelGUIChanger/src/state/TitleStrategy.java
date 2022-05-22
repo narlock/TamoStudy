@@ -30,6 +30,7 @@ public class TitleStrategy extends StateStrategy {
 	@Override
 	public void setPanel() {
 		//Set the background color
+		profile.getLanguage().printCurrentLanguage();
 		this.setBackground(theme.subColor);
 	}
 

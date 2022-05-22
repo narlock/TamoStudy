@@ -4,7 +4,7 @@ public class DutchStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator 
 	 */
 	
 	public DutchStrategy() {
@@ -25,7 +25,7 @@ public class DutchStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"Geef nooit op!"
 		};
 		this.titleText = engTitleText;
 	
@@ -184,7 +184,10 @@ public class DutchStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Dutch");
 	}
 }

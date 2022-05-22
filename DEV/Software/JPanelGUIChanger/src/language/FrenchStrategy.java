@@ -4,7 +4,7 @@ public class FrenchStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator 
 	 */
 	
 	public FrenchStrategy() {
@@ -25,7 +25,7 @@ public class FrenchStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"Ne jamais abandonner!"
 		};
 		this.titleText = engTitleText;
 	
@@ -184,7 +184,10 @@ public class FrenchStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("French");
 	}
 }

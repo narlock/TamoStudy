@@ -183,8 +183,11 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Your statistics for your previous Tamo will be reset",
 			"Enter new Tamo name: "
 		};
-		this.deathText = engDeathText;
-		
-		
+		this.deathText = engDeathText;	
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("English");
 	}
 }

@@ -4,7 +4,7 @@ public class ChineseStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator 
 	 */
 	
 	public ChineseStrategy() {
@@ -25,7 +25,7 @@ public class ChineseStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"永不放弃！"
 		};
 		this.titleText = engTitleText;
 	
@@ -186,5 +186,10 @@ public class ChineseStrategy extends LanguageStrategy {
 		this.deathText = engDeathText;
 		
 		
+	}
+
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Chinese");
 	}
 }

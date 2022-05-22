@@ -88,6 +88,10 @@ public class MainGUI extends JFrame {
 	//ThemeStrategy
 	private Stack<JButton> selectButtons;
 	private CommunicateThemeAction themeAction;
+	
+	//Settings
+	private JButton saveChangesButton;
+	private int languageBoxIndicator;
 
 	/**
 	 * @brief Main Constructor
@@ -323,6 +327,13 @@ public class MainGUI extends JFrame {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Settings");
 				updateSideBar();
 				StateStrategy newStrategy = new SettingsStrategy(profile);
+				
+				saveChangesButton = ((SettingsStrategy) newStrategy).getSaveChangesButton();
+				saveChangesButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) { updateLanguageChange(); }
+				});
+				
 				recall(newStrategy);
 			}
 		});
@@ -773,5 +784,39 @@ public class MainGUI extends JFrame {
 				if(profile.getSettings().getShowAhmNotifications() == 1)
 					JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[8], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			}
+	}
+	
+	public void updateLanguageChange() {
+		int indicator = ((SettingsStrategy) strategy).getLanguageIndicatorFromBox();
+		profile.setLanguageIndicator(indicator);
+		profile.setLanguageStrategy(indicator);
+		profile.getLanguage().printCurrentLanguage();
+		
+		//Menu Label
+		openSideLabel.setText(profile.getLanguage().text[0]);
+		
+		//Button Labels
+		int buttonIndicator = 0;
+		for(JButton button : buttons) {
+			if(buttonIndicator == 0) { button.setText(profile.getLanguage().text[2]); }
+			else if(buttonIndicator == 1) { button.setText(profile.getLanguage().text[3]); }
+			else if(buttonIndicator == 2) { button.setText(profile.getLanguage().text[4]); }
+			else if(buttonIndicator == 3) { button.setText(profile.getLanguage().text[5]); }
+			else if(buttonIndicator == 4) { button.setText(profile.getLanguage().text[6]); }
+			else if(buttonIndicator == 5) { button.setText(profile.getLanguage().text[7]); }
+			else if(buttonIndicator == 6) { button.setText(profile.getLanguage().text[8]); }
+			else if(buttonIndicator == 7) { button.setText(profile.getLanguage().text[9]); }
+			else if(buttonIndicator == 8) { button.setText(profile.getLanguage().text[10]); }
+			
+			buttonIndicator++;
+		}
+		
+		//Other Labels
+		int labelIndicator = 0;
+		for(JLabel label : labels) {
+			if(labelIndicator == 0) { label.setText(profile.getLanguage().text[1] + profile.getUsername()); }
+			
+			labelIndicator++;
+		}
 	}
 }

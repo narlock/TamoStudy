@@ -25,7 +25,7 @@ public class TurkishStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"Asla pes etme!"
 		};
 		this.titleText = engTitleText;
 	
@@ -183,8 +183,11 @@ public class TurkishStrategy extends LanguageStrategy {
 			"Your statistics for your previous Tamo will be reset",
 			"Enter new Tamo name: "
 		};
-		this.deathText = engDeathText;
-		
-		
+		this.deathText = engDeathText;	
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Turkish");
 	}
 }

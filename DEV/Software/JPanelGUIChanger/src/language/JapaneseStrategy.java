@@ -25,7 +25,7 @@ public class JapaneseStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"あきらめないで！"
 		};
 		this.titleText = engTitleText;
 	
@@ -184,7 +184,10 @@ public class JapaneseStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Japanese");
 	}
 }

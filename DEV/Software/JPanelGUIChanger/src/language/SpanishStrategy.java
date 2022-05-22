@@ -10,7 +10,7 @@ public class SpanishStrategy extends LanguageStrategy {
 	public SpanishStrategy() {
 		String engText[] = {
 			"MENU",
-			"Welcome, ",
+			"Bienvenido, ",
 			"Title Card",
 			"Focus",
 			"Shop",
@@ -25,7 +25,7 @@ public class SpanishStrategy extends LanguageStrategy {
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Never give up!!"
+			"¡No rendirse nunca!"
 		};
 		this.titleText = engTitleText;
 	
@@ -184,7 +184,10 @@ public class SpanishStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
+	}
+	
+	@Override
+	public void printCurrentLanguage() {
+		System.out.println("Spanish");
 	}
 }
