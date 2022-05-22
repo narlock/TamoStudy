@@ -30,7 +30,7 @@ public class Settings {
 	//Default constructor; default settings
 	public Settings(int difficulty) {
 		this.focusMode = 0;
-		this.sessionSoundIndicator = 0;
+		this.sessionSoundIndicator = 1;
 		this.backgroundSoundIndicator = 0;
 		this.difficulty = difficulty;
 		this.showAhmNotifications = 1;

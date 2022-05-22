@@ -1,4 +1,14 @@
 eclipse.preferences.version=1
 encoding//src/MainGUI.java=UTF-8
+encoding//src/language/ChineseStrategy.java=UTF-8
+encoding//src/language/DutchStrategy.java=UTF-8
 encoding//src/language/EnglishStrategy.java=UTF-8
+encoding//src/language/FrenchStrategy.java=UTF-8
+encoding//src/language/GermanStrategy.java=UTF-8
+encoding//src/language/HindiStrategy.java=UTF-8
+encoding//src/language/IrishStrategy.java=UTF-8
+encoding//src/language/JapaneseStrategy.java=UTF-8
+encoding//src/language/PortugueseStrategy.java=UTF-8
+encoding//src/language/SpanishStrategy.java=UTF-8
+encoding//src/language/TurkishStrategy.java=UTF-8
 encoding//src/state/TitleStrategy.java=UTF-8

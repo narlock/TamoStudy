@@ -1,13 +1,13 @@
 package language;
 
-public class HindiStrategy extends LanguageStrategy {
+public class IrishStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
 	 * @translator Anthony Narlock
 	 */
 	
-	public HindiStrategy() {
+	public IrishStrategy() {
 		String engText[] = {
 			"MENU",
 			"Welcome, ",

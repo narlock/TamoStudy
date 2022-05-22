@@ -2,6 +2,7 @@ package state;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,22 +26,39 @@ public class AboutStrategy extends StateStrategy {
 		super(profile);
 	}
 
-	private JPanel socialsPanel;
+	private JPanel socialsPanel, textPanel;
 	private JButton anthonyWebButton, tamoWebButton,
 				gitWebButton, instaWebButton, discordButton;
 	
-	private JLabel heroImage;
+	private JLabel titleImage, groupImage, descLabel;
 	
 	@Override
 	public void setPanel() {
 		this.setBackground(theme.subColor);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		this.add(createSpaceLabel(0));
+		titleImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO.png")));
+			titleImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		this.add(titleImage);
 		
-		heroImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("ABOUT.png")));
-			heroImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		this.add(heroImage);
+		textPanel = new JPanel();
+			textPanel.setBackground(theme.subColor);
+			textPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		descLabel = new JLabel("<html>" + profile.getLanguage().aboutText[0] + "<br>" +
+					profile.getLanguage().aboutText[1] + "<br>" +
+					profile.getLanguage().aboutText[2] + "<br>" +
+					profile.getLanguage().aboutText[3] + "<br><br>" +
+					profile.getLanguage().aboutText[4] + "<b>" +
+					profile.getLanguage().aboutText[5] + "</b>"
+				);
+		descLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+		descLabel.setForeground(theme.textColor);
+		textPanel.add(descLabel);
+		this.add(textPanel);
+		
+		groupImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_GROUP.png")));
+			groupImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		this.add(groupImage);
 		
 		socialsPanel = new JPanel();
 			socialsPanel.setBackground(theme.subColor);

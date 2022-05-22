@@ -14,9 +14,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import language.ChineseStrategy;
+import language.DutchStrategy;
 import language.EnglishStrategy;
+import language.FrenchStrategy;
+import language.GermanStrategy;
 import language.HindiStrategy;
+import language.IrishStrategy;
+import language.JapaneseStrategy;
 import language.LanguageStrategy;
+import language.PortugueseStrategy;
+import language.SpanishStrategy;
+import language.TurkishStrategy;
 import resources.Theme;
 
 /**
@@ -240,8 +249,17 @@ public class Profile {
 	
 	public LanguageStrategy setLanguageStrategy(int languageIndicator) {
 		//English
-		if(languageIndicator == 0)
-			return new EnglishStrategy();
+		if(languageIndicator == 0) { return new EnglishStrategy(); }
+		else if(languageIndicator == 1) { return new SpanishStrategy(); }
+		else if(languageIndicator == 2) { return new PortugueseStrategy(); }
+		else if(languageIndicator == 3) { return new GermanStrategy(); }
+		else if(languageIndicator == 4) { return new FrenchStrategy(); }
+		else if(languageIndicator == 5) { return new DutchStrategy(); }
+		else if(languageIndicator == 6) { return new TurkishStrategy(); }
+		else if(languageIndicator == 7) { return new IrishStrategy(); }
+		else if(languageIndicator == 8) { return new HindiStrategy(); }
+		else if(languageIndicator == 9) { return new JapaneseStrategy(); }
+		else if(languageIndicator == 10) { return new ChineseStrategy(); }
 		else {
 			this.languageIndicator = 0;
 			return new EnglishStrategy();

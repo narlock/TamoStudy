@@ -145,12 +145,12 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Spanish",
 			"Portuguese",
 			"German",
-			"Japanese",
-			"Dutch",
 			"French",
+			"Dutch",
 			"Turkish",
 			"Irish",
 			"Hindi",
+			"Japanese",
 			"Chinese",
 			"Peaceful",
 			"Challenging",
@@ -167,6 +167,15 @@ public class EnglishStrategy extends LanguageStrategy {
 		};
 		this.settingsText = engSettingsText;
 		
+		String[] engAboutText = {
+			"TamoStudy is a productivity",
+			"work and focus timer that",
+			"implements a virtual pet to",
+			"help you stay driven to focus!",
+			"Developed by: ",
+			"Anthony Narlock"
+		};
+		this.aboutText = engAboutText;
 		
 		String[] engDeathText = {
 			"Tamo Death",
@@ -175,5 +184,7 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
+		
+		
 	}
 }
