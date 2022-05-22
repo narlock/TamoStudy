@@ -29,7 +29,7 @@ public class Settings {
 	
 	//Default constructor; default settings
 	public Settings(int difficulty) {
-		this.focusMode = 1;
+		this.focusMode = 0;
 		this.sessionSoundIndicator = 0;
 		this.backgroundSoundIndicator = 0;
 		this.difficulty = difficulty;
@@ -87,5 +87,17 @@ public class Settings {
 
 	public void setShowAhmNotifications(int showAhmNotifications) {
 		this.showAhmNotifications = showAhmNotifications;
+	}
+	
+	public String getSoundPath() {
+		if(sessionSoundIndicator == 1)
+			return "SOFT_ALARM.wav";
+		if(sessionSoundIndicator == 2)
+			return "TRAD_ALARM.wav";
+		if(sessionSoundIndicator == 3)
+			return "PAC_ALARM.wav";
+		
+		//This should never happen
+		return null;
 	}
 }

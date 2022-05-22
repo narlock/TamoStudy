@@ -107,6 +107,7 @@ public class MainGUI extends JFrame {
 		//UI Manager to change option pane colors
 		UI = new UIManager();
 		UI.put("OptionPane.background", theme.layerColor);
+		UI.put("OptionPane.messageForeground", theme.textColor);
 		UI.put("Panel.background", theme.layerColor);
 		
 		//Initializes the GUI components
@@ -474,12 +475,13 @@ public class MainGUI extends JFrame {
 					profile.getTamo().setHappiness(profile.getTamo().getHappiness() - 1);
 				}
 				
-				//profile.updateStudyStats(tempMin, tempSec);
+				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
+				profile.updateStudyStats(tempMin, tempSec);
 				
 				resetTimer();
 				timer.stop();
 				
-				JOptionPane.showMessageDialog(rootPane, "studyMessage", "secondParam", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png")));
+				JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[7], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			}
 			
 		});
@@ -569,45 +571,45 @@ public class MainGUI extends JFrame {
 				if(min < 0) {
 					
 					profile.updateStudyStats(tempMin, tempSec);
-					String studyMessage = "Session Completed!";
+					String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
 					
 					tempMin = 0;
 					tempSec = 0;
 
-//					if(profile.getSettings().getSessionSounds() >= 1) {
-//					
-//						try {
-//							//Get the url for the sound clip
-//							String soundPath = getSoundPath(profile.getSettings().getSessionSounds());
-//							
-//							URL url = this.getClass().getClassLoader().getResource(soundPath);
-//							AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-//							
-//							//get the clip from the url
-//							Clip clip = AudioSystem.getClip();
-//							clip.open(audioIn);
-//							
-//							//volume control - make the sound quieter
-//							FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-//					        volume.setValue(-1 * 20);
-//							
-//					        //start and loop the clip
-//							clip.start();
-//							clip.loop(Clip.LOOP_CONTINUOUSLY);
-//							
-//							//loop will end when user hits ok dialog
-//							JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-//							clip.stop();
-//							
-//						} catch (Exception ex2) {
-//							ex2.printStackTrace();
-//						}
-//					
-//					} else {
-//						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getSettings().getLang().get(61), JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("info.png")));
-//						
-//					}
-					JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("HAPPY.png")));
+					if(profile.getSettings().getSessionSoundIndicator() >= 1) {
+					
+						try {
+							//Get the url for the sound clip
+							String soundPath = profile.getSettings().getSoundPath();
+							
+							URL url = this.getClass().getClassLoader().getResource(soundPath);
+							AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+							
+							//get the clip from the url
+							Clip clip = AudioSystem.getClip();
+							clip.open(audioIn);
+							
+							//volume control - make the sound quieter
+							FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					        volume.setValue(-1 * 20);
+							
+					        //start and loop the clip
+							clip.start();
+							clip.loop(Clip.LOOP_CONTINUOUSLY);
+							
+							//loop will end when user hits ok dialog
+							JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							clip.stop();
+							
+						} catch (Exception ex2) {
+							ex2.printStackTrace();
+						}
+					
+					} else {
+						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						
+					}
+					//JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 					//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 					
 					if(profile.getSettings().getFocusMode() == 2 && totalPomodoroSessions != 0) {

@@ -124,6 +124,7 @@ public class SettingsStrategy extends StateStrategy {
 			difficultySettingBox.setFont(theme.fontBoldRegSmall);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
+			difficultySettingBox.setSelectedIndex(profile.getSettings().getDifficulty());
 			displayUnsavedChanges(difficultySettingBox);
 		difficultySettingPanel.add(difficultySettingLabel);
 		difficultySettingPanel.add(difficultySettingBox);
@@ -135,9 +136,11 @@ public class SettingsStrategy extends StateStrategy {
 			soundSettingLabel.setForeground(theme.textColor);
 		soundSettingBox = new JComboBox();
 			soundSettingBox.setFont(theme.fontBoldRegSmall);
+			soundSettingBox.addItem(profile.getLanguage().settingsText[30]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[25]);
+			soundSettingBox.setSelectedIndex(profile.getSettings().getSessionSoundIndicator());
 			displayUnsavedChanges(soundSettingBox);
 		soundSettingPanel.add(soundSettingLabel);
 		soundSettingPanel.add(soundSettingBox);

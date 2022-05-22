@@ -162,7 +162,8 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Save Changes",
 			"Changes Saved!",
 			"You have unsaved changes.",
-			"Achievement Notifications"
+			"Achievement Notifications",
+			"No Sound"
 		};
 		this.settingsText = engSettingsText;
 		

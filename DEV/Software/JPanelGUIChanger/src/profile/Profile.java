@@ -88,9 +88,9 @@ public class Profile {
 		this.tamo = new Tamo("Lisa");
 		this.languageIndicator = 0;
 		this.lang = setLanguageStrategy(languageIndicator);
-		this.ahmString = "00000000000";
+		this.ahmString = "000000000000";
 		this.invString = "01";
-		this.settings = new Settings(1);
+		this.settings = new Settings(0);
 		
 		//On a new profile, they will be the same!
 		this.lastLoginDateString = "2022-05-19";
