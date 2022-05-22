@@ -70,7 +70,6 @@ public class SettingsStrategy extends StateStrategy {
 			settingsHeaderLabel.setForeground(theme.textColor);
 			settingsHeaderLabel.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(settingsHeaderLabel);
-		this.add(createSpaceLabel(0));
 		
 		optionsPanel = new JPanel();
 		optionsPanel.setBackground(theme.subColor);
@@ -157,14 +156,17 @@ public class SettingsStrategy extends StateStrategy {
 		}
 		ahmNotificationsButton = new JButton(labelText);
 			ahmNotificationsButton.setFont(theme.fontBoldRegSmall);
-			ahmNotificationsButton.setForeground(theme.textColor);
+		ahmNotificationsPanel.add(ahmNotificationsLabel);
+		ahmNotificationsPanel.add(ahmNotificationsButton);
 			
 		optionsPanel.add(focusSettingPanel);
 		optionsPanel.add(languageSettingPanel);
 		optionsPanel.add(difficultySettingPanel);
 		optionsPanel.add(soundSettingPanel);
+		optionsPanel.add(ahmNotificationsPanel);
 		
 		this.add(optionsPanel);
+		this.add(createSpaceLabel(0));
 		
 		saveChanges = new JButton(profile.getLanguage().settingsText[26]);
 			saveChanges.setAlignmentX(CENTER_ALIGNMENT);

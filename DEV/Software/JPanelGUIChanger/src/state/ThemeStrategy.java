@@ -168,7 +168,9 @@ public class ThemeStrategy extends StateStrategy {
 		//Reach 3 hours focus time
 		if(profile.getAhmIndicator(4).equals("0")) {
 			profile.getAchievement(4);
-			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[4], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[4], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 		}
 	}
 	

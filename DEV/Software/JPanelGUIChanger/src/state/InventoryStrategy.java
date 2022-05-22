@@ -119,7 +119,9 @@ public class InventoryStrategy extends StateStrategy {
 		//Reach 3 hours focus time
 		if(profile.getAhmIndicator(5).equals("0")) {
 			profile.getAchievement(5);
-			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[5], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[5], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 		}
 	}
 

@@ -374,7 +374,9 @@ public class ShopStrategy extends StateStrategy {
 	public void checkTamoHungerAchievement() {
 		if(profile.getTamo().getHunger() == 10 && profile.getAhmIndicator(7).equals("0")) {
 			profile.getAchievement(7);
-			JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[7], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[7], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 		}
 	}
 

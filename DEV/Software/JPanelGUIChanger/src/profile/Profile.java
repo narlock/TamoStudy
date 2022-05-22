@@ -69,14 +69,14 @@ public class Profile {
 		this.username = "Anthony";
 		this.joinDateString = "2020-01-31";
 		this.tamoTokens = 5000;
-		this.totalTime = 2592003;
+		this.totalTime = 0;
 		this.bgIndicator = 0;
 		this.themeIndicator = 0;
 		this.strikes = 0;
 		this.tamo = new Tamo("Lisa");
 		this.languageIndicator = 0;
 		this.lang = setLanguageStrategy(languageIndicator);
-		this.ahmString = "000000100000000";
+		this.ahmString = "000000000000000";
 		this.invString = "01";
 		this.settings = new Settings();
 	}
