@@ -337,7 +337,7 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JLabel getTamoImageLabel() { return imageLabel; }
 	
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			button.setBackground(Color.WHITE);
 			
 		button.setFont(theme.fontBoldRegSmall);
@@ -346,7 +346,7 @@ public class StudyFocusStrategy extends StateStrategy {
 	}
 	
 	public void setUpComboBox(JComboBox box) {
-		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			box.setBackground(Color.WHITE);
 		
 		box.setFont(theme.fontBoldRegSmall);

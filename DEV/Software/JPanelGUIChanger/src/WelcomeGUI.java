@@ -91,7 +91,7 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			button.setBackground(Color.WHITE);
 			
 		button.setFont(fontBoldReg);

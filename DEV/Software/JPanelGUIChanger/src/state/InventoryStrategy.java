@@ -85,7 +85,7 @@ public class InventoryStrategy extends StateStrategy {
 			
 			JButton useButton = new JButton(profile.getLanguage().inventoryText[1]);
 			
-			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				useButton.setBackground(Color.WHITE);
 			
 				useButton.setFocusPainted(false);

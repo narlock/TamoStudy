@@ -172,6 +172,7 @@ public class SettingsStrategy extends StateStrategy {
 		optionsPanel.add(ahmNotificationsPanel);
 		
 		this.add(optionsPanel);
+		this.add(createSpaceLabel(0));
 		
 		saveChanges = new JButton(profile.getLanguage().settingsText[26]);
 		styleComponent(saveChanges);
@@ -258,9 +259,9 @@ public class SettingsStrategy extends StateStrategy {
 	//Style Component
 	public void styleComponent(JComponent comp) {
 		if(comp instanceof JButton) {
-			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				if(((JButton) comp).getText().equals(profile.getLanguage().settingsText[26])) {
-					comp.setAlignmentX(CENTER_ALIGNMENT);
+					comp.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 					comp.setBackground(new Color(120,255,120));
 					comp.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 				} else {
@@ -273,7 +274,7 @@ public class SettingsStrategy extends StateStrategy {
 		}
 		
 		if(comp instanceof JComboBox) {
-			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				comp.setBackground(Color.WHITE);
 			
 			comp.setFont(theme.fontBoldRegSmall);

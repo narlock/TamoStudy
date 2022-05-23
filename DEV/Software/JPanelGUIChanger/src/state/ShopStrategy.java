@@ -211,7 +211,7 @@ public class ShopStrategy extends StateStrategy {
 			purchaseButton.setFont(new Font("Arial", Font.BOLD, 12));
 			purchaseButton.setBorder(new BubbleBorder(Color.BLACK, 2, 6, 5, true));
 			
-			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				purchaseButton.setBackground(Color.WHITE);
 			
 		infoPanel.add(purchaseButton);
@@ -280,7 +280,7 @@ public class ShopStrategy extends StateStrategy {
 						confirmPurchase.setFocusPainted(false);
 						confirmPurchase.setBorder(new BubbleBorder(Color.BLACK, 2, 7, 2, true));
 						
-						if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+						if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 							confirmPurchase.setBackground(Color.WHITE);
 						
 						confirmPurchase.addActionListener(new ActionListener() {

@@ -121,7 +121,7 @@ public class ThemeStrategy extends StateStrategy {
 		JButton select = new JButton("<html>" + profile.getLanguage().themesText[9] + "<br>" + name + "</html>");
 		
 		//Style
-		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			select.setBackground(Color.WHITE);
 		
 		select.setFocusPainted(false);
