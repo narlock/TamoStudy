@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 import resources.TextBubbleBorder;
 
@@ -294,7 +295,9 @@ public class ShopStrategy extends StateStrategy {
 								//Update Food
 								if(profile.getTamo().getHunger() + hunger >= 10) { profile.getTamo().setHunger(10); }
 								else { profile.getTamo().setHunger(profile.getTamo().getHunger() + hunger); }
+								
 								//TODO Update the profile file
+								ProfileReaderWriter.updateProfileInfoToFile(profile);
 								
 								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
 								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
@@ -362,7 +365,9 @@ public class ShopStrategy extends StateStrategy {
 								
 								//Put the Item in profile inventory
 								profile.setInvString(profile.getInvString() + Integer.toString(indicator));
+								
 								//TODO update the file
+								ProfileReaderWriter.updateProfileInfoToFile(profile);
 								
 								messageText.setBorder(new TextBubbleBorder(Color.BLACK, 2, 6, 10, true));
 								messageText.setText("<html>" + profile.getLanguage().shopText[11] + "<br>"  + profile.getLanguage().shopText[12] + "</html>");
@@ -401,6 +406,7 @@ public class ShopStrategy extends StateStrategy {
 	public void checkTamoHungerAchievement() {
 		if(profile.getTamo().getHunger() == 10 && profile.getAhmIndicator(7).equals("0")) {
 			profile.getAchievement(7);
+			ProfileReaderWriter.updateProfileInfoToFile(profile);
 			
 			if(profile.getSettings().getShowAhmNotifications() == 1)
 				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[7], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));

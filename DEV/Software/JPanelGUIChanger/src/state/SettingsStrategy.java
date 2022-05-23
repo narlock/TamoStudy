@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 
 public class SettingsStrategy extends StateStrategy {
@@ -224,8 +225,8 @@ public class SettingsStrategy extends StateStrategy {
 					profile.getSettings().setShowAhmNotifications(1);
 				}
 				
-				//TODO
 				//Write the information to the profile's file
+				ProfileReaderWriter.updateProfileInfoToFile(profile);
 			}
 			
 		});

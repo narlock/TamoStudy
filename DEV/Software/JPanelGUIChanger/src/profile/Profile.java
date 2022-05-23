@@ -142,6 +142,7 @@ public class Profile {
 	
 	//Load Profile Constructor
 	public Profile(
+			File file,
 			String username,
 			String joinDateString,
 			String lastLoginDateString,
@@ -150,14 +151,13 @@ public class Profile {
 			int bgIndicator,
 			int themeIndicator,
 			int strikes,
-			String tamoName,
-			int tamoHappiness,
-			int tamoHunger,
-			int tamoId,
+			Tamo tamo,
 			int languageIndicator,
 			String ahmString,
-			String invString
+			String invString,
+			Settings settings
 		) {
+		this.file = file;
 		
 		this.username = username;
 		this.joinDateString = joinDateString;
@@ -169,12 +169,14 @@ public class Profile {
 		this.themeIndicator = themeIndicator;
 		this.strikes = strikes;
 		
-		this.tamo = new Tamo(tamoName, tamoHappiness, tamoHunger, tamoId);
+		this.tamo = tamo;
 		this.languageIndicator = languageIndicator;
 		setLanguageStrategy(languageIndicator);
 		
 		this.ahmString = ahmString;
 		this.invString = invString;
+		
+		this.settings = settings;
 		
 		//TODO
 		//Modify the dates accordingly
@@ -549,6 +551,25 @@ public class Profile {
 				"\nSettings/difficulty: " + settings.getDifficulty() +
 				"\n========================="
 				);
+	}
+	
+	public File getFile() {
+		return file;
+	}
+
+	/**
+	 * toString
+	 * This will return the string needed on file input
+	 */
+	@Override
+	public String toString() {
+		return "b4.0," + username + "," + joinDateString + "," + lastLoginDateString + ","
+			+ tamoTokens + "," + totalTime + "," + bgIndicator + "," + themeIndicator + ","
+			+ strikes + "," + tamo.getName() + "," + tamo.getHappiness() + ","
+			+ tamo.getHunger() + "," + tamo.getId() + "," + languageIndicator + ","
+			+ ahmString + "," + invString + "," + settings.getFocusMode() + ","
+			+ settings.getSessionSoundIndicator() + "," + settings.getBackgroundSoundIndicator() + ","
+			+ settings.getDifficulty() + "," + settings.getShowAhmNotifications();
 	}
 	
 }

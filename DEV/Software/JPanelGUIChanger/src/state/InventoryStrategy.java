@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 import resources.TextBubbleBorder;
 
@@ -99,6 +100,7 @@ public class InventoryStrategy extends StateStrategy {
 					profile.setBgIndicator(Integer.parseInt(name));
 					messageLabel.setText(profile.getLanguage().inventoryText[2]);
 					checkBackgroundAchievement();
+					ProfileReaderWriter.updateProfileInfoToFile(profile);
 				}
 				
 			});

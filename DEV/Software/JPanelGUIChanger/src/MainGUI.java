@@ -12,6 +12,7 @@ import javax.sound.sampled.FloatControl;
 import javax.swing.*;
 
 import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.CommunicateThemeAction;
 import resources.Theme;
 import state.AboutStrategy;
@@ -726,6 +727,9 @@ public class MainGUI extends JFrame {
 		
 		//Check Happiness/Study Achievement
 		checkForNewAchievements();
+		
+		//Update info to file
+		ProfileReaderWriter.updateProfileInfoToFile(profile);
 	}
 	
 	//Indicates next session of Pomodoro Mode
@@ -776,44 +780,46 @@ public class MainGUI extends JFrame {
 	public void checkForNewAchievements() {
 		System.out.println("[TAMOSTUDY] Checking for new Achievements");
 		
-			//Reach 3 hours focus time
-			if(profile.getTotalTime() >= 10800 && profile.getAhmIndicator(0).equals("0")) {
-				profile.getAchievement(0);
-				
-				if(profile.getSettings().getShowAhmNotifications() == 1)
-					JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[0], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			}
-			//Reach 1 day focus time
-			if(profile.getTotalTime() >= 86400 && profile.getAhmIndicator(1).equals("0")) {
-				profile.getAchievement(1);
-				
-				if(profile.getSettings().getShowAhmNotifications() == 1)
-					JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[1], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			}
-				
-			//Reach 7 day focus time
-			if(profile.getTotalTime() >= 604800 && profile.getAhmIndicator(2).equals("0")) {
-				profile.getAchievement(2);
-				
-				if(profile.getSettings().getShowAhmNotifications() == 1)
-					JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[2], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			}
-
-			//Reach 30 day focus time
-			if(profile.getTotalTime() >= 2592000 && profile.getAhmIndicator(3).equals("0")) {
-				profile.getAchievement(3);
-				
-				if(profile.getSettings().getShowAhmNotifications() == 1)
-					JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[3], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			}
+		//Reach 3 hours focus time
+		if(profile.getTotalTime() >= 10800 && profile.getAhmIndicator(0).equals("0")) {
+			profile.getAchievement(0);
 			
-			//Check if Tamo is full Happiness
-			if(profile.getTamo().getHappiness() == 10 && profile.getAhmIndicator(8).equals("0")) {
-				profile.getAchievement(8);
-				
-				if(profile.getSettings().getShowAhmNotifications() == 1)
-					JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[8], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			}
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[0], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
+		//Reach 1 day focus time
+		if(profile.getTotalTime() >= 86400 && profile.getAhmIndicator(1).equals("0")) {
+			profile.getAchievement(1);
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[1], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
+			
+		//Reach 7 day focus time
+		if(profile.getTotalTime() >= 604800 && profile.getAhmIndicator(2).equals("0")) {
+			profile.getAchievement(2);
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[2], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
+
+		//Reach 30 day focus time
+		if(profile.getTotalTime() >= 2592000 && profile.getAhmIndicator(3).equals("0")) {
+			profile.getAchievement(3);
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(rootPane, profile.getLanguage().ahmTitle[3], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
+		
+		//Check if Tamo is full Happiness
+		if(profile.getTamo().getHappiness() == 10 && profile.getAhmIndicator(8).equals("0")) {
+			profile.getAchievement(8);
+			
+			if(profile.getSettings().getShowAhmNotifications() == 1)
+				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[8], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		}
+		
+		ProfileReaderWriter.updateProfileInfoToFile(profile);
 	}
 	
 	public void updateLanguageChange() {

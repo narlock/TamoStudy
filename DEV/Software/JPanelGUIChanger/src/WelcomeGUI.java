@@ -237,11 +237,14 @@ public class WelcomeGUI extends JFrame {
 						"Create New Profile", JOptionPane.OK_CANCEL_OPTION, 
 						JOptionPane.PLAIN_MESSAGE);
 				if(resultPane == JOptionPane.OK_OPTION) {
-					MainGUI gui = new MainGUI(
-						new Profile(usernameField.getText(), tamoNameField.getText(), 
-						languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex())
-					);
-					hideWindow();
+					profile = new Profile(usernameField.getText(), tamoNameField.getText(), 
+							languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex());
+					
+					if(ProfileReaderWriter.writeProfileToFile(profile) != null) {
+						MainGUI gui = new MainGUI(profile);
+						hideWindow();
+					}
+					
 				}
 			}
 		});

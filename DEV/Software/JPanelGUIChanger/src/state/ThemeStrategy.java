@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 import resources.CommunicateThemeAction;
 import resources.Theme;
@@ -141,6 +142,7 @@ public class ThemeStrategy extends StateStrategy {
 				else if(imageUrl.equals("CLASSIC_ORANGE_MODE.png")) { themeChanged(6); }
 				else if(imageUrl.equals("CLASSIC_PURPLE_MODE.png")) { themeChanged(7); }
 				checkThemeAchievement();
+				ProfileReaderWriter.updateProfileInfoToFile(profile);
 			}
 		});
 		selectButtons.push(select);
@@ -179,6 +181,7 @@ public class ThemeStrategy extends StateStrategy {
 		//Reach 3 hours focus time
 		if(profile.getAhmIndicator(4).equals("0")) {
 			profile.getAchievement(4);
+			ProfileReaderWriter.updateProfileInfoToFile(profile);
 			
 			if(profile.getSettings().getShowAhmNotifications() == 1)
 				JOptionPane.showMessageDialog(this, profile.getLanguage().ahmTitle[4], profile.getLanguage().text[11], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
