@@ -37,9 +37,9 @@ public class AboutStrategy extends StateStrategy {
 		this.setBackground(theme.subColor);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		titleImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO.png")));
-			titleImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		this.add(titleImage);
+		//titleImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO.png")));
+		//	titleImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		//this.add(titleImage);
 		
 		textPanel = new JPanel();
 			textPanel.setBackground(theme.subColor);
@@ -51,7 +51,7 @@ public class AboutStrategy extends StateStrategy {
 					profile.getLanguage().aboutText[4] + "<b>" +
 					profile.getLanguage().aboutText[5] + "</b>"
 				);
-		descLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+		descLabel.setFont(new Font("Arial", Font.PLAIN, 24));
 		descLabel.setForeground(theme.textColor);
 		textPanel.add(descLabel);
 		this.add(textPanel);

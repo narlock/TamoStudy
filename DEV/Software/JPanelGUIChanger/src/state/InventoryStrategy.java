@@ -2,6 +2,7 @@ package state;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,7 +84,14 @@ public class InventoryStrategy extends StateStrategy {
 			panel.add(imageLabel);
 			
 			JButton useButton = new JButton(profile.getLanguage().inventoryText[1]);
+			
+			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+				useButton.setBackground(Color.WHITE);
+			
+				useButton.setFocusPainted(false);
 				useButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+				useButton.setFont(new Font("Arial", Font.BOLD, 12));
+				useButton.setBorder(new BubbleBorder(Color.BLACK, 2, 5, 2, true));
 			useButton.addActionListener(new ActionListener() {
 
 				@Override

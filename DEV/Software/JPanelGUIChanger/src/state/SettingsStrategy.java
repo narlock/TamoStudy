@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import resources.BubbleBorder;
 
 public class SettingsStrategy extends StateStrategy {
 
@@ -62,7 +64,7 @@ public class SettingsStrategy extends StateStrategy {
 			messageLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
 		this.add(messageLabel);
-		this.add(createSpaceLabel(0));
+		
 		
 		//Header
 		settingsHeaderLabel = new JLabel(profile.getLanguage().text[9]);
@@ -70,6 +72,7 @@ public class SettingsStrategy extends StateStrategy {
 			settingsHeaderLabel.setForeground(theme.textColor);
 			settingsHeaderLabel.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(settingsHeaderLabel);
+		this.add(createSpaceLabel(0));
 		
 		optionsPanel = new JPanel();
 		optionsPanel.setBackground(theme.subColor);
@@ -82,7 +85,7 @@ public class SettingsStrategy extends StateStrategy {
 			focusSettingLabel.setForeground(theme.textColor);
 			focusSettingLabel.setFont(theme.fontBoldRegSmall);
 		focusSettingBox = new JComboBox();
-			focusSettingBox.setFont(theme.fontBoldRegSmall);
+			styleComponent(focusSettingBox);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
@@ -98,7 +101,7 @@ public class SettingsStrategy extends StateStrategy {
 			languageSettingLabel.setForeground(theme.textColor);
 			languageSettingLabel.setFont(theme.fontBoldRegSmall);
 		languageSettingBox = new JComboBox();
-			languageSettingBox.setFont(theme.fontBoldRegSmall);
+			styleComponent(languageSettingBox);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[8]);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[9]);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[10]);
@@ -121,7 +124,7 @@ public class SettingsStrategy extends StateStrategy {
 			difficultySettingLabel.setForeground(theme.textColor);
 			difficultySettingLabel.setFont(theme.fontBoldRegSmall);
 		difficultySettingBox = new JComboBox();
-			difficultySettingBox.setFont(theme.fontBoldRegSmall);
+			styleComponent(difficultySettingBox);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
 			difficultySettingBox.setSelectedIndex(profile.getSettings().getDifficulty());
@@ -135,7 +138,7 @@ public class SettingsStrategy extends StateStrategy {
 			soundSettingLabel.setFont(theme.fontBoldRegSmall);
 			soundSettingLabel.setForeground(theme.textColor);
 		soundSettingBox = new JComboBox();
-			soundSettingBox.setFont(theme.fontBoldRegSmall);
+			styleComponent(soundSettingBox);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[30]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
@@ -158,7 +161,7 @@ public class SettingsStrategy extends StateStrategy {
 			labelText = profile.getLanguage().settingsText[22];
 		}
 		ahmNotificationsButton = new JButton(labelText);
-			ahmNotificationsButton.setFont(theme.fontBoldRegSmall);
+		styleComponent(ahmNotificationsButton);
 		ahmNotificationsPanel.add(ahmNotificationsLabel);
 		ahmNotificationsPanel.add(ahmNotificationsButton);
 			
@@ -169,11 +172,9 @@ public class SettingsStrategy extends StateStrategy {
 		optionsPanel.add(ahmNotificationsPanel);
 		
 		this.add(optionsPanel);
-		this.add(createSpaceLabel(0));
 		
 		saveChanges = new JButton(profile.getLanguage().settingsText[26]);
-			saveChanges.setAlignmentX(CENTER_ALIGNMENT);
-			saveChanges.setFont(theme.fontBoldRegSmall);
+		styleComponent(saveChanges);
 		this.add(saveChanges);
 		this.add(createSpaceLabel(1));
 	}
@@ -252,5 +253,30 @@ public class SettingsStrategy extends StateStrategy {
 	
 	public int getLanguageIndicatorFromBox() {
 		return languageSettingBox.getSelectedIndex();
+	}
+	
+	//Style Component
+	public void styleComponent(JComponent comp) {
+		if(comp instanceof JButton) {
+			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+				if(((JButton) comp).getText().equals(profile.getLanguage().settingsText[26])) {
+					comp.setAlignmentX(CENTER_ALIGNMENT);
+					comp.setBackground(new Color(120,255,120));
+					comp.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
+				} else {
+					comp.setBackground(Color.WHITE);
+				}
+					
+			
+			comp.setFont(theme.fontBoldRegSmall);
+			((AbstractButton) comp).setFocusPainted(false);
+		}
+		
+		if(comp instanceof JComboBox) {
+			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+				comp.setBackground(Color.WHITE);
+			
+			comp.setFont(theme.fontBoldRegSmall);
+		}
 	}
 }

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import resources.BubbleBorder;
 import resources.CommunicateThemeAction;
 import resources.Theme;
 
@@ -118,6 +119,16 @@ public class ThemeStrategy extends StateStrategy {
 		JLabel imgLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource(imageUrl)));
 		
 		JButton select = new JButton("<html>" + profile.getLanguage().themesText[9] + "<br>" + name + "</html>");
+		
+		//Style
+		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			select.setBackground(Color.WHITE);
+		
+		select.setFocusPainted(false);
+		select.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		select.setFont(new Font("Arial", Font.BOLD, 12));
+		select.setBorder(new BubbleBorder(Color.BLACK, 2, 5, 2, true));
+		
 		select.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -39,9 +39,10 @@ public class WelcomeGUI extends JFrame {
 	public WelcomeGUI() {
 		initFrame();
 		initComponentsToFrame();
+		initComponentActions();
 		this.setSize(650,500);
 	}
-	
+
 	public void initFrame() {
 		this.setBackground(mainColor);
 		this.setTitle("launcher • TamoStudy Beta v4.0");
@@ -90,8 +91,10 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	public void setUpJButton(JButton button) {
+		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			button.setBackground(Color.WHITE);
+			
 		button.setFont(fontBoldReg);
-		button.setBackground(Color.WHITE);
 		button.setFocusPainted(false);
 		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 	}
@@ -102,5 +105,10 @@ public class WelcomeGUI extends JFrame {
 		JLabel transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
 		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		return transparentComponent;
+	}
+	
+	//Initializes the component Actions
+	public void initComponentActions() {
+		
 	}
 }

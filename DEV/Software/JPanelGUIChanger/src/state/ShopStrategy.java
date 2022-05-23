@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import profile.Profile;
+import resources.BubbleBorder;
 import resources.TextBubbleBorder;
 
 /**
@@ -206,6 +207,13 @@ public class ShopStrategy extends StateStrategy {
 		JButton purchaseButton = new JButton(profile.getLanguage().shopText[4]);
 			setBackgroundButtonAction(purchaseButton, price, indicator);
 			purchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			purchaseButton.setFocusPainted(false);
+			purchaseButton.setFont(new Font("Arial", Font.BOLD, 12));
+			purchaseButton.setBorder(new BubbleBorder(Color.BLACK, 2, 6, 5, true));
+			
+			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+				purchaseButton.setBackground(Color.WHITE);
+			
 		infoPanel.add(purchaseButton);
 		itemPanel.add(infoPanel);
 		
@@ -233,8 +241,15 @@ public class ShopStrategy extends StateStrategy {
 		tokenPanel.add(foodPriceLabel);
 		infoPanel.add(tokenPanel);
 		JButton foodPurchaseButton = new JButton(profile.getLanguage().shopText[4]);
-			foodPurchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			setFoodButtonAction(foodPurchaseButton, price, hunger);
+			foodPurchaseButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			foodPurchaseButton.setFocusPainted(false);
+			foodPurchaseButton.setFont(new Font("Arial", Font.BOLD, 12));
+			foodPurchaseButton.setBorder(new BubbleBorder(Color.BLACK, 2, 6, 5, true));
+			
+			if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+				foodPurchaseButton.setBackground(Color.WHITE);
+			
 		infoPanel.add(foodPurchaseButton);
 		foodPanel.add(infoPanel);
 		
@@ -261,7 +276,13 @@ public class ShopStrategy extends StateStrategy {
 						optionPanel.setBackground(theme.subColor);
 					JButton confirmPurchase = new JButton(profile.getLanguage().shopText[13]);
 						confirmPurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-						confirmPurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						confirmPurchase.setFont(new Font("Arial", Font.BOLD, 18));
+						confirmPurchase.setFocusPainted(false);
+						confirmPurchase.setBorder(new BubbleBorder(Color.BLACK, 2, 7, 2, true));
+						
+						if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+							confirmPurchase.setBackground(Color.WHITE);
+						
 						confirmPurchase.addActionListener(new ActionListener() {
 
 							@Override
@@ -287,6 +308,12 @@ public class ShopStrategy extends StateStrategy {
 					JButton declinePurchase = new JButton(profile.getLanguage().shopText[14]);
 						declinePurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 						declinePurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						declinePurchase.setFocusPainted(false);
+						declinePurchase.setBorder(new BubbleBorder(Color.BLACK, 2, 7, 2, true));
+						
+						if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+							declinePurchase.setBackground(Color.WHITE);
+						
 						declinePurchase.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {

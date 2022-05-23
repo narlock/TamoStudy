@@ -180,9 +180,9 @@ public class StudyFocusStrategy extends StateStrategy {
 		//timerSetPanel - CUSTOM INTERVAL COUNTDOWN
 		if(profile.getSettings().getFocusMode() == 0) {
 			minuteBox = new JComboBox();
-				minuteBox.setFont(theme.fontBoldRegSmall);
+			setUpComboBox(minuteBox);
 			secondBox = new JComboBox();
-				secondBox.setFont(theme.fontBoldRegSmall);
+			setUpComboBox(secondBox);;
 			
 			timerSetBoxPanel.add(minuteBox);
 			timerSetBoxPanel.add(secondBox);
@@ -193,7 +193,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		//timerSetPanel - 5 MIN INTERVAL COUNTDOWN
 		if(profile.getSettings().getFocusMode() == 1) {
 			minuteBox = new JComboBox();
-				minuteBox.setFont(theme.fontBoldRegSmall);
+			setUpComboBox(minuteBox);
 			timerSetBoxPanel.add(minuteBox);
 			
 			timerPanel.add(timerSetBoxPanel);
@@ -211,11 +211,11 @@ public class StudyFocusStrategy extends StateStrategy {
 
 			//Set Boxes
 			pomoNumberSessionBox = new JComboBox();
-				pomoNumberSessionBox.setBackground(Color.WHITE);
+			setUpComboBox(pomoNumberSessionBox);
 			pomoSessionBox = new JComboBox();
-				pomoSessionBox.setBackground(Color.WHITE);
+			setUpComboBox(pomoSessionBox);
 			pomoBreakBox = new JComboBox();
-				pomoBreakBox.setBackground(Color.WHITE);
+			setUpComboBox(pomoBreakBox);
 				
 			timerSetBoxPanel.add(pomoNumberSessionBox);
 			timerSetBoxPanel.add(pomoSessionBox);
@@ -229,10 +229,10 @@ public class StudyFocusStrategy extends StateStrategy {
 			timerButtonPanel.setBackground(theme.subColor);
 			
 		startFocusButton = new JButton(profile.getLanguage().focusText[4]);
-			startFocusButton.setFont(theme.fontBoldRegSmall);
+		setUpJButton(startFocusButton);
 		
 		breakFocusButton = new JButton(profile.getLanguage().focusText[5]);
-			breakFocusButton.setFont(theme.fontBoldRegSmall);
+		setUpJButton(breakFocusButton);
 		timerButtonPanel.add(startFocusButton);
 		timerButtonPanel.add(breakFocusButton);
 		
@@ -336,4 +336,19 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JLabel getCurrentSessionLabel() { return currentSessionLabel; }
 	public JLabel getTamoImageLabel() { return imageLabel; }
 	
+	public void setUpJButton(JButton button) {
+		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			button.setBackground(Color.WHITE);
+			
+		button.setFont(theme.fontBoldRegSmall);
+		button.setFocusPainted(false);
+		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
+	}
+	
+	public void setUpComboBox(JComboBox box) {
+		if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+			box.setBackground(Color.WHITE);
+		
+		box.setFont(theme.fontBoldRegSmall);
+	}
 }
