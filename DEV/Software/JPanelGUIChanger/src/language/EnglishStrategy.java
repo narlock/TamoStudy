@@ -40,7 +40,7 @@ public class EnglishStrategy extends LanguageStrategy {
 			"Session Focus Broke",
 			"You focused for",
 			"minutes(s) and",
-			"seconds(s)",
+			"second(s)",
 			"Let's Focus!",
 			"Break"
 		};

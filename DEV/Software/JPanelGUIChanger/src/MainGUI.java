@@ -95,7 +95,7 @@ public class MainGUI extends JFrame {
 
 	/**
 	 * @brief Main Constructor
-	 * Sets the default values, will be used on new profile
+	 * Sets the default values, will for testing
 	 */
 	public MainGUI() {
 		//Sets the attributes accordingly
@@ -128,8 +128,38 @@ public class MainGUI extends JFrame {
 		checkForNewAchievements();
 	}
 	
-	//TODO Make Load Constructor
-	//Sets values based off of profile
+	//Main Constructor
+	//This constructor is called on both New Profile and Load Profile
+	public MainGUI(Profile profile) {
+		//Sets the attributes accordingly
+		openedSideBar = true;
+		this.profile = profile; //TODO Update this so it loads/New profile
+		theme = this.profile.getThemeIndicator(); //For colors
+		strategy = new TitleStrategy(this.profile);
+		panels = new Stack<>();
+		buttons = new Stack<>();
+		labels = new Stack<>();
+		breaks = new Stack<>();
+		
+		//UI Manager to change option pane colors
+		UI = new UIManager();
+		UI.put("OptionPane.background", theme.layerColor);
+		UI.put("OptionPane.messageForeground", theme.textColor);
+		UI.put("Panel.background", theme.layerColor);
+		
+		//Initializes the GUI components
+		initFrame();
+		initSidePanels();
+		initComponentsToFrame();
+		
+		//Hopefully fixes Swing issues on painting
+		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
+		this.setSize(800,600);	//Resize properly so display is correct
+		this.repaint();
+		
+		//profile.printInfo();
+		checkForNewAchievements();
+	}
 	
 	/**
 	 * recall

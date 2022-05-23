@@ -1,15 +1,32 @@
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import profile.Profile;
+import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
+import resources.CheckForUpdates;
+import resources.Encryption;
 
 /**
  * WelcomeGUI
@@ -32,6 +49,20 @@ public class WelcomeGUI extends JFrame {
 	private final Color mainColor = new Color(78,78,78);
 	private final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
 	
+	//Update Checker
+	private JButton updateButton;
+	private final JLabel visibleSpaceLabel = createSpaceLabel();
+	
+	//Display Message
+	private final JLabel displayErrorProfileLabel = new JLabel("Invalid Profile File. Try updating your profile. If the issue persists, please contact us!");
+	
+	//FILE COMPONENTS
+	private File file;
+	private BufferedWriter bw;
+	private Profile profile;
+	
+	private JFileChooser fileChooser;
+	
 	/**
 	 * WelcomeGUI
 	 * The Frame that will log the user in to TamoStudy
@@ -41,6 +72,9 @@ public class WelcomeGUI extends JFrame {
 		initComponentsToFrame();
 		initComponentActions();
 		this.setSize(650,500);
+		
+		//Check for updates
+		checkForUpdates();
 	}
 
 	public void initFrame() {
@@ -55,6 +89,16 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	public void initComponentsToFrame() {
+		updateButton = new JButton("A new update is available. Click here to download!");
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+			updateButton.setBackground(Color.WHITE);
+			
+		updateButton.setFont(new Font("Arial", Font.BOLD, 18));
+		updateButton.setFocusPainted(false);
+		updateButton.setBorder(new BubbleBorder(Color.BLACK, 2, 5, 2, true));
+		updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		updateButton.setVisible(false);
+		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(mainColor);
@@ -80,7 +124,14 @@ public class WelcomeGUI extends JFrame {
 			authorLabel.setForeground(new Color(153,153,153));
 			authorLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		
-		mainPanel.add(createSpaceLabel());
+		mainPanel.add(updateButton);
+		mainPanel.add(visibleSpaceLabel);
+		
+		displayErrorProfileLabel.setForeground(Color.RED);
+		displayErrorProfileLabel.setVisible(false);
+		displayErrorProfileLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		mainPanel.add(displayErrorProfileLabel);
+		
 		mainPanel.add(titleCardImageLabel);
 		mainPanel.add(createSpaceLabel());
 		mainPanel.add(buttonPanel);
@@ -90,6 +141,7 @@ public class WelcomeGUI extends JFrame {
 		this.add(mainPanel);
 	}
 	
+	//Styles Main Buttons
 	public void setUpJButton(JButton button) {
 		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			button.setBackground(Color.WHITE);
@@ -107,8 +159,130 @@ public class WelcomeGUI extends JFrame {
 		return transparentComponent;
 	}
 	
+	//Update Checker
+	public void checkForUpdates() {
+		CheckForUpdates updates = new CheckForUpdates();
+		boolean isThereUpdates = false;
+		
+		try { isThereUpdates = updates.checkForUpdates(); }
+		catch (Exception e1) { e1.printStackTrace(); }
+		
+		if(isThereUpdates) {
+			mainPanel.remove(visibleSpaceLabel);
+			updateButton.setVisible(true);
+		}
+	}
+	
 	//Initializes the component Actions
 	public void initComponentActions() {
+		fileChooser = new JFileChooser();
 		
+		//Update Button
+		updateButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try { Desktop.getDesktop().browse(new URL("https://github.com/narlock/TamoStudy/releases/").toURI()); } 
+				catch (Exception e1) { e1.printStackTrace(); }
+			}
+		});
+		
+		//New Profile Button Functionality
+		newProfileButton.addActionListener(new ActionListener() {
+			JPanel newProfilePanel = new JPanel(new GridLayout(0,1));
+			JLabel usernameLabel = new JLabel("New username:");
+			JLabel tamoNameLabel = new JLabel("Enter your Tamo's name:");
+			JLabel languageLabel = new JLabel("Language:");
+			JLabel difficultyLabel = new JLabel("Difficulty:");
+			
+			JTextField usernameField = new JTextField("");
+			JTextField tamoNameField = new JTextField("");
+			
+			JComboBox languageBox = new JComboBox();
+			JComboBox difficultyBox = new JComboBox();
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Open the JOptionPane for creating a profile
+				
+				//Language Options
+				languageBox.addItem("English");
+				languageBox.addItem("Español (Spanish)");
+				languageBox.addItem("Português (Portuguese)");
+				languageBox.addItem("Deutsche (German)");
+				languageBox.addItem("Français (French)");
+				languageBox.addItem("Nederlands (Dutch)");
+				languageBox.addItem("Türkçe (Turkish)");
+				languageBox.addItem("Gaeilge (Irish)");
+				languageBox.addItem("हिन्दी (Hindi)");
+				languageBox.addItem("日本語 (Japanese)");
+				languageBox.addItem("汉语/漢語 (Chinese)");
+				
+				//Difficulty Options
+				difficultyBox.addItem("Peaceful");
+				difficultyBox.addItem("Challenging");
+				
+				//Adding to Panel
+				newProfilePanel.add(usernameLabel);
+				newProfilePanel.add(usernameField);
+				newProfilePanel.add(tamoNameLabel);
+				newProfilePanel.add(tamoNameField);
+				newProfilePanel.add(languageLabel);
+				newProfilePanel.add(languageBox);
+				newProfilePanel.add(difficultyLabel);
+				newProfilePanel.add(difficultyBox);
+				
+				//OptionPane
+				int resultPane =
+						JOptionPane.showConfirmDialog(null, newProfilePanel,
+						"Create New Profile", JOptionPane.OK_CANCEL_OPTION, 
+						JOptionPane.PLAIN_MESSAGE);
+				if(resultPane == JOptionPane.OK_OPTION) {
+					MainGUI gui = new MainGUI(
+						new Profile(usernameField.getText(), tamoNameField.getText(), 
+						languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex())
+					);
+					hideWindow();
+				}
+			}
+		});
+		
+		//Load Profile Button Functionality
+		loadProfileButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(selectFile() == 1) {
+					try { 
+						//Load the profile, launch main program
+						profile = ProfileReaderWriter.getProfileInfoFromFile(file); 
+						MainGUI Focus = new MainGUI(profile);
+						hideWindow();
+					}
+					catch (Exception e1) { 
+						displayErrorProfileLabel.setVisible(true); 
+					
+					}
+				}
+			}
+		});
 	}
+	
+	/**
+	 * selectFile selects profile file and assigns to file.
+	 * @return 1 for success, 0 for failure
+	 */
+	public int selectFile() {
+		if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			this.file = fileChooser.getSelectedFile();
+			return 1;
+		} else { return 0; }
+	}
+	
+	/*
+	 * Method hides the main windows and disposes it
+	 */
+	public void hideWindow() {
+		this.setVisible(false);
+		this.dispose();
+	}
+	
 }
