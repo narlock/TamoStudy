@@ -122,6 +122,7 @@ public class ProfileReaderWriter {
 	 */
 	public static boolean updateProfileInfoToFile(Profile profile) {
 		File fileName = profile.getFile();
+		System.out.println(fileName);
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream(fileName);

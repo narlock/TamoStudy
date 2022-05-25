@@ -119,7 +119,7 @@ public class WelcomeGUI extends JFrame {
 		buttonPanel.add(loadProfileButton);
 		buttonPanel.add(profileUpdateButton);
 		
-		authorLabel = new JLabel("Created by Anthony Narlock • anthonynarlock.com");
+		authorLabel = new JLabel("Created by narlock • tamostudy.com");
 			authorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			authorLabel.setForeground(new Color(153,153,153));
 			authorLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -237,10 +237,13 @@ public class WelcomeGUI extends JFrame {
 						"Create New Profile", JOptionPane.OK_CANCEL_OPTION, 
 						JOptionPane.PLAIN_MESSAGE);
 				if(resultPane == JOptionPane.OK_OPTION) {
-					profile = new Profile(usernameField.getText(), tamoNameField.getText(), 
+					profile = new Profile(null, usernameField.getText(), tamoNameField.getText(), 
 							languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex());
-					
-					if(ProfileReaderWriter.writeProfileToFile(profile) != null) {
+					File profileFile = null;
+					if((profileFile = ProfileReaderWriter.writeProfileToFile(profile)) != null) {
+						profile = new Profile(profileFile, usernameField.getText(), tamoNameField.getText(), 
+								languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex());
+						
 						MainGUI gui = new MainGUI(profile);
 						hideWindow();
 					}

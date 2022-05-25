@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/MainGUI.java=UTF-8
+encoding//src/WelcomeGUI.java=UTF-8
 encoding//src/language/ChineseStrategy.java=UTF-8
 encoding//src/language/DutchStrategy.java=UTF-8
 encoding//src/language/EnglishStrategy.java=UTF-8

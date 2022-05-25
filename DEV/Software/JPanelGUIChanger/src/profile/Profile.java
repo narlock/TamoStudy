@@ -113,8 +113,8 @@ public class Profile {
 	}
 	
 	//New Profile Constructor - Created by initial 'Welcome' interface
-	public Profile(String username, String tamoName, int languageIndicator, int difficulty) {
-		//TODO
+	public Profile(File file, String username, String tamoName, int languageIndicator, int difficulty) {
+		this.file = file;
 		this.username = username;
 		this.joinDate = new Date();
 		this.joinDateString = formatter.format(joinDate);
