@@ -48,7 +48,7 @@ public class EncryptionTest {
 		EncryptionTest e = new EncryptionTest();
 
 		System.out.println("2.0");
-		System.out.println(e.decrypt("gtznut2868736?36?2868736?36?27:9>?:;27?=:6262jklg{rz26282627262Royg282762;277766667"));
+		System.out.println(e.decrypt("Gtznut2868836;38;2868836;38;2626262jklg{rz26262926262Royg292;2;266666666"));
 		/*
 		 *  * Key Guide:
 			 * [2] -> New Login String

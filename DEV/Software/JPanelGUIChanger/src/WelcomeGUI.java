@@ -42,7 +42,7 @@ public class WelcomeGUI extends JFrame {
 	private JLabel titleCardImageLabel;
 	
 	private JPanel buttonPanel;
-	private JButton newProfileButton, loadProfileButton, profileUpdateButton;
+	private JButton newProfileButton, loadProfileButton;
 	
 	private JLabel authorLabel;
 	
@@ -113,11 +113,8 @@ public class WelcomeGUI extends JFrame {
 			setUpJButton(newProfileButton);
 		loadProfileButton = new JButton("Load Profile");
 			setUpJButton(loadProfileButton);
-		profileUpdateButton = new JButton("Update Profile");
-			setUpJButton(profileUpdateButton);
 		buttonPanel.add(newProfileButton);
 		buttonPanel.add(loadProfileButton);
-		buttonPanel.add(profileUpdateButton);
 		
 		authorLabel = new JLabel("Created by narlock • tamostudy.com");
 			authorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));

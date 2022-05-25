@@ -33,7 +33,9 @@ public class ProfileReaderWriter {
 		try {
 			outFile = new BufferedWriter(new FileWriter(fileName));
 			//Write Profile Information
-			outFile.append(profile.toString());
+			String encryptedProfile = Encryption.encrypt(profile.toString());
+			System.out.println("SAVING TO FILE: " + encryptedProfile);
+			outFile.append(encryptedProfile);
 			
 		} catch (Exception e) { e.printStackTrace(); }
 		
@@ -63,50 +65,54 @@ public class ProfileReaderWriter {
 		while((line = (br.readLine())) != null) {
 			if(!line.equals("")) {
 				System.out.println("[TAMOSTUDY/WELCOME] Profile Line: " + line);
-				//TODO add encryption to decrypt
-				//String[] profileDetails = Encryption.decrypt(line).split(",");
-				String[] profileDetails = line.split(",");
+				String[] profileDetails = Encryption.decrypt(line).split(",");
 				
-				/**
-				 * [0] version
-				 * [1] username
-				 * [2] joinDateString
-				 * [3] lastLoginDateString
-				 * [4] tamoTokens
-				 * [5] totalTime
-				 * [6] bgIndicator
-				 * [7] themeIndicator
-				 * [8] strikes
-				 * [9] tamoName
-				 * [10] tamoHappiness
-				 * [11] tamoHunger
-				 * [12] tamoId
-				 * [13] languageIndicator
-				 * [14] ahmString
-				 * [15] invString
-				 * [16] focusMode
-				 * [17] sessionSoundIndicator
-				 * [18] backgroundSoundIndicator
-				 * [19] difficulty
-				 * [20] showAhmNotifications
-				 */
-				
-				Settings profileSettings = new Settings(Integer.parseInt(profileDetails[16]),
-						Integer.parseInt(profileDetails[17]), Integer.parseInt(profileDetails[18]),
-						Integer.parseInt(profileDetails[19]), Integer.parseInt(profileDetails[20]));
-				
-				Tamo profileTamo = new Tamo(profileDetails[9], Integer.parseInt(profileDetails[10]), 
-						Integer.parseInt(profileDetails[11]), Integer.parseInt(profileDetails[12]));
-				
-				Profile profileToLoad = new Profile(file, profileDetails[1], profileDetails[2], profileDetails[3],
-						Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]),
-						Integer.parseInt(profileDetails[6]), Integer.parseInt(profileDetails[7]),
-						Integer.parseInt(profileDetails[8]), profileTamo, Integer.parseInt(profileDetails[13]),
-						profileDetails[14], profileDetails[15], profileSettings);		
-				
-				//Return loaded profile
-				br.close();
-				return profileToLoad;
+				if(profileDetails[0].equals("b4.0")) {
+					/**
+					 * [0] version
+					 * [1] username
+					 * [2] joinDateString
+					 * [3] lastLoginDateString
+					 * [4] tamoTokens
+					 * [5] totalTime
+					 * [6] bgIndicator
+					 * [7] themeIndicator
+					 * [8] strikes
+					 * [9] tamoName
+					 * [10] tamoHappiness
+					 * [11] tamoHunger
+					 * [12] tamoId
+					 * [13] languageIndicator
+					 * [14] ahmString
+					 * [15] invString
+					 * [16] focusMode
+					 * [17] sessionSoundIndicator
+					 * [18] backgroundSoundIndicator
+					 * [19] difficulty
+					 * [20] showAhmNotifications
+					 */
+					
+					Settings profileSettings = new Settings(Integer.parseInt(profileDetails[16]),
+							Integer.parseInt(profileDetails[17]), Integer.parseInt(profileDetails[18]),
+							Integer.parseInt(profileDetails[19]), Integer.parseInt(profileDetails[20]));
+					
+					Tamo profileTamo = new Tamo(profileDetails[9], Integer.parseInt(profileDetails[10]), 
+							Integer.parseInt(profileDetails[11]), Integer.parseInt(profileDetails[12]));
+					
+					Profile profileToLoad = new Profile(file, profileDetails[1], profileDetails[2], profileDetails[3],
+							Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[5]),
+							Integer.parseInt(profileDetails[6]), Integer.parseInt(profileDetails[7]),
+							Integer.parseInt(profileDetails[8]), profileTamo, Integer.parseInt(profileDetails[13]),
+							profileDetails[14], profileDetails[15], profileSettings);		
+					
+					//Return loaded profile
+					br.close();
+					return profileToLoad;
+				}
+				else {
+					br.close();
+					return updateProfileAndLoad(file, profileDetails);
+				}
 			}
 		}
 		
@@ -115,6 +121,47 @@ public class ProfileReaderWriter {
 		return new Profile();
 	}
 	
+	private static Profile updateProfileAndLoad(File file, String[] profileDetails) {
+		if(profileDetails.length == 21) {
+			//Beta 3.0 profile
+			
+		} else if(profileDetails.length == 17) {
+			//Beta 2.0 profile
+			
+			//Settings, difficulty is set to Peaceful, notifications ON
+			Settings profileSettings = new Settings(Integer.parseInt(profileDetails[8]),
+					Integer.parseInt(profileDetails[10]), Integer.parseInt(profileDetails[11]), 0, 1);
+			
+			//profileTamo
+			Tamo profileTamo = new Tamo(profileDetails[12], Integer.parseInt(profileDetails[14]),
+					Integer.parseInt(profileDetails[15]), Integer.parseInt(profileDetails[13]));
+			
+			int newLangIndicator = getLanguageIndicatorFrom2(Integer.parseInt(profileDetails[9]));
+			
+			Profile profileToLoad = new Profile(file, profileDetails[0], profileDetails[1], profileDetails[2],
+					Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[3]), 
+					Integer.parseInt(profileDetails[5]), 0, 0, profileTamo, newLangIndicator, "000000100000", "0", profileSettings);
+		
+			return profileToLoad;
+		}
+		
+		//This should not happen
+		return null;
+	}
+	
+	public static int getLanguageIndicatorFrom2(int oldIndicator) {
+		if(oldIndicator == 0) { return 0; } //English
+		else if(oldIndicator == 1) { return 1; } //Spanish
+		else if(oldIndicator == 2) { return 2; } //Portuguese
+		else if(oldIndicator == 3) { return 3; } //German
+		else if(oldIndicator == 4) { return 9; } //Japanese
+		else if(oldIndicator == 5) { return 5; } //Dutch
+		else if(oldIndicator == 6) { return 4; } //French
+		else if(oldIndicator == 7) { return 6; } //Turkish
+		
+		return 0;
+	}
+
 	/**
 	 * updateProfileInfoToFile
 	 * @param profile
@@ -126,7 +173,8 @@ public class ProfileReaderWriter {
 
 		try {
 			FileOutputStream fileOut = new FileOutputStream(fileName);
-			fileOut.write(profile.toString().getBytes());
+			String encryptedProfileString = Encryption.encrypt(profile.toString());
+			fileOut.write(encryptedProfileString.getBytes());
 			fileOut.close();
 			
 		} catch (Exception e) { e.printStackTrace(); }
