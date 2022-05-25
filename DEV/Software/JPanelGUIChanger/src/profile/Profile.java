@@ -373,7 +373,7 @@ public class Profile {
 		else if(bgIndicator == 3)
 			return "BG_4.png";
 		else if(bgIndicator == 4)
-			return "BG_4.png";
+			return "BG_5.png";
 		return null;
 	}
 	
@@ -545,6 +545,7 @@ public class Profile {
 				"\nTamo/id: " + tamo.getId() +
 				"\nlanguageIndicator: " + languageIndicator +
 				"\nahmString: " + ahmString +
+				"\ninvString: " + invString +
 				"\nSettings/focusMode: " + settings.getFocusMode() +
 				"\nSettings/sessionSoundIndicator: " + settings.getSessionSoundIndicator() +
 				"\nSettings/backgroundSoundIndicator: " + settings.getBackgroundSoundIndicator() +

@@ -136,11 +136,12 @@ public class ProfileReaderWriter {
 					Integer.parseInt(profileDetails[18]), Integer.parseInt(profileDetails[16]));
 			
 			int newLangIndicator = getLanguageIndicatorFrom(Integer.parseInt(profileDetails[11]));
-			
+			String invString = "0" + profileDetails[6];
+
 			Profile profileToLoad = new Profile(file, profileDetails[0], profileDetails[1], profileDetails[2],
 					Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[4]), 
 					Integer.parseInt(profileDetails[6]), 0, Integer.parseInt(profileDetails[8]),
-					profileTamo, newLangIndicator, "000000100000", "0", profileSettings);
+					profileTamo, newLangIndicator, "000000100000", invString, profileSettings);
 		
 			return profileToLoad;
 			
@@ -157,6 +158,7 @@ public class ProfileReaderWriter {
 					Integer.parseInt(profileDetails[15]), Integer.parseInt(profileDetails[13]));
 			
 			int newLangIndicator = getLanguageIndicatorFrom(Integer.parseInt(profileDetails[9]));
+			
 			
 			Profile profileToLoad = new Profile(file, profileDetails[0], profileDetails[1], profileDetails[2],
 					Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[3]), 

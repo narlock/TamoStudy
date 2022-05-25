@@ -90,7 +90,7 @@ public class SettingsStrategy extends StateStrategy {
 			focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
-			focusSettingBox.addItem(profile.getLanguage().settingsText[7]);
+			//focusSettingBox.addItem(profile.getLanguage().settingsText[7]);
 			focusSettingBox.setSelectedIndex(profile.getSettings().getFocusMode());
 			displayUnsavedChanges(focusSettingBox);
 		focusSettingPanel.add(focusSettingLabel);

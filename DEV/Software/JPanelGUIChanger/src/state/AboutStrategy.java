@@ -36,6 +36,7 @@ public class AboutStrategy extends StateStrategy {
 	public void setPanel() {
 		this.setBackground(theme.subColor);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.add(createSpaceLabel(1));
 		
 		//titleImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO.png")));
 		//	titleImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -58,7 +59,7 @@ public class AboutStrategy extends StateStrategy {
 		
 		groupImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_GROUP.png")));
 			groupImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		this.add(groupImage);
+		//this.add(groupImage);
 		
 		socialsPanel = new JPanel();
 			socialsPanel.setBackground(theme.subColor);
@@ -74,7 +75,7 @@ public class AboutStrategy extends StateStrategy {
 		discordButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("DISCORD.png")));
 			setUpJButtonComponent(discordButton);
 		
-		socialsPanel.add(anthonyWebButton);
+		//socialsPanel.add(anthonyWebButton);
 		socialsPanel.add(tamoWebButton);
 		socialsPanel.add(gitWebButton);
 		socialsPanel.add(instaWebButton);

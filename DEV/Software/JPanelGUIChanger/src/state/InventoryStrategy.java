@@ -119,7 +119,7 @@ public class InventoryStrategy extends StateStrategy {
 			return "SHOP_BG_3.png";
 		else if(name.equals("3"))
 			return "SHOP_BG_4.png";
-		else if(name.equals("5"))
+		else if(name.equals("4"))
 			return "SHOP_BG_5.png";
 		
 		return null;

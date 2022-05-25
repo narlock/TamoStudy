@@ -173,7 +173,7 @@ public class EnglishStrategy extends LanguageStrategy {
 			"implements a virtual pet to",
 			"help you stay driven to focus!",
 			"Developed by: ",
-			"Anthony Narlock"
+			"@narlock"
 		};
 		this.aboutText = engAboutText;
 		
