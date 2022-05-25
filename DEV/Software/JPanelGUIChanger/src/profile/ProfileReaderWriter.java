@@ -123,10 +123,30 @@ public class ProfileReaderWriter {
 	
 	private static Profile updateProfileAndLoad(File file, String[] profileDetails) {
 		if(profileDetails.length == 21) {
-			//Beta 3.0 profile
+			//Beta 3.2 profile
+			System.out.println("[TAMOSTUDY] Updating 3.2 Profile");
+			
+			//Settings, difficulty is set to Peaceful, notifications ON
+			Settings profileSettings = new Settings(Integer.parseInt(profileDetails[10]),
+					Integer.parseInt(profileDetails[12]), Integer.parseInt(profileDetails[13]),
+					Integer.parseInt(profileDetails[14]), 1);
+			
+			//profileTamo
+			Tamo profileTamo = new Tamo(profileDetails[15], Integer.parseInt(profileDetails[17]),
+					Integer.parseInt(profileDetails[18]), Integer.parseInt(profileDetails[16]));
+			
+			int newLangIndicator = getLanguageIndicatorFrom(Integer.parseInt(profileDetails[11]));
+			
+			Profile profileToLoad = new Profile(file, profileDetails[0], profileDetails[1], profileDetails[2],
+					Integer.parseInt(profileDetails[5]), Integer.parseInt(profileDetails[4]), 
+					Integer.parseInt(profileDetails[6]), 0, Integer.parseInt(profileDetails[8]),
+					profileTamo, newLangIndicator, "000000100000", "0", profileSettings);
+		
+			return profileToLoad;
 			
 		} else if(profileDetails.length == 17) {
-			//Beta 2.0 profile
+			//Beta 2.4 profile
+			System.out.println("[TAMOSTUDY] Updating 2.4 Profile");
 			
 			//Settings, difficulty is set to Peaceful, notifications ON
 			Settings profileSettings = new Settings(Integer.parseInt(profileDetails[8]),
@@ -136,11 +156,12 @@ public class ProfileReaderWriter {
 			Tamo profileTamo = new Tamo(profileDetails[12], Integer.parseInt(profileDetails[14]),
 					Integer.parseInt(profileDetails[15]), Integer.parseInt(profileDetails[13]));
 			
-			int newLangIndicator = getLanguageIndicatorFrom2(Integer.parseInt(profileDetails[9]));
+			int newLangIndicator = getLanguageIndicatorFrom(Integer.parseInt(profileDetails[9]));
 			
 			Profile profileToLoad = new Profile(file, profileDetails[0], profileDetails[1], profileDetails[2],
 					Integer.parseInt(profileDetails[4]), Integer.parseInt(profileDetails[3]), 
-					Integer.parseInt(profileDetails[5]), 0, 0, profileTamo, newLangIndicator, "000000100000", "0", profileSettings);
+					Integer.parseInt(profileDetails[5]), 0, 0, profileTamo, newLangIndicator,
+					"000000100000", "0", profileSettings);
 		
 			return profileToLoad;
 		}
@@ -149,7 +170,7 @@ public class ProfileReaderWriter {
 		return null;
 	}
 	
-	public static int getLanguageIndicatorFrom2(int oldIndicator) {
+	public static int getLanguageIndicatorFrom(int oldIndicator) {
 		if(oldIndicator == 0) { return 0; } //English
 		else if(oldIndicator == 1) { return 1; } //Spanish
 		else if(oldIndicator == 2) { return 2; } //Portuguese
@@ -158,6 +179,7 @@ public class ProfileReaderWriter {
 		else if(oldIndicator == 5) { return 5; } //Dutch
 		else if(oldIndicator == 6) { return 4; } //French
 		else if(oldIndicator == 7) { return 6; } //Turkish
+		else if(oldIndicator == 8) { return 7; } //Irish
 		
 		return 0;
 	}
