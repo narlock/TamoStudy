@@ -4,188 +4,190 @@ public class SpanishStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator Marie マリ
 	 */
 	
 	public SpanishStrategy() {
 		String engText[] = {
-			"MENU",
-			"Bienvenido, ",
-			"Title Card",
-			"Focus",
-			"Shop",
-			"Themes",
-			"Inventory",
-			"Statistics",
-			"Achievements",
-			"Settings",
-			"About",
-			"Achievement Unlocked"
+			"MENÚ",
+			"Bienvenido/a, ",
+			"Pantalla de título",
+			"Concentración",
+			"Tienda",
+			"Temas",
+			"Inventario",
+			"Estadísticas",
+			"Logros",
+			"Ajustes",
+			"Información",
+			"Logro debloqueado"
 		};
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"¡No rendirse nunca!"
+			"Never give up!!"
 		};
 		this.titleText = engTitleText;
 	
 		String engFocusText[] = {
-			"Level",
-			"# Of Sessions",
-			"Session Length",
-			"Break Length",
-			"Start Focus",
-			"Break Focus",
-			"Session Completed",
-			"Session Focus Broke",
-			"You focused for",
-			"minutes(s) and",
-			"seconds(s)",
-			"Let's Focus!",
-			"Break"
+			"Nivel",
+			"Número de sesiónes",
+			"Duración de la sesión",
+			"Duración de la pausa",
+			"Empiezar la concentración",
+			"Interrumpir la concentración",
+			"Sesión completada",
+			"Sesión interrumpida",
+			"Te concentraste por",
+			"minutos(s) y",
+			"segundo(s)",
+			"¡Concentremos nos!",
+			"Pausa"
 		};
 		this.focusText = engFocusText;
 		
 		String engShopText[] = {
-			"Food Shop",
-			"Backgrounds",
-			"Hello! I am Kath.",
-			"Welcome to the shop!",
-			"Purchase",
-			"You don't have sufficient funds!",
-			"Your Tamo is full!",
-			"Are you sure?",
-			"for",
-			"TamoTokens?",
-			"and",
-			"Is there anything",
-			"I can help you with?",
-			"YES",
+			"Tienda de comida",
+			"Fondos",
+			"¡Hola! Soy Kath.",
+			"¡Bienvenido/a a la tienda!",
+			"¿Comprar",
+			"¡No tienes los fondos suficientes!",
+			"¡Tu Tamo está lleno!",
+			"¿Estás seguro/a?",
+			"por",
+			"Fichas Tamo?",
+			"y",
+			"¿Hay algo en lo que",
+			"puedo ayudarte?",
+			"SÍ",
 			"NO",
-			"You already own this item!"
+			"¡Ya tienes este artículo!"
 		};
 		this.shopText = engShopText;
 		
 		String[] engThemeText = {
-			"Dark Mode",
-			"Light Mode",
-			"Classic Red",
-			"Classic Blue",
-			"Classic Green",
-			"Classic Yellow",
-			"Classic Orange",
-			"Classic Purple",
-			"Themes",
-			"Select",
-			"Classic Themes",
-			"Theme changed to ",
+			"Modo oscuro",
+			"Modo claro",
+			"Rojo clásico",
+			"Azul clásico",
+			"Verde clásico",
+			"Amarillo clásico",
+			"Naranja clásico",
+			"Violeta clásico",
+			"Temas",
+			"Seleccionar",
+			"Tema clásicos",
+			"Tema cambiado por",
 		};
 		this.themesText = engThemeText;
 		
 		String[] engInvText = {
-			"Inventory Empty",
-			"Select",
-			"Background changed!",
-			"Inventory"
+			"Inventario vacío",
+			"Seleccionar",
+			"¡Fondo cambiado!",
+			"Inventario"
 		};
 		this.inventoryText = engInvText;
 		
 		String[] engStatsText = {
-			"Statistics",
-			"Username",
-			"Join Date",
-			"Total Focus Hours",
-			"Achievements Unlocked",
-			"Tamo Level"
+			"Estadísticas",
+			"Usuario",
+			"Fecha de registro",
+			"Horas totales en concentración",
+			"Logros debloqueados",
+			"Nivel del Tamo"
 		};
 		this.statsText = engStatsText;
 		
 		String[] engAhmTitle = {
-			"The Beginning!",
-			"Nothing can stop us!",
-			"Never give up!",
-			"Focus Ascension",
-			"Customizer 1",
-			"Customizer 2",
-			"From the Beginning",
-			"Tamo Full",
-			"Tamo Love",
-			"Achievement 10",
-			"Achievement 11",
-			"Achievement 12"
+			"¡El comienzo!",
+			"¡Nada puede pararnos!",
+			"¡Nunca abandone!",
+			"La Ascensión de la concentración",
+			"Personalizador 1",
+			"Personalizador 2",
+			"Desde el comienzo",
+			"Tamo lleno",
+			"Amor del Tamo",
+			"Logro 10",
+			"Logro 11",
+			"Logro 12"
 		};
 		this.ahmTitle = engAhmTitle;
 		
 		String[] engAhmText = {
-			"Reach total focus time of<br>3 hours",
-			"Reach total focus time of<br>1 day",
-			"Reach total focus time of<br>7 days",
-			"Reach total focus time of<br>30 days",
-			"Change TamoStudy's theme!",
-			"Change your Tamo's<br>background",
-			"Updated from a previous<br>TamoStudy version",
-			"Achieve maximum Tamo hunger",
-			"Achieve maximum Tamo happiness",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement"
+			"Alcanzar un tiempo total de concentración de<br>horas",
+			"Alcanzar un tiempo total de concentración de<br>1 día",
+			"Alcanzar un tiempo total de concentración de<br>7 días",
+			"Alcanzar un tiempo total de concentración de<br>30 días",
+			"Cambiar el tema de TamoStudy",
+			"Cambiar el color de<br>tu Tamo",
+			"Actualizar desde una precedente versión<br>de TamoStudy",
+			"Llegar el nivel de hambre de tu Tamo al máximo",
+			"Llegar el nivel de felicidad de tu Tamo al máximo",
+			"No sabemos mucho sobre este logro",
+			"No sabemos mucho sobre este logro",
+			"No sabemos mucho sobre este logro",
 		};
 		this.ahmText = engAhmText;
 		
 		String[] engSettingsText = {
-			"Change Focus Mode",
-			"Change Language",
-			"Change Difficulty",
-			"Alarm Sound",
-			"Custom Interval Countdown",
-			"5-Interval Countdown",
-			"Pomodoro Mode",
-			"Stopwatch Mode",
-			"English",
-			"Spanish",
-			"Portuguese",
-			"German",
-			"French",
-			"Dutch",
+			"Cambiar el modo de concentración",
+			"Cambiar el idioma",
+			"Cambiar la dificultad",
+			"Alarma",
+			"Cuenta regresiva personalizada",
+			"Intervalo de 5 minutos",
+			"Modo pomodoro",
+			"Modo cronómetro",
+			"Inglés",
+			"Español",
+			"Portugués",
+			"Alemán",
+			"Francés",
+			"Neerlandés",
 			"Turkish",
-			"Irish",
+			"Irlandés",
 			"Hindi",
-			"Japanese",
-			"Chinese",
-			"Peaceful",
-			"Challenging",
-			"OFF",
-			"ON",
-			"Soft Alarm",
-			"Trad Alarm",
-			"Pac Alarm",
-			"Save Changes",
-			"Changes Saved!",
-			"You have unsaved changes.",
-			"Achievement Notifications",
-			"No Sound"
+			"Japonés",
+			"Chino",
+			"Tranquilo",
+			"Desafiante",
+			"SIN",
+			"CON",
+			"Alarma suave",
+			"Alarma clásica",
+			"Alarma Pac",
+			"Guardar los cambios",
+			"¡Cambios guardados!",
+			"Tienes cambios no guardados.",
+			"Notificaciones de los logros",
+			"Sonido desactivado"
 		};
 		this.settingsText = engSettingsText;
 		
 		String[] engAboutText = {
-			"TamoStudy is a productivity",
-			"work and focus timer that",
-			"implements a virtual pet to",
-			"help you stay driven to focus!",
-			"Developed by: ",
-			"Anthony Narlock"
+			"¡TamoStudy es un temporizador",
+			"de productividad que incluye",
+			"una mascota virtual,",
+			"ayudándote a mantener concentrado/a!",
+			"Desarollado por: ",
+			"narlock"
 		};
 		this.aboutText = engAboutText;
 		
 		String[] engDeathText = {
-			"Tamo Death",
-			"Your Tamo didn't receive the care it needed and has passed",
-			"Your statistics for your previous Tamo will be reset",
-			"Enter new Tamo name: "
+			"Muerte del Tamo",
+			"Tu Tamo no recibió el cuidado necesitado y murió",
+			"Los datos de tu precedente Tamo von a reiniciarse",
+			"Nombre del nuevo Tamo: "
 		};
-		this.deathText = engDeathText;
+		this.deathText = engDeathText;	
 	}
 	
+	//Change the language in the quotation marks
+	//with your language in english
 	@Override
 	public void printCurrentLanguage() {
 		System.out.println("Spanish");
