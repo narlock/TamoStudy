@@ -203,8 +203,6 @@ public class SettingsStrategy extends StateStrategy {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageLabel.setText(profile.getLanguage().settingsText[27]);
-				
 				//Update focus mode
 				profile.getSettings().setFocusMode(focusSettingBox.getSelectedIndex());
 				
@@ -230,6 +228,8 @@ public class SettingsStrategy extends StateStrategy {
 				
 				//Update local UI
 				resetComponentsLanguageChange();
+				
+				messageLabel.setText(profile.getLanguage().settingsText[27]);
 			}
 			
 		});
@@ -278,7 +278,8 @@ public class SettingsStrategy extends StateStrategy {
 		}
 		
 		if(comp instanceof JComboBox) {
-			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+			//if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+			if(System.getProperty("os.name").startsWith("Windows"))
 				comp.setBackground(Color.WHITE);
 			
 			comp.setFont(theme.fontBoldRegSmall);
@@ -307,6 +308,7 @@ public class SettingsStrategy extends StateStrategy {
 		focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
 		focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
 		focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
+		focusSettingBox.setSelectedIndex(profile.getSettings().getFocusMode());
 		
 		//Language
 		for(int i = languageSettingBox.getItemCount() - 1; i >= 0; i--) { languageSettingBox.removeItemAt(i); }
@@ -321,11 +323,13 @@ public class SettingsStrategy extends StateStrategy {
 		languageSettingBox.addItem(profile.getLanguage().settingsText[16]);
 		languageSettingBox.addItem(profile.getLanguage().settingsText[17]);
 		languageSettingBox.addItem(profile.getLanguage().settingsText[18]);
+		languageSettingBox.setSelectedIndex(profile.getLanguageIndicator());
 		
 		//Difficulty
 		for(int i = difficultySettingBox.getItemCount() - 1; i >= 0; i--) { difficultySettingBox.removeItemAt(i); }
 		difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
 		difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
+		difficultySettingBox.setSelectedIndex(profile.getSettings().getDifficulty());
 		
 		//Sound
 		for(int i = soundSettingBox.getItemCount() - 1; i >= 0; i--) { soundSettingBox.removeItemAt(i); }
@@ -333,6 +337,7 @@ public class SettingsStrategy extends StateStrategy {
 		soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
 		soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
 		soundSettingBox.addItem(profile.getLanguage().settingsText[25]);
+		soundSettingBox.setSelectedIndex(profile.getSettings().getSessionSoundIndicator());
 		
 	}
 }

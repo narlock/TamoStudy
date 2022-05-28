@@ -54,7 +54,7 @@ public class WelcomeGUI extends JFrame {
 	private final JLabel visibleSpaceLabel = createSpaceLabel();
 	
 	//Display Message
-	private final JLabel displayErrorProfileLabel = new JLabel("Invalid Profile File. Try updating your profile. If the issue persists, please contact us!");
+	private final JLabel displayErrorProfileLabel = new JLabel("Invalid Profile File - the file you chose is incompatible with TamoStudy Beta v4.0");
 	
 	//FILE COMPONENTS
 	private File file;
@@ -241,9 +241,9 @@ public class WelcomeGUI extends JFrame {
 						profile = new Profile(profileFile, usernameField.getText(), tamoNameField.getText(), 
 								languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex());
 
-						hideWindow();
-						MainGUI gui = new MainGUI(profile);
 						
+						MainGUI gui = new MainGUI(profile);
+						hideWindow();
 					}
 					
 				}
@@ -258,8 +258,8 @@ public class WelcomeGUI extends JFrame {
 					try { 
 						//Load the profile, launch main program
 						profile = ProfileReaderWriter.getProfileInfoFromFile(file); 
-						hideWindow();
 						MainGUI Focus = new MainGUI(profile);
+						hideWindow();
 					}
 					catch (Exception e1) { 
 						displayErrorProfileLabel.setVisible(true); 

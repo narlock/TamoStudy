@@ -36,7 +36,9 @@ public class Test {
 		System.out.println(e.decrypt("Sgxok286873773772868836;38;2:;27;>=879289672:2mxk2626262<2926262Lxgtioy272762;2777776772<h"));
 		System.out.println(e.encrypt("anthony,2021-09-09,2022-01-09,1438945,19740,0,default,0,2,0,1,0,Lisa,2,10,5,11100001"));
 		
-		System.out.println("Reemz");
-		System.out.println(e.decrypt("Qgxosg2868836:3762868836:379262629276?;8;2767>26262626262626262626262623"));
+		System.out.println("Luv");
+		System.out.println(e.decrypt("h:462r{|2868836;38=262828><968:27?:=<26262626262826262726262huumok2923"));
+		System.out.println(e.encrypt("b4.0,luv,2021-12-30,2022-05-28,19476,2863024,4,0,0,boogie,5,5,3,0,000000100000,01234,2,0,0,0,1"));
+		System.out.println(e.decrypt("h:462Sgxok286873773772868836;38>2896727;>=8792:26262Lxgtioy2>29272:277766676666626:2629262627"));
 	}
 }
