@@ -240,9 +240,10 @@ public class WelcomeGUI extends JFrame {
 					if((profileFile = ProfileReaderWriter.writeProfileToFile(profile)) != null) {
 						profile = new Profile(profileFile, usernameField.getText(), tamoNameField.getText(), 
 								languageBox.getSelectedIndex(), difficultyBox.getSelectedIndex());
-						
-						MainGUI gui = new MainGUI(profile);
+
 						hideWindow();
+						MainGUI gui = new MainGUI(profile);
+						
 					}
 					
 				}
@@ -257,8 +258,8 @@ public class WelcomeGUI extends JFrame {
 					try { 
 						//Load the profile, launch main program
 						profile = ProfileReaderWriter.getProfileInfoFromFile(file); 
-						MainGUI Focus = new MainGUI(profile);
 						hideWindow();
+						MainGUI Focus = new MainGUI(profile);
 					}
 					catch (Exception e1) { 
 						displayErrorProfileLabel.setVisible(true); 

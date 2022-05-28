@@ -227,6 +227,9 @@ public class SettingsStrategy extends StateStrategy {
 				
 				//Write the information to the profile's file
 				ProfileReaderWriter.updateProfileInfoToFile(profile);
+				
+				//Update local UI
+				resetComponentsLanguageChange();
 			}
 			
 		});
@@ -280,5 +283,56 @@ public class SettingsStrategy extends StateStrategy {
 			
 			comp.setFont(theme.fontBoldRegSmall);
 		}
+	}
+	
+	//Reset method will load new language
+	public void resetComponentsLanguageChange() {
+		//Label
+		focusSettingLabel.setText(profile.getLanguage().settingsText[0]);
+		languageSettingLabel.setText(profile.getLanguage().settingsText[1]);
+		difficultySettingLabel.setText(profile.getLanguage().settingsText[2]);
+		soundSettingLabel.setText(profile.getLanguage().settingsText[3]);
+		ahmNotificationsLabel.setText(profile.getLanguage().settingsText[29]);
+		
+		//ahmNotifications Button
+		String labelText;
+		if(profile.getSettings().getShowAhmNotifications() == 0) { labelText = profile.getLanguage().settingsText[21]; } 
+		else { labelText = profile.getLanguage().settingsText[22]; }
+		ahmNotificationsButton.setText(labelText);
+		
+		//Combo Boxes
+		
+		//Focus
+		for(int i = focusSettingBox.getItemCount() - 1; i >= 0; i--) { focusSettingBox.removeItemAt(i); }
+		focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
+		focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
+		focusSettingBox.addItem(profile.getLanguage().settingsText[6]);
+		
+		//Language
+		for(int i = languageSettingBox.getItemCount() - 1; i >= 0; i--) { languageSettingBox.removeItemAt(i); }
+		languageSettingBox.addItem(profile.getLanguage().settingsText[8]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[9]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[10]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[11]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[12]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[13]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[14]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[15]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[16]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[17]);
+		languageSettingBox.addItem(profile.getLanguage().settingsText[18]);
+		
+		//Difficulty
+		for(int i = difficultySettingBox.getItemCount() - 1; i >= 0; i--) { difficultySettingBox.removeItemAt(i); }
+		difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
+		difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
+		
+		//Sound
+		for(int i = soundSettingBox.getItemCount() - 1; i >= 0; i--) { soundSettingBox.removeItemAt(i); }
+		soundSettingBox.addItem(profile.getLanguage().settingsText[30]);
+		soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
+		soundSettingBox.addItem(profile.getLanguage().settingsText[24]);
+		soundSettingBox.addItem(profile.getLanguage().settingsText[25]);
+		
 	}
 }
