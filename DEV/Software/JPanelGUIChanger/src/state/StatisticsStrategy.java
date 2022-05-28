@@ -28,7 +28,6 @@ public class StatisticsStrategy extends StateStrategy {
 	/**
 	 * Statistics Components
 	 */
-	private JPanel headerPanel;
 	private JLabel headerLabel;
 	
 	//Main Panel - panel that will be in center
@@ -44,8 +43,6 @@ public class StatisticsStrategy extends StateStrategy {
 	private JLabel usernameLabel, joinDateLabel, 
 		totalFocusHoursLabel, unlockedAchievementsLabel,
 		tamoLevelLabel;
-	
-	private JLabel profileStarsImage;
 	
 	@Override
 	public void setPanel() {

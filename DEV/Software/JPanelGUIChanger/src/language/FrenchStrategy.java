@@ -94,7 +94,7 @@ public class FrenchStrategy extends LanguageStrategy {
 			"Statistiques",
 			"Utilisateur",
 			"Date d'inscription",
-			"Concentration totale en heures",
+			"Total d'heures",
 			"Succès débloqués",
 			"Niveau du Tamo"
 		};

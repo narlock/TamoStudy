@@ -38,6 +38,7 @@ public class StudyFocusStrategy extends StateStrategy {
 	private JLabel imageLabel, backgroundImageLabel;
 	
 	private JPanel tamoHappiness, tamoHunger;
+	private JLabel tamoHappinessLabel, tamoHungerLabel;
 	
 	//Timer Panel
 	private JPanel timerPanel;
@@ -67,6 +68,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		this.setBackground(theme.subColor);
 		createTamoPanel();
 		createTimerPanel();
+		
 	}
 	
 	public void createTamoPanel() {
@@ -99,25 +101,21 @@ public class StudyFocusStrategy extends StateStrategy {
 		//Happy-Hunger Components
 		tamoHappiness = new JPanel();
 			tamoHappiness.setBackground(theme.subColor);
-			if(profile.getTamo().getHappiness() == 0) {
-				//TODO get some indicator of 0 happy
-			} else {
-				for(int i = 0; i < profile.getTamo().getHappiness(); i++) {
-					tamoHappiness.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HAPPY.png"))));
-				}
-			}
+			tamoHappiness.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HAPPY.png"))));
+			tamoHappinessLabel = new JLabel(Integer.toString(profile.getTamo().getHappiness()));
+				tamoHappinessLabel.setForeground(theme.textColor);
+				tamoHappinessLabel.setFont(theme.fontBoldReg);
+			tamoHappiness.add(tamoHappinessLabel);
 			tamoHappiness.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			
 		tamoHunger = new JPanel();
 			tamoHunger.setBackground(theme.subColor);
-			if(profile.getTamo().getHunger() == 0) {
-				//TODO get some indicator of 0 happy
-			} else {
-				for(int i = 0; i < profile.getTamo().getHunger(); i++) {
-					tamoHunger.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png"))));
-				}
-			}
-			tamoHunger.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+			tamoHunger.add(new JLabel(new ImageIcon(getClass().getClassLoader().getResource("HUNGER.png"))));
+			tamoHungerLabel = new JLabel(Integer.toString(profile.getTamo().getHunger()));
+			tamoHungerLabel.setForeground(theme.textColor);
+			tamoHungerLabel.setFont(theme.fontBoldReg);
+		tamoHunger.add(tamoHungerLabel);
+		tamoHunger.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 			
 		tamoPanel.add(tamoHappiness); //Add to tamoPanel
 		tamoPanel.add(tamoHunger); //Add to tamoPanel
@@ -322,6 +320,21 @@ public class StudyFocusStrategy extends StateStrategy {
 			});
 		}
 		
+		breakFocusButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//Tamo Loses happiness upon breaking session
+				if(profile.getTamo().getHappiness() > 1) {
+					profile.getTamo().setHappiness(profile.getTamo().getHappiness() - 1);
+					tamoHappinessLabel.setText(Integer.toString(profile.getTamo().getHappiness()));
+				}
+				
+			}
+			
+		});
+		
 	}
 	
 	//Getters for MainGUI
@@ -336,6 +349,8 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JComboBox getPomoNumberSessionBox() { return pomoNumberSessionBox; }
 	public JLabel getCurrentSessionLabel() { return currentSessionLabel; }
 	public JLabel getTamoImageLabel() { return imageLabel; }
+	
+	public JPanel getHappinessPanel() { return tamoHappiness; }
 	
 	public void setUpJButton(JButton button) {
 		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
@@ -352,4 +367,5 @@ public class StudyFocusStrategy extends StateStrategy {
 		
 		box.setFont(theme.fontBoldRegSmall);
 	}
+	
 }

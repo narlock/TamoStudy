@@ -295,14 +295,14 @@ public class MainGUI extends JFrame {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(button.getText().equals("<html>Select<br>Dark Mode</html>")) { themeChanged(0); }
-							else if(button.getText().equals("<html>Select<br>Light Mode</html>")) { themeChanged(1); }
-							else if(button.getText().equals("<html>Select<br>Classic Red</html>")) { themeChanged(2); }
-							else if(button.getText().equals("<html>Select<br>Classic Blue</html>")) { themeChanged(3); }
-							else if(button.getText().equals("<html>Select<br>Classic Green</html>")) { themeChanged(4); }
-							else if(button.getText().equals("<html>Select<br>Classic Yellow</html>")) { themeChanged(5); }
-							else if(button.getText().equals("<html>Select<br>Classic Orange</html>")) { themeChanged(6); }
-							else if(button.getText().equals("<html>Select<br>Classic Purple</html>")) { themeChanged(7); }
+							if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[0] + "</html>")) { themeChanged(0); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[1] + "</html>")) { themeChanged(1); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[2] + "</html>")) { themeChanged(2); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[3] + "</html>")) { themeChanged(3); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[4] + "</html>")) { themeChanged(4); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[5] + "</html>")) { themeChanged(5); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[6] + "</html>")) { themeChanged(6); }
+							else if(button.getText().equals("<html>" + profile.getLanguage().themesText[9] + "<br>" + profile.getLanguage().themesText[7] + "</html>")) { themeChanged(7); }
 						}
 					});
 				}
@@ -512,10 +512,6 @@ public class MainGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Tamo Loses happiness upon breaking session
-				if(profile.getTamo().getHappiness() > 1) {
-					profile.getTamo().setHappiness(profile.getTamo().getHappiness() - 1);
-				}
 				
 				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
 				profile.updateStudyStats(tempMin, tempSec);
