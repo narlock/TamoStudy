@@ -288,6 +288,9 @@ public class SettingsStrategy extends StateStrategy {
 	
 	//Reset method will load new language
 	public void resetComponentsLanguageChange() {
+		//Header
+		settingsHeaderLabel.setText(profile.getLanguage().text[9]);
+		
 		//Label
 		focusSettingLabel.setText(profile.getLanguage().settingsText[0]);
 		languageSettingLabel.setText(profile.getLanguage().settingsText[1]);

@@ -269,6 +269,11 @@ public class ShopStrategy extends StateStrategy {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//In case there is a message dialog already open
+				try { messagePanel.remove(2); } 
+				catch (Exception e2) { };
+				
+				
 				//If I can purchase the Food item
 				if(profile.getTamoTokens() - price >= 0 && profile.getTamo().getHunger() != 10) {
 					
@@ -346,6 +351,9 @@ public class ShopStrategy extends StateStrategy {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//In case there is a message dialog already open
+				try { messagePanel.remove(2); } 
+				catch (Exception e2) { };
 				
 				// TODO Check if the user already has the background in inventory
 				if(profile.getTamoTokens() - price >= 0 && profile.containsItem(indicator) == false) {
@@ -354,7 +362,13 @@ public class ShopStrategy extends StateStrategy {
 						optionPanel.setBackground(theme.subColor);
 					JButton confirmPurchase = new JButton(profile.getLanguage().shopText[13]);
 						confirmPurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-						confirmPurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						confirmPurchase.setFont(new Font("Arial", Font.BOLD, 18));
+						confirmPurchase.setFocusPainted(false);
+						confirmPurchase.setBorder(new BubbleBorder(Color.BLACK, 2, 7, 2, true));
+						
+						if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+							confirmPurchase.setBackground(Color.WHITE);
+						
 						confirmPurchase.addActionListener(new ActionListener() {
 
 							@Override
@@ -378,6 +392,12 @@ public class ShopStrategy extends StateStrategy {
 					JButton declinePurchase = new JButton(profile.getLanguage().shopText[14]);
 						declinePurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 						declinePurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
+						declinePurchase.setFocusPainted(false);
+						declinePurchase.setBorder(new BubbleBorder(Color.BLACK, 2, 7, 2, true));
+						
+						if(System.getProperty("os.name") == "Linux" || System.getProperty("os.name").startsWith("Windows"))
+							declinePurchase.setBackground(Color.WHITE);
+					
 						declinePurchase.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
