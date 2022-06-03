@@ -186,8 +186,6 @@ public class PortugueseStrategy extends LanguageStrategy {
 		this.deathText = engDeathText;	
 	}
 	
-	//Change the language in the quotation marks
-	//with your language in english
 	@Override
 	public void printCurrentLanguage() {
 		System.out.println("Portuguese");

@@ -184,8 +184,6 @@ public class ChineseStrategy extends LanguageStrategy {
 			"Enter new Tamo name: "
 		};
 		this.deathText = engDeathText;
-		
-		
 	}
 
 	@Override

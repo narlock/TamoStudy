@@ -4,186 +4,186 @@ public class JapaneseStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator Marie マリ
 	 */
-	
+  
 	public JapaneseStrategy() {
 		String engText[] = {
-			"MENU",
-			"Welcome, ",
-			"Title Card",
-			"Focus",
-			"Shop",
-			"Themes",
-			"Inventory",
-			"Statistics",
-			"Achievements",
-			"Settings",
-			"About",
-			"Achievement Unlocked"
+			"メニュー",
+			"ようこそ, ",
+			"スクリーンタイトル",
+			"集中",
+			"ストア",
+			"テーマ",
+			"インベントリー",
+			"統計",
+			"実績",
+			"設定",
+			"情報",
+			"実績を解除しました"
 		};
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"あきらめないで！"
+			"Never give up!!"
 		};
 		this.titleText = engTitleText;
 	
 		String engFocusText[] = {
-			"Level",
-			"# Of Sessions",
-			"Session Length",
-			"Break Length",
-			"Start Focus",
-			"Break Focus",
-			"Session Completed",
-			"Session Focus Broke",
-			"You focused for",
-			"minutes(s) and",
-			"seconds(s)",
-			"Let's Focus!",
-			"Break"
+			"レベル",
+			"セッション数",
+			"セッションの長さ",
+			"ブレークの長さ",
+			"集中を始める",
+			"集中を停止する",
+			"セッション完成",
+			"集中セッションを中断しました",
+			"集中しました",
+			"分間",
+			"秒間",
+			"集中しましょう！",
+			"ブレーク"
 		};
 		this.focusText = engFocusText;
 		
 		String engShopText[] = {
-			"Food Shop",
-			"Backgrounds",
-			"Hello! I am Kath.",
-			"Welcome to the shop!",
-			"Purchase",
-			"You don't have sufficient funds!",
-			"Your Tamo is full!",
-			"Are you sure?",
-			"for",
-			"TamoTokens?",
-			"and",
-			"Is there anything",
-			"I can help you with?",
-			"YES",
-			"NO",
-			"You already own this item!"
+			"食料品店",
+			"バックグラウンド",
+			"こんにちは！キャスと申します。",
+			"いらっしゃいませ！",
+			"ご購入になりますか。",
+			"申し訳ございませんが、お金は十分お持ちになりません",
+			"タモが満腹していますよ！",
+			"よろしいですか。",
+			"で",
+			"タモトークンズ",
+			"と",
+			"何かに関して",
+			"助けさせていただけますか。",
+			"はい",
+			"いいえ",
+			"このアイテムをもう持っていらっしゃいますよ！"
 		};
 		this.shopText = engShopText;
 		
 		String[] engThemeText = {
-			"Dark Mode",
-			"Light Mode",
-			"Classic Red",
-			"Classic Blue",
-			"Classic Green",
-			"Classic Yellow",
-			"Classic Orange",
-			"Classic Purple",
-			"Themes",
-			"Select",
-			"Classic Themes",
-			"Theme changed to ",
+			"ダークモード",
+			"ライトモード",
+			"クラシック赤",
+			"クラシック青",
+			"クラシック緑",
+			"クラシック黄色",
+			"クラシックオレンジ",
+			"クラシック紫",
+			"テーマ",
+			"選択",
+			"クラシックテーマ",
+			"[name of theme]に変更しました。",
 		};
 		this.themesText = engThemeText;
 		
 		String[] engInvText = {
-			"Inventory Empty",
-			"Select",
-			"Background changed!",
-			"Inventory"
+			"インベントリーが空いた",
+			"選択",
+			"バックグラウンドを変更しました！",
+			"インベントリー"
 		};
 		this.inventoryText = engInvText;
 		
 		String[] engStatsText = {
-			"Statistics",
-			"Username",
-			"Join Date",
-			"Total Focus Hours",
-			"Achievements Unlocked",
-			"Tamo Level"
+			"統計",
+			"ユーザー",
+			"入会年月日",
+			"集中時間集計",
+			"実績解除",
+			"タモレベル"
 		};
 		this.statsText = engStatsText;
 		
 		String[] engAhmTitle = {
-			"The Beginning!",
-			"Nothing can stop us!",
-			"Never give up!",
-			"Focus Ascension",
-			"Customizer 1",
-			"Customizer 2",
-			"From the Beginning",
-			"Tamo Full",
-			"Tamo Love",
-			"Achievement 10",
-			"Achievement 11",
-			"Achievement 12"
+			"その始め！",
+			"何も止められない！",
+			"ネバー・ギブ・アップ！",
+			"集中の登頂",
+			"カストマイザー１",
+			"カストマイザー２",
+			"始めから",
+			"タモフル",
+			"タモラブ",
+			"実績１０",
+			"実績１１",
+			"実績１２"
 		};
 		this.ahmTitle = engAhmTitle;
 		
 		String[] engAhmText = {
-			"Reach total focus time of<br>3 hours",
-			"Reach total focus time of<br>1 day",
-			"Reach total focus time of<br>7 days",
-			"Reach total focus time of<br>30 days",
-			"Change TamoStudy's theme!",
-			"Change your Tamo's<br>background",
-			"Updated from a previous<br>TamoStudy version",
-			"Achieve maximum Tamo hunger",
-			"Achieve maximum Tamo happiness",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement"
+			"集中時間の集計を３時間に<br>達する",
+			"集中時間の集計を1日間に<br>達する",
+			"集中時間の集計を７日間に<br>達する",
+			"集中時間の集計を３０日間に<br>達する",
+			"TamoStudyのテーマを変更する",
+			"タモのバックグラウンドを<br>変更する",
+			"以前のバージョンを<br>更新する",
+			"タモを満腹にする",
+			"タモの幸せレベルを最高に達する",
+			"この実績については不明である",
+			"この実績については不明である",
+			"この実績については不明である"
 		};
 		this.ahmText = engAhmText;
 		
 		String[] engSettingsText = {
-			"Change Focus Mode",
-			"Change Language",
-			"Change Difficulty",
-			"Alarm Sound",
-			"Custom Interval Countdown",
-			"5-Interval Countdown",
-			"Pomodoro Mode",
-			"Stopwatch Mode",
-			"English",
-			"Spanish",
-			"Portuguese",
-			"German",
-			"French",
-			"Dutch",
-			"Turkish",
-			"Irish",
-			"Hindi",
-			"Japanese",
-			"Chinese",
-			"Peaceful",
-			"Challenging",
-			"OFF",
-			"ON",
-			"Soft Alarm",
-			"Trad Alarm",
-			"Pac Alarm",
-			"Save Changes",
-			"Changes Saved!",
-			"You have unsaved changes.",
-			"Achievement Notifications",
-			"No Sound"
+			"集中モード",
+			"言語",
+			"難易度",
+			"アラームサウンド",
+			"カスタムの間隔カウントダウン",
+			"5分間隔カウントダウン",
+			"ポモドーロモード",
+			"ストップウォッチモード",
+			"英語",
+			"スペイン語",
+			"ポルトガル語",
+			"ドイツ語",
+			"フランス語",
+			"オランダ語",
+			"トルコ語",
+			"アイルランド語",
+			"ヒンディー語",
+			"日本語",
+			"中国語",
+			"平和的",
+			"挑戦的",
+			"オフ",
+			"オン",
+			"ソフトアラーム",
+			"クラシックアラーム",
+			"パックアラーム",
+			"セーブ",
+			"変更をセーブしました！",
+			"セーブされていない変更があります",
+			"実績通知",
+			"音なし"
 		};
 		this.settingsText = engSettingsText;
 		
 		String[] engAboutText = {
-			"TamoStudy is a productivity",
-			"work and focus timer that",
-			"implements a virtual pet to",
-			"help you stay driven to focus!",
-			"Developed by: ",
-			"Anthony Narlock"
+			"TamoStudy（タモスタディ）は",
+			"バーチャルなペットを埋め込んで、",
+			"プロダクティビティや労働に",
+			"集中するようなタイマーである！",
+			"開発者: ",
+			"Anthony Narlock（アンソニー・ナーロック）"
 		};
 		this.aboutText = engAboutText;
 		
 		String[] engDeathText = {
-			"Tamo Death",
-			"Your Tamo didn't receive the care it needed and has passed",
-			"Your statistics for your previous Tamo will be reset",
-			"Enter new Tamo name: "
+			"タモの死",
+			"あなたのタモは適当なケアを受けなく、死んでしまいました",
+			"以前のタモの統計はリセットされます",
+			"新タモの名前： "
 		};
-		this.deathText = engDeathText;
+		this.deathText = engDeathText;	
 	}
 	
 	@Override
