@@ -12,7 +12,7 @@ public class Test {
 		Encryption e = new Encryption();
 
 		System.out.println("2.0");
-		System.out.println(e.decrypt("Gtznut2868836;38;2868836;38;2626262jklg{rz26262926262Royg292;2;266666666"));
+		System.out.println(e.decrypt("h:462tgxruiq286873773772868836<3682896727;>=8792:26282Royg26262726277766676666626:2827262727"));
 		/*
 		 *  * Key Guide:
 			 * [2] -> New Login String
@@ -40,5 +40,8 @@ public class Test {
 		System.out.println(e.decrypt("h:462r{|2868836;38=262828><968:27?:=<26262626262826262726262huumok2923"));
 		System.out.println(e.encrypt("b4.0,luv,2021-12-30,2022-05-28,19476,2863024,4,0,0,boogie,5,5,3,0,000000100000,01234,2,0,0,0,1"));
 		System.out.println(e.decrypt("h:462Sgxok286873773772868836;38>2896727;>=8792:26262Lxgtioy2>29272:277766676666626:2629262627"));
+	
+		System.out.println("-----");
+		System.out.println(e.encrypt("b4.0,narlock,2021-11-11,2022-06-02,2301,1587213,4,0,2,Lisa,7,6,1,0,111000100000,04,2,1,0,1,1"));
 	}
 }
