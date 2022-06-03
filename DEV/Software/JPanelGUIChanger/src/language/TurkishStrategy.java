@@ -4,188 +4,190 @@ public class TurkishStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Anthony Narlock
+	 * @translator Enes "Eno" Yılmaz
 	 */
 	
 	public TurkishStrategy() {
 		String engText[] = {
-			"MENU",
-			"Welcome, ",
-			"Title Card",
-			"Focus",
-			"Shop",
-			"Themes",
-			"Inventory",
-			"Statistics",
-			"Achievements",
-			"Settings",
-			"About",
-			"Achievement Unlocked"
+			"MENÜ",
+			"Hoş Geldin, ",
+			"Başlık Kartı",
+			"Odaklanma",
+			"Mağaza",
+			"Temalar",
+			"Envanter",
+			"İstatistikler",
+			"Başarımlar",
+			"Ayarlar",
+			"Hakkında",
+			"Başarım Açıldı"
 		};
 		this.text = engText;
 		
 		String engTitleText[] = {
-			"Asla pes etme!"
+			"Asla Pes Etme!!"
 		};
 		this.titleText = engTitleText;
 	
 		String engFocusText[] = {
-			"Level",
-			"# Of Sessions",
-			"Session Length",
-			"Break Length",
-			"Start Focus",
-			"Break Focus",
-			"Session Completed",
-			"Session Focus Broke",
-			"You focused for",
-			"minutes(s) and",
-			"seconds(s)",
-			"Let's Focus!",
-			"Break"
+			"Seviye",
+			"# Oturum",
+			"Oturum Süresi",
+			"Mola Süresi",
+			"Odaklanmaya Başla",
+			"Odaklanmayı Durdur",
+			"Oturum Tamamlandı",
+			"Oturumdaki odaklanma bozuldu",
+			"Süresince odaklandın",
+			"Dakika ve",
+			"Saniye",
+			"Hadi Odaklanalım!",
+			"Ara"
 		};
 		this.focusText = engFocusText;
 		
 		String engShopText[] = {
-			"Food Shop",
-			"Backgrounds",
-			"Hello! I am Kath.",
-			"Welcome to the shop!",
-			"Purchase",
-			"You don't have sufficient funds!",
-			"Your Tamo is full!",
-			"Are you sure?",
-			"for",
+			"Yiyecek Mağazası",
+			"Arka Planlar",
+			"Selam! Ben Kath.",
+			"Mağazaya Hoş Geldin!",
+			"Öde",
+			"Yetersiz bakiye!",
+			"Tamo şu an tok!",
+			"Emin misin?",
+			"için",
 			"TamoTokens?",
-			"and",
-			"Is there anything",
-			"I can help you with?",
-			"YES",
-			"NO",
-			"You already own this item!"
+			"ve",
+			"Herhangi",
+			"yardım edebileceğim bir şey?",
+			"EVET",
+			"HAYIR",
+			"Bu eşyaya zaten sahipsin!"
 		};
 		this.shopText = engShopText;
 		
 		String[] engThemeText = {
-			"Dark Mode",
-			"Light Mode",
-			"Classic Red",
-			"Classic Blue",
-			"Classic Green",
-			"Classic Yellow",
-			"Classic Orange",
-			"Classic Purple",
-			"Themes",
-			"Select",
-			"Classic Themes",
-			"Theme changed to ",
+			"Karanlık Mod",
+			"Beyaz Mod",
+			"Klasik Kırmızı",
+			"Klasik Mavi",
+			"Klasik Yeşil",
+			"Klasik Sarı",
+			"Klasik Turuncu",
+			"Klasik Pembe",
+			"Temalar",
+			"Seç",
+			"Klasik temalar",
+			"Tema Şuna Dönüştürüldü ",
 		};
 		this.themesText = engThemeText;
 		
 		String[] engInvText = {
-			"Inventory Empty",
-			"Select",
-			"Background changed!",
-			"Inventory"
+			"Envanter Boş",
+			"Seç",
+			"Arka Plan değişti!",
+			"Envanter"
 		};
 		this.inventoryText = engInvText;
 		
 		String[] engStatsText = {
-			"Statistics",
-			"Username",
-			"Join Date",
-			"Total Focus Hours",
-			"Achievements Unlocked",
-			"Tamo Level"
+			"İstatistikler",
+			"Kullanıcı Adı",
+			"Katılma Günü",
+			"Odaklanılan Toplam Süre",
+			"Başarım Açıldı",
+			"Tamo Seviyesi"
 		};
 		this.statsText = engStatsText;
 		
 		String[] engAhmTitle = {
-			"The Beginning!",
-			"Nothing can stop us!",
-			"Never give up!",
-			"Focus Ascension",
+			"Başlangıç!",
+			"Hiçbir şey seni durduramaz!",
+			"Asla Pes Etme!",
+			"Odak Artışı",
 			"Customizer 1",
 			"Customizer 2",
-			"From the Beginning",
-			"Tamo Full",
-			"Tamo Love",
-			"Achievement 10",
-			"Achievement 11",
-			"Achievement 12"
+			"Başlangıçtan İtibaren",
+			"Tamo Tok",
+			"Tamo Aşkı",
+			"Başarım 10",
+			"Başarım 11",
+			"Başarım 12"
 		};
 		this.ahmTitle = engAhmTitle;
 		
 		String[] engAhmText = {
-			"Reach total focus time of<br>3 hours",
-			"Reach total focus time of<br>1 day",
-			"Reach total focus time of<br>7 days",
-			"Reach total focus time of<br>30 days",
-			"Change TamoStudy's theme!",
-			"Change your Tamo's<br>background",
-			"Updated from a previous<br>TamoStudy version",
-			"Achieve maximum Tamo hunger",
-			"Achieve maximum Tamo happiness",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement",
-			"We don't know much about this achievement"
+			"Toplamda 3 saat odaklanma<br>süresine ulaş",
+			"Toplamda 1 gün odaklanma<br>süresine ulaş",
+			"Toplamda 7 gün odaklanma<br>süresine ulaş",
+			"Toplamda 30 gün odaklanma<br>süresine ulaş",
+			"TamoStudy'nin temasını değiştir!",
+			"Tamo'nun arka planını<br>değiştir",
+			"Önceki bir TamoStudy<br>versiyonundan yükseltildi",
+			"Maksimum Tamo açlığına ulaşın",
+			"Maksimum Tamo mutluluğuna ulaşın",
+			"Bu başarım hakkında fazla bir şey bilmiyoruz",
+			"Bu başarı hakkında fazla bir şey bilmiyoruz",
+			"Bu başarı hakkında fazla bir şey bilmiyoruz"
 		};
 		this.ahmText = engAhmText;
 		
 		String[] engSettingsText = {
-			"Change Focus Mode",
-			"Change Language",
-			"Change Difficulty",
-			"Alarm Sound",
-			"Custom Interval Countdown",
-			"5-Interval Countdown",
-			"Pomodoro Mode",
-			"Stopwatch Mode",
-			"English",
-			"Spanish",
-			"Portuguese",
-			"German",
-			"French",
-			"Dutch",
-			"Turkish",
-			"Irish",
-			"Hindi",
-			"Japanese",
-			"Chinese",
-			"Peaceful",
-			"Challenging",
-			"OFF",
-			"ON",
-			"Soft Alarm",
+			"Odaklanma Modunu Değiştir",
+			"Dili Değiştir",
+			"Zorlul Seviyesini Değiştir",
+			"Alarm Sesi",
+			"Özel Geri Sayım",
+			"5-Aralıklı Geri Sayım",
+			"Pomodoro Modu",
+			"Stopwatch Modu",
+			"İngilizce",
+			"İspanyolca",
+			"Portekizce",
+			"Almanca",
+			"Fransızca",
+			"Felemenkçe",
+			"Türkçe",
+			"İrlandaca",
+			"Hintçe",
+			"Japonca",
+			"Çince",
+			"Barışçıl",
+			"Zorlayıcı",
+			"KAPALI",
+			"AÇIK",
+			"Yumuşak Alarm",
 			"Trad Alarm",
 			"Pac Alarm",
-			"Save Changes",
-			"Changes Saved!",
-			"You have unsaved changes.",
-			"Achievement Notifications",
-			"No Sound"
+			"Değişiklikleri Kaydet",
+			"Değişiklikler Kaydedildi!",
+			"Kaydedilmemiş Değişikler Var.",
+			"Başarım Bildirimleri",
+			"Ses Yok"
 		};
 		this.settingsText = engSettingsText;
 		
 		String[] engAboutText = {
-			"TamoStudy is a productivity",
-			"work and focus timer that",
-			"implements a virtual pet to",
-			"help you stay driven to focus!",
-			"Developed by: ",
+			"TamoStudy, sanal bir evcil hayvan kurarak",
+			"Odaklanmaya devam etmenize yardımcı olan bir üretkenlik",
+			"Çalışma ve",
+			"Odaklanma zamanlayıcısıdır!",
+			"Tarafından geliştirildi: ",
 			"Anthony Narlock"
 		};
 		this.aboutText = engAboutText;
 		
 		String[] engDeathText = {
-			"Tamo Death",
-			"Your Tamo didn't receive the care it needed and has passed",
-			"Your statistics for your previous Tamo will be reset",
-			"Enter new Tamo name: "
+			"Tamo Öldü",
+			"Tamo'nuz ihtiyaç duyduğu bakımı almadı ve öldü",
+			"Önceki Tamo'nuz için istatistikleriniz sıfırlanacak",
+			"Yeni Tamo için isim giriniz: "
 		};
 		this.deathText = engDeathText;	
 	}
 	
+	//Change the language in the quotation marks
+	//with your language in english
 	@Override
 	public void printCurrentLanguage() {
 		System.out.println("Turkish");

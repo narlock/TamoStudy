@@ -4,172 +4,190 @@ public class HindiStrategy extends LanguageStrategy {
 	
 	/**
 	 * @author Anthony Narlock (narlock)
-	 * @translator Gautam Menon (Gmn0n)
-     
-	 /** */
+	 * @translator Anthony Narlock
+	 */
 	
 	public HindiStrategy() {
-		String hindiText[] = {
-			"मेनू",
-			"स्वागत हे, ",
-			"शीर्षक कार्ड",
-			"फोकस",
-			"दुकान",
-			"ऐप का लुक",
-			"भंडार",
-			"सांख्यिकी",
-			"उपलब्धि",
-			"सेटिंग",
-			"टैमोस्टडी के बारे में"
+		String engText[] = {
+			"MENU",
+			"Welcome, ",
+			"Title Card",
+			"Focus",
+			"Shop",
+			"Themes",
+			"Inventory",
+			"Statistics",
+			"Achievements",
+			"Settings",
+			"About",
+			"Achievement Unlocked"
 		};
-		this.text = hindiText;
+		this.text = engText;
 		
-		String hindiTitleText[] = {
-			"कभी हार मत मानो!"
+		String engTitleText[] = {
+			"Never give up!!"
 		};
-		this.titleText = hindiTitleText;
+		this.titleText = engTitleText;
 	
-		String hindiFocusText[] = {
-			"लेवल",
-			"# सेशन ",
-			"सेशन की लंबाई",
-			"अंतराल की लंबाई",
-			"फोकस शुरू करें",
-			"ब्रेक फोकस",
-			"सेशन पूरा हो गया है!",
-			"सेशन फोकस टूट गया है",
-			"फोकस किया हुआ समय",
-			"मिनट (ओं) और",
-			"सेकंड (ओं) और",
-			"आइए फोकस करते है",
-			"ब्रेक का समय"
+		String engFocusText[] = {
+			"Level",
+			"# Of Sessions",
+			"Session Length",
+			"Break Length",
+			"Start Focus",
+			"Break Focus",
+			"Session Completed",
+			"Session Focus Broke",
+			"You focused for",
+			"minutes(s) and",
+			"second(s)",
+			"Let's Focus!",
+			"Break"
 		};
-		this.focusText = hindiFocusText;
+		this.focusText = engFocusText;
 		
-		String hindiShopText[] = {
-			"भोजन का दूकान",
-			"बैकग्राउंड",
-			"हैलो मैं कैथ हूँ।.",
-			"दुकान में आपका स्वागत है!",
-			"अभी खरीदें",
-			"आपके पास पर्याप्त धन नहीं है!",
-			"आपका तामो भरा हुआ है!",
-			"क्या आप वाकई इस खरीदारी को जारी रखना चाहते हैं",
-			"क्या आप",
-			"तामो टोकन के लिए खरीदना चाहते हैं",
-			"और",
-			"क्या मैं आपकी कुछ मदद कर सकता हूँ?",
-			"हां",
-			"नहीं",
-			"आपके पास पहले से ही यह आइटम है!"
+		String engShopText[] = {
+			"Food Shop",
+			"Backgrounds",
+			"Hello! I am Kath.",
+			"Welcome to the shop!",
+			"Purchase",
+			"You don't have sufficient funds!",
+			"Your Tamo is full!",
+			"Are you sure?",
+			"for",
+			"TamoTokens?",
+			"and",
+			"Is there anything",
+			"I can help you with?",
+			"YES",
+			"NO",
+			"You already own this item!"
 		};
-		this.shopText = hindiShopText;
+		this.shopText = engShopText;
 		
-		String[] hindiThemeText = {
-			"डार्क मोड",
-			"सफेद मोड",
-			"क्लासिक लाल",
-			"क्लासिक नीला",
-			"क्लासिक हरा",
-			"क्लासिक पीला",
-			"क्लासिक नारंगी",
-			"क्लासिक नारंगी",
-			"ऐप का लुक",
-			"सिलेक्ट",
-			"क्लासिक लुकस",
-			"अब ऐप का यह लुक होगा:",
+		String[] engThemeText = {
+			"Dark Mode",
+			"Light Mode",
+			"Classic Red",
+			"Classic Blue",
+			"Classic Green",
+			"Classic Yellow",
+			"Classic Orange",
+			"Classic Purple",
+			"Themes",
+			"Select",
+			"Classic Themes",
+			"Theme changed to ",
 		};
-		this.themesText = hindiThemeText;
+		this.themesText = engThemeText;
 		
-		String[] hindiInvText = {
-			"इन्वेंट्री खाली है",
-			"सिलेक्ट",
-			"बैकग्राउंड बदल गई है!",
-			"इन्वेंट्री"
+		String[] engInvText = {
+			"Inventory Empty",
+			"Select",
+			"Background changed!",
+			"Inventory"
 		};
-		this.inventoryText = hindiInvText;
+		this.inventoryText = engInvText;
 		
-		String[] hindiStatsText = {
-			"सांख्यिकी",
-			"यूजर नेम",
-			"शामिल होने का दिन",
-			"कुल फोकस किया हुआ घंटे",
-			"उपलब्धि जो अनलॉक हो गई है",
-			"तामो का लेवल"
+		String[] engStatsText = {
+			"Statistics",
+			"Username",
+			"Join Date",
+			"Total Focus Hours",
+			"Achievements Unlocked",
+			"Tamo Level"
 		};
-		this.statsText = hindiStatsText;
+		this.statsText = engStatsText;
 		
-		String[] hindiAhmTitle = {
-			"शुरुवात !",
-			"हमें कुछ नहीं रोक सकता!",
-			"कभी हार मत मानो!",
-			"फोकस बढ़ रहा है",
-			"कस्टमाइज़ ऑप्शन 1",
-			"कस्टमाइज़ ऑप्शन 2",
-			"प्रारंभ से",
-			"तामो भरा हुआ है",
-			"तामो प्यार",
-			"उपलब्धि 10",
-			"उपलब्धि 11",
-			"उपलब्धि 12"
+		String[] engAhmTitle = {
+			"The Beginning!",
+			"Nothing can stop us!",
+			"Never give up!",
+			"Focus Ascension",
+			"Customizer 1",
+			"Customizer 2",
+			"From the Beginning",
+			"Tamo Full",
+			"Tamo Love",
+			"Achievement 10",
+			"Achievement 11",
+			"Achievement 12"
 		};
-		this.ahmTitle = hindiAhmTitle;
+		this.ahmTitle = engAhmTitle;
 		
-		String[] hindiAhmText = {
-			"अनलॉक करने के लिए आपको 3 घंटे के कुल फोकस समय तक पहुंचना होगा",
-			"अनलॉक करने के लिए आपको 1 दिन के कुल फोकस समय तक पहुंचना होगा",
-			"अनलॉक करने के लिए आपको 7 दिन के कुल फोकस समय तक पहुंचना होगा",
-			"अनलॉक करने के लिए आपको 30 दिन के कुल फोकस समय तक पहुंचना होगा",
-			"अनलॉक करने के लिए आपको तामो स्टडी की थीम बदलनी चाहिए!",
-			"अनलॉक करने के लिए आपको तामो स्टडी की बैकग्राउंड बदलनी होगी",
-			"अनलॉक करने के लिए आपको तामो स्टडी के पिछले संस्करण से अपडेट होना चाहिए",
-			"अनलॉक करने के लिए आपको अधिकतम तामो भूख हासिल करनी होगी",
-			"अनलॉक करने के लिए आपको अधिकतम तामो खुशी प्राप्त करनी होगी",
-			"हमें इस उपलब्धि के बारे में जानकारी नहीं है",
-			"हमें इस उपलब्धि के बारे में जानकारी नहीं है",
-			"हमें इस उपलब्धि के बारे में जानकारी नहीं है"
+		String[] engAhmText = {
+			"Reach total focus time of<br>3 hours",
+			"Reach total focus time of<br>1 day",
+			"Reach total focus time of<br>7 days",
+			"Reach total focus time of<br>30 days",
+			"Change TamoStudy's theme!",
+			"Change your Tamo's<br>background",
+			"Updated from a previous<br>TamoStudy version",
+			"Achieve maximum Tamo hunger",
+			"Achieve maximum Tamo happiness",
+			"We don't know much about this achievement",
+			"We don't know much about this achievement",
+			"We don't know much about this achievement"
 		};
-		this.ahmText = hindiAhmText;
+		this.ahmText = engAhmText;
 		
-		String[] hindiSettingsText = {
-			"फ़ोकस मोड बदलें",
-			"भाषा बदलें",
-			"कठिनाई को बदलें",
-			"अलार्म साउंड सेटिंग्स",
-			"कस्टम अंतराल उलटी गिनती",
-			"5 अंतराल उलटी गिनती",
-			"पोमोडोरो मोड",
-			"स्टॉपवॉच मोड",
-			"अंग्रेज़ी",
-			"स्पैनिश",
-			"पुर्तगाली",
-			"जर्मन",
-			"जापानी",
-			"डच",
-			"फ्रेंच",
-			"तुर्की",
-			"आयरिश",
-			"हिन्दी",
-			"चीनी",
-			"शांतिदायक प्रकार",
-			"चुनौतीपूर्ण मोड",
-			"बंद",
-			"चालू करो",
-			"सॉफ्ट अलार्म",
-			"क्लासिक अलार्म",
-			"पॅक गेम अलार्म",
-			"क्या ऐप परिवर्तनो को सेव करना चाहते हैं?",
-			"परिवर्तन सेव हुए है!",
-			"परिवर्तन सेव नहीं हुए है",
-			"उपलब्धि सूचनाएं"
+		String[] engSettingsText = {
+			"Change Focus Mode",
+			"Change Language",
+			"Change Difficulty",
+			"Alarm Sound",
+			"Custom Interval Countdown",
+			"5-Interval Countdown",
+			"Pomodoro Mode",
+			"Stopwatch Mode",
+			"English",
+			"Spanish",
+			"Portuguese",
+			"German",
+			"French",
+			"Dutch",
+			"Turkish",
+			"Irish",
+			"Hindi",
+			"Japanese",
+			"Chinese",
+			"Peaceful",
+			"Challenging",
+			"OFF",
+			"ON",
+			"Soft Alarm",
+			"Trad Alarm",
+			"Pac Alarm",
+			"Save Changes",
+			"Changes Saved!",
+			"You have unsaved changes.",
+			"Achievement Notifications",
+			"No Sound"
 		};
-		this.settingsText = hindiSettingsText;
+		this.settingsText = engSettingsText;
 		
+		String[] engAboutText = {
+			"TamoStudy is a productivity",
+			"work and focus timer that",
+			"implements a virtual pet to",
+			"help you stay driven to focus!",
+			"Developed by: ",
+			"@narlock"
+		};
+		this.aboutText = engAboutText;
+		
+		String[] engDeathText = {
+			"Tamo Death",
+			"Your Tamo didn't receive the care it needed and has passed",
+			"Your statistics for your previous Tamo will be reset",
+			"Enter new Tamo name: "
+		};
+		this.deathText = engDeathText;	
 	}
-
+	
 	@Override
 	public void printCurrentLanguage() {
-		// TODO Auto-generated method stub
-		System.out.println("Hindi");
+		System.out.println("English");
 	}
 }
