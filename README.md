@@ -35,7 +35,7 @@
 <!-- Installation Video -->
 <h2 align="center">Installation Video</h2>
 <p align="center">
-  <a href="https://youtu.be/Iu0N0but-NM"><img src="https://i.imgur.com/JEXOEwy.png"></a>
+  <a href="https://www.youtube.com/watch?v=8JeMkaXIQOY"><img src="https://i.imgur.com/nVWKkXF.jpg" width="50%"></a>
 </p>
 <hr>
 
