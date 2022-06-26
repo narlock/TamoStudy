@@ -97,9 +97,10 @@ public class InventoryStrategy extends StateStrategy {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					checkBackgroundAchievement(Integer.parseInt(name));
 					profile.setBgIndicator(Integer.parseInt(name));
 					messageLabel.setText(profile.getLanguage().inventoryText[2]);
-					checkBackgroundAchievement();
+					
 					ProfileReaderWriter.updateProfileInfoToFile(profile);
 				}
 				
@@ -125,9 +126,9 @@ public class InventoryStrategy extends StateStrategy {
 		return null;
 	}
 	
-	public void checkBackgroundAchievement() {
+	public void checkBackgroundAchievement(int indicator) {
 		//Reach 3 hours focus time
-		if(profile.getAhmIndicator(5).equals("0")) {
+		if(profile.getAhmIndicator(5).equals("0") && profile.getBgIndicator() != indicator) {
 			profile.getAchievement(5);
 			
 			if(profile.getSettings().getShowAhmNotifications() == 1)
