@@ -1,5 +1,7 @@
 import javax.swing.JFrame;
 
+import resources.Settings;
+
 /**
  * MainGUI
  * @author Anthony Narlock (narlock)
@@ -7,6 +9,8 @@ import javax.swing.JFrame;
  */
 
 public class MainGUI extends JFrame {
+	
+	private Settings settings;
 	
 	public MainGUI() {
 		
