@@ -179,9 +179,9 @@ public class StudyFocusStrategy extends StateStrategy {
 		//timerSetPanel - CUSTOM INTERVAL COUNTDOWN
 		if(profile.getSettings().getFocusMode() == 0) {
 			minuteBox = new JComboBox();
-			setUpComboBox(minuteBox);
+			setUpComboBox(minuteBox, 1);
 			secondBox = new JComboBox();
-			setUpComboBox(secondBox);;
+			setUpComboBox(secondBox, 1);;
 			
 			timerSetBoxPanel.add(minuteBox);
 			timerSetBoxPanel.add(secondBox);
@@ -192,7 +192,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		//timerSetPanel - 5 MIN INTERVAL COUNTDOWN
 		if(profile.getSettings().getFocusMode() == 1) {
 			minuteBox = new JComboBox();
-			setUpComboBox(minuteBox);
+			setUpComboBox(minuteBox, 1);
 			timerSetBoxPanel.add(minuteBox);
 			
 			timerPanel.add(timerSetBoxPanel);
@@ -210,11 +210,11 @@ public class StudyFocusStrategy extends StateStrategy {
 
 			//Set Boxes
 			pomoNumberSessionBox = new JComboBox();
-			setUpComboBox(pomoNumberSessionBox);
+			setUpComboBox(pomoNumberSessionBox, 0);
 			pomoSessionBox = new JComboBox();
-			setUpComboBox(pomoSessionBox);
+			setUpComboBox(pomoSessionBox, 0);
 			pomoBreakBox = new JComboBox();
-			setUpComboBox(pomoBreakBox);
+			setUpComboBox(pomoBreakBox, 0);
 				
 			timerSetBoxPanel.add(pomoNumberSessionBox);
 			timerSetBoxPanel.add(pomoSessionBox);
@@ -361,11 +361,14 @@ public class StudyFocusStrategy extends StateStrategy {
 		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 	}
 	
-	public void setUpComboBox(JComboBox box) {
+	public void setUpComboBox(JComboBox box, int fontSize) {
 		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			box.setBackground(Color.WHITE);
 		
-		box.setFont(theme.fontBoldRegSmall);
+		if(fontSize == 0)
+			box.setFont(theme.fontBoldRegSmall);
+		else
+			box.setFont(theme.fontBoldRegLarge);
 	}
 	
 }

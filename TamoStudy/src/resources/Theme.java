@@ -18,9 +18,11 @@ public class Theme {
 	public Color layerColor;
 	public Color textColor;
 	public Color layerTextColor;
-	public Font fontPlainReg;
-	public Font fontBoldReg;
-	public Font fontBoldRegSmall;
+	
+	public final Font fontPlainReg = new Font("Arial", Font.PLAIN, 24);
+	public final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
+	public final Font fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
+	public final Font fontBoldRegLarge = new Font("Arial", Font.BOLD, 60);
 	
 	public String type;
 	
@@ -32,9 +34,6 @@ public class Theme {
 			layerColor = new Color(108, 108, 108);
 			textColor = Color.WHITE;
 			layerTextColor = new Color(153,153,153);
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Dark";
 		}
 		//Light Mode
@@ -44,9 +43,6 @@ public class Theme {
 			layerColor = Color.WHITE;
 			textColor = new Color(64,64,64); 
 			layerTextColor = Color.BLACK;
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Light";
 		}
 		//Classic Red
@@ -56,9 +52,6 @@ public class Theme {
 			layerColor = new Color(255,120,120);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Red";
 		}
 		//Classic Blue
@@ -68,9 +61,6 @@ public class Theme {
 			layerColor = new Color(120,120,255);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Blue";
 		}
 		//Classic Green
@@ -80,9 +70,6 @@ public class Theme {
 			layerColor = new Color(120,255,120);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Green";
 		}
 		//Classic Yellow
@@ -92,9 +79,6 @@ public class Theme {
 			layerColor = new Color(255,255,120);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Yellow";
 		}	
 		//Classic Orange
@@ -104,9 +88,6 @@ public class Theme {
 			layerColor = new Color(255,219,120);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Orange";
 		}
 		//Classic Purple
@@ -116,9 +97,6 @@ public class Theme {
 			layerColor = new Color(236,120,255);
 			textColor = Color.BLACK; 
 			layerTextColor = new Color(64,64,64); 
-			fontPlainReg = new Font("Arial", Font.PLAIN, 24);
-			fontBoldReg = new Font("Arial", Font.BOLD, 24);
-			fontBoldRegSmall = new Font("Arial", Font.BOLD, 18);
 			type = "Purple";
 		}	
 	}
