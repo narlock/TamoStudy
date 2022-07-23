@@ -13,9 +13,6 @@ import resources.SettingsReaderWriter;
 
 public class TamoStream {
 	public static void main(String[] args) throws IOException, ParseException {
-		Settings settings = SettingsReaderWriter.jsonToSettings();
-		settings.setFontString("Tahoma");
-		SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
-		System.out.println(settings.getJsonObject());
+		MainGUI gui = new MainGUI();
 	}
 }
