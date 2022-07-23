@@ -1,0 +1,15 @@
+{
+    "settings":{
+        "version": "0.1",
+        "studyMode": "pomodoro",
+        "theme": {
+            "backgroundColor": [78,78,78],
+            "timerBackgroundColor": [108,108,108],
+            "timerBorderColor": [0,0,0],
+            "textColor": [255,255,255],
+			"font": "Arial",
+			"timerFontSize": 96,
+			"sessionFontSize": 24
+        }
+    }
+}
