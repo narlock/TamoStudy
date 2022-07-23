@@ -2,3 +2,5 @@ TamoStudy/.project
 
 *.class
 bin/
+.classpath
+.project
