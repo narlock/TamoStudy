@@ -353,8 +353,14 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JPanel getHappinessPanel() { return tamoHappiness; }
 	
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-			button.setBackground(Color.WHITE);
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
+			if(button.getText() == profile.getLanguage().focusText[4])
+				button.setBackground(new Color(120,255,120));
+			else if(button.getText() == profile.getLanguage().focusText[5])
+				button.setBackground(new Color(255,120,120));
+			else
+				button.setBackground(Color.WHITE);
+		}
 			
 		button.setFont(theme.fontBoldRegSmall);
 		button.setFocusPainted(false);
