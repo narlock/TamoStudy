@@ -219,7 +219,9 @@ public class AppearanceChangeGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Color color = JColorChooser.showDialog(null, "Choose a color", Color.GRAY);
-				updateColorSettingsByIndicator(indicator, color);
+				if(color != null) {
+					updateColorSettingsByIndicator(indicator, color);
+				}
 			}
 		});
 		panel.add(colorChangeButton);

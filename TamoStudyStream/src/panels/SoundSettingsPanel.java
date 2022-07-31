@@ -81,7 +81,7 @@ public class SoundSettingsPanel extends JPanel {
 		playSoundButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(isCollided) {
+				if(isCollided && clip != null) {
 					clip.stop();
 					isCollided = false;
 				}
@@ -127,7 +127,7 @@ public class SoundSettingsPanel extends JPanel {
 				JOptionPane.PLAIN_MESSAGE,
 				1, new ImageIcon(getClass().getClassLoader().getResource("INFO.png"))
 			);
-		if(result >= 0) {
+		if(result >= 0 && clip != null) {
 			clip.stop();
 		}
 	}
