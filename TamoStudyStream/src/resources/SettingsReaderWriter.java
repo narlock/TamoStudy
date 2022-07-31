@@ -41,6 +41,10 @@ public class SettingsReaderWriter {
         	);
 	}
 	
+	public static JSONObject settingsToJsonObject(Settings settings) {
+		return settings.getJsonObject();
+	}
+	
 	public static void updateSettingsJson(JSONObject obj) {
 		try {
             file = new FileWriter("settings.json");

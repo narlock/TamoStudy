@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,9 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import org.json.simple.parser.ParseException;
@@ -29,6 +33,19 @@ public class MainGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private Settings settings;
+	
+	private JMenuBar menuBar;
+	private JMenu fileMenu;
+	private JMenuItem exportSettingsFileMenuItem;
+	private JMenuItem importSettingsFileMenuItem;
+	
+	private JMenu customizationMenu;
+	private JMenuItem colorOptionsMenuItem;
+	private JMenuItem studyOptionsMenuItem;
+	
+	private JMenu helpMenu;
+	private JMenuItem howToUseMenuItem;
+	private JMenuItem contactMenuItem;
 	
 	private JPanel timerPanel;
 	private JPanel timerStreamPanel;
@@ -51,12 +68,12 @@ public class MainGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		settings = SettingsReaderWriter.jsonToSettings();
 		initFrame();
-		
 	}
 	
 	private void initFrame() {
 		addComponentsToFrame();
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setTitle("TamoStudyStream v1.0");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
@@ -64,15 +81,46 @@ public class MainGUI extends JFrame {
 	}
 	
 	private void addComponentsToFrame() {
+		initMenu();
 		initTimerPanel();
 		initPomodoroMode();
+		initButtonPanel();
 		this.add(timerPanel);
+	}
+	
+	private void initMenu() {
+		menuBar = new JMenuBar();
+		
+		fileMenu = new JMenu("File");
+		importSettingsFileMenuItem = new JMenuItem("Import Settings");
+		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
+		fileMenu.add(importSettingsFileMenuItem);
+		fileMenu.add(exportSettingsFileMenuItem);
+		menuBar.add(fileMenu);
+		
+		customizationMenu = new JMenu("Customize");
+		colorOptionsMenuItem = new JMenuItem("Color Options");
+		studyOptionsMenuItem = new JMenuItem("Study Options");
+		customizationMenu.add(colorOptionsMenuItem);
+		customizationMenu.add(studyOptionsMenuItem);
+		menuBar.add(customizationMenu);
+		
+		helpMenu = new JMenu("Help");
+		howToUseMenuItem = new JMenuItem("Guide");
+		contactMenuItem = new JMenuItem("Contact");
+		helpMenu.add(howToUseMenuItem);
+		helpMenu.add(contactMenuItem);
+		menuBar.add(helpMenu);
+		
+		this.add(menuBar, BorderLayout.NORTH);
 	}
 	
 	private void initTimerPanel() {
 		timerPanel = new JPanel();
 		timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.Y_AXIS));
 			timerPanel.setBackground(settings.getBackgroundColor());
+			
+		timerPanel.add(createSpaceLabel()); //Adds space between menu and timer
 			
 		timerStreamPanel = new JPanel();
 			timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
@@ -119,6 +167,7 @@ public class MainGUI extends JFrame {
 		pomoSessionLabel.setForeground(settings.getTextColor());
 		pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	
+		timerPanel.add(createSpaceLabel()); //Adds space between timer and setup
 		timerPanel.add(pomoSessionLabel);
 
 		//Set Boxes
@@ -159,10 +208,35 @@ public class MainGUI extends JFrame {
 		});
 	}
 	
+	private void initButtonPanel() {
+		timerButtonPanel = new JPanel();
+			timerButtonPanel.setBackground(settings.getBackgroundColor());
+		timerButtonPanel.add(startFocus);
+		setUpJButton(startFocus);
+		timerButtonPanel.add(breakFocus);
+		setUpJButton(breakFocus);
+		timerPanel.add(timerButtonPanel);
+	}
+	
 	protected JLabel createSpaceLabel() {
 		JLabel transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
 		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		return transparentComponent;
+	}
+	
+	private void setUpJButton(JButton button) {
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
+			if(button.getText() == "Start Focus")
+				button.setBackground(new Color(120,255,120));
+			else if(button.getText() == "Break Focus")
+				button.setBackground(new Color(255,120,120));
+			else
+				button.setBackground(Color.WHITE);
+		}
+			
+		button.setFont(settings.getSessionFont());
+		button.setFocusPainted(false);
+		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 	}
 	
 	private void updateGUI() {
