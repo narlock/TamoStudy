@@ -15,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -30,7 +31,7 @@ import javax.swing.UIManager;
 
 import org.json.simple.parser.ParseException;
 
-import panes.ViewCurrentSettingsPane;
+import panels.ViewCurrentSettingsPanel;
 import resources.BubbleBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
@@ -56,7 +57,7 @@ public class MainGUI extends JFrame {
 	private JMenuItem importSettingsFileMenuItem;
 	
 	private JMenu customizationMenu;
-	private JMenuItem colorOptionsMenuItem;
+	private JMenuItem appearanceOptionsMenuItem;
 	private JMenuItem studyOptionsMenuItem;
 	
 	private JMenu helpMenu;
@@ -135,7 +136,7 @@ public class MainGUI extends JFrame {
 			viewCurrentSettingsMenuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewCurrentSettingsPane pane = new ViewCurrentSettingsPane(settings);
+					ViewCurrentSettingsPanel pane = new ViewCurrentSettingsPanel(settings);
 					pane.showMessageDialog();
 				}
 			});
@@ -157,16 +158,24 @@ public class MainGUI extends JFrame {
 			}
 		});
 		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
+		exportSettingsFileMenuItem.setEnabled(false);
 		fileMenu.add(viewCurrentSettingsMenuItem);
 		fileMenu.add(importSettingsFileMenuItem);
 		fileMenu.add(exportSettingsFileMenuItem);
 		menuBar.add(fileMenu);
 		
 		customizationMenu = new JMenu("Customize");
-		colorOptionsMenuItem = new JMenuItem("Color Options");
+		appearanceOptionsMenuItem = new JMenuItem("Appearance Options");
+		appearanceOptionsMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AppearanceChangeGUI change = new AppearanceChangeGUI(settings);
+				hideWindow();
+			}
+		});
 		studyOptionsMenuItem = new JMenuItem("Study Options");
 		studyOptionsMenuItem.setEnabled(false);
-		customizationMenu.add(colorOptionsMenuItem);
+		customizationMenu.add(appearanceOptionsMenuItem);
 		customizationMenu.add(studyOptionsMenuItem);
 		menuBar.add(customizationMenu);
 		
@@ -190,7 +199,7 @@ public class MainGUI extends JFrame {
 		timerStreamPanel = new JPanel();
 			timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
 			timerStreamPanel.setLayout(new BoxLayout(timerStreamPanel, BoxLayout.Y_AXIS));
-			timerStreamPanel.setBorder(new BubbleBorder(Color.BLACK, 5, 20, 10, true));
+			timerStreamPanel.setBorder(new BubbleBorder(settings.getTimerBorderColor(), 5, 20, 10, true));
 			
 		timerTextPanel = new JPanel();
 			timerTextPanel.setBackground(settings.getTimerBackgroundColor());
@@ -201,7 +210,7 @@ public class MainGUI extends JFrame {
 		minuteTime.setFont(settings.getFont());
 		
 		spaceLabel.setForeground(settings.getTextColor());
-		spaceLabel.setFont(new Font ("Arial", Font.BOLD, 96));
+		spaceLabel.setFont(settings.getFont());
 		
 		secondTime = new JLabel("00");
 			secondTime.setForeground(settings.getTextColor());
@@ -217,7 +226,7 @@ public class MainGUI extends JFrame {
 	private void initPomodoroMode() {
 		currentSessionLabel = new JLabel("Let's Focus!");
 		currentSessionLabel.setForeground(settings.getTextColor());
-		currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 25));
+		currentSessionLabel.setFont(settings.getSessionFont());
 		currentSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		timerStreamPanel.add(currentSessionLabel);
 		
@@ -533,5 +542,13 @@ public class MainGUI extends JFrame {
 	
 	private void updateGUI() {
 		
+	}
+	
+	/*
+	 * Method hides the main windows and disposes it
+	 */
+	public void hideWindow() {
+		this.setVisible(false);
+		this.dispose();
 	}
 }

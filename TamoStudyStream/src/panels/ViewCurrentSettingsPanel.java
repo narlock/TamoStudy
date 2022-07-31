@@ -1,4 +1,4 @@
-package panes;
+package panels;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import resources.Settings;
 
-public class ViewCurrentSettingsPane extends JPanel {
+public class ViewCurrentSettingsPanel extends JPanel {
 	private Settings settings;
 	
 	private JLabel versionLabel;
@@ -24,7 +24,7 @@ public class ViewCurrentSettingsPane extends JPanel {
 	private JLabel fontLabel;
 	private JLabel soundIndicatorLabel;
 	
-	public ViewCurrentSettingsPane(Settings settings) {
+	public ViewCurrentSettingsPanel(Settings settings) {
 		this.settings = settings;
 		initFrame();
 		initComponents();
