@@ -513,7 +513,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
+				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + tempSec  + " " + profile.getLanguage().focusText[10];
 				profile.updateStudyStats(tempMin, tempSec);
 				
 				resetTimer();

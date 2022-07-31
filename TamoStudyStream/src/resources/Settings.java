@@ -21,6 +21,8 @@ public class Settings {
 	private long timerFontSize;
 	private long sessionFontSize;
 	
+	private int soundIndicator;
+	
 	public Settings() {
 		this.version = "0.1";
 		this.studyMode = "pomodoro";
@@ -183,6 +185,14 @@ public class Settings {
 		obj.put("sessionFontSize", sessionFontSize);
 		
 		return obj;
+	}
+
+	public int getSoundIndicator() {
+		return soundIndicator;
+	}
+
+	public void setSoundIndicator(int soundIndicator) {
+		this.soundIndicator = soundIndicator;
 	}
 	
 }
