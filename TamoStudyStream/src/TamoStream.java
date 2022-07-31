@@ -16,7 +16,6 @@ import resources.SettingsReaderWriter;
 
 public class TamoStream {
 	public static void main(String[] args) throws IOException, ParseException {
-		System.out.println(System.getProperty("user.home") + File.separatorChar + "TamoStudyStream");
 		MainGUI gui = new MainGUI();
 	}
 }

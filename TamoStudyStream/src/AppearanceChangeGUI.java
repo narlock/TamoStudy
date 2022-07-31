@@ -54,9 +54,9 @@ public class AppearanceChangeGUI extends JFrame {
 		this.setResizable(false);
 		this.setTitle("Appearance - TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
+		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 		this.setSize(700,500);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 	}
 	
 	private void initComponents() {

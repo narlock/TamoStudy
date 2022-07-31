@@ -111,7 +111,7 @@ public class MainGUI extends JFrame {
 		addComponentsToFrame();
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("TamoStudyStream v0.1");
+		this.setTitle("TamoStudyStream v0.1 - narlock");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
 		this.setLocationRelativeTo(null);
