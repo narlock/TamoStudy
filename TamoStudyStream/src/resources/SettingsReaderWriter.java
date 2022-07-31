@@ -37,7 +37,8 @@ public class SettingsReaderWriter {
         		new Color((int) (long) textColor.get(0), (int) (long) textColor.get(1), (int) (long) textColor.get(2)),
         		(String) settingsJsonObject.get("font"),
         		(long) settingsJsonObject.get("timerFontSize"),
-        		(long) settingsJsonObject.get("sessionFontSize")
+        		(long) settingsJsonObject.get("sessionFontSize"),
+        		(long) settingsJsonObject.get("soundIndicator")
         	);
 	}
 	

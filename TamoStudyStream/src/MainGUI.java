@@ -26,7 +26,7 @@ import javax.swing.Timer;
 
 import org.json.simple.parser.ParseException;
 
-import profile.ProfileReaderWriter;
+import panes.ViewCurrentSettingsPane;
 import resources.BubbleBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
@@ -47,6 +47,7 @@ public class MainGUI extends JFrame {
 	 */
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
+	private JMenuItem viewCurrentSettingsMenuItem;
 	private JMenuItem exportSettingsFileMenuItem;
 	private JMenuItem importSettingsFileMenuItem;
 	
@@ -116,8 +117,17 @@ public class MainGUI extends JFrame {
 		menuBar = new JMenuBar();
 		
 		fileMenu = new JMenu("File");
+		viewCurrentSettingsMenuItem = new JMenuItem("View Current Settings");
+			viewCurrentSettingsMenuItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ViewCurrentSettingsPane pane = new ViewCurrentSettingsPane(settings);
+					pane.showMessageDialog();
+				}
+			});
 		importSettingsFileMenuItem = new JMenuItem("Import Settings");
 		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
+		fileMenu.add(viewCurrentSettingsMenuItem);
 		fileMenu.add(importSettingsFileMenuItem);
 		fileMenu.add(exportSettingsFileMenuItem);
 		menuBar.add(fileMenu);
@@ -277,10 +287,10 @@ public class MainGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
-//				resetTimer();
-//				timer.stop();
-//				JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[7], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+				String studyMessage = "You studied for " + tempMin + " minute(s) and " + tempSec + " second(s).";
+				resetTimer();
+				timer.stop();
+				JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Focus Broke", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			}
 			
 		});
@@ -359,7 +369,7 @@ public class MainGUI extends JFrame {
 				
 				if(min < 0) {
 					
-					String studyMessage = profile.getLanguage().focusText[8] + "" + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
+					String studyMessage = "You studied for " + tempMin + " minute(s) and " + tempSec + " second(s).";
 					
 					tempMin = 0;
 					tempSec = 0;
@@ -369,7 +379,7 @@ public class MainGUI extends JFrame {
 					
 						try {
 							//Get the url for the sound clip
-							String soundPath = profile.getSettings().getSoundPath();
+							String soundPath = settings.getSoundPath();
 							
 							URL url = this.getClass().getClassLoader().getResource(soundPath);
 							AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
@@ -387,7 +397,7 @@ public class MainGUI extends JFrame {
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 							
 							//loop will end when user hits ok dialog
-							JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Completed", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 							clip.stop();
 							
 						} catch (Exception ex2) {
@@ -395,7 +405,7 @@ public class MainGUI extends JFrame {
 						}
 					
 					} else {
-						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Completed", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 						
 					}
 					//JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));

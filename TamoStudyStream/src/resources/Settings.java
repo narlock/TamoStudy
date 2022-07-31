@@ -35,6 +35,7 @@ public class Settings {
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
 		this.sessionFontSize = 20;
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
+		this.soundIndicator = 1;
 	}
 	
 	public Settings(
@@ -46,7 +47,8 @@ public class Settings {
 			Color textColor,
 			String timerFontString,
 			long timerFontSize,
-			long sessionFontSize
+			long sessionFontSize,
+			long soundIndicator
 	) 
 	{
 		this.version = version;
@@ -60,6 +62,7 @@ public class Settings {
 		this.sessionFontSize = sessionFontSize;
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
+		this.soundIndicator = (int) soundIndicator;
 	}
 
 	public String getVersion() {
@@ -193,6 +196,32 @@ public class Settings {
 
 	public void setSoundIndicator(int soundIndicator) {
 		this.soundIndicator = soundIndicator;
+	}
+
+	public String getSoundPath() {
+		switch(soundIndicator) {
+			case 1:
+				return "SOFT_ALARM.wav";
+			case 2:
+				return "TRAD_ALARM.wav";
+			case 3:
+				return "PAC_ALARM.wav";
+		}
+		return null;
+	}
+
+	public String getSoundName() {
+		switch(soundIndicator) {
+			case 0:
+				return "Disabled";
+			case 1:
+				return "Soft Alarm";
+			case 2:
+				return "Trad Alarm";
+			case 3:
+				return "Pac Alarm";
+		}
+		return null;
 	}
 	
 }

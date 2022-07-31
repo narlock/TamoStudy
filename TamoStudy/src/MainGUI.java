@@ -609,7 +609,7 @@ public class MainGUI extends JFrame {
 				if(min < 0) {
 					
 					profile.updateStudyStats(tempMin, tempSec);
-					String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + profile.getLanguage().focusText[10];
+					String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + tempSec + " " + profile.getLanguage().focusText[10];
 					
 					tempMin = 0;
 					tempSec = 0;

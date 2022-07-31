@@ -1,1 +1,28 @@
-{"timerBorderColor":[0,0,0],"backgroundColor":[78,78,78],"timerFontSize":96,"timerBackgroundColor":[108,108,108],"sessionFontSize":24,"version":"0.1","studyMode":"pomodoro","textColor":[255,255,255],"font":"Tahoma"}
+{
+  "timerBorderColor": [
+    0,
+    0,
+    0
+  ],
+  "backgroundColor": [
+    78,
+    78,
+    78
+  ],
+  "timerFontSize": 96,
+  "timerBackgroundColor": [
+    108,
+    108,
+    108
+  ],
+  "sessionFontSize": 24,
+  "version": "0.1",
+  "studyMode": "pomodoro",
+  "textColor": [
+    255,
+    255,
+    255
+  ],
+  "font": "Tahoma",
+  "soundIndicator": 1
+}
