@@ -26,11 +26,11 @@ public class Settings {
 	public Settings() {
 		this.version = "0.1";
 		this.studyMode = "pomodoro";
-		this.fontString = "Arial";
+		this.fontString = "Tahoma";
 		this.backgroundColor = Color.DARK_GRAY;
 		this.timerBackgroundColor = Color.GRAY;
 		this.timerBorderColor = Color.BLACK;
-		this.textColor = Color.BLACK;
+		this.textColor = Color.WHITE;
 		this.timerFontSize = 90;
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
 		this.sessionFontSize = 20;
@@ -186,6 +186,7 @@ public class Settings {
 		obj.put("font", fontString);
 		obj.put("timerFontSize", timerFontSize);
 		obj.put("sessionFontSize", sessionFontSize);
+		obj.put("soundIndicator", soundIndicator);
 		
 		return obj;
 	}

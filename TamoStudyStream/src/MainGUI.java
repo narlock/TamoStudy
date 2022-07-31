@@ -84,9 +84,19 @@ public class MainGUI extends JFrame {
 	private int currentPomodoroSession, totalPomodoroSessions;
 	private boolean breakCondition;
 	
-	public MainGUI() throws IOException, ParseException {
+	public MainGUI() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		settings = SettingsReaderWriter.jsonToSettings();
+
+		try {
+			settings = SettingsReaderWriter.getSettings();
+		} catch (IOException e) {
+			//Json file was not found
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 		initFrame();
 	}
 	
@@ -94,7 +104,7 @@ public class MainGUI extends JFrame {
 		addComponentsToFrame();
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("TamoStudyStream v1.0");
+		this.setTitle("TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
 		this.setLocationRelativeTo(null);

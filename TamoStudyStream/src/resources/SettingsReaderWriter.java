@@ -2,6 +2,7 @@ package resources;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,11 +17,23 @@ import org.json.simple.parser.ParseException;
 public class SettingsReaderWriter {
 	
 	private static FileWriter file;
-	private static JSONParser parser = new JSONParser();
+	private static final String directoryPath = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar + "TamoStudyStream";
+	private static final String settingsPath = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar + "TamoStudyStream" + File.separatorChar + "settings.json";
+	
+	public static Settings getSettings() throws IOException, ParseException {
+		File settingsFile = new File(settingsPath);
+		if(settingsFile.exists()) {
+			return jsonToSettings();
+		} else {
+			Settings settings = new Settings();
+			updateSettingsJson(settings.getJsonObject());
+			return settings;
+		}
+	}
 	
 	public static Settings jsonToSettings() throws IOException, ParseException {
 		JSONParser parser = new JSONParser();
-		Reader reader = new FileReader("settings.json");
+		Reader reader = new FileReader(settingsPath);
         JSONObject settingsJsonObject = (JSONObject) parser.parse(reader);
         
         JSONArray bgColor = (JSONArray) settingsJsonObject.get("backgroundColor");
@@ -47,20 +60,34 @@ public class SettingsReaderWriter {
 	}
 	
 	public static void updateSettingsJson(JSONObject obj) {
-		try {
-            file = new FileWriter("settings.json");
-            file.write(obj.toJSONString());
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                file.flush();
-                file.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
+		File settingsFile = new File(settingsPath);
+		if(settingsFile.exists()) {
+			try {
+	            file = new FileWriter(settingsFile);
+	            file.write(obj.toJSONString());
+	 
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                file.flush();
+	                file.close();
+	            } catch (IOException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	        }
+		} else {
+			File dir = new File(directoryPath);
+			dir.mkdir(); // If the directory already exists
+			try {
+				settingsFile.createNewFile();
+				updateSettingsJson(obj);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 }

@@ -1,4 +1,7 @@
+import java.io.File;
 import java.io.IOException;
+
+import javax.swing.filechooser.FileSystemView;
 
 import org.json.simple.parser.ParseException;
 
@@ -13,6 +16,7 @@ import resources.SettingsReaderWriter;
 
 public class TamoStream {
 	public static void main(String[] args) throws IOException, ParseException {
+		System.out.println(System.getProperty("user.home") + File.separatorChar + "TamoStudyStream");
 		MainGUI gui = new MainGUI();
 	}
 }
