@@ -31,6 +31,7 @@ import javax.swing.UIManager;
 
 import org.json.simple.parser.ParseException;
 
+import panels.SoundSettingsPanel;
 import panels.ViewCurrentSettingsPanel;
 import resources.BubbleBorder;
 import resources.Settings;
@@ -58,6 +59,7 @@ public class MainGUI extends JFrame {
 	
 	private JMenu customizationMenu;
 	private JMenuItem appearanceOptionsMenuItem;
+	private JMenuItem soundOptionsMenuItem;
 	private JMenuItem studyOptionsMenuItem;
 	
 	private JMenu helpMenu;
@@ -173,15 +175,26 @@ public class MainGUI extends JFrame {
 				hideWindow();
 			}
 		});
+		soundOptionsMenuItem = new JMenuItem("Sound Options");
+		soundOptionsMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SoundSettingsPanel ssp = new SoundSettingsPanel(settings);
+				ssp.showMessageDialog();
+			}
+		});
 		studyOptionsMenuItem = new JMenuItem("Study Options");
 		studyOptionsMenuItem.setEnabled(false);
 		customizationMenu.add(appearanceOptionsMenuItem);
+		customizationMenu.add(soundOptionsMenuItem);
 		customizationMenu.add(studyOptionsMenuItem);
 		menuBar.add(customizationMenu);
 		
 		helpMenu = new JMenu("Help");
 		howToUseMenuItem = new JMenuItem("Guide");
+		howToUseMenuItem.setEnabled(false);
 		contactMenuItem = new JMenuItem("Contact");
+		contactMenuItem.setEnabled(false);
 		helpMenu.add(howToUseMenuItem);
 		helpMenu.add(contactMenuItem);
 		menuBar.add(helpMenu);
