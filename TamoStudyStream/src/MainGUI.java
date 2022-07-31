@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -11,10 +12,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,6 +26,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 import org.json.simple.parser.ParseException;
 
@@ -136,6 +140,22 @@ public class MainGUI extends JFrame {
 				}
 			});
 		importSettingsFileMenuItem = new JMenuItem("Import Settings");
+		importSettingsFileMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int result = fileChooser.showOpenDialog(null);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File selectedFile = fileChooser.getSelectedFile();
+					if(SettingsReaderWriter.importSettingsFromJsonFile(selectedFile)) {
+						JOptionPane.showMessageDialog(rootPane, "Settings Successfully Imported", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+					} else {
+						Icon errorIcon = UIManager.getIcon("OptionPane.errorIcon");
+						JOptionPane.showMessageDialog(rootPane, "Settings Unsuccessfully Imported", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, errorIcon);
+					}
+				}
+			}
+		});
 		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
 		fileMenu.add(viewCurrentSettingsMenuItem);
 		fileMenu.add(importSettingsFileMenuItem);
@@ -145,6 +165,7 @@ public class MainGUI extends JFrame {
 		customizationMenu = new JMenu("Customize");
 		colorOptionsMenuItem = new JMenuItem("Color Options");
 		studyOptionsMenuItem = new JMenuItem("Study Options");
+		studyOptionsMenuItem.setEnabled(false);
 		customizationMenu.add(colorOptionsMenuItem);
 		customizationMenu.add(studyOptionsMenuItem);
 		menuBar.add(customizationMenu);
