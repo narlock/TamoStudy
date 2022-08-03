@@ -20,7 +20,7 @@ import javax.swing.border.AbstractBorder;
  * @author http://stackoverflow.com/questions/15025092/border-with-rounded-corners-transparency
  *
  */
-public class BubbleBorder extends AbstractBorder
+public class RoundedBorder extends AbstractBorder
 {
 
     private Color color;
@@ -34,12 +34,12 @@ public class BubbleBorder extends AbstractBorder
     private boolean left = true;
     RenderingHints hints;
 
-    public BubbleBorder(Color color)
+    public RoundedBorder(Color color)
     {
-        new BubbleBorder(color, 4, 8, 7);
+        new RoundedBorder(color, 4, 8, 7);
     }
 
-    public BubbleBorder(Color color, int thickness, int radii, int pointerSize)
+    public RoundedBorder(Color color, int thickness, int radii, int pointerSize)
     {
         this.thickness = thickness;
         this.radii = radii;
@@ -56,7 +56,7 @@ public class BubbleBorder extends AbstractBorder
         insets = new Insets(pad, pad, bottomPad, pad);
     }
 
-    public BubbleBorder(Color color, int thickness, int radii, int pointerSize, boolean left)
+    public RoundedBorder(Color color, int thickness, int radii, int pointerSize, boolean left)
     {
         this(color, thickness, radii, pointerSize);
         this.left = left;

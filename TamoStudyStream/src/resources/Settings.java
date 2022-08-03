@@ -1,8 +1,10 @@
 package resources;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.List;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
 
@@ -15,6 +17,8 @@ public class Settings {
 	private Color timerBackgroundColor;
 	private Color timerBorderColor;
 	private Color textColor;
+	private long borderThickness;
+	private String borderType;
 	
 	private Font timerFont;
 	private Font sessionFont;
@@ -36,6 +40,8 @@ public class Settings {
 		this.sessionFontSize = 20;
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
 		this.soundIndicator = 1;
+		this.borderThickness = 5;
+		this.borderType = "rounded";
 	}
 	
 	public Settings(
@@ -48,7 +54,9 @@ public class Settings {
 			String timerFontString,
 			long timerFontSize,
 			long sessionFontSize,
-			long soundIndicator
+			long soundIndicator,
+			long borderThickness,
+			String borderType
 	) 
 	{
 		this.version = version;
@@ -63,6 +71,8 @@ public class Settings {
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
 		this.soundIndicator = (int) soundIndicator;
+		this.borderThickness = borderThickness;
+		this.borderType = borderType;
 	}
 
 	public String getVersion() {
@@ -152,6 +162,64 @@ public class Settings {
 	public void setFontString(String fontString) {
 		this.fontString = fontString;
 	}
+
+	public int getSoundIndicator() {
+		return soundIndicator;
+	}
+
+	public void setSoundIndicator(int soundIndicator) {
+		this.soundIndicator = soundIndicator;
+	}
+	
+	public long getBorderThickness() {
+		return borderThickness;
+	}
+	
+	public void setBorderThickness(long borderThickness) {
+		this.borderThickness = borderThickness;
+	}
+	
+	public String getBorderType() {
+		return borderType;
+	}
+	
+	public void setBorderType(String borderType) {
+		this.borderType = borderType;
+	}
+	
+	public void setTimerBorder(JPanel panel) {
+		if(borderType.equals("Rounded")) {
+			panel.setBorder(new RoundedBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
+		} else {
+			panel.setBorder(new NormalBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
+		}
+	}
+
+	public String getSoundPath() {
+		switch(soundIndicator) {
+			case 1:
+				return "SOFT_ALARM.wav";
+			case 2:
+				return "TRAD_ALARM.wav";
+			case 3:
+				return "PAC_ALARM.wav";
+		}
+		return null;
+	}
+
+	public String getSoundName() {
+		switch(soundIndicator) {
+			case 0:
+				return "Disabled";
+			case 1:
+				return "Soft Alarm";
+			case 2:
+				return "Trad Alarm";
+			case 3:
+				return "Pac Alarm";
+		}
+		return null;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public JSONObject getJsonObject() {
@@ -187,42 +255,10 @@ public class Settings {
 		obj.put("timerFontSize", timerFontSize);
 		obj.put("sessionFontSize", sessionFontSize);
 		obj.put("soundIndicator", soundIndicator);
+		obj.put("borderThickness", borderThickness);
+		obj.put("borderType", borderType);
 		
 		return obj;
-	}
-
-	public int getSoundIndicator() {
-		return soundIndicator;
-	}
-
-	public void setSoundIndicator(int soundIndicator) {
-		this.soundIndicator = soundIndicator;
-	}
-
-	public String getSoundPath() {
-		switch(soundIndicator) {
-			case 1:
-				return "SOFT_ALARM.wav";
-			case 2:
-				return "TRAD_ALARM.wav";
-			case 3:
-				return "PAC_ALARM.wav";
-		}
-		return null;
-	}
-
-	public String getSoundName() {
-		switch(soundIndicator) {
-			case 0:
-				return "Disabled";
-			case 1:
-				return "Soft Alarm";
-			case 2:
-				return "Trad Alarm";
-			case 3:
-				return "Pac Alarm";
-		}
-		return null;
 	}
 	
 }

@@ -51,7 +51,9 @@ public class SettingsReaderWriter {
         		(String) settingsJsonObject.get("font"),
         		(long) settingsJsonObject.get("timerFontSize"),
         		(long) settingsJsonObject.get("sessionFontSize"),
-        		(long) settingsJsonObject.get("soundIndicator")
+        		(long) settingsJsonObject.get("soundIndicator"),
+        		(long) settingsJsonObject.get("borderThickness"),
+        		(String) settingsJsonObject.get("borderType")
         	);
 	}
 	
@@ -113,7 +115,9 @@ public class SettingsReaderWriter {
 	        		(String) settingsJsonObject.get("font"),
 	        		(long) settingsJsonObject.get("timerFontSize"),
 	        		(long) settingsJsonObject.get("sessionFontSize"),
-	        		(long) settingsJsonObject.get("soundIndicator")
+	        		(long) settingsJsonObject.get("soundIndicator"),
+	        		(long) settingsJsonObject.get("borderThickness"),
+	        		(String) settingsJsonObject.get("borderType")
 	        	);
 	        updateSettingsJson(settings.getJsonObject());
 	        return true;

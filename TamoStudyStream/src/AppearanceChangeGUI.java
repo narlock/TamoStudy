@@ -2,21 +2,27 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
-import resources.BubbleBorder;
+import resources.RoundedBorder;
 import resources.JFontChooser;
 import resources.Settings;
 import resources.SettingsReaderWriter;
@@ -25,6 +31,7 @@ public class AppearanceChangeGUI extends JFrame {
 	private Settings settings;
 	
 	private JPanel settingsPanel; //changing the settings
+	private final JLabel previewTextLabel = new JLabel("Preview");
 	
 	private JLabel timerBorderColorLabel;
 	private JLabel backgroundColorLabel;
@@ -33,6 +40,8 @@ public class AppearanceChangeGUI extends JFrame {
 	private JLabel timerFontSizeLabel;
 	private JLabel sessionFontSizeLabel;
 	private JLabel fontLabel;
+	private JLabel borderThicknessLabel;
+	private JLabel borderTypeLabel;
 	
 	private JPanel previewPanel; //the timer panel right hand side
 	private JPanel timerStreamPanel;
@@ -84,6 +93,9 @@ public class AppearanceChangeGUI extends JFrame {
 		
 		fontLabel = new JLabel("Timer Font: " + settings.getFontString() + ", size: " + settings.getTimerFontSize());
 		sessionFontSizeLabel = new JLabel("Timer Font: " + settings.getFontString() + ", size: " + settings.getSessionFontSize());
+	
+		borderThicknessLabel = new JLabel("Border Thickness: ");
+		borderTypeLabel = new JLabel("Border Type: ");
 	}
 	
 	private void setUpGUI() {
@@ -104,20 +116,25 @@ public class AppearanceChangeGUI extends JFrame {
 		settingsPanel.add(createFontChangePanel(fontLabel, 1));
 		settingsPanel.add(createFontChangePanel(sessionFontSizeLabel, 2));
 		
+		settingsPanel.add(createChangeThicknessPanel(borderThicknessLabel));
+		settingsPanel.add(createChangeBorderTypePanel(borderTypeLabel));
+		
 		this.add(settingsPanel);
 	}
-	
+
 	private void initPreviewPanel() {
 		previewPanel = new JPanel();
 		previewPanel.setBackground(settings.getBackgroundColor());
 		
 		previewPanel.add(createSpaceLabel());
-		previewPanel.add(createSpaceLabel());
+		previewTextLabel.setForeground(settings.getTextColor());
+		previewTextLabel.setFont(settings.getSessionFont());
+		previewPanel.add(previewTextLabel);
 		
 		timerStreamPanel = new JPanel();
 		timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
 		timerStreamPanel.setLayout(new BoxLayout(timerStreamPanel, BoxLayout.Y_AXIS));
-		timerStreamPanel.setBorder(new BubbleBorder(settings.getTimerBorderColor(), 5, 20, 10, true));
+		settings.setTimerBorder(timerStreamPanel);
 		
 		timerTextPanel = new JPanel();
 			timerTextPanel.setBackground(settings.getTimerBackgroundColor());
@@ -193,7 +210,7 @@ public class AppearanceChangeGUI extends JFrame {
 		//Visual
 		previewPanel.setBackground(settings.getBackgroundColor());
 		timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
-		timerStreamPanel.setBorder(new BubbleBorder(settings.getTimerBorderColor(), 5, 20, 10, true));
+		settings.setTimerBorder(timerStreamPanel);
 		timerTextPanel.setBackground(settings.getTimerBackgroundColor());
 		minuteTime.setForeground(settings.getTextColor());
 		minuteTime.setFont(settings.getFont());
@@ -203,9 +220,12 @@ public class AppearanceChangeGUI extends JFrame {
 		secondTime.setFont(settings.getFont());
 		currentSessionLabel.setForeground(settings.getTextColor());
 		currentSessionLabel.setFont(settings.getSessionFont());
+		previewTextLabel.setForeground(settings.getTextColor());
+		previewTextLabel.setFont(settings.getSessionFont());
 		
 		fontLabel.setText("Timer Font: " + settings.getFontString() + ", size: " + settings.getTimerFontSize());
 		sessionFontSizeLabel.setText("Timer Font: " + settings.getFontString() + ", size: " + settings.getSessionFontSize());
+		settings.setTimerBorder(timerStreamPanel);
 	}
 	
 	private JPanel createColorChangePanel(JLabel label, int indicator) {
@@ -247,6 +267,62 @@ public class AppearanceChangeGUI extends JFrame {
 			}
 		});
 		panel.add(colorChangeButton);
+		
+		return panel;
+	}
+	
+	private JPanel createChangeThicknessPanel(JLabel label) {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		label.setForeground(Color.WHITE);
+		panel.add(label);
+		
+		JTextField thicknessField = new JTextField(2);
+		thicknessField.setText(Long.toString(settings.getBorderThickness()));
+		JButton changeButton = new JButton("Change");
+		changeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					settings.setBorderThickness(Long.parseLong(thicknessField.getText()));
+					updateGUIOnChange();
+				} catch (Exception e2) {
+					Icon errorIcon = UIManager.getIcon("OptionPane.errorIcon");
+					JOptionPane.showMessageDialog(rootPane, "You must enter a valid thickness.", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, errorIcon);
+				}
+			}
+		});
+		panel.add(thicknessField);
+		panel.add(changeButton);
+		
+		return panel;
+	}
+	
+	private JPanel createChangeBorderTypePanel(JLabel label) {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		label.setForeground(Color.WHITE);
+		panel.add(label);
+		
+		JComboBox<String> borderTypeBox = new JComboBox<String>();
+		borderTypeBox.addItem("Rounded");
+		borderTypeBox.addItem("Rectangluar");
+		
+		if(settings.getBorderType().equals("Rounded")) {
+			borderTypeBox.setSelectedIndex(0);
+		} else {
+			borderTypeBox.setSelectedIndex(1);
+		}
+		
+		borderTypeBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				settings.setBorderType((String) borderTypeBox.getSelectedItem());
+				settings.setTimerBorder(timerStreamPanel);
+				updateGUIOnChange();
+			}
+		});
+		panel.add(borderTypeBox);
 		
 		return panel;
 	}
@@ -307,7 +383,7 @@ public class AppearanceChangeGUI extends JFrame {
 	
 	private void setUpJButton(JButton button) {
 		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
-			if(button.getText() == "Start Focus")
+			if(button.getText() == "Start Focus" || button.getText() == "Save Changes")
 				button.setBackground(new Color(120,255,120));
 			else if(button.getText() == "Break Focus")
 				button.setBackground(new Color(255,120,120));
@@ -317,6 +393,6 @@ public class AppearanceChangeGUI extends JFrame {
 			
 		button.setFont(settings.getSessionFont());
 		button.setFocusPainted(false);
-		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
+		button.setBorder(new RoundedBorder(Color.BLACK, 2, 10, 10, true));
 	}
 }

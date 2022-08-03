@@ -33,7 +33,7 @@ import org.json.simple.parser.ParseException;
 
 import panels.SoundSettingsPanel;
 import panels.ViewCurrentSettingsPanel;
-import resources.BubbleBorder;
+import resources.RoundedBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
 
@@ -96,6 +96,7 @@ public class MainGUI extends JFrame {
 
 		try {
 			settings = SettingsReaderWriter.getSettings();
+			System.out.println(settings.getBorderType());
 		} catch (IOException e) {
 			//Json file was not found
 		} catch (ParseException e) {
@@ -212,7 +213,7 @@ public class MainGUI extends JFrame {
 		timerStreamPanel = new JPanel();
 			timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
 			timerStreamPanel.setLayout(new BoxLayout(timerStreamPanel, BoxLayout.Y_AXIS));
-			timerStreamPanel.setBorder(new BubbleBorder(settings.getTimerBorderColor(), 5, 20, 10, true));
+			settings.setTimerBorder(timerStreamPanel);
 			
 		timerTextPanel = new JPanel();
 			timerTextPanel.setBackground(settings.getTimerBackgroundColor());
@@ -301,7 +302,7 @@ public class MainGUI extends JFrame {
 			
 		button.setFont(settings.getSessionFont());
 		button.setFocusPainted(false);
-		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
+		button.setBorder(new RoundedBorder(Color.BLACK, 2, 10, 10, true));
 	}
 	
 	/**
