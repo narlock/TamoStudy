@@ -160,7 +160,7 @@ public class AppearanceChangeGUI extends JFrame {
 		
 		currentSessionLabel = new JLabel("Let's Focus!");
 		currentSessionLabel.setForeground(settings.getTextColor());
-		currentSessionLabel.setFont(new Font ("Tahoma", Font.BOLD, 25));
+		currentSessionLabel.setFont(settings.getSessionFont());
 		currentSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		timerStreamPanel.add(currentSessionLabel);
 		
