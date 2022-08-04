@@ -31,6 +31,7 @@ import javax.swing.UIManager;
 
 import org.json.simple.parser.ParseException;
 
+import panels.MessagePanel;
 import panels.SoundSettingsPanel;
 import panels.ViewCurrentSettingsPanel;
 import resources.RoundedBorder;
@@ -99,9 +100,12 @@ public class MainGUI extends JFrame {
 			System.out.println(settings.getBorderType());
 		} catch (IOException e) {
 			//Json file was not found
+			e.printStackTrace();
+			//TODO Create a JOptionPane explaining what happen - utilize ErrorPanel
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//TODO Create a JOptionPane explaining what happen - utilize ErrorPanel
 		}
 
 		
@@ -148,14 +152,13 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
-				int result = fileChooser.showOpenDialog(null);
+				int result = fileChooser.showOpenDialog(rootPane);
 				if (result == JFileChooser.APPROVE_OPTION) {
 					File selectedFile = fileChooser.getSelectedFile();
 					if(SettingsReaderWriter.importSettingsFromJsonFile(selectedFile)) {
-						JOptionPane.showMessageDialog(rootPane, "Settings Successfully Imported", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						new MessagePanel(rootPane, "Settings Successfully Imported", "TamoStudyStream", 0);
 					} else {
-						Icon errorIcon = UIManager.getIcon("OptionPane.errorIcon");
-						JOptionPane.showMessageDialog(rootPane, "Settings Unsuccessfully Imported", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, errorIcon);
+						new MessagePanel(rootPane, "Settings Unsuccessfully Imported\nPlease use valid settings.json file.", "TamoStudyStream", 1);
 					}
 				}
 			}

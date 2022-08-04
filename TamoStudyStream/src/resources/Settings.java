@@ -27,6 +27,12 @@ public class Settings {
 	
 	private int soundIndicator;
 	
+	private String clockEnabled; //String for json parsing
+	private Color clockBackgroundColor;
+	private Color clockBorderColor;
+	private long clockBorderThickness;
+	private String clockBorderType;
+	
 	public Settings() {
 		this.version = "0.1";
 		this.studyMode = "pomodoro";
