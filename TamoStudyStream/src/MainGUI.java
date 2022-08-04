@@ -278,16 +278,19 @@ public class MainGUI extends JFrame {
 
 		//Set Boxes
 		pomoNumberSessionBox = new JComboBox();
+		pomoNumberSessionBox.setFont(new Font("Tahoma", Font.BOLD, 16));
 		pomoSessionBox = new JComboBox();
+		pomoSessionBox.setFont(new Font("Tahoma", Font.BOLD, 16));
 		pomoBreakBox = new JComboBox();
+		pomoBreakBox.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		timerSetBoxPanel.add(Box.createHorizontalStrut(15));
+		timerSetBoxPanel.add(Box.createHorizontalStrut(40));
 		timerSetBoxPanel.add(pomoNumberSessionBox);
-		timerSetBoxPanel.add(Box.createHorizontalStrut(70));
+		timerSetBoxPanel.add(Box.createHorizontalStrut(60));
 		timerSetBoxPanel.add(pomoSessionBox);
-		timerSetBoxPanel.add(Box.createHorizontalStrut(75));
+		timerSetBoxPanel.add(Box.createHorizontalStrut(60));
 		timerSetBoxPanel.add(pomoBreakBox);
-		timerSetBoxPanel.add(Box.createHorizontalStrut(5));
+		timerSetBoxPanel.add(Box.createHorizontalStrut(20));
 		
 		timerPanel.add(timerSetBoxPanel);
 		
