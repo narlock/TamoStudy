@@ -28,12 +28,12 @@ public class Settings {
 	private Color timerBorderColor;
 	
 	private String timerBorderType;
-	private long borderThickness;
+	private long timerBorderThickness;
 	
 	private Font timerFont;
-	private Font sessionFont;
+	private Font timerSubFont;
 	private long timerFontSize;
-	private long sessionFontSize;
+	private long timerSubFontSize;
 	
 	/**
 	 * Clock Settings
@@ -46,55 +46,171 @@ public class Settings {
 	private Color clockBackgroundColor;
 	private Color clockBorderColor;
 	private String clockBorderType;
-	private long colorBorderThickness;	
+	private long clockBorderThickness;	
 	private boolean clockEnabled;
 	
 	public Settings() {
 		this.version = "0.1";
-		this.studyMode = "pomodoro";
+		this.studyMode = "Pomodoro";
 		this.fontString = "Tahoma";
 		this.backgroundColor = Color.DARK_GRAY;
+		this.textColor = Color.WHITE;
+		this.soundIndicator = 1;
+		this.showWindowAdapter = true;
+		
 		this.timerBackgroundColor = Color.GRAY;
 		this.timerBorderColor = Color.BLACK;
-		this.textColor = Color.WHITE;
+		this.timerBorderType = "Rounded";
+		this.timerBorderThickness = 8;
+		
 		this.timerFontSize = 90;
+		this.timerSubFontSize = 20;
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
-		this.sessionFontSize = 20;
-		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
-		this.soundIndicator = 1;
-		this.borderThickness = 5;
-		this.timerBorderType = "rounded";
+		this.timerSubFont = new Font(fontString, Font.BOLD, (int) timerSubFontSize);
+		
+		this.clockBackgroundColor = Color.GRAY;
+		this.clockBorderColor = Color.BLACK;
+		this.clockBorderType = "Rounded";
+		this.clockBorderThickness = 8;
+		this.clockEnabled = false;
 	}
 	
 	public Settings(
 			String version,
 			String studyMode,
+			String fontString,
 			Color backgroundColor,
+			Color textColor,
+			long soundIndicator,
+			boolean showWindowAdapter,
 			Color timerBackgroundColor,
 			Color timerBorderColor,
-			Color textColor,
-			String timerFontString,
+			String timerBorderType,
+			long timerBorderThickness,
 			long timerFontSize,
-			long sessionFontSize,
-			long soundIndicator,
-			long borderThickness,
-			String borderType
+			long timerSubFontSize,
+			Color clockBackgroundColor,
+			Color clockBorderColor,
+			String clockBorderType,
+			long clockBorderThickness,
+			boolean clockEnabled
 	) 
 	{
 		this.version = version;
 		this.studyMode = studyMode;
+		this.fontString = fontString;
 		this.backgroundColor = backgroundColor;
+		this.textColor = textColor;
+		this.soundIndicator = (int) soundIndicator;
+		this.showWindowAdapter = showWindowAdapter;
+		
 		this.timerBackgroundColor = timerBackgroundColor;
 		this.timerBorderColor = timerBorderColor;
-		this.textColor = textColor;
-		this.fontString = timerFontString;
+		this.timerBorderType = timerBorderType;
+		this.timerBorderThickness = timerBorderThickness;
 		this.timerFontSize = timerFontSize;
-		this.sessionFontSize = sessionFontSize;
+		this.timerSubFontSize = timerSubFontSize;
+		
+		this.clockBackgroundColor = clockBackgroundColor;
+		this.clockBorderColor = clockBorderColor;
+		this.clockBorderType = clockBorderType;
+		this.clockBorderThickness = clockBorderThickness;
+		this.clockEnabled = clockEnabled;
+		
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
-		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
-		this.soundIndicator = (int) soundIndicator;
-		this.borderThickness = borderThickness;
-		this.timerBorderType = borderType;
+		this.timerSubFont = new Font(fontString, Font.BOLD, (int) timerSubFontSize);
+	}
+	
+	public void setTimerBorder(JPanel panel) {
+		if(timerBorderType.equals("Rounded")) {
+			panel.setBorder(new RoundedBorder(timerBorderColor, (int) timerBorderThickness, 20, 10, true));
+		} else {
+			panel.setBorder(new NormalBorder(timerBorderColor, (int) timerBorderThickness, 20, 10, true));
+		}
+	}
+
+	public String getSoundPath() {
+		switch(soundIndicator) {
+			case 1:
+				return "SOFT_ALARM.wav";
+			case 2:
+				return "TRAD_ALARM.wav";
+			case 3:
+				return "PAC_ALARM.wav";
+		}
+		return null;
+	}
+
+	public String getSoundName() {
+		switch(soundIndicator) {
+			case 0:
+				return "Disabled";
+			case 1:
+				return "Soft Alarm";
+			case 2:
+				return "Trad Alarm";
+			case 3:
+				return "Pac Alarm";
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject getJsonObject() {
+		JSONObject obj = new JSONObject();
+		obj.put("version", version);
+		obj.put("studyMode", studyMode);
+		obj.put("fontString", fontString);
+		
+		ArrayList<Integer> backgroundColorRgb = new ArrayList<Integer>();
+		backgroundColorRgb.add(backgroundColor.getRed());
+		backgroundColorRgb.add(backgroundColor.getGreen());
+		backgroundColorRgb.add(backgroundColor.getBlue());
+		obj.put("backgroundColor", backgroundColorRgb);
+		
+		ArrayList<Integer> textColorRgb = new ArrayList<Integer>();
+		textColorRgb.add(textColor.getRed());
+		textColorRgb.add(textColor.getGreen());
+		textColorRgb.add(textColor.getBlue());
+		obj.put("textColor", textColorRgb);
+		
+		obj.put("soundIndicator", soundIndicator);
+		obj.put("showWindowAdapter", showWindowAdapter);
+		
+		ArrayList<Integer> timerBackgroundColorRgb = new ArrayList<Integer>();
+		timerBackgroundColorRgb.add(timerBackgroundColor.getRed());
+		timerBackgroundColorRgb.add(timerBackgroundColor.getGreen());
+		timerBackgroundColorRgb.add(timerBackgroundColor.getBlue());
+		obj.put("timerBackgroundColor", timerBackgroundColorRgb);
+		
+		ArrayList<Integer> timerBorderColorRgb = new ArrayList<Integer>();
+		timerBorderColorRgb.add(timerBorderColor.getRed());
+		timerBorderColorRgb.add(timerBorderColor.getGreen());
+		timerBorderColorRgb.add(timerBorderColor.getBlue());
+		obj.put("timerBorderColor", timerBorderColorRgb);
+		
+		obj.put("timerBorderType", timerBorderType);
+		obj.put("timerBorderThickness", timerBorderThickness);
+		obj.put("timerFontSize", timerFontSize);
+		obj.put("timerSubFontSize", timerSubFontSize);
+		
+		ArrayList<Integer> clockBackgroundColorRgb = new ArrayList<Integer>();
+		clockBackgroundColorRgb.add(clockBackgroundColor.getRed());
+		clockBackgroundColorRgb.add(clockBackgroundColor.getGreen());
+		clockBackgroundColorRgb.add(clockBackgroundColor.getBlue());
+		obj.put("clockBackgroundColor", clockBackgroundColorRgb);
+		
+		ArrayList<Integer> clockBorderColorRgb = new ArrayList<Integer>();
+		clockBorderColorRgb.add(clockBorderColor.getRed());
+		clockBorderColorRgb.add(clockBorderColor.getGreen());
+		clockBorderColorRgb.add(clockBorderColor.getBlue());
+		obj.put("clockBorderColor", clockBorderColorRgb);
+		
+		obj.put("clockBorderType", clockBorderType);
+		obj.put("clockBorderThickness", clockBorderThickness);
+		obj.put("clockEnabled", clockEnabled);
+		
+		return obj;
 	}
 
 	public String getVersion() {
@@ -162,19 +278,19 @@ public class Settings {
 	}
 
 	public long getSessionFontSize() {
-		return sessionFontSize;
+		return timerSubFontSize;
 	}
 
 	public void setSessionFontSize(int sessionFontSize) {
-		this.sessionFontSize = sessionFontSize;
+		this.timerSubFontSize = sessionFontSize;
 	}
 
 	public Font getSessionFont() {
-		return sessionFont;
+		return timerSubFont;
 	}
 
 	public void setSessionFont(Font sessionFont) {
-		this.sessionFont = sessionFont;
+		this.timerSubFont = sessionFont;
 	}
 	
 	public String getFontString() {
@@ -193,12 +309,12 @@ public class Settings {
 		this.soundIndicator = soundIndicator;
 	}
 	
-	public long getBorderThickness() {
-		return borderThickness;
+	public long getTimerBorderThickness() {
+		return timerBorderThickness;
 	}
 	
-	public void setBorderThickness(long borderThickness) {
-		this.borderThickness = borderThickness;
+	public void setTimerBorderThickness(long borderThickness) {
+		this.timerBorderThickness = borderThickness;
 	}
 	
 	public String getBorderType() {
@@ -209,78 +325,52 @@ public class Settings {
 		this.timerBorderType = borderType;
 	}
 	
-	public void setTimerBorder(JPanel panel) {
-		if(timerBorderType.equals("Rounded")) {
-			panel.setBorder(new RoundedBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
-		} else {
-			panel.setBorder(new NormalBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
-		}
+	public boolean isShowWindowAdapter() {
+		return showWindowAdapter;
 	}
 
-	public String getSoundPath() {
-		switch(soundIndicator) {
-			case 1:
-				return "SOFT_ALARM.wav";
-			case 2:
-				return "TRAD_ALARM.wav";
-			case 3:
-				return "PAC_ALARM.wav";
-		}
-		return null;
+	public void setShowWindowAdapter(boolean showWindowAdapter) {
+		this.showWindowAdapter = showWindowAdapter;
 	}
 
-	public String getSoundName() {
-		switch(soundIndicator) {
-			case 0:
-				return "Disabled";
-			case 1:
-				return "Soft Alarm";
-			case 2:
-				return "Trad Alarm";
-			case 3:
-				return "Pac Alarm";
-		}
-		return null;
+	public Color getClockBackgroundColor() {
+		return clockBackgroundColor;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getJsonObject() {
-		JSONObject obj = new JSONObject();
-		obj.put("version", version);
-		obj.put("studyMode", studyMode);
-		
-		ArrayList<Integer> backgroundColorRgb = new ArrayList<Integer>();
-		backgroundColorRgb.add(backgroundColor.getRed());
-		backgroundColorRgb.add(backgroundColor.getGreen());
-		backgroundColorRgb.add(backgroundColor.getBlue());
-		obj.put("backgroundColor", backgroundColorRgb);
-		
-		ArrayList<Integer> timerBackgroundColorRgb = new ArrayList<Integer>();
-		timerBackgroundColorRgb.add(timerBackgroundColor.getRed());
-		timerBackgroundColorRgb.add(timerBackgroundColor.getGreen());
-		timerBackgroundColorRgb.add(timerBackgroundColor.getBlue());
-		obj.put("timerBackgroundColor", timerBackgroundColorRgb);
-		
-		ArrayList<Integer> timerBorderColorRgb = new ArrayList<Integer>();
-		timerBorderColorRgb.add(timerBorderColor.getRed());
-		timerBorderColorRgb.add(timerBorderColor.getGreen());
-		timerBorderColorRgb.add(timerBorderColor.getBlue());
-		obj.put("timerBorderColor", timerBorderColorRgb);
-		
-		ArrayList<Integer> textColorRgb = new ArrayList<Integer>();
-		textColorRgb.add(textColor.getRed());
-		textColorRgb.add(textColor.getGreen());
-		textColorRgb.add(textColor.getBlue());
-		obj.put("textColor", textColorRgb);
-		
-		obj.put("font", fontString);
-		obj.put("timerFontSize", timerFontSize);
-		obj.put("sessionFontSize", sessionFontSize);
-		obj.put("soundIndicator", soundIndicator);
-		obj.put("borderThickness", borderThickness);
-		obj.put("borderType", timerBorderType);
-		
-		return obj;
+
+	public void setClockBackgroundColor(Color clockBackgroundColor) {
+		this.clockBackgroundColor = clockBackgroundColor;
+	}
+
+	public Color getClockBorderColor() {
+		return clockBorderColor;
+	}
+
+	public void setClockBorderColor(Color clockBorderColor) {
+		this.clockBorderColor = clockBorderColor;
+	}
+
+	public String getClockBorderType() {
+		return clockBorderType;
+	}
+
+	public void setClockBorderType(String clockBorderType) {
+		this.clockBorderType = clockBorderType;
+	}
+
+	public long getClockBorderThickness() {
+		return clockBorderThickness;
+	}
+
+	public void setClockBorderThickness(long clockBorderThickness) {
+		this.clockBorderThickness = clockBorderThickness;
+	}
+
+	public boolean isClockEnabled() {
+		return clockEnabled;
+	}
+
+	public void setClockEnabled(boolean clockEnabled) {
+		this.clockEnabled = clockEnabled;
 	}
 	
 }

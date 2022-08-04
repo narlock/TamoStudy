@@ -1,13 +1,3 @@
-import java.io.File;
-import java.io.IOException;
-
-import javax.swing.filechooser.FileSystemView;
-
-import org.json.simple.parser.ParseException;
-
-import resources.Settings;
-import resources.SettingsReaderWriter;
-
 /**
  * TamoStream
  * @author Anthony Narlock (narlock)
@@ -15,7 +5,7 @@ import resources.SettingsReaderWriter;
  */
 
 public class TamoStream {
-	public static void main(String[] args) throws IOException, ParseException {
+	public static void main(String[] args) {
 		MainGUI gui = new MainGUI();
 	}
 }

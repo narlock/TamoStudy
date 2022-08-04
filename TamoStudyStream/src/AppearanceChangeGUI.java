@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import panels.MessagePanel;
 import resources.RoundedBorder;
 import resources.JFontChooser;
 import resources.Settings;
@@ -290,23 +291,40 @@ public class AppearanceChangeGUI extends JFrame {
 		label.setForeground(Color.WHITE);
 		panel.add(label);
 		
-		JTextField thicknessField = new JTextField(2);
-		thicknessField.setText(Long.toString(settings.getBorderThickness()));
-		JButton changeButton = new JButton("Change");
-		changeButton.addActionListener(new ActionListener() {
+		JLabel thicknessLabel = new JLabel(Long.toString(settings.getTimerBorderThickness()));
+		thicknessLabel.setForeground(Color.WHITE);
+		
+		JButton decreaseSizeButton = new JButton("-");
+		decreaseSizeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					settings.setBorderThickness(Long.parseLong(thicknessField.getText()));
+					long newSize = Long.parseLong(thicknessLabel.getText()) - 1;
+					settings.setTimerBorderThickness(newSize);
+					thicknessLabel.setText(Long.toString(settings.getTimerBorderThickness()));
 					updateGUIOnChange();
 				} catch (Exception e2) {
-					Icon errorIcon = UIManager.getIcon("OptionPane.errorIcon");
-					JOptionPane.showMessageDialog(rootPane, "You must enter a valid thickness.", "TamoStudyStream", JOptionPane.INFORMATION_MESSAGE, errorIcon);
+					new MessagePanel(panel, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
 				}
 			}
 		});
-		panel.add(thicknessField);
-		panel.add(changeButton);
+		JButton increaseSizeButton = new JButton("+");
+		increaseSizeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					long newSize = Long.parseLong(thicknessLabel.getText()) + 1;
+					settings.setTimerBorderThickness(newSize);
+					thicknessLabel.setText(Long.toString(settings.getTimerBorderThickness()));
+					updateGUIOnChange();
+				} catch (Exception e2) {
+					new MessagePanel(panel, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
+				}
+			}
+		});
+		panel.add(decreaseSizeButton);
+		panel.add(thicknessLabel);
+		panel.add(increaseSizeButton);
 		
 		return panel;
 	}

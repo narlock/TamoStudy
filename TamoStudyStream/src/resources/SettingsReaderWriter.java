@@ -37,23 +37,31 @@ public class SettingsReaderWriter {
         JSONObject settingsJsonObject = (JSONObject) parser.parse(reader);
         
         JSONArray bgColor = (JSONArray) settingsJsonObject.get("backgroundColor");
-        JSONArray timerBgColor = (JSONArray) settingsJsonObject.get("timerBackgroundColor");
-        JSONArray borderColor = (JSONArray) settingsJsonObject.get("timerBorderColor");
         JSONArray textColor = (JSONArray) settingsJsonObject.get("textColor");
+        JSONArray timerBgColor = (JSONArray) settingsJsonObject.get("timerBackgroundColor");
+        JSONArray timerBorderColor = (JSONArray) settingsJsonObject.get("timerBorderColor");
+        JSONArray clockBgColor = (JSONArray) settingsJsonObject.get("clockBackgroundColor");
+        JSONArray clockBorderColor = (JSONArray) settingsJsonObject.get("clockBorderColor");
         
         return new Settings(
         		(String) settingsJsonObject.get("version"),
         		(String) settingsJsonObject.get("studyMode"),
+        		(String) settingsJsonObject.get("fontString"),
         		new Color((int) (long) bgColor.get(0), (int) (long) bgColor.get(1), (int) (long) bgColor.get(2)),
-        		new Color((int) (long) timerBgColor.get(0), (int) (long) timerBgColor.get(1), (int) (long) timerBgColor.get(2)),
-        		new Color((int) (long) borderColor.get(0), (int) (long) borderColor.get(1), (int) (long) borderColor.get(2)),
         		new Color((int) (long) textColor.get(0), (int) (long) textColor.get(1), (int) (long) textColor.get(2)),
-        		(String) settingsJsonObject.get("font"),
-        		(long) settingsJsonObject.get("timerFontSize"),
-        		(long) settingsJsonObject.get("sessionFontSize"),
         		(long) settingsJsonObject.get("soundIndicator"),
-        		(long) settingsJsonObject.get("borderThickness"),
-        		(String) settingsJsonObject.get("borderType")
+        		(boolean) settingsJsonObject.get("showWindowAdapter"),
+        		new Color((int) (long) timerBgColor.get(0), (int) (long) timerBgColor.get(1), (int) (long) timerBgColor.get(2)),
+        		new Color((int) (long) timerBorderColor.get(0), (int) (long) timerBorderColor.get(1), (int) (long) timerBorderColor.get(2)),
+        		(String) settingsJsonObject.get("timerBorderType"),
+        		(long) settingsJsonObject.get("timerBorderThickness"),
+        		(long) settingsJsonObject.get("timerFontSize"),
+        		(long) settingsJsonObject.get("timerSubFontSize"),
+        		new Color((int) (long) clockBgColor.get(0), (int) (long) clockBgColor.get(1), (int) (long) clockBgColor.get(2)),
+        		new Color((int) (long) clockBorderColor.get(0), (int) (long) clockBorderColor.get(1), (int) (long) clockBorderColor.get(2)),
+        		(String) settingsJsonObject.get("clockBorderType"),
+        		(long) settingsJsonObject.get("clockBorderThickness"),
+        		(boolean) settingsJsonObject.get("clockEnabled")
         	);
 	}
 	
@@ -101,23 +109,31 @@ public class SettingsReaderWriter {
 			reader = new FileReader(importtedFile);
 			settingsJsonObject = (JSONObject) parser.parse(reader);
 			JSONArray bgColor = (JSONArray) settingsJsonObject.get("backgroundColor");
-	        JSONArray timerBgColor = (JSONArray) settingsJsonObject.get("timerBackgroundColor");
-	        JSONArray borderColor = (JSONArray) settingsJsonObject.get("timerBorderColor");
 	        JSONArray textColor = (JSONArray) settingsJsonObject.get("textColor");
+	        JSONArray timerBgColor = (JSONArray) settingsJsonObject.get("timerBackgroundColor");
+	        JSONArray timerBorderColor = (JSONArray) settingsJsonObject.get("timerBorderColor");
+	        JSONArray clockBgColor = (JSONArray) settingsJsonObject.get("clockBackgroundColor");
+	        JSONArray clockBorderColor = (JSONArray) settingsJsonObject.get("clockBorderColor");
 	        
 	        Settings settings = new Settings(
 	        		(String) settingsJsonObject.get("version"),
 	        		(String) settingsJsonObject.get("studyMode"),
+	        		(String) settingsJsonObject.get("fontString"),
 	        		new Color((int) (long) bgColor.get(0), (int) (long) bgColor.get(1), (int) (long) bgColor.get(2)),
-	        		new Color((int) (long) timerBgColor.get(0), (int) (long) timerBgColor.get(1), (int) (long) timerBgColor.get(2)),
-	        		new Color((int) (long) borderColor.get(0), (int) (long) borderColor.get(1), (int) (long) borderColor.get(2)),
 	        		new Color((int) (long) textColor.get(0), (int) (long) textColor.get(1), (int) (long) textColor.get(2)),
-	        		(String) settingsJsonObject.get("font"),
-	        		(long) settingsJsonObject.get("timerFontSize"),
-	        		(long) settingsJsonObject.get("sessionFontSize"),
 	        		(long) settingsJsonObject.get("soundIndicator"),
-	        		(long) settingsJsonObject.get("borderThickness"),
-	        		(String) settingsJsonObject.get("borderType")
+	        		(boolean) settingsJsonObject.get("showWindowAdapter"),
+	        		new Color((int) (long) timerBgColor.get(0), (int) (long) timerBgColor.get(1), (int) (long) timerBgColor.get(2)),
+	        		new Color((int) (long) timerBorderColor.get(0), (int) (long) timerBorderColor.get(1), (int) (long) timerBorderColor.get(2)),
+	        		(String) settingsJsonObject.get("timerBorderType"),
+	        		(long) settingsJsonObject.get("timerBorderThickness"),
+	        		(long) settingsJsonObject.get("timerFontSize"),
+	        		(long) settingsJsonObject.get("timerSubFontSize"),
+	        		new Color((int) (long) clockBgColor.get(0), (int) (long) clockBgColor.get(1), (int) (long) clockBgColor.get(2)),
+	        		new Color((int) (long) clockBorderColor.get(0), (int) (long) clockBorderColor.get(1), (int) (long) clockBorderColor.get(2)),
+	        		(String) settingsJsonObject.get("clockBorderType"),
+	        		(long) settingsJsonObject.get("clockBorderThickness"),
+	        		(boolean) settingsJsonObject.get("clockEnabled")
 	        	);
 	        updateSettingsJson(settings.getJsonObject());
 	        return true;
