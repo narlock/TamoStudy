@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -29,6 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 
 import org.json.simple.parser.ParseException;
 
@@ -95,8 +100,6 @@ public class MainGUI extends JFrame {
 	private boolean breakCondition;
 	
 	public MainGUI() {
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
 		try {
 			settings = SettingsReaderWriter.getSettings();
 			System.out.println(settings.getBorderType());
@@ -108,6 +111,13 @@ public class MainGUI extends JFrame {
 			new MessagePanel(rootPane, "TamoStudyStream", "An unexpected error occurred"
 					+ "\n\"" + e.getMessage() + "\"", 1);
 			e.printStackTrace();
+		}
+		
+		if(settings.isShowWindowAdapter()) {
+			this.addWindowListener(makeExitWindowListener());
+			this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		} else {
+			this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}
 
 		initFrame();
@@ -576,5 +586,48 @@ public class MainGUI extends JFrame {
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();
+	}
+	
+	/**
+	 * Enables WindowListener
+	 * Asks user if they are sure they want to exit application
+	 */
+	public WindowListener makeExitWindowListener() {
+		WindowListener exitListener = new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		    	JPanel panel = new JPanel();
+		    	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		    	JLabel label = new JLabel("Are you sure you want to exit?");
+		    	label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	JPanel confirmPanel = new JPanel();
+		    	confirmPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	JCheckBox checkBox = new JCheckBox();
+		    	JLabel confirmLabel = new JLabel("Don't show this message again");
+		    	
+		    	panel.add(label);
+		    	confirmPanel.add(checkBox);
+		    	confirmPanel.add(confirmLabel);
+		    	panel.add(confirmPanel);
+		    	
+		    	int confirm = JOptionPane.showOptionDialog(
+		                rootPane, 
+		                panel, 
+		                "Exit TamoStudyStream?", 
+		                JOptionPane.YES_NO_OPTION, 
+		                JOptionPane.QUESTION_MESSAGE, 
+		                new ImageIcon(getClass().getClassLoader().getResource("INFO.png")), 
+		                null, 
+		                null);
+	           if (confirm == JOptionPane.YES_OPTION) {
+	        	  if(checkBox.isSelected()) {
+	        		  settings.setShowWindowAdapter(false);
+	        		  SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
+	        	  }
+	              System.exit(0);
+	           }
+		    }
+		};
+		return exitListener;
 	}
 }
