@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -58,7 +61,17 @@ public class AppearanceChangeGUI extends JFrame {
 	
 	private void initFrame() {
 		initComponents();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Custom window close option
+		//When the window is closed, the mainGUI will be opened
+		WindowListener exitListener = new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		    	MainGUI gui = new MainGUI();
+		    	hideWindow();
+		    }
+		};
+		this.addWindowListener(exitListener);
 		this.setVisible(true);
 		this.setResizable(false);
 		this.setTitle("Appearance - TamoStudyStream v0.1");

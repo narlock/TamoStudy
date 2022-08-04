@@ -11,6 +11,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -62,6 +63,7 @@ public class MainGUI extends JFrame {
 	private JMenuItem appearanceOptionsMenuItem;
 	private JMenuItem soundOptionsMenuItem;
 	private JMenuItem studyOptionsMenuItem;
+	private JMenuItem clockOptionsMenuItem;
 	
 	private JMenu helpMenu;
 	private JMenuItem howToUseMenuItem;
@@ -99,16 +101,15 @@ public class MainGUI extends JFrame {
 			settings = SettingsReaderWriter.getSettings();
 			System.out.println(settings.getBorderType());
 		} catch (IOException e) {
-			//Json file was not found
+			new MessagePanel(rootPane, "TamoStudyStream", "An unexpected error occurred"
+					+ "\n\"" + e.getMessage() + "\"", 1);
 			e.printStackTrace();
-			//TODO Create a JOptionPane explaining what happen - utilize ErrorPanel
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			new MessagePanel(rootPane, "TamoStudyStream", "An unexpected error occurred"
+					+ "\n\"" + e.getMessage() + "\"", 1);
 			e.printStackTrace();
-			//TODO Create a JOptionPane explaining what happen - utilize ErrorPanel
 		}
 
-		
 		initFrame();
 	}
 	
@@ -171,7 +172,7 @@ public class MainGUI extends JFrame {
 		menuBar.add(fileMenu);
 		
 		customizationMenu = new JMenu("Customize");
-		appearanceOptionsMenuItem = new JMenuItem("Appearance Options");
+		appearanceOptionsMenuItem = new JMenuItem("Timer Appearance Options");
 		appearanceOptionsMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -179,6 +180,10 @@ public class MainGUI extends JFrame {
 				hideWindow();
 			}
 		});
+		studyOptionsMenuItem = new JMenuItem("Timer Study Options");
+		studyOptionsMenuItem.setEnabled(false);
+		clockOptionsMenuItem = new JMenuItem("Clock Appearance Options");
+		clockOptionsMenuItem.setEnabled(false);
 		soundOptionsMenuItem = new JMenuItem("Sound Options");
 		soundOptionsMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -187,11 +192,10 @@ public class MainGUI extends JFrame {
 				ssp.showMessageDialog();
 			}
 		});
-		studyOptionsMenuItem = new JMenuItem("Study Options");
-		studyOptionsMenuItem.setEnabled(false);
 		customizationMenu.add(appearanceOptionsMenuItem);
-		customizationMenu.add(soundOptionsMenuItem);
 		customizationMenu.add(studyOptionsMenuItem);
+		customizationMenu.add(clockOptionsMenuItem);
+		customizationMenu.add(soundOptionsMenuItem);
 		menuBar.add(customizationMenu);
 		
 		helpMenu = new JMenu("Help");
@@ -256,6 +260,7 @@ public class MainGUI extends JFrame {
 				+ "Session Length" + "     " 
 				+ "Break Length");
 		pomoSessionLabel.setForeground(settings.getTextColor());
+		pomoSessionLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	
 		timerPanel.add(createSpaceLabel()); //Adds space between timer and setup
@@ -266,9 +271,13 @@ public class MainGUI extends JFrame {
 		pomoSessionBox = new JComboBox();
 		pomoBreakBox = new JComboBox();
 		
+		timerSetBoxPanel.add(Box.createHorizontalStrut(15));
 		timerSetBoxPanel.add(pomoNumberSessionBox);
+		timerSetBoxPanel.add(Box.createHorizontalStrut(70));
 		timerSetBoxPanel.add(pomoSessionBox);
+		timerSetBoxPanel.add(Box.createHorizontalStrut(75));
 		timerSetBoxPanel.add(pomoBreakBox);
+		timerSetBoxPanel.add(Box.createHorizontalStrut(5));
 		
 		timerPanel.add(timerSetBoxPanel);
 		

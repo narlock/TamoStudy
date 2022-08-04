@@ -12,26 +12,42 @@ public class Settings {
 	private String version;
 	private String studyMode;
 	private String fontString;
-	
 	private Color backgroundColor;
+	private Color textColor;
+	private int soundIndicator;
+	private boolean showWindowAdapter;
+	
+	/**
+	 * Timer Settings
+	 * 
+	 * Colors
+	 * Border
+	 * Font
+	 */
 	private Color timerBackgroundColor;
 	private Color timerBorderColor;
-	private Color textColor;
+	
+	private String timerBorderType;
 	private long borderThickness;
-	private String borderType;
 	
 	private Font timerFont;
 	private Font sessionFont;
 	private long timerFontSize;
 	private long sessionFontSize;
 	
-	private int soundIndicator;
-	
-	private String clockEnabled; //String for json parsing
+	/**
+	 * Clock Settings
+	 * 
+	 * General
+	 * Colors
+	 * Border
+	 * Font
+	 */
 	private Color clockBackgroundColor;
 	private Color clockBorderColor;
-	private long clockBorderThickness;
 	private String clockBorderType;
+	private long colorBorderThickness;	
+	private boolean clockEnabled;
 	
 	public Settings() {
 		this.version = "0.1";
@@ -47,7 +63,7 @@ public class Settings {
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
 		this.soundIndicator = 1;
 		this.borderThickness = 5;
-		this.borderType = "rounded";
+		this.timerBorderType = "rounded";
 	}
 	
 	public Settings(
@@ -78,7 +94,7 @@ public class Settings {
 		this.sessionFont = new Font(fontString, Font.BOLD, (int) sessionFontSize);
 		this.soundIndicator = (int) soundIndicator;
 		this.borderThickness = borderThickness;
-		this.borderType = borderType;
+		this.timerBorderType = borderType;
 	}
 
 	public String getVersion() {
@@ -186,15 +202,15 @@ public class Settings {
 	}
 	
 	public String getBorderType() {
-		return borderType;
+		return timerBorderType;
 	}
 	
 	public void setBorderType(String borderType) {
-		this.borderType = borderType;
+		this.timerBorderType = borderType;
 	}
 	
 	public void setTimerBorder(JPanel panel) {
-		if(borderType.equals("Rounded")) {
+		if(timerBorderType.equals("Rounded")) {
 			panel.setBorder(new RoundedBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
 		} else {
 			panel.setBorder(new NormalBorder(timerBorderColor, (int) borderThickness, 20, 10, true));
@@ -262,7 +278,7 @@ public class Settings {
 		obj.put("sessionFontSize", sessionFontSize);
 		obj.put("soundIndicator", soundIndicator);
 		obj.put("borderThickness", borderThickness);
-		obj.put("borderType", borderType);
+		obj.put("borderType", timerBorderType);
 		
 		return obj;
 	}

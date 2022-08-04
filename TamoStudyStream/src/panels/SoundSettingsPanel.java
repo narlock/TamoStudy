@@ -77,7 +77,7 @@ public class SoundSettingsPanel extends JPanel {
 		});
 		soundsComboBox.setSelectedIndex(settings.getSoundIndicator());
 		
-		playSoundButton = new JButton("Play Sound");
+		playSoundButton = new JButton("▶    Play Sound");
 		playSoundButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
