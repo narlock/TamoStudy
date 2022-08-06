@@ -108,10 +108,8 @@ public class ViewCurrentSettingsPanel extends JPanel {
 		this.add(timerSettingsLabel);
 		
 		//If a TamoStudy profile is linked, add these
-		if(!settings.getTamoStudyProfileString().equals("null")) {
-			this.add(tamoStudyProfileHeaderLabel);
-			this.add(tamoStudyProfileLabel);
-		}
+		this.add(tamoStudyProfileHeaderLabel);
+		this.add(tamoStudyProfileLabel);
 	}
 	
 	

@@ -185,12 +185,18 @@ public class MainGUI extends JFrame {
 					tamoStudyFile = fileChooser.getSelectedFile();
 					
 					try {
-						tamoStudyProfile = ProfileReaderWriter.getProfileInfoFromFile(tamoStudyFile);
 						settings.setTamoStudyProfileString(tamoStudyFile.getAbsolutePath());
+						tamoStudyProfile = ProfileReaderWriter.getProfileInfoFromFile(new File(settings.getTamoStudyProfileString()));
 						SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
+						if(tamoStudyProfile.getUsername() == null) {
+							throw new Exception();
+						}
 						linkedTamoProfile = true;
 					} catch (Exception e1) {
 						new MessagePanel(rootPane, "Invalid TamoStudy Profile file.", "Error - TamoStudyStream", 1);
+						settings.setTamoStudyProfileString("null");
+						SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
+						linkedTamoProfile = false;
 					}
 				}
 			}
