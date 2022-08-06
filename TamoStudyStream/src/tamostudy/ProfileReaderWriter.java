@@ -1,4 +1,4 @@
-package profile;
+package tamostudy;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,8 @@ import java.io.FileWriter;
 
 import javax.swing.JFileChooser;
 
-import resources.Encryption;
+import tamostudy.*;
+
 
 /**
  * @author Anthony Narlock (narlock)
@@ -64,7 +65,7 @@ public class ProfileReaderWriter {
 		
 		while((line = (br.readLine())) != null) {
 			if(!line.equals("")) {
-				System.out.println("[TAMOSTUDYSTREAM/PROFILEREADER] " + line);
+				System.out.println("[TAMOSTUDY/WELCOME] Profile Line: " + line);
 				String[] profileDetails = Encryption.decrypt(line).split(",");
 				
 				if(profileDetails[0].equals("b4.0")) {
@@ -118,7 +119,7 @@ public class ProfileReaderWriter {
 		
 		//If the file fails
 		br.close();
-		return new Profile();
+		return null;
 	}
 	
 	private static Profile updateProfileAndLoad(File file, String[] profileDetails) {

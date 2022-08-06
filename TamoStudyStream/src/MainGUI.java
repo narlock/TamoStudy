@@ -44,6 +44,8 @@ import resources.ComponentSetup;
 import resources.RoundedBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
+import tamostudy.Profile;
+import tamostudy.ProfileReaderWriter;
 
 /**
  * MainGUI
@@ -101,11 +103,13 @@ public class MainGUI extends JFrame {
 	private int min, sec, tempSec, tempMin;
 	private int currentPomodoroSession, totalPomodoroSessions;
 	private boolean breakCondition;
+	private Profile tamoStudyProfile;
+	private boolean linkedTamoProfile;
 	
 	public MainGUI() {
+		//Read Settings File
 		try {
 			settings = SettingsReaderWriter.getSettings();
-			System.out.println(settings.getBorderType());
 		} catch (IOException e) {
 			new MessagePanel(rootPane, "TamoStudyStream", "An unexpected error occurred"
 					+ "\n\"" + e.getMessage() + "\"", 1);
@@ -116,6 +120,7 @@ public class MainGUI extends JFrame {
 			e.printStackTrace();
 		}
 		
+		//Check Window Adapter Setting
 		if(settings.isShowWindowAdapter()) {
 			this.addWindowListener(makeExitWindowListener());
 			this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -124,13 +129,30 @@ public class MainGUI extends JFrame {
 		}
 		
 		initFrame();
+		
+		//Check TamoStudy Profile Setting
+		if(settings.getTamoStudyProfileString().equals("null")) {
+			linkedTamoProfile = false;
+		} else {
+			try {
+				tamoStudyProfile = ProfileReaderWriter.getProfileInfoFromFile(new File(settings.getTamoStudyProfileString()));
+				linkedTamoProfile = true;
+				System.out.println("Successfully loaded TamoStudy profile\n" + tamoStudyProfile.toString());
+			} catch (Exception e1) {
+				//Profile file is invalid
+				new MessagePanel(rootPane, "The linked TamoStudy profile file is either missing or invalid.", "Error - TamoStudyStream", 1);
+				settings.setTamoStudyProfileString("null");
+				SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
+				linkedTamoProfile = false;
+			}
+		}
 	}
 	
 	private void initFrame() {
 		addComponentsToFrame();
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("TamoStudyStream v0.1 - narlock");
+		this.setTitle("TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
 		this.setLocationRelativeTo(null);
@@ -154,7 +176,25 @@ public class MainGUI extends JFrame {
 		
 		fileMenu = new JMenu("File");
 		linkTamoStudyProfileMenuItem = new JMenuItem("Link TamoStudy Profile");
-		linkTamoStudyProfileMenuItem.setEnabled(false);
+		linkTamoStudyProfileMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				File tamoStudyFile;
+				if(fileChooser.showOpenDialog(rootPane) == JFileChooser.APPROVE_OPTION) {
+					tamoStudyFile = fileChooser.getSelectedFile();
+					
+					try {
+						tamoStudyProfile = ProfileReaderWriter.getProfileInfoFromFile(tamoStudyFile);
+						settings.setTamoStudyProfileString(tamoStudyFile.getAbsolutePath());
+						SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
+						linkedTamoProfile = true;
+					} catch (Exception e1) {
+						new MessagePanel(rootPane, "Invalid TamoStudy Profile file.", "Error - TamoStudyStream", 1);
+					}
+				}
+			}
+		});
 		viewCurrentSettingsMenuItem = new JMenuItem("View Current Settings");
 			viewCurrentSettingsMenuItem.addActionListener(new ActionListener() {
 				@Override
@@ -173,6 +213,8 @@ public class MainGUI extends JFrame {
 					File selectedFile = fileChooser.getSelectedFile();
 					if(SettingsReaderWriter.importSettingsFromJsonFile(selectedFile)) {
 						new MessagePanel(rootPane, "Settings Successfully Imported", "TamoStudyStream", 0);
+						MainGUI gui = new MainGUI();
+						hideWindow();
 					} else {
 						new MessagePanel(rootPane, "Settings Unsuccessfully Imported\nPlease use valid settings.json file.", "TamoStudyStream", 1);
 					}

@@ -72,7 +72,7 @@ public class AppearanceChangeGUI extends JFrame {
 		this.addWindowListener(exitListener);
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("Appearance - TamoStudyStream v0.1");
+		this.setTitle("Timer Appearance • TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 		this.setSize(700,600);
@@ -257,7 +257,12 @@ public class AppearanceChangeGUI extends JFrame {
 					thicknessLabel.setText(Long.toString(settings.getTimerBorderThickness()));
 					updateGUIOnChange();
 				} catch (Exception e2) {
-					new MessagePanel(panel, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
+					new MessagePanel(rootPane, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
+					if(Integer.parseInt(thicknessLabel.getText()) < 0) {
+						settings.setTimerBorderThickness(0);
+						thicknessLabel.setText("0");
+						updateGUIOnChange();
+					}
 				}
 			}
 		});
@@ -272,7 +277,7 @@ public class AppearanceChangeGUI extends JFrame {
 					thicknessLabel.setText(Long.toString(settings.getTimerBorderThickness()));
 					updateGUIOnChange();
 				} catch (Exception e2) {
-					new MessagePanel(panel, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
+					new MessagePanel(rootPane, "You must enter a valid size!\n(Enter an integer!)", "TamoStudyStream", 1);
 				}
 			}
 		});

@@ -51,7 +51,7 @@ public class GuidePanel extends JPanel {
 		        "<li>Clock Apperance Settings: Allows the user to enable and customize the clock.</li>" + 
 		        "<li>Timer Options: Allows the user to change the timer options.</li>" + 
 				"</ul><html>");
-		creditsLabel = new JLabel("Created by narlock - tamostudy.com");
+		creditsLabel = new JLabel("Created by narlock • tamostudy.com");
 		creditsLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 	}
 	
