@@ -1,5 +1,7 @@
 package panels;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,19 +11,24 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import resources.ComponentSetup;
+import resources.RoundedBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
 
 public class SoundSettingsPanel extends JPanel {
 	private Settings settings;
+	private final ComponentSetup componentSetup = new ComponentSetup();
 	
 	private JComboBox<String> soundsComboBox;
 	private JLabel currentSoundLabel;
@@ -40,14 +47,17 @@ public class SoundSettingsPanel extends JPanel {
 	private void initFrame() {
 		this.setVisible(true);
 		this.setSize(250,250);
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
 	private void initComponents() {
 		currentSoundLabel = new JLabel("Current Sound: " + settings.getSoundName());
+			currentSoundLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		isCollided = false;
 		
 		soundsComboBox = new JComboBox<String>();
+			componentSetup.setUpJComboBox(soundsComboBox);
+			soundsComboBox.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		soundsComboBox.addItem("Disabled");
 		soundsComboBox.addItem("Soft Alarm");
 		soundsComboBox.addItem("Trad Alarm");
@@ -78,6 +88,9 @@ public class SoundSettingsPanel extends JPanel {
 		soundsComboBox.setSelectedIndex(settings.getSoundIndicator());
 		
 		playSoundButton = new JButton("▶    Play Sound");
+			playSoundButton.setFocusPainted(false);
+			playSoundButton.setBorder(new RoundedBorder(Color.BLACK, 3, 10, 10, true));
+			playSoundButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		playSoundButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +123,9 @@ public class SoundSettingsPanel extends JPanel {
 	
 	private void setUpGUI() {
 		this.add(currentSoundLabel);
+		this.add(Box.createVerticalStrut(20));
 		this.add(soundsComboBox);
+		this.add(Box.createVerticalStrut(20));
 		this.add(playSoundButton);
 	}
 	
@@ -127,7 +142,7 @@ public class SoundSettingsPanel extends JPanel {
 				JOptionPane.PLAIN_MESSAGE,
 				1, new ImageIcon(getClass().getClassLoader().getResource("INFO.png"))
 			);
-		if(result >= 0 && clip != null) {
+		if(result >= -1 && clip != null) {
 			clip.stop();
 		}
 	}

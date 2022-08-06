@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class MessagePanel extends JPanel {
 	
 	//How to use:
-	//new MessagePanel(JFrame, title, message, indicator);
+	//new MessagePanel(JFrame, message, title, indicator);
 	
 	public MessagePanel(JComponent parent, String message, String title, int indicator) {
 		

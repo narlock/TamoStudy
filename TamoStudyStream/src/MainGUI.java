@@ -247,8 +247,6 @@ public class MainGUI extends JFrame {
 				hideWindow();
 			}
 		});
-		studyOptionsMenuItem = new JMenuItem("Timer Study Options");
-		studyOptionsMenuItem.setEnabled(false);
 		clockOptionsMenuItem = new JMenuItem("Clock Appearance Options");
 		clockOptionsMenuItem.setEnabled(false);
 		soundOptionsMenuItem = new JMenuItem("Sound Options");
@@ -259,10 +257,12 @@ public class MainGUI extends JFrame {
 				ssp.showMessageDialog();
 			}
 		});
-		customizationMenu.add(appearanceOptionsMenuItem);
-		customizationMenu.add(studyOptionsMenuItem);
-		customizationMenu.add(clockOptionsMenuItem);
+		studyOptionsMenuItem = new JMenuItem("Study Options");
+		studyOptionsMenuItem.setEnabled(false);
 		customizationMenu.add(soundOptionsMenuItem);
+		customizationMenu.add(appearanceOptionsMenuItem);
+		customizationMenu.add(clockOptionsMenuItem);
+		customizationMenu.add(studyOptionsMenuItem);
 		menuBar.add(customizationMenu);
 		
 		helpMenu = new JMenu("Help");

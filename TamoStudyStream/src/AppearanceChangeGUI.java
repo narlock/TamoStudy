@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,23 +28,18 @@ import javax.swing.UIManager;
 
 import panels.MessagePanel;
 import resources.RoundedBorder;
+import resources.ComponentSetup;
 import resources.JFontChooser;
 import resources.Settings;
 import resources.SettingsReaderWriter;
 
 public class AppearanceChangeGUI extends JFrame {
 	private Settings settings;
+	private final ComponentSetup componentSetup = new ComponentSetup();
 	
 	private JPanel settingsPanel; //changing the settings
 	private final JLabel previewTextLabel = new JLabel("Preview");
 	
-	private JLabel timerBorderColorLabel;
-	private JLabel backgroundColorLabel;
-	private JLabel timerBackgroundColorLabel;
-	private JLabel textColorLabel;
-	private JLabel timerFontSizeLabel;
-	private JLabel sessionFontSizeLabel;
-	private JLabel fontLabel;
 	private JLabel borderThicknessLabel;
 	private JLabel borderTypeLabel;
 	
@@ -78,38 +74,13 @@ public class AppearanceChangeGUI extends JFrame {
 		this.setTitle("Appearance - TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
-		this.setSize(700,500);
+		this.setSize(700,600);
 		this.setLocationRelativeTo(null);
 	}
 	
 	private void initComponents() {
-		backgroundColorLabel = new JLabel("Background Color (RGB): " +
-				settings.getBackgroundColor().getRed() + ", " +
-				settings.getBackgroundColor().getGreen() + ", " +
-				settings.getBackgroundColor().getBlue()
-			);
-		timerBorderColorLabel = new JLabel("Timer Border Color (RGB): " + 
-						settings.getTimerBorderColor().getRed() + ", " +
-						settings.getTimerBorderColor().getGreen() + ", " +
-						settings.getTimerBorderColor().getBlue()
-					);
-		timerBackgroundColorLabel = new JLabel("Timer Background Color (RGB): " +
-						settings.getTimerBackgroundColor().getRed() + ", " +
-						settings.getTimerBackgroundColor().getGreen() + ", " +
-						settings.getTimerBackgroundColor().getBlue()
-					);
-		textColorLabel = new JLabel("Text Color (RGB): " +
-						settings.getTextColor().getRed() + ", " +
-						settings.getTextColor().getGreen() + ", " +
-						settings.getTextColor().getBlue()
-					);
-		timerFontSizeLabel = new JLabel("Timer Font Size: " + settings.getTimerFontSize());
-		
-		fontLabel = new JLabel("Timer Font: " + settings.getFontString() + ", size: " + settings.getTimerFontSize());
-		sessionFontSizeLabel = new JLabel("Timer Font: " + settings.getFontString() + ", size: " + settings.getSessionFontSize());
-	
-		borderThicknessLabel = new JLabel("Border Thickness: ");
-		borderTypeLabel = new JLabel("Border Type: ");
+		borderThicknessLabel = new JLabel("Border Thickness ");
+		borderTypeLabel = new JLabel("Border Type ");
 	}
 	
 	private void setUpGUI() {
@@ -122,13 +93,13 @@ public class AppearanceChangeGUI extends JFrame {
 		settingsPanel.setBackground(Color.DARK_GRAY);
 		settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.Y_AXIS));
 		
-		settingsPanel.add(createColorChangePanel(backgroundColorLabel, 1));
-		settingsPanel.add(createColorChangePanel(timerBorderColorLabel, 2));
-		settingsPanel.add(createColorChangePanel(timerBackgroundColorLabel, 3));
-		settingsPanel.add(createColorChangePanel(textColorLabel, 4));
+		settingsPanel.add(createColorChangePanel(1, "UI Background Color"));
+		settingsPanel.add(createColorChangePanel(2, "Border Color"));
+		settingsPanel.add(createColorChangePanel(3, "Timer Color"));
+		settingsPanel.add(createColorChangePanel(4, "Text Color"));
 		
-		settingsPanel.add(createFontChangePanel(fontLabel, 1));
-		settingsPanel.add(createFontChangePanel(sessionFontSizeLabel, 2));
+		settingsPanel.add(createFontChangePanel(1, "Time Font"));
+		settingsPanel.add(createFontChangePanel(2, "Timer Sub Font"));
 		
 		settingsPanel.add(createChangeThicknessPanel(borderThicknessLabel));
 		settingsPanel.add(createChangeBorderTypePanel(borderTypeLabel));
@@ -141,9 +112,13 @@ public class AppearanceChangeGUI extends JFrame {
 		previewPanel.setBackground(settings.getBackgroundColor());
 		
 		previewPanel.add(createSpaceLabel());
-		previewTextLabel.setForeground(settings.getTextColor());
-		previewTextLabel.setFont(settings.getSessionFont());
+		previewTextLabel.setOpaque(true);
+		previewTextLabel.setForeground(Color.BLACK);
+		previewTextLabel.setBackground(Color.WHITE);
+		previewTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		previewTextLabel.setBorder(new RoundedBorder(Color.BLACK, 3, 10, 10, true));
 		previewPanel.add(previewTextLabel);
+		previewPanel.add(Box.createVerticalStrut(50));
 		
 		timerStreamPanel = new JPanel();
 		timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
@@ -179,6 +154,7 @@ public class AppearanceChangeGUI extends JFrame {
 		timerStreamPanel.add(currentSessionLabel);
 		
 		previewPanel.add(timerStreamPanel);
+		previewPanel.add(Box.createVerticalStrut(300));
 		
 		setUpJButton(saveChangesButton);
 		saveChangesButton.addActionListener(new ActionListener() {
@@ -197,30 +173,6 @@ public class AppearanceChangeGUI extends JFrame {
 		//Settings
 		SettingsReaderWriter.updateSettingsJson(settings.getJsonObject());
 		
-		//Text
-		backgroundColorLabel.setText("Background Color (RGB): " +
-				settings.getBackgroundColor().getRed() + ", " +
-				settings.getBackgroundColor().getGreen() + ", " +
-				settings.getBackgroundColor().getBlue()
-			);
-		timerBorderColorLabel.setText("Timer Border Color (RGB): " + 
-						settings.getTimerBorderColor().getRed() + ", " +
-						settings.getTimerBorderColor().getGreen() + ", " +
-						settings.getTimerBorderColor().getBlue()
-					);
-		timerBackgroundColorLabel.setText("Timer Background Color (RGB): " +
-						settings.getTimerBackgroundColor().getRed() + ", " +
-						settings.getTimerBackgroundColor().getGreen() + ", " +
-						settings.getTimerBackgroundColor().getBlue()
-					);
-		textColorLabel.setText("Text Color (RGB): " +
-						settings.getTextColor().getRed() + ", " +
-						settings.getTextColor().getGreen() + ", " +
-						settings.getTextColor().getBlue()
-					);
-		timerFontSizeLabel.setText("Timer Font Size: " + settings.getTimerFontSize());
-		sessionFontSizeLabel.setText("Session Font Size: " + settings.getSessionFontSize());
-		
 		//Visual
 		previewPanel.setBackground(settings.getBackgroundColor());
 		timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
@@ -237,18 +189,16 @@ public class AppearanceChangeGUI extends JFrame {
 		previewTextLabel.setForeground(settings.getTextColor());
 		previewTextLabel.setFont(settings.getSessionFont());
 		
-		fontLabel.setText("Timer Font: " + settings.getFontString() + ", size: " + settings.getTimerFontSize());
-		sessionFontSizeLabel.setText("Timer Font: " + settings.getFontString() + ", size: " + settings.getSessionFontSize());
 		settings.setTimerBorder(timerStreamPanel);
 	}
 	
-	private JPanel createColorChangePanel(JLabel label, int indicator) {
+	private JPanel createColorChangePanel(int indicator, String text) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		label.setForeground(Color.WHITE);
-		panel.add(label);
+		panel.setAlignmentX(LEFT_ALIGNMENT);
 		
-		JButton colorChangeButton = new JButton("Edit");
+		JButton colorChangeButton = new JButton(text);
+		componentSetup.setUpJButton(colorChangeButton);
 		colorChangeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -263,13 +213,13 @@ public class AppearanceChangeGUI extends JFrame {
 		return panel;
 	}
 	
-	private JPanel createFontChangePanel(JLabel label, int indicator) {
+	private JPanel createFontChangePanel(int indicator, String text) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		label.setForeground(Color.WHITE);
-		panel.add(label);
+		panel.setAlignmentX(LEFT_ALIGNMENT);
 		
-		JButton colorChangeButton = new JButton("Edit");
+		JButton colorChangeButton = new JButton(text);
+		componentSetup.setUpJButton(colorChangeButton);
 		colorChangeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -288,13 +238,17 @@ public class AppearanceChangeGUI extends JFrame {
 	private JPanel createChangeThicknessPanel(JLabel label) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
+		panel.setAlignmentX(LEFT_ALIGNMENT);
 		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(label);
 		
 		JLabel thicknessLabel = new JLabel(Long.toString(settings.getTimerBorderThickness()));
 		thicknessLabel.setForeground(Color.WHITE);
+		thicknessLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton decreaseSizeButton = new JButton("-");
+		componentSetup.setUpJButton(decreaseSizeButton);
 		decreaseSizeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -309,6 +263,7 @@ public class AppearanceChangeGUI extends JFrame {
 			}
 		});
 		JButton increaseSizeButton = new JButton("+");
+		componentSetup.setUpJButton(increaseSizeButton);
 		increaseSizeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -332,10 +287,13 @@ public class AppearanceChangeGUI extends JFrame {
 	private JPanel createChangeBorderTypePanel(JLabel label) {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
+		panel.setAlignmentX(LEFT_ALIGNMENT);
 		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel.add(label);
 		
 		JComboBox<String> borderTypeBox = new JComboBox<String>();
+		componentSetup.setUpJComboBox(borderTypeBox);
 		borderTypeBox.addItem("Rounded");
 		borderTypeBox.addItem("Rectangluar");
 		
@@ -421,8 +379,7 @@ public class AppearanceChangeGUI extends JFrame {
 			else
 				button.setBackground(Color.WHITE);
 		}
-			
-		button.setFont(settings.getSessionFont());
+		button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		button.setFocusPainted(false);
 		button.setBorder(new RoundedBorder(Color.BLACK, 2, 10, 10, true));
 	}
