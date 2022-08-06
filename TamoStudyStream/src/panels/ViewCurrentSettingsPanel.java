@@ -40,7 +40,6 @@ public class ViewCurrentSettingsPanel extends JPanel {
 	private void initComponents() {
 		versionLabel = new JLabel("Version: " + settings.getVersion());
 		studyModeLabel = new JLabel("Study Mode: " + settings.getStudyMode());
-		
 		backgroundColorLabel = new JLabel("Background Color (RGB): " +
 									settings.getBackgroundColor().getRed() + ", " +
 									settings.getBackgroundColor().getGreen() + ", " +
@@ -61,13 +60,10 @@ public class ViewCurrentSettingsPanel extends JPanel {
 									settings.getTextColor().getGreen() + ", " +
 									settings.getTextColor().getBlue()
 								);
-		
 		timerFontSizeLabel = new JLabel("Timer Font Size: " + settings.getTimerFontSize());
 		sessionFontSizeLabel = new JLabel("Session Font Size: " + settings.getSessionFontSize());
-		
 		fontLabel = new JLabel("Font: " + settings.getFontString());
 		soundIndicatorLabel = new JLabel("Sound Indicator: " + settings.getSoundName());
-				
 	}
 	
 	private void setUpGUI() {

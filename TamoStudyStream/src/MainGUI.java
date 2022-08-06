@@ -16,11 +16,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -40,6 +38,7 @@ import org.json.simple.parser.ParseException;
 import panels.MessagePanel;
 import panels.SoundSettingsPanel;
 import panels.ViewCurrentSettingsPanel;
+import resources.ComponentSetup;
 import resources.RoundedBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
@@ -54,6 +53,7 @@ public class MainGUI extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private Settings settings;
+	private final ComponentSetup componentSetup = new ComponentSetup();
 	
 	/**
 	 * UI Components
@@ -63,6 +63,7 @@ public class MainGUI extends JFrame {
 	private JMenuItem viewCurrentSettingsMenuItem;
 	private JMenuItem exportSettingsFileMenuItem;
 	private JMenuItem importSettingsFileMenuItem;
+	private JMenuItem resetSettingsMenuItem;
 	
 	private JMenu customizationMenu;
 	private JMenuItem appearanceOptionsMenuItem;
@@ -119,7 +120,7 @@ public class MainGUI extends JFrame {
 		} else {
 			this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}
-
+		
 		initFrame();
 	}
 	
@@ -176,9 +177,40 @@ public class MainGUI extends JFrame {
 		});
 		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
 		exportSettingsFileMenuItem.setEnabled(false);
+		resetSettingsMenuItem = new JMenuItem("Reset Settings");
+		resetSettingsMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JPanel panel = new JPanel();
+		    	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		    	JLabel label = new JLabel("By confirming, your settings will be set to defaults.");
+		    	label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	JLabel confirmLabel = new JLabel("Are you sure you want to reset to default settings?");
+		    	confirmLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	
+		    	panel.add(label);
+		    	panel.add(confirmLabel);
+		    	
+		    	int confirm = JOptionPane.showOptionDialog(
+		                rootPane, 
+		                panel, 
+		                "Reset TamoStudyStream Settings", 
+		                JOptionPane.YES_NO_OPTION, 
+		                JOptionPane.QUESTION_MESSAGE, 
+		                new ImageIcon(getClass().getClassLoader().getResource("INFO.png")), 
+		                null, 
+		                null);
+	           if (confirm == JOptionPane.YES_OPTION) {
+	        	  SettingsReaderWriter.updateSettingsJson(new Settings().getJsonObject());
+	        	  MainGUI gui = new MainGUI();
+	        	  hideWindow();
+	           }
+			}
+		});
 		fileMenu.add(viewCurrentSettingsMenuItem);
 		fileMenu.add(importSettingsFileMenuItem);
 		fileMenu.add(exportSettingsFileMenuItem);
+		fileMenu.add(resetSettingsMenuItem);
 		menuBar.add(fileMenu);
 		
 		customizationMenu = new JMenu("Customize");
@@ -225,7 +257,7 @@ public class MainGUI extends JFrame {
 		timerPanel.setLayout(new BoxLayout(timerPanel, BoxLayout.Y_AXIS));
 			timerPanel.setBackground(settings.getBackgroundColor());
 			
-		timerPanel.add(createSpaceLabel()); //Adds space between menu and timer
+		timerPanel.add(componentSetup.createSpaceLabel()); //Adds space between menu and timer
 			
 		timerStreamPanel = new JPanel();
 			timerStreamPanel.setBackground(settings.getTimerBackgroundColor());
@@ -273,16 +305,16 @@ public class MainGUI extends JFrame {
 		pomoSessionLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		pomoSessionLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 	
-		timerPanel.add(createSpaceLabel()); //Adds space between timer and setup
+		timerPanel.add(componentSetup.createSpaceLabel()); //Adds space between timer and setup
 		timerPanel.add(pomoSessionLabel);
 
 		//Set Boxes
 		pomoNumberSessionBox = new JComboBox();
-		pomoNumberSessionBox.setFont(new Font("Tahoma", Font.BOLD, 16));
+			componentSetup.setUpJComboBox(pomoNumberSessionBox);
 		pomoSessionBox = new JComboBox();
-		pomoSessionBox.setFont(new Font("Tahoma", Font.BOLD, 16));
+			componentSetup.setUpJComboBox(pomoSessionBox);
 		pomoBreakBox = new JComboBox();
-		pomoBreakBox.setFont(new Font("Tahoma", Font.BOLD, 16));
+			componentSetup.setUpJComboBox(pomoBreakBox);
 		
 		timerSetBoxPanel.add(Box.createHorizontalStrut(40));
 		timerSetBoxPanel.add(pomoNumberSessionBox);
@@ -299,35 +331,14 @@ public class MainGUI extends JFrame {
 		
 	}
 	
-	protected JLabel createSpaceLabel() {
-		JLabel transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
-		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		return transparentComponent;
-	}
-	
 	private void initButtonPanel() {
 		timerButtonPanel = new JPanel();
 			timerButtonPanel.setBackground(settings.getBackgroundColor());
 		timerButtonPanel.add(startFocus);
-		setUpJButton(startFocus);
+			componentSetup.setUpJButton(startFocus);
 		timerButtonPanel.add(breakFocus);
-		setUpJButton(breakFocus);
+			componentSetup.setUpJButton(breakFocus);
 		timerPanel.add(timerButtonPanel);
-	}
-	
-	private void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
-			if(button.getText() == "Start Focus")
-				button.setBackground(new Color(120,255,120));
-			else if(button.getText() == "Break Focus")
-				button.setBackground(new Color(255,120,120));
-			else
-				button.setBackground(Color.WHITE);
-		}
-			
-		button.setFont(settings.getSessionFont());
-		button.setFocusPainted(false);
-		button.setBorder(new RoundedBorder(Color.BLACK, 2, 10, 10, true));
 	}
 	
 	/**
