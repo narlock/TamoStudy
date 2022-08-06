@@ -75,7 +75,7 @@ public class AppearanceChangeGUI extends JFrame {
 		this.setTitle("Timer Appearance • TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
-		this.setSize(700,600);
+		this.setSize(750,600);
 		this.setLocationRelativeTo(null);
 	}
 	
@@ -352,8 +352,8 @@ public class AppearanceChangeGUI extends JFrame {
 				return true;
 			case 2:
 				settings.setSessionFont(font);
-				settings.setFontString(font.getName());
-				settings.setTimerFontSize(font.getSize());
+				settings.setSubFontString(font.getName());
+				settings.setSessionFontSize(font.getSize());
 				updateGUIOnChange();
 				return true;
 			}

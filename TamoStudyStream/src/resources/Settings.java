@@ -11,7 +11,6 @@ import org.json.simple.JSONObject;
 public class Settings {
 	private String version;
 	private String studyMode;
-	private String fontString;
 	private String tamoStudyProfileString;
 	private Color backgroundColor;
 	private Color textColor;
@@ -31,6 +30,8 @@ public class Settings {
 	private String timerBorderType;
 	private long timerBorderThickness;
 	
+	private String fontString;
+	private String subFontString;
 	private Font timerFont;
 	private Font timerSubFont;
 	private long timerFontSize;
@@ -53,7 +54,6 @@ public class Settings {
 	public Settings() {
 		this.version = "0.1";
 		this.studyMode = "Pomodoro";
-		this.fontString = "Tahoma";
 		this.backgroundColor = Color.DARK_GRAY;
 		this.textColor = Color.WHITE;
 		this.soundIndicator = 1;
@@ -67,8 +67,10 @@ public class Settings {
 		
 		this.timerFontSize = 90;
 		this.timerSubFontSize = 20;
+		this.fontString = "Tahoma";
+		this.subFontString = "Tahoma";
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
-		this.timerSubFont = new Font(fontString, Font.BOLD, (int) timerSubFontSize);
+		this.timerSubFont = new Font(subFontString, Font.BOLD, (int) timerSubFontSize);
 		
 		this.clockBackgroundColor = Color.GRAY;
 		this.clockBorderColor = Color.BLACK;
@@ -80,7 +82,6 @@ public class Settings {
 	public Settings(
 			String version,
 			String studyMode,
-			String fontString,
 			String tamoStudyProfileString,
 			Color backgroundColor,
 			Color textColor,
@@ -90,6 +91,8 @@ public class Settings {
 			Color timerBorderColor,
 			String timerBorderType,
 			long timerBorderThickness,
+			String fontString,
+			String subFontString,
 			long timerFontSize,
 			long timerSubFontSize,
 			Color clockBackgroundColor,
@@ -101,7 +104,6 @@ public class Settings {
 	{
 		this.version = version;
 		this.studyMode = studyMode;
-		this.fontString = fontString;
 		this.tamoStudyProfileString = tamoStudyProfileString;
 		this.backgroundColor = backgroundColor;
 		this.textColor = textColor;
@@ -112,6 +114,8 @@ public class Settings {
 		this.timerBorderColor = timerBorderColor;
 		this.timerBorderType = timerBorderType;
 		this.timerBorderThickness = timerBorderThickness;
+		this.fontString = fontString;
+		this.subFontString = subFontString;
 		this.timerFontSize = timerFontSize;
 		this.timerSubFontSize = timerSubFontSize;
 		
@@ -122,7 +126,7 @@ public class Settings {
 		this.clockEnabled = clockEnabled;
 		
 		this.timerFont = new Font(fontString, Font.BOLD, (int) timerFontSize);
-		this.timerSubFont = new Font(fontString, Font.BOLD, (int) timerSubFontSize);
+		this.timerSubFont = new Font(subFontString, Font.BOLD, (int) timerSubFontSize);
 	}
 	
 	public void setTimerBorder(JPanel panel) {
@@ -164,7 +168,6 @@ public class Settings {
 		JSONObject obj = new JSONObject();
 		obj.put("version", version);
 		obj.put("studyMode", studyMode);
-		obj.put("fontString", fontString);
 		obj.put("tamoStudyProfileString", tamoStudyProfileString);
 		
 		ArrayList<Integer> backgroundColorRgb = new ArrayList<Integer>();
@@ -196,6 +199,8 @@ public class Settings {
 		
 		obj.put("timerBorderType", timerBorderType);
 		obj.put("timerBorderThickness", timerBorderThickness);
+		obj.put("fontString", fontString);
+		obj.put("subFontString", subFontString);
 		obj.put("timerFontSize", timerFontSize);
 		obj.put("timerSubFontSize", timerSubFontSize);
 		
@@ -384,6 +389,14 @@ public class Settings {
 
 	public void setTamoStudyProfileString(String tamoStudyProfileString) {
 		this.tamoStudyProfileString = tamoStudyProfileString;
+	}
+
+	public String getSubFontString() {
+		return subFontString;
+	}
+
+	public void setSubFontString(String subFontString) {
+		this.subFontString = subFontString;
 	}
 	
 }

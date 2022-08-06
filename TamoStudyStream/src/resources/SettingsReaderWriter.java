@@ -46,7 +46,6 @@ public class SettingsReaderWriter {
         return new Settings(
         		(String) settingsJsonObject.get("version"),
         		(String) settingsJsonObject.get("studyMode"),
-        		(String) settingsJsonObject.get("fontString"),
         		(String) settingsJsonObject.get("tamoStudyProfileString"),
         		new Color((int) (long) bgColor.get(0), (int) (long) bgColor.get(1), (int) (long) bgColor.get(2)),
         		new Color((int) (long) textColor.get(0), (int) (long) textColor.get(1), (int) (long) textColor.get(2)),
@@ -56,6 +55,8 @@ public class SettingsReaderWriter {
         		new Color((int) (long) timerBorderColor.get(0), (int) (long) timerBorderColor.get(1), (int) (long) timerBorderColor.get(2)),
         		(String) settingsJsonObject.get("timerBorderType"),
         		(long) settingsJsonObject.get("timerBorderThickness"),
+        		(String) settingsJsonObject.get("fontString"),
+        		(String) settingsJsonObject.get("subFontString"),
         		(long) settingsJsonObject.get("timerFontSize"),
         		(long) settingsJsonObject.get("timerSubFontSize"),
         		new Color((int) (long) clockBgColor.get(0), (int) (long) clockBgColor.get(1), (int) (long) clockBgColor.get(2)),
@@ -119,7 +120,6 @@ public class SettingsReaderWriter {
 	        Settings settings = new Settings(
 	        		(String) settingsJsonObject.get("version"),
 	        		(String) settingsJsonObject.get("studyMode"),
-	        		(String) settingsJsonObject.get("fontString"),
 	        		(String) settingsJsonObject.get("tamoStudyProfileString"),
 	        		new Color((int) (long) bgColor.get(0), (int) (long) bgColor.get(1), (int) (long) bgColor.get(2)),
 	        		new Color((int) (long) textColor.get(0), (int) (long) textColor.get(1), (int) (long) textColor.get(2)),
@@ -129,6 +129,8 @@ public class SettingsReaderWriter {
 	        		new Color((int) (long) timerBorderColor.get(0), (int) (long) timerBorderColor.get(1), (int) (long) timerBorderColor.get(2)),
 	        		(String) settingsJsonObject.get("timerBorderType"),
 	        		(long) settingsJsonObject.get("timerBorderThickness"),
+	        		(String) settingsJsonObject.get("fontString"),
+	        		(String) settingsJsonObject.get("subFontString"),
 	        		(long) settingsJsonObject.get("timerFontSize"),
 	        		(long) settingsJsonObject.get("timerSubFontSize"),
 	        		new Color((int) (long) clockBgColor.get(0), (int) (long) clockBgColor.get(1), (int) (long) clockBgColor.get(2)),
