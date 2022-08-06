@@ -134,9 +134,9 @@ public class SoundSettingsPanel extends JPanel {
 		currentSoundLabel.setText("Current Sound: " + settings.getSoundName());
 	}
 	
-	public void showMessageDialog() {
+	public void showMessageDialog(JComponent rootPane) {
 		int result = JOptionPane.showConfirmDialog(
-				null, 
+				rootPane, 
 				this, 
 				"Sound Settings", 
 				JOptionPane.PLAIN_MESSAGE,

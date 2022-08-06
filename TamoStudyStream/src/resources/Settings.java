@@ -12,6 +12,7 @@ public class Settings {
 	private String version;
 	private String studyMode;
 	private String fontString;
+	private String tamoStudyProfileString;
 	private Color backgroundColor;
 	private Color textColor;
 	private int soundIndicator;
@@ -57,6 +58,7 @@ public class Settings {
 		this.textColor = Color.WHITE;
 		this.soundIndicator = 1;
 		this.showWindowAdapter = true;
+		this.tamoStudyProfileString = "null";
 		
 		this.timerBackgroundColor = Color.GRAY;
 		this.timerBorderColor = Color.BLACK;
@@ -79,6 +81,7 @@ public class Settings {
 			String version,
 			String studyMode,
 			String fontString,
+			String tamoStudyProfileString,
 			Color backgroundColor,
 			Color textColor,
 			long soundIndicator,
@@ -99,6 +102,7 @@ public class Settings {
 		this.version = version;
 		this.studyMode = studyMode;
 		this.fontString = fontString;
+		this.tamoStudyProfileString = tamoStudyProfileString;
 		this.backgroundColor = backgroundColor;
 		this.textColor = textColor;
 		this.soundIndicator = (int) soundIndicator;
@@ -161,6 +165,7 @@ public class Settings {
 		obj.put("version", version);
 		obj.put("studyMode", studyMode);
 		obj.put("fontString", fontString);
+		obj.put("tamoStudyProfileString", tamoStudyProfileString);
 		
 		ArrayList<Integer> backgroundColorRgb = new ArrayList<Integer>();
 		backgroundColorRgb.add(backgroundColor.getRed());
@@ -371,6 +376,14 @@ public class Settings {
 
 	public void setClockEnabled(boolean clockEnabled) {
 		this.clockEnabled = clockEnabled;
+	}
+
+	public String getTamoStudyProfileString() {
+		return tamoStudyProfileString;
+	}
+
+	public void setTamoStudyProfileString(String tamoStudyProfileString) {
+		this.tamoStudyProfileString = tamoStudyProfileString;
 	}
 	
 }

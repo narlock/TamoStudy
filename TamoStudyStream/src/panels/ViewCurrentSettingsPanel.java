@@ -1,6 +1,8 @@
 package panels;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -80,12 +82,13 @@ public class ViewCurrentSettingsPanel extends JPanel {
 	}
 	
 	
-	public void showMessageDialog() {
-		JOptionPane.showMessageDialog(
-				null, 
+	public void showMessageDialog(JComponent rootPane) {
+		JOptionPane.showConfirmDialog(
+				rootPane, 
 				this, 
 				"Current Settings", 
-				JOptionPane.PLAIN_MESSAGE
+				JOptionPane.PLAIN_MESSAGE,
+				1, new ImageIcon(getClass().getClassLoader().getResource("INFO.png"))
 			);
 	}
 }

@@ -36,6 +36,7 @@ import javax.swing.WindowConstants;
 
 import org.json.simple.parser.ParseException;
 
+import panels.GuidePanel;
 import panels.MessagePanel;
 import panels.SoundSettingsPanel;
 import panels.ViewCurrentSettingsPanel;
@@ -61,6 +62,7 @@ public class MainGUI extends JFrame {
 	 */
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
+	private JMenuItem linkTamoStudyProfileMenuItem;
 	private JMenuItem viewCurrentSettingsMenuItem;
 	private JMenuItem exportSettingsFileMenuItem;
 	private JMenuItem importSettingsFileMenuItem;
@@ -74,7 +76,6 @@ public class MainGUI extends JFrame {
 	
 	private JMenu helpMenu;
 	private JMenuItem howToUseMenuItem;
-	private JMenuItem contactMenuItem;
 	
 	private JPanel timerPanel;
 	private JPanel timerStreamPanel;
@@ -152,12 +153,14 @@ public class MainGUI extends JFrame {
 		menuBar = new JMenuBar();
 		
 		fileMenu = new JMenu("File");
+		linkTamoStudyProfileMenuItem = new JMenuItem("Link TamoStudy Profile");
+		linkTamoStudyProfileMenuItem.setEnabled(false);
 		viewCurrentSettingsMenuItem = new JMenuItem("View Current Settings");
 			viewCurrentSettingsMenuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					ViewCurrentSettingsPanel pane = new ViewCurrentSettingsPanel(settings);
-					pane.showMessageDialog();
+					pane.showMessageDialog(rootPane);
 				}
 			});
 		importSettingsFileMenuItem = new JMenuItem("Import Settings");
@@ -232,6 +235,7 @@ public class MainGUI extends JFrame {
 	           }
 			}
 		});
+		fileMenu.add(linkTamoStudyProfileMenuItem);
 		fileMenu.add(viewCurrentSettingsMenuItem);
 		fileMenu.add(importSettingsFileMenuItem);
 		fileMenu.add(exportSettingsFileMenuItem);
@@ -254,7 +258,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SoundSettingsPanel ssp = new SoundSettingsPanel(settings);
-				ssp.showMessageDialog();
+				ssp.showMessageDialog(rootPane);
 			}
 		});
 		studyOptionsMenuItem = new JMenuItem("Study Options");
@@ -267,11 +271,14 @@ public class MainGUI extends JFrame {
 		
 		helpMenu = new JMenu("Help");
 		howToUseMenuItem = new JMenuItem("Guide");
-		howToUseMenuItem.setEnabled(false);
-		contactMenuItem = new JMenuItem("Contact");
-		contactMenuItem.setEnabled(false);
+		howToUseMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GuidePanel gp = new GuidePanel();
+				gp.showMessageDialog(rootPane);
+			}
+		});
 		helpMenu.add(howToUseMenuItem);
-		helpMenu.add(contactMenuItem);
 		menuBar.add(helpMenu);
 		
 		this.add(menuBar, BorderLayout.NORTH);

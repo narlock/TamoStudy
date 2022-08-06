@@ -30,6 +30,7 @@ import panels.MessagePanel;
 import resources.RoundedBorder;
 import resources.ComponentSetup;
 import resources.JFontChooser;
+import resources.NormalBorder;
 import resources.Settings;
 import resources.SettingsReaderWriter;
 
@@ -114,9 +115,9 @@ public class AppearanceChangeGUI extends JFrame {
 		previewPanel.add(createSpaceLabel());
 		previewTextLabel.setOpaque(true);
 		previewTextLabel.setForeground(Color.BLACK);
-		previewTextLabel.setBackground(Color.WHITE);
+		previewTextLabel.setBackground(Color.MAGENTA);
 		previewTextLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		previewTextLabel.setBorder(new RoundedBorder(Color.BLACK, 3, 10, 10, true));
+		previewTextLabel.setBorder(new NormalBorder(Color.BLACK, 3, 10, 10, true));
 		previewPanel.add(previewTextLabel);
 		previewPanel.add(Box.createVerticalStrut(50));
 		
@@ -186,9 +187,7 @@ public class AppearanceChangeGUI extends JFrame {
 		secondTime.setFont(settings.getFont());
 		currentSessionLabel.setForeground(settings.getTextColor());
 		currentSessionLabel.setFont(settings.getSessionFont());
-		previewTextLabel.setForeground(settings.getTextColor());
-		previewTextLabel.setFont(settings.getSessionFont());
-		
+
 		settings.setTimerBorder(timerStreamPanel);
 	}
 	
@@ -202,7 +201,7 @@ public class AppearanceChangeGUI extends JFrame {
 		colorChangeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Color color = JColorChooser.showDialog(null, "Choose a color", Color.GRAY);
+				Color color = JColorChooser.showDialog(rootPane, "Choose a color", Color.GRAY);
 				if(color != null) {
 					updateColorSettingsByIndicator(indicator, color);
 				}
@@ -224,7 +223,7 @@ public class AppearanceChangeGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFontChooser fontChooser = new JFontChooser();
-				int result = fontChooser.showDialog(null);
+				int result = fontChooser.showDialog(rootPane);
 				if(result == JFontChooser.OK_OPTION) {
 					updateFontSettingsByIndicator(indicator, fontChooser.getSelectedFont());
 				}
