@@ -314,4 +314,14 @@ public class Profile {
 			+ settings.getDifficulty() + "," + settings.getShowAhmNotifications();
 	}
 	
+	/**
+	 * getTotalFocusHours
+	 * @return totalTime in hours
+	 */
+	public double getTotalFocusHours() {
+		double totalHours = totalTime * 0.000277778;
+		totalHours = Math.round(totalHours * 100.0) / 100.0;
+		return totalHours;
+	}
+	
 }

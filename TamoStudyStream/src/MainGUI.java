@@ -199,7 +199,7 @@ public class MainGUI extends JFrame {
 			viewCurrentSettingsMenuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					ViewCurrentSettingsPanel pane = new ViewCurrentSettingsPanel(settings);
+					ViewCurrentSettingsPanel pane = new ViewCurrentSettingsPanel(settings, tamoStudyProfile);
 					pane.showMessageDialog(rootPane);
 				}
 			});
@@ -533,6 +533,7 @@ public class MainGUI extends JFrame {
 				
 				if(min < 0) {
 					
+					updateTamoTokensToTamoStudyProfile(tempMin, tempSec);
 					String studyMessage = "You studied for " + tempMin + " minute(s) and " + tempSec + " second(s).";
 					
 					tempMin = 0;
@@ -674,6 +675,21 @@ public class MainGUI extends JFrame {
 	public void hideWindow() {
 		this.setVisible(false);
 		this.dispose();
+	}
+	
+	public void updateTamoTokensToTamoStudyProfile(int min, int sec) {
+		//Update time
+		int totalSeconds = (min * 60) + sec;
+		tamoStudyProfile.setTotalTime(tamoStudyProfile.getTotalTime() + totalSeconds);
+		
+		//Update tokens
+		//Every 3600 seconds, 50 Tamo tokens are earned
+		//(72 seconds is 1 Tamo token)
+		int earnedSessionTokens = ((50 * totalSeconds) / 3600);
+		tamoStudyProfile.setTamoTokens(tamoStudyProfile.getTamoTokens() + earnedSessionTokens);
+		
+		//Update the profile file
+		ProfileReaderWriter.updateProfileInfoToFile(tamoStudyProfile);
 	}
 	
 	/**

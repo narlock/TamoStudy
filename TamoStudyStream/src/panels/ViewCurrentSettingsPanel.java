@@ -8,9 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import resources.Settings;
+import tamostudy.Profile;
 
 public class ViewCurrentSettingsPanel extends JPanel {
 	private Settings settings;
+	private Profile profile;
 	
 	private final JLabel generalSettingsHeaderLabel = new JLabel("General Settings");
 	private JLabel generalSettingsLabel;
@@ -21,8 +23,12 @@ public class ViewCurrentSettingsPanel extends JPanel {
 	private final JLabel clockSettingsHeaderLabel = new JLabel("Clock Settings");
 	private JLabel clockSettingsLabel;
 	
-	public ViewCurrentSettingsPanel(Settings settings) {
+	private JLabel tamoStudyProfileHeaderLabel;
+	private JLabel tamoStudyProfileLabel;
+	
+	public ViewCurrentSettingsPanel(Settings settings, Profile tamoStudyProfile) {
 		this.settings = settings;
+		this.profile = tamoStudyProfile;
 		initFrame();
 		initComponents();
 		setUpGUI();
@@ -38,7 +44,6 @@ public class ViewCurrentSettingsPanel extends JPanel {
 		String version = "Version: " + settings.getVersion();
 		String studyMode = "Study Mode: " + settings.getStudyMode();
 		String fontString = "Font: " + settings.getFontString();
-		String tamoStudyProfileString = "TamoStudy Profile Path: " + settings.getTamoStudyProfileString();
 		String backgroundColor = "Background Color (RGB): " +
 									settings.getBackgroundColor().getRed() + ", " +
 									settings.getBackgroundColor().getGreen() + ", " +
@@ -54,7 +59,6 @@ public class ViewCurrentSettingsPanel extends JPanel {
 		        "<li>" + version + "</li>" +             
 		        "<li>" + studyMode + "</li>" +   
 		        "<li>" + fontString + "</li>" +   
-		        "<li>" + tamoStudyProfileString + "</li>" +  
 		        "<li>" + backgroundColor + "</li>" +  
 		        "<li>" + textColor + "</li>" +  
 		        "<li>" + soundIndicator + "</li>" +  
@@ -83,21 +87,17 @@ public class ViewCurrentSettingsPanel extends JPanel {
 		        "<li>" + timerSubFontSize + "</li>" +   
 				"</ul><html>");
 		
-		
-//		timerBorderColorLabel = new JLabel("Timer Border Color (RGB): " + 
-//									settings.getTimerBorderColor().getRed() + ", " +
-//									settings.getTimerBorderColor().getGreen() + ", " +
-//									settings.getTimerBorderColor().getBlue()
-//								);
-//		timerBackgroundColorLabel = new JLabel("Timer Background Color (RGB): " +
-//									settings.getTimerBackgroundColor().getRed() + ", " +
-//									settings.getTimerBackgroundColor().getGreen() + ", " +
-//									settings.getTimerBackgroundColor().getBlue()
-//								);
-//		
-//		timerFontSizeLabel = new JLabel("Timer Font Size: " + settings.getTimerFontSize());
-//		sessionFontSizeLabel = new JLabel("Session Font Size: " + settings.getSessionFontSize());
-//		fontLabel = new JLabel("Font: " + settings.getFontString());
+		tamoStudyProfileHeaderLabel = new JLabel("TamoStudy Profile: " + settings.getTamoStudyProfileString());
+		if(settings.getTamoStudyProfileString().equals("null") || this.profile == null) {
+			tamoStudyProfileLabel = new JLabel("<html><ul><li>Link a TamoStudy Profile to view details</li></ul></html>");
+		} else {
+			String tamoTokens = "Tamo Tokens: " + profile.getTamoTokens();
+			String totalTime = "Total Time: " + Double.toString(profile.getTotalFocusHours());
+			tamoStudyProfileLabel = new JLabel("<html><ul>" +
+			        "<li>" + tamoTokens + "</li>" +             
+			        "<li>" + totalTime + "</li>" +   
+					"</ul><html>");
+		}
 		
 	}
 	
@@ -106,6 +106,12 @@ public class ViewCurrentSettingsPanel extends JPanel {
 		this.add(generalSettingsLabel);
 		this.add(timerSettingsHeaderLabel);
 		this.add(timerSettingsLabel);
+		
+		//If a TamoStudy profile is linked, add these
+		if(!settings.getTamoStudyProfileString().equals("null")) {
+			this.add(tamoStudyProfileHeaderLabel);
+			this.add(tamoStudyProfileLabel);
+		}
 	}
 	
 	
