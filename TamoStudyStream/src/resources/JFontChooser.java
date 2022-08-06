@@ -60,6 +60,9 @@ import javax.swing.text.Position;
  **/
 public class JFontChooser extends JComponent
 {
+	
+	private final ComponentSetup componentSetup = new ComponentSetup();
+	private Settings settings;
     // class variables
     /**
      * Return value from <code>showDialog()</code>.
@@ -76,16 +79,16 @@ public class JFontChooser extends JComponent
      * @see #showDialog
      **/
     public static final int ERROR_OPTION = -1;
-    private static final Font DEFAULT_SELECTED_FONT = new Font("Serif", Font.PLAIN, 12);
-    private static final Font DEFAULT_FONT = new Font("Dialog", Font.PLAIN, 10);
+    private Font DEFAULT_SELECTED_FONT;
+    private static final Font DEFAULT_FONT = new Font("Tahoma", Font.BOLD, 16);
     private static final int[] FONT_STYLE_CODES =
     {
-        Font.PLAIN, Font.BOLD, Font.ITALIC, Font.BOLD | Font.ITALIC
+        Font.BOLD, Font.ITALIC, Font.BOLD | Font.ITALIC
     };
     private static final String[] DEFAULT_FONT_SIZE_STRINGS =
     {
-        "8", "9", "10", "11", "12", "14", "16", "18", "20",
-        "22", "24", "26", "28", "36", "48", "72",
+        "20", "30", "40", "50", "60", "70", "80", "90", "100",
+        "110", "120"
     };
 
     // instance variables
@@ -113,7 +116,33 @@ public class JFontChooser extends JComponent
      **/
     public JFontChooser()
     {
-        this(DEFAULT_FONT_SIZE_STRINGS);
+        
+    }
+    
+    public JFontChooser(Settings settings, int indicator) {
+    	this.settings = settings;
+    	if(indicator == 1) {
+    		DEFAULT_SELECTED_FONT = new Font("Tahoma", Font.BOLD, (int) settings.getTimerFontSize());
+    	} else if(indicator == 2) {
+    		DEFAULT_SELECTED_FONT = new Font("Tahoma", Font.BOLD, (int) settings.getSessionFontSize());
+    	} else {
+    		DEFAULT_SELECTED_FONT = new Font("Tahoma", Font.BOLD, 50);
+    	}
+    	fontSizeStrings = DEFAULT_FONT_SIZE_STRINGS;
+    	JPanel selectPanel = new JPanel();
+        selectPanel.setLayout(new BoxLayout(selectPanel, BoxLayout.X_AXIS));
+        selectPanel.add(getFontFamilyPanel());
+        selectPanel.add(getFontSizePanel());
+
+        JPanel contentsPanel = new JPanel();
+        contentsPanel.setLayout(new GridLayout(2, 1));
+        contentsPanel.add(selectPanel, BorderLayout.NORTH);
+        contentsPanel.add(getSamplePanel(), BorderLayout.CENTER);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.add(contentsPanel);
+        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        this.setSelectedFont(DEFAULT_SELECTED_FONT);
     }
 
     /**
@@ -131,7 +160,7 @@ public class JFontChooser extends JComponent
         JPanel selectPanel = new JPanel();
         selectPanel.setLayout(new BoxLayout(selectPanel, BoxLayout.X_AXIS));
         selectPanel.add(getFontFamilyPanel());
-        selectPanel.add(getFontStylePanel());
+//        selectPanel.add(getFontStylePanel());
         selectPanel.add(getFontSizePanel());
 
         JPanel contentsPanel = new JPanel();
@@ -632,8 +661,10 @@ public class JFontChooser extends JComponent
         Action cancelAction = new DialogCancelAction(dialog);
 
         JButton okButton = new JButton(okAction);
+        componentSetup.setUpJButton(okButton);
         okButton.setFont(DEFAULT_FONT);
         JButton cancelButton = new JButton(cancelAction);
+        componentSetup.setUpJButton(cancelButton);
         cancelButton.setFont(DEFAULT_FONT);
 
         JPanel buttonsPanel = new JPanel();
@@ -807,7 +838,6 @@ public class JFontChooser extends JComponent
             fontStyleNames[i++] = ("Plain");
             fontStyleNames[i++] = ("Bold");
             fontStyleNames[i++] = ("Italic");
-            fontStyleNames[i++] = ("BoldItalic");
         }
         return fontStyleNames;
     }

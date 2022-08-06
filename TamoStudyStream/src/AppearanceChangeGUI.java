@@ -222,7 +222,7 @@ public class AppearanceChangeGUI extends JFrame {
 		colorChangeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFontChooser fontChooser = new JFontChooser();
+				JFontChooser fontChooser = new JFontChooser(settings, indicator);
 				int result = fontChooser.showDialog(rootPane);
 				if(result == JFontChooser.OK_OPTION) {
 					updateFontSettingsByIndicator(indicator, fontChooser.getSelectedFont());
