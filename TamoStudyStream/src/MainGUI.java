@@ -7,6 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 
@@ -176,7 +177,31 @@ public class MainGUI extends JFrame {
 			}
 		});
 		exportSettingsFileMenuItem = new JMenuItem("Export Settings");
-		exportSettingsFileMenuItem.setEnabled(false);
+		exportSettingsFileMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final JFileChooser SaveAs = new JFileChooser();
+				int actionDialog = SaveAs.showSaveDialog(rootPane);
+				if(actionDialog == JFileChooser.APPROVE_OPTION) { 
+					File file = new File(SaveAs.getSelectedFile() + ".json");
+					FileWriter fileWriter = null;
+					try {
+						fileWriter = new FileWriter(file);
+						fileWriter.write(settings.getJsonObject().toJSONString());
+			        } catch (IOException e4) {
+			            new MessagePanel(rootPane, "IOException when exporting settings", "Error - TamoStudyStream", 1);
+			        } finally {
+			            try {
+			                fileWriter.flush();
+			                fileWriter.close();
+			                new MessagePanel(rootPane, "Settings Successfully Exported", "TamoStudyStream", 0);
+			            } catch (IOException e5) {
+			            	new MessagePanel(rootPane, "IOException when exporting settings", "Error - TamoStudyStream", 1);
+			            }
+			        }
+				}
+			}
+		});
 		resetSettingsMenuItem = new JMenuItem("Reset Settings");
 		resetSettingsMenuItem.addActionListener(new ActionListener() {
 			@Override

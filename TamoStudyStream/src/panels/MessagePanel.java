@@ -10,20 +10,20 @@ public class MessagePanel extends JPanel {
 	//How to use:
 	//new MessagePanel(JFrame, title, message, indicator);
 	
-	public MessagePanel(JComponent parent, String title, String message, int indicator) {
+	public MessagePanel(JComponent parent, String message, String title, int indicator) {
 		
 		if(indicator == 0) {
 			//Display Info
 			JOptionPane.showMessageDialog(parent, 
-					title, 
 					message, 
+					title, 
 					JOptionPane.INFORMATION_MESSAGE, 
 					new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 		} else if(indicator == 1) { 
 			//Display Error
 			JOptionPane.showMessageDialog(parent, 
-					title, 
 					message, 
+					title, 
 					JOptionPane.INFORMATION_MESSAGE, 
 					new ImageIcon(getClass().getClassLoader().getResource("INFO_ERROR.png")));
 		}
