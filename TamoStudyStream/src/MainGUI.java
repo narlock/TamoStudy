@@ -155,7 +155,17 @@ public class MainGUI extends JFrame {
 		this.setTitle("TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
-		this.setLocationRelativeTo(null);
+    if (isWindowsOrMac())
+		  this.setLocationRelativeTo(null);
+	}
+
+  private boolean isWindowsOrMac(){
+    String OS = System.getProperty("os.name").toLowerCase();
+
+    return (!(OS.indexOf("nix")>=0 
+    		||OS.indexOf("nux")>=0 
+    		||OS.indexOf("aix")>=0 
+    		||OS.indexOf("sunos")>=0));
 	}
 	
 	private void addComponentsToFrame() {
