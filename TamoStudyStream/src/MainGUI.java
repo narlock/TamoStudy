@@ -162,11 +162,8 @@ public class MainGUI extends JFrame {
   private boolean isWindowsOrMac(){
     String OS = System.getProperty("os.name").toLowerCase();
 
-    return (!(OS.indexOf("nix")>=0 
-    		||OS.indexOf("nux")>=0 
-    		||OS.indexOf("aix")>=0 
-    		||OS.indexOf("sunos")>=0));
-	}
+    return (OS.indexOf("windows")>=0 
+    		||OS.indexOf("mac")>=0) 
 	
 	private void addComponentsToFrame() {
 		initMenu();
