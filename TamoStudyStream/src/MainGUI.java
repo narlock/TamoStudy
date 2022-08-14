@@ -155,7 +155,10 @@ public class MainGUI extends JFrame {
 		this.setTitle("TamoStudyStream v0.1");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setSize(500,500);
-		this.setLocationRelativeTo(null);
+		
+		if(System.getProperty("os.name").startsWith("Mac") || System.getProperty("os.name").startsWith("Windows")) {
+			this.setLocationRelativeTo(null);
+		}
 	}
 	
 	private void addComponentsToFrame() {
@@ -684,18 +687,20 @@ public class MainGUI extends JFrame {
 	}
 	
 	public void updateTamoTokensToTamoStudyProfile(int min, int sec) {
-		//Update time
-		int totalSeconds = (min * 60) + sec;
-		tamoStudyProfile.setTotalTime(tamoStudyProfile.getTotalTime() + totalSeconds);
-		
-		//Update tokens
-		//Every 3600 seconds, 50 Tamo tokens are earned
-		//(72 seconds is 1 Tamo token)
-		int earnedSessionTokens = ((50 * totalSeconds) / 3600);
-		tamoStudyProfile.setTamoTokens(tamoStudyProfile.getTamoTokens() + earnedSessionTokens);
-		
-		//Update the profile file
-		ProfileReaderWriter.updateProfileInfoToFile(tamoStudyProfile);
+		if(tamoStudyProfile != null) {
+			//Update time
+			int totalSeconds = (min * 60) + sec;
+			tamoStudyProfile.setTotalTime(tamoStudyProfile.getTotalTime() + totalSeconds);
+			
+			//Update tokens
+			//Every 3600 seconds, 50 Tamo tokens are earned
+			//(72 seconds is 1 Tamo token)
+			int earnedSessionTokens = ((50 * totalSeconds) / 3600);
+			tamoStudyProfile.setTamoTokens(tamoStudyProfile.getTamoTokens() + earnedSessionTokens);
+			
+			//Update the profile file
+			ProfileReaderWriter.updateProfileInfoToFile(tamoStudyProfile);
+		}
 	}
 	
 	/**

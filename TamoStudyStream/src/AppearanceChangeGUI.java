@@ -77,6 +77,10 @@ public class AppearanceChangeGUI extends JFrame {
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 		this.setSize(750,600);
 		this.setLocationRelativeTo(null);
+		
+		if(System.getProperty("os.name").startsWith("Linux")) {
+			this.setResizable(true);
+		}
 	}
 	
 	private void initComponents() {
