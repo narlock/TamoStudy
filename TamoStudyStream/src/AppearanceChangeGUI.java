@@ -76,7 +76,11 @@ public class AppearanceChangeGUI extends JFrame {
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 		this.setSize(750,600);
-		this.setLocationRelativeTo(null);
+		
+		if(System.getProperty("os.name").startsWith("Mac") || System.getProperty("os.name").startsWith("Windows")) {
+			this.setLocationRelativeTo(null);
+		}
+		
 	}
 	
 	private void initComponents() {
