@@ -1,0 +1,95 @@
+* {
+    font-family: 'Arial', 'Poppins', 'Tahoma';
+}
+
+body {
+    background: rgb(79, 79, 79);
+}
+
+.nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    display: inline-block;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid black;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color:rgb(103, 113, 255);
+}
+
+.stable {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    background-color: white;
+}
+.stable thead tr {
+    /*background-color: #009879;*/
+    color: #ffffff;
+    text-align: left;
+}
+
+.stable th,
+.stable td {
+    padding: 12px 15px;
+}
+
+.stable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.stable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.stable tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(150, 0, 0);;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+div {
+    padding: 2%;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 3%;
+    background: white;
+    border: 3px solid black;
+    color: black;
+    text-decoration: none;
+    -webkit-filter: drop-shadow(2px 2px 2px #222);
+    filter: drop-shadow(2px 2px 2px #222);
+}
