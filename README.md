@@ -50,5 +50,6 @@
 </p>
 <hr>
 <p align="center">
-TamoStudy was created on January 30th, 2021 • Developed by <a href="https://github.com/narlock">narlock</a>
+TamoStudy was created on January 30th, 2021 • Developed by <a href="https://github.com/narlock">narlock</a><br>
+<i>TamoStudy software applications reached over 1,000 total downloads on Auguest 29th, 2022</i>
 </p>
