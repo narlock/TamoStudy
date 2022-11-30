@@ -78,7 +78,7 @@ public class WelcomeGUI extends JFrame {
 	}
 
 	public void initFrame() {
-		this.setBackground(mainColor);
+		this.getContentPane().setBackground(mainColor);
 		this.setTitle("launcher • TamoStudy Beta v4.1");
 		this.setVisible(true);
 		this.setSize(650,499);
@@ -140,8 +140,10 @@ public class WelcomeGUI extends JFrame {
 	
 	//Styles Main Buttons
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-			button.setBackground(Color.WHITE);
+//		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+//			
+		button.setOpaque(true);
+		button.setBackground(Color.WHITE);
 			
 		button.setFont(fontBoldReg);
 		button.setFocusPainted(false);
