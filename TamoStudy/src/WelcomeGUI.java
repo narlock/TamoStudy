@@ -90,9 +90,8 @@ public class WelcomeGUI extends JFrame {
 	
 	public void initComponentsToFrame() {
 		updateButton = new JButton("A new update is available. Click here to download!");
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-			updateButton.setBackground(Color.WHITE);
-			
+		updateButton.setOpaque(true);
+		updateButton.setBackground(Color.WHITE);
 		updateButton.setFont(new Font("Arial", Font.BOLD, 18));
 		updateButton.setFocusPainted(false);
 		updateButton.setBorder(new BubbleBorder(Color.BLACK, 2, 5, 2, true));

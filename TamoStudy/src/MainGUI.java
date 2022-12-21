@@ -44,8 +44,9 @@ public class MainGUI extends JFrame {
 	private StateStrategy strategy; 							//The center strategy state
 																//This is what is rendered on
 																//center of the screen.
-	private static final String 								//Line Divider for some JLabels
-		DIVIDER_STRING = "     ━━━━━━━━━━━━━━━━━━━━━     ";
+	private String DIVIDER_STRING;							//Line Divider for some JLabels
+//		DIVIDER_STRING = "     ━━━━━━━━━━━━━━━━━━━━━     ";
+//	DIVIDER_STRING = "     ━━━━━━━━━━     ";
 	
 	/**
 	 * Profile Components
@@ -100,6 +101,10 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		//Sets the attributes accordingly
+			
+		DIVIDER_STRING = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+				? "     ━━━━━━━━━━━━━━━━━━━━━     " : "     ━━━━━━━━━━     ";
+			
 		openedSideBar = true;
 		profile = new Profile(); //TODO Update this so it loads/New profile
 		theme = profile.getThemeIndicator(); //For colors
@@ -133,6 +138,8 @@ public class MainGUI extends JFrame {
 	//This constructor is called on both New Profile and Load Profile
 	public MainGUI(Profile profile) {
 		//Sets the attributes accordingly
+		DIVIDER_STRING = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+				? "     ━━━━━━━━━━━━━━━━━━━━━     " : "     ━━━━━━━━━━     ";
 		openedSideBar = true;
 		this.profile = profile; //TODO Update this so it loads/New profile
 		theme = this.profile.getThemeIndicator(); //For colors
