@@ -27,14 +27,14 @@ public class ComponentSetup {
 	}
 	
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
-			if(button.getText() == "Start Focus")
-				button.setBackground(new Color(120,255,120));
-			else if(button.getText() == "Break Focus")
-				button.setBackground(new Color(255,120,120));
-			else
-				button.setBackground(Color.WHITE);
-		}
+		button.setOpaque(true);
+		
+		if(button.getText() == "Start Focus")
+			button.setBackground(new Color(120,255,120));
+		else if(button.getText() == "Break Focus")
+			button.setBackground(new Color(255,120,120));
+		else
+			button.setBackground(Color.WHITE);
 			
 		button.setFont(new Font("Tahoma", Font.BOLD, 18));
 		button.setFocusPainted(false);

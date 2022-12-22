@@ -44,14 +44,12 @@ public class MainGUI extends JFrame {
 	private StateStrategy strategy; 							//The center strategy state
 																//This is what is rendered on
 																//center of the screen.
-	private String DIVIDER_STRING;							//Line Divider for some JLabels
-//		DIVIDER_STRING = "     ━━━━━━━━━━━━━━━━━━━━━     ";
-//	DIVIDER_STRING = "     ━━━━━━━━━━     ";
-	
+	private String DIVIDER_STRING;								//Line Divider for some JLabels
+
 	/**
 	 * Profile Components
 	 */
-	//TODO change these to be initialized when profile is loaded
+	//These change to be initialized when profile is loaded
 	//To keep track of different options
 	private Profile profile;
 	public Theme theme;
@@ -466,6 +464,7 @@ public class MainGUI extends JFrame {
 	}
 	
 	public void setUpButtonComponent(JButton button, int num) {
+		button.setOpaque(true);
 		button.setBackground(theme.mainColor);
 		button.setForeground(theme.layerTextColor);
 		button.setFocusPainted(false);

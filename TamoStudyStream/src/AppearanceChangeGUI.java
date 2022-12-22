@@ -379,14 +379,15 @@ public class AppearanceChangeGUI extends JFrame {
 	}
 	
 	private void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
-			if(button.getText() == "Start Focus" || button.getText() == "Save Changes")
-				button.setBackground(new Color(120,255,120));
-			else if(button.getText() == "Break Focus")
-				button.setBackground(new Color(255,120,120));
-			else
-				button.setBackground(Color.WHITE);
-		}
+		button.setOpaque(true);
+		
+		if(button.getText() == "Start Focus" || button.getText() == "Save Changes")
+			button.setBackground(new Color(120,255,120));
+		else if(button.getText() == "Break Focus")
+			button.setBackground(new Color(255,120,120));
+		else
+			button.setBackground(Color.WHITE);
+		
 		button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		button.setFocusPainted(false);
 		button.setBorder(new RoundedBorder(Color.BLACK, 2, 10, 10, true));
