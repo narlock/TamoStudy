@@ -79,7 +79,7 @@ public class WelcomeGUI extends JFrame {
 
 	public void initFrame() {
 		this.getContentPane().setBackground(mainColor);
-		this.setTitle("launcher • TamoStudy Beta v4.1");
+		this.setTitle("launcher • TamoStudy Beta v4.2");
 		this.setVisible(true);
 		this.setSize(650,499);
 		this.setLocationRelativeTo(null);

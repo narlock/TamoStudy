@@ -187,7 +187,7 @@ public class MainGUI extends JFrame {
 	 * @brief Initializes the main JFrame
 	 */
 	public void initFrame() {
-		this.setTitle("TamoStudy Beta v4.1");
+		this.setTitle("TamoStudy Beta v4.2");
 		this.setVisible(true);
 		this.setSize(800,599);
 		this.setLocationRelativeTo(null);
