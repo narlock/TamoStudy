@@ -263,13 +263,15 @@ public class SettingsStrategy extends StateStrategy {
 	//Style Component
 	public void styleComponent(JComponent comp) {
 		if(comp instanceof JButton) {
-			if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+				comp.setOpaque(true);
+				
 				if(((JButton) comp).getText().equals(profile.getLanguage().settingsText[26])) {
 					comp.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 					comp.setBackground(new Color(120,255,120));
 					comp.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 				} else {
 					comp.setBackground(Color.WHITE);
+					comp.setBorder(new BubbleBorder(Color.BLACK, 2, 5, 5, true));
 				}
 					
 			
@@ -278,7 +280,6 @@ public class SettingsStrategy extends StateStrategy {
 		}
 		
 		if(comp instanceof JComboBox) {
-			//if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 			if(System.getProperty("os.name").startsWith("Windows"))
 				comp.setBackground(Color.WHITE);
 			

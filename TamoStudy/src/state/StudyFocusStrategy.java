@@ -353,14 +353,14 @@ public class StudyFocusStrategy extends StateStrategy {
 	public JPanel getHappinessPanel() { return tamoHappiness; }
 	
 	public void setUpJButton(JButton button) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
-			if(button.getText() == profile.getLanguage().focusText[4])
-				button.setBackground(new Color(120,255,120));
-			else if(button.getText() == profile.getLanguage().focusText[5])
-				button.setBackground(new Color(255,120,120));
-			else
-				button.setBackground(Color.WHITE);
-		}
+		button.setOpaque(true);
+		
+		if(button.getText() == profile.getLanguage().focusText[4])
+			button.setBackground(new Color(120,255,120));
+		else if(button.getText() == profile.getLanguage().focusText[5])
+			button.setBackground(new Color(255,120,120));
+		else
+			button.setBackground(Color.WHITE);
 			
 		button.setFont(theme.fontBoldRegSmall);
 		button.setFocusPainted(false);
@@ -368,13 +368,17 @@ public class StudyFocusStrategy extends StateStrategy {
 	}
 	
 	public void setUpComboBox(JComboBox box, int fontSize) {
-		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows")) {
 			box.setBackground(Color.WHITE);
-		
-		if(fontSize == 0)
-			box.setFont(theme.fontBoldRegSmall);
-		else
-			box.setFont(theme.fontBoldRegLarge);
+			
+			if(fontSize == 0)
+				box.setFont(theme.fontBoldRegSmall);
+			else
+				box.setFont(theme.fontBoldRegLarge);
+		} else {
+			Font f = box.getFont();
+			box.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+		}
 	}
 	
 }
