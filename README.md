@@ -19,35 +19,112 @@
     <a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/iXAguWQ.png" alt="Patreon"></a>
     <a href="https://twitter.com/narlockSoftware" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png"></a>
 <p>
+
 <hr>
 
-<!-- Features -->
-<h2 align="center"><b>Features</b></h2>
-<p align="center">
-  • Custom countdown timer / Pomodoro work/study timer. <br>
-  • Interactive virtual pet which needs food and happiness which can be maintained through focus sessions <br>
-  • Easy-to-use and understand graphical user interface <br>
-  • Creation of different profiles through file I/O capabilities <br>
-  • Supports multiple languages (currently: English, Spanish, Portuguese, French, Turkish, Hindi, Japanese) <br>
-</p>
-<hr>
+**TamoStudy** - A work and study productivity timer that implemenets a fun, virtual pet to help you stay driven to focus!
 
-<!-- Installation Video -->
-<h2 align="center">Installation Video</h2>
+- [Website](http://tamostudy.com/)
+- [Features](#Features)
+- [Setup TamoStudy](#Setup-TamoStudy)
+- [Original Concept Idea](#Original-Concept-Idea)
+- [Contributors](#Contributors)
+
+## **Features**
+
+### **Focus Timer**
+
+A simple, customizable countdown timer for deep focus work.
+
+![Focus Timer](./README%20Assets/FocusTime.png)
+- *Custom Interval Countdown*: Customize the number of minutes and the number of a seconds in a single focus session.
+- *5-Interval Countdown*: Easily choose a focus time from a selection of factors of 5 minutes.
+- *Pomodoro*: The popular *[pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique)* that breaks work into intervals. For a number of sessions, focus for a specified amount of time, then take a break for a specified amount of time.
+
+Upon completing focus sessions, you will receive Tamo Tokens! With Tamo Tokens, you can purchase food for your virtual pet and additional customization! To keep your Tamo happy, you must complete your desired focus sessions!
+
+### **Shop**
+
+A shop for purchasing food to feed the user's virtual pet. Additionally, the user can purchase cosmetic customization items!
+
+![Shop](./README%20Assets/Shop.png)
+- Beside the Tamo Token lies the price of the specified item. Adjacent to the price for food is the amount of food points the selected food item will give the virtual pet.
+- Purchasing a food item will automatically satisfy the hunger of the user's virtual pet.
+- Purchasing a background will add the background to the user's inventory.
+
+### **Themes**
+
+Customize the look of the TamoStudy interface through the use of colored themes!
+
+![Themes](./README%20Assets/Themes.png)
+
+- Select one of the themes by pressing the "Select" button next to the theme.
+
+### **Inventory**
+
+The user's inventory allows for items to be stored and used when the user desires. As of TamoStudy Beta v4.2, the inventory supports backgrounds. The user can utilize the "Select" button next to the background of their choice to apply the background to their Tamo!
+
+![Inventory](./README%20Assets/Inventory.png)
+
+### **Statistics**
+
+- View your statistics while using TamoStudy!
+
+![Statistics](./README%20Assets/Statistics.png)
+
+### **Achievements**
+
+- Unlock achievements during your use of TamoStudy!
+
+![Achievements](./README%20Assets/Achievements.png)
+
+### **Settings**
+
+- Change the settings of TamoStudy to match your preferences!
+
+![Settings](./README%20Assets/Settings.png)
+
+## **Setup TamoStudy**
+
+### Requirements
+
+1. Supported Operating Systems
+
+      TamoStudy has been tested on the following operating systems:
+      - Windows XP, 10, 11
+      - Linux (Ubuntu 20.04 LTS)
+      - macOS (Monterary, Ventura)
+
+2. Java Runtime Environment
+
+    TamoStudy was developed utilizing the Java programming language. An installation of the Java Runtime Environment is required to run Java applications. TamoStudy runs on Java 8. A download for Java can be found [here](https://www.java.com/en/download/).
+
+3. Downloading TamoStudy
+
+    To download TamoStudy, read through the download page [here](https://github.com/narlock/TamoStudy/releases) and select the TamoStudy JAR file to download from this page. This file contains the entire application and can be opened utilizing the Java Runtime Environment.
+
+    **Note**
+    Depending on your operating system, there may be certain permissions you must authorize TamoStudy to in order to execute the program.
+    - For Linux distributions, permissions to execute the application must be granted.
+    - For macOS, depending on the installation, the user may need to launch the application through the command line (assuming the application already has permissions). To run through the command line, navigate the terminal to the directory of TamoStudy, then type the command `java -jar TamoStudy.jar`. The application will now function properly.
+
+- Installation Tutorial
 <p align="center">
   <a href="https://www.youtube.com/watch?v=8JeMkaXIQOY"><img src="https://i.imgur.com/nVWKkXF.jpg" width="50%"></a>
 </p>
-<hr>
 
-<!-- Concept Idea -->
-<h2 align="center">Original Concept Idea</h2>
-<p align="center">
-  I wanted a way to record the amount of time I spent focused every day. At the time, I was cleaning through my room and found my Tamagotchi that I used to play with when I was very young. I thought that implementing a Tamagotchi-like pet into a focus timer would be a good idea. The more I focus and get my work done, the more upgrades and new things I can do with the virtual pet (in my project, it's called a Tamo).
-  <br><br>
-  Project plans to include a GUI in which a user can create a username and password along with give a name for their Tamo. The user can re-load this information so they can load where they left off in their studies. (Keeping the total amount of time they have focused, and their previous Tamo alive)
-  <br><br>
-  The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
-</p>
+## Original Concept Idea
+
+I wanted a way to record the amount of time I spent focused every day. At the time, I was cleaning through my room and found my Tamagotchi that I used to play with when I was very young. I thought that implementing a Tamagotchi-like pet into a focus timer would be a good idea. The more I focus and get my work done, the more upgrades and new things I can do with the virtual pet (in my project, it's called a Tamo).
+
+Project plans to include a GUI in which a user can create a username and password along with give a name for their Tamo. The user can re-load this information so they can load where they left off in their studies. (Keeping the total amount of time they have focused, and their previous Tamo alive)
+
+The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
+
+## Contributors
+- [Shorent]() - 2 Commits (Web)
+- [Alyksett]() - 1 Commit (Main)
+
 <hr>
 <p align="center">
 TamoStudy was created on January 30th, 2021 • Developed by <a href="https://github.com/narlock">narlock</a><br>
