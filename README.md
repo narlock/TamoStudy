@@ -103,8 +103,8 @@ The user's inventory allows for items to be stored and used when the user desire
 
     To download TamoStudy, read through the download page [here](https://github.com/narlock/TamoStudy/releases) and select the TamoStudy JAR file to download from this page. This file contains the entire application and can be opened utilizing the Java Runtime Environment.
 
-    **Note**
-    Depending on your operating system, there may be certain permissions you must authorize TamoStudy to in order to execute the program.
+    > **Note**
+    > Depending on your operating system, there may be certain permissions you must authorize TamoStudy to in order to execute the program.
     - For Linux distributions, permissions to execute the application must be granted.
     - For macOS, depending on the installation, the user may need to launch the application through the command line (assuming the application already has permissions). To run through the command line, navigate the terminal to the directory of TamoStudy, then type the command `java -jar TamoStudy.jar`. The application will now function properly.
 
