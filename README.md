@@ -17,12 +17,12 @@
 <p align="center">
   <a href="https://instagram.com/TamoStudy" style="padding:10px;"><img src="https://i.imgur.com/DCFiEHr.png" alt="Instagram"></a>
     <a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/iXAguWQ.png" alt="Patreon"></a>
-    <a href="https://twitter.com/narlockSoftware" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png"></a>
+    <a href="https://twitter.com/narlockDev" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png"></a>
 <p>
 
 <hr>
 
-**TamoStudy** - A work and study productivity timer that implemenets a fun, virtual pet to help you stay driven to focus!
+**TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
 
 - [Website](http://tamostudy.com/)
 - [Features](#Features)
@@ -129,5 +129,5 @@ The Focus GUI will have a set timer (minutes and seconds) the user can choose. W
 <p align="center">
 TamoStudy was created on January 30th, 2021 • Developed by <a href="https://github.com/narlock">narlock</a><br>
 <i>TamoStudy software applications reached over 1,000 total downloads on August 29th, 2022</i> <br>
-&copy; 2021-2022 TamoStudy, tamostudy.com
+&copy; 2021-2022 TamoStudy, <a href="http://tamostudy.com">tamostudy.com</a>
 </p>
