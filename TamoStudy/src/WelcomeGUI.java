@@ -73,6 +73,7 @@ public class WelcomeGUI extends JFrame {
 	 * The Frame that will log the user in to TamoStudy
 	 */
 	public WelcomeGUI() {
+		
 		discordRP = new DiscordRP();
 		discordRP.start();
 		
