@@ -122,8 +122,8 @@ Project plans to include a GUI in which a user can create a username and passwor
 The Focus GUI will have a set timer (minutes and seconds) the user can choose. When the user begins the Focus session, the timer will count down (this is the time where the user will work). After the timer is up, the session will be completed, and the Tamo will gain experience and happiness, and the user will gain money.
 
 ## Contributors
-- [Shorent]() - 2 Commits (Web)
-- [Alyksett]() - 1 Commit (Main)
+- [Shorent](http://github.com/Shorent) - 2 Commits (Web)
+- [Alyksett](http://github.com/Alyksett) - 1 Commit (Main)
 
 <hr>
 <p align="center">
