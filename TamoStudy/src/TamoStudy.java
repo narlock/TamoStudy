@@ -1,5 +1,3 @@
-import resources.Encryption;
-
 /**
  * Runner
  * @author Anthony Narlock (narlock)

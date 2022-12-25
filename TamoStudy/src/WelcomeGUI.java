@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +28,7 @@ import profile.Profile;
 import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 import resources.CheckForUpdates;
+import resources.DiscordRP;
 import resources.Encryption;
 
 /**
@@ -63,11 +66,16 @@ public class WelcomeGUI extends JFrame {
 	
 	private JFileChooser fileChooser;
 	
+	private DiscordRP discordRP;
+	
 	/**
 	 * WelcomeGUI
 	 * The Frame that will log the user in to TamoStudy
 	 */
 	public WelcomeGUI() {
+		discordRP = new DiscordRP();
+		discordRP.start();
+		
 		initFrame();
 		initComponentsToFrame();
 		initComponentActions();
@@ -75,6 +83,8 @@ public class WelcomeGUI extends JFrame {
 		
 		//Check for updates
 		checkForUpdates();
+		
+		discordRP.update("Idle", "Welcome Screen");
 	}
 
 	public void initFrame() {
@@ -83,7 +93,13 @@ public class WelcomeGUI extends JFrame {
 		this.setVisible(true);
 		this.setSize(650,499);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				System.out.println("TamoStudy Closing...");
+			    discordRP.shutdown();
+			    System.exit(0);
+			}
+		});
 		this.setResizable(false);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 	}
@@ -245,6 +261,7 @@ public class WelcomeGUI extends JFrame {
 						
 						MainGUI gui = new MainGUI(profile);
 						hideWindow();
+						discordRP.shutdown();
 					}
 					
 				}

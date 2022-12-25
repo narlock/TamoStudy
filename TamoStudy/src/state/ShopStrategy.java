@@ -361,6 +361,7 @@ public class ShopStrategy extends StateStrategy {
 					JPanel optionPanel = new JPanel();
 						optionPanel.setBackground(theme.subColor);
 					JButton confirmPurchase = new JButton(profile.getLanguage().shopText[13]);
+						confirmPurchase.setOpaque(true);
 						confirmPurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 						confirmPurchase.setFont(new Font("Arial", Font.BOLD, 18));
 						confirmPurchase.setFocusPainted(false);
@@ -390,6 +391,7 @@ public class ShopStrategy extends StateStrategy {
 							
 						});
 					JButton declinePurchase = new JButton(profile.getLanguage().shopText[14]);
+						declinePurchase.setOpaque(true);
 						declinePurchase.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 						declinePurchase.setFont(new Font("Tahoma", Font.BOLD, 18));
 						declinePurchase.setFocusPainted(false);

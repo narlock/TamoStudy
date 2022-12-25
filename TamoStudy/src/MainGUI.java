@@ -2,6 +2,8 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.util.Stack;
 
@@ -14,6 +16,7 @@ import javax.swing.*;
 import profile.Profile;
 import profile.ProfileReaderWriter;
 import resources.CommunicateThemeAction;
+import resources.DiscordRP;
 import resources.Theme;
 import state.AboutStrategy;
 import state.AchievementsStrategy;
@@ -92,6 +95,8 @@ public class MainGUI extends JFrame {
 	//Settings
 	private JButton saveChangesButton;
 	private int languageBoxIndicator;
+	
+	private DiscordRP discordRP;
 
 	/**
 	 * @brief Main Constructor
@@ -135,6 +140,11 @@ public class MainGUI extends JFrame {
 	//Main Constructor
 	//This constructor is called on both New Profile and Load Profile
 	public MainGUI(Profile profile) {
+		discordRP = new DiscordRP();
+		discordRP.start();
+		
+		discordRP.update("Idle", "Title Card");
+		
 		//Sets the attributes accordingly
 		DIVIDER_STRING = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				? "     ━━━━━━━━━━━━━━━━━━━━━     " : "     ━━━━━━━━━━     ";
@@ -189,7 +199,13 @@ public class MainGUI extends JFrame {
 		this.setVisible(true);
 		this.setSize(800,599);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+				System.out.println("TamoStudy Closing...");
+			    discordRP.shutdown();
+			    System.exit(0);
+			}
+		});
 		this.setResizable(false);
 		this.setBackground(Color.DARK_GRAY);
 	}
@@ -228,6 +244,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Title Card");
+				discordRP.update("Idle", "Title Card");
 				updateSideBar();
 				StateStrategy newStrategy = new TitleStrategy(profile);
 				recall(newStrategy);
@@ -241,6 +258,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
+				discordRP.update("Idle", "Focus");
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy(profile);
 				
@@ -277,6 +295,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Shop");
+				discordRP.update("Idle", "Shopping");
 				updateSideBar();
 				StateStrategy newStrategy = new ShopStrategy(profile);
 				recall(newStrategy);
@@ -290,6 +309,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Themes");
+				discordRP.update("Idle", "Browsing Themes");
 				updateSideBar();
 				StateStrategy newStrategy = new ThemeStrategy(profile);
 				
@@ -322,6 +342,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Inventory");
+				discordRP.update("Idle", "Viewing Inventory");
 				updateSideBar();
 				StateStrategy newStrategy = new InventoryStrategy(profile);
 				recall(newStrategy);
@@ -335,6 +356,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Statistics");
+				discordRP.update("Idle", "Viewing Statistics");
 				updateSideBar();
 				StateStrategy newStrategy = new StatisticsStrategy(profile);
 				recall(newStrategy);
@@ -348,6 +370,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Achievements");
+				discordRP.update("Idle", "Viewing Achievements");
 				updateSideBar();
 				StateStrategy newStrategy = new AchievementsStrategy(profile);
 				recall(newStrategy);
@@ -361,6 +384,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Settings");
+				discordRP.update("Idle", "Changing Settings");
 				updateSideBar();
 				StateStrategy newStrategy = new SettingsStrategy(profile);
 				
@@ -381,6 +405,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to About");
+				discordRP.update("Idle", "Reading About");
 				updateSideBar();
 				StateStrategy newStrategy = new AboutStrategy(profile);
 				recall(newStrategy);
@@ -518,6 +543,7 @@ public class MainGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				discordRP.update("Idle", "Focus");
 				
 				String studyMessage = profile.getLanguage().focusText[8] + " " + tempMin + " " + profile.getLanguage().focusText[9] + " " + tempSec  + " " + profile.getLanguage().focusText[10];
 				profile.updateStudyStats(tempMin, tempSec);
@@ -642,6 +668,7 @@ public class MainGUI extends JFrame {
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 							
 							//loop will end when user hits ok dialog
+							discordRP.update("Idle", "Focus");
 							JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 							clip.stop();
 							
@@ -650,6 +677,7 @@ public class MainGUI extends JFrame {
 						}
 					
 					} else {
+						discordRP.update("Idle", "Focus");
 						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 						
 					}
@@ -679,6 +707,7 @@ public class MainGUI extends JFrame {
 					else {
 						minuteTime.setText("" + min);
 					}
+					updateRPCTimer();
 				}
 				
 			}
@@ -855,6 +884,14 @@ public class MainGUI extends JFrame {
 			if(labelIndicator == 0) { label.setText(profile.getLanguage().text[1] + profile.getUsername()); }
 			
 			labelIndicator++;
+		}
+	}
+	
+	public void updateRPCTimer() {
+		if(breakCondition) {
+			discordRP.update("Break", minuteTime.getText() + ":" + secondTime.getText() + " Remaining");
+		} else {
+			discordRP.update("Focusing", minuteTime.getText() + ":" + secondTime.getText() + " Remaining");
 		}
 	}
 }
