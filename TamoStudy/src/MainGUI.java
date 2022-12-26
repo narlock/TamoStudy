@@ -31,39 +31,83 @@ import state.TitleStrategy;
 
 /**
  * MainGUI
- * @author Anthony Narlock (narlock)
- * @brief The Context and Main Frame of Program
+ * 
+ * @author narlock
+ * 
+ * @brief The main graphical user interface component
+ * of TamoStudy. This user interface has a top bar which
+ * contains a menu button to open the menu, along with
+ * a side bar, which acts as the menu. Upon selecting an
+ * option from the menu, the StateStrategy will change
+ * depending on the selected menu option.
  */
 
 public class MainGUI extends JFrame {
 	/**
-	 * MainGUI the "Context"
+	 * openedSideBar
+	 * @brief true if the side bar is open
+	 * false if the side bar is not opened
 	 */
+	private boolean openedSideBar;
 	
-	//Primary Components of the MainGUI
-	private boolean openedSideBar; 								//State of the sidebar being opened
-	private JPanel sidePanel; 									//The sidebar panel
-	private JPanel openSidePanel; 								//The openSideBar panel
-	private StateStrategy strategy; 							//The center strategy state
-																//This is what is rendered on
-																//center of the screen.
-	private String DIVIDER_STRING;								//Line Divider for some JLabels
+	/**
+	 * sidePanel
+	 * @brief The side panel JPanel
+	 */
+	private JPanel sidePanel;
+	
+	/**
+	 * openSidePanel
+	 * @brief The top panel that contains
+	 * the menu button that opens side panel
+	 */
+	private JPanel openSidePanel;
+	
+	/**
+	 * strategy
+	 * @brief The state strategy: main portion of
+	 * the graphical user interface
+	 */
+	private StateStrategy strategy;
+	
+	/**
+	 * DIVIDER_STRING
+	 * @brief The divider line between state options
+	 * on the menu bar. Operating system dependent
+	 */
+	private String DIVIDER_STRING;
 
 	/**
-	 * Profile Components
+	 * profile
+	 * @brief The user profile that is loaded
+	 * into the application
 	 */
-	//These change to be initialized when profile is loaded
-	//To keep track of different options
 	private Profile profile;
-	public Theme theme;
-	public UIManager UI;
 	
-	//Used to track the components on sidebar so we can update them accordingly
+	/**
+	 * theme
+	 * @brief The user's theme choice
+	 */
+	public Theme theme;
+
+	/**
+	 * discordRP
+	 * @brief Discord Rich Presence object
+	 * Only for Windows devices
+	 */
+	private DiscordRP discordRP;
+	
+	/**
+	 * The following are Stacks of the components
+	 * utilized in the MainGUI. The panels contain
+	 * panels to organize the components. The buttons
+	 * represent the buttons to select strategies.
+	 */
 	private Stack<JPanel> panels;
 	private Stack<JButton> buttons;
 	private Stack<JLabel> labels;
-	private JButton openSideLabel; //Menu Button
-	private Stack<JLabel> breaks; //Thematic breaks
+	private JButton openMenuButton;
+	private Stack<JLabel> breaks;
 	
 	/**
 	 * Specific Function Components
@@ -73,95 +117,55 @@ public class MainGUI extends JFrame {
 	 * in which we need to interact with the MainGUI.
 	 */
 	
-	//StudyFocusStrategy
+	/**
+	 * StudyFocusStrategy Components
+	 */
 	private Timer timer;
 	private int min, sec, studyMin, studySec, tempSec, tempMin;
 	private JLabel minuteTime, secondTime;
-	private JComboBox minuteBox, secondBox, pomoSessionBox, pomoBreakBox, pomoNumberSessionBox;
+	private JComboBox<String> minuteBox, secondBox, pomoSessionBox, pomoBreakBox, pomoNumberSessionBox;
 	
-	//POMODORO
 	private JLabel currentSessionLabel;
-	private int currentPomodoroSession, totalPomodoroSessions, remainingPomodoroSessions;
+	private int currentPomodoroSession, totalPomodoroSessions;
 	private boolean breakCondition;
 	
 	private JLabel  tamoImageLabel;
-	private JButton startFocusButton;			//Start focus button
-	private JButton breakFocusButton;			//Break focus button
+	private JButton startFocusButton;
+	private JButton breakFocusButton;
 	
-	//ThemeStrategy
+	/**
+	 * ThemeStrategy Components
+	 */
 	private Stack<JButton> selectButtons;
 	private CommunicateThemeAction themeAction;
 	
-	//Settings
-	private JButton saveChangesButton;
-	private int languageBoxIndicator;
-	
-	private DiscordRP discordRP;
-
 	/**
-	 * @brief Main Constructor
-	 * Sets the default values, will for testing
+	 * SettingsStrategy Components
 	 */
-	public MainGUI() {
-		//Sets the attributes accordingly
-			
-		DIVIDER_STRING = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-				? "     ━━━━━━━━━━━━━━━━━━━━━     " : "     ━━━━━━━━━━     ";
-			
-		openedSideBar = true;
-		profile = new Profile(); //TODO Update this so it loads/New profile
-		theme = profile.getThemeIndicator(); //For colors
-		strategy = new TitleStrategy(profile);
-		panels = new Stack<>();
-		buttons = new Stack<>();
-		labels = new Stack<>();
-		breaks = new Stack<>();
-		
-		//UI Manager to change option pane colors
-		UI = new UIManager();
-		UI.put("OptionPane.background", theme.layerColor);
-		UI.put("OptionPane.messageForeground", theme.textColor);
-		UI.put("Panel.background", theme.layerColor);
-		
-		//Initializes the GUI components
-		initFrame();
-		initSidePanels();
-		initComponentsToFrame();
-		
-		//Hopefully fixes Swing issues on painting
-		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
-		this.setSize(800,600);	//Resize properly so display is correct
-		this.repaint();
-		
-		//profile.printInfo();
-		checkForNewAchievements();
-	}
+	private JButton saveChangesButton;	
 	
-	//Main Constructor
-	//This constructor is called on both New Profile and Load Profile
 	public MainGUI(Profile profile) {
+		//Initialize Discord Rich Presence
 		discordRP = new DiscordRP();
 		discordRP.start();
-		
 		discordRP.update("Idle", "Title Card");
 		
-		//Sets the attributes accordingly
+		//Initialize GUI Attributes
 		DIVIDER_STRING = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
 				? "     ━━━━━━━━━━━━━━━━━━━━━     " : "     ━━━━━━━━━━     ";
 		openedSideBar = true;
-		this.profile = profile; //TODO Update this so it loads/New profile
+		this.profile = profile;
 		theme = this.profile.getThemeIndicator(); //For colors
 		strategy = new TitleStrategy(this.profile);
-		panels = new Stack<>();
-		buttons = new Stack<>();
-		labels = new Stack<>();
-		breaks = new Stack<>();
+		panels = new Stack<JPanel>();
+		buttons = new Stack<JButton>();
+		labels = new Stack<JLabel>();
+		breaks = new Stack<JLabel>();
 		
 		//UI Manager to change option pane colors
-		UI = new UIManager();
-		UI.put("OptionPane.background", theme.layerColor);
-		UI.put("OptionPane.messageForeground", theme.textColor);
-		UI.put("Panel.background", theme.layerColor);
+		UIManager.put("OptionPane.background", theme.layerColor);
+		UIManager.put("OptionPane.messageForeground", theme.textColor);
+		UIManager.put("Panel.background", theme.layerColor);
 		
 		//Initializes the GUI components
 		initFrame();
@@ -173,7 +177,7 @@ public class MainGUI extends JFrame {
 		this.setSize(800,600);	//Resize properly so display is correct
 		this.repaint();
 		
-		//profile.printInfo();
+		//Check for new Achievements
 		checkForNewAchievements();
 	}
 	
@@ -215,11 +219,6 @@ public class MainGUI extends JFrame {
 	 * @brief Initializes the side panel
 	 */
 	public void initSidePanels() {
-		
-		/**
-		 * Setting up the Side Panel
-		 */
-		
 		//Initializes the thematic breaks
 		JLabel thematicBreak = new JLabel(DIVIDER_STRING);
 		JLabel thematicBreak2 = new JLabel(DIVIDER_STRING);
@@ -236,8 +235,7 @@ public class MainGUI extends JFrame {
 		
 		//Initializes each of the side buttons
 		//Includes dynamic functionality as needed to communicate
-		//with it's respective strategy
-		
+		//with its respective strategy
 		JButton titleCardButton = new JButton(profile.getLanguage().text[2]);
 		setUpButtonComponent(titleCardButton);
 		titleCardButton.addActionListener(new ActionListener() {
@@ -245,6 +243,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Title Card");
 				discordRP.update("Idle", "Title Card");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new TitleStrategy(profile);
 				recall(newStrategy);
@@ -259,6 +258,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
 				discordRP.update("Idle", "Focus");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new StudyFocusStrategy(profile);
 				
@@ -296,6 +296,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Shop");
 				discordRP.update("Idle", "Shopping");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new ShopStrategy(profile);
 				recall(newStrategy);
@@ -310,6 +311,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Themes");
 				discordRP.update("Idle", "Browsing Themes");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new ThemeStrategy(profile);
 				
@@ -343,6 +345,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Inventory");
 				discordRP.update("Idle", "Viewing Inventory");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new InventoryStrategy(profile);
 				recall(newStrategy);
@@ -357,6 +360,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Statistics");
 				discordRP.update("Idle", "Viewing Statistics");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new StatisticsStrategy(profile);
 				recall(newStrategy);
@@ -371,6 +375,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Achievements");
 				discordRP.update("Idle", "Viewing Achievements");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new AchievementsStrategy(profile);
 				recall(newStrategy);
@@ -385,6 +390,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to Settings");
 				discordRP.update("Idle", "Changing Settings");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new SettingsStrategy(profile);
 				
@@ -406,6 +412,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to About");
 				discordRP.update("Idle", "Reading About");
+				
 				updateSideBar();
 				StateStrategy newStrategy = new AboutStrategy(profile);
 				recall(newStrategy);
@@ -413,7 +420,7 @@ public class MainGUI extends JFrame {
 		});
 		buttons.push(aboutButton);
 		
-		//adds components to the sidePanel
+		//Adds components to the sidePanel
 		sidePanel.add(titleCardButton);
 		sidePanel.add(focusButton);
 		sidePanel.add(thematicBreak);
@@ -426,18 +433,15 @@ public class MainGUI extends JFrame {
 		sidePanel.add(settingsButton);
 		sidePanel.add(aboutButton);
 		
-		/**
-		 * Setting up openSidePanel
-		 */
+		//Initializing Open Side Panel
 		openSidePanel = new JPanel();
 		openSidePanel.setBackground(theme.mainColor);
 		panels.add(openSidePanel);
 		
-		//openSidePanel component
-		
-		openSideLabel = new JButton(profile.getLanguage().text[0]);
-		setUpButtonComponent(openSideLabel, 1);
-		openSideLabel.addActionListener(new ActionListener() {
+		//OpenSidePanel components
+		openMenuButton = new JButton(profile.getLanguage().text[0]);
+		setUpButtonComponent(openMenuButton, 1);
+		openMenuButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Menu was updated!");
@@ -449,16 +453,24 @@ public class MainGUI extends JFrame {
 		setUpLabelComponent(welcomeUserLabel);
 		labels.push(welcomeUserLabel);
 		
-		openSidePanel.add(openSideLabel);
+		openSidePanel.add(openMenuButton);
 		openSidePanel.add(welcomeUserLabel);
 	}
 	
+	/**
+	 * initComponentsToFrame
+	 * @brief adds the main components to the frame
+	 */
 	public void initComponentsToFrame() {
 		this.add(openSidePanel, BorderLayout.NORTH);
 		this.add(sidePanel, BorderLayout.WEST);
 		this.add(strategy, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * updateSideBar
+	 * @brief Opens/Closes Side Bar Menu
+	 */
 	public void updateSideBar() {
 		if (this.openedSideBar) {
 			//Close the side bar
@@ -471,15 +483,31 @@ public class MainGUI extends JFrame {
 		}
 	}
 	
+	/**
+	 * setUpLabelComponent
+	 * @brief specifies foreground and font of JLabel
+	 * @param label
+	 */
 	public void setUpLabelComponent(JLabel label) {
 		label.setForeground(theme.layerTextColor);
 		label.setFont(new Font("Arial", Font.BOLD, 16));
 	}
 	
+	/**
+	 * setUpLabelComponent
+	 * @brief specifies foreground of JLabel
+	 * @param label
+	 * @param num
+	 */
 	public void setUpLabelComponent(JLabel label, int num) {
 		label.setForeground(theme.layerTextColor);
 	}
 	
+	/**
+	 * setUpButtonComponent
+	 * @brief specifies JButton attributes
+	 * @param button
+	 */
 	public void setUpButtonComponent(JButton button) {
 		button.setBorderPainted(false);
 		button.setBackground(theme.mainColor);
@@ -488,6 +516,12 @@ public class MainGUI extends JFrame {
 		button.setFont(new Font("Arial", Font.BOLD, 16));
 	}
 	
+	/**
+	 * setUpButtonComponent
+	 * @brief specifies JButton attributes
+	 * @param button
+	 * @param num
+	 */
 	public void setUpButtonComponent(JButton button, int num) {
 		button.setOpaque(true);
 		button.setBackground(theme.mainColor);
@@ -499,16 +533,16 @@ public class MainGUI extends JFrame {
 	/**
 	 * themeChanged
 	 * @brief Indicates the theme has changed
-	 * @param i
+	 * @param i representing theme index
 	 */
 	public void themeChanged(int i) {
 		profile.setThemeIndicator(i);
 		theme = profile.getThemeIndicator();
-		themeAction = new CommunicateThemeAction(theme, openSideLabel, panels, buttons, labels, breaks);
+		themeAction = new CommunicateThemeAction(theme, openMenuButton, panels, buttons, labels, breaks);
 		themeAction.updateMainGUI();
 		
-		UI.put("OptionPane.background", theme.layerColor);
-		UI.put("Panel.background", theme.layerColor);
+		UIManager.put("OptionPane.background", theme.layerColor);
+		UIManager.put("Panel.background", theme.layerColor);
 	}
 	
 	/**
@@ -637,7 +671,7 @@ public class MainGUI extends JFrame {
 					sec = 60;
 					min--;
 				}
-				
+				//Timer Completed
 				if(min < 0) {
 					
 					profile.updateStudyStats(tempMin, tempSec);
@@ -681,8 +715,7 @@ public class MainGUI extends JFrame {
 						JOptionPane.showMessageDialog(rootPane, studyMessage, profile.getLanguage().focusText[6], JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 						
 					}
-					//JOptionPane.showMessageDialog(rootPane, studyMessage, "Session Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-					//Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
+					//TODO Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 					
 					if(profile.getSettings().getFocusMode() == 2 && totalPomodoroSessions != 0) {
 						System.out.println("pomoSessionNumber: " + totalPomodoroSessions);
@@ -693,6 +726,7 @@ public class MainGUI extends JFrame {
 						timer.stop();
 					}
 				} 
+				//Timer still running
 				else {
 					sec--;
 					if(sec < 10) {
@@ -709,16 +743,20 @@ public class MainGUI extends JFrame {
 					}
 					updateRPCTimer();
 				}
-				
 			}
-			
 		});
+		
+		//Start timer
 		timer.start();
 	}
 	
-	//Resets the timer
-	//Called either when 'Break' is clicked or end of regular session
+	/**
+	 * resetTimer
+	 * @brief Resets the timer either when 'Break' is clicked or
+	 * end of a regular session
+	 */
 	public void resetTimer() {
+		//Custom Interval Timer Reset
 		if(profile.getSettings().getFocusMode() == 0) {
 			minuteBox.setEnabled(true);
 			secondBox.setEnabled(true);
@@ -727,6 +765,7 @@ public class MainGUI extends JFrame {
 			secondTime.setText(secondBox.getSelectedItem().toString());
 		}
 		
+		//5-Interval Countdown Reset
 		if(profile.getSettings().getFocusMode() == 1) {
 			minuteBox.setEnabled(true);
 			minuteBox.setSelectedIndex(0);
@@ -735,6 +774,7 @@ public class MainGUI extends JFrame {
 			secondTime.setText("00");
 		}
 		
+		//Pomodoro Reset
 		if(profile.getSettings().getFocusMode() == 2) {
 			currentSessionLabel.setText(profile.getLanguage().focusText[11]);
 			
@@ -763,7 +803,10 @@ public class MainGUI extends JFrame {
 		ProfileReaderWriter.updateProfileInfoToFile(profile);
 	}
 	
-	//Indicates next session of Pomodoro Mode
+	/**
+	 * nextSession
+	 * @brief Indicates next session of Pomodoro mode
+	 */
 	public void nextSession() {
 		if(breakCondition == false) {
 			//Start Break Timer
@@ -784,13 +827,16 @@ public class MainGUI extends JFrame {
 			breakCondition = false;
 			this.totalPomodoroSessions--;
 			
-			//UPDATE TAMO IMAGE
+			//Update Tamo Image
 			tamoImageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource(profile.getTamo().getImageUrl(false))));
 			startFocusButton.doClick();
 		}
 	}
 	
-	//Sets the current session in Pomodoro Mode
+	/**
+	 * setCurrentSession
+	 * @brief Sets the current session in Pomodoro Mode
+	 */
 	public void setCurrentSession() {
 		if(breakCondition) {
 			currentSessionLabel.setText(profile.getLanguage().focusText[12]);
@@ -853,6 +899,11 @@ public class MainGUI extends JFrame {
 		ProfileReaderWriter.updateProfileInfoToFile(profile);
 	}
 	
+	/**
+	 * updateLanguageChange
+	 * @brief Updates language components
+	 * on a change in the language
+	 */
 	public void updateLanguageChange() {
 		int indicator = ((SettingsStrategy) strategy).getLanguageIndicatorFromBox();
 		profile.setLanguageIndicator(indicator);
@@ -860,7 +911,7 @@ public class MainGUI extends JFrame {
 		profile.getLanguage().printCurrentLanguage();
 		
 		//Menu Label
-		openSideLabel.setText(profile.getLanguage().text[0]);
+		openMenuButton.setText(profile.getLanguage().text[0]);
 		
 		//Button Labels
 		int buttonIndicator = 0;
@@ -887,6 +938,11 @@ public class MainGUI extends JFrame {
 		}
 	}
 	
+	/**
+	 * updateRPCTimer
+	 * @brief Updates Discord Rich Presence
+	 * timer on focus or break session
+	 */
 	public void updateRPCTimer() {
 		if(breakCondition) {
 			discordRP.update("Break", minuteTime.getText() + ":" + secondTime.getText() + " Remaining");
