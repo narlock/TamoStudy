@@ -33,61 +33,110 @@ import resources.Encryption;
 
 /**
  * WelcomeGUI
+ * 
  * @author Anthony Narlock (narlock)
+ * 
  * @brief The Welcome / Login GUI
  * Logs the user into the main program
+ * 
+ * TODO Upon introducing sockets, the welcomeGUI may change to be
+ * offline or online mode, where the user will choose to use
+ * the application offline - as it is right now, or online,
+ * where the user can either choose to host a focus room
+ * or join another focus room. The offline mode will also
+ * utilize a JSON settings file similar to TamoStudyStream
+ * instead of using the profile text files.
  */
 
 public class WelcomeGUI extends JFrame {
-	
+
+	/**
+	 * mainPanel
+	 * @brief The main JPanel for the welcomeGUI
+	 */
 	private JPanel mainPanel;
 	
+	/**
+	 * titleCardImageLabel
+	 * @brief Image Label displays the TamoStudy icon.
+	 */
 	private JLabel titleCardImageLabel;
 	
+	/**
+	 * buttonPanel
+	 * @brief The Button panel
+	 * for the newProfileButton and loadProfileButton
+	 * TODO Will eventually switch to Offline and Online Buttons
+	 */
 	private JPanel buttonPanel;
 	private JButton newProfileButton, loadProfileButton;
 	
+	/**
+	 * authorLabel
+	 * @brief Credit label
+	 */
 	private JLabel authorLabel;
 	
+	/**
+	 * Color and Font constants
+	 */
 	private final Color mainColor = new Color(78,78,78);
 	private final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
 	
-	//Update Checker
+	/**
+	 * updateButton
+	 * @brief Button that directs to update TamoStudy
+	 * Will only appear if there is an update available.
+	 */
 	private JButton updateButton;
 	private final JLabel visibleSpaceLabel = createSpaceLabel();
 	
-	//Display Message
+	/**
+	 * displayErrorProfileLabel
+	 * @brief Error Message for indicating invalid profile
+	 */
 	private final JLabel displayErrorProfileLabel = new JLabel("Invalid Profile File - the file you chose is incompatible with TamoStudy Beta v4.0");
 	
-	//FILE COMPONENTS
+	/**
+	 * User Profile and Profile File
+	 */
 	private File file;
-	private BufferedWriter bw;
 	private Profile profile;
 	
+	/**
+	 * FileChooser
+	 * @brief for Open and Save File Dialogs
+	 */
 	private JFileChooser fileChooser;
 	
+	/**
+	 * discordRP
+	 * @brief Discord Rich Presence object
+	 * Only for Windows devices
+	 */
 	private DiscordRP discordRP;
 	
-	/**
-	 * WelcomeGUI
-	 * The Frame that will log the user in to TamoStudy
-	 */
 	public WelcomeGUI() {
-		
+		//Initialize Discord Rich Presence
 		discordRP = new DiscordRP();
 		discordRP.start();
+		discordRP.update("Idle", "Welcome Screen");
 		
+		//Initialize Graphical User Interface
 		initFrame();
 		initComponentsToFrame();
 		initComponentActions();
 		this.setSize(650,500);
 		
-		//Check for updates
+		//Check for Updates
 		checkForUpdates();
-		
-		discordRP.update("Idle", "Welcome Screen");
 	}
 
+	/**
+	 * initFrame
+	 * @brief Sets the attributes of the main frame
+	 * in the welcomeGUI
+	 */
 	public void initFrame() {
 		this.getContentPane().setBackground(mainColor);
 		this.setTitle("launcher • TamoStudy Beta v4.2");
@@ -105,6 +154,11 @@ public class WelcomeGUI extends JFrame {
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 	}
 	
+	/**
+	 * initComponentsToFrame
+	 * @brief initializes the frame components
+	 * and adds them to the frame
+	 */
 	public void initComponentsToFrame() {
 		updateButton = new JButton("A new update is available. Click here to download!");
 		updateButton.setOpaque(true);
@@ -154,10 +208,12 @@ public class WelcomeGUI extends JFrame {
 		this.add(mainPanel);
 	}
 	
-	//Styles Main Buttons
+	/**
+	 * setUpJButton
+	 * @brief Set up the button attributes
+	 * @param button
+	 */
 	public void setUpJButton(JButton button) {
-//		if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-//			
 		button.setOpaque(true);
 		button.setBackground(Color.WHITE);
 			
@@ -166,15 +222,21 @@ public class WelcomeGUI extends JFrame {
 		button.setBorder(new BubbleBorder(Color.BLACK, 2, 10, 10, true));
 	}
 	
-	//Creates a space label
+	/**
+	 * createSpaceLabel
+	 * @brief Creates a space label
+	 * @return new space label
+	 */
 	public JLabel createSpaceLabel() {
-		//Space Component
 		JLabel transparentComponent = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TRANSPARENT.png")));
 		transparentComponent.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		return transparentComponent;
 	}
 	
-	//Update Checker
+	/**
+	 * checkForUpdates
+	 * @brief Checks for TamoStudy updates
+	 */
 	public void checkForUpdates() {
 		CheckForUpdates updates = new CheckForUpdates();
 		boolean isThereUpdates = false;
@@ -188,8 +250,12 @@ public class WelcomeGUI extends JFrame {
 		}
 	}
 	
-	//Initializes the component Actions
+	/**
+	 * initComponentActions
+	 * @brief sets Component actions
+	 */
 	public void initComponentActions() {
+		//Initializes file chooser
 		fileChooser = new JFileChooser();
 		
 		//Update Button
@@ -212,8 +278,8 @@ public class WelcomeGUI extends JFrame {
 			JTextField usernameField = new JTextField("");
 			JTextField tamoNameField = new JTextField("");
 			
-			JComboBox languageBox = new JComboBox();
-			JComboBox difficultyBox = new JComboBox();
+			JComboBox<String> languageBox = new JComboBox<String>();
+			JComboBox<String> difficultyBox = new JComboBox<String>();
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -264,7 +330,6 @@ public class WelcomeGUI extends JFrame {
 						hideWindow();
 						discordRP.shutdown();
 					}
-					
 				}
 			}
 		});
@@ -282,7 +347,6 @@ public class WelcomeGUI extends JFrame {
 					}
 					catch (Exception e1) { 
 						displayErrorProfileLabel.setVisible(true); 
-					
 					}
 				}
 			}
@@ -290,7 +354,8 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	/**
-	 * selectFile selects profile file and assigns to file.
+	 * selectFile 
+	 * @brief selects profile file and assigns to file.
 	 * @return 1 for success, 0 for failure
 	 */
 	public int selectFile() {
@@ -300,8 +365,9 @@ public class WelcomeGUI extends JFrame {
 		} else { return 0; }
 	}
 	
-	/*
-	 * Method hides the main windows and disposes it
+	/**
+	 * hideWindow
+	 * @brief Method hides the main windows and disposes it
 	 */
 	public void hideWindow() {
 		this.setVisible(false);

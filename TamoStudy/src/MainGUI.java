@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +31,7 @@ import state.TitleStrategy;
 /**
  * MainGUI
  * 
- * @author narlock
+ * @author Anthony Narlock (narlock)
  * 
  * @brief The main graphical user interface component
  * of TamoStudy. This user interface has a top bar which
@@ -43,6 +42,7 @@ import state.TitleStrategy;
  */
 
 public class MainGUI extends JFrame {
+
 	/**
 	 * openedSideBar
 	 * @brief true if the side bar is open
@@ -254,6 +254,7 @@ public class MainGUI extends JFrame {
 		JButton focusButton = new JButton(profile.getLanguage().text[3]);
 		setUpButtonComponent(focusButton);
 		focusButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[TAMOSTUDY] Changing Strategy to StudyFocus");
