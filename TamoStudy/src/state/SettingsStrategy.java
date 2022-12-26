@@ -229,7 +229,11 @@ public class SettingsStrategy extends StateStrategy {
 				//Update local UI
 				resetComponentsLanguageChange();
 				
+				//Set the message label to the selected language text
 				messageLabel.setText(profile.getLanguage().settingsText[27]);
+				
+				//Set the text of the save changes button to the selected language text
+				saveChanges.setText(profile.getLanguage().settingsText[26]);
 			}
 			
 		});
