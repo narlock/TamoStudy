@@ -4,10 +4,22 @@ import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
+/**
+ * DiscordRP
+ * 
+ * @author narlock
+ *
+ * @brief Utilizes Discord Rich Presence JAR
+ * to support Rich Presence for TamoStudy
+ */
 public class DiscordRP {
 	private boolean running = true;
 	private long created = 0;
 	
+	/**
+	 * start
+	 * @brief Initiates Rich Presence
+	 */
 	public void start() {
 		if(System.getProperty("os.name").contains("Windows")) {
 			System.out.println("started");
@@ -31,6 +43,10 @@ public class DiscordRP {
 		}
 	}
 	
+	/**
+	 * shutdown
+	 * @brief shuts down Rich Presence
+	 */
 	public void shutdown() {
 		if(System.getProperty("os.name").contains("Windows")) {
 			running = false;
@@ -38,6 +54,12 @@ public class DiscordRP {
 		}
 	}
 	
+	/**
+	 * update
+	 * @brief Updates Rich Presence
+	 * @param firstLine
+	 * @param secondLine
+	 */
 	public void update(String firstLine, String secondLine) {
 		if(System.getProperty("os.name").contains("Windows")) {
 			DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);

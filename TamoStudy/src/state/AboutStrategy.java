@@ -1,14 +1,9 @@
 package state;
 
-import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.swing.BoxLayout;
@@ -20,6 +15,15 @@ import javax.swing.JPanel;
 
 import profile.Profile;
 
+/**
+ * AboutStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief About State of TamoStudy for displaying
+ * general information and social contact buttons
+ *
+ */
 public class AboutStrategy extends StateStrategy {
 
 	public AboutStrategy(Profile profile) {
@@ -30,17 +34,13 @@ public class AboutStrategy extends StateStrategy {
 	private JButton anthonyWebButton, tamoWebButton,
 				gitWebButton, instaWebButton, discordButton;
 	
-	private JLabel titleImage, groupImage, descLabel;
+	private JLabel groupImage, descLabel;
 	
 	@Override
 	public void setPanel() {
 		this.setBackground(theme.subColor);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(createSpaceLabel(1));
-		
-		//titleImage = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO.png")));
-		//	titleImage.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		//this.add(titleImage);
 		
 		textPanel = new JPanel();
 			textPanel.setBackground(theme.subColor);

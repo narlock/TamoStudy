@@ -17,6 +17,13 @@ import javax.swing.*;
 import profile.Profile;
 import resources.BubbleBorder;
 
+/**
+ * StudyFocusStrategy
+ * 
+ * @author narlock
+ *
+ * @brief State for displaying study/focus timer
+ */
 public class StudyFocusStrategy extends StateStrategy {
 	public StudyFocusStrategy(Profile profile) {
 		super(profile);

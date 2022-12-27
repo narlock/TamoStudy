@@ -32,7 +32,6 @@ public class ShopStrategy extends StateStrategy {
 	
 	public ShopStrategy(Profile profile) {
 		super(profile);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

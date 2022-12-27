@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -14,15 +13,20 @@ import javax.swing.JPanel;
 
 import profile.Profile;
 import resources.BubbleBorder;
-import resources.TextBubbleBorder;
 
+/**
+ * AchievementsStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief State for displaying achievements
+ *
+ */
 public class AchievementsStrategy extends StateStrategy {
 	
 	public AchievementsStrategy(Profile profile) {
 		super(profile);
-		// TODO Auto-generated constructor stub
 		earnedAchievements = profile.getAhmString().split("");
-		
 		setAchievements();
 	}
 	
@@ -53,10 +57,7 @@ public class AchievementsStrategy extends StateStrategy {
 	}
 
 	@Override
-	public void setActions() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void setActions() {}
 	
 	public void setAchievements() {
 		hoursPanel = new JPanel();

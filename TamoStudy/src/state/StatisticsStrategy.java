@@ -1,7 +1,6 @@
 package state;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,6 +14,14 @@ import javax.swing.JPanel;
 
 import profile.Profile;
 
+/**
+ * StatisticsStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief State for displaying user statistics
+ *
+ */
 public class StatisticsStrategy extends StateStrategy {
 
 	public StatisticsStrategy(Profile profile) {

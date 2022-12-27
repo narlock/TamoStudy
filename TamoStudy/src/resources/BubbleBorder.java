@@ -17,7 +17,10 @@ import javax.swing.border.AbstractBorder;
 /**
  * Found on the web, then modified
  * 
+ * @author narlock
  * @author http://stackoverflow.com/questions/15025092/border-with-rounded-corners-transparency
+ * 
+ * @brief Creates a curved border for JComponent
  *
  */
 public class BubbleBorder extends AbstractBorder

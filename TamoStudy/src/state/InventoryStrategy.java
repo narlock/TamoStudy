@@ -3,7 +3,6 @@ package state;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,18 +17,23 @@ import javax.swing.JPanel;
 import profile.Profile;
 import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
-import resources.TextBubbleBorder;
 
+/**
+ * InventoryStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief State for displaying user inventory
+ *
+ */
 public class InventoryStrategy extends StateStrategy {
 	
-	private final JLabel NO_ITEMS = new JLabel(profile.getLanguage().inventoryText[0]);
 	private JLabel messageLabel;
 	
 	private JPanel itemPanel;
 
 	public InventoryStrategy(Profile profile) {
 		super(profile);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

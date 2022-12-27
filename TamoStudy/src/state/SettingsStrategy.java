@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,11 +17,18 @@ import profile.Profile;
 import profile.ProfileReaderWriter;
 import resources.BubbleBorder;
 
+/**
+ * SettingsStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief State for changing user settings
+ *
+ */
 public class SettingsStrategy extends StateStrategy {
 
 	public SettingsStrategy(Profile profile) {
 		super(profile);
-		// TODO Auto-generated constructor stub
 	}
 	
 	private JLabel messageLabel;
@@ -33,19 +39,19 @@ public class SettingsStrategy extends StateStrategy {
 	
 	private JPanel focusSettingPanel;
 	private JLabel focusSettingLabel;
-	private JComboBox focusSettingBox;
+	private JComboBox<String> focusSettingBox;
 	
 	private JPanel languageSettingPanel;
 	private JLabel languageSettingLabel;
-	private JComboBox languageSettingBox;
+	private JComboBox<String> languageSettingBox;
 	
 	private JPanel difficultySettingPanel;
 	private JLabel difficultySettingLabel;
-	private JComboBox difficultySettingBox;
+	private JComboBox<String> difficultySettingBox;
 	
 	private JPanel soundSettingPanel;
 	private JLabel soundSettingLabel;
-	private JComboBox soundSettingBox;
+	private JComboBox<String> soundSettingBox;
 	
 	private JPanel ahmNotificationsPanel;
 	private JLabel ahmNotificationsLabel;
@@ -85,7 +91,7 @@ public class SettingsStrategy extends StateStrategy {
 		focusSettingLabel = new JLabel(profile.getLanguage().settingsText[0]);
 			focusSettingLabel.setForeground(theme.textColor);
 			focusSettingLabel.setFont(theme.fontBoldRegSmall);
-		focusSettingBox = new JComboBox();
+		focusSettingBox = new JComboBox<String>();
 			styleComponent(focusSettingBox);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[4]);
 			focusSettingBox.addItem(profile.getLanguage().settingsText[5]);
@@ -101,7 +107,7 @@ public class SettingsStrategy extends StateStrategy {
 		languageSettingLabel = new JLabel(profile.getLanguage().settingsText[1]);
 			languageSettingLabel.setForeground(theme.textColor);
 			languageSettingLabel.setFont(theme.fontBoldRegSmall);
-		languageSettingBox = new JComboBox();
+		languageSettingBox = new JComboBox<String>();
 			styleComponent(languageSettingBox);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[8]);
 			languageSettingBox.addItem(profile.getLanguage().settingsText[9]);
@@ -124,7 +130,7 @@ public class SettingsStrategy extends StateStrategy {
 		difficultySettingLabel = new JLabel(profile.getLanguage().settingsText[2]);
 			difficultySettingLabel.setForeground(theme.textColor);
 			difficultySettingLabel.setFont(theme.fontBoldRegSmall);
-		difficultySettingBox = new JComboBox();
+		difficultySettingBox = new JComboBox<String>();
 			styleComponent(difficultySettingBox);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[19]);
 			difficultySettingBox.addItem(profile.getLanguage().settingsText[20]);
@@ -138,7 +144,7 @@ public class SettingsStrategy extends StateStrategy {
 		soundSettingLabel = new JLabel(profile.getLanguage().settingsText[3]);
 			soundSettingLabel.setFont(theme.fontBoldRegSmall);
 			soundSettingLabel.setForeground(theme.textColor);
-		soundSettingBox = new JComboBox();
+		soundSettingBox = new JComboBox<String>();
 			styleComponent(soundSettingBox);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[30]);
 			soundSettingBox.addItem(profile.getLanguage().settingsText[23]);
@@ -242,7 +248,7 @@ public class SettingsStrategy extends StateStrategy {
 	
 	//Upon selecting something from a JComboBox
 	//The messageLabel will indicate that there are unsaved changes
-	public void displayUnsavedChanges(JComboBox box) {
+	public void displayUnsavedChanges(JComboBox<String> box) {
 		box.addActionListener(new ActionListener() {
 
 			@Override

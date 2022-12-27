@@ -1,8 +1,5 @@
 package state;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.*;
 
 import profile.Profile;

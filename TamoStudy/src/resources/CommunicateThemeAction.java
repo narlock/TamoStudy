@@ -9,8 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
+ * CommunicateThemeAction
+ * 
  * @author Anthony Narlock (narlock)
- * CommunicateThemeAction communicates theme actions
+ * 
+ * @brief Communicates theme actions
  * with MainGUI and ThemeStrategy
  */
 

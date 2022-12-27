@@ -17,7 +17,6 @@ import java.net.*;
  * This is a concrete StateStrategy which is a JPanel
  * that will display the user interface for Title Card
  */
-
 public class TitleStrategy extends StateStrategy {
 	
 	public TitleStrategy(Profile profile) {
@@ -35,9 +34,7 @@ public class TitleStrategy extends StateStrategy {
 	}
 
 	@Override
-	public void setActions() {
-		// TODO Auto-generated method stub
-	}
+	public void setActions() {}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -50,7 +47,4 @@ public class TitleStrategy extends StateStrategy {
 		g.setColor(theme.layerTextColor);
 		g.drawString(profile.getLanguage().titleText[0], 333, 500);
 	}
-	
-	
-
 }

@@ -21,11 +21,18 @@ import resources.BubbleBorder;
 import resources.CommunicateThemeAction;
 import resources.Theme;
 
+/**
+ * ThemeStrategy
+ * 
+ * @author narlock
+ * 
+ * @brief State for changing TamoStudy's theme
+ *
+ */
 public class ThemeStrategy extends StateStrategy {
 
 	public ThemeStrategy(Profile profile) {
 		super(profile);
-		// TODO Auto-generated constructor stub
 	}
 
 	private JLabel themeHeaderLabel, themeHeaderClassicLabel, ensuranceLabel;
@@ -36,14 +43,12 @@ public class ThemeStrategy extends StateStrategy {
 	private Stack<JPanel> tpanels;
 	
 	private Stack<JButton> selectButtons;
-	private boolean changeReceived;
 	
 	@Override
 	public void setPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(theme.subColor);
 		
-		changeReceived = false;
 		selectButtons = new Stack<>();
 		
 		ensuranceLabel = new JLabel("");
@@ -96,11 +101,9 @@ public class ThemeStrategy extends StateStrategy {
 
 	@Override
 	public void setActions() {
-		// TODO Auto-generated method stub
 		tlabels = new Stack<>();
 		tlabels.push(themeHeaderLabel);
 		tlabels.push(themeHeaderClassicLabel);
-		//tlabels.push(ensuranceLabel);
 		
 		tpanels = new Stack<>();
 		tpanels.push(this);
@@ -169,8 +172,6 @@ public class ThemeStrategy extends StateStrategy {
 		
 		action = new CommunicateThemeAction(theme, tlabels, tpanels);
 		action.updateThemeStrategy();
-	
-		//TODO Update the profile file
 	}
 	
 	public Stack<JButton> getSelectButtons() {
