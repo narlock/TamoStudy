@@ -15,6 +15,7 @@ import net.arikia.dev.drpc.DiscordRichPresence;
 public class DiscordRP {
 	private boolean running = true;
 	private long created = 0;
+	private DiscordEventHandlers handlers;
 	
 	/**
 	 * start

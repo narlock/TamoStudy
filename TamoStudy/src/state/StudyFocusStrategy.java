@@ -87,7 +87,7 @@ public class StudyFocusStrategy extends StateStrategy {
 		tamoPanel.add(createSpaceLabel(0));
 			
 		//Name-Level Components
-		tamoNameLevelLabel = new JLabel(profile.getTamo().getName() + " â€¢ " + profile.getLanguage().focusText[0] + ": " + Integer.toString(profile.getTamoLevel()));
+		tamoNameLevelLabel = new JLabel(profile.getTamo().getName() + " • " + profile.getLanguage().focusText[0] + ": " + Integer.toString(profile.getTamoLevel()));
 			tamoNameLevelLabel.setForeground(theme.textColor);
 		tamoNameLevelLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		tamoNameLevelLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
