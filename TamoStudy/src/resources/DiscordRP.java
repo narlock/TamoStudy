@@ -26,7 +26,7 @@ public class DiscordRP {
 			System.out.println("started");
 			this.created = 	System.currentTimeMillis();
 			
-			DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
+			handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
 				System.out.println("TamoStudy + Discord Rich Presence ready for  " + user.username + "#" + user.discriminator + "!");
 				update("TamoStudy starting...", "");
 			}).build();
