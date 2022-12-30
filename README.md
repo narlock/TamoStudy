@@ -84,6 +84,22 @@ The user's inventory allows for items to be stored and used when the user desire
 
 ![Settings](./README%20Assets/Settings.png)
 
+## Discord Rich Presence
+This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). As of Beta v4.2, Discord Rich Presence is only supported on Windows devices.
+
+- Each Idle screen has it's own presence. An example is below:
+
+![IdleImage](https://i.imgur.com/tNxSE5K.png)
+
+- During Focus sessions, the time and a display that the user is focusing is displayed:
+
+![FocusImage](https://i.imgur.com/3JZmbyw.png)
+
+- During Pomodoro Breaks, a break display is shown:
+
+![BreakImage](https://i.imgur.com/2CkQ7na.png)
+
+
 ## **Setup TamoStudy**
 
 ### Requirements
