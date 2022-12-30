@@ -87,7 +87,7 @@ The user's inventory allows for items to be stored and used when the user desire
 ## Discord Rich Presence
 This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). As of Beta v4.2, Discord Rich Presence is only supported on Windows devices.
 
-- Each Idle screen has it's own presence. An example is below:
+- Each Idle screen has its own presence. An example is below:
 
 ![IdleImage](https://i.imgur.com/tNxSE5K.png)
 
