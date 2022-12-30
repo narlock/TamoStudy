@@ -72,7 +72,7 @@ public class AppearanceChangeGUI extends JFrame {
 		this.addWindowListener(exitListener);
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("Timer Appearance • TamoStudyStream v0.1");
+		this.setTitle("Timer Appearance • TamoStudyStream v0.2");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setLayout(new GridLayout(1,2)); //One for left panel, other for right
 		this.setSize(750,600);
