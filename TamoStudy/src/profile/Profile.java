@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
@@ -62,7 +63,7 @@ public class Profile {
 	private int themeIndicator;				//theme Integer indicator
 	private int strikes;					//profile strikes
 	
-	private Tamo tamo;						//user's Tamo
+	private Tamo tamo;						//user's current Tamo
 	
 	private LanguageStrategy lang;			//user's language
 	private int languageIndicator;
@@ -83,6 +84,12 @@ public class Profile {
 											//for example, the default background is "0".
 	
 	private Settings settings;
+	
+	
+	/**
+	 * List of Tamos that have passed.
+	 */
+	private List<Tamo> tamoHistory;
 	
 	//Default [TESTING] Constructor
 	public Profile() {

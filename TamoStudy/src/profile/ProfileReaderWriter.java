@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
@@ -211,6 +212,47 @@ public class ProfileReaderWriter {
 		} catch (Exception e) { e.printStackTrace(); }
 		
 		//Should not get here
+		return false;
+	}
+	
+	/**
+	 * putNewProfileInProfilesJsonFile
+	 * @brief Puts a new profile object into the profile JSON file.
+	 * @param profile - the profile to put in the file.
+	 * @return True for successful file writing
+	 */
+	public static boolean putNewProfileInProfilesJsonFile(Profile profile) {
+		//TODO
+		//Read profile file
+		
+		//Append profile to list of profiles
+		return false;
+	}
+	
+	/**
+	 * getProfilesFromProfilesJsonFile
+	 * @return list of profiles in the profile JSON.
+	 */
+	public static List<Profile> getProfilesFromProfilesJsonFile() {
+		//TODO
+		//Read profiles file
+		
+		//Return profiles
+		return null;
+	}
+	
+	/**
+	 * updateProfileInfoToProfilesJsonFile
+	 * @brief Updates profile object to profiles JSON file based on provided index.
+	 * @param profileIndex
+	 * @param profile
+	 * @return True for successful profile update, false for failure
+	 */
+	public static boolean updateProfileInfoToProfilesJsonFile(int profileIndex, Profile profile) {
+		//TODO
+		//Read profile file
+		
+		//Update profile
 		return false;
 	}
 	
