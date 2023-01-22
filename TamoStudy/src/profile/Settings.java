@@ -27,6 +27,9 @@ public class Settings {
 	private int showAhmNotifications;		//0 for NO
 											//1 for YES
 	
+	private int enableDiscordRichPresence;  //0 for NO
+											//1 for YES
+	
 	//Default constructor; default settings
 	public Settings(int difficulty) {
 		this.focusMode = 0;
@@ -36,7 +39,7 @@ public class Settings {
 		this.showAhmNotifications = 1;
 	}
 	
-	//Load constructor
+	//Load constructor - TODO modify for enableDiscordRPC
 	public Settings(int focusMode, 
 			int sessionSoundIndicator, 
 			int backgroundSoundIndicator,
@@ -99,5 +102,13 @@ public class Settings {
 		
 		//This should never happen
 		return null;
+	}
+
+	public int getEnableDiscordRichPresence() {
+		return enableDiscordRichPresence;
+	}
+
+	public void setEnableDiscordRichPresence(int enableDiscordRichPresence) {
+		this.enableDiscordRichPresence = enableDiscordRichPresence;
 	}
 }
