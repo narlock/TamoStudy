@@ -216,6 +216,22 @@ public class ProfileReaderWriter {
 	}
 	
 	/**
+	 * checkForTamoStudyDirectory
+	 * @brief Checks if the directory Documents/TamoStudy/ exists on
+	 * the users disk. If it does not, create the directory and create
+	 * the `profiles.json` file. This file will store all of the local
+	 * profiles.
+	 */
+	public static void checkForTamoStudyDirectory() {
+		//TODO
+		
+		//Create the directory if it does not exist
+		
+		//If the directory exists, make sure the profiles.json file exists.
+		//If it does not, create it
+	}
+	
+	/**
 	 * putNewProfileInProfilesJsonFile
 	 * @brief Puts a new profile object into the profile JSON file.
 	 * @param profile - the profile to put in the file.
