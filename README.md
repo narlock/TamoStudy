@@ -2,7 +2,7 @@
 
 <!-- Main Header -->
 <p align="center">
-  <img src="https://github.com/narlock/TamoStudy/blob/main/README%20Assets/TamoStudyCard.gif?raw=true" width="400px"/>
+  <img src="./README%20Assets/TamoStudyCard.gif" width="40%"/>
 </p>
 
 <!-- GitHub Shields-->
