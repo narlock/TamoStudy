@@ -25,10 +25,10 @@
 **TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
 
 - [Website](http://tamostudy.com/)
-- [Features](#Features)
-- [Setup TamoStudy](#Setup-TamoStudy)
-- [Original Concept Idea](#Original-Concept-Idea)
-- [Contributors](#Contributors)
+- [Features](#features)
+- [Setup TamoStudy](#setup-tamostudy)
+- [Original Concept Idea](#original-concept-idea)
+- [Contributors](#contributors)
 
 ## **Features**
 
@@ -47,7 +47,9 @@ Upon completing focus sessions, you will receive Tamo Tokens! With Tamo Tokens, 
 
 A shop for purchasing food to feed the user's virtual pet. Additionally, the user can purchase cosmetic customization items!
 
-![Shop](./README%20Assets/Shop.png)
+<p align="center">
+  <img src="./README%20Assets/Shop.png" width="70%"/>
+</p>
 - Beside the Tamo Token lies the price of the specified item. Adjacent to the price for food is the amount of food points the selected food item will give the virtual pet.
 - Purchasing a food item will automatically satisfy the hunger of the user's virtual pet.
 - Purchasing a background will add the background to the user's inventory.
@@ -56,7 +58,9 @@ A shop for purchasing food to feed the user's virtual pet. Additionally, the use
 
 Customize the look of the TamoStudy interface through the use of colored themes!
 
-![Themes](./README%20Assets/Themes.png)
+<p align="center">
+  <img src="./README%20Assets/Themes.png" width="70%"/>
+</p>
 
 - Select one of the themes by pressing the "Select" button next to the theme.
 
@@ -64,25 +68,33 @@ Customize the look of the TamoStudy interface through the use of colored themes!
 
 The user's inventory allows for items to be stored and used when the user desires. As of TamoStudy Beta v4.2, the inventory supports backgrounds. The user can utilize the "Select" button next to the background of their choice to apply the background to their Tamo!
 
-![Inventory](./README%20Assets/Inventory.png)
+<p align="center">
+  <img src="./README%20Assets/Inventory.png" width="70%"/>
+</p>
 
 ### **Statistics**
 
 - View your statistics while using TamoStudy!
 
-![Statistics](./README%20Assets/Statistics.png)
+<p align="center">
+  <img src="./README%20Assets/Statistics.png" width="70%"/>
+</p>
 
 ### **Achievements**
 
 - Unlock achievements during your use of TamoStudy!
 
-![Achievements](./README%20Assets/Achievements.png)
+<p align="center">
+  <img src="./README%20Assets/Achievements.png" width="70%"/>
+</p>
 
 ### **Settings**
 
 - Change the settings of TamoStudy to match your preferences!
 
-![Settings](./README%20Assets/Settings.png)
+<p align="center">
+  <img src="./README%20Assets/Settings.png" width="70%"/>
+</p>
 
 ### Discord Rich Presence
 This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). As of Beta v4.2, Discord Rich Presence is only supported on Windows devices.
