@@ -101,15 +101,21 @@ This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/disco
 
 - Each Idle screen has its own presence. An example is below:
 
-![IdleImage](https://i.imgur.com/tNxSE5K.png)
+<p align="center">
+  <img src="https://i.imgur.com/tNxSE5K.png" width="20%"/>
+</p>
 
 - During Focus sessions, the time and a display that the user is focusing is displayed:
 
-![FocusImage](https://i.imgur.com/3JZmbyw.png)
+<p align="center">
+  <img src="https://i.imgur.com/3JZmbyw.png" width="20%"/>
+</p>
 
 - During Pomodoro Breaks, a break display is shown:
 
-![BreakImage](https://i.imgur.com/2CkQ7na.png)
+<p align="center">
+  <img src="https://i.imgur.com/2CkQ7na.png" width="20%"/>
+</p>
 
 
 ## **Setup TamoStudy**
