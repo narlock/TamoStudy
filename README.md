@@ -29,6 +29,8 @@ by <a href="https://github.com/narlock">narlock</a>
 
 **TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+
 - [Website](http://tamostudy.com/)
 - [Features](#features)
 - [Setup TamoStudy](#setup-tamostudy)
