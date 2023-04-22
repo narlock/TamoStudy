@@ -1,4 +1,4 @@
-package resources;
+package components;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -17,13 +17,10 @@ import javax.swing.border.AbstractBorder;
 /**
  * Found on the web, then modified
  * 
- * @author narlock
  * @author http://stackoverflow.com/questions/15025092/border-with-rounded-corners-transparency
- * 
- * @brief Creates a curved border for JComponent
  *
  */
-public class BubbleBorder extends AbstractBorder
+public class TextBubbleBorder extends AbstractBorder
 {
 
     private Color color;
@@ -37,12 +34,12 @@ public class BubbleBorder extends AbstractBorder
     private boolean left = true;
     RenderingHints hints;
 
-    public BubbleBorder(Color color)
+    public TextBubbleBorder(Color color)
     {
-        new BubbleBorder(color, 4, 8, 7);
+        new TextBubbleBorder(color, 4, 8, 7);
     }
 
-    public BubbleBorder(Color color, int thickness, int radii, int pointerSize)
+    public TextBubbleBorder(Color color, int thickness, int radii, int pointerSize)
     {
         this.thickness = thickness;
         this.radii = radii;
@@ -59,7 +56,7 @@ public class BubbleBorder extends AbstractBorder
         insets = new Insets(pad, pad, bottomPad, pad);
     }
 
-    public BubbleBorder(Color color, int thickness, int radii, int pointerSize, boolean left)
+    public TextBubbleBorder(Color color, int thickness, int radii, int pointerSize, boolean left)
     {
         this(color, thickness, radii, pointerSize);
         this.left = left;
@@ -89,6 +86,25 @@ public class BubbleBorder extends AbstractBorder
                 radii, radii);
 
         Polygon pointer = new Polygon();
+
+        if (left)
+        {
+            // left point
+            pointer.addPoint(strokePad + radii + pointerPad + 80, bottomLineY);
+            // right point
+            pointer.addPoint(strokePad + radii + pointerPad + pointerSize + 80, bottomLineY);
+            // bottom point
+            pointer.addPoint(strokePad + radii + pointerPad + (pointerSize / 2) + 80, height - strokePad);
+        }
+        else
+        {
+            // left point
+            pointer.addPoint(width - (strokePad + radii + pointerPad), bottomLineY);
+            // right point
+            pointer.addPoint(width - (strokePad + radii + pointerPad + pointerSize), bottomLineY);
+            // bottom point
+            pointer.addPoint(width - (strokePad + radii + pointerPad + (pointerSize / 2)), height - strokePad);
+        }
 
         Area area = new Area(bubble);
         area.add(new Area(pointer));

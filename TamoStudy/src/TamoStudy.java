@@ -1,3 +1,5 @@
+import gui.WelcomeGUI;
+
 /**
  * Runner - TamoStudy
  * 
