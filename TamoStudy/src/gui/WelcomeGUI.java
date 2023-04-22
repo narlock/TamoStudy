@@ -1,5 +1,7 @@
 package gui;
 
-public class WelcomeGUI {
+import javax.swing.JFrame;
+
+public class WelcomeGUI extends JFrame {
 
 }
