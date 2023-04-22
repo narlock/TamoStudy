@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-import components.BubbleBorder;
+import components.border.BubbleBorder;
 
 /**
  * @author Anthony Narlock (narlock)

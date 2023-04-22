@@ -86,6 +86,14 @@ public class GlobalSettingsJsonManager extends JsonManager<GlobalSettings> {
 		}
 	}
 	
+	/*
+	 * ##################################
+	 * ##################################
+	 * MAPPINGS
+	 * ##################################
+	 * ##################################
+	 */
+	
 	private GlobalSettings globalSettingsJsonToGlobalSettingsModel(JSONObject globalSettingsJson) {
 		return new GlobalSettings(
 				globalSettingsJson.get("language") == null ? new EnglishLanguage() : Language.getLanguage((String) globalSettingsJson.get("language")),
