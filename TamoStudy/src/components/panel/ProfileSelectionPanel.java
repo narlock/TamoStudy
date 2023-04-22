@@ -67,11 +67,18 @@ public class ProfileSelectionPanel extends JPanel {
 	
 	private JPanel createProfilePanel;
 	private JLabel enterUsernameLabel;
+	private JPanel enterUsernamePanel;
 	private JTextField enterUsernameTextField;
 	private JLabel enterTamoNameLabel;
+	private JPanel enterTamoNamePanel;
 	private JTextField enterTamoNameTextField;
+	private JPanel languagePanel;
+	private JLabel languageLabel;
+	private JComboBox<String> languageBox;
+	private JPanel difficultyPanel;
 	private JLabel difficultyLabel;
 	private JComboBox<String> difficultyBox;
+	private JPanel focusModePanel;
 	private JLabel focusModeLabel;
 	private JComboBox<String> focusModeBox;
 	
@@ -214,6 +221,43 @@ public class ProfileSelectionPanel extends JPanel {
 	}
 	
 	private void initializeCreateComponents() {
+		createProfileLabel = new JLabel("Create TamoStudy Profile");
+		
+		createProfilePanel = new JPanel();
+		
+		enterUsernamePanel = new JPanel();
+		enterUsernameLabel = new JLabel("Username");
+		enterUsernameTextField = new JTextField(10);
+		
+		enterTamoNamePanel = new JPanel();
+		enterTamoNameLabel = new JLabel("Tamo Name");
+		enterTamoNameTextField = new JTextField(10);
+		
+		languagePanel = new JPanel();
+		languageLabel = new JLabel("Language");
+		languageBox = new JComboBox<>();
+		languageBox.addItem("English");
+		languageBox.addItem("Spanish");
+		
+		difficultyPanel = new JPanel();
+		difficultyLabel = new JLabel("Difficulty");
+		difficultyBox = new JComboBox<>();
+		difficultyBox.addItem("Peaceful");
+		difficultyBox.addItem("Challenging");
+		difficultyBox.addItem("Iron man");
+		
+		focusModePanel = new JPanel();
+		focusModeLabel = new JLabel("Focus Mode");
+		focusModeBox = new JComboBox<>();
+		focusModeBox.addItem("Pomodoro");
+		focusModeBox.addItem("Custom Countdown");
+		focusModeBox.addItem("5-Min Interval Countdown");
+		focusModeBox.addItem("Stopwatch");
+		
+		createProfileButtonPanel = new JPanel();
+		confirmCreateProfileButton = new JButton("Create");
+		cancelCreateProfileButton = new JButton("Cancel");
+		
 		initializeCreateComponentVisuals();
 	}
 	
@@ -232,7 +276,10 @@ public class ProfileSelectionPanel extends JPanel {
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
 		
+		this.add(createProfileLabel, gbcv);
 		
+		createProfilePanel.setLayout(new GridBagLayout());
+		createProfilePanel.add(enterUsernameLabel);
 	}
 	
 	/*
