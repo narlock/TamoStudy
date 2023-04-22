@@ -115,6 +115,8 @@ public class Theme {
 		return this.mainColor.equals(other.mainColor);
 	}
 	
+	public static final BubbleBorder SUB_BORDER = new BubbleBorder(Color.WHITE, 2, 15, 0);
+	
 	public static final Color PRIMARY = new Color(41, 128, 185);
 	public static final Color PRIMARY_ALT = new Color(29, 89, 130);
 	public static final BubbleBorder PRIMARY_BORDER = new BubbleBorder(PRIMARY, 0, 15, 0);
@@ -122,7 +124,14 @@ public class Theme {
 	public static final Color PRIMARY_DISABLED = new Color(164, 189, 206);
 	public static final BubbleBorder PRIMARY_DISABLED_BORDER = new BubbleBorder(PRIMARY_DISABLED, 0, 15, 0);
 	
+	public static final Color SECONDARY = new Color(128, 128, 128);
+	public static final Color SECONDARY_ALT = new Color(96, 96, 96);
+	public static final BubbleBorder SECONDARY_BORDER = new BubbleBorder(SECONDARY, 0, 15, 0);
+	
 	public static final Color SUCCESS = new Color(40, 167, 69);
+	public static final Color SUCCESS_ALT = new Color(24, 99, 42);
+	public static final BubbleBorder SUCCESS_BORDER = new BubbleBorder(SUCCESS, 0, 15, 0);
+	
 	public static final Color DANGER = new Color(220,53,69);
 	
 	public static void primaryVisualButton(JButton button) {
@@ -164,6 +173,70 @@ public class Theme {
 		button.setBackground(PRIMARY_DISABLED);
 		button.setForeground(new Color(164, 189, 206));
 		button.setFont(new Font("Arial", Font.BOLD, 18));
+	}
+	
+	public static void secondaryVisualButton(JButton button) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(SECONDARY_BORDER);
+		button.setBackground(SECONDARY);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.SECONDARY_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.SECONDARY);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	public static void successVisualButton(JButton button) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(SUCCESS_BORDER);
+		button.setBackground(SUCCESS);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
 	}
 	
 	public static void labelButton(JButton button) {

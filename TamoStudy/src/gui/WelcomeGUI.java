@@ -12,10 +12,15 @@ import java.net.URL;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
+import components.panel.ProfileSelectionPanel;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
 import resources.CheckForUpdates;
@@ -102,7 +107,23 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	private void initializeComponentActions() {
-		
+		localStudyButton.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("static-access")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UIManager UI = new UIManager();
+				UI.put("OptionPane.background", new ColorUIResource(theme.mainColor));
+				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
+				 
+				Object[] options = {};
+				JOptionPane.showOptionDialog(getRootPane(),
+						new ProfileSelectionPanel(),
+						"Local Study",
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+			}
+			
+		});
 	}
 	
 	private void initializeFrame() {
