@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -33,7 +34,9 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 			JSONParser parser = new JSONParser();
 			try {
 				Reader reader = new FileReader(profilesPath);
-				return profilesJsonToProfileList((JSONArray) parser.parse(reader));
+				JSONArray profilesJsonArray = (JSONArray) parser.parse(reader);
+				Debug.info("ProfileJsonManager.readJson", "Read JSONArray profilesJsonArray. profilesJsonArray.size = " + profilesJsonArray.size());
+				return profilesJsonToProfileList(profilesJsonArray);
 			} catch (IOException | ParseException e) {
 				Debug.error("ProfileJsonManager.readJson", "Exception throw while reading profiles.json");
                 e.printStackTrace();
@@ -41,7 +44,7 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 		}
 		
 		Debug.info("ProfileJsonManager.readJson", "No profiles were found");
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -93,6 +96,7 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 	
 	@SuppressWarnings("unchecked")
 	public JSONArray profileListToProfilesJson(List<Profile> profiles) {
+		Debug.info("ProfileJsonManager.profileListToProfilesJson", "Attempting conversion... profiles.size = " + profiles.size());
 		JSONArray profilesJson = new JSONArray();
 		for(Profile profile : profiles) {
 			profilesJson.add(profileModelToProfileJson(profile));
@@ -126,6 +130,7 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 		profileJson.put("name", profile.getName());
 		profileJson.put("previousDateString", profile.getPreviousDateString());
 		profileJson.put("time", profile.getTime());
+		profileJson.put("tokens", profile.getTokens());
 		profileJson.put("settings", profileSettingsModelToProfileSettingsJson(profile.getSettings()));
 		profileJson.put("backgroundIndicator", profile.getBackgroundIndicator());
 		profileJson.put("borderIndicator", profile.getBorderIndicator());

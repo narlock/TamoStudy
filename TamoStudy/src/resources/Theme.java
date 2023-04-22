@@ -133,6 +133,8 @@ public class Theme {
 	public static final BubbleBorder SUCCESS_BORDER = new BubbleBorder(SUCCESS, 0, 15, 0);
 	
 	public static final Color DANGER = new Color(220,53,69);
+	public static final Color DANGER_ALT = new Color(148, 35, 46);
+	public static final BubbleBorder DANGER_BORDER = new BubbleBorder(DANGER, 0, 15, 0);
 	
 	public static void primaryVisualButton(JButton button) {
 		button.setEnabled(true);
@@ -233,6 +235,38 @@ public class Theme {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				button.setBackground(Theme.SUCCESS);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	public static void dangerVisualButton(JButton button) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(DANGER_BORDER);
+		button.setBackground(DANGER);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.DANGER_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.DANGER);
 				button.setForeground(Color.WHITE);
 			}
 			

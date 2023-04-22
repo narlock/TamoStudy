@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -17,8 +18,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.WelcomeGUI;
 import io.ProfileJsonManager;
+import model.language.Language;
 import model.profile.Profile;
+import resources.Debug;
 import resources.Theme;
 
 public class ProfileSelectionPanel extends JPanel {
@@ -32,6 +36,7 @@ public class ProfileSelectionPanel extends JPanel {
 	 * ##################################
 	 * ##################################
 	 */
+	private WelcomeGUI welcomeGUI;
 	private ProfileJsonManager profileJsonManager;
 	private List<Profile> profiles;
 	private Theme theme;
@@ -54,7 +59,10 @@ public class ProfileSelectionPanel extends JPanel {
 	private JLabel selectProfileLabel;
 	private JComboBox<String> profilesBox;
 	private JCheckBox assignDefaultProfile;
+	
+	private JPanel profileOptionsButtonPanel;
 	private JButton loadProfileButton;
+	private JButton deleteProfileButton;
 	
 	/*
 	 * ##################################
@@ -86,7 +94,9 @@ public class ProfileSelectionPanel extends JPanel {
 	private JButton confirmCreateProfileButton;
 	private JButton cancelCreateProfileButton;
 	
-	public ProfileSelectionPanel() {
+	public ProfileSelectionPanel(WelcomeGUI welcomeGUI) {
+		this.welcomeGUI = welcomeGUI;
+		
 		initializeAttributes();
 		initializeComponents();
 		initializeComponentActions();
@@ -107,8 +117,14 @@ public class ProfileSelectionPanel extends JPanel {
 	 * ##################################
 	 */
 	
+	private void initializeInitialMode() {
+		initializeComponents();
+		initializeComponentActions();
+		addInitialComponentsToPanel();
+	}
+	
 	private void initializeComponents() {
-		foundProfiles = profiles != null && !profiles.isEmpty();
+		foundProfiles = !profiles.isEmpty();
 		
 		messageLabel = new JLabel();
 		if(!foundProfiles) {
@@ -124,7 +140,7 @@ public class ProfileSelectionPanel extends JPanel {
 		importProfileButton = new JButton("Import Profile from Beta 4.2");
 		
 		selectProfilePanel = new JPanel();
-		selectProfileLabel = new JLabel("      Choose Profile      ");
+		selectProfileLabel = new JLabel("Choose Profile");
 		profilesBox = new JComboBox<>();
 		if(foundProfiles) {
 			for(Profile profile : profiles) {
@@ -132,7 +148,10 @@ public class ProfileSelectionPanel extends JPanel {
 			}
 		}
 		assignDefaultProfile = new JCheckBox("Load Profile Automatically");
+		
+		profileOptionsButtonPanel = new JPanel();
 		loadProfileButton = new JButton("Load Profile");
+		deleteProfileButton = new JButton("Delete Profile");
 		
 		initializeComponentVisuals();
 	}
@@ -174,7 +193,11 @@ public class ProfileSelectionPanel extends JPanel {
 		selectProfileLabel.setForeground(Color.WHITE);
 		
 		assignDefaultProfile.setForeground(Color.WHITE);
+		
+		profileOptionsButtonPanel.setLayout(new GridBagLayout());
+		profileOptionsButtonPanel.setBackground(theme.subColor);
 		Theme.successVisualButton(loadProfileButton);
+		Theme.dangerVisualButton(deleteProfileButton);
 	}
 	
 	private void addInitialComponentsToPanel() {
@@ -195,7 +218,13 @@ public class ProfileSelectionPanel extends JPanel {
 		selectProfilePanel.add(profilesBox, gbcv);
 		selectProfilePanel.add(assignDefaultProfile, gbcv);
 		selectProfilePanel.add(Box.createVerticalStrut(20), gbcv);
-		selectProfilePanel.add(loadProfileButton, gbcv);
+		
+		profileOptionsButtonPanel.add(loadProfileButton, gbch);
+		profileOptionsButtonPanel.add(Box.createHorizontalStrut(20), gbch);
+		profileOptionsButtonPanel.add(deleteProfileButton, gbch);
+		
+		
+		selectProfilePanel.add(profileOptionsButtonPanel, gbcv);
 	
 		if(foundProfiles) {
 			this.add(Box.createVerticalStrut(20), gbcv);
@@ -262,11 +291,95 @@ public class ProfileSelectionPanel extends JPanel {
 	}
 	
 	private void initializeCreateComponentActions() {
+		confirmCreateProfileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Validate Form Fields
+				boolean validForm = false;
+				
+				if(enterUsernameTextField.getText().trim().isEmpty()
+						& enterTamoNameTextField.getText().trim().isEmpty()) {
+					setCreationMessage("Must enter a valid name!");
+				} else {
+					validForm = true;
+				}
+				
+				if(validForm) {
+					// Add Profile to Profiles
+					Profile profile = new Profile(enterUsernameTextField.getText(), 
+							Language.getLanguageFromBox(languageBox.getSelectedIndex()), 
+							difficultyBox.getSelectedIndex(), 
+							focusModeBox.getSelectedIndex(), 
+							enterTamoNameTextField.getText()
+						);
+					
+					// Write / Update Profiles to profiles.json
+					List<Profile> allProfiles = new ArrayList<>();
+					for(Profile aProfile : profiles) {
+						allProfiles.add(aProfile);
+					}
+					allProfiles.add(profile);
+					profileJsonManager.writeJsonToFile(allProfiles);
+					
+					// Open MainGUI as newly created profile.
+					// TODO 
+					close();
+				}
+			}
+			
+		});
 		
+		cancelCreateProfileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				removeAllComponents();
+				
+				initializeInitialMode();
+			}
+			
+		});
 	}
 	
 	private void initializeCreateComponentVisuals() {
+		createProfileLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO_GOOD.png")));
+		createProfileLabel.setFont(theme.fontBoldReg);
+		createProfileLabel.setForeground(Color.WHITE);
 		
+		createProfilePanel.setLayout(new GridBagLayout());
+		createProfilePanel.setBackground(theme.subColor);
+		createProfilePanel.setBorder(Theme.SUB_BORDER);
+		
+		enterUsernamePanel.setLayout(new GridBagLayout());
+		enterUsernamePanel.setBackground(theme.subColor);
+		enterUsernameLabel.setFont(theme.fontBoldRegSmall);
+		enterUsernameLabel.setForeground(Color.WHITE);
+		
+		enterTamoNamePanel.setLayout(new GridBagLayout());
+		enterTamoNamePanel.setBackground(theme.subColor);
+		enterTamoNameLabel.setFont(theme.fontBoldRegSmall);
+		enterTamoNameLabel.setForeground(Color.WHITE);
+		
+		languagePanel.setLayout(new GridBagLayout());
+		languagePanel.setBackground(theme.subColor);
+		languageLabel.setFont(theme.fontBoldRegSmall);
+		languageLabel.setForeground(Color.WHITE);
+		
+		difficultyPanel.setLayout(new GridBagLayout());
+		difficultyPanel.setBackground(theme.subColor);
+		difficultyLabel.setFont(theme.fontBoldRegSmall);
+		difficultyLabel.setForeground(Color.WHITE);
+		
+		focusModePanel.setLayout(new GridBagLayout());
+		focusModePanel.setBackground(theme.subColor);
+		focusModeLabel.setFont(theme.fontBoldRegSmall);
+		focusModeLabel.setForeground(Color.WHITE);
+		
+		createProfileButtonPanel.setLayout(new GridBagLayout());
+		createProfileButtonPanel.setBackground(theme.mainColor);
+		Theme.primaryVisualButton(confirmCreateProfileButton);
+		Theme.secondaryVisualButton(cancelCreateProfileButton);
 	}
 	
 	private void addCreateModeComponentsToPanel() {
@@ -276,10 +389,48 @@ public class ProfileSelectionPanel extends JPanel {
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
 		
-		this.add(createProfileLabel, gbcv);
+		GridBagConstraints innergbcv = new GridBagConstraints();
+		innergbcv.gridwidth = GridBagConstraints.REMAINDER;
+		innergbcv.anchor = GridBagConstraints.WEST;
 		
-		createProfilePanel.setLayout(new GridBagLayout());
-		createProfilePanel.add(enterUsernameLabel);
+		// Sub Panels
+		enterUsernamePanel.add(enterUsernameLabel);
+		enterUsernamePanel.add(enterUsernameTextField);
+		
+		enterTamoNamePanel.add(enterTamoNameLabel);
+		enterTamoNamePanel.add(enterTamoNameTextField);
+		
+		languagePanel.add(languageLabel);
+		languagePanel.add(languageBox);
+		
+		difficultyPanel.add(difficultyLabel);
+		difficultyPanel.add(difficultyBox);
+		
+		focusModePanel.add(focusModeLabel);
+		focusModePanel.add(focusModeBox);
+		
+		// Create Profile Panel 
+		createProfilePanel.add(enterUsernamePanel, innergbcv);
+		createProfilePanel.add(Box.createVerticalStrut(10), innergbcv);
+		createProfilePanel.add(enterTamoNamePanel, innergbcv);
+		createProfilePanel.add(Box.createVerticalStrut(10), innergbcv);
+		createProfilePanel.add(languagePanel, innergbcv);
+		createProfilePanel.add(Box.createVerticalStrut(10), innergbcv);
+		createProfilePanel.add(difficultyPanel, innergbcv);
+		createProfilePanel.add(Box.createVerticalStrut(10), innergbcv);
+		createProfilePanel.add(focusModePanel, innergbcv);
+		
+		// Button Panel
+		createProfileButtonPanel.add(confirmCreateProfileButton, gbch);
+		createProfileButtonPanel.add(Box.createHorizontalStrut(20), gbch);
+		createProfileButtonPanel.add(cancelCreateProfileButton, gbch);
+		
+		this.add(createProfileLabel, gbcv);
+		this.add(Box.createVerticalStrut(20), gbcv);
+		this.add(createProfilePanel, gbcv);
+		this.add(Box.createVerticalStrut(20), gbcv);
+		this.add(createProfileButtonPanel, gbcv);
+		
 	}
 	
 	/*
@@ -293,5 +444,17 @@ public class ProfileSelectionPanel extends JPanel {
 		this.removeAll();
 		this.repaint();
 		this.revalidate();
+	}
+	
+	private void close() {
+		Debug.info("ProfileSelectionPanel.close", "Closing WelcomeGUI and ProfileSelectionPanel");
+		welcomeGUI.dispose();
+		welcomeGUI.removeAll();
+	}
+	
+	private void setCreationMessage(String message) {
+		createProfileLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		createProfileLabel.setText(message);
+		createProfileLabel.setForeground(Theme.DANGER);
 	}
 }

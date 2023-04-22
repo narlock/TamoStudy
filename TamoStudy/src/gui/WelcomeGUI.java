@@ -118,7 +118,7 @@ public class WelcomeGUI extends JFrame {
 				 
 				Object[] options = {};
 				JOptionPane.showOptionDialog(getRootPane(),
-						new ProfileSelectionPanel(),
+						new ProfileSelectionPanel(getThis()),
 						"Local Study",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
 			}
@@ -193,6 +193,18 @@ public class WelcomeGUI extends JFrame {
 	
 	private void initializePanelVisual(JPanel panel) {
 		panel.setBackground(theme.mainColor);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	
+	private WelcomeGUI getThis() {
+		return this;
 	}
 	
 }
