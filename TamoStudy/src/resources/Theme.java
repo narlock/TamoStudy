@@ -2,6 +2,12 @@ package resources;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+
+import components.BubbleBorder;
 
 /**
  * @author Anthony Narlock (narlock)
@@ -103,7 +109,66 @@ public class Theme {
 		}
 	}
 	
+	public static final Theme DARK = new Theme(0);
+	
 	public boolean checkEqualityWith(Theme other) {
 		return this.mainColor.equals(other.mainColor);
+	}
+	
+	public static final Color PRIMARY = new Color(41, 128, 185);
+	public static final Color PRIMARY_ALT = new Color(29, 89, 130);
+	public static final BubbleBorder PRIMARY_BORDER = new BubbleBorder(PRIMARY, 0, 15, 0);
+	
+	public static final Color PRIMARY_DISABLED = new Color(164, 189, 206);
+	public static final BubbleBorder PRIMARY_DISABLED_BORDER = new BubbleBorder(PRIMARY_DISABLED, 0, 15, 0);
+	
+	public static final Color SUCCESS = new Color(40, 167, 69);
+	public static final Color DANGER = new Color(220,53,69);
+	
+	public static void primaryVisualButton(JButton button) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(PRIMARY_BORDER);
+		button.setBackground(PRIMARY);
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.PRIMARY_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.PRIMARY);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	public static void primaryDisabledVisualButton(JButton button) {
+		button.setEnabled(false);
+		button.setOpaque(true);
+		button.setBorder(PRIMARY_DISABLED_BORDER);
+		button.setBackground(PRIMARY_DISABLED);
+		button.setForeground(new Color(164, 189, 206));
+		button.setFont(new Font("Arial", Font.BOLD, 18));
+	}
+	
+	public static void labelButton(JButton button) {
+		button.setOpaque(false);
+		button.setFocusPainted(false);
+		button.setBorderPainted(false);
 	}
 }

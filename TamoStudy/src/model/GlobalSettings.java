@@ -1,5 +1,6 @@
 package model;
 
+import model.language.EnglishLanguage;
 import model.language.Language;
 
 /**
@@ -27,14 +28,20 @@ public class GlobalSettings {
 	/**
 	 * Default Local Profile : Long representing the index in profiles.json
 	 */
-	private Long defaultLocalProfile;
+	private long defaultLocalProfile;
 	
 	/*
 	 * Receive Update Notifications : Allows user to be promptly notified of updates.
 	 */
 	private Boolean receiveUpdateNotifications;
+	
+	public GlobalSettings() {
+		this.language = new EnglishLanguage();
+		this.defaultLocalProfile = -1;
+		this.receiveUpdateNotifications = true;
+	}
 
-	public GlobalSettings(Language language, Long defaultLocalProfile, Boolean receiveUpdateNotifications) {
+	public GlobalSettings(Language language, long defaultLocalProfile, Boolean receiveUpdateNotifications) {
 		super();
 		this.language = language;
 		this.defaultLocalProfile = defaultLocalProfile;
@@ -49,11 +56,11 @@ public class GlobalSettings {
 		this.language = language;
 	}
 
-	public Long getDefaultLocalProfile() {
+	public long getDefaultLocalProfile() {
 		return defaultLocalProfile;
 	}
 
-	public void setDefaultLocalProfile(Long defaultLocalProfile) {
+	public void setDefaultLocalProfile(long defaultLocalProfile) {
 		this.defaultLocalProfile = defaultLocalProfile;
 	}
 

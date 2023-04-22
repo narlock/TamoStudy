@@ -28,7 +28,7 @@ public class CheckForUpdates {
 	
 	public CheckForUpdates() {
 		currentReleases = new ArrayList<String>();
-		currentReleases.add("\"b4.2\"");
+//		currentReleases.add("\"b4.2\"");
 		currentReleases.add("\"b4.1\"");
 		currentReleases.add("\"b4.0\"");
 		currentReleases.add("\"b3.2\"");
@@ -43,7 +43,7 @@ public class CheckForUpdates {
 		currentReleases.add("\"a-0.4.1\"");
 	}
 	
-	public boolean checkForUpdates() throws Exception {
+	public String checkForUpdates() throws Exception {
 		ArrayList<String> releases = new ArrayList<String>();
 		
 		//Create HttpURLConnection 
@@ -56,16 +56,15 @@ public class CheckForUpdates {
 		String line;
 		while ( ( line = in.readLine() ) != null) {
 			responseSB.append("\n" + line);
-			//System.out.println(line);
 		}
 		in.close();
 		
 		Arrays.stream(responseSB.toString().split("\"tag_name\":")).skip(1).map(l -> l.split(",")[0]).forEach(l -> releases.add(l));
 		
 		if(releases.equals(currentReleases)) {
-			return false;
+			return null;
 		} else {
-			return true;
+			return releases.get(0);
 		}
 	}
 }

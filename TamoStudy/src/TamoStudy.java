@@ -13,7 +13,7 @@ import resources.Debug;
 public class TamoStudy {
 	
 	public static void main(String[] args) {
-		Debug.info("TamoStudy.main", "TamoStudy program has begun to run.");
+		Debug.info("TamoStudy.main", "TamoStudy program starting to run.");
 		new WelcomeGUI();
 	}
 	

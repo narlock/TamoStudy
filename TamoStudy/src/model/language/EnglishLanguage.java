@@ -1,5 +1,5 @@
 package model.language;
 
-public class EnglishLanguage {
+public class EnglishLanguage extends Language {
 
 }
