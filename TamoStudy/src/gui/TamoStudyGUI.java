@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -23,8 +22,15 @@ import resources.Constants;
 import resources.Debug;
 import resources.DiscordRP;
 import resources.Theme;
+import state.AboutState;
+import state.AchievementsState;
 import state.DashboardState;
+import state.FocusState;
+import state.InventoryState;
+import state.SettingsState;
+import state.ShopState;
 import state.State;
+import state.StatisticsState;
 
 public class TamoStudyGUI extends JFrame {
 
@@ -39,6 +45,7 @@ public class TamoStudyGUI extends JFrame {
 	 */
 	private List<Profile> profiles;
 	private ProfileJsonManager profileJsonManager;
+	private int profileIndex;
 	private Profile profile;
 	private Language lang;
 	private DiscordRP discordRP;
@@ -68,23 +75,53 @@ public class TamoStudyGUI extends JFrame {
 		
 	private State state;
 	
+	/**
+	 * Load TamoStudyGUI Constructor
+	 * @param profiles
+	 * @param profileIndex
+	 */
 	public TamoStudyGUI(List<Profile> profiles, int profileIndex) {
 		this.profiles = profiles;
+		this.profileIndex = profileIndex;
 		this.profile = profiles.get(profileIndex);
 		this.lang = profile.getSettings().getLanguage();
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
 		
-		initializeAttributes();
+		// Initialize Attributes
+		profileJsonManager = new ProfileJsonManager();
+		theme = Theme.DARK;
+		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
+		state = new DashboardState(getThis());
+		
 		initializeComponents();
 		initializeComponentVisuals();
 		initializeComponentActions();
 		initializeFrame();
 	}
 	
-	private void initializeAttributes() {
+	/**
+	 * Reset GUI TamoStudyGUI Constructor
+	 * @param profiles
+	 * @param profileIndex
+	 * @param state
+	 */
+	public TamoStudyGUI(List<Profile> profiles, int profileIndex, int change) {
+		this.profiles = profiles;
+		this.profileIndex = profileIndex;
+		this.profile = profiles.get(profileIndex);
+		this.lang = profile.getSettings().getLanguage();
+		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
+		
+		// Initialize Attributes
 		profileJsonManager = new ProfileJsonManager();
 		theme = Theme.DARK;
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
+		this.state = new SettingsState(getThis(), change);
+		
+		initializeComponents();
+		initializeComponentVisuals();
+		initializeComponentActions();
+		initializeFrame();
 	}
 	
 	private void initializeComponents() {
@@ -97,11 +134,11 @@ public class TamoStudyGUI extends JFrame {
 		focusStateButton = new JButton(lang.focusStateButtonText);
 		shopStateButton = new JButton(lang.shopStateButtonText);
 		inventoryStateButton = new JButton(lang.inventoryStateButtonText);
+		statisticsStateButton = new JButton(lang.statisticsStateButtonText);
 		achievementsStateButton = new JButton(lang.achievementsStateButtonText);
 		settingsStateButton = new JButton(lang.settingsStateButtonText);
 		aboutStateButton = new JButton(lang.aboutStateButton);
 		
-		state = new DashboardState();
 	}
 	
 	private void initializeComponentVisuals() {
@@ -122,11 +159,10 @@ public class TamoStudyGUI extends JFrame {
 		addMenuButtonVisual(focusStateButton);
 		addMenuButtonVisual(shopStateButton);
 		addMenuButtonVisual(inventoryStateButton);
+		addMenuButtonVisual(statisticsStateButton);
 		addMenuButtonVisual(achievementsStateButton);
 		addMenuButtonVisual(settingsStateButton);
 		addMenuButtonVisual(aboutStateButton);
-		
-		state.setBackground(theme.subColor);
 		
 		// Component Visual Placement
 		topPanel.add(topMenuButton, BorderLayout.WEST);
@@ -140,6 +176,7 @@ public class TamoStudyGUI extends JFrame {
 		sidePanel.add(createSpaceLabel(), gbcv);
 		sidePanel.add(shopStateButton, gbcv);
 		sidePanel.add(inventoryStateButton, gbcv);
+		sidePanel.add(statisticsStateButton, gbcv);
 		sidePanel.add(achievementsStateButton, gbcv);
 		sidePanel.add(createSpaceLabel(), gbcv);
 		sidePanel.add(settingsStateButton, gbcv);
@@ -155,6 +192,94 @@ public class TamoStudyGUI extends JFrame {
 					sidePanel.setVisible(false);
 				} else {
 					sidePanel.setVisible(true);
+				}
+			}
+			
+		});
+		
+		dashboardStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof DashboardState)) {
+					changeState(new DashboardState(getThis()));
+				}
+			}
+			
+		});
+		
+		focusStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof FocusState)) {
+					changeState(new FocusState(getThis()));
+				}
+			}
+			
+		});
+		
+		shopStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof ShopState)) {
+					changeState(new ShopState(getThis()));
+				}
+			}
+			
+		});
+		
+		inventoryStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof InventoryState)) {
+					changeState(new InventoryState(getThis()));
+				}
+			}
+			
+		});
+		
+		statisticsStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof StatisticsState)) {
+					changeState(new StatisticsState(getThis()));
+				}
+			}
+			
+		});
+		
+		achievementsStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof AchievementsState)) {
+					changeState(new AchievementsState(getThis()));
+				}
+			}
+			
+		});
+		
+		settingsStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof SettingsState)) {
+					changeState(new SettingsState(getThis()));
+				}
+			}
+			
+		});
+		
+		aboutStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof AboutState)) {
+					changeState(new AboutState(getThis()));
 				}
 			}
 			
@@ -183,6 +308,28 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 * ##################################
 	 */
+	public void changeState(State newState) {
+		this.remove(state);
+		state = newState;
+		this.add(state, BorderLayout.CENTER);
+		this.repaint();
+		this.revalidate();
+	}
+	
+	public void resetGui() {
+		this.setVisible(false);
+		this.dispose();
+		
+		new TamoStudyGUI(profiles, profileIndex);
+	}
+	
+	public void resizeGui(int index) {
+		this.setVisible(false);
+		this.dispose();
+		
+		new TamoStudyGUI(profiles, profileIndex, index);
+	}
+	
 	public void addMenuButtonVisual(JButton button) {
 		button.setFont(guiSize.getTopMenuFont());
 		button.setForeground(theme.textColor);
@@ -199,5 +346,65 @@ public class TamoStudyGUI extends JFrame {
 		label.setFont(guiSize.getTopMenuFont());
 		label.setForeground(theme.altTextColor);
 		return label;
+	}
+	
+	public void disableSidePanelButtons() {
+		dashboardStateButton.setEnabled(false);
+		focusStateButton.setEnabled(false);
+		shopStateButton.setEnabled(false);
+		inventoryStateButton.setEnabled(false);
+		statisticsStateButton.setEnabled(false);
+		achievementsStateButton.setEnabled(false);
+		settingsStateButton.setEnabled(false);
+		aboutStateButton.setEnabled(false);
+	}
+	
+	public void enableSidePanelButtons() {
+		dashboardStateButton.setEnabled(true);
+		focusStateButton.setEnabled(true);
+		shopStateButton.setEnabled(true);
+		inventoryStateButton.setEnabled(true);
+		statisticsStateButton.setEnabled(true);
+		achievementsStateButton.setEnabled(true);
+		settingsStateButton.setEnabled(true);
+		aboutStateButton.setEnabled(true);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ACCESSOR METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public TamoStudyGUI getThis() {
+		return this;
+	}
+	
+	public Theme getTheme() {
+		return this.theme;
+	}
+	
+	public List<Profile> getProfiles() {
+		return this.profiles;
+	}
+	
+	public ProfileJsonManager getProfileJsonManager() {
+		return this.profileJsonManager;
+	}
+	
+	public Profile getProfile() {
+		return this.profile;
+	}
+	
+	public DiscordRP getDiscordRP() {
+		return this.discordRP;
+	}
+	
+	public GuiSize getGuiSize() {
+		return this.guiSize;
+	}
+	public void setGuiSize(GuiSize guiSize) {
+		this.guiSize = guiSize;
 	}
 }

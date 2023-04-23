@@ -34,6 +34,10 @@ public class Theme {
 	public String type;
 	
 	public Theme(int indicator) {
+		
+		//TODO need to add
+		// altTextColor to other themes
+		
 		switch (indicator) {
 		  case 0:
 		    mainColor = new Color(64,64,64); 
@@ -287,12 +291,17 @@ public class Theme {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button.setForeground(layerTextColor);
+				if(button.isEnabled()) {
+					button.setForeground(layerTextColor);
+				}
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button.setForeground(textColor);
+				if(button.isEnabled()) {
+					button.setForeground(textColor);
+				}
+				
 			}
 			
 		});

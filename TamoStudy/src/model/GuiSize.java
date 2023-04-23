@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import static resources.Constants.*;
 
 public class GuiSize {
+	private int index;
+	
 	private Dimension frameSize;
 	private Font sideButtonFont;
 	private Font topMenuFont;
@@ -18,6 +20,8 @@ public class GuiSize {
 		switch(size) {
 		case -1:
 			// Small
+			index = -1;
+			
 			frameSize = GUI_FRAME_SIZE_SMALL;
 			sideButtonFont = SIDE_BUTTON_FONT_SMALL;
 			topMenuFont = TOP_MENU_FONT_SMALL;
@@ -26,6 +30,8 @@ public class GuiSize {
 			break;
 		case 0:
 			// Medium-Small
+			index = 0;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM_SMALL;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM_SMALL;
 			topMenuFont = TOP_MENU_FONT_MEDIUM_SMALL;
@@ -34,6 +40,8 @@ public class GuiSize {
 			break;
 		case 1:
 			// Medium
+			index = 1;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
@@ -41,6 +49,8 @@ public class GuiSize {
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
 			break;
 		case 2:
+			index = 2;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM_LARGE;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM_LARGE;
 			topMenuFont = TOP_MENU_FONT_MEDIUM_LARGE;
@@ -48,6 +58,8 @@ public class GuiSize {
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM_LARGE;
 			break;
 		case 3:
+			index = 3;
+			
 			frameSize = GUI_FRAME_SIZE_LARGE;
 			sideButtonFont = SIDE_BUTTON_FONT_LARGE;
 			topMenuFont = TOP_MENU_FONT_LARGE;
@@ -56,6 +68,8 @@ public class GuiSize {
 			break;
 		default:
 			// Medium
+			index = 1;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
@@ -69,6 +83,8 @@ public class GuiSize {
 		switch(size) {
 		case -1:
 			// Small
+			index = -1;
+			
 			frameSize = GUI_FRAME_SIZE_SMALL;
 			sideButtonFont = SIDE_BUTTON_FONT_SMALL;
 			topMenuFont = TOP_MENU_FONT_SMALL;
@@ -77,6 +93,8 @@ public class GuiSize {
 			break;
 		case 0:
 			// Medium-Small
+			index = 0;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM_SMALL;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM_SMALL;
 			topMenuFont = TOP_MENU_FONT_MEDIUM_SMALL;
@@ -85,6 +103,8 @@ public class GuiSize {
 			break;
 		case 1:
 			// Medium
+			index = 1;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
@@ -92,6 +112,8 @@ public class GuiSize {
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
 			break;
 		case 2:
+			index = 2;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM_LARGE;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM_LARGE;
 			topMenuFont = TOP_MENU_FONT_MEDIUM_LARGE;
@@ -99,6 +121,8 @@ public class GuiSize {
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM_LARGE;
 			break;
 		case 3:
+			index = 3;
+			
 			frameSize = GUI_FRAME_SIZE_LARGE;
 			sideButtonFont = SIDE_BUTTON_FONT_LARGE;
 			topMenuFont = TOP_MENU_FONT_LARGE;
@@ -107,6 +131,8 @@ public class GuiSize {
 			break;
 		default:
 			// Medium
+			index = 1;
+			
 			frameSize = GUI_FRAME_SIZE_MEDIUM;
 			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
@@ -135,6 +161,10 @@ public class GuiSize {
 	public static GuiSize largeGui() {
 		return new GuiSize(3);
 	}
+	
+	public int getIndex() {
+		return index;
+	}
 
 	public Dimension getFrameSize() {
 		return frameSize;
@@ -159,4 +189,5 @@ public class GuiSize {
 	public ImageIcon getTamoTokenImageIcon() {
 		return tamoTokenImageIcon;
 	}
+	
 }
