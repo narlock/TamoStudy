@@ -1,5 +1,5 @@
 package state;
 
-public class DashboardState {
+public class DashboardState extends State {
 
 }

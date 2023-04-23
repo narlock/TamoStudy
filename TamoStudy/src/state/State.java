@@ -1,5 +1,7 @@
 package state;
 
-public abstract class State {
+import javax.swing.JPanel;
+
+public abstract class State extends JPanel {
 
 }

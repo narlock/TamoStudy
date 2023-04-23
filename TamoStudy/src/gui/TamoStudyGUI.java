@@ -1,9 +1,13 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import io.ProfileJsonManager;
 import model.GuiSize;
@@ -12,6 +16,7 @@ import resources.Constants;
 import resources.Debug;
 import resources.DiscordRP;
 import resources.Theme;
+import state.DashboardState;
 import state.State;
 
 public class TamoStudyGUI extends JFrame {
@@ -39,6 +44,21 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 * ##################################
 	 */
+	private JPanel topPanel;
+		private JButton topMenuButton;
+		private JLabel topNameLabel;
+		private JLabel topTamoTokensLabel;
+	
+	private JPanel sidePanel;
+		private JButton dashboardStateButton;
+		private JButton focusStateButton;
+		private JButton shopStateButton;
+		private JButton inventoryStateButton;
+		private JButton statisticsStateButton;
+		private JButton achievementsStateButton;
+		private JButton settingsStateButton;
+		private JButton aboutStateButton;
+		
 	private State state;
 	
 	public TamoStudyGUI(List<Profile> profiles, int profileIndex) {
@@ -48,6 +68,7 @@ public class TamoStudyGUI extends JFrame {
 		
 		initializeAttributes();
 		initializeComponents();
+		initializeComponentVisuals();
 		initializeComponentActions();
 		initializeFrame();
 	}
@@ -59,7 +80,30 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	private void initializeComponents() {
+		topPanel = new JPanel();
+		topMenuButton = new JButton("Menu");
 		
+		sidePanel = new JPanel();
+		dashboardStateButton = new JButton("Dashboard");
+		
+		state = new DashboardState();
+	}
+	
+	private void initializeComponentVisuals() {
+		// Component Visual Attributes
+		topPanel.setBackground(theme.mainColor);
+		topMenuButton.setFont(guiSize.getTopMenuFont());
+		topMenuButton.setIcon(guiSize.getTopMenuImageIcon());
+		
+		sidePanel.setBackground(theme.mainColor);
+		dashboardStateButton.setFont(guiSize.getSideButtonFont());
+		
+		state.setBackground(theme.subColor);
+		
+		// Component Visual Placement
+		topPanel.add(topMenuButton);
+		
+		sidePanel.add(dashboardStateButton);
 	}
 	
 	private void initializeComponentActions() {
@@ -67,6 +111,10 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	private void initializeFrame() {
+		this.add(topPanel, BorderLayout.NORTH);
+		this.add(sidePanel, BorderLayout.WEST);
+		this.add(state, BorderLayout.CENTER);
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // TODO Add Window Listener
 		this.getContentPane().setBackground(theme.mainColor);
 		this.setTitle("TamoStudy Release " + Constants.version);
