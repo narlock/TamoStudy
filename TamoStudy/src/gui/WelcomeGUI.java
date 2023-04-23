@@ -24,6 +24,7 @@ import components.panel.ProfileSelectionPanel;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
 import resources.CheckForUpdates;
+import resources.Constants;
 import resources.Debug;
 import resources.Theme;
 
@@ -77,7 +78,7 @@ public class WelcomeGUI extends JFrame {
 		messageButton = new JButton("\t");
 		tamoStudyLogoImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TITLE_SMALL.gif")));
 		
-		authorLabel = new JLabel("Release v1.0.0 • Created by narlock • tamostudy.com");
+		authorLabel = new JLabel("Release " + Constants.version + " • Created by narlock • tamostudy.com");
 		
 		buttonPanel = new JPanel();
 		localStudyButton = new JButton("Local Study");
@@ -115,6 +116,7 @@ public class WelcomeGUI extends JFrame {
 				UIManager UI = new UIManager();
 				UI.put("OptionPane.background", new ColorUIResource(theme.mainColor));
 				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
+				UI.put("OptionPane.messageForeground", new ColorUIResource(Color.WHITE));
 				 
 				Object[] options = {};
 				JOptionPane.showOptionDialog(getRootPane(),
@@ -129,10 +131,10 @@ public class WelcomeGUI extends JFrame {
 	private void initializeFrame() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(theme.mainColor);
-		this.setTitle("TamoStudy Release v1.0.0");
+		this.setTitle("TamoStudy Release " + Constants.version);
 		this.setSize(650,500);
 		this.setLocationRelativeTo(null);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setVisible(true);
 	}

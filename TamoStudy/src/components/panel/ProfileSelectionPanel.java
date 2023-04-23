@@ -16,9 +16,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.TamoStudyGUI;
 import gui.WelcomeGUI;
 import io.ProfileJsonManager;
 import model.language.Language;
@@ -260,6 +262,46 @@ public class ProfileSelectionPanel extends JPanel {
 			}
 			
 		});
+		
+		loadProfileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int profileIndex = profilesBox.getSelectedIndex();
+				new TamoStudyGUI(profiles, profileIndex);
+				close();
+			}
+			
+		});
+		
+		deleteProfileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Profile profile = profiles.get(profilesBox.getSelectedIndex());
+				
+				int result = JOptionPane.showConfirmDialog(getRootPane(),
+						"Confirm deletion of profile " + profile.getName() + ".",
+						"Are you sure?",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						new ImageIcon(getClass().getClassLoader().getResource("INFO.png"))
+					);
+
+				if (result == JOptionPane.YES_OPTION) {
+				    profiles.removeIf(p -> p.getId() == profile.getId() && p.getName().equals(profile.getName()));
+				    profileJsonManager.writeJsonToFile(profiles);
+				    
+				    // Revalidate GUI
+					removeAllComponents();
+					initializeInitialMode();
+				} else {
+				    System.out.println("User clicked No");
+				}
+
+			}
+			
+		});
 	}
 	
 	private void initializeComponentVisuals() {
@@ -414,7 +456,8 @@ public class ProfileSelectionPanel extends JPanel {
 					profileJsonManager.writeJsonToFile(allProfiles);
 					
 					// Open MainGUI as newly created profile.
-					// TODO 
+					int profileIndex = allProfiles.size() - 1;
+					new TamoStudyGUI(allProfiles, profileIndex);
 					close();
 				}
 			}
