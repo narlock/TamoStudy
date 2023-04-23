@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ import model.language.Language;
 import model.profile.Profile;
 import resources.Debug;
 import resources.Theme;
+import util.Utils;
 
 public class ProfileSelectionPanel extends JPanel {
 
@@ -118,6 +120,7 @@ public class ProfileSelectionPanel extends JPanel {
 	 */
 	
 	private void initializeInitialMode() {
+		initializeAttributes();
 		initializeComponents();
 		initializeComponentActions();
 		addInitialComponentsToPanel();
@@ -166,6 +169,94 @@ public class ProfileSelectionPanel extends JPanel {
 		        
 		        // Enter Create Mode
 		        initializeCreateMode();
+			}
+			
+		});
+		
+		importProfileButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+	            int returnValue = fileChooser.showOpenDialog(null);
+
+	            if (returnValue == JFileChooser.APPROVE_OPTION) {
+	               String[] contents = Utils.decrypt(Utils.readFile(fileChooser.getSelectedFile())).split(",");
+	               
+	               try {
+	            	   // Ensure that the file is from Beta v4.0 - v4.2
+		               boolean sizeCheck = contents.length == 21;
+		               boolean versionCheck = contents[0].equals("b4.0");
+		               
+		               if(sizeCheck && versionCheck) {
+		            	   /**
+			                 * A Beta v4.2 button should meet the following requirements
+			                 * 
+							 * [0] version
+							 * [1] username
+							 * [2] joinDateString
+							 * [3] lastLoginDateString
+							 * [4] tamoTokens
+							 * [5] totalTime
+							 * [6] bgIndicator
+							 * [7] themeIndicator
+							 * [8] strikes
+							 * [9] tamoName
+							 * [10] tamoHappiness
+							 * [11] tamoHunger
+							 * [12] tamoId
+							 * [13] languageIndicator
+							 * [14] ahmString
+							 * [15] invString
+							 * [16] focusMode
+							 * [17] sessionSoundIndicator
+							 * [18] backgroundSoundIndicator
+							 * [19] difficulty
+							 * [20] showAhmNotifications
+							 */
+			               Profile profile = new Profile(
+			            		   		contents[1],
+			            		   		contents[2],
+			            		   		contents[3],
+			            		   		Long.parseLong(contents[5]),
+			            		   		Long.parseLong(contents[4]),
+			            		   		Long.parseLong(contents[6]),
+			            		   		Long.parseLong(contents[8]),
+			            		   		contents[9],
+			            		   		Long.parseLong(contents[10]),
+			            		   		Long.parseLong(contents[11]),
+			            		   		Long.parseLong(contents[12]),
+			            		   		Long.parseLong(contents[13]),
+			            		   		contents[14],
+			            		   		contents[15],
+			            		   		Long.parseLong(contents[16]),
+			            		   		Long.parseLong(contents[17]),
+			            		   		Long.parseLong(contents[19]),
+			            		   		(contents[20].equals("0") ? false : true)
+			            		   );
+			               Debug.info("ProfileSelectionPanel.importProfileButton.actionPerformed", "Loaded Beta v4.2 profile: " + profile.toString());
+			               
+			               // Add Profile to Profiles List and update profiles.json
+			               List<Profile> allProfiles = new ArrayList<>();
+							for(Profile aProfile : profiles) {
+								allProfiles.add(aProfile);
+							}
+							allProfiles.add(profile);
+							profileJsonManager.writeJsonToFile(allProfiles);
+			               
+			               // Revalidate GUI
+							removeAllComponents();
+							initializeInitialMode();
+		               } 
+		               else throw new Exception();
+		               
+	               } catch (Exception e1) {
+	            	   Debug.error("ProfileSelectionPanel.importProfileButton.actionPerformed", "Selected file failed index access check");
+	            	   setMessageLabelError("Invalid Beta v4.2 Profile");
+	            	   e1.printStackTrace();
+	               }
+	               
+	            }
 			}
 			
 		});
@@ -299,7 +390,7 @@ public class ProfileSelectionPanel extends JPanel {
 				boolean validForm = false;
 				
 				if(enterUsernameTextField.getText().trim().isEmpty()
-						& enterTamoNameTextField.getText().trim().isEmpty()) {
+						|| enterTamoNameTextField.getText().trim().isEmpty()) {
 					setCreationMessage("Must enter a valid name!");
 				} else {
 					validForm = true;
@@ -450,6 +541,12 @@ public class ProfileSelectionPanel extends JPanel {
 		Debug.info("ProfileSelectionPanel.close", "Closing WelcomeGUI and ProfileSelectionPanel");
 		welcomeGUI.dispose();
 		welcomeGUI.removeAll();
+	}
+	
+	private void setMessageLabelError(String message) {
+		messageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+		messageLabel.setText(message);
+		messageLabel.setForeground(Theme.DANGER);
 	}
 	
 	private void setCreationMessage(String message) {

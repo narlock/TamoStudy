@@ -1,5 +1,9 @@
 package util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
@@ -61,4 +65,29 @@ public class Utils {
 		String regex = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
 		return Pattern.matches(regex, dateString);
 	}
+	
+	public static String decrypt(String message) {
+		char[] chars = message.toCharArray();
+		for(int i = 0; i < message.length(); i++) {
+			chars[i] -= 6;
+		}
+		
+		String encryptedMessage = new String(chars);
+		return encryptedMessage;
+	}
+	
+	public static String readFile(File file) {
+	      StringBuilder fileContents = new StringBuilder();
+	      try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+	         String line;
+	         while ((line = reader.readLine()) != null) {
+	            fileContents.append(line);
+	            fileContents.append(System.lineSeparator());
+	         }
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	      return fileContents.toString();
+	   }
+	
 }

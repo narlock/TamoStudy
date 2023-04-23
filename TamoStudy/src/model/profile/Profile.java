@@ -1,5 +1,6 @@
 package model.profile;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +38,14 @@ public class Profile {
 	
 	private List<Tamo> tamoHistory;
 	
+	/**
+	 * New Profile Constructor
+	 * @param name
+	 * @param language
+	 * @param focusMode
+	 * @param difficulty
+	 * @param tamoName
+	 */
 	public Profile(String name, Language language, long focusMode, long difficulty, String tamoName) {
 		super();
 		this.id = generateRandomProfileId();
@@ -61,6 +70,23 @@ public class Profile {
 		this.tamoHistory = Collections.emptyList();
 	}
 
+	/**
+	 * Load Profile Constructor
+	 * @param id
+	 * @param name
+	 * @param previousDateString
+	 * @param time
+	 * @param tokens
+	 * @param settings
+	 * @param backgroundIndicator
+	 * @param borderIndicator
+	 * @param achievementList
+	 * @param foodInventoryList
+	 * @param backgroundInventoryList
+	 * @param borderInventoryList
+	 * @param tamo
+	 * @param tamoHistory
+	 */
 	public Profile(long id, String name, String previousDateString, long time, long tokens, ProfileSettings settings,
 			long backgroundIndicator, long borderIndicator, List<Long> achievementList, List<Long> foodInventoryList,
 			List<Long> backgroundInventoryList, List<Long> borderInventoryList, Tamo tamo, List<Tamo> tamoHistory) {
@@ -79,6 +105,47 @@ public class Profile {
 		this.borderInventoryList = borderInventoryList;
 		this.tamo = tamo;
 		this.tamoHistory = tamoHistory;
+	}
+	
+	public Profile(String name, String joinDateString, String previousDateString, long time, long tokens, long backgroundIndicator,
+			long strikes, String tamoName, long tamoHappiness, long tamoHunger, long tamoId, long languageIndicator,
+			String ahmString, String invString, long focusMode, long sessionSoundIndicator, long difficulty,
+			boolean showAhmNotifications
+		) {
+		this.id = generateRandomProfileId();
+		this.name = name;
+		this.previousDateString = previousDateString;
+		this.time = time;
+		this.tokens = tokens;
+		this.settings = new ProfileSettings(languageIndicator, focusMode, sessionSoundIndicator, difficulty, showAhmNotifications);
+		this.backgroundIndicator = backgroundIndicator;
+		this.borderIndicator = 0;
+		this.achievementList = convertAhmStringToAchievementsList(ahmString);
+		this.foodInventoryList = Collections.emptyList();
+		this.backgroundInventoryList = convertInvStringToBackgroundInventoryList(invString);
+		this.borderInventoryList = List.of((long) 0);
+		this.tamo = new Tamo(tamoName, time, tamoId, joinDateString, tamoHappiness, tamoHunger, strikes);
+		this.tamoHistory = Collections.emptyList();
+	}
+
+	private List<Long> convertAhmStringToAchievementsList(String ahmString) {
+		List<Long> achievementList = new ArrayList<>();
+		String achievements[] = ahmString.split("");
+		for(int i = 0; i < achievements.length; i++) {
+			if(achievements[i].equals("1")) {
+				achievementList.add((long) i);
+			}
+		}
+		return achievementList;
+	}
+	
+	private List<Long> convertInvStringToBackgroundInventoryList(String invString) {
+		List<Long> backgroundInventoryList = new ArrayList<>();
+		String inventory[] = invString.split("");
+		for(int i = 0; i < inventory.length; i++) {
+			backgroundInventoryList.add(Long.parseLong(inventory[i]));
+		}
+		return backgroundInventoryList;
 	}
 
 	public long getId() {
@@ -193,6 +260,16 @@ public class Profile {
 		this.tamoHistory = tamoHistory;
 	}
 	
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", name=" + name + ", previousDateString=" + previousDateString + ", time=" + time
+				+ ", tokens=" + tokens + ", settings=" + settings + ", backgroundIndicator=" + backgroundIndicator
+				+ ", borderIndicator=" + borderIndicator + ", achievementList=" + achievementList
+				+ ", foodInventoryList=" + foodInventoryList + ", backgroundInventoryList=" + backgroundInventoryList
+				+ ", borderInventoryList=" + borderInventoryList + ", tamo=" + tamo + ", tamoHistory=" + tamoHistory
+				+ "]";
+	}
+
 	private long generateRandomProfileId() {
 		Random random = new Random();
         int id = 0;

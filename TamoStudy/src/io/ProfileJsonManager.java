@@ -193,7 +193,8 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 					(long) tamoJson.get("type"),
 					(String) tamoJson.get("birthDateString"),
 					(long) tamoJson.get("happy"),
-					(long) tamoJson.get("hunger")
+					(long) tamoJson.get("hunger"),
+					(long) tamoJson.get("strikes")
 				);
 	}
 	
@@ -206,6 +207,7 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 		tamoJson.put("birthDateString", tamo.getBirthDateString());
 		tamoJson.put("happy", tamo.getHappy());
 		tamoJson.put("hunger", tamo.getHunger());
+		tamoJson.put("strikes", tamo.getStrikes());
 		return tamoJson;
 	}
 	

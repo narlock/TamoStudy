@@ -20,6 +20,8 @@ public class Tamo {
 	
 	private long hunger;
 	
+	private long strikes;
+	
 	/**
 	 * Tamo(name)
 	 * @brief Constructor for new profile Tamo
@@ -33,6 +35,7 @@ public class Tamo {
 		this.passDateString = null;
 		this.happy = 5;
 		this.hunger = 5;
+		this.setStrikes(0);
 	}
 	
 	/**
@@ -52,7 +55,7 @@ public class Tamo {
 	 * Tamo(name, type, birthDateString, happy, hunger)
 	 * @brief Constructor for loading Tamo
 	 */
-	public Tamo(String name, long time, long type, String birthDateString, long happy, long hunger) {
+	public Tamo(String name, long time, long type, String birthDateString, long happy, long hunger, long strikes) {
 		super();
 		this.name = name;
 		this.time = time;
@@ -61,6 +64,7 @@ public class Tamo {
 		this.passDateString = null;
 		this.happy = happy;
 		this.hunger = hunger;
+		this.setStrikes(strikes);
 	}
 
 	public String getName() {
@@ -119,6 +123,21 @@ public class Tamo {
 		this.hunger = hunger;
 	}
 	
+	public long getStrikes() {
+		return strikes;
+	}
+
+	public void setStrikes(long strikes) {
+		this.strikes = strikes;
+	}
+	
+	@Override
+	public String toString() {
+		return "Tamo [name=" + name + ", time=" + time + ", type=" + type + ", birthDateString=" + birthDateString
+				+ ", passDateString=" + passDateString + ", happy=" + happy + ", hunger=" + hunger + ", strikes="
+				+ strikes + "]";
+	}
+
 	private long generateRandomTamoType() {
 		int max = 10;
 		int min = 1;
@@ -130,4 +149,5 @@ public class Tamo {
 		// TODO
 		return 10;
 	}
+
 }
