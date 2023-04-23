@@ -24,6 +24,7 @@ public class Theme {
 	public Color layerColor;
 	public Color textColor;
 	public Color layerTextColor;
+	public Color altTextColor;
 	
 	public final Font fontPlainReg = new Font("Arial", Font.PLAIN, 24);
 	public final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
@@ -40,6 +41,7 @@ public class Theme {
 		    layerColor = new Color(108, 108, 108);
 		    textColor = Color.WHITE;
 		    layerTextColor = new Color(153,153,153);
+		    altTextColor = new Color(87, 87, 87);
 		    type = "Dark";
 		    break;
 		  case 1:
@@ -268,6 +270,29 @@ public class Theme {
 			public void mouseExited(MouseEvent e) {
 				button.setBackground(Theme.DANGER);
 				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	public void buttonLayerEnterEffect(JButton button) {
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setForeground(layerTextColor);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setForeground(textColor);
 			}
 			
 		});

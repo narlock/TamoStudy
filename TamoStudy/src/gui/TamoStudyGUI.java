@@ -1,6 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -8,9 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import io.ProfileJsonManager;
 import model.GuiSize;
+import model.language.Language;
 import model.profile.Profile;
 import resources.Constants;
 import resources.Debug;
@@ -33,6 +40,7 @@ public class TamoStudyGUI extends JFrame {
 	private List<Profile> profiles;
 	private ProfileJsonManager profileJsonManager;
 	private Profile profile;
+	private Language lang;
 	private DiscordRP discordRP;
 	private Theme theme;
 	private GuiSize guiSize;
@@ -46,8 +54,7 @@ public class TamoStudyGUI extends JFrame {
 	 */
 	private JPanel topPanel;
 		private JButton topMenuButton;
-		private JLabel topNameLabel;
-		private JLabel topTamoTokensLabel;
+		private JLabel topNameTokensLabel;
 	
 	private JPanel sidePanel;
 		private JButton dashboardStateButton;
@@ -64,6 +71,7 @@ public class TamoStudyGUI extends JFrame {
 	public TamoStudyGUI(List<Profile> profiles, int profileIndex) {
 		this.profiles = profiles;
 		this.profile = profiles.get(profileIndex);
+		this.lang = profile.getSettings().getLanguage();
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
 		
 		initializeAttributes();
@@ -81,33 +89,76 @@ public class TamoStudyGUI extends JFrame {
 	
 	private void initializeComponents() {
 		topPanel = new JPanel();
-		topMenuButton = new JButton("Menu");
-		
+		topMenuButton = new JButton(lang.menuButtonText);
+		topNameTokensLabel = new JLabel(profile.getName() + " • " + profile.getTokens()); // TODO Level Progess on the top, along with hours studied today
+
 		sidePanel = new JPanel();
-		dashboardStateButton = new JButton("Dashboard");
+		dashboardStateButton = new JButton(lang.dashboardStateButtonText);
+		focusStateButton = new JButton(lang.focusStateButtonText);
+		shopStateButton = new JButton(lang.shopStateButtonText);
+		inventoryStateButton = new JButton(lang.inventoryStateButtonText);
+		achievementsStateButton = new JButton(lang.achievementsStateButtonText);
+		settingsStateButton = new JButton(lang.settingsStateButtonText);
+		aboutStateButton = new JButton(lang.aboutStateButton);
 		
 		state = new DashboardState();
 	}
 	
 	private void initializeComponentVisuals() {
 		// Component Visual Attributes
+		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(theme.mainColor);
-		topMenuButton.setFont(guiSize.getTopMenuFont());
+		addMenuButtonVisual(topMenuButton);
 		topMenuButton.setIcon(guiSize.getTopMenuImageIcon());
+			
+		topNameTokensLabel.setFont(guiSize.getTopMenuFont());
+		topNameTokensLabel.setForeground(theme.textColor);
+		topNameTokensLabel.setIcon(guiSize.getTamoTokenImageIcon());
+		topNameTokensLabel.setHorizontalTextPosition(SwingConstants.LEADING);
 		
+		sidePanel.setLayout(new GridBagLayout());
 		sidePanel.setBackground(theme.mainColor);
-		dashboardStateButton.setFont(guiSize.getSideButtonFont());
+		addMenuButtonVisual(dashboardStateButton);
+		addMenuButtonVisual(focusStateButton);
+		addMenuButtonVisual(shopStateButton);
+		addMenuButtonVisual(inventoryStateButton);
+		addMenuButtonVisual(achievementsStateButton);
+		addMenuButtonVisual(settingsStateButton);
+		addMenuButtonVisual(aboutStateButton);
 		
 		state.setBackground(theme.subColor);
 		
 		// Component Visual Placement
-		topPanel.add(topMenuButton);
+		topPanel.add(topMenuButton, BorderLayout.WEST);
+		topPanel.add(topNameTokensLabel, BorderLayout.EAST);
 		
-		sidePanel.add(dashboardStateButton);
+		GridBagConstraints gbcv = new GridBagConstraints();
+		gbcv.gridwidth = GridBagConstraints.REMAINDER;
+		
+		sidePanel.add(dashboardStateButton, gbcv);
+		sidePanel.add(focusStateButton, gbcv);
+		sidePanel.add(createSpaceLabel(), gbcv);
+		sidePanel.add(shopStateButton, gbcv);
+		sidePanel.add(inventoryStateButton, gbcv);
+		sidePanel.add(achievementsStateButton, gbcv);
+		sidePanel.add(createSpaceLabel(), gbcv);
+		sidePanel.add(settingsStateButton, gbcv);
+		sidePanel.add(aboutStateButton, gbcv);
 	}
 	
 	private void initializeComponentActions() {
-		
+		topMenuButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(sidePanel.isVisible()) {
+					sidePanel.setVisible(false);
+				} else {
+					sidePanel.setVisible(true);
+				}
+			}
+			
+		});
 	}
 	
 	private void initializeFrame() {
@@ -132,4 +183,21 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 * ##################################
 	 */
+	public void addMenuButtonVisual(JButton button) {
+		button.setFont(guiSize.getTopMenuFont());
+		button.setForeground(theme.textColor);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		theme.buttonLayerEnterEffect(button);
+	}
+	
+	public JLabel createSpaceLabel() {
+		String DIVIDER = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
+				? "━━━━━━━━━━━━━━━━━━ " : "━━━━━━━";
+		
+		JLabel label = new JLabel(DIVIDER);
+		label.setFont(guiSize.getTopMenuFont());
+		label.setForeground(theme.altTextColor);
+		return label;
+	}
 }
