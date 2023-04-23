@@ -295,8 +295,6 @@ public class ProfileSelectionPanel extends JPanel {
 				    // Revalidate GUI
 					removeAllComponents();
 					initializeInitialMode();
-				} else {
-				    System.out.println("User clicked No");
 				}
 
 			}
@@ -455,10 +453,9 @@ public class ProfileSelectionPanel extends JPanel {
 					allProfiles.add(profile);
 					profileJsonManager.writeJsonToFile(allProfiles);
 					
-					// Open MainGUI as newly created profile.
-					int profileIndex = allProfiles.size() - 1;
-					new TamoStudyGUI(allProfiles, profileIndex);
-					close();
+					// Revalidate GUI
+					removeAllComponents();
+					initializeInitialMode();
 				}
 			}
 			

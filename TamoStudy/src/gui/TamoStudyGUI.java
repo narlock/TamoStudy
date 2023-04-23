@@ -6,9 +6,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import io.ProfileJsonManager;
+import model.GuiSize;
 import model.profile.Profile;
 import resources.Constants;
 import resources.Debug;
+import resources.DiscordRP;
 import resources.Theme;
 import state.State;
 
@@ -26,7 +28,9 @@ public class TamoStudyGUI extends JFrame {
 	private List<Profile> profiles;
 	private ProfileJsonManager profileJsonManager;
 	private Profile profile;
+	private DiscordRP discordRP;
 	private Theme theme;
+	private GuiSize guiSize;
 	
 	/*
 	 * ##################################
@@ -51,6 +55,7 @@ public class TamoStudyGUI extends JFrame {
 	private void initializeAttributes() {
 		profileJsonManager = new ProfileJsonManager();
 		theme = Theme.DARK;
+		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 	}
 	
 	private void initializeComponents() {
@@ -65,7 +70,7 @@ public class TamoStudyGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // TODO Add Window Listener
 		this.getContentPane().setBackground(theme.mainColor);
 		this.setTitle("TamoStudy Release " + Constants.version);
-		setSizeBasedOnGuiSize();
+		this.setSize(guiSize.getFrameSize());
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
@@ -79,21 +84,4 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 * ##################################
 	 */
-	private void setSizeBasedOnGuiSize() {
-		int guiSize = (int) profile.getSettings().getGuiSize();
-		switch(guiSize) {
-		case 0:
-			this.setSize(100, 100);
-			break;
-		case 1:
-			this.setSize(200, 200);
-			break;
-		case 2:
-			this.setSize(300, 300);
-			break;
-		default:
-			this.setSize(200, 200);
-			break;
-		}
-	}
 }
