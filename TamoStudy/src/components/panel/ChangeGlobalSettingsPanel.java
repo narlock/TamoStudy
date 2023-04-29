@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import gui.WelcomeGUI;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
+import model.language.Language;
 
 public class ChangeGlobalSettingsPanel extends JPanel {
 
@@ -23,6 +24,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	private WelcomeGUI welcomeGUI;
 	private GlobalSettingsJsonManager globalSettingsJsonManager;
 	private GlobalSettings globalSettings;
+	private Language language;
 	
 	/*
 	 * ##################################
@@ -51,23 +53,53 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		initializeAttributes();
 		initializeComponents();
 		initializeComponentActions();
-		addInitialComponentsToPanel();
+		addComponentsToPanel();
 	}
 	
 	private void initializeAttributes() {
 		globalSettingsJsonManager = welcomeGUI.getGlobalSettingsJsonManager();
 		globalSettings = welcomeGUI.getGlobalSettings();
+		language = globalSettings.getLanguage();
 	}
 	
 	private void initializeComponents() {
 		messageLabel = new JLabel("Global Settings");
+		
+		settingsPanel = new JPanel();
+		
+		languageLabel = new JLabel("Language");
+		languageBox = new JComboBox<>();
+		languageBox.addItem(language.englishText);
+		languageBox.addItem(language.spanishText);
+		languageBox.addItem(language.hindiText);
+		languageBox.addItem(language.portugueseText);
+		languageBox.addItem(language.japaneseText);
+		languageBox.addItem(language.germanText);
+		languageBox.addItem(language.frenchText);
+		languageBox.addItem(language.turkishText);
+		languageBox.addItem(language.mandarinChineseText);
+		languageBox.addItem(language.dutchText);
+		languageBox.addItem(language.koreanText);
+		languageBox.addItem(language.russianText);
+		languageBox.addItem(language.hungarianText);
+		languageBox.addItem(language.romanianText);
+		
+		resetDefaultLocalProfileLabel = new JLabel("Reset Default Profile");
+		resetDefaultLocalProfileButton = new JButton("Reset");
+		
+		receiveUpdateNotificationsLabel = new JLabel("Update Notifications");
+		receiveUpdateNotificationsButton = new JButton("ON");
+		
+		confirmCancelButtonPanel = new JPanel();
+		confirmButton = new JButton("Confirm");
+		cancelButton = new JButton("Cancel");
 	}
 	
 	private void initializeComponentActions() {
 		
 	}
 	
-	private void addInitialComponentsToPanel() {
+	private void addComponentsToPanel() {
 		
 	}
 }

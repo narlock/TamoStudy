@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
+import components.panel.ChangeGlobalSettingsPanel;
 import components.panel.ProfileSelectionPanel;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
@@ -139,7 +140,10 @@ public class WelcomeGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				getThis().remove(mainPanel);
+				getThis().add(new ChangeGlobalSettingsPanel(getThis()));
+				getThis().repaint();
+				getThis().revalidate();
 			}
 			
 		});
@@ -170,7 +174,7 @@ public class WelcomeGUI extends JFrame {
 		this.setTitle("TamoStudy Release " + Constants.version);
 		this.setSize(650,500);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setVisible(true);
 	}
