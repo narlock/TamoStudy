@@ -58,4 +58,24 @@ public class Constants {
 	public static final Font TOP_MENU_FONT_LARGE = SIDE_BUTTON_FONT_LARGE;
 	public static final ImageIcon TOP_MENU_IMAGE_ICON_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("TOP_MENU_LARGE.png")); // 64 x 64
 	public static final ImageIcon TAMO_TOKEN_IMAGE_ICON_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("TAMO_TOKEN_LARGE.png"));
+
+	/*
+	 * ##################################
+	 * ##################################
+	 * SETTINGS STATE CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	
+	// Medium (1, Default) Component Sizes
+	public static final Font SETTINGS_MESSAGE_LABEL_FONT_MEDIUM = new Font("Arial", Font.BOLD, 24);
+	public static final Font SETTINGS_SETTING_LABEL_FONT_MEDIUM = new Font("Arial", Font.BOLD, 16);
+	
+	// Medium-Small (0) Component Sizes (Medium / 1.5)
+	
+	// Small (-1) Component Sizes (Medium / 2)
+	
+	// Medium-Large (2) Component Sizes (Medium * 1.5)
+	
+	// Large (3) Component Sizes (Medium * 2)
 }
