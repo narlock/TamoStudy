@@ -65,9 +65,14 @@ public class EnglishLanguage extends Language {
 		fiveMinIntervalCountdownText = "5-Min Interval Countdown";
 		stopwatchText = "Stopwatch";
 		
+		resetDefaultProfileText = "Reset Default Profile";
+		updateNotificationsText = "Update Notifications";
+		defaultProfileReset = "Defult Profile Reset";
+		
 		createText = "Create";
 		cancelText = "Cancel";
 		mustEnterValidNameText = "Must enter a valid name!";
+		settingsSavedText = "Settings Saved";
 		
 		/*
 		 * ##################################
@@ -85,5 +90,28 @@ public class EnglishLanguage extends Language {
 		achievementsStateButtonText = "Achievements";
 		settingsStateButtonText = "Settings";
 		aboutStateButton = "About";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * SETTINGS STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		timerAlarmText = "Timer Alarm";
+		noTimerAlarmText = "None";
+		softAlarmText = "Soft Alarm";
+		traditionalAlarmText = "Traditional Alarm";
+		pacAlarmText = "Pac Alarm";
+		calmAlarmText = "Calm Alarm";
+		bellAlarmText = "Bell Alarm";
+		guiSizeText = "Interface Size";
+		notificationsText = "Notifications";
+		discordRPCText = "Discord RPC";
+		exitMessageText = "Exit Message";
+		onText = "ON";
+		offText = "OFF";
+		saveText = "Save";
+		resetText = "Reset";
 	}
 }

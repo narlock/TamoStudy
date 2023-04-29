@@ -26,7 +26,7 @@ public abstract class Language {
 	/*
 	 * ##################################
 	 * ##################################
-	 * PROFILE CREATION / SELECTION TEXT
+	 * PROFILE CREATION / SOME SETTINGS / SELECTION TEXT
 	 * ##################################
 	 * ##################################
 	 */
@@ -72,10 +72,14 @@ public abstract class Language {
 	public String fiveMinIntervalCountdownText;
 	public String stopwatchText;
 	
+	public String resetDefaultProfileText;
+	public String updateNotificationsText;
+	public String defaultProfileReset;
+	
 	public String createText;
 	public String cancelText;
 	public String mustEnterValidNameText;
-	
+	public String settingsSavedText;
 	
 	/*
 	 * ##################################
@@ -93,6 +97,29 @@ public abstract class Language {
 	public String achievementsStateButtonText;
 	public String settingsStateButtonText;
 	public String aboutStateButton;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * SETTINGS STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String timerAlarmText;
+	public String noTimerAlarmText;
+	public String softAlarmText;
+	public String traditionalAlarmText;
+	public String pacAlarmText;
+	public String calmAlarmText;
+	public String bellAlarmText;
+	public String guiSizeText;
+	public String notificationsText;
+	public String discordRPCText;
+	public String exitMessageText;
+	public String onText;
+	public String offText;
+	public String saveText;
+	public String resetText;
 	
 	public static Language getLanguageFromBox(int index) {
 		Language language;

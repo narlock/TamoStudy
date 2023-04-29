@@ -1,5 +1,7 @@
 package state;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.TamoStudyGUI;
+import model.language.Language;
 import resources.Debug;
 
 public class SettingsState extends State {
@@ -22,6 +25,8 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private Language language;
+	
 	
 	/*
 	 * ##################################
@@ -80,16 +85,79 @@ public class SettingsState extends State {
 	}
 	
 	private void initializeAttributes() {
-		
+		language = tsGui.getProfile().getSettings().getLanguage();
 	}
 	
 	private void initializeComponents() {
+		messageLabel = new JLabel("Settings");
+		
+		settingsPanel = new JPanel(new GridBagLayout());
+		
+		languagePanel = new JPanel(new GridBagLayout());
+		languageLabel = new JLabel(language.languageText);
+		languageBox = new JComboBox<>();
+		languageBox.addItem(language.englishText);
+		languageBox.addItem(language.spanishText);
+		languageBox.addItem(language.hindiText);
+		languageBox.addItem(language.portugueseText);
+		languageBox.addItem(language.japaneseText);
+		languageBox.addItem(language.germanText);
+		languageBox.addItem(language.frenchText);
+		languageBox.addItem(language.turkishText);
+		languageBox.addItem(language.mandarinChineseText);
+		languageBox.addItem(language.dutchText);
+		languageBox.addItem(language.koreanText);
+		languageBox.addItem(language.russianText);
+		languageBox.addItem(language.hungarianText);
+		languageBox.addItem(language.romanianText);
+		
+		focusModePanel = new JPanel(new GridBagLayout());
+		focusModeLabel = new JLabel(language.focusModeText);
+		focusModeBox = new JComboBox<>();
+		focusModeBox.addItem(language.pomodoroText);
+		focusModeBox.addItem(language.customCountdownText);
+		focusModeBox.addItem(language.fiveMinIntervalCountdownText);
+		focusModeBox.addItem(language.stopwatchText);
+		
+		difficultyPanel = new JPanel(new GridBagLayout());
+		difficultyLabel = new JLabel(language.difficultyText);
+		difficultyBox = new JComboBox<>();
+		difficultyBox.addItem(language.peacefulText);
+		difficultyBox.addItem(language.challengingText);
+		difficultyBox.addItem(language.ironManText);
+		
+		timerAlarmPanel = new JPanel(new GridBagLayout());
+		timerAlarmLabel = new JLabel(language.timerAlarmText);
+		timerAlarmBox = new JComboBox<>();
+		timerAlarmBox.addItem(language.noTimerAlarmText);
+		timerAlarmBox.addItem(language.softAlarmText);
+		timerAlarmBox.addItem(language.traditionalAlarmText);
+		timerAlarmBox.addItem(language.pacAlarmText);
+		timerAlarmBox.addItem(language.calmAlarmText);
+		timerAlarmBox.addItem(language.bellAlarmText);
+		
+		guiSizePanel = new JPanel(new GridBagLayout());
+		guiSizeLabel = new JLabel(language.guiSizeText);
 		decreaseGuiSizeButton = new JButton("-");
 		increaseGuiSizeButton = new JButton("+");
+		
+		receiveNotificationsPanel = new JPanel(new GridBagLayout());
+		receiveNotificationsLabel = new JLabel(language.notificationsText);
+		receiveNotificationsButton = new JButton("ON");
+		
+		enableDiscordRPCPanel = new JPanel(new GridBagLayout());
+		enableDiscordRPCLabel = new JLabel(language.discordRPCText);
+		enableDiscordRPCButton = new JButton("ON");
+		
+		showProgramCloseMessagePanel = new JPanel(new GridBagLayout());
+		showProgramCloseMessageLabel = new JLabel(language.exitMessageText);
+		showProgramCloseMessageButton = new JButton("ON");
+		
+		saveChangesButton = new JButton(language.saveText);
 	}
 	
 	private void initializeComponentVisuals() {
-		
+		this.setLayout(new GridBagLayout());
 	}
 
 	private void initializeComponentActions() {
@@ -163,7 +231,63 @@ public class SettingsState extends State {
 	}
 	
 	private void initializePanel() {
-		this.add(decreaseGuiSizeButton);
-		this.add(increaseGuiSizeButton);
+		GridBagConstraints gbch = new GridBagConstraints();
+		gbch.gridheight = GridBagConstraints.REMAINDER;
+		
+		GridBagConstraints gbcv = new GridBagConstraints();
+		gbcv.gridwidth = GridBagConstraints.REMAINDER;
+		
+		GridBagConstraints innergbcv = new GridBagConstraints();
+		innergbcv.gridwidth = GridBagConstraints.REMAINDER;
+		innergbcv.anchor = GridBagConstraints.WEST;
+		
+		languagePanel.add(languageLabel);
+		languagePanel.add(languageBox);
+		
+		focusModePanel.add(focusModeLabel);
+		focusModePanel.add(focusModeBox);
+		
+		difficultyPanel.add(difficultyLabel);
+		difficultyPanel.add(difficultyBox);
+		
+		timerAlarmPanel.add(timerAlarmLabel);
+		timerAlarmPanel.add(timerAlarmBox);
+		
+		guiSizePanel.add(guiSizeLabel);
+		guiSizePanel.add(decreaseGuiSizeButton);
+		guiSizePanel.add(increaseGuiSizeButton);
+		
+		receiveNotificationsPanel.add(receiveNotificationsLabel);
+		receiveNotificationsPanel.add(receiveNotificationsButton);
+		
+		enableDiscordRPCPanel.add(enableDiscordRPCLabel);
+		enableDiscordRPCPanel.add(enableDiscordRPCButton);
+		
+		showProgramCloseMessagePanel.add(showProgramCloseMessageLabel);
+		showProgramCloseMessagePanel.add(showProgramCloseMessageButton);
+		
+		settingsPanel.add(languagePanel, innergbcv);
+		settingsPanel.add(focusModePanel, innergbcv);
+		settingsPanel.add(difficultyPanel, innergbcv);
+		settingsPanel.add(timerAlarmPanel, innergbcv);
+		settingsPanel.add(guiSizePanel, innergbcv);
+		settingsPanel.add(receiveNotificationsPanel, innergbcv);
+		settingsPanel.add(enableDiscordRPCPanel, innergbcv);
+		settingsPanel.add(showProgramCloseMessagePanel, innergbcv);
+		
+		this.add(messageLabel, gbcv);
+		this.add(settingsPanel, gbcv);
+		this.add(saveChangesButton, gbcv);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public void addMessageLabelVisual(JLabel label) {
+		
 	}
 }

@@ -10,11 +10,27 @@ import static resources.Constants.*;
 public class GuiSize {
 	private int index;
 	
+	/*
+	 * ##################################
+	 * ##################################
+	 * GUI ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
 	private Dimension frameSize;
 	private Font sideButtonFont;
 	private Font topMenuFont;
 	private ImageIcon topMenuImageIcon;
 	private ImageIcon tamoTokenImageIcon;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * GUI ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
+	
 	
 	public GuiSize(int size) {
 		switch(size) {

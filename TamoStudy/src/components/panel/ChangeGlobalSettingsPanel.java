@@ -101,23 +101,23 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		languageBox.addItem(language.romanianText);
 		
 		resetDefaultLocalProfilePanel = new JPanel(new GridBagLayout());
-		resetDefaultLocalProfileLabel = new JLabel("Reset Default Profile");
-		resetDefaultLocalProfileButton = new JButton("Reset");
+		resetDefaultLocalProfileLabel = new JLabel(language.resetDefaultProfileText);
+		resetDefaultLocalProfileButton = new JButton(language.resetText);
 		
 		receiveUpdateNotificationsPanel = new JPanel(new GridBagLayout());
-		receiveUpdateNotificationsLabel = new JLabel("Update Notifications");
+		receiveUpdateNotificationsLabel = new JLabel(language.updateNotificationsText);
 		
 		receiveUpdateNotificationsButton = new JButton();
 		if(globalSettings.getReceiveUpdateNotifications()) {
-			receiveUpdateNotificationsButton.setText("ON");
+			receiveUpdateNotificationsButton.setText(language.onText);
 			Theme.primaryVisualButton(receiveUpdateNotificationsButton);
 		} else {
-			receiveUpdateNotificationsButton.setText("OFF");
+			receiveUpdateNotificationsButton.setText(language.offText);
 			Theme.secondaryVisualButton(receiveUpdateNotificationsButton);;
 		}
 		
 		
-		saveChangesButton = new JButton("Save");
+		saveChangesButton = new JButton(language.saveText);
 	}
 	
 	private void initializeComponentVisuals() {
@@ -162,7 +162,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageLabel.setText("Default Profile Reset.");
+				messageLabel.setText(language.defaultProfileReset);
 				messageLabel.setForeground(Theme.PRIMARY);
 				
 				globalSettings.setDefaultLocalProfile(-1);
@@ -175,11 +175,11 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if(globalSettings.getReceiveUpdateNotifications()) {
 					globalSettings.setReceiveUpdateNotifications(false);
-					receiveUpdateNotificationsButton.setText("OFF");
+					receiveUpdateNotificationsButton.setText(language.offText);
 					Theme.secondaryVisualButton(receiveUpdateNotificationsButton);
 				} else {
 					globalSettings.setReceiveUpdateNotifications(true);
-					receiveUpdateNotificationsButton.setText("ON");
+					receiveUpdateNotificationsButton.setText(language.onText);
 					Theme.primaryVisualButton(receiveUpdateNotificationsButton);
 				}
 			}
@@ -189,7 +189,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				messageLabel.setText("Settings Saved!");
+				messageLabel.setText(language.settingsSavedText);
 				messageLabel.setForeground(Theme.SUCCESS);
 				
 				globalSettingsJsonManager.writeJsonToFile(globalSettings);
