@@ -4,11 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import gui.TamoStudyGUI;
 
 public class SettingsState extends State {
+	
+	private JLabel languageLabel;
+	private JComboBox<String> languageBox;
+	
+	private JLabel focusModeLabel;
+	private JComboBox<String> focusModeBox;
+	
+	private JLabel difficultyLabel;
+	private JComboBox<String> difficultyBox;
+	
+	private JLabel timerAlarmLabel;
+	private JComboBox<String> timerAlarmBox;
+	
+	private JLabel guiSizeLabel;
+	private JButton decreaseGuiSizeButton;
+	private JButton increaseGuiSizeButton;
+	
+	private JLabel receiveNotificationsLabel;
+	private JButton receiveNotificationsButton;
+	
+	private JLabel enableDiscordRPCLabel;
+	private JButton enableDiscordRPCButton;
 
 	private static final long serialVersionUID = -8979954063946210819L;
 	int index = 1;

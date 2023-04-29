@@ -44,6 +44,7 @@ public class ProfileSelectionPanel extends JPanel {
 	private ProfileJsonManager profileJsonManager;
 	private List<Profile> profiles;
 	private Theme theme;
+	private Language language;
 	
 	/*
 	 * ##################################
@@ -111,6 +112,7 @@ public class ProfileSelectionPanel extends JPanel {
 		profileJsonManager = new ProfileJsonManager();
 		profiles = profileJsonManager.readJson();
 		theme = Theme.DARK;
+		language = welcomeGUI.getGlobalSettings().getLanguage();
 	}
 	
 	/*
@@ -134,29 +136,29 @@ public class ProfileSelectionPanel extends JPanel {
 		messageLabel = new JLabel();
 		if(!foundProfiles) {
 			messageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
-			messageLabel.setText("No local profiles were found.");
+			messageLabel.setText(language.noProfilesText);
 		} else {
 			messageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO_GOOD.png")));
-			messageLabel.setText("Welcome back to TamoStudy!");
+			messageLabel.setText(language.welcomeBackText);
 		}
 		
 		createButtonPanel = new JPanel();
-		createNewProfileButton = new JButton("Create New Profile");
-		importProfileButton = new JButton("Import Profile from Beta 4.2");
+		createNewProfileButton = new JButton(language.createNewProfileText);
+		importProfileButton = new JButton(language.importProfileText);
 		
 		selectProfilePanel = new JPanel();
-		selectProfileLabel = new JLabel("Choose Profile");
+		selectProfileLabel = new JLabel(language.chooseProfileText);
 		profilesBox = new JComboBox<>();
 		if(foundProfiles) {
 			for(Profile profile : profiles) {
 				profilesBox.addItem(profile.getName());
 			}
 		}
-		assignDefaultProfile = new JCheckBox("Load Profile Automatically");
+		assignDefaultProfile = new JCheckBox(language.loadProfileAutomaticallyText);
 		
 		profileOptionsButtonPanel = new JPanel();
-		loadProfileButton = new JButton("Load Profile");
-		deleteProfileButton = new JButton("Delete Profile");
+		loadProfileButton = new JButton(language.loadProfileText);
+		deleteProfileButton = new JButton(language.deleteProfileText);
 		
 		initializeComponentVisuals();
 	}
@@ -254,7 +256,7 @@ public class ProfileSelectionPanel extends JPanel {
 		               
 	               } catch (Exception e1) {
 	            	   Debug.error("ProfileSelectionPanel.importProfileButton.actionPerformed", "Selected file failed index access check");
-	            	   setMessageLabelError("Invalid Beta v4.2 Profile");
+	            	   setMessageLabelError(language.invalidProfileFileText);
 	            	   e1.printStackTrace();
 	               }
 	               
@@ -281,8 +283,8 @@ public class ProfileSelectionPanel extends JPanel {
 				Profile profile = profiles.get(profilesBox.getSelectedIndex());
 				
 				int result = JOptionPane.showConfirmDialog(getRootPane(),
-						"Confirm deletion of profile " + profile.getName() + ".",
-						"Are you sure?",
+						language.confirmDeleteProfileText + " " + profile.getName() + ".",
+						language.areYouSureText,
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,
 						new ImageIcon(getClass().getClassLoader().getResource("INFO.png"))
@@ -381,42 +383,54 @@ public class ProfileSelectionPanel extends JPanel {
 	}
 	
 	private void initializeCreateComponents() {
-		createProfileLabel = new JLabel("Create TamoStudy Profile");
+		createProfileLabel = new JLabel(language.createProfileText);
 		
 		createProfilePanel = new JPanel();
 		
 		enterUsernamePanel = new JPanel();
-		enterUsernameLabel = new JLabel("Username");
+		enterUsernameLabel = new JLabel(language.usernameText);
 		enterUsernameTextField = new JTextField(10);
 		
 		enterTamoNamePanel = new JPanel();
-		enterTamoNameLabel = new JLabel("Tamo Name");
+		enterTamoNameLabel = new JLabel(language.tamoNameText);
 		enterTamoNameTextField = new JTextField(10);
 		
 		languagePanel = new JPanel();
-		languageLabel = new JLabel("Language");
+		languageLabel = new JLabel(language.languageText);
 		languageBox = new JComboBox<>();
-		languageBox.addItem("English");
-		languageBox.addItem("Spanish");
+		languageBox.addItem(language.englishText);
+		languageBox.addItem(language.spanishText);
+		languageBox.addItem(language.hindiText);
+		languageBox.addItem(language.portugueseText);
+		languageBox.addItem(language.japaneseText);
+		languageBox.addItem(language.germanText);
+		languageBox.addItem(language.frenchText);
+		languageBox.addItem(language.turkishText);
+		languageBox.addItem(language.mandarinChineseText);
+		languageBox.addItem(language.dutchText);
+		languageBox.addItem(language.koreanText);
+		languageBox.addItem(language.russianText);
+		languageBox.addItem(language.hungarianText);
+		languageBox.addItem(language.romanianText);
 		
 		difficultyPanel = new JPanel();
-		difficultyLabel = new JLabel("Difficulty");
+		difficultyLabel = new JLabel(language.difficultyText);
 		difficultyBox = new JComboBox<>();
-		difficultyBox.addItem("Peaceful");
-		difficultyBox.addItem("Challenging");
-		difficultyBox.addItem("Iron man");
+		difficultyBox.addItem(language.peacefulText);
+		difficultyBox.addItem(language.challengingText);
+		difficultyBox.addItem(language.ironManText);
 		
 		focusModePanel = new JPanel();
-		focusModeLabel = new JLabel("Focus Mode");
+		focusModeLabel = new JLabel(language.focusModeText);
 		focusModeBox = new JComboBox<>();
-		focusModeBox.addItem("Pomodoro");
-		focusModeBox.addItem("Custom Countdown");
-		focusModeBox.addItem("5-Min Interval Countdown");
-		focusModeBox.addItem("Stopwatch");
+		focusModeBox.addItem(language.pomodoroText);
+		focusModeBox.addItem(language.customCountdownText);
+		focusModeBox.addItem(language.fiveMinIntervalCountdownText);
+		focusModeBox.addItem(language.stopwatchText);
 		
 		createProfileButtonPanel = new JPanel();
-		confirmCreateProfileButton = new JButton("Create");
-		cancelCreateProfileButton = new JButton("Cancel");
+		confirmCreateProfileButton = new JButton(language.createText);
+		cancelCreateProfileButton = new JButton(language.cancelText);
 		
 		initializeCreateComponentVisuals();
 	}
@@ -431,7 +445,7 @@ public class ProfileSelectionPanel extends JPanel {
 				
 				if(enterUsernameTextField.getText().trim().isEmpty()
 						|| enterTamoNameTextField.getText().trim().isEmpty()) {
-					setCreationMessage("Must enter a valid name!");
+					setCreationMessage(language.mustEnterValidNameText);
 				} else {
 					validForm = true;
 				}

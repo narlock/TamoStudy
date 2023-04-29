@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -23,6 +24,7 @@ import javax.swing.plaf.ColorUIResource;
 import components.panel.ProfileSelectionPanel;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
+import model.language.Language;
 import resources.CheckForUpdates;
 import resources.Constants;
 import resources.Debug;
@@ -42,6 +44,7 @@ public class WelcomeGUI extends JFrame {
 	private GlobalSettingsJsonManager globalSettingsJsonManager;
 	private GlobalSettings globalSettings;
 	private Theme theme;
+	private Language language;
 	
 	/*
 	 * ##################################
@@ -51,7 +54,12 @@ public class WelcomeGUI extends JFrame {
 	 * ##################################
 	 */
 	private JPanel mainPanel;
+	
+	private JPanel messageSettingsPanel;
+	private JButton websiteButton;
 	private JButton messageButton;
+	private JButton settingsButton;
+	
 	private JLabel tamoStudyLogoImageLabel;
 	private JPanel buttonPanel;
 	private JButton localStudyButton, onlineStudyButton;
@@ -69,20 +77,25 @@ public class WelcomeGUI extends JFrame {
 		globalSettingsJsonManager = new GlobalSettingsJsonManager();
 		globalSettings = globalSettingsJsonManager.readJson();
 		theme = Theme.DARK;
+		language = globalSettings.getLanguage();
 	}
 	
 	private void initializeComponents() {
 		// Initialize components, visuals
 		mainPanel = new JPanel();
 		
+		messageSettingsPanel = new JPanel();
+		websiteButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("TITLE_ICON.png")));
 		messageButton = new JButton("\t");
+		settingsButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("SETTINGS.png")));
+		
 		tamoStudyLogoImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TITLE_SMALL.gif")));
 		
-		authorLabel = new JLabel("Release " + Constants.version + " • Created by narlock • tamostudy.com");
+		authorLabel = new JLabel("Release " + Constants.version + " • " + language.createdByText + " narlock • tamostudy.com");
 		
 		buttonPanel = new JPanel();
-		localStudyButton = new JButton("Local Study");
-		onlineStudyButton = new JButton("Online Study");
+		localStudyButton = new JButton(language.localStudyText);
+		onlineStudyButton = new JButton(language.onlineStudyText);
 
 		initializeComponentVisual();
 		
@@ -90,14 +103,18 @@ public class WelcomeGUI extends JFrame {
 		GridBagConstraints gbch = new GridBagConstraints();
 		gbch.gridheight = GridBagConstraints.REMAINDER;
 		
+		GridBagConstraints gbcv = new GridBagConstraints();
+		gbcv.gridwidth = GridBagConstraints.REMAINDER;
+		
+		messageSettingsPanel.add(websiteButton, BorderLayout.WEST);
+		messageSettingsPanel.add(messageButton, BorderLayout.CENTER);
+		messageSettingsPanel.add(settingsButton, BorderLayout.EAST);
+		
 		buttonPanel.add(localStudyButton, gbch);
 		buttonPanel.add(Box.createHorizontalStrut(20), gbch);
 		buttonPanel.add(onlineStudyButton, gbch);
 		
-		GridBagConstraints gbcv = new GridBagConstraints();
-		gbcv.gridwidth = GridBagConstraints.REMAINDER;
-		
-		mainPanel.add(messageButton, gbcv);
+		this.add(messageSettingsPanel, BorderLayout.NORTH);
 		mainPanel.add(tamoStudyLogoImageLabel, gbcv);
 		mainPanel.add(Box.createVerticalStrut(20), gbcv);
 		mainPanel.add(buttonPanel, gbcv);
@@ -108,6 +125,25 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	private void initializeComponentActions() {
+		websiteButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try { Desktop.getDesktop().browse(new URL("https://tamostudy.com/").toURI()); } 
+				catch (Exception e1) { e1.printStackTrace(); }
+			}
+			
+		});
+		
+		settingsButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+			
+		});
+		
 		localStudyButton.addActionListener(new ActionListener() {
 
 			@SuppressWarnings("static-access")
@@ -121,7 +157,7 @@ public class WelcomeGUI extends JFrame {
 				Object[] options = {};
 				JOptionPane.showOptionDialog(getRootPane(),
 						new ProfileSelectionPanel(getThis()),
-						"Local Study",
+						language.localStudyText,
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
 			}
 			
@@ -145,7 +181,7 @@ public class WelcomeGUI extends JFrame {
 			String updateCheck = checkForUpdates.checkForUpdates();
 			if(!(updateCheck == null)) {
 				messageButton.setForeground(Theme.SUCCESS);
-				String message = "TamoStudy " + updateCheck + " is now available. Click here to download!";
+				String message = "TamoStudy " + updateCheck + " " + language.updateAvailableDownloadText;
 				messageButton.setText(message.replaceAll("\"", ""));
 				
 				messageButton.addActionListener(new ActionListener() {
@@ -163,7 +199,7 @@ public class WelcomeGUI extends JFrame {
 			e.printStackTrace();
 			
 			messageButton.setForeground(Theme.DANGER);
-			messageButton.setText("Unable to search for updates. Not connected to the Internet.");
+			messageButton.setText(language.unableSearchUpdatesText);
 		}
 	}
 	
@@ -178,11 +214,15 @@ public class WelcomeGUI extends JFrame {
 		// Panels
 		mainPanel.setLayout(new GridBagLayout());
 		initializePanelVisual(mainPanel);
+		messageSettingsPanel.setLayout(new BorderLayout());
+		initializePanelVisual(messageSettingsPanel);
 		buttonPanel.setLayout(new GridBagLayout());
 		initializePanelVisual(buttonPanel);
 		
 		// messageButton
+		addMenuButtonVisual(websiteButton);
 		Theme.labelButton(messageButton);
+		addMenuButtonVisual(settingsButton);
 		
 		// authorLabel
 		authorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -209,4 +249,26 @@ public class WelcomeGUI extends JFrame {
 		return this;
 	}
 	
+	public void addMenuButtonVisual(JButton button) {
+		button.setForeground(theme.textColor);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		theme.buttonLayerEnterEffect(button);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ACCESSOR METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	
+	public GlobalSettingsJsonManager getGlobalSettingsJsonManager() {
+		return globalSettingsJsonManager;
+	}
+	
+	public GlobalSettings getGlobalSettings() {
+		return globalSettings;
+	}
 }
