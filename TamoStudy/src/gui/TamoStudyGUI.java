@@ -323,11 +323,11 @@ public class TamoStudyGUI extends JFrame {
 		new TamoStudyGUI(profiles, profileIndex);
 	}
 	
-	public void resizeGui(int index) {
+	public void resizeGui() {
 		this.setVisible(false);
 		this.dispose();
 		
-		new TamoStudyGUI(profiles, profileIndex, index);
+		new TamoStudyGUI(profiles, profileIndex, 0);
 	}
 	
 	public void addMenuButtonVisual(JButton button) {
