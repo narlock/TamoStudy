@@ -1,5 +1,13 @@
 package components.panel;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -9,6 +17,7 @@ import gui.WelcomeGUI;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
 import model.language.Language;
+import resources.Theme;
 
 public class ChangeGlobalSettingsPanel extends JPanel {
 
@@ -25,6 +34,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	private GlobalSettingsJsonManager globalSettingsJsonManager;
 	private GlobalSettings globalSettings;
 	private Language language;
+	private Theme theme;
 	
 	/*
 	 * ##################################
@@ -36,22 +46,24 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	private JLabel messageLabel;
 	
 	private JPanel settingsPanel;
+	private JPanel languagePanel;
 	private JLabel languageLabel;
 	private JComboBox<String> languageBox;
+	private JPanel resetDefaultLocalProfilePanel;
 	private JLabel resetDefaultLocalProfileLabel;
 	private JButton resetDefaultLocalProfileButton;
+	private JPanel receiveUpdateNotificationsPanel;
 	private JLabel receiveUpdateNotificationsLabel;
 	private JButton receiveUpdateNotificationsButton;
 	
-	private JPanel confirmCancelButtonPanel;
-	private JButton confirmButton;
-	private JButton cancelButton;
+	private JButton saveChangesButton;
 	
 	public ChangeGlobalSettingsPanel(WelcomeGUI welcomeGUI) {
 		this.welcomeGUI = welcomeGUI;
 		
 		initializeAttributes();
 		initializeComponents();
+		initializeComponentVisuals();
 		initializeComponentActions();
 		addComponentsToPanel();
 	}
@@ -60,13 +72,15 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		globalSettingsJsonManager = welcomeGUI.getGlobalSettingsJsonManager();
 		globalSettings = welcomeGUI.getGlobalSettings();
 		language = globalSettings.getLanguage();
+		theme = Theme.DARK;
 	}
 	
 	private void initializeComponents() {
 		messageLabel = new JLabel("Global Settings");
 		
-		settingsPanel = new JPanel();
+		settingsPanel = new JPanel(new GridBagLayout());
 		
+		languagePanel = new JPanel(new GridBagLayout());
 		languageLabel = new JLabel("Language");
 		languageBox = new JComboBox<>();
 		languageBox.addItem(language.englishText);
@@ -84,22 +98,125 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		languageBox.addItem(language.hungarianText);
 		languageBox.addItem(language.romanianText);
 		
+		resetDefaultLocalProfilePanel = new JPanel(new GridBagLayout());
 		resetDefaultLocalProfileLabel = new JLabel("Reset Default Profile");
 		resetDefaultLocalProfileButton = new JButton("Reset");
 		
+		receiveUpdateNotificationsPanel = new JPanel(new GridBagLayout());
 		receiveUpdateNotificationsLabel = new JLabel("Update Notifications");
-		receiveUpdateNotificationsButton = new JButton("ON");
 		
-		confirmCancelButtonPanel = new JPanel();
-		confirmButton = new JButton("Confirm");
-		cancelButton = new JButton("Cancel");
+		receiveUpdateNotificationsButton = new JButton();
+		if(globalSettings.getReceiveUpdateNotifications()) {
+			receiveUpdateNotificationsButton.setText("ON");
+			Theme.primaryVisualButton(receiveUpdateNotificationsButton);
+		} else {
+			receiveUpdateNotificationsButton.setText("OFF");
+			Theme.secondaryVisualButton(receiveUpdateNotificationsButton);;
+		}
+		
+		
+		saveChangesButton = new JButton("Save");
+	}
+	
+	private void initializeComponentVisuals() {
+		this.setPreferredSize(new Dimension(500, 400));
+		this.setLayout(new GridBagLayout());
+		this.setBackground(theme.mainColor);
+		
+		messageLabel.setFont(theme.fontBoldReg);
+		messageLabel.setForeground(Color.WHITE);
+		
+		settingsPanel.setBackground(theme.subColor);
+		settingsPanel.setBorder(Theme.SUB_BORDER);
+		
+		languagePanel.setBackground(theme.subColor);
+		languageLabel.setFont(theme.fontBoldRegSmall);
+		languageLabel.setForeground(Color.WHITE);
+		
+		resetDefaultLocalProfilePanel.setBackground(theme.subColor);
+		resetDefaultLocalProfileLabel.setFont(theme.fontBoldRegSmall);
+		resetDefaultLocalProfileLabel.setForeground(Color.WHITE);
+		Theme.primaryVisualButton(resetDefaultLocalProfileButton);
+		
+		receiveUpdateNotificationsPanel.setBackground(theme.subColor);
+		receiveUpdateNotificationsLabel.setFont(theme.fontBoldRegSmall);
+		receiveUpdateNotificationsLabel.setForeground(Color.WHITE);
+		
+		Theme.successVisualButton(saveChangesButton);
 	}
 	
 	private void initializeComponentActions() {
+		resetDefaultLocalProfileButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				messageLabel.setText("Default Profile Reset.");
+				messageLabel.setForeground(Theme.PRIMARY);
+				
+				globalSettings.setDefaultLocalProfile(-1);
+			}
+		});
 		
+		receiveUpdateNotificationsButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(globalSettings.getReceiveUpdateNotifications()) {
+					globalSettings.setReceiveUpdateNotifications(false);
+					receiveUpdateNotificationsButton.setText("OFF");
+					Theme.secondaryVisualButton(receiveUpdateNotificationsButton);
+				} else {
+					globalSettings.setReceiveUpdateNotifications(true);
+					receiveUpdateNotificationsButton.setText("ON");
+					Theme.primaryVisualButton(receiveUpdateNotificationsButton);
+				}
+			}
+		});
+		
+		saveChangesButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				messageLabel.setText("Settings Saved!");
+				messageLabel.setForeground(Theme.SUCCESS);
+			}
+			
+		});
 	}
 	
 	private void addComponentsToPanel() {
+		GridBagConstraints gbch = new GridBagConstraints();
+		gbch.gridheight = GridBagConstraints.REMAINDER;
 		
+		GridBagConstraints gbcv = new GridBagConstraints();
+		gbcv.gridwidth = GridBagConstraints.REMAINDER;
+		
+		GridBagConstraints innergbcv = new GridBagConstraints();
+		innergbcv.gridwidth = GridBagConstraints.REMAINDER;
+		innergbcv.anchor = GridBagConstraints.WEST;
+		
+		languagePanel.add(languageLabel);
+		languagePanel.add(languageBox);
+		
+		resetDefaultLocalProfilePanel.add(resetDefaultLocalProfileLabel);
+		resetDefaultLocalProfilePanel.add(Box.createHorizontalStrut(20));
+		resetDefaultLocalProfilePanel.add(resetDefaultLocalProfileButton);
+		
+		receiveUpdateNotificationsPanel.add(receiveUpdateNotificationsLabel);
+		receiveUpdateNotificationsPanel.add(Box.createHorizontalStrut(20));
+		receiveUpdateNotificationsPanel.add(receiveUpdateNotificationsButton);
+		
+		// Settings Panel
+		settingsPanel.add(languagePanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(20), innergbcv);
+		settingsPanel.add(resetDefaultLocalProfilePanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(20), innergbcv);
+		settingsPanel.add(receiveUpdateNotificationsPanel, innergbcv);
+		
+		this.add(messageLabel, gbcv);
+		this.add(Box.createVerticalStrut(20), gbcv);
+		this.add(settingsPanel, gbcv);
+		this.add(Box.createVerticalStrut(20), gbcv);
+		this.add(saveChangesButton, gbcv);
 	}
 }

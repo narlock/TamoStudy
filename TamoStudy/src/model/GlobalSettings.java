@@ -71,6 +71,11 @@ public class GlobalSettings {
 	public void setReceiveUpdateNotifications(Boolean receiveUpdateNotifications) {
 		this.receiveUpdateNotifications = receiveUpdateNotifications;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "GlobalSettings [language=" + language + ", defaultLocalProfile=" + defaultLocalProfile
+				+ ", receiveUpdateNotifications=" + receiveUpdateNotifications + "]";
+	}
+
 }

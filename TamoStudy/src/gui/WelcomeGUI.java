@@ -138,12 +138,19 @@ public class WelcomeGUI extends JFrame {
 		
 		settingsButton.addActionListener(new ActionListener() {
 
+			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getThis().remove(mainPanel);
-				getThis().add(new ChangeGlobalSettingsPanel(getThis()));
-				getThis().repaint();
-				getThis().revalidate();
+				UIManager UI = new UIManager();
+				UI.put("OptionPane.background", new ColorUIResource(theme.mainColor));
+				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
+				UI.put("OptionPane.messageForeground", new ColorUIResource(Color.WHITE));
+				 
+				Object[] options = {};
+				JOptionPane.showOptionDialog(getRootPane(),
+						new ChangeGlobalSettingsPanel(getThis()),
+						language.globalSettingsText,
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
 			}
 			
 		});
@@ -258,6 +265,14 @@ public class WelcomeGUI extends JFrame {
 		button.setBorderPainted(false);
 		button.setFocusPainted(false);
 		theme.buttonLayerEnterEffect(button);
+	}
+	
+	/**
+	 * resetToMainMenu
+	 * @brief Revalidates main panel on updates
+	 */
+	public void resetToMainMenu() {
+		// TODO
 	}
 	
 	/*
