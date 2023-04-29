@@ -107,6 +107,13 @@ public abstract class Language {
 		}
 	}
 	
+	public static int getIndexFromLanguage(Language language) {
+		if(language instanceof EnglishLanguage) {
+			return 0;
+		}
+		return 0;
+	}
+	
 	public static Language getLanguage(String languageString) {
 		Language language;
 		

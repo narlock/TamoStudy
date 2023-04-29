@@ -71,12 +71,15 @@ public class WelcomeGUI extends JFrame {
 		initializeComponents();
 		initializeComponentActions();
 		initializeFrame();
-		checkForTamoStudyUpdates();
+		
+		if(globalSettings.getReceiveUpdateNotifications())
+			checkForTamoStudyUpdates();
 	}
 	
 	private void initializeAttributes() {
 		globalSettingsJsonManager = new GlobalSettingsJsonManager();
 		globalSettings = globalSettingsJsonManager.readJson();
+		Debug.info("WelcomeGUI.initializeAttributes", "Loaded Global Settings: " + globalSettings.toString());
 		theme = Theme.DARK;
 		language = globalSettings.getLanguage();
 	}

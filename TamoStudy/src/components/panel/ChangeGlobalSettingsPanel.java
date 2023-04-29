@@ -17,6 +17,7 @@ import gui.WelcomeGUI;
 import io.GlobalSettingsJsonManager;
 import model.GlobalSettings;
 import model.language.Language;
+import resources.Debug;
 import resources.Theme;
 
 public class ChangeGlobalSettingsPanel extends JPanel {
@@ -71,6 +72,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	private void initializeAttributes() {
 		globalSettingsJsonManager = welcomeGUI.getGlobalSettingsJsonManager();
 		globalSettings = welcomeGUI.getGlobalSettings();
+		Debug.info("ChangeGlobalSettingsPanel.initializeAttributes", "globalSettings=" + globalSettings.toString());
 		language = globalSettings.getLanguage();
 		theme = Theme.DARK;
 	}
@@ -146,6 +148,16 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	}
 	
 	private void initializeComponentActions() {
+		languageBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Language selectedLanguage = Language.getLanguageFromBox(languageBox.getSelectedIndex());
+				Debug.info("ChangeGlobalSettingsPanel.languageBox.actionPerformed", "Changing language to " + selectedLanguage.toString());
+				globalSettings.setLanguage(selectedLanguage);
+			}
+		});
+		
 		resetDefaultLocalProfileButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -179,6 +191,9 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				messageLabel.setText("Settings Saved!");
 				messageLabel.setForeground(Theme.SUCCESS);
+				
+				globalSettingsJsonManager.writeJsonToFile(globalSettings);
+				Debug.info("ChangeGlobalSettingsPanel.saveChangesButton.actionPerformed", "Saved new globalSettings=" + globalSettings);
 			}
 			
 		});
