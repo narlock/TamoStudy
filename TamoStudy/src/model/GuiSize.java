@@ -41,11 +41,13 @@ public class GuiSize {
 	public BubbleBorder settingsPanelBorder;
 	public int settingsHorizontalDifference;
 	public int settingsVerticalDifference;
+	public ImageIcon minusImageIcon;
+	public ImageIcon addImageIcon;
 	
 	public GuiSize(int size) {
 		switch(size) {
 		case 0:
-			// Medium-Small
+			// Small
 			index = 0;
 			
 			frameSize = GUI_FRAME_SIZE_SMALL;
@@ -62,27 +64,11 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(0);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_SMALL;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_SMALL;
-			break;
-		case 1:
-			// Medium
-			index = 1;
-			
-			frameSize = GUI_FRAME_SIZE_MEDIUM;
-			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
-			topMenuFont = TOP_MENU_FONT_MEDIUM;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_MEDIUM;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_MEDIUM;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_MEDIUM;
-			settingsPanelBorder = Theme.subBorder(1);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_SMALL;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_SMALL;
 			break;
 		case 2:
+			// Large
 			index = 2;
 			
 			frameSize = GUI_FRAME_SIZE_LARGE;
@@ -99,7 +85,10 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(2);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_LARGE;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_LARGE;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_LARGE;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_LARGE;
 			break;
+		case 1:
 		default:
 			// Medium
 			index = 1;
@@ -118,6 +107,8 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(1);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_MEDIUM;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_MEDIUM;
 			break;
 		}
 	}
@@ -125,7 +116,7 @@ public class GuiSize {
 	public void changeSize(int size) {
 		switch(size) {
 		case 0:
-			// Medium-Small
+			// Small
 			index = 0;
 			
 			frameSize = GUI_FRAME_SIZE_SMALL;
@@ -142,27 +133,11 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(0);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_SMALL;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_SMALL;
-			break;
-		case 1:
-			// Medium
-			index = 1;
-			
-			frameSize = GUI_FRAME_SIZE_MEDIUM;
-			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
-			topMenuFont = TOP_MENU_FONT_MEDIUM;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_MEDIUM;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_MEDIUM;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_MEDIUM;
-			settingsPanelBorder = Theme.subBorder(1);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_SMALL;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_SMALL;
 			break;
 		case 2:
+			// Large
 			index = 2;
 			
 			frameSize = GUI_FRAME_SIZE_LARGE;
@@ -179,7 +154,10 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(2);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_LARGE;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_LARGE;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_LARGE;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_LARGE;
 			break;
+		case 1:
 		default:
 			// Medium
 			index = 1;
@@ -198,6 +176,8 @@ public class GuiSize {
 			settingsPanelBorder = Theme.subBorder(1);
 			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
 			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
+			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_MEDIUM;
+			addImageIcon = ADD_BUTTON_IMAGE_ICON_MEDIUM;
 			break;
 		}
 	}

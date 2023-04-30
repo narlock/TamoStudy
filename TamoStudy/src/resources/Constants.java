@@ -65,6 +65,8 @@ public class Constants {
 	public static final Font SETTINGS_CHOICE_FONT_BOLD_SMALL = new Font("Arial", Font.BOLD, 8);
 	public static final int SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_SMALL = 13;
 	public static final int SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_SMALL = 3;
+	public static final ImageIcon MINUS_BUTTON_IMAGE_ICON_SMALL = new ImageIcon(Constants.class.getClassLoader().getResource("MINUS_SMALL.png"));
+	public static final ImageIcon ADD_BUTTON_IMAGE_ICON_SMALL = new ImageIcon(Constants.class.getClassLoader().getResource("ADD_SMALL.png"));
 	
 	// Medium (1, Default) Component Sizes
 	public static final Font SETTINGS_MESSAGE_LABEL_FONT_MEDIUM = new Font("Arial", Font.BOLD, 24);
@@ -73,6 +75,8 @@ public class Constants {
 	public static final Font SETTINGS_CHOICE_FONT_BOLD_MEDIUM = new Font("Arial", Font.BOLD, 12);
 	public static final int SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM = 20;
 	public static final int SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM = 10;
+	public static final ImageIcon MINUS_BUTTON_IMAGE_ICON_MEDIUM = new ImageIcon(Constants.class.getClassLoader().getResource("MINUS_MEDIUM.png"));
+	public static final ImageIcon ADD_BUTTON_IMAGE_ICON_MEDIUM = new ImageIcon(Constants.class.getClassLoader().getResource("ADD_MEDIUM.png"));
 	
 	// Medium-Large (2) Component Sizes (Medium * 1.5)
 	public static final Font SETTINGS_MESSAGE_LABEL_FONT_LARGE = new Font("Arial", Font.BOLD, 36);
@@ -81,5 +85,7 @@ public class Constants {
 	public static final Font SETTINGS_CHOICE_FONT_BOLD_LARGE = new Font("Arial", Font.BOLD, 18);
 	public static final int SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_LARGE = 30;
 	public static final int SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_LARGE = 15;
+	public static final ImageIcon MINUS_BUTTON_IMAGE_ICON_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("MINUS_LARGE.png"));
+	public static final ImageIcon ADD_BUTTON_IMAGE_ICON_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("ADD_LARGE.png"));
 	
 }

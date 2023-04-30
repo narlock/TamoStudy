@@ -89,6 +89,7 @@ public class SettingsState extends State {
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
 		theme = Theme.DARK;
+		Debug.info("SettingsState.initializeAttributes", "Loaded settings=" + settings);
 	}
 	
 	private void initializeComponents() {
@@ -141,20 +142,20 @@ public class SettingsState extends State {
 		
 		guiSizePanel = new JPanel(new GridBagLayout());
 		guiSizeLabel = new JLabel(language.guiSizeText);
-		decreaseGuiSizeButton = new JButton("-");
-		increaseGuiSizeButton = new JButton("+");
+		decreaseGuiSizeButton = new JButton(guiSize.minusImageIcon);
+		increaseGuiSizeButton = new JButton(guiSize.addImageIcon);
 		
 		receiveNotificationsPanel = new JPanel(new GridBagLayout());
 		receiveNotificationsLabel = new JLabel(language.notificationsText);
-		receiveNotificationsButton = new JButton("ON");
+		receiveNotificationsButton = new JButton();
 		
 		enableDiscordRPCPanel = new JPanel(new GridBagLayout());
 		enableDiscordRPCLabel = new JLabel(language.discordRPCText);
-		enableDiscordRPCButton = new JButton("ON");
+		enableDiscordRPCButton = new JButton();
 		
 		showProgramCloseMessagePanel = new JPanel(new GridBagLayout());
 		showProgramCloseMessageLabel = new JLabel(language.exitMessageText);
-		showProgramCloseMessageButton = new JButton("ON");
+		showProgramCloseMessageButton = new JButton();
 		
 		saveChangesButton = new JButton(language.saveText);
 	}
@@ -189,13 +190,14 @@ public class SettingsState extends State {
 		timerAlarmPanel.setBackground(theme.mainColor);
 		timerAlarmLabel.setFont(guiSize.settingLabelFont);
 		timerAlarmLabel.setForeground(theme.textColor);
-		timerAlarmBox.setSelectedIndex((int) settings.getFocusMode());
+		timerAlarmBox.setSelectedIndex((int) settings.getTimerAlarm());
 		timerAlarmBox.setFont(guiSize.settingsChoiceFont);
 		
 		guiSizePanel.setBackground(theme.mainColor);
 		guiSizeLabel.setFont(guiSize.settingLabelFont);
 		guiSizeLabel.setForeground(theme.textColor);
-		// TODO Custom Buttons?
+		addButtonVisual(decreaseGuiSizeButton);
+		addButtonVisual(increaseGuiSizeButton);
 		
 		receiveNotificationsPanel.setBackground(theme.mainColor);
 		receiveNotificationsLabel.setFont(guiSize.settingLabelFont);
@@ -338,6 +340,7 @@ public class SettingsState extends State {
 				
 				// Overwrite JSON file
 				profileJsonManager.writeJsonToFile(tsGui.getProfiles());
+				Debug.info("SettingsState.saveChangesButton.actionPerformed", "Wrote profiles to file=" + tsGui.getProfiles());
 				
 				// Change message label
 				messageLabel.setText(language.settingsSavedText);
@@ -421,4 +424,9 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	public void addButtonVisual(JButton button) {
+		button.setOpaque(false);
+		button.setFocusPainted(false);
+		button.setBorderPainted(false);
+	}
 }

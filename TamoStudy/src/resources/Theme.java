@@ -26,6 +26,7 @@ public class Theme {
 	public Color textColor;
 	public Color layerTextColor;
 	public Color altTextColor;
+	public Color selectedTextColor;
 	
 	public final Font fontPlainReg = new Font("Arial", Font.PLAIN, 24);
 	public final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
@@ -47,6 +48,7 @@ public class Theme {
 		    textColor = Color.WHITE;
 		    layerTextColor = new Color(153,153,153);
 		    altTextColor = new Color(87, 87, 87);
+		    selectedTextColor = new Color(244, 140, 6);
 		    type = "Dark";
 		    break;
 		  case 1:
