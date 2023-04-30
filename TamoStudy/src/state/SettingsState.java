@@ -1,18 +1,23 @@
 package state;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.TamoStudyGUI;
+import model.GuiSize;
 import model.language.Language;
+import model.profile.ProfileSettings;
 import resources.Debug;
+import resources.Theme;
 
 public class SettingsState extends State {
 	
@@ -25,8 +30,10 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private ProfileSettings settings;
 	private Language language;
-	
+	private GuiSize guiSize;
+	private Theme theme;
 	
 	/*
 	 * ##################################
@@ -76,7 +83,10 @@ public class SettingsState extends State {
 	}
 	
 	private void initializeAttributes() {
+		settings = tsGui.getProfile().getSettings();
 		language = tsGui.getProfile().getSettings().getLanguage();
+		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
+		theme = Theme.DARK;
 	}
 	
 	private void initializeComponents() {
@@ -149,6 +159,78 @@ public class SettingsState extends State {
 	
 	private void initializeComponentVisuals() {
 		this.setLayout(new GridBagLayout());
+		
+		messageLabel.setFont(guiSize.messageLabelFont);
+		messageLabel.setForeground(theme.textColor);
+		
+		settingsPanel.setBackground(theme.mainColor);
+		settingsPanel.setBorder(guiSize.settingsPanelBorder);
+		
+		languagePanel.setBackground(theme.mainColor);
+		languageLabel.setFont(guiSize.settingLabelFont);
+		languageLabel.setForeground(theme.textColor);
+		languageBox.setSelectedIndex(Language.getIndexFromLanguage(language));
+		languageBox.setFont(guiSize.settingsChoiceFont);
+		
+		focusModePanel.setBackground(theme.mainColor);
+		focusModeLabel.setFont(guiSize.settingLabelFont);
+		focusModeLabel.setForeground(theme.textColor);
+		focusModeBox.setSelectedIndex((int) settings.getFocusMode());
+		focusModeBox.setFont(guiSize.settingsChoiceFont);
+		
+		difficultyPanel.setBackground(theme.mainColor);
+		difficultyLabel.setFont(guiSize.settingLabelFont);
+		difficultyLabel.setForeground(theme.textColor);
+		difficultyBox.setSelectedIndex((int) settings.getDifficulty());
+		difficultyBox.setFont(guiSize.settingsChoiceFont);
+		
+		timerAlarmPanel.setBackground(theme.mainColor);
+		timerAlarmLabel.setFont(guiSize.settingLabelFont);
+		timerAlarmLabel.setForeground(theme.textColor);
+		timerAlarmBox.setSelectedIndex((int) settings.getFocusMode());
+		timerAlarmBox.setFont(guiSize.settingsChoiceFont);
+		
+		guiSizePanel.setBackground(theme.mainColor);
+		guiSizeLabel.setFont(guiSize.settingLabelFont);
+		guiSizeLabel.setForeground(theme.textColor);
+		// Custom Buttons?
+//		Theme.primaryVisualButton(decreaseGuiSizeButton, guiSize.settingLabelFont);
+//		Theme.primaryVisualButton(increaseGuiSizeButton, guiSize.settingLabelFont);
+		
+		receiveNotificationsPanel.setBackground(theme.mainColor);
+		receiveNotificationsLabel.setFont(guiSize.settingLabelFont);
+		receiveNotificationsLabel.setForeground(theme.textColor);
+		if(settings.getReceiveNotifications()) {
+			receiveNotificationsButton.setText(language.onText);
+			Theme.primaryVisualButton(receiveNotificationsButton, guiSize.settingsChoiceBoldFont);
+		} else {
+			receiveNotificationsButton.setText(language.offText);
+			Theme.secondaryVisualButton(receiveNotificationsButton, guiSize.settingsChoiceBoldFont);
+		}
+		
+		enableDiscordRPCPanel.setBackground(theme.mainColor);
+		enableDiscordRPCLabel.setFont(guiSize.settingLabelFont);
+		enableDiscordRPCLabel.setForeground(theme.textColor);
+		if(settings.getEnableDiscordRPC()) {
+			enableDiscordRPCButton.setText(language.onText);
+			Theme.primaryVisualButton(enableDiscordRPCButton, guiSize.settingsChoiceBoldFont);
+		} else {
+			enableDiscordRPCButton.setText(language.offText);
+			Theme.secondaryVisualButton(enableDiscordRPCButton, guiSize.settingsChoiceBoldFont);
+		}
+		
+		showProgramCloseMessagePanel.setBackground(theme.mainColor);
+		showProgramCloseMessageLabel.setFont(guiSize.settingLabelFont);
+		showProgramCloseMessageLabel.setForeground(theme.textColor);
+		if(settings.getShowProgramCloseMessage()) {
+			showProgramCloseMessageButton.setText(language.onText);
+			Theme.primaryVisualButton(showProgramCloseMessageButton, guiSize.settingsChoiceBoldFont);
+		} else {
+			showProgramCloseMessageButton.setText(language.offText);
+			Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize.settingsChoiceBoldFont);
+		}
+		
+		Theme.successVisualButton(saveChangesButton, guiSize.settingLabelFont);
 	}
 
 	private void initializeComponentActions() {
@@ -206,30 +288,44 @@ public class SettingsState extends State {
 		timerAlarmPanel.add(timerAlarmLabel);
 		timerAlarmPanel.add(timerAlarmBox);
 		
-		guiSizePanel.add(guiSizeLabel);
-		guiSizePanel.add(decreaseGuiSizeButton);
-		guiSizePanel.add(increaseGuiSizeButton);
+		guiSizePanel.add(guiSizeLabel, gbch); 
+		guiSizePanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference), gbch);
+		guiSizePanel.add(decreaseGuiSizeButton, gbch);
+		guiSizePanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference), gbch);
+		guiSizePanel.add(increaseGuiSizeButton, gbch);
 		
-		receiveNotificationsPanel.add(receiveNotificationsLabel);
-		receiveNotificationsPanel.add(receiveNotificationsButton);
+		receiveNotificationsPanel.add(receiveNotificationsLabel, gbch);
+		receiveNotificationsPanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference), gbch);
+		receiveNotificationsPanel.add(receiveNotificationsButton, gbch);
 		
-		enableDiscordRPCPanel.add(enableDiscordRPCLabel);
-		enableDiscordRPCPanel.add(enableDiscordRPCButton);
+		enableDiscordRPCPanel.add(enableDiscordRPCLabel, gbch);
+		enableDiscordRPCPanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference), gbch);
+		enableDiscordRPCPanel.add(enableDiscordRPCButton, gbch);
 		
-		showProgramCloseMessagePanel.add(showProgramCloseMessageLabel);
-		showProgramCloseMessagePanel.add(showProgramCloseMessageButton);
+		showProgramCloseMessagePanel.add(showProgramCloseMessageLabel, gbch);
+		showProgramCloseMessagePanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference), gbch);
+		showProgramCloseMessagePanel.add(showProgramCloseMessageButton, gbch);
 		
 		settingsPanel.add(languagePanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(focusModePanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(difficultyPanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(timerAlarmPanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(guiSizePanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(receiveNotificationsPanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(enableDiscordRPCPanel, innergbcv);
+		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(showProgramCloseMessagePanel, innergbcv);
 		
 		this.add(messageLabel, gbcv);
+		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(settingsPanel, gbcv);
+		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(saveChangesButton, gbcv);
 	}
 	

@@ -142,6 +142,27 @@ public class Theme {
 	public static final Color DANGER_ALT = new Color(148, 35, 46);
 	public static final BubbleBorder DANGER_BORDER = new BubbleBorder(DANGER, 0, 15, 0);
 	
+	public static BubbleBorder subBorder(int index) {
+		switch(index) {
+		case -1:
+			return new BubbleBorder(Color.WHITE, 1, 15, 0);
+		case 0:
+			return new BubbleBorder(Color.WHITE, 2, 15, 0);
+		case 1:
+			return new BubbleBorder(Color.WHITE, 3, 15, 0);
+		case 2:
+			return new BubbleBorder(Color.WHITE, 4, 15, 0);
+		case 3:
+			return new BubbleBorder(Color.WHITE, 5, 15, 0);
+		default:
+			return new BubbleBorder(Color.WHITE, 3, 15, 0);
+		}
+	}
+	
+	/**
+	 * primaryVisualButton
+	 * @param button
+	 */
 	public static void primaryVisualButton(JButton button) {
 		button.setEnabled(true);
 		button.setOpaque(true);
@@ -149,6 +170,43 @@ public class Theme {
 		button.setBackground(PRIMARY);
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.PRIMARY_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.PRIMARY);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	/**
+	 * primaryVisualButton
+	 * @param button
+	 * @param font
+	 */
+	public static void primaryVisualButton(JButton button, Font font) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(PRIMARY_BORDER);
+		button.setBackground(PRIMARY);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
 		
 		button.addMouseListener(new MouseListener() {
 
@@ -183,6 +241,10 @@ public class Theme {
 		button.setFont(new Font("Arial", Font.BOLD, 18));
 	}
 	
+	/**
+	 * secondaryVisualButton
+	 * @param button
+	 */
 	public static void secondaryVisualButton(JButton button) {
 		button.setEnabled(true);
 		button.setOpaque(true);
@@ -215,6 +277,47 @@ public class Theme {
 		});
 	}
 	
+	/**
+	 * secondaryVisualButton
+	 * @param button
+	 * @param font
+	 */
+	public static void secondaryVisualButton(JButton button, Font font) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(SECONDARY_BORDER);
+		button.setBackground(SECONDARY);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.SECONDARY_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.SECONDARY);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	/**
+	 * successVisualButton
+	 * @param button
+	 */
 	public static void successVisualButton(JButton button) {
 		button.setEnabled(true);
 		button.setOpaque(true);
@@ -247,6 +350,47 @@ public class Theme {
 		});
 	}
 	
+	/**
+	 * successVisualButton
+	 * @param button
+	 * @param font
+	 */
+	public static void successVisualButton(JButton button, Font font) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(SUCCESS_BORDER);
+		button.setBackground(SUCCESS);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	/**
+	 * dangerVisualButton
+	 * @param button
+	 */
 	public static void dangerVisualButton(JButton button) {
 		button.setEnabled(true);
 		button.setOpaque(true);
@@ -254,6 +398,43 @@ public class Theme {
 		button.setBackground(DANGER);
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.DANGER_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.DANGER);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	/**
+	 * dangerVisualButton
+	 * @param button
+	 * @param font
+	 */
+	public static void dangerVisualButton(JButton button, Font font) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(DANGER_BORDER);
+		button.setBackground(DANGER);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
 		
 		button.addMouseListener(new MouseListener() {
 

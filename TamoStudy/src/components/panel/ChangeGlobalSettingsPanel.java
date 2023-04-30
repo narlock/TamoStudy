@@ -134,6 +134,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		languagePanel.setBackground(theme.subColor);
 		languageLabel.setFont(theme.fontBoldRegSmall);
 		languageLabel.setForeground(Color.WHITE);
+		languageBox.setSelectedIndex(Language.getIndexFromLanguage(language));
 		
 		resetDefaultLocalProfilePanel.setBackground(theme.subColor);
 		resetDefaultLocalProfileLabel.setFont(theme.fontBoldRegSmall);

@@ -5,6 +5,9 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 
+import components.border.BubbleBorder;
+import resources.Theme;
+
 import static resources.Constants.*;
 
 public class GuiSize {
@@ -17,20 +20,26 @@ public class GuiSize {
 	 * ##################################
 	 * ##################################
 	 */
-	private Dimension frameSize;
-	private Font sideButtonFont;
-	private Font topMenuFont;
-	private ImageIcon topMenuImageIcon;
-	private ImageIcon tamoTokenImageIcon;
+	public Dimension frameSize;
+	public Font sideButtonFont;
+	public Font topMenuFont;
+	public ImageIcon topMenuImageIcon;
+	public ImageIcon tamoTokenImageIcon;
 	
 	/*
 	 * ##################################
 	 * ##################################
-	 * GUI ATTRIBUTES
+	 * SETTINGS ATTRIBUTES
 	 * ##################################
 	 * ##################################
 	 */
-	
+	public Font messageLabelFont;
+	public Font settingLabelFont;
+	public Font settingsChoiceFont;
+	public Font settingsChoiceBoldFont;
+	public BubbleBorder settingsPanelBorder;
+	public int settingsHorizontalDifference;
+	public int settingsVerticalDifference;
 	
 	public GuiSize(int size) {
 		switch(size) {
@@ -43,6 +52,10 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_SMALL;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_SMALL;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_SMALL;
+			
+			// TODO
+			// TODO
+			settingsPanelBorder = Theme.subBorder(-1);
 			break;
 		case 0:
 			// Medium-Small
@@ -53,6 +66,10 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_MEDIUM_SMALL;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM_SMALL;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM_SMALL;
+			
+			// TODO
+			// TODO
+			settingsPanelBorder = Theme.subBorder(0);
 			break;
 		case 1:
 			// Medium
@@ -63,6 +80,14 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
+			
+			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
+			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
+			settingsChoiceFont = SETTINGS_CHOICE_FONT_MEDIUM;
+			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_MEDIUM;
+			settingsPanelBorder = Theme.subBorder(1);
+			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
+			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
 			break;
 		case 2:
 			index = 2;
@@ -72,6 +97,10 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_MEDIUM_LARGE;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM_LARGE;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM_LARGE;
+			
+			// TODO
+			// TODO
+			settingsPanelBorder = Theme.subBorder(2);
 			break;
 		case 3:
 			index = 3;
@@ -81,6 +110,10 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_LARGE;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_LARGE;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM_LARGE;
+			
+			// TODO
+			// TODO
+			settingsPanelBorder = Theme.subBorder(3);
 			break;
 		default:
 			// Medium
@@ -91,6 +124,10 @@ public class GuiSize {
 			topMenuFont = TOP_MENU_FONT_MEDIUM;
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
+			
+			// TODO
+			// TODO
+			settingsPanelBorder = Theme.subBorder(1);
 			break;
 		}
 	}
@@ -176,34 +213,6 @@ public class GuiSize {
 	
 	public static GuiSize largeGui() {
 		return new GuiSize(3);
-	}
-	
-	public int getIndex() {
-		return index;
-	}
-
-	public Dimension getFrameSize() {
-		return frameSize;
-	}
-
-	public Font getSideButtonFont() {
-		return sideButtonFont;
-	}
-
-	public Font getTopMenuFont() {
-		return topMenuFont;
-	}
-
-	public ImageIcon getTopMenuImageIcon() {
-		return topMenuImageIcon;
-	}
-
-	public void setTopMenuImageIcon(ImageIcon topMenuImageIcon) {
-		this.topMenuImageIcon = topMenuImageIcon;
-	}
-
-	public ImageIcon getTamoTokenImageIcon() {
-		return tamoTokenImageIcon;
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 
+import components.border.BubbleBorder;
+
 public class Constants {
 
 	/*
@@ -70,6 +72,10 @@ public class Constants {
 	// Medium (1, Default) Component Sizes
 	public static final Font SETTINGS_MESSAGE_LABEL_FONT_MEDIUM = new Font("Arial", Font.BOLD, 24);
 	public static final Font SETTINGS_SETTING_LABEL_FONT_MEDIUM = new Font("Arial", Font.BOLD, 16);
+	public static final Font SETTINGS_CHOICE_FONT_MEDIUM = new Font("Arial", Font.PLAIN, 12);
+	public static final Font SETTINGS_CHOICE_FONT_BOLD_MEDIUM = new Font("Arial", Font.BOLD, 12);
+	public static final int SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM = 20;
+	public static final int SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM = 10;
 	
 	// Medium-Small (0) Component Sizes (Medium / 1.5)
 	

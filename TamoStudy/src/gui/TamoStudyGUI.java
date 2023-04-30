@@ -146,11 +146,11 @@ public class TamoStudyGUI extends JFrame {
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(theme.mainColor);
 		addMenuButtonVisual(topMenuButton);
-		topMenuButton.setIcon(guiSize.getTopMenuImageIcon());
+		topMenuButton.setIcon(guiSize.topMenuImageIcon);
 			
-		topNameTokensLabel.setFont(guiSize.getTopMenuFont());
+		topNameTokensLabel.setFont(guiSize.topMenuFont);
 		topNameTokensLabel.setForeground(theme.textColor);
-		topNameTokensLabel.setIcon(guiSize.getTamoTokenImageIcon());
+		topNameTokensLabel.setIcon(guiSize.tamoTokenImageIcon);
 		topNameTokensLabel.setHorizontalTextPosition(SwingConstants.LEADING);
 		
 		sidePanel.setLayout(new GridBagLayout());
@@ -294,7 +294,7 @@ public class TamoStudyGUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // TODO Add Window Listener
 		this.getContentPane().setBackground(theme.mainColor);
 		this.setTitle("TamoStudy Release " + Constants.version);
-		this.setSize(guiSize.getFrameSize());
+		this.setSize(guiSize.frameSize);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
@@ -331,7 +331,7 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	public void addMenuButtonVisual(JButton button) {
-		button.setFont(guiSize.getTopMenuFont());
+		button.setFont(guiSize.topMenuFont);
 		button.setForeground(theme.textColor);
 		button.setBorderPainted(false);
 		button.setFocusPainted(false);
@@ -343,7 +343,7 @@ public class TamoStudyGUI extends JFrame {
 				? "━━━━━━━━━━━━━━━━━━ " : "━━━━━━━";
 		
 		JLabel label = new JLabel(DIVIDER);
-		label.setFont(guiSize.getTopMenuFont());
+		label.setFont(guiSize.topMenuFont);
 		label.setForeground(theme.altTextColor);
 		return label;
 	}
