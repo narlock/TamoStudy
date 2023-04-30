@@ -105,7 +105,7 @@ public class TamoStudyGUI extends JFrame {
 	 * @param profileIndex
 	 * @param state
 	 */
-	public TamoStudyGUI(List<Profile> profiles, int profileIndex, int change) {
+	public TamoStudyGUI(List<Profile> profiles, int profileIndex, int settingsOn) {
 		this.profiles = profiles;
 		this.profileIndex = profileIndex;
 		this.profile = profiles.get(profileIndex);
@@ -116,7 +116,7 @@ public class TamoStudyGUI extends JFrame {
 		profileJsonManager = new ProfileJsonManager();
 		theme = Theme.DARK;
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
-		this.state = new SettingsState(getThis(), change);
+		this.state = new SettingsState(getThis());
 		
 		initializeComponents();
 		initializeComponentVisuals();

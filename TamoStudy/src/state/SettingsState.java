@@ -75,15 +75,6 @@ public class SettingsState extends State {
 		
 	}
 	
-	public SettingsState(TamoStudyGUI tamoStudyGUI, int index) {
-		super(tamoStudyGUI);
-		initializeAttributes();
-		initializeComponents();
-		initializeComponentVisuals();
-		initializeComponentActions(index);
-		initializePanel();
-	}
-	
 	private void initializeAttributes() {
 		language = tsGui.getProfile().getSettings().getLanguage();
 	}
@@ -188,44 +179,6 @@ public class SettingsState extends State {
 					tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
 					tsGui.resizeGui();
 				}
-			}
-		});
-	}
-	
-	/**
-	 * initializeComponentActions
-	 * @param flag : indicating that we have recalled this GUI on a resize.
-	 */
-	private void initializeComponentActions(int flag) {
-		
-		decreaseGuiSizeButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int index = (int) tsGui.getProfile().getSettings().getGuiSize();
-				Debug.info("deceaseGuiButton.actionPerformed", "Index is=" + index);
-				if(index > -1) {
-					Debug.info("decreaseGuiButton.actionPerformed", "Decreasing gui size");
-					tsGui.getProfile().getSettings().setGuiSize(tsGui.getProfile().getSettings().getGuiSize() - 1);
-					tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
-					tsGui.resizeGui();
-				}
-				
-			}
-		});
-
-		increaseGuiSizeButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int index = (int) tsGui.getProfile().getSettings().getGuiSize();
-				Debug.info("increaseGuiSizeButton.actionPerformed", "Index is=" + index);
-				if(index < 3) {
-					Debug.info("increaseGuiSizeButton.actionPerformed", "Increasing gui size");
-					tsGui.getProfile().getSettings().setGuiSize(tsGui.getProfile().getSettings().getGuiSize() + 1);
-					tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
-					tsGui.resizeGui();
-				}	
 			}
 		});
 	}
