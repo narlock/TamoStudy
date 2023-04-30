@@ -186,6 +186,10 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	private void initializeComponentActions() {
+		
+		/*
+		 * Opens/Closes the Top Menu.
+		 */
 		topMenuButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -199,6 +203,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the Dash board State.
+		 */
 		dashboardStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -211,6 +218,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the focus state.
+		 */
 		focusStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -223,6 +233,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the shop state.
+		 */
 		shopStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -235,6 +248,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the inventory state.
+		 */
 		inventoryStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -247,6 +263,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the statistics state.
+		 */
 		statisticsStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -259,6 +278,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the achievements state.
+		 */
 		achievementsStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -271,6 +293,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the settings state.
+		 */
 		settingsStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -283,6 +308,9 @@ public class TamoStudyGUI extends JFrame {
 			
 		});
 		
+		/*
+		 * Changes to the about state.
+		 */
 		aboutStateButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -318,6 +346,13 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 * ##################################
 	 */
+	
+	/**
+	 * changeState
+	 * @brief Changes the current State to a new State.
+	 * and repaints the frame to coordinate the update.
+	 * @param newState
+	 */
 	public void changeState(State newState) {
 		this.remove(state);
 		state = newState;
@@ -326,6 +361,11 @@ public class TamoStudyGUI extends JFrame {
 		this.revalidate();
 	}
 	
+	/**
+	 * resetGui
+	 * @brief Resets the GUI, disposes, and
+	 * creates a new object.
+	 */
 	public void resetGui() {
 		this.setVisible(false);
 		this.dispose();
@@ -333,6 +373,12 @@ public class TamoStudyGUI extends JFrame {
 		new TamoStudyGUI(profiles, profileIndex);
 	}
 	
+	/**
+	 * resizeGui
+	 * @brief Helper method for resizing the GUI.
+	 * Disposes of the old GUI, then calls the
+	 * Settings Constructor to create the new GUI.
+	 */
 	public void resizeGui() {
 		this.setVisible(false);
 		this.dispose();
@@ -340,6 +386,11 @@ public class TamoStudyGUI extends JFrame {
 		new TamoStudyGUI(profiles, profileIndex, 0);
 	}
 	
+	/**
+	 * addMenuButtonVisual
+	 * @brief Sets Menu button visuals.
+	 * @param button
+	 */
 	public void addMenuButtonVisual(JButton button) {
 		button.setFont(guiSize.topMenuFont);
 		button.setForeground(theme.textColor);
