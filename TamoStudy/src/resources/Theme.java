@@ -38,6 +38,7 @@ public class Theme {
 	public Theme(int indicator) {
 		
 		//TODO need to add
+		// selectedTextColor 
 		// altTextColor to other themes
 		
 		switch (indicator) {

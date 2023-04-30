@@ -19,6 +19,11 @@ import model.profile.ProfileSettings;
 import resources.Debug;
 import resources.Theme;
 
+/**
+ * SettingsState
+ * @author narlock
+ * @brief The settings state of TamoStudy
+ */
 public class SettingsState extends State {
 	
 	private static final long serialVersionUID = -8979954063946210819L;
@@ -72,7 +77,10 @@ public class SettingsState extends State {
 	private JButton showProgramCloseMessageButton;
 	private JButton saveChangesButton;
 
-
+	/**
+	 * SettingsState
+	 * @param tamoStudyGUI
+	 */
 	public SettingsState(TamoStudyGUI tamoStudyGUI) {
 		super(tamoStudyGUI);
 		initializeAttributes();
@@ -236,6 +244,13 @@ public class SettingsState extends State {
 	}
 
 	private void initializeComponentActions() {
+		
+		/*
+		 * Upon click, the GUI's size will immediately be decreased.
+		 * It will only be decreased if there is a size that is lower
+		 * than the one it can be decreased to. The size will also
+		 * be updated in the profile's settings.
+		 */
 		decreaseGuiSizeButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -251,6 +266,12 @@ public class SettingsState extends State {
 			}
 		});
 		
+		/*
+		 * Upon click, the GUI's size will immediate be increased.
+		 * It will only be increased if there is a size that is higher
+		 * than the one it can be increased to. The size will also
+		 * be updated in the profile's settings.
+		 */
 		increaseGuiSizeButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -266,6 +287,11 @@ public class SettingsState extends State {
 			}
 		});
 		
+		/*
+		 * Upon click, the button visual will change in accordance to ON/OFF.
+		 * This will also set the value inside of the profile, but not
+		 * immediately change it.
+		 */
 		receiveNotificationsButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -280,6 +306,11 @@ public class SettingsState extends State {
 			}
 		});
 		
+		/*
+		 * Upon click, the button visual will change in accordance to ON/OFF.
+		 * This will also set the value inside of the profile, but not
+		 * immediately change it.
+		 */
 		enableDiscordRPCButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -294,6 +325,11 @@ public class SettingsState extends State {
 			}
 		});
 		
+		/*
+		 * Upon click, the button visual will change in accordance to ON/OFF.
+		 * This will also set the value inside of the profile, but not
+		 * immediately change it.
+		 */
 		showProgramCloseMessageButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -308,6 +344,12 @@ public class SettingsState extends State {
 			}
 		});
 		
+		/*
+		 * Upon click, all of the set values of the settings will be set
+		 * to the profile. After this, the settings will be wrote to the
+		 * JSON file. Finally, the message label will change to success
+		 * and display the saved message.
+		 */
 		saveChangesButton.addActionListener(new ActionListener() {
 			
 			@Override
