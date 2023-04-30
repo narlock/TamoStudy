@@ -202,10 +202,10 @@ public class SettingsState extends State {
 		receiveNotificationsLabel.setForeground(theme.textColor);
 		if(settings.getReceiveNotifications()) {
 			receiveNotificationsButton.setText(language.onText);
-			Theme.primaryVisualButton(receiveNotificationsButton, guiSize.settingsChoiceBoldFont);
+			Theme.primaryVisualButton(receiveNotificationsButton, guiSize);
 		} else {
 			receiveNotificationsButton.setText(language.offText);
-			Theme.secondaryVisualButton(receiveNotificationsButton, guiSize.settingsChoiceBoldFont);
+			Theme.secondaryVisualButton(receiveNotificationsButton, guiSize);
 		}
 		
 		enableDiscordRPCPanel.setBackground(theme.mainColor);
@@ -213,10 +213,10 @@ public class SettingsState extends State {
 		enableDiscordRPCLabel.setForeground(theme.textColor);
 		if(settings.getEnableDiscordRPC()) {
 			enableDiscordRPCButton.setText(language.onText);
-			Theme.primaryVisualButton(enableDiscordRPCButton, guiSize.settingsChoiceBoldFont);
+			Theme.primaryVisualButton(enableDiscordRPCButton, guiSize);
 		} else {
 			enableDiscordRPCButton.setText(language.offText);
-			Theme.secondaryVisualButton(enableDiscordRPCButton, guiSize.settingsChoiceBoldFont);
+			Theme.secondaryVisualButton(enableDiscordRPCButton, guiSize);
 		}
 		
 		showProgramCloseMessagePanel.setBackground(theme.mainColor);
@@ -224,13 +224,13 @@ public class SettingsState extends State {
 		showProgramCloseMessageLabel.setForeground(theme.textColor);
 		if(settings.getShowProgramCloseMessage()) {
 			showProgramCloseMessageButton.setText(language.onText);
-			Theme.primaryVisualButton(showProgramCloseMessageButton, guiSize.settingsChoiceBoldFont);
+			Theme.primaryVisualButton(showProgramCloseMessageButton, guiSize);
 		} else {
 			showProgramCloseMessageButton.setText(language.offText);
-			Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize.settingsChoiceBoldFont);
+			Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize);
 		}
 		
-		Theme.successVisualButton(saveChangesButton, guiSize.settingLabelFont);
+		Theme.successVisualButton(saveChangesButton, guiSize);
 	}
 
 	private void initializeComponentActions() {
@@ -240,7 +240,7 @@ public class SettingsState extends State {
 			public void actionPerformed(ActionEvent e) {
 				int index = (int) tsGui.getProfile().getSettings().getGuiSize();
 				Debug.info("deceaseGuiButton.actionPerformed", "Index is=" + index);
-				if(index > -1) {
+				if(index > 0) {
 					Debug.info("decreaseGuiButton.actionPerformed", "Decreasing gui size");
 					tsGui.getProfile().getSettings().setGuiSize(tsGui.getProfile().getSettings().getGuiSize() - 1);
 					tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
@@ -255,7 +255,7 @@ public class SettingsState extends State {
 			public void actionPerformed(ActionEvent e) {
 				int index = (int) tsGui.getProfile().getSettings().getGuiSize();
 				Debug.info("increaseGuiSizeButton.actionPerformed", "Index is=" + index);
-				if(index < 3) {
+				if(index < 2) {
 					Debug.info("increaseGuiSizeButton.actionPerformed", "Increasing gui size");
 					tsGui.getProfile().getSettings().setGuiSize(tsGui.getProfile().getSettings().getGuiSize() + 1);
 					tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());

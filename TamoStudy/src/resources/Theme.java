@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 
 import components.border.BubbleBorder;
+import model.GuiSize;
 
 /**
  * @author Anthony Narlock (narlock)
@@ -145,9 +146,9 @@ public class Theme {
 	public static BubbleBorder subBorder(int index) {
 		switch(index) {
 		case -1:
-			return new BubbleBorder(Color.WHITE, 1, 15, 0);
+			return new BubbleBorder(Color.WHITE, 1, 8, 0);
 		case 0:
-			return new BubbleBorder(Color.WHITE, 2, 15, 0);
+			return new BubbleBorder(Color.WHITE, 2, 10, 0);
 		case 1:
 			return new BubbleBorder(Color.WHITE, 3, 15, 0);
 		case 2:
@@ -200,13 +201,13 @@ public class Theme {
 	 * @param button
 	 * @param font
 	 */
-	public static void primaryVisualButton(JButton button, Font font) {
+	public static void primaryVisualButton(JButton button, GuiSize guiSize) {
 		button.setEnabled(true);
 		button.setOpaque(true);
-		button.setBorder(PRIMARY_BORDER);
+		button.setBorder(new BubbleBorder(PRIMARY, 0, guiSize.buttonBorderRadius, 0));
 		button.setBackground(PRIMARY);
 		button.setForeground(Color.WHITE);
-		button.setFont(font);
+		button.setFont(guiSize.settingsChoiceBoldFont);
 		
 		button.addMouseListener(new MouseListener() {
 
@@ -282,13 +283,13 @@ public class Theme {
 	 * @param button
 	 * @param font
 	 */
-	public static void secondaryVisualButton(JButton button, Font font) {
+	public static void secondaryVisualButton(JButton button, GuiSize guiSize) {
 		button.setEnabled(true);
 		button.setOpaque(true);
-		button.setBorder(SECONDARY_BORDER);
+		button.setBorder(new BubbleBorder(SECONDARY, 0, guiSize.buttonBorderRadius, 0));
 		button.setBackground(SECONDARY);
 		button.setForeground(Color.WHITE);
-		button.setFont(font);
+		button.setFont(guiSize.settingsChoiceBoldFont);
 		
 		button.addMouseListener(new MouseListener() {
 
@@ -355,13 +356,13 @@ public class Theme {
 	 * @param button
 	 * @param font
 	 */
-	public static void successVisualButton(JButton button, Font font) {
+	public static void successVisualButton(JButton button, GuiSize guiSize) {
 		button.setEnabled(true);
 		button.setOpaque(true);
-		button.setBorder(SUCCESS_BORDER);
+		button.setBorder(new BubbleBorder(SUCCESS, 0, guiSize.buttonBorderRadius, 0));
 		button.setBackground(SUCCESS);
 		button.setForeground(Color.WHITE);
-		button.setFont(font);
+		button.setFont(guiSize.settingsChoiceBoldFont);
 		
 		button.addMouseListener(new MouseListener() {
 
