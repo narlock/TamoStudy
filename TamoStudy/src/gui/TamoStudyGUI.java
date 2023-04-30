@@ -122,6 +122,8 @@ public class TamoStudyGUI extends JFrame {
 		initializeComponentVisuals();
 		initializeComponentActions();
 		initializeFrame();
+		
+		sidePanel.setVisible(false);
 	}
 	
 	private void initializeComponents() {
@@ -203,6 +205,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof DashboardState)) {
 					changeState(new DashboardState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -214,6 +217,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof FocusState)) {
 					changeState(new FocusState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -225,6 +229,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof ShopState)) {
 					changeState(new ShopState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -236,6 +241,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof InventoryState)) {
 					changeState(new InventoryState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -247,6 +253,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof StatisticsState)) {
 					changeState(new StatisticsState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -258,6 +265,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof AchievementsState)) {
 					changeState(new AchievementsState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -269,6 +277,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof SettingsState)) {
 					changeState(new SettingsState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			
@@ -280,6 +289,7 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof AboutState)) {
 					changeState(new AboutState(getThis()));
+					sidePanel.setVisible(false);
 				}
 			}
 			

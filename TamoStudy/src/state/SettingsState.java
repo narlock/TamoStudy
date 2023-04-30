@@ -1,6 +1,5 @@
 package state;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import gui.TamoStudyGUI;
+import io.ProfileJsonManager;
 import model.GuiSize;
 import model.language.Language;
 import model.profile.ProfileSettings;
@@ -30,6 +30,7 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private ProfileJsonManager profileJsonManager;
 	private ProfileSettings settings;
 	private Language language;
 	private GuiSize guiSize;
@@ -83,6 +84,7 @@ public class SettingsState extends State {
 	}
 	
 	private void initializeAttributes() {
+		profileJsonManager = tsGui.getProfileJsonManager();
 		settings = tsGui.getProfile().getSettings();
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
@@ -193,9 +195,7 @@ public class SettingsState extends State {
 		guiSizePanel.setBackground(theme.mainColor);
 		guiSizeLabel.setFont(guiSize.settingLabelFont);
 		guiSizeLabel.setForeground(theme.textColor);
-		// Custom Buttons?
-//		Theme.primaryVisualButton(decreaseGuiSizeButton, guiSize.settingLabelFont);
-//		Theme.primaryVisualButton(increaseGuiSizeButton, guiSize.settingLabelFont);
+		// TODO Custom Buttons?
 		
 		receiveNotificationsPanel.setBackground(theme.mainColor);
 		receiveNotificationsLabel.setFont(guiSize.settingLabelFont);
@@ -263,6 +263,87 @@ public class SettingsState extends State {
 				}
 			}
 		});
+		
+		receiveNotificationsButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(receiveNotificationsButton.getText().equals(language.onText)) {
+					receiveNotificationsButton.setText(language.offText);
+					Theme.secondaryVisualButton(receiveNotificationsButton, guiSize);
+				} else {
+					receiveNotificationsButton.setText(language.onText);
+					Theme.primaryVisualButton(receiveNotificationsButton, guiSize);
+				}
+			}
+		});
+		
+		enableDiscordRPCButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(enableDiscordRPCButton.getText().equals(language.onText)) {
+					enableDiscordRPCButton.setText(language.offText);
+					Theme.secondaryVisualButton(enableDiscordRPCButton, guiSize);
+				} else {
+					enableDiscordRPCButton.setText(language.onText);
+					Theme.primaryVisualButton(enableDiscordRPCButton, guiSize);
+				}
+			}
+		});
+		
+		showProgramCloseMessageButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(showProgramCloseMessageButton.getText().equals(language.onText)) {
+					showProgramCloseMessageButton.setText(language.offText);
+					Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize);
+				} else {
+					showProgramCloseMessageButton.setText(language.onText);
+					Theme.primaryVisualButton(showProgramCloseMessageButton, guiSize);
+				}
+			}
+		});
+		
+		saveChangesButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Set Settings
+				if(receiveNotificationsButton.getText().equals(language.onText)) {
+					settings.setReceiveNotifications(true);
+				} else {
+					settings.setReceiveNotifications(false);
+				}
+				
+				if(!(System.getProperty("os.name").startsWith("Windows"))) {
+					settings.setEnableDiscordRPC(false);
+				} else if(enableDiscordRPCButton.getText().equals(language.onText)) {
+					settings.setEnableDiscordRPC(true);
+				} else {
+					settings.setEnableDiscordRPC(false);
+				}
+				
+				if(showProgramCloseMessageButton.getText().equals(language.onText)) {
+					settings.setShowProgramCloseMessage(true);
+				} else {
+					settings.setShowProgramCloseMessage(false);
+				}
+					
+				settings.setLanguage(Language.getLanguageFromBox(languageBox.getSelectedIndex()));
+				settings.setFocusMode(focusModeBox.getSelectedIndex());
+				settings.setDifficulty(difficultyBox.getSelectedIndex());
+				settings.setTimerAlarm(timerAlarmBox.getSelectedIndex());
+				
+				// Overwrite JSON file
+				profileJsonManager.writeJsonToFile(tsGui.getProfiles());
+				
+				// Change message label
+				messageLabel.setText(language.settingsSavedText);
+				messageLabel.setForeground(Theme.SUCCESS);
+			}
+		});
 	}
 	
 	private void initializePanel() {
@@ -327,6 +408,10 @@ public class SettingsState extends State {
 		this.add(settingsPanel, gbcv);
 		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(saveChangesButton, gbcv);
+		
+		if(!(System.getProperty("os.name").startsWith("Windows"))) {
+			enableDiscordRPCPanel.setVisible(false);
+		}
 	}
 	
 	/*
@@ -336,7 +421,4 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
-	public void addMessageLabelVisual(JLabel label) {
-		
-	}
 }
