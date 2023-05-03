@@ -67,7 +67,7 @@ public class EnglishLanguage extends Language {
 		
 		resetDefaultProfileText = "Reset Default Profile";
 		updateNotificationsText = "Update Notifications";
-		defaultProfileReset = "Defult Profile Reset";
+		defaultProfileReset = "Default Profile Reset";
 		
 		createText = "Create";
 		cancelText = "Cancel";
