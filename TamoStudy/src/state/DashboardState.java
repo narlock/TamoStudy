@@ -48,7 +48,7 @@ public class DashboardState extends State {
 	@Override
 	protected void initializeAttributes() {
 		this.profile = tsGui.getProfile();
-		this.guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
+//		this.guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		this.tamo = profile.getTamo();
 	}
 
