@@ -150,4 +150,37 @@ public class Tamo {
 		return 10;
 	}
 
+	/**
+	 * @return status
+	 * @brief Based off of happy and hunger, the status of the
+	 * Tamo will be determined. If focused, then will be in focus.
+	 * 
+	 * If focused is true, return FOCUS
+	 * If happy is 3 or below, return SAD
+	 * If hunger is 3 or below, return HUNGRY
+	 * If happy is 7 or above, return HAPPY
+	 * Otherwise, return NORMAL
+	 */
+	public String getStatus(boolean focused) {
+		
+		// Get Status String
+		if(focused) {
+			return "FOCUS";
+		}
+		
+		if(happy <= 3) {
+			return "SAD";
+		}
+		
+		if(hunger <= 3) {
+			return "HUNGRY";
+		}
+		
+		if(happy >= 7) {
+			return "HAPPY";
+		}
+		
+		return "NORMAL";
+	}
+
 }

@@ -2,10 +2,12 @@ package model;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
 import components.border.BubbleBorder;
+import resources.ImageResourceHandler;
 import resources.Theme;
 
 import static resources.Constants.*;
@@ -26,6 +28,16 @@ public class GuiSize {
 	public ImageIcon topMenuImageIcon;
 	public ImageIcon tamoTokenImageIcon;
 	public int buttonBorderRadius;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * DASHBOARD ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
+	public ImageIcon tamoStudyLogoImageIcon;
+	
 	
 	/*
 	 * ##################################
@@ -194,4 +206,38 @@ public class GuiSize {
 		return new GuiSize(2);
 	}
 	
+	/*
+	 * ##################################
+	 * ##################################
+	 * TAMOSTUDY GRAPHICS ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
+	
+	public String getIndexSize() {
+		switch(index) {
+		case 0:
+			return "SMALL";
+		case 1:
+			return "MEDIUM";
+		case 2:
+			return "LARGE";
+		default:
+			return "MEDIUM";
+		}
+	}
+	
+	public Image getTamoImage(int indicator, String status) {
+		String size = getIndexSize();
+		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
+		return imageResourceHandler.readImageFromUrl("TAMO_" + status + "_" + indicator + "_" + size + ".png");
+	}
+	
+	public Image getBackgroundImage(long indicator) {
+		return null;
+	}
+	
+	public Image getBorderImage(long indicator) {
+		return null;
+	}
 }

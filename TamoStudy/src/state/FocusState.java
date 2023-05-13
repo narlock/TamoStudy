@@ -10,6 +10,40 @@ public class FocusState extends State {
 
 	public FocusState(TamoStudyGUI tamoStudyGUI) {
 		super(tamoStudyGUI);
-		this.add(new JLabel("Focus State"));
+		initializeAttributes();
+		initializeComponents();
+		initializeComponentVisuals();
+		initializeComponentActions();
+		initializePanel();
+	}
+
+	@Override
+	protected void initializeAttributes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initializeComponents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initializeComponentVisuals() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initializeComponentActions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initializePanel() {
+		// TODO Auto-generated method stub
+		
 	}
 }

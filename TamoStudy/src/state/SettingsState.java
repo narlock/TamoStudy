@@ -91,7 +91,8 @@ public class SettingsState extends State {
 		
 	}
 	
-	private void initializeAttributes() {
+	@Override
+	protected void initializeAttributes() {
 		profileJsonManager = tsGui.getProfileJsonManager();
 		settings = tsGui.getProfile().getSettings();
 		language = tsGui.getProfile().getSettings().getLanguage();
@@ -100,7 +101,8 @@ public class SettingsState extends State {
 		Debug.info("SettingsState.initializeAttributes", "Loaded settings=" + settings);
 	}
 	
-	private void initializeComponents() {
+	@Override
+	protected void initializeComponents() {
 		messageLabel = new JLabel("Settings");
 		
 		settingsPanel = new JPanel(new GridBagLayout());
@@ -168,7 +170,8 @@ public class SettingsState extends State {
 		saveChangesButton = new JButton(language.saveText);
 	}
 	
-	private void initializeComponentVisuals() {
+	@Override
+	protected void initializeComponentVisuals() {
 		this.setLayout(new GridBagLayout());
 		
 		messageLabel.setFont(guiSize.messageLabelFont);
@@ -243,7 +246,8 @@ public class SettingsState extends State {
 		Theme.successVisualButton(saveChangesButton, guiSize);
 	}
 
-	private void initializeComponentActions() {
+	@Override
+	protected void initializeComponentActions() {
 		
 		/*
 		 * Upon click, the GUI's size will immediately be decreased.
@@ -391,7 +395,8 @@ public class SettingsState extends State {
 		});
 	}
 	
-	private void initializePanel() {
+	@Override
+	protected void initializePanel() {
 		GridBagConstraints gbch = new GridBagConstraints();
 		gbch.gridheight = GridBagConstraints.REMAINDER;
 		
