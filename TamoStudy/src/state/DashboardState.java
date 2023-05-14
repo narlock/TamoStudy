@@ -2,6 +2,7 @@ package state;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -18,6 +19,7 @@ import gui.TamoStudyGUI;
 import model.GuiSize;
 import model.profile.Profile;
 import model.profile.Tamo;
+import resources.Constants;
 import resources.Theme;
 
 public class DashboardState extends State {
@@ -44,6 +46,7 @@ public class DashboardState extends State {
 	 * ##################################
 	 */
 	private JLabel tamoStudyLogoImageLabel;
+	private JLabel versionLabel;
 	private JPanel tamoDashboardPanel;				// Grid Panel
 	private TamoGraphicsPanel tamoGraphicsPanel; 	// LHS
 	private JPanel tamoInfoPanel; 					// RHS
@@ -73,8 +76,10 @@ public class DashboardState extends State {
 
 	@Override
 	protected void initializeComponents() {
-		tamoStudyLogoImageLabel = new JLabel(guiSize.tamoStudyLogoImageIcon);
-		tamoDashboardPanel = new JPanel(new GridBagLayout());
+		tamoStudyLogoImageLabel = new JLabel(guiSize.getTamoStudyLogoImage());
+		versionLabel = new JLabel(Constants.version);
+		
+		tamoDashboardPanel = new JPanel();
 		tamoGraphicsPanel = new TamoGraphicsPanel(guiSize, tamo, profile.getBackgroundIndicator(), profile.getBorderIndicator());
 		
 		tamoInfoPanel = new JPanel(new GridBagLayout());
@@ -89,6 +94,10 @@ public class DashboardState extends State {
 
 	@Override
 	protected void initializeComponentVisuals() {
+		versionLabel.setFont(guiSize.versionFont);
+		versionLabel.setForeground(theme.layerTextColor);
+		
+		tamoDashboardPanel.setBackground(theme.subColor);
 		tamoInfoPanel.setBackground(theme.subColor);
 		
 		tamoNameLabel.setFont(guiSize.messageLabelFont);
@@ -105,6 +114,7 @@ public class DashboardState extends State {
 		tamoLevelLabel.setForeground(theme.textColor);
 		
 		levelProgressBar.setOpaque(true);
+		levelProgressBar.setFont(guiSize.statisticsInfoFont);
 		levelProgressBar.setForeground(Theme.SUCCESS);
 		levelProgressBar.setBackground(theme.mainColor);
 		levelProgressBar.setBorder(BorderFactory.createLineBorder(theme.textColor, 1));
@@ -119,14 +129,12 @@ public class DashboardState extends State {
 		levelProgressBar.setStringPainted(true);
 		levelProgressBar.setValue(tamo.levelProgress());
 		
-		
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
 		
 		GridBagConstraints gbch = new GridBagConstraints();
 		gbch.gridheight = GridBagConstraints.REMAINDER;
 		
-		tamoInfoPanel.setPreferredSize(new Dimension(215, 315));
 		tamoInfoPanel.add(tamoNameLabel, gbcv);
 		tamoInfoPanel.add(createSpaceLabel(), gbcv);
 		tamoInfoPanel.add(tamoHoursTodayLabel, gbcv);
@@ -138,8 +146,8 @@ public class DashboardState extends State {
 		tamoInfoPanel.add(levelProgressBar, gbcv);
 		
 		
-		tamoDashboardPanel.add(tamoGraphicsPanel, gbch);
-		tamoDashboardPanel.add(tamoInfoPanel, gbch);
+		tamoDashboardPanel.add(tamoGraphicsPanel);
+		tamoDashboardPanel.add(tamoInfoPanel);
 	}
 
 	@Override
@@ -152,7 +160,6 @@ public class DashboardState extends State {
 	protected void initializePanel() {
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
-		
 		this.setLayout(new GridBagLayout());
 		this.add(tamoStudyLogoImageLabel, gbcv);
 		this.add(tamoDashboardPanel, gbcv);

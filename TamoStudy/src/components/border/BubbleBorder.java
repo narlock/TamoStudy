@@ -26,15 +26,15 @@ import javax.swing.border.AbstractBorder;
 public class BubbleBorder extends AbstractBorder
 {
 
-    private Color color;
-    private int thickness = 4;
-    private int radii = 8;
-    private int pointerSize = 7;
+    public Color color;
+    public int thickness = 4;
+    public int radii = 8;
+    public int pointerSize = 7;
     private Insets insets = null;
     private BasicStroke stroke = null;
     private int strokePad;
     private int pointerPad = 4;
-    private boolean left = true;
+    public boolean left = true;
     RenderingHints hints;
 
     public BubbleBorder(Color color)

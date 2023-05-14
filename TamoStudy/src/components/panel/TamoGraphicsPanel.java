@@ -54,26 +54,20 @@ public class TamoGraphicsPanel extends JPanel {
 	 * backgroundImage, and borderImage
 	 */
 	public void initializeAttributes() {
-		this.setPreferredSize(new Dimension(215, 315));
-		// Initialize tamoImage
-//		tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
-		ImageResourceHandler irh = new ImageResourceHandler();
-		tamoImage = irh.readImageFromUrl("TAMO_NORMAL_1_MEDIUM.png");
-		
-		// Initialize backgroundImage
-//		backgroundImage = guiSize.getBackgroundImage(backgroundIndicator);
-		backgroundImage = irh.readImageFromUrl("BACKGROUND_3_MEDIUM.png");
-		
-		// Initialize borderImage
-//		borderImage = guiSize.getBorderImage(borderIndicator);
-		borderImage = irh.readImageFromUrl("BORDER_GOLD_MEDIUM.png");
+	    this.setPreferredSize(guiSize.tamoGraphicsPanelDimension);
+	    ImageResourceHandler irh = new ImageResourceHandler();
+	    
+	    tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
+	    backgroundImage = guiSize.getBackgroundImage(backgroundIndicator);
+	    borderImage = guiSize.getBorderImage(borderIndicator);
 	}
+
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
-		g.drawImage(backgroundImage, 8, 8, this);
+		g.drawImage(backgroundImage,(int) (8 / 1.5), (int) (8 / 1.5), this);
 		g.drawImage(tamoImage, 8, 8, this);
 		g.drawImage(borderImage, 0, 0, this);
 	}

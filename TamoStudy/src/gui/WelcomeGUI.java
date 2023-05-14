@@ -6,6 +6,7 @@ import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -93,7 +94,7 @@ public class WelcomeGUI extends JFrame {
 		messageButton = new JButton("\t");
 		settingsButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("SETTINGS.png")));
 		
-		tamoStudyLogoImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TITLE_SMALL.gif")));
+		tamoStudyLogoImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_LARGE.gif")));
 		
 		authorLabel = new JLabel("Release " + Constants.version + " • " + language.createdByText + " narlock • tamostudy.com");
 		

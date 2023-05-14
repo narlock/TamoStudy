@@ -7,6 +7,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import components.border.BubbleBorder;
+import resources.Debug;
 import resources.ImageResourceHandler;
 import resources.Theme;
 
@@ -36,9 +37,10 @@ public class GuiSize {
 	 * ##################################
 	 * ##################################
 	 */
-	public ImageIcon tamoStudyLogoImageIcon;
 	public Font statisticsInfoFont;
 	public Font statisticsInfoFontBold;
+	public Font versionFont;
+	public Dimension tamoGraphicsPanelDimension;
 	
 	/*
 	 * ##################################
@@ -58,149 +60,43 @@ public class GuiSize {
 	public ImageIcon addImageIcon;
 	
 	public GuiSize(int size) {
-		switch(size) {
-		case 0:
-			// Small
-			index = 0;
-			
-			frameSize = GUI_FRAME_SIZE_SMALL;
-			sideButtonFont = SIDE_BUTTON_FONT_SMALL;
-			topMenuFont = TOP_MENU_FONT_SMALL;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_SMALL;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_SMALL;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_SMALL;
-			
-			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_SMALL;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_SMALL;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_SMALL;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_SMALL;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_SMALL;
-			settingsPanelBorder = Theme.subBorder(0);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_SMALL;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_SMALL;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_SMALL;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_SMALL;
-			break;
-		case 2:
-			// Large
-			index = 2;
-			
-			frameSize = GUI_FRAME_SIZE_LARGE;
-			sideButtonFont = SIDE_BUTTON_FONT_LARGE;
-			topMenuFont = TOP_MENU_FONT_LARGE;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_LARGE;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_LARGE;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_LARGE;
-			
-			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_LARGE;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_LARGE;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_LARGE;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_LARGE;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_LARGE;
-			settingsPanelBorder = Theme.subBorder(2);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_LARGE;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_LARGE;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_LARGE;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_LARGE;
-			break;
-		case 1:
-		default:
-			// Medium
-			index = 1;
-			
-			frameSize = GUI_FRAME_SIZE_MEDIUM;
-			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
-			topMenuFont = TOP_MENU_FONT_MEDIUM;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_MEDIUM;
-			
-			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_SMALL;
-			statisticsInfoFont = STATISTICS_INFO_FONT_MEDIUM;
-			statisticsInfoFontBold = STATISTICS_INFO_FONT_BOLD_MEDIUM;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_MEDIUM;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_MEDIUM;
-			settingsPanelBorder = Theme.subBorder(1);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_MEDIUM;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_MEDIUM;
-			break;
+		double scale = getScaleFromSize(size);
+		index = size;
+		
+		frameSize = scaleDimension(GUI_FRAME_SIZE, scale);
+		sideButtonFont = scaleFont(SIDE_BUTTON_FONT, scale);
+		topMenuFont = scaleFont(TOP_MENU_FONT, scale);
+		topMenuImageIcon = scaleImageIcon(TOP_MENU_IMAGE_ICON, scale);
+		tamoTokenImageIcon = scaleImageIcon(TAMO_TOKEN_IMAGE_ICON, scale);
+		buttonBorderRadius = scaleInteger(BUTTON_BORDER_RADIUS, scale);
+		
+		statisticsInfoFont = scaleFont(STATISTICS_INFO_FONT, scale);
+		statisticsInfoFontBold = scaleFont(STATISTICS_INFO_FONT_BOLD, scale); 
+		versionFont = scaleFont(VERSION_FONT, scale);
+		tamoGraphicsPanelDimension = scaleDimension(TAMO_GRAPHICS_PANEL_DIMENSION, scale);
+		
+		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
+		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
+		settingsChoiceFont = scaleFont(SETTINGS_CHOICE_FONT, scale);
+		settingsChoiceBoldFont = scaleFont(SETTINGS_CHOICE_FONT_BOLD, scale);
+		settingsPanelBorder = scaleBubbleBorder(Theme.subBorder, scale);
+		settingsHorizontalDifference = scaleInteger(SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE, scale);
+		settingsVerticalDifference = scaleInteger(SETTINGS_VERTICAL_COMPONENT_DIFFERENCE, scale);
+		minusImageIcon = scaleImageIcon(MINUS_BUTTON_IMAGE_ICON, scale);
+		addImageIcon = scaleImageIcon(ADD_BUTTON_IMAGE_ICON, scale);
+	}
+	
+	public double getScaleFromSize(int size) {
+		if(size == 0) {
+			return (2.0 / 3.0);
+		} else if(size == 2) {
+			return 1.5;
 		}
+		return 1;
 	}
 	
 	public void changeSize(int size) {
-		switch(size) {
-		case 0:
-			// Small
-			index = 0;
-			
-			frameSize = GUI_FRAME_SIZE_SMALL;
-			sideButtonFont = SIDE_BUTTON_FONT_SMALL;
-			topMenuFont = TOP_MENU_FONT_SMALL;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_SMALL;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_SMALL;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_SMALL;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_SMALL;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_SMALL;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_SMALL;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_SMALL;
-			settingsPanelBorder = Theme.subBorder(0);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_SMALL;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_SMALL;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_SMALL;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_SMALL;
-			break;
-		case 2:
-			// Large
-			index = 2;
-			
-			frameSize = GUI_FRAME_SIZE_LARGE;
-			sideButtonFont = SIDE_BUTTON_FONT_LARGE;
-			topMenuFont = TOP_MENU_FONT_LARGE;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_LARGE;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_LARGE;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_LARGE;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_LARGE;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_LARGE;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_LARGE;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_LARGE;
-			settingsPanelBorder = Theme.subBorder(2);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_LARGE;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_LARGE;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_LARGE;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_LARGE;
-			break;
-		case 1:
-		default:
-			// Medium
-			index = 1;
-			
-			frameSize = GUI_FRAME_SIZE_MEDIUM;
-			sideButtonFont = SIDE_BUTTON_FONT_MEDIUM;
-			topMenuFont = TOP_MENU_FONT_MEDIUM;
-			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
-			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
-			buttonBorderRadius = BUTTON_BORDER_RADIUS_MEDIUM;
-			
-			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
-			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
-			settingsChoiceFont = SETTINGS_CHOICE_FONT_MEDIUM;
-			settingsChoiceBoldFont = SETTINGS_CHOICE_FONT_BOLD_MEDIUM;
-			settingsPanelBorder = Theme.subBorder(1);
-			settingsHorizontalDifference = SETTINGS_HORIZONTAL_COMPONENT_DIFFERENCE_MEDIUM;
-			settingsVerticalDifference = SETTINGS_VERTICAL_COMPONENT_DIFFERENCE_MEDIUM;
-			minusImageIcon = MINUS_BUTTON_IMAGE_ICON_MEDIUM;
-			addImageIcon = ADD_BUTTON_IMAGE_ICON_MEDIUM;
-			break;
-		}
+		copyFrom(new GuiSize(size));
 	}
 	
 	public static GuiSize mediumSmallGui() {
@@ -223,30 +119,154 @@ public class GuiSize {
 	 * ##################################
 	 */
 	
-	public String getIndexSize() {
-		switch(index) {
-		case 0:
-			return "SMALL";
-		case 1:
-			return "MEDIUM";
-		case 2:
-			return "LARGE";
-		default:
-			return "MEDIUM";
-		}
-	}
-	
 	public Image getTamoImage(int indicator, String status) {
-		String size = getIndexSize();
+		double scale = getScaleFromSize(index);
 		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
-		return imageResourceHandler.readImageFromUrl("TAMO_" + status + "_" + indicator + "_" + size + ".png");
+		Image tamoImage = imageResourceHandler.readImageFromUrl("TAMO_" + status + "_" + indicator + ".png");
+		Debug.info("GuiSize.getTamoImage", "tamoImage = " + tamoImage + ", index = " + index);
+		return scaleImage(tamoImage, scale);
 	}
 	
 	public Image getBackgroundImage(long indicator) {
-		return null;
+		double scale = getScaleFromSize(index);
+		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
+		Image backgroundImage = imageResourceHandler.readImageFromUrl("BACKGROUND_" + indicator + ".png");
+		return scaleImage(backgroundImage, scale);
 	}
 	
 	public Image getBorderImage(long indicator) {
-		return null;
+		double scale = getScaleFromSize(index);
+		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
+		String indicatorName = getBorderNameByIndicator(indicator);
+		Image borderImage = imageResourceHandler.readImageFromUrl("BORDER_" + indicatorName + ".png");
+		return scaleImage(borderImage, scale);
 	}
+	
+	public ImageIcon getTamoStudyLogoImage() {
+		if(index == 0) {
+			// Small Image
+			return new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_SMALL.gif"));
+		} else if(index == 2) {
+			// Large Image
+			return new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_LARGE.gif"));
+		} else {
+			// Medium Image
+			return new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE.gif"));
+		}
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * SCALING METHODS
+	 * ##################################
+	 * ##################################
+	 * 
+	 * For scaling to LARGE gui, scale = 1.5
+	 * For scaling to SMALL gui, scale = (2/3)
+	 */
+	public Dimension scaleDimension(Dimension originalDimension, double scale) {
+	    if(scale == 1) { return originalDimension; }
+		
+		int scaledWidth = (int) (originalDimension.getWidth() * scale);
+	    int scaledHeight = (int) (originalDimension.getHeight() * scale);
+	    return new Dimension(scaledWidth, scaledHeight);
+	}
+	
+	public Font scaleFont(Font originalFont, double scale) {
+	    if(scale == 1) { return originalFont; }
+		
+		int scaledSize = (int) (originalFont.getSize() * scale);
+	    Font scaledFont = originalFont.deriveFont((float) scaledSize);
+	    return scaledFont;
+	}
+	
+	public BubbleBorder scaleBubbleBorder(BubbleBorder originalBubbleBorder, double scale) {
+	    if(scale == 1) { return originalBubbleBorder; }
+		
+		int scaledThickness = (int) Math.round(originalBubbleBorder.thickness * scale);
+	    int scaledRadii = (int) Math.round(originalBubbleBorder.radii * scale);
+	    int scaledPointerSize = (int) Math.round(originalBubbleBorder.pointerSize * scale);
+
+	    BubbleBorder scaledBubbleBorder = new BubbleBorder(
+	            originalBubbleBorder.color,
+	            scaledThickness,
+	            scaledRadii,
+	            scaledPointerSize,
+	            originalBubbleBorder.left);
+
+	    return scaledBubbleBorder;
+	}
+	
+	public ImageIcon scaleImageIcon(ImageIcon originalIcon, double scale) {
+		if(scale == 1) { return originalIcon; }
+		
+	    Image originalImage = originalIcon.getImage();
+	    Image scaledImage = scaleImage(originalImage, scale);
+	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+	    return scaledIcon;
+	}
+
+	public Image scaleImage(Image originalImage, double scale) {
+		if(scale == 1) { return originalImage; }
+		
+	    int scaledWidth = (int) (originalImage.getWidth(null) * scale);
+	    int scaledHeight = (int) (originalImage.getHeight(null) * scale);
+	    Image scaledImage = originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+	    return scaledImage;
+	}
+
+	public int scaleInteger(int originalInteger, double scale) {
+		if(scale == 1) { return originalInteger; }
+	    return (int) (originalInteger * scale);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public String getBorderNameByIndicator(long indicator) {
+		switch((int) indicator) {
+		case 1:
+			return "GOLD";
+		case 2:
+			return "RED";
+		case 3:
+			return "MINT";
+		case 4:
+			return "PURPLE";
+		case 5:
+			return "BLUE";
+		case 0:
+		default:
+			return "BLACK";
+		}
+	}
+	
+	public void copyFrom(GuiSize other) {
+	    index = other.index;
+	    frameSize = other.frameSize;
+	    sideButtonFont = other.sideButtonFont;
+	    topMenuFont = other.topMenuFont;
+	    topMenuImageIcon = other.topMenuImageIcon;
+	    tamoTokenImageIcon = other.tamoTokenImageIcon;
+	    buttonBorderRadius = other.buttonBorderRadius;
+	    tamoGraphicsPanelDimension = other.tamoGraphicsPanelDimension;
+	    statisticsInfoFont = other.statisticsInfoFont;
+	    statisticsInfoFontBold = other.statisticsInfoFontBold;
+	    versionFont = other.versionFont;
+	    messageLabelFont = other.messageLabelFont;
+	    settingLabelFont = other.settingLabelFont;
+	    settingsChoiceFont = other.settingsChoiceFont;
+	    settingsChoiceBoldFont = other.settingsChoiceBoldFont;
+	    settingsPanelBorder = other.settingsPanelBorder;
+	    settingsHorizontalDifference = other.settingsHorizontalDifference;
+	    settingsVerticalDifference = other.settingsVerticalDifference;
+	    minusImageIcon = other.minusImageIcon;
+	    addImageIcon = other.addImageIcon;
+	}
+
 }

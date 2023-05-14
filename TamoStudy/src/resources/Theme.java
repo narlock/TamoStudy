@@ -146,22 +146,7 @@ public class Theme {
 	public static final Color DANGER_ALT = new Color(148, 35, 46);
 	public static final BubbleBorder DANGER_BORDER = new BubbleBorder(DANGER, 0, 15, 0);
 	
-	public static BubbleBorder subBorder(int index) {
-		switch(index) {
-		case -1:
-			return new BubbleBorder(Color.WHITE, 1, 8, 0);
-		case 0:
-			return new BubbleBorder(Color.WHITE, 2, 10, 0);
-		case 1:
-			return new BubbleBorder(Color.WHITE, 3, 15, 0);
-		case 2:
-			return new BubbleBorder(Color.WHITE, 4, 15, 0);
-		case 3:
-			return new BubbleBorder(Color.WHITE, 5, 15, 0);
-		default:
-			return new BubbleBorder(Color.WHITE, 3, 15, 0);
-		}
-	}
+	public static final BubbleBorder subBorder = new BubbleBorder(Color.WHITE, 3, 15, 0);
 	
 	/**
 	 * primaryVisualButton
