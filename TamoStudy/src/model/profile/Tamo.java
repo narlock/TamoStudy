@@ -182,5 +182,17 @@ public class Tamo {
 		
 		return "NORMAL";
 	}
+	
+	// Every 24 hours studied, a new level is earned
+	public int getLevel() {
+		return (int) time / 86400;
+	}
+	
+	public int levelProgress() {
+		int level = getLevel();
+	    double secondsToNextLevel = (level + 1) * 86400 - time;
+	    double progressToNextLevel = ((86400 - secondsToNextLevel) / 86400) * 100;
+	    return (int) progressToNextLevel;
+	}
 
 }

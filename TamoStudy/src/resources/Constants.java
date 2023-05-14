@@ -61,15 +61,17 @@ public class Constants {
 	 * ##################################
 	 */
 	
-//	// Small (0) Component Sizes (Medium / 1.5)
-//	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_SMALL = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_SMALL.png"));
-//	
-//	// Medium (1, Default) Component Sizes
-//	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_MEDIUM = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_MEDIUM.png"));
-//	
-//	// Large (2) Component Sizes (Medium * 1.5)
-//	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_LARGE.png"));
-//	
+	// Small (0) Component Sizes (Medium / 1.5)
+	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_SMALL = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_SMALL.png"));
+	
+	// Medium (1, Default) Component Sizes
+	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_MEDIUM = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_MEDIUM.png"));
+	public static final Font STATISTICS_INFO_FONT_MEDIUM = new Font("Arial", Font.PLAIN, 16);
+	public static final Font STATISTICS_INFO_FONT_BOLD_MEDIUM = new Font("Arial", Font.BOLD, 16);
+	
+	// Large (2) Component Sizes (Medium * 1.5)
+	public static final ImageIcon TAMOSTUDY_LOGO_IMAGE_LARGE = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_LARGE.png"));
+	
 	/*
 	 * ##################################
 	 * ##################################

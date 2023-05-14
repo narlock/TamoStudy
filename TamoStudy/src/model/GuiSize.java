@@ -37,7 +37,8 @@ public class GuiSize {
 	 * ##################################
 	 */
 	public ImageIcon tamoStudyLogoImageIcon;
-	
+	public Font statisticsInfoFont;
+	public Font statisticsInfoFontBold;
 	
 	/*
 	 * ##################################
@@ -69,6 +70,8 @@ public class GuiSize {
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_SMALL;
 			buttonBorderRadius = BUTTON_BORDER_RADIUS_SMALL;
 			
+			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_SMALL;
+			
 			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_SMALL;
 			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_SMALL;
 			settingsChoiceFont = SETTINGS_CHOICE_FONT_SMALL;
@@ -89,6 +92,8 @@ public class GuiSize {
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_LARGE;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_LARGE;
 			buttonBorderRadius = BUTTON_BORDER_RADIUS_LARGE;
+			
+			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_LARGE;
 			
 			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_LARGE;
 			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_LARGE;
@@ -111,6 +116,10 @@ public class GuiSize {
 			topMenuImageIcon = TOP_MENU_IMAGE_ICON_MEDIUM;
 			tamoTokenImageIcon = TAMO_TOKEN_IMAGE_ICON_MEDIUM;
 			buttonBorderRadius = BUTTON_BORDER_RADIUS_MEDIUM;
+			
+			tamoStudyLogoImageIcon = TAMOSTUDY_LOGO_IMAGE_SMALL;
+			statisticsInfoFont = STATISTICS_INFO_FONT_MEDIUM;
+			statisticsInfoFontBold = STATISTICS_INFO_FONT_BOLD_MEDIUM;
 			
 			messageLabelFont = SETTINGS_MESSAGE_LABEL_FONT_MEDIUM;
 			settingLabelFont = SETTINGS_SETTING_LABEL_FONT_MEDIUM;
