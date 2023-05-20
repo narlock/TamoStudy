@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -14,10 +15,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import io.DailyFocusJsonManager;
+import io.MonthFocusJsonManager;
 import io.ProfileJsonManager;
 import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
+import model.time.DailyFocus;
+import model.time.DailyFocusEntry;
+import model.time.MonthFocus;
+import model.time.MonthFocusEntry;
 import resources.Constants;
 import resources.Debug;
 import resources.DiscordRP;
@@ -31,6 +38,7 @@ import state.SettingsState;
 import state.ShopState;
 import state.State;
 import state.StatisticsState;
+import util.Utils;
 
 public class TamoStudyGUI extends JFrame {
 
@@ -51,6 +59,13 @@ public class TamoStudyGUI extends JFrame {
 	private DiscordRP discordRP;
 	private Theme theme;
 	private GuiSize guiSize;
+	
+	private DailyFocusJsonManager dailyFocusJsonManager;
+	private List<DailyFocus> dailyFocusList;
+	private DailyFocus dailyFocus;
+	private MonthFocusJsonManager monthFocusJsonManager;
+	private List<MonthFocus> monthFocusList;
+	private MonthFocus monthFocus;
 	
 	/*
 	 * ##################################
@@ -86,13 +101,8 @@ public class TamoStudyGUI extends JFrame {
 		this.profile = profiles.get(profileIndex);
 		this.lang = profile.getSettings().getLanguage();
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
-		
-		// Initialize Attributes
-		profileJsonManager = new ProfileJsonManager();
-		theme = Theme.DARK;
-		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
-		state = new DashboardState(getThis());
-		
+
+		initializeAttributes();
 		initializeComponents();
 		initializeComponentVisuals();
 		initializeComponentActions();
@@ -112,18 +122,38 @@ public class TamoStudyGUI extends JFrame {
 		this.lang = profile.getSettings().getLanguage();
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
 		
-		// Initialize Attributes
-		profileJsonManager = new ProfileJsonManager();
-		theme = Theme.DARK;
-		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
-		this.state = new SettingsState(getThis());
-		
+		initializeAttributes();
 		initializeComponents();
 		initializeComponentVisuals();
 		initializeComponentActions();
 		initializeFrame();
 		
 		sidePanel.setVisible(false);
+	}
+	
+	private void initializeAttributes() {
+		profileJsonManager = new ProfileJsonManager();
+		theme = Theme.DARK;
+		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
+		
+		dailyFocusJsonManager = new DailyFocusJsonManager();
+		dailyFocusList = dailyFocusJsonManager.readJson();
+		
+		dailyFocus = Utils.searchDailyFocusByProfile(dailyFocusList, profile);
+		// Create dailyFocus if it does not exist
+		if(dailyFocus == null) {
+			dailyFocus = addNewDailyFocusToDailyFocusList(Utils.createDailyFocus(profile));
+		}
+		
+		monthFocusJsonManager = new MonthFocusJsonManager();
+		monthFocusList = monthFocusJsonManager.readJson();
+		
+		monthFocus = Utils.searchMonthFocusByProfile(monthFocusList, profile);
+		if(monthFocus == null) {
+			monthFocus = addNewMonthFocusToMonthFocusList(Utils.createMonthFocus(profile));
+		}
+		
+		state = new DashboardState(getThis());
 	}
 	
 	private void initializeComponents() {
@@ -468,4 +498,99 @@ public class TamoStudyGUI extends JFrame {
 	public void setGuiSize(GuiSize guiSize) {
 		this.guiSize = guiSize;
 	}
+
+	public List<DailyFocus> getDailyFocusList() {
+		return dailyFocusList;
+	}
+	
+	public void setDailyFocusList(List<DailyFocus> dailyFocusList) {
+		this.dailyFocusList = dailyFocusList;
+	}
+	
+	public DailyFocus getDailyFocus() {
+		return dailyFocus;
+	}
+
+	public List<MonthFocus> getMonthFocusList() {
+		return monthFocusList;
+	}
+	
+	public void setMonthFocusList(List<MonthFocus> monthFocusList) {
+		this.monthFocusList = monthFocusList;
+	}
+
+	public MonthFocus getMonthFocus() {
+		return monthFocus;
+	}
+
+	public DailyFocusJsonManager getDailyFocusJsonManager() {
+		return dailyFocusJsonManager;
+	}
+
+	public MonthFocusJsonManager getMonthFocusJsonManager() {
+		return monthFocusJsonManager;
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public DailyFocus addNewDailyFocusToDailyFocusList(DailyFocus dailyFocus) {
+		List<DailyFocus> dailyFocusList = new ArrayList<>(this.dailyFocusList);
+		try {
+			dailyFocusList.add(dailyFocus);
+			this.setDailyFocusList(dailyFocusList);
+			this.dailyFocusJsonManager.writeJsonToFile(this.dailyFocusList);
+			return dailyFocus;
+		} catch (Exception e) {
+			Debug.error("TamoStudyGUI.addNewDailyFocusToDailyFocusList", "bruh idk what happened");
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public MonthFocus addNewMonthFocusToMonthFocusList(MonthFocus monthFocus) {
+		List<MonthFocus> monthFocusList = new ArrayList<>(this.monthFocusList);
+		try {
+			monthFocusList.add(monthFocus);
+			this.setMonthFocusList(monthFocusList);
+			this.monthFocusJsonManager.writeJsonToFile(this.monthFocusList);
+			return monthFocus;
+		} catch (Exception e) {
+			Debug.error("TamoStudyGUI.addNewMonthFocusToMonthFocusList", "bruh idk what happened");
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public boolean addNewDailyFocusEntryToDailyFocus(DailyFocusEntry dailyFocusEntry) {
+		List<DailyFocusEntry> dailyFocusEntriesList = new ArrayList<>(dailyFocus.getDailyFocusEntries());
+		try {
+			dailyFocusEntriesList.add(dailyFocusEntry);
+			dailyFocus.setDailyFocusEntries(dailyFocusEntriesList);
+			Debug.info("Length of dailyFocus", "length of daily focus = " + dailyFocus);
+			return true;
+		} catch (Exception e) {
+			Debug.error("TamoStudyGUI.addNewDailyFocusEntryToDailyFocus", "bruh idk what happened");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean addNewMonthFocusEntryToMonthFocus(MonthFocusEntry monthFocusEntry) {
+		List<MonthFocusEntry> monthFocusEntriesList = new ArrayList<>(monthFocus.getMonthFocusEntries());
+		try {
+			monthFocusEntriesList.add(monthFocusEntry);
+			monthFocus.setMonthFocusEntries(monthFocusEntriesList);
+			return true;
+		} catch (Exception e) {
+			Debug.error("TamoStudyGUI.addNewMonthFocusEntryToDailyFocus", "bruh idk what happened");
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
+

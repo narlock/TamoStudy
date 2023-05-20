@@ -101,6 +101,19 @@ public abstract class Language {
 	/*
 	 * ##################################
 	 * ##################################
+	 * DASHBOARD STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String todaysFocusText;
+	public String monthFocusText;
+	public String totalFocusText;
+	public String levelText;
+	public String hoursText;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS STATE TEXT
 	 * ##################################
 	 * ##################################

@@ -4,12 +4,22 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
+
+import model.profile.Profile;
+import model.time.DailyFocus;
+import model.time.DailyFocusEntry;
+import model.time.MonthFocus;
+import model.time.MonthFocusEntry;
+import resources.Debug;
 
 public class Utils {
 	public static Date today() {
@@ -104,5 +114,84 @@ public class Utils {
     public static long getCurrentYear() {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.YEAR);
+    }
+    
+    public static DailyFocus createDailyFocus(Profile profile) {
+    	return new DailyFocus(
+    				profile.getId(),
+    				Collections.emptyList()
+    			);
+    }
+    
+    public static MonthFocus createMonthFocus(Profile profile) {
+    	return new MonthFocus(
+				profile.getId(),
+				Collections.emptyList()
+			);
+    }
+    
+    public static DailyFocusEntry createDailyFocusEntry() {
+    	return new DailyFocusEntry(
+    				getCurrentDay(),
+    				getCurrentMonth(),
+    				getCurrentYear(),
+    				(long) 0
+    			);
+    }
+    
+    public static MonthFocusEntry createMonthFocusEntry() {
+    	return new MonthFocusEntry(getCurrentMonth(), getCurrentYear(), (long) 0);
+    }
+    
+    public static DailyFocus searchDailyFocusByProfile(List<DailyFocus> dailyFocusList, Profile profile) {
+    	for(DailyFocus dailyFocus : dailyFocusList) {
+    		if(dailyFocus.getProfileId() == profile.getId()) {
+    			return dailyFocus;
+    		}
+    	}
+    	Debug.warn("Utils.searchDailyFocusByProfileId", "No daily focus object found for profile. Returning null to signal does not exist");
+    	return null;
+    }
+    
+    public static DailyFocusEntry searchTodayFocusEntryByProfile(List<DailyFocusEntry> dailyFocusEntries) {
+    	for(DailyFocusEntry dailyFocusEntry : dailyFocusEntries) {
+    		if(dailyFocusEntry.getDay() == getCurrentDay()
+    				&& dailyFocusEntry.getMonth() == getCurrentMonth()
+    				&& dailyFocusEntry.getYear() == getCurrentYear()) {
+    			return dailyFocusEntry;
+    		}
+    	}
+    	
+    	Debug.warn("Utils.searchTodayFocusEntryByProfile", "No daily focus entry found for today. Returning null to signal entry does not exist");
+    	return null;
+    }
+    
+    public static MonthFocus searchMonthFocusByProfile(List<MonthFocus> monthFocusList, Profile profile) {
+    	for(MonthFocus monthFocus : monthFocusList) {
+    		if(monthFocus.getProfileId() == profile.getId()) {
+    			return monthFocus;
+    		}
+    	}
+    	
+    	Debug.warn("Utils.searchMonthFocusByProfile", "No month focus object found for profile. Returning null to signal does not exist");
+    	return null;
+    }
+    
+    public static MonthFocusEntry searchCurrentMonthEntryByProfile(List<MonthFocusEntry> monthFocusEntries) {
+    	for(MonthFocusEntry monthFocusEntry : monthFocusEntries) {
+    		if(monthFocusEntry.getMonth() == getCurrentMonth()
+    				&& monthFocusEntry.getYear() == getCurrentYear()) {
+    			return monthFocusEntry;
+    		}
+    	}
+    	
+    	Debug.warn("Utils.searchCurrentMonthEntryByProfile", "No month focus entry found for this month. Returning null to signal entry does not exist");
+    	return null;
+    }
+    
+    public static double convertSecondsToHours(long seconds) {
+        double hours = (double) seconds / 3600; // 1 hour = 3600 seconds
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.parseDouble(decimalFormat.format(hours));
     }
 }

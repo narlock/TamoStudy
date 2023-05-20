@@ -94,6 +94,19 @@ public class EnglishLanguage extends Language {
 		/*
 		 * ##################################
 		 * ##################################
+		 * DASHBOARD STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		todaysFocusText = "Today's Focus";
+		monthFocusText = "Month Focus";
+		totalFocusText = "Total Focus";
+		levelText = "Level";
+		hoursText = "hrs";
+		
+		/*
+		 * ##################################
+		 * ##################################
 		 * SETTINGS STATE TEXT
 		 * ##################################
 		 * ##################################

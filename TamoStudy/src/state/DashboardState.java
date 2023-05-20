@@ -17,10 +17,14 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 import components.panel.TamoGraphicsPanel;
 import gui.TamoStudyGUI;
 import model.GuiSize;
+import model.language.Language;
 import model.profile.Profile;
 import model.profile.Tamo;
+import model.time.DailyFocusEntry;
+import model.time.MonthFocusEntry;
 import resources.Constants;
 import resources.Theme;
+import util.Utils;
 
 public class DashboardState extends State {
 	
@@ -34,9 +38,12 @@ public class DashboardState extends State {
 	 * ##################################
 	 */
 	private Profile profile;
+	private Language language;
 	private GuiSize guiSize;
 	private Tamo tamo;
 	private Theme theme;
+	private DailyFocusEntry dailyFocusEntry;
+	private MonthFocusEntry monthFocusEntry;
 
 	/*
 	 * ##################################
@@ -68,10 +75,27 @@ public class DashboardState extends State {
 
 	@Override
 	protected void initializeAttributes() {
-		this.profile = tsGui.getProfile();
-		this.guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
-		this.tamo = profile.getTamo();
-		this.theme = Theme.DARK;
+		profile = tsGui.getProfile();
+		language = tsGui.getProfile().getSettings().getLanguage();
+		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
+		tamo = profile.getTamo();
+		theme = Theme.DARK;
+
+		this.dailyFocusEntry = Utils.searchTodayFocusEntryByProfile(tsGui.getDailyFocus().getDailyFocusEntries());
+		// Create new daily focus entry if it does not exist
+		if(dailyFocusEntry == null) {
+			dailyFocusEntry = Utils.createDailyFocusEntry();
+			tsGui.addNewDailyFocusEntryToDailyFocus(dailyFocusEntry);
+			tsGui.getDailyFocusJsonManager().writeJsonToFile(tsGui.getDailyFocusList());
+		}
+		
+		this.monthFocusEntry = Utils.searchCurrentMonthEntryByProfile(tsGui.getMonthFocus().getMonthFocusEntries());
+		// Create new month focus entry if it does not exist
+		if(monthFocusEntry == null) {
+			monthFocusEntry = Utils.createMonthFocusEntry();
+			tsGui.addNewMonthFocusEntryToMonthFocus(monthFocusEntry);
+			tsGui.getMonthFocusJsonManager().writeJsonToFile(tsGui.getMonthFocusList());
+		}
 	}
 
 	@Override
@@ -84,10 +108,10 @@ public class DashboardState extends State {
 		
 		tamoInfoPanel = new JPanel(new GridBagLayout());
 		tamoNameLabel = new JLabel(tamo.getName());
-		tamoHoursTodayLabel = new JLabel("Today's Focus: 4 hrs");
-		tamoHoursMonthLabel = new JLabel("Month Focus: 10 hrs");
-		tamoHoursAllLabel = new JLabel("Total Focus: 34 hrs");
-		tamoLevelLabel = new JLabel("Level " + tamo.getLevel());
+		tamoHoursTodayLabel = new JLabel(language.todaysFocusText + ": " + Utils.convertSecondsToHours(dailyFocusEntry.getTime()) + " " + language.hoursText);
+		tamoHoursMonthLabel = new JLabel(language.monthFocusText + ": " + Utils.convertSecondsToHours(monthFocusEntry.getTime()) + " " + language.hoursText);
+		tamoHoursAllLabel = new JLabel(language.totalFocusText + ": " + Utils.convertSecondsToHours(profile.getTime()) + " " + language.hoursText);
+		tamoLevelLabel = new JLabel(language.levelText + " " + tamo.getLevel());
 		levelProgressBar = new JProgressBar(0, 100);
 		
 	}
