@@ -1,6 +1,5 @@
 package components.panel;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -9,7 +8,6 @@ import javax.swing.Timer;
 
 import model.GuiSize;
 import model.profile.Tamo;
-import resources.ImageResourceHandler;
 
 public class TamoGraphicsPanel extends JPanel {
 
@@ -43,9 +41,9 @@ public class TamoGraphicsPanel extends JPanel {
 		this.backgroundIndicator = (int) backgroundIndicator;
 		this.borderIndicator = (int) borderIndicator;
 		
-		
 		initializeAttributes();
 		
+		// If Tamo is happy or normal status, repaint so tamo appears in random location
 		if(tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
 			Timer timer = new Timer(1000, e -> repaint());
 		    timer.start();
@@ -61,7 +59,6 @@ public class TamoGraphicsPanel extends JPanel {
 	 */
 	public void initializeAttributes() {
 	    this.setPreferredSize(guiSize.tamoGraphicsPanelDimension);
-	    ImageResourceHandler irh = new ImageResourceHandler();
 	    
 	    tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
 	    backgroundImage = guiSize.getBackgroundImage(backgroundIndicator);
@@ -85,6 +82,7 @@ public class TamoGraphicsPanel extends JPanel {
 	 * ##################################
 	 * ##################################
 	 */
+	
 	public int getTamoX() {
 		if(tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
 			return getTamoRandomX();

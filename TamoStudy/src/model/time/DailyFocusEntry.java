@@ -14,8 +14,6 @@ package model.time;
  * time on the specific day.
  */
 public class DailyFocusEntry {
-	
-	private Long profileId;
 
 	private Long day;
 	
@@ -25,21 +23,12 @@ public class DailyFocusEntry {
 	
 	private Long time;
 
-	public DailyFocusEntry(Long profileId, Long day, Long month, Long year, Long time) {
+	public DailyFocusEntry(Long day, Long month, Long year, Long time) {
 		super();
-		this.profileId = profileId;
 		this.day = day;
 		this.month = month;
 		this.year = year;
 		this.time = time;
-	}
-	
-	public Long getProfileId() {
-		return profileId;
-	}
-	
-	public void setProfileId(Long profileId) {
-		this.profileId = profileId;
 	}
 	
 	public Long getDay() {
