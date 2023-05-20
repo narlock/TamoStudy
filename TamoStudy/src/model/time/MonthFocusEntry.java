@@ -14,28 +14,17 @@ package model.time;
  */
 public class MonthFocusEntry {
 	
-	private Long profileId;
-	
 	private Long month;
 	
 	private Long year;
 	
 	private Long time;
 
-	public MonthFocusEntry(Long profileId, Long month, Long year, Long time) {
+	public MonthFocusEntry(Long month, Long year, Long time) {
 		super();
-		this.profileId = profileId;
 		this.month = month;
 		this.year = year;
 		this.time = time;
-	}
-	
-	public Long getProfileId() {
-		return profileId;
-	}
-	
-	public void setProfileId(Long profileId) {
-		this.profileId = profileId;
 	}
 
 	public Long getMonth() {

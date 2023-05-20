@@ -101,10 +101,9 @@ public class DailyFocusJsonManager extends JsonManager<List<DailyFocus>> {
 		return dailyFocusJsonArray;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public DailyFocus dailyFocusJsonToDailyFocus(JSONObject dailyFocusJson) {
 		List<DailyFocusEntry> dailyFocusEntries = new ArrayList<>();
-		List<JSONObject> dailyFocusEntriesJsonList = (JSONArray) dailyFocusJson.get("dailyFocusEntries");
+		JSONArray dailyFocusEntriesJsonList = (JSONArray) dailyFocusJson.get("dailyFocusEntries");
 		for(int i = 0; i < dailyFocusEntriesJsonList.size(); i++) {
 			dailyFocusEntries.add(dailyFocusEntryJsonToDailyFocusEntry((JSONObject) dailyFocusEntriesJsonList.get(i)));
 		}
