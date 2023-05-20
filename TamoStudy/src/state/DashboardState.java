@@ -58,6 +58,8 @@ public class DashboardState extends State {
 	private TamoGraphicsPanel tamoGraphicsPanel; 	// LHS
 	private JPanel tamoInfoPanel; 					// RHS
 	private JLabel tamoNameLabel;
+	private JLabel tamoHappyLabel;
+	private JLabel tamoHungerLabel;
 	private JLabel tamoHoursTodayLabel;
 	private JLabel tamoHoursMonthLabel;
 	private JLabel tamoHoursAllLabel;
@@ -108,6 +110,8 @@ public class DashboardState extends State {
 		
 		tamoInfoPanel = new JPanel(new GridBagLayout());
 		tamoNameLabel = new JLabel(tamo.getName());
+		tamoHappyLabel = new JLabel("" + tamo.getHappy());
+		tamoHungerLabel = new JLabel("" + tamo.getHunger());
 		tamoHoursTodayLabel = new JLabel(language.todaysFocusText + ": " + Utils.convertSecondsToHours(dailyFocusEntry.getTime()) + " " + language.hoursText);
 		tamoHoursMonthLabel = new JLabel(language.monthFocusText + ": " + Utils.convertSecondsToHours(monthFocusEntry.getTime()) + " " + language.hoursText);
 		tamoHoursAllLabel = new JLabel(language.totalFocusText + ": " + Utils.convertSecondsToHours(profile.getTime()) + " " + language.hoursText);
@@ -126,6 +130,14 @@ public class DashboardState extends State {
 		
 		tamoNameLabel.setFont(guiSize.messageLabelFont);
 		tamoNameLabel.setForeground(theme.textColor);
+		
+		tamoHappyLabel.setFont(guiSize.statisticsInfoFontBold);
+		tamoHappyLabel.setForeground(theme.textColor);
+		tamoHappyLabel.setIcon(guiSize.heartImageIcon);
+		
+		tamoHungerLabel.setFont(guiSize.statisticsInfoFontBold);
+		tamoHungerLabel.setForeground(theme.textColor);
+		tamoHungerLabel.setIcon(guiSize.onigiriImageIcon);
 		
 		tamoHoursAllLabel.setFont(guiSize.statisticsInfoFont);
 		tamoHoursAllLabel.setForeground(theme.textColor);
@@ -160,6 +172,10 @@ public class DashboardState extends State {
 		gbch.gridheight = GridBagConstraints.REMAINDER;
 		
 		tamoInfoPanel.add(tamoNameLabel, gbcv);
+		tamoInfoPanel.add(createSpaceLabel(), gbcv);
+		tamoInfoPanel.add(tamoHappyLabel, gbcv);
+		tamoInfoPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
+		tamoInfoPanel.add(tamoHungerLabel, gbcv);
 		tamoInfoPanel.add(createSpaceLabel(), gbcv);
 		tamoInfoPanel.add(tamoHoursTodayLabel, gbcv);
 		tamoInfoPanel.add(tamoHoursMonthLabel, gbcv);

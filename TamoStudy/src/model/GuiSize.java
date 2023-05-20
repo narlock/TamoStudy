@@ -42,6 +42,8 @@ public class GuiSize {
 	public Font versionFont;
 	public Dimension tamoGraphicsPanelDimension;
 	public int backgroundImageOffset;
+	public ImageIcon heartImageIcon;
+	public ImageIcon onigiriImageIcon;
 	
 	/*
 	 * ##################################
@@ -76,6 +78,8 @@ public class GuiSize {
 		versionFont = scaleFont(VERSION_FONT, scale);
 		tamoGraphicsPanelDimension = scaleDimension(TAMO_GRAPHICS_PANEL_DIMENSION, scale);
 		backgroundImageOffset = scaleInteger(BACKGROUND_IMAGE_OFFSET, scale);
+		heartImageIcon = scaleImageIcon(HEART_IMAGE_ICON, scale * (3.0 / 5.0) );
+		onigiriImageIcon = scaleImageIcon(ONIGIRI_IMAGE_ICON, scale * (3.0 / 5.0) );
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);

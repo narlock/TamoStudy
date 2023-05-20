@@ -50,8 +50,8 @@ public class Constants {
 	public static final Font VERSION_FONT = new Font("Arial", Font.BOLD, 10);
 	public static final Dimension TAMO_GRAPHICS_PANEL_DIMENSION = new Dimension(215, 315);
 	public static final Integer BACKGROUND_IMAGE_OFFSET = 8;
-//	public static final 
-	
+	public static final ImageIcon HEART_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("HEART.png"));
+	public static final ImageIcon ONIGIRI_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("ONIGIRI.png"));
 	
 	/*
 	 * ##################################

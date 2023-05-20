@@ -103,6 +103,7 @@ public class TamoStudyGUI extends JFrame {
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
 
 		initializeAttributes();
+		state = new DashboardState(getThis());
 		initializeComponents();
 		initializeComponentVisuals();
 		initializeComponentActions();
@@ -123,6 +124,8 @@ public class TamoStudyGUI extends JFrame {
 		Debug.info("TamoStudyGUI", "Initialized with profile=" + profile.toString());
 		
 		initializeAttributes();
+		state = new SettingsState(getThis());
+		
 		initializeComponents();
 		initializeComponentVisuals();
 		initializeComponentActions();
@@ -152,8 +155,6 @@ public class TamoStudyGUI extends JFrame {
 		if(monthFocus == null) {
 			monthFocus = addNewMonthFocusToMonthFocusList(Utils.createMonthFocus(profile));
 		}
-		
-		state = new DashboardState(getThis());
 	}
 	
 	private void initializeComponents() {
