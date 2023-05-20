@@ -41,6 +41,7 @@ public class GuiSize {
 	public Font statisticsInfoFontBold;
 	public Font versionFont;
 	public Dimension tamoGraphicsPanelDimension;
+	public int backgroundImageOffset;
 	
 	/*
 	 * ##################################
@@ -74,6 +75,7 @@ public class GuiSize {
 		statisticsInfoFontBold = scaleFont(STATISTICS_INFO_FONT_BOLD, scale); 
 		versionFont = scaleFont(VERSION_FONT, scale);
 		tamoGraphicsPanelDimension = scaleDimension(TAMO_GRAPHICS_PANEL_DIMENSION, scale);
+		backgroundImageOffset = scaleInteger(BACKGROUND_IMAGE_OFFSET, scale);
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);

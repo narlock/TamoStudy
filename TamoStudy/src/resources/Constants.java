@@ -49,6 +49,9 @@ public class Constants {
 	public static final Font STATISTICS_INFO_FONT_BOLD = new Font("Arial", Font.BOLD, 16);
 	public static final Font VERSION_FONT = new Font("Arial", Font.BOLD, 10);
 	public static final Dimension TAMO_GRAPHICS_PANEL_DIMENSION = new Dimension(215, 315);
+	public static final Integer BACKGROUND_IMAGE_OFFSET = 8;
+//	public static final 
+	
 	
 	/*
 	 * ##################################
