@@ -101,10 +101,6 @@ public class GuiSize {
 		return 1;
 	}
 	
-	public void changeSize(int size) {
-		copyFrom(new GuiSize(size));
-	}
-	
 	public static GuiSize mediumSmallGui() {
 		return new GuiSize(0);
 	}
@@ -250,29 +246,6 @@ public class GuiSize {
 		default:
 			return "BLACK";
 		}
-	}
-	
-	public void copyFrom(GuiSize other) {
-	    index = other.index;
-	    frameSize = other.frameSize;
-	    sideButtonFont = other.sideButtonFont;
-	    topMenuFont = other.topMenuFont;
-	    topMenuImageIcon = other.topMenuImageIcon;
-	    tamoTokenImageIcon = other.tamoTokenImageIcon;
-	    buttonBorderRadius = other.buttonBorderRadius;
-	    tamoGraphicsPanelDimension = other.tamoGraphicsPanelDimension;
-	    statisticsInfoFont = other.statisticsInfoFont;
-	    statisticsInfoFontBold = other.statisticsInfoFontBold;
-	    versionFont = other.versionFont;
-	    messageLabelFont = other.messageLabelFont;
-	    settingLabelFont = other.settingLabelFont;
-	    settingsChoiceFont = other.settingsChoiceFont;
-	    settingsChoiceBoldFont = other.settingsChoiceBoldFont;
-	    settingsPanelBorder = other.settingsPanelBorder;
-	    settingsHorizontalDifference = other.settingsHorizontalDifference;
-	    settingsVerticalDifference = other.settingsVerticalDifference;
-	    minusImageIcon = other.minusImageIcon;
-	    addImageIcon = other.addImageIcon;
 	}
 
 }

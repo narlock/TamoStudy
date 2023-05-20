@@ -192,8 +192,7 @@ public class DashboardState extends State {
 
 	@Override
 	protected void initializeComponentActions() {
-		// TODO Auto-generated method stub
-		
+		// No actions in Dash board state
 	}
 
 	@Override
