@@ -1,10 +1,15 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.border.Border;
 
 import components.border.BubbleBorder;
 import resources.Debug;
@@ -48,6 +53,17 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * FOCUS / TIMER STATE CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public Font timerFont;
+	public Font subTextFont;
+	public BubbleBorder timerBorder;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS ATTRIBUTES
 	 * ##################################
 	 * ##################################
@@ -80,6 +96,10 @@ public class GuiSize {
 		backgroundImageOffset = scaleInteger(BACKGROUND_IMAGE_OFFSET, scale);
 		heartImageIcon = scaleImageIcon(HEART_IMAGE_ICON, scale * (3.0 / 5.0) );
 		onigiriImageIcon = scaleImageIcon(ONIGIRI_IMAGE_ICON, scale * (3.0 / 5.0) );
+		
+		timerFont = scaleFont(TIMER_FONT, scale);
+		subTextFont = scaleFont(SUB_TEXT_FONT, scale);
+		timerBorder = scaleBubbleBorder(TIMER_BORDER, scale);
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
@@ -223,6 +243,26 @@ public class GuiSize {
 	    return (int) (originalInteger * scale);
 	}
 	
+	public JButton scaleSuccessJButton(JButton originalButton, double scale) {
+		BubbleBorder border = scaleBubbleBorder(Theme.SUCCESS_BORDER, scale);
+		Color backgroundColor = originalButton.getBackground();
+		Font font = scaleFont(originalButton.getFont(), scale);
+		
+		JButton button = new JButton(originalButton.getText());
+		primarySuccessButton(button, border, backgroundColor, font);
+		return button;
+	}
+	
+	public JButton scaleDangerJButton(JButton originalButton, double scale) {
+		BubbleBorder border = scaleBubbleBorder(Theme.DANGER_BORDER, scale);
+		Color backgroundColor = originalButton.getBackground();
+		Font font = scaleFont(originalButton.getFont(), scale);
+		
+		JButton button = new JButton(originalButton.getText());
+		primaryDangerButton(button, border, backgroundColor, font);
+		return button;
+	}
+	
 	/*
 	 * ##################################
 	 * ##################################
@@ -248,4 +288,75 @@ public class GuiSize {
 		}
 	}
 
+	public void primarySuccessButton(JButton button, 
+			Border border, 
+			Color backgroundColor, 
+			Font font
+		) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(border);
+		button.setBackground(backgroundColor);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.SUCCESS);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
+	
+	public void primaryDangerButton(JButton button, 
+			Border border, 
+			Color backgroundColor, 
+			Font font
+		) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(border);
+		button.setBackground(backgroundColor);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button.setBackground(Theme.DANGER_ALT);
+				button.setForeground(new Color(191, 191, 191));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button.setBackground(Theme.DANGER);
+				button.setForeground(Color.WHITE);
+			}
+			
+		});
+	}
 }

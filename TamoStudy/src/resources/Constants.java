@@ -1,5 +1,6 @@
 package resources;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -52,6 +53,17 @@ public class Constants {
 	public static final Integer BACKGROUND_IMAGE_OFFSET = 8;
 	public static final ImageIcon HEART_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("HEART.png"));
 	public static final ImageIcon ONIGIRI_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("ONIGIRI.png"));
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * FOCUS / TIMER STATE CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public static final Font TIMER_FONT = new Font("Arial", Font.BOLD, 96);
+	public static final Font SUB_TEXT_FONT = new Font("Arial", Font.BOLD, 25);
+	public static final BubbleBorder TIMER_BORDER = new BubbleBorder(Color.WHITE, 6, 20, 10, true);
 	
 	/*
 	 * ##################################

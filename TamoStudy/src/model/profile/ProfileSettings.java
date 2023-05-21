@@ -6,6 +6,13 @@ public class ProfileSettings {
 	
 	private Language language;
 	
+	/*
+	 * 0 : Pomodoro
+	 * 1 : Custom Countdown
+	 * 2 : Five Min Interval Countdown
+	 * 3 : Stopwatch
+	 * 4 : Pomodoro with Long Breaks
+	 */
 	private long focusMode;
 	
 	private long difficulty;
