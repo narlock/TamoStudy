@@ -1,6 +1,7 @@
 package model.profile;
 
 import model.language.Language;
+import resources.Debug;
 
 public class ProfileSettings {
 	
@@ -174,6 +175,22 @@ public class ProfileSettings {
 				+ showProgramCloseMessage + "]";
 	}
 	
-	
+	public String getSoundPath() {
+		switch((int) timerAlarm) {
+		case 1:
+			return "SOFT_ALARM.wav";
+		case 2:
+			return "TRAD_ALARM.wav";
+		case 3:
+			return "PAC_ALARM.wav";
+		case 4:
+			return "CALM_ALARM.wav";
+		case 5:
+			return "BELL_ALARM.wav";
+		default:
+			Debug.error("ProfileSettings", "Error retrieving sound path: Unexpected value for timerAlarm = " + timerAlarm);
+			throw new RuntimeException("Unexpected error occurred");
+		}
+	}
 
 }

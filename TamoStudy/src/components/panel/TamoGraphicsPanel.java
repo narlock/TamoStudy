@@ -33,7 +33,7 @@ public class TamoGraphicsPanel extends JPanel {
 	 */
 	private Image borderImage;
 	private Image backgroundImage;
-	private Image tamoImage;
+	public Image tamoImage;
 
 	public TamoGraphicsPanel(GuiSize guiSize, Tamo tamo, long backgroundIndicator, long borderIndicator) {
 		this.guiSize = guiSize;

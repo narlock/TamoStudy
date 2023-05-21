@@ -5,10 +5,18 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import components.panel.SetPanel;
 import components.panel.TamoGraphicsPanel;
@@ -20,6 +28,7 @@ import model.profile.Profile;
 import model.profile.Tamo;
 import model.time.DailyFocusEntry;
 import model.time.MonthFocusEntry;
+import resources.Debug;
 import resources.Theme;
 import util.Utils;
 
@@ -41,6 +50,10 @@ public class FocusState extends State {
 	private Theme theme;
 	private DailyFocusEntry dailyFocusEntry;
 	private MonthFocusEntry monthFocusEntry;
+	
+	private Timer timer;
+	private int sessionsRemaining;
+	private int tempSec, tempMin, sec, min;
 	
 	/*
 	 * ##################################
@@ -207,16 +220,19 @@ public class FocusState extends State {
 			// Set Timer based on Pomodoro setting
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		case 1:
 			// Custom Countdown
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.customMinuteLengthBox.getSelectedItem()));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.customSecondLengthBox.getSelectedItem()));
+			sessionsRemaining = 0;
 			break;
 		case 2:
 			// Five Min Interval Countdown
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.fiveLengthBox.getSelectedItem()).substring(0, 2));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.fiveLengthBox.getSelectedItem()).substring(3));
+			sessionsRemaining = 0;
 			break;
 		case 4:
 			// Pomodoro with Long Breaks
@@ -226,20 +242,179 @@ public class FocusState extends State {
 			// Pomodoro
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		}
 		
 	}
 	
 	public void setFocusInformation() {
+		// Set timer attributes
+		min = Integer.parseInt(timerPanel.minuteTimeLabel.getText());
+		sec = Integer.parseInt(timerPanel.secondTimeLabel.getText());
+		tempSec = -1;
+		tempMin = 0;
 		
+		// Set Tamo Image To Focus
+		tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
+		tamoGraphicsPanel.repaint();
 	}
 	
 	public void disableFocusButtons() {
-		
+		// TODO
 	}
 	
 	public void createTimer() {
+		Debug.info("FocusState.createTimer", "Starting focus timer...");
+		
+		timer = new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Set how long studied for variables
+				tempSec = tempSec + 1;
+				if(tempSec == 60) {
+					tempMin = tempMin + 1;
+					tempSec = 0;
+				}
+				
+				if(sec == 0) {
+					sec = 60;
+					min--;
+				}
+				
+				//Timer Completed
+				if(min < 0) {
+					
+					// Update statistics
+					updateFocusStatistics();
+					String studyMessage = "You focused for " + tempMin + " and " + tempSec + " seconds.";
+
+					// Reset counting variables
+					tempMin = 0;
+					tempSec = 0;
+					
+					if(profile.getSettings().getTimerAlarm() >= 1) { // If user has a sound clip 
+					
+						try {
+							//Get the url for the sound clip
+							String soundPath = profile.getSettings().getSoundPath();
+							
+							URL url = this.getClass().getClassLoader().getResource(soundPath);
+							AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+							
+							//get the clip from the url
+							Clip clip = AudioSystem.getClip();
+							clip.open(audioIn);
+							
+							//volume control - make the sound quieter
+							FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					        volume.setValue(-1 * 20);
+							
+					        //start and loop the clip
+							clip.start();
+							clip.loop(Clip.LOOP_CONTINUOUSLY);
+							
+							//loop will end when user hits ok dialog
+							JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							clip.stop();
+							
+						} catch (Exception ex) {
+							/*
+							 * Under the condition that the user has a set timer alarm, but an exception
+							 * occurs, TamoStudy will proceed as if there was no alarm set.
+							 */
+							JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						}
+					
+					} else {
+						/*
+						 * Under the condition that there is no timer alarm set
+						 */
+						JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+					}
+//					//TODO Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
+//					
+//					if(profile.getSettings().getFocusMode() == 2 && totalPomodoroSessions != 0) {
+//						System.out.println("pomoSessionNumber: " + totalPomodoroSessions);
+//						nextSession();
+//						setCurrentSession();
+//					} else {
+//						resetTimer();
+//						timer.stop();
+//					}
+					
+					if(sessionsRemaining > 0) {
+						// TODO Go to next session
+					} else {
+						resetTimer();
+						timer.stop();
+					}
+					
+				} 
+				//Timer still running
+				else {
+					sec--;
+					if(sec < 10) {
+						timerPanel.secondTimeLabel.setText("0" + sec);
+					}
+					else {
+						timerPanel.secondTimeLabel.setText("" + sec);
+					}
+					if(min < 10) {
+						timerPanel.minuteTimeLabel.setText("0" + min);
+					}
+					else {
+						timerPanel.minuteTimeLabel.setText("" + min);
+					}
+//					updateRPCTimer();
+				}
+			}
+		});
+		
+		//Start timer
+		timer.start();
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * STATISTIC METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	
+	/**
+	 * @brief tempMin and tempSec store the minutes
+	 * and seconds that have been studied during the time
+	 * that this method is called.
+	 * This method calculates the total time (in seconds)
+	 * the user has studied and adds to the total time.
+	 * The user earns Tamo happiness based
+	 * off of the amount of time studied.
+	 * Finally, the user earns Tamo tokens based off of
+	 * the amount of time studied.
+	 */
+	public void updateFocusStatistics() {
+		// Update Time
+		int timeEarned = tempSec + (tempMin * 60);
+		dailyFocusEntry.setTime(dailyFocusEntry.getTime() + timeEarned); // Daily Time
+		monthFocusEntry.setTime(monthFocusEntry.getTime() + timeEarned); // Month Time
+		profile.setTime(profile.getTime() + timeEarned); // Total Time
+		
+		// Update Tokens (72 seconds = 1 Tamo token)
+		profile.setTokens(profile.getTokens() + ((50 * timeEarned) / 3600));
+		
+		// Update Tamo Happiness
+		int happinessEarned = timeEarned / 1800;
+		int newHappy = (int) tamo.getHappy() + happinessEarned;
+		tamo.setHappy(newHappy >= 10 ? 10 : newHappy);
+		
+		// Update Profile JSON
+		tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
+	}
+	
+	public void resetTimer() {
 		
 	}
 }
