@@ -214,8 +214,19 @@ public class FocusState extends State {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				sessionsRemaining = 0;		// Reset pomdoro - no sessions remaining
+				sessionTimeIndicator = 0;	// Reset time indicator - will start on focus time
 				
+				String studyMessage = "You focused for " + tempMin + " and " + tempSec + " seconds.";
+
+				// Reset counting variables
+				tempMin = 0;
+				tempSec = 0;
+				
+				timer.stop();
+				resetTimer();
+				
+				JOptionPane.showMessageDialog(getRootPane(), studyMessage, "Focus Broke", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			}
 		});
 	}
@@ -266,14 +277,14 @@ public class FocusState extends State {
 			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		}
-		
+		timerPanel.subTextLabel.setText("Let's Focus!");
 	}
 	
 	public void setFocusInformation() {
 		// Set timer attributes
 		min = Integer.parseInt(timerPanel.minuteTimeLabel.getText());
 		sec = Integer.parseInt(timerPanel.secondTimeLabel.getText());
-		tempSec = -1;
+		tempSec = 0;
 		tempMin = 0;
 		
 		// Set Tamo Image To Focus
@@ -284,12 +295,41 @@ public class FocusState extends State {
 	public void createTimer() {
 		Debug.info("FocusState.createTimer", "Starting focus timer...");
 		
+		if(profile.getSettings().getFocusMode() == 0) {
+			int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
+			timerPanel.subTextLabel.setText("Focus " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
+		}
+		
+		// Initialize Timer to subtract a second such that time focused is accurate
+		if(sec == 0 && min > 0) {
+			sec = 60;
+			min--;	
+		}
+		
+		if(sec != 0) {
+			sec--;
+			if(sec < 10) {
+				timerPanel.secondTimeLabel.setText("0" + sec);
+			}
+			else {
+				timerPanel.secondTimeLabel.setText("" + sec);
+			}
+			if(min < 10) {
+				timerPanel.minuteTimeLabel.setText("0" + min);
+			}
+			else {
+				timerPanel.minuteTimeLabel.setText("" + min);
+			}
+		}
+		
+		// Begin the count down timer
 		timer = new Timer(1000, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Set how long studied for variables
 				tempSec = tempSec + 1;
+				
 				if(tempSec == 60) {
 					tempMin = tempMin + 1;
 					tempSec = 0;
@@ -333,7 +373,7 @@ public class FocusState extends State {
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 							
 							//loop will end when user hits ok dialog
-							JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							JOptionPane.showMessageDialog(getRootPane(), studyMessage, "Focus Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 							clip.stop();
 							
 						} catch (Exception ex) {
@@ -341,14 +381,14 @@ public class FocusState extends State {
 							 * Under the condition that the user has a set timer alarm, but an exception
 							 * occurs, TamoStudy will proceed as if there was no alarm set.
 							 */
-							JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							JOptionPane.showMessageDialog(getRootPane(), studyMessage, "Focus Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 						}
 					
 					} else {
 						/*
 						 * Under the condition that there is no timer alarm set
 						 */
-						JOptionPane.showMessageDialog(getRootPane(), "study message", "session end", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						JOptionPane.showMessageDialog(getRootPane(), studyMessage, "Focus Complete", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 					}
 //					//TODO Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 //					
@@ -361,8 +401,27 @@ public class FocusState extends State {
 //						timer.stop();
 //					}
 					
-					if(sessionsRemaining > 0) {
-						// TODO Go to next session
+					// Go to next session or break - POMODORO ONLY
+					if(sessionsRemaining > 1) {
+						// Currently finished focus session
+						if(sessionTimeIndicator == 0) {
+							int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
+							Debug.info("FocusState.timer.actionPerformed", "Focus session " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions + " completed.");
+							sessionTimeIndicator = 1; // Break time
+							timerPanel.subTextLabel.setText("Break " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
+							// TODO Refactor to add logic to check if long break or not... Set to 2 if long break
+						} 
+						// Currently finished break session
+						else if(sessionTimeIndicator == 1) {
+							sessionsRemaining--;
+							int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
+							Debug.info("FocusState.timer.actionPerformed", "Break session ended. Beginning focus session " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
+							sessionTimeIndicator = 0; // Focus time
+							timerPanel.subTextLabel.setText("Focus " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
+						}
+						// TODO Add else if branch for long session and refactor for long session
+						
+						nextSession();
 					} else {
 						// Timer is done!
 						timer.stop();
@@ -392,6 +451,32 @@ public class FocusState extends State {
 		
 		//Start timer
 		timer.start();
+	}
+	
+	public void nextSession() {
+		switch(sessionTimeIndicator) {
+		case 1:
+			// Break Timer Set
+			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
+			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			break;
+		case 2:
+			// TODO Long Break Timer Set
+			break;
+		case 0:
+		default:
+			// Pomodoro Focus Timer Set
+			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
+			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			break;
+		}
+		min = Integer.parseInt(timerPanel.minuteTimeLabel.getText());
+		sec = Integer.parseInt(timerPanel.secondTimeLabel.getText());
+		
+		// TODO Add logic to add a conditional if statement to start
+		// the next session. By default, this click will be done
+		// for the user.
+		startFocusButton.doClick();
 	}
 	
 	/*

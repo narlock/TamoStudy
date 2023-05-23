@@ -128,6 +128,8 @@ public class SetPanel extends JPanel {
 		pomoBreakLengthLabel = new JLabel("Break Length");
 		pomoBreakLengthBox = new JComboBox<>();
 		
+		pomoSessionLengthBox.addItem("00:05");
+		pomoBreakLengthBox.addItem("00:05");
 		for(int i = 5; i <= 95; i = i + 5) {
 			if(i == 5) {
 				pomoSessionLengthBox.addItem("0" + i + ":00");
@@ -207,7 +209,7 @@ public class SetPanel extends JPanel {
 		customSecondLengthLabel = new JLabel("Seconds");
 		customSecondLengthBox = new JComboBox<>();
 		
-		for(int i = 0; i <= 60; i++) {
+		for(int i = 1; i <= 59; i++) {
 			if(i < 10) {
 				customSecondLengthBox.addItem("0" + i);
 			}
@@ -235,6 +237,9 @@ public class SetPanel extends JPanel {
 		innergbcv.anchor = GridBagConstraints.WEST;
 		this.add(customMinuteLengthPanel, innergbcv);
 		this.add(customSecondLengthPanel, innergbcv);
+		
+		timerPanel.minuteTimeLabel.setText(((String) customMinuteLengthBox.getSelectedItem()));
+		timerPanel.secondTimeLabel.setText(((String) customSecondLengthBox.getSelectedItem()));
 		
 		initializeCustomCountdownComponentActions();
 	}
