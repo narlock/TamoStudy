@@ -311,14 +311,19 @@ public class GuiSize {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button.setBackground(Theme.SUCCESS_ALT);
-				button.setForeground(new Color(191, 191, 191));
+				if(button.isEnabled()) {
+					button.setBackground(Theme.SUCCESS_ALT);
+					button.setForeground(new Color(191, 191, 191));
+				}
+				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button.setBackground(Theme.SUCCESS);
-				button.setForeground(Color.WHITE);
+				if(button.isEnabled()) {
+					button.setBackground(Theme.SUCCESS);
+					button.setForeground(Color.WHITE);
+				}
 			}
 			
 		});
@@ -347,14 +352,18 @@ public class GuiSize {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button.setBackground(Theme.DANGER_ALT);
-				button.setForeground(new Color(191, 191, 191));
+				if(button.isEnabled()) {
+					button.setBackground(Theme.DANGER_ALT);
+					button.setForeground(new Color(191, 191, 191));
+				}
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button.setBackground(Theme.DANGER);
-				button.setForeground(Color.WHITE);
+				if(button.isEnabled()) {
+					button.setBackground(Theme.DANGER);
+					button.setForeground(Color.WHITE);
+				}
 			}
 			
 		});

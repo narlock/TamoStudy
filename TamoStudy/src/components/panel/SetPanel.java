@@ -353,4 +353,46 @@ public class SetPanel extends JPanel {
 	public void initializePomodoroLongBreakComponentActions() {
 		
 	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public void toggleOptionButtons(boolean enabled) {
+		switch((int) focusMode) {
+		case 0:
+			// Toggle Pomodoro Options
+			pomoNumberOfSessionsBox.setEnabled(enabled);
+			pomoSessionLengthBox.setEnabled(enabled);
+			pomoBreakLengthBox.setEnabled(enabled);
+			break;
+		case 1:
+			// Toggle Custom Countdown Options
+			customMinuteLengthBox.setEnabled(enabled);
+			customSecondLengthBox.setEnabled(enabled);
+			break;
+		case 2:
+			// Toggle Five Min Interval Countdown Options
+			fiveLengthBox.setEnabled(enabled);
+			break;
+		case 4:
+			// Toggle Pomodoro with Long Breaks Options
+			pomoNumberOfSessionsBox.setEnabled(enabled);
+			pomoSessionLengthBox.setEnabled(enabled);
+			pomoBreakLengthBox.setEnabled(enabled);
+			pomoLongBreakAfterXSessionsBox.setEnabled(enabled);
+			pomoLongBreakLengthBox.setEnabled(enabled);
+			break;
+		default:
+			// Toggle Pomodoro Options
+			pomoNumberOfSessionsBox.setEnabled(enabled);
+			pomoSessionLengthBox.setEnabled(enabled);
+			pomoBreakLengthBox.setEnabled(enabled);
+			break;
+		}
+	}
+	
 }

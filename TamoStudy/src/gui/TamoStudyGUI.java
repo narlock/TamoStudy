@@ -75,18 +75,18 @@ public class TamoStudyGUI extends JFrame {
 	 * ##################################
 	 */
 	private JPanel topPanel;
-		private JButton topMenuButton;
-		private JLabel topNameTokensLabel;
+	private JButton topMenuButton;
+	private JLabel topNameTokensLabel;
 	
 	private JPanel sidePanel;
-		private JButton dashboardStateButton;
-		private JButton focusStateButton;
-		private JButton shopStateButton;
-		private JButton inventoryStateButton;
-		private JButton statisticsStateButton;
-		private JButton achievementsStateButton;
-		private JButton settingsStateButton;
-		private JButton aboutStateButton;
+	private JButton dashboardStateButton;
+	private JButton focusStateButton;
+	private JButton shopStateButton;
+	private JButton inventoryStateButton;
+	private JButton statisticsStateButton;
+	private JButton achievementsStateButton;
+	private JButton settingsStateButton;
+	private JButton aboutStateButton;
 		
 	private State state;
 	
@@ -593,5 +593,17 @@ public class TamoStudyGUI extends JFrame {
 			return false;
 		}
 	}
+	
+	public void toggleMenuButtons(boolean enabled) {
+		dashboardStateButton.setEnabled(enabled);
+		focusStateButton.setEnabled(enabled);
+		shopStateButton.setEnabled(enabled);
+		inventoryStateButton.setEnabled(enabled);
+		statisticsStateButton.setEnabled(enabled);
+		achievementsStateButton.setEnabled(enabled);
+		settingsStateButton.setEnabled(enabled);
+		aboutStateButton.setEnabled(enabled);
+	}
+	
 }
 

@@ -1,5 +1,6 @@
 package state;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -53,6 +54,14 @@ public class FocusState extends State {
 	
 	private Timer timer;
 	private int sessionsRemaining;
+	
+	/**
+	 * Indicator for what time to use during pomodoro countdown timers.
+	 * 0 : Pomodoro Session Length
+	 * 1 : Pomodoro Break Length
+	 * 2 : Pomodoro Long Break Length
+	 */
+	private int sessionTimeIndicator;
 	private int tempSec, tempMin, sec, min;
 	
 	/*
@@ -166,6 +175,9 @@ public class FocusState extends State {
 		breakFocusButton.setBackground(Theme.DANGER);
 		breakFocusButton.setFont(theme.fontBoldRegSmall);
 		breakFocusButton = guiSize.scaleDangerJButton(breakFocusButton, guiSize.getScaleFromSize((int) profile.getSettings().getGuiSize()));
+		breakFocusButton.setEnabled(false);
+		breakFocusButton.setBackground(Theme.DANGER_ALT);
+		breakFocusButton.setForeground(new Color(191, 191, 191));
 		
 		buttonPanel.setBackground(theme.subColor);
 		buttonPanel.add(startFocusButton);
@@ -190,12 +202,21 @@ public class FocusState extends State {
 				setFocusInformation();
 				
 				//Disable Buttons
-				disableFocusButtons();
+				toggleButtons(false);
 				
 				//Create Timer
 				createTimer();
 			}
 			
+		});
+		
+		breakFocusButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
 	}
 
@@ -258,10 +279,6 @@ public class FocusState extends State {
 		// Set Tamo Image To Focus
 		tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
 		tamoGraphicsPanel.repaint();
-	}
-	
-	public void disableFocusButtons() {
-		// TODO
 	}
 	
 	public void createTimer() {
@@ -347,8 +364,9 @@ public class FocusState extends State {
 					if(sessionsRemaining > 0) {
 						// TODO Go to next session
 					} else {
-						resetTimer();
+						// Timer is done!
 						timer.stop();
+						resetTimer();
 					}
 					
 				} 
@@ -415,6 +433,48 @@ public class FocusState extends State {
 	}
 	
 	public void resetTimer() {
+		// Reset timer back to where user set it
+		updateTimerInformation();
 		
+		// Enable menu, options, and start buttons again
+		toggleButtons(true);
 	}
+	
+	/**
+	 * @brief Method that disables buttons from
+	 * the TamoStudyGUI menu, the start focus button.
+	 * Also disables the selection options for the timer.
+	 * 
+	 * Enables the break focus button.
+	 */
+	public void toggleButtons(boolean enabled) {
+		// Disable menu buttons
+		tsGui.toggleMenuButtons(enabled);
+		
+		// Disable options
+		setPanel.toggleOptionButtons(enabled);
+		
+		// Disable Start focus
+		startFocusButton.setEnabled(enabled);
+		breakFocusButton.setEnabled(!enabled);
+		
+		// Re-color start / break buttons
+		if(enabled) {
+			// Modify colors of start button
+			startFocusButton.setBackground(Theme.SUCCESS);
+			startFocusButton.setForeground(Color.WHITE);
+			
+			// Modify colors of break button
+			breakFocusButton.setBackground(Theme.DANGER_ALT);
+			breakFocusButton.setForeground(new Color(191, 191, 191));
+		} else {
+			startFocusButton.setBackground(Theme.SUCCESS_ALT);
+			startFocusButton.setForeground(new Color(191, 191, 191));
+			
+			// Modify colors of break button
+			breakFocusButton.setBackground(Theme.DANGER);
+			breakFocusButton.setForeground(Color.WHITE);
+		}
+	}
+	
 }
