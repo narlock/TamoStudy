@@ -265,6 +265,8 @@ public class WelcomeGUI extends JFrame {
 	}
 	
 	public void addMenuButtonVisual(JButton button) {
+		button.setContentAreaFilled(false);
+		button.setOpaque(false);
 		button.setForeground(theme.textColor);
 		button.setBorderPainted(false);
 		button.setFocusPainted(false);

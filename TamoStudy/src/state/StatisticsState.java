@@ -200,7 +200,7 @@ public class StatisticsState extends State {
 	
 	public JLabel createSpaceLabel() {
 		String DIVIDER = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-				? "━━━━━━━━━━━━━━━━━━ " : "━━━━━━━";
+				? "────────────" : "━━━━━━━";
 		
 		JLabel label = new JLabel(DIVIDER);
 		label.setFont(guiSize.topMenuFont);

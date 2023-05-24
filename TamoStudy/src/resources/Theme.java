@@ -478,6 +478,7 @@ public class Theme {
 	}
 	
 	public static void labelButton(JButton button) {
+		button.setContentAreaFilled(false);
 		button.setOpaque(false);
 		button.setFocusPainted(false);
 		button.setBorderPainted(false);

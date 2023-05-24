@@ -423,6 +423,8 @@ public class TamoStudyGUI extends JFrame {
 	 * @param button
 	 */
 	public void addMenuButtonVisual(JButton button) {
+		button.setContentAreaFilled(false);
+		button.setOpaque(false);
 		button.setFont(guiSize.topMenuFont);
 		button.setForeground(theme.textColor);
 		button.setBorderPainted(false);
@@ -432,7 +434,7 @@ public class TamoStudyGUI extends JFrame {
 	
 	public JLabel createSpaceLabel() {
 		String DIVIDER = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-				? "━━━━━━━━━━━━━━━━━━ " : "━━━━━━━";
+				? "────────────" : "━━━━━━━";
 		
 		JLabel label = new JLabel(DIVIDER);
 		label.setFont(guiSize.topMenuFont);

@@ -473,6 +473,7 @@ public class SettingsState extends State {
 	 */
 	public void addButtonVisual(JButton button) {
 		button.setOpaque(false);
+		button.setContentAreaFilled(false);
 		button.setFocusPainted(false);
 		button.setBorderPainted(false);
 	}

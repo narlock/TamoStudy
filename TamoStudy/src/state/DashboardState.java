@@ -200,7 +200,12 @@ public class DashboardState extends State {
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
 		this.setLayout(new GridBagLayout());
-		this.add(tamoStudyLogoImageLabel, gbcv);
+		
+		// TODO Re-scale the image for small window and then get rid of this
+		if(guiSize.index != 0) {
+			this.add(tamoStudyLogoImageLabel, gbcv);
+		}
+		
 		this.add(tamoDashboardPanel, gbcv);
 	}
 	
@@ -214,7 +219,7 @@ public class DashboardState extends State {
 	
 	public JLabel createSpaceLabel() {
 		String DIVIDER = (System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("Windows"))
-				? "━━━━━━━━━━━━━━━━━━ " : "━━━━━━━";
+				? "────────────" : "━━━━━━━";
 		
 		JLabel label = new JLabel(DIVIDER);
 		label.setFont(guiSize.topMenuFont);
