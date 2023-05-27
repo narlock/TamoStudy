@@ -114,6 +114,31 @@ public abstract class Language {
 	/*
 	 * ##################################
 	 * ##################################
+	 * FOCUS STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String pomoNumberOfSessionsText;
+	public String pomoSessionLengthText;
+	public String pomoBreakLengthText;
+	public String minutesText;
+	public String secondsText;
+	public String durationText;
+	public String letsFocusText;
+	public String focusingText;
+	public String startFocusText;
+	public String breakFocusText;
+	public String youFocusedForText;
+	public String minutesAndText;
+	public String secondsPeriodText;
+	public String focusBrokeText;
+	public String focusText;
+	public String breakText;
+	public String focusCompleteText;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS STATE TEXT
 	 * ##################################
 	 * ##################################

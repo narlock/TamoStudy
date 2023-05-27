@@ -107,6 +107,31 @@ public class EnglishLanguage extends Language {
 		/*
 		 * ##################################
 		 * ##################################
+		 * FOCUS STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		pomoNumberOfSessionsText = "No. Of Sessions";
+		pomoSessionLengthText = "Session Length";
+		pomoBreakLengthText = "Break Length";
+		minutesText = "Minutes";
+		secondsText = "Seconds";
+		durationText = "Duration";
+		letsFocusText = "Lets Focus!";
+		focusingText = "Focusing!";
+		startFocusText = "Start Focus";
+		breakFocusText = "Break Focus";
+		youFocusedForText = "You focused for";
+		minutesAndText = "minutes and";
+		secondsPeriodText = "seconds.";
+		focusBrokeText = "Focus Broke";
+		focusText = "Focus";
+		breakText = "Break";
+		focusCompleteText = "Focus Complete";
+		
+		/*
+		 * ##################################
+		 * ##################################
 		 * SETTINGS STATE TEXT
 		 * ##################################
 		 * ##################################

@@ -9,6 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.language.Language;
+
 public class SetPanel extends JPanel {
 
 	private static final long serialVersionUID = -4533299272357080931L;
@@ -22,6 +24,7 @@ public class SetPanel extends JPanel {
 	 */
 	TimerPanel timerPanel;
 	long focusMode;
+	Language language;
 	
 	/*
 	 * ##################################
@@ -65,9 +68,10 @@ public class SetPanel extends JPanel {
 	
 	// Stop watch contains no components
 	
-	public SetPanel(TimerPanel timerPanel, long focusMode) {
+	public SetPanel(TimerPanel timerPanel, long focusMode, Language language) {
 		this.timerPanel = timerPanel;
 		this.focusMode = focusMode;
+		this.language = language;
 		
 		initializeComponents();
 		initializePanel();
@@ -113,7 +117,7 @@ public class SetPanel extends JPanel {
 	public void initializePomodoroSetComponents() {
 		// Initialize Components
 		pomoNumberOfSessionsPanel = new JPanel();
-		pomoNumberOfSessionsLabel = new JLabel("No. Of Sessions");
+		pomoNumberOfSessionsLabel = new JLabel(language.pomoNumberOfSessionsText);
 		pomoNumberOfSessionsBox = new JComboBox<>();
 		
 		for(int i = 1; i <= 16; i++) {
@@ -121,15 +125,13 @@ public class SetPanel extends JPanel {
 		}
 		
 		pomoSessionLengthPanel = new JPanel();
-		pomoSessionLengthLabel = new JLabel("Session Length");
+		pomoSessionLengthLabel = new JLabel(language.pomoSessionLengthText);
 		pomoSessionLengthBox = new JComboBox<>();
 		
 		pomoBreakLengthPanel = new JPanel();
-		pomoBreakLengthLabel = new JLabel("Break Length");
+		pomoBreakLengthLabel = new JLabel(language.pomoBreakLengthText);
 		pomoBreakLengthBox = new JComboBox<>();
 		
-		pomoSessionLengthBox.addItem("01:12");
-		pomoBreakLengthBox.addItem("01:12");
 		for(int i = 5; i <= 95; i = i + 5) {
 			if(i == 5) {
 				pomoSessionLengthBox.addItem("0" + i + ":00");
@@ -194,7 +196,7 @@ public class SetPanel extends JPanel {
 	public void initializeCustomCountdownSetComponents() {
 		// Initialize Components
 		customMinuteLengthPanel = new JPanel();
-		customMinuteLengthLabel = new JLabel("Minutes");
+		customMinuteLengthLabel = new JLabel(language.minutesText);
 		customMinuteLengthBox = new JComboBox<>();
 		
 		for(int i = 0; i <= 99; i++) {
@@ -206,7 +208,7 @@ public class SetPanel extends JPanel {
 		}
 		
 		customSecondLengthPanel = new JPanel();
-		customSecondLengthLabel = new JLabel("Seconds");
+		customSecondLengthLabel = new JLabel(language.secondsText);
 		customSecondLengthBox = new JComboBox<>();
 		
 		for(int i = 1; i <= 59; i++) {
@@ -272,7 +274,7 @@ public class SetPanel extends JPanel {
 	public void initializeFiveIntervalCountdownSetComponents() {
 		// Initialize Components
 		fiveLengthPanel = new JPanel();
-		fiveLengthLabel = new JLabel("Duration");
+		fiveLengthLabel = new JLabel(language.durationText);
 		fiveLengthBox = new JComboBox<>();
 		
 		for(int i = 5; i <= 95; i = i + 5) {

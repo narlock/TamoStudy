@@ -71,7 +71,7 @@ public class TimerPanel extends JPanel {
 		timerTimePanel.add(colonLabel);
 		timerTimePanel.add(secondTimeLabel);
 		
-		subTextLabel = new JLabel("Let's Focus!");
+		subTextLabel = new JLabel(language.letsFocusText);
 		subTextLabel.setForeground(theme.textColor);
 		subTextLabel.setFont(guiSize.subTextFont);
 	}
