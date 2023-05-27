@@ -295,6 +295,7 @@ public class FocusState extends State {
 	public void createTimer() {
 		Debug.info("FocusState.createTimer", "Starting focus timer...");
 		
+		sessionTimeIndicator = 0; // Ensure in focus mode
 		if(profile.getSettings().getFocusMode() == 0) {
 			int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			timerPanel.subTextLabel.setText("Focus " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
@@ -459,6 +460,10 @@ public class FocusState extends State {
 			// Break Timer Set
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			
+			// Set Tamo Image To Non-Focus
+			tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
+			tamoGraphicsPanel.repaint();
 			break;
 		case 2:
 			// TODO Long Break Timer Set
@@ -468,6 +473,10 @@ public class FocusState extends State {
 			// Pomodoro Focus Timer Set
 			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			
+			// Set Tamo Image To Focus
+			tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
+			tamoGraphicsPanel.repaint();
 			break;
 		}
 		min = Integer.parseInt(timerPanel.minuteTimeLabel.getText());
@@ -500,26 +509,33 @@ public class FocusState extends State {
 	 */
 	public void updateFocusStatistics() {
 		// Update Time
-		int timeEarned = tempSec + (tempMin * 60);
-		dailyFocusEntry.setTime(dailyFocusEntry.getTime() + timeEarned); // Daily Time
-		monthFocusEntry.setTime(monthFocusEntry.getTime() + timeEarned); // Month Time
-		profile.setTime(profile.getTime() + timeEarned); // Total Time
-		
-		// Update Tokens (72 seconds = 1 Tamo token)
-		profile.setTokens(profile.getTokens() + ((50 * timeEarned) / 3600));
-		
-		// Update Tamo Happiness
-		int happinessEarned = timeEarned / 1800;
-		int newHappy = (int) tamo.getHappy() + happinessEarned;
-		tamo.setHappy(newHappy >= 10 ? 10 : newHappy);
-		
-		// Update Profile JSON
-		tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
+		if(sessionTimeIndicator == 0) { // Only earn on focus sessions
+			int timeEarned = tempSec + (tempMin * 60);
+			dailyFocusEntry.setTime(dailyFocusEntry.getTime() + timeEarned); // Daily Time
+			monthFocusEntry.setTime(monthFocusEntry.getTime() + timeEarned); // Month Time
+			profile.setTime(profile.getTime() + timeEarned); // Total Time
+			
+			// Update Tokens (72 seconds = 1 Tamo token)
+			profile.setTokens(profile.getTokens() + ((50 * timeEarned) / 3600));
+			
+			// Update Tamo Happiness
+			int happinessEarned = timeEarned / 1800;
+			int newHappy = (int) tamo.getHappy() + happinessEarned;
+			tamo.setHappy(newHappy >= 10 ? 10 : newHappy);
+			
+			// Update Profile JSON
+			tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
+			tsGui.updateTamoTokensLabel();
+		}
 	}
 	
 	public void resetTimer() {
 		// Reset timer back to where user set it
 		updateTimerInformation();
+		
+		// Set Tamo Image To Non-Focus
+		tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
+		tamoGraphicsPanel.repaint();
 		
 		// Enable menu, options, and start buttons again
 		toggleButtons(true);

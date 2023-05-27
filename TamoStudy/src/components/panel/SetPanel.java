@@ -128,8 +128,8 @@ public class SetPanel extends JPanel {
 		pomoBreakLengthLabel = new JLabel("Break Length");
 		pomoBreakLengthBox = new JComboBox<>();
 		
-		pomoSessionLengthBox.addItem("00:05");
-		pomoBreakLengthBox.addItem("00:05");
+		pomoSessionLengthBox.addItem("01:12");
+		pomoBreakLengthBox.addItem("01:12");
 		for(int i = 5; i <= 95; i = i + 5) {
 			if(i == 5) {
 				pomoSessionLengthBox.addItem("0" + i + ":00");

@@ -607,5 +607,9 @@ public class TamoStudyGUI extends JFrame {
 		aboutStateButton.setEnabled(enabled);
 	}
 	
+	public void updateTamoTokensLabel() {
+		topNameTokensLabel.setText(profile.getName() + " • " + profile.getTokens());
+	}
+	
 }
 
