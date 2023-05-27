@@ -64,6 +64,19 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * SHOP STATE CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public Dimension kathShopDimension;
+	public BubbleBorder messageBorder;
+	public int kathImageOffset;
+	public Font kathMessageFont;
+	public Dimension kathMsgDimension;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS ATTRIBUTES
 	 * ##################################
 	 * ##################################
@@ -101,6 +114,12 @@ public class GuiSize {
 		subTextFont = scaleFont(SUB_TEXT_FONT, scale);
 		timerBorder = scaleBubbleBorder(TIMER_BORDER, scale);
 		
+		kathShopDimension = scaleDimension(KATH_SHOP_DIMENSION, scale);
+		messageBorder = scaleBubbleBorder(new BubbleBorder(Color.BLACK, 3, 10, 0), scale);
+		kathImageOffset = scaleInteger(KATH_IMAGE_OFFSET, scale);
+		kathMessageFont = scaleFont(KATH_MESSAGE_FONT, scale);
+		kathMsgDimension = scaleDimension(KATH_MSG_DIMENSION, scale);
+		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
 		settingsChoiceFont = scaleFont(SETTINGS_CHOICE_FONT, scale);
@@ -113,6 +132,15 @@ public class GuiSize {
 	}
 	
 	public double getScaleFromSize(int size) {
+		if(size == 0) {
+			return (2.0 / 3.0);
+		} else if(size == 2) {
+			return 1.5;
+		}
+		return 1;
+	}
+	
+	public static double getScaleFromIndex(int size) {
 		if(size == 0) {
 			return (2.0 / 3.0);
 		} else if(size == 2) {
@@ -180,6 +208,21 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * SHOP GRAPHICS ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
+	public Image getKathImage(long indicator) {
+		double scale = getScaleFromSize(index);
+		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
+		String indicatorName = indicator == 0 ? "SHOP" : "MSG";
+		Image borderImage = imageResourceHandler.readImageFromUrl("KATH_" + indicatorName + ".png");
+		return scaleImage(borderImage, scale);
+	}
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SCALING METHODS
 	 * ##################################
 	 * ##################################
@@ -195,8 +238,26 @@ public class GuiSize {
 	    return new Dimension(scaledWidth, scaledHeight);
 	}
 	
+	public static Dimension scaleDimension(Dimension originalDimension, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
+		if(scale == 1) { return originalDimension; }
+		
+		int scaledWidth = (int) (originalDimension.getWidth() * scale);
+	    int scaledHeight = (int) (originalDimension.getHeight() * scale);
+	    return new Dimension(scaledWidth, scaledHeight);
+	}
+	
 	public Font scaleFont(Font originalFont, double scale) {
 	    if(scale == 1) { return originalFont; }
+		
+		int scaledSize = (int) (originalFont.getSize() * scale);
+	    Font scaledFont = originalFont.deriveFont((float) scaledSize);
+	    return scaledFont;
+	}
+	
+	public static Font scaleFont(Font originalFont, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
+		if(scale == 1) { return originalFont; }
 		
 		int scaledSize = (int) (originalFont.getSize() * scale);
 	    Font scaledFont = originalFont.deriveFont((float) scaledSize);
@@ -220,11 +281,39 @@ public class GuiSize {
 	    return scaledBubbleBorder;
 	}
 	
+	public static BubbleBorder scaleBubbleBorder(BubbleBorder originalBubbleBorder, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
+		if(scale == 1) { return originalBubbleBorder; }
+		
+		int scaledThickness = (int) Math.round(originalBubbleBorder.thickness * scale);
+	    int scaledRadii = (int) Math.round(originalBubbleBorder.radii * scale);
+	    int scaledPointerSize = (int) Math.round(originalBubbleBorder.pointerSize * scale);
+
+	    BubbleBorder scaledBubbleBorder = new BubbleBorder(
+	            originalBubbleBorder.color,
+	            scaledThickness,
+	            scaledRadii,
+	            scaledPointerSize,
+	            originalBubbleBorder.left);
+
+	    return scaledBubbleBorder;
+	}
+	
 	public ImageIcon scaleImageIcon(ImageIcon originalIcon, double scale) {
 		if(scale == 1) { return originalIcon; }
 		
 	    Image originalImage = originalIcon.getImage();
 	    Image scaledImage = scaleImage(originalImage, scale);
+	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+	    return scaledIcon;
+	}
+	
+	public static ImageIcon scaleImageIcon(ImageIcon originalIcon, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
+		if(scale == 1) { return originalIcon; }
+		
+	    Image originalImage = originalIcon.getImage();
+	    Image scaledImage = scaleImage(originalImage, guiSize);
 	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
 	    return scaledIcon;
 	}
@@ -237,8 +326,24 @@ public class GuiSize {
 	    Image scaledImage = originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
 	    return scaledImage;
 	}
+	
+	public static Image scaleImage(Image originalImage, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
+		if(scale == 1) { return originalImage; }
+		
+	    int scaledWidth = (int) (originalImage.getWidth(null) * scale);
+	    int scaledHeight = (int) (originalImage.getHeight(null) * scale);
+	    Image scaledImage = originalImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+	    return scaledImage;
+	}
 
 	public int scaleInteger(int originalInteger, double scale) {
+		if(scale == 1) { return originalInteger; }
+	    return (int) (originalInteger * scale);
+	}
+	
+	public static int scaleInteger(int originalInteger, GuiSize guiSize) {
+		double scale = getScaleFromIndex(guiSize.index);
 		if(scale == 1) { return originalInteger; }
 	    return (int) (originalInteger * scale);
 	}

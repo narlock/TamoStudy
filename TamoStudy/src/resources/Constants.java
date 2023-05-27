@@ -68,6 +68,18 @@ public class Constants {
 	/*
 	 * ##################################
 	 * ##################################
+	 * SHOP CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public static Font KATH_MESSAGE_FONT = new Font("Arial", Font.PLAIN, 12);
+	public static final Dimension KATH_SHOP_DIMENSION = new Dimension(400, 267);
+	public static final Integer KATH_IMAGE_OFFSET = 40;
+	public static final Dimension KATH_MSG_DIMENSION = new Dimension(400, 130);
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS STATE CONSTANTS
 	 * ##################################
 	 * ##################################

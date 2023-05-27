@@ -147,6 +147,7 @@ public class Theme {
 	public static final BubbleBorder DANGER_BORDER = new BubbleBorder(DANGER, 0, 15, 0);
 	
 	public static final BubbleBorder subBorder = new BubbleBorder(Color.WHITE, 3, 15, 0);
+	public static final BubbleBorder settingsBlackBorder = new BubbleBorder(Color.BLACK, 3, 15, 0);
 	
 	/**
 	 * primaryVisualButton
