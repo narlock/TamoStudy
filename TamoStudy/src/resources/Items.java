@@ -87,6 +87,8 @@ public class Items {
 			return "Purple";
 		case 5:
 			return "Blue";
+		case 6:
+			return "Strawberry Lemonade";
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderTitleByIndicator");
 	}
@@ -105,6 +107,8 @@ public class Items {
 			return new ImageIcon(Items.class.getClassLoader().getResource("BORDER_PURPLE_SHOP.png"));
 		case 5:
 			return new ImageIcon(Items.class.getClassLoader().getResource("BORDER_BLUE_SHOP.png"));
+		case 6:
+			return new ImageIcon(Items.class.getClassLoader().getResource("BORDER_STRAWLEMON_SHOP.png"));
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderIconByIndicator");
 	}
@@ -116,7 +120,10 @@ public class Items {
 		case 2:
 		case 3:
 		case 4:
+		case 5:
 			return 750;
+		case 6:
+			return 1250;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderPriceByIndicator");
 	}

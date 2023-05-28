@@ -72,10 +72,12 @@ public class Constants {
 	 * ##################################
 	 * ##################################
 	 */
-	public static Font KATH_MESSAGE_FONT = new Font("Arial", Font.PLAIN, 12);
+	public static final Font KATH_MESSAGE_FONT = new Font("Arial", Font.PLAIN, 12);
 	public static final Dimension KATH_SHOP_DIMENSION = new Dimension(400, 267);
 	public static final Integer KATH_IMAGE_OFFSET = 40;
 	public static final Dimension KATH_MSG_DIMENSION = new Dimension(400, 130);
+	public static final ImageIcon LEFT_ARROW_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("ARROW_LEFT.png"));
+	public static final ImageIcon RIGHT_ARROW_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("ARROW_RIGHT.png"));
 	
 	/*
 	 * ##################################

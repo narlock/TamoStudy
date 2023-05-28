@@ -1,13 +1,17 @@
 package components.panel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import gui.TamoStudyGUI;
 import model.GuiSize;
 import model.language.Language;
+import resources.Debug;
 import resources.Theme;
 
 public class ShopPanel extends JPanel {
@@ -27,6 +31,7 @@ public class ShopPanel extends JPanel {
 	private Theme theme;
 	private List<ShopItemPanel> shopItems;
 	private int currentShopIndicator;
+	private int shopPage;
 	
 	/*
 	 * ##################################
@@ -35,6 +40,8 @@ public class ShopPanel extends JPanel {
 	 * ##################################
 	 * ##################################
 	 */
+	private JButton nextButton;
+	private JButton previousButton;
 	
 	public ShopPanel(TamoStudyGUI tsGui, GuiSize guiSize, Language language) {
 		this.tsGui = tsGui;
@@ -42,13 +49,36 @@ public class ShopPanel extends JPanel {
 		this.language = language;
 		theme = Theme.DARK;
 		currentShopIndicator = 0;
+		shopPage = 0;
 		
 		initializeComponents();
 		initializePanel();
 	}
 	
 	public void initializeComponents() {
+		nextButton = new JButton(guiSize.rightArrowIcon);
+		addButtonVisual(nextButton);
 		
+		nextButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nextPreviousPage(true);
+				
+			}
+		});
+		
+		previousButton = new JButton(guiSize.leftArrowIcon);
+		addButtonVisual(previousButton);
+		
+		previousButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nextPreviousPage(false);
+				
+			}
+		});
 	}
 	
 	public void initializePanel() {
@@ -63,6 +93,9 @@ public class ShopPanel extends JPanel {
 				this.removeAll();
 				this.repaint();
 				currentShopIndicator = 0;
+				shopPage = 0;
+				
+				this.revalidate();
 			}
 			
 			break;
@@ -78,6 +111,9 @@ public class ShopPanel extends JPanel {
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "FOOD", 2, false));
 				
 				currentShopIndicator = 1;
+				shopPage = 0;
+				
+				this.revalidate();
 			}
 			
 			break;
@@ -86,13 +122,18 @@ public class ShopPanel extends JPanel {
 				this.removeAll();
 				this.repaint();
 				
+				this.add(previousButton);
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 1, false));
 				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 2, false));
 				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 3, false));
+				this.add(nextButton);
 				
 				currentShopIndicator = 2;
+				shopPage = 0;
+				
+				this.revalidate();
 			}
 			
 			break;
@@ -101,16 +142,115 @@ public class ShopPanel extends JPanel {
 				this.removeAll();
 				this.repaint();
 				
+				this.add(previousButton);
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 1, false));
 				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 2, false));
 				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
 				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 3, false));
+				this.add(nextButton);
 				
 				currentShopIndicator = 3;
+				shopPage = 0;
+				
+				this.revalidate();
 			}
 			
 			break;
 		}
+		
+		Debug.info("ShopPanel.setShop(" + shopIndicator + ")", "" + this.getComponentCount());
+	}
+	
+	public void nextPreviousPage(boolean next) {
+		// If next is true, we are moving forward, otherwise, we are moving back
+		if(next) {
+			shopPage++;
+		} else {
+			shopPage--;
+		}
+		
+		Debug.info("ShopPanel.nextPreviousPage", "shopPage=" + shopPage + ", currentShopIndicator=" + currentShopIndicator);
+		
+		switch(currentShopIndicator) {
+		case 2:
+			if(shopPage == 0) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 0
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 1, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 2, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 3, false));
+				this.add(nextButton);
+				
+				this.revalidate();
+			} else if(shopPage == 1) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 1
+			} else {
+				this.removeAll();
+				this.repaint();
+			}
+			
+			break;
+		case 3:
+			if(shopPage == 0) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 0
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 1, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 2, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 3, false));
+				this.add(nextButton);
+				
+				this.revalidate();
+			} else if(shopPage == 1) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 1
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 4, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 5, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 6, false));
+				this.add(nextButton);
+				
+				this.revalidate();
+			} else {
+				this.removeAll();
+				this.repaint();
+			}
+			
+			break;
+		}
+		
+		Debug.info("ShopPanel.nextPreviousPage", "" + this.getComponentCount());
+		
+		if(this.getComponentCount() == 0) {
+			if(next) {
+				nextPreviousPage(false);
+			} else {
+				nextPreviousPage(true);
+			}
+		}
+	}
+	
+	public void addButtonVisual(JButton button) {
+		button.setContentAreaFilled(false);
+		button.setOpaque(false);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
 	}
 }

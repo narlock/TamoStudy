@@ -73,6 +73,8 @@ public class GuiSize {
 	public int kathImageOffset;
 	public Font kathMessageFont;
 	public Dimension kathMsgDimension;
+	public ImageIcon leftArrowIcon;
+	public ImageIcon rightArrowIcon;
 	
 	/*
 	 * ##################################
@@ -119,6 +121,8 @@ public class GuiSize {
 		kathImageOffset = scaleInteger(KATH_IMAGE_OFFSET, scale);
 		kathMessageFont = scaleFont(KATH_MESSAGE_FONT, scale);
 		kathMsgDimension = scaleDimension(KATH_MSG_DIMENSION, scale);
+		leftArrowIcon = scaleImageIcon(LEFT_ARROW_ICON, scale);
+		rightArrowIcon = scaleImageIcon(RIGHT_ARROW_ICON, scale);
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
