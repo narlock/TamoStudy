@@ -176,11 +176,11 @@ public class ShopItemPanel extends JPanel {
 	
 	public ImageIcon getItemIconByTypeIndicator(String type, int indicator) {
 		if(type.equals("FOOD")) {
-			return Items.getFoodIconByIndicator(indicator);
+			return Items.getFoodIconByIndicator(indicator, guiSize);
 		} else if(type.equals("BACKGROUND")) {
-			return Items.getBackgroundIconByIndicator(indicator);
+			return Items.getBackgroundIconByIndicator(indicator, guiSize);
 		} else if(type.equals("BORDER")) {
-			return Items.getBorderIconByIndicator(indicator);
+			return Items.getBorderIconByIndicator(indicator, guiSize);
 		}
 		throw new RuntimeException("Unknown type  provided to getItemIconByTypeIndicator");
 	}

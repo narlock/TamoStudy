@@ -312,6 +312,16 @@ public class GuiSize {
 	    return scaledIcon;
 	}
 	
+	public ImageIcon scaleImageIcon(ImageIcon originalIcon) {
+		double scale = getScaleFromIndex(this.index);
+		if(scale == 1) { return originalIcon; }
+		
+	    Image originalImage = originalIcon.getImage();
+	    Image scaledImage = scaleImage(originalImage, scale);
+	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+	    return scaledIcon;
+	}
+	
 	public static ImageIcon scaleImageIcon(ImageIcon originalIcon, GuiSize guiSize) {
 		double scale = getScaleFromIndex(guiSize.index);
 		if(scale == 1) { return originalIcon; }

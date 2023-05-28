@@ -5,15 +5,23 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import io.DailyFocusJsonManager;
 import io.MonthFocusJsonManager;
@@ -360,7 +368,6 @@ public class TamoStudyGUI extends JFrame {
 		this.add(sidePanel, BorderLayout.WEST);
 		this.add(state, BorderLayout.CENTER);
 		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // TODO Add Window Listener
 		this.getContentPane().setBackground(theme.mainColor);
 		this.setTitle("TamoStudy Release " + Constants.version);
 		this.setSize(guiSize.frameSize);
@@ -368,6 +375,64 @@ public class TamoStudyGUI extends JFrame {
 		this.setResizable(false);
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("ICON.png")).getImage());
 		this.setVisible(true);
+		
+		//Check Window Adapter Setting
+		if(profile.getSettings().getShowProgramCloseMessage()) {
+			this.addWindowListener(makeExitWindowListener());
+			this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		} else {
+			this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		}
+	}
+	
+	/**
+	 * Enables WindowListener
+	 * Asks user if they are sure they want to exit application
+	 */
+	public WindowListener makeExitWindowListener() {
+		WindowListener exitListener = new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		    	JPanel panel = new JPanel();
+		    	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		    	JLabel label = new JLabel("Are you sure you want to exit?");
+		    	label.setForeground(theme.textColor);
+		    	label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	JPanel confirmPanel = new JPanel();
+		    	confirmPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		    	JCheckBox checkBox = new JCheckBox();
+		    	JLabel confirmLabel = new JLabel("Don't show this message again");
+		    	confirmLabel.setForeground(theme.textColor);
+		    	
+		    	panel.add(label);
+		    	confirmPanel.add(checkBox);
+		    	confirmPanel.add(confirmLabel);
+		    	panel.add(confirmPanel);
+		    	
+		    	// Ensure if it was changed in settings it closes
+		    	if(profile.getSettings().getShowProgramCloseMessage() == false) {
+		    		System.exit(0);
+		    	}
+		    	
+		    	int confirm = JOptionPane.showOptionDialog(
+		                rootPane, 
+		                panel, 
+		                "Exit TamoStudy?", 
+		                JOptionPane.YES_NO_OPTION, 
+		                JOptionPane.QUESTION_MESSAGE, 
+		                new ImageIcon(getClass().getClassLoader().getResource("INFO.png")), 
+		                null, 
+		                null);
+	           if (confirm == JOptionPane.YES_OPTION) {
+	        	  if(checkBox.isSelected()) {
+	        		  profile.getSettings().setShowProgramCloseMessage(false);
+	        		  profileJsonManager.writeJsonToFile(profiles);
+	        	  }
+	              System.exit(0);
+	           }
+		    }
+		};
+		return exitListener;
 	}
 	
 	/*

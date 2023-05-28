@@ -238,6 +238,7 @@ public class ShopPanel extends JPanel {
 		
 		Debug.info("ShopPanel.nextPreviousPage", "" + this.getComponentCount());
 		
+		// If we get to a page with no items, go back to previous/next page
 		if(this.getComponentCount() == 0) {
 			if(next) {
 				nextPreviousPage(false);

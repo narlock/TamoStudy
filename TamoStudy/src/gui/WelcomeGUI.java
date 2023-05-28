@@ -148,7 +148,7 @@ public class WelcomeGUI extends JFrame {
 				UIManager UI = new UIManager();
 				UI.put("OptionPane.background", new ColorUIResource(theme.mainColor));
 				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
-				UI.put("OptionPane.messageForeground", new ColorUIResource(Color.WHITE));
+				UI.put("OptionPane.messageForeground", new ColorUIResource(theme.textColor));
 				 
 				Object[] options = {};
 				JOptionPane.showOptionDialog(getRootPane(),
