@@ -60,7 +60,7 @@ public class ShopState extends State {
 		shopOptions.addItem("Food");
 		shopOptions.addItem("Backgrounds");
 		shopOptions.addItem("Borders");
-		shopOptions.addItem("Timer Customization");
+//		shopOptions.addItem("Timer Customization");
 	}
 
 	@Override

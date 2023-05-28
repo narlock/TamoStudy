@@ -73,7 +73,9 @@ public class ShopItemPanel extends JPanel {
 	}
 	
 	public void initializeComponents() {
-		itemTitleLabel = new JLabel(getItemTitleByTypeIndicator(type, indicator));
+		String itemTitle = getItemTitleByTypeIndicator(type, indicator);
+		
+		itemTitleLabel = new JLabel(itemTitle);
 		itemTitleLabel.setFont(guiSize.kathMessageFont);
 		itemTitleLabel.setForeground(theme.textColor);
 		
@@ -95,11 +97,12 @@ public class ShopItemPanel extends JPanel {
 					
 					// Confirm that the user wants to purchase this item?
 					int result = JOptionPane.showConfirmDialog(
-						    getRootPane(),
-						    "Are you sure?",
-						    "Confirm Purchase",
-						    JOptionPane.YES_NO_OPTION
-						);
+							getRootPane(), 
+							"Confirm Purchase of " + itemTitle + " (" + type + ")",
+							"Confirm Shop Purchase",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 					
 					if(result == JOptionPane.YES_OPTION) {
 						// If yes, firstly subtract the profile's tokens
