@@ -79,6 +79,15 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * INVENTORY CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public Dimension itemMenuDimension;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS ATTRIBUTES
 	 * ##################################
 	 * ##################################
@@ -123,6 +132,8 @@ public class GuiSize {
 		kathMsgDimension = scaleDimension(KATH_MSG_DIMENSION, scale);
 		leftArrowIcon = scaleImageIcon(LEFT_ARROW_ICON, scale);
 		rightArrowIcon = scaleImageIcon(RIGHT_ARROW_ICON, scale);
+		
+		itemMenuDimension = scaleDimension(ITEM_MENU_DIMENSION, scale);
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
@@ -192,6 +203,9 @@ public class GuiSize {
 		double scale = getScaleFromSize(index);
 		ImageResourceHandler imageResourceHandler = new ImageResourceHandler();
 		String indicatorName = getBorderNameByIndicator(indicator);
+		
+		Debug.info("GuiSize.getBorderImage", "Getting border image: BORDER_" + indicatorName + ".png");
+		
 		Image borderImage = imageResourceHandler.readImageFromUrl("BORDER_" + indicatorName + ".png");
 		return scaleImage(borderImage, scale);
 	}
@@ -401,6 +415,8 @@ public class GuiSize {
 			return "PURPLE";
 		case 5:
 			return "BLUE";
+		case 6:
+			return "STRAWLEMON";
 		case 0:
 		default:
 			return "BLACK";
