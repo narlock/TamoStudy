@@ -3,16 +3,17 @@ package resources;
 import javax.swing.ImageIcon;
 
 import model.GuiSize;
+import model.language.Language;
 
 public class Items {
-	public static String getFoodTitleByIndicator(int indicator) {
+	public static String getFoodTitleByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "Onigiri";
+			return language.onigiriText;
 		case 1:
-			return "Chicken Plate";
+			return language.chickenPlateText;
 		case 2:
-			return "Cheesecake";
+			return language.cheesecakeText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getFoodTitleByIndicator");
 	}
@@ -65,30 +66,30 @@ public class Items {
 		throw new RuntimeException("Unknown indicator provided to getFoodPriceByIndicator");
 	}
 	
-	public static String getFoodDescriptionByIndicator(int indicator) {
+	public static String getFoodDescriptionByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "<html>A traditional Japanese snack<br>made of seasoned rice shaped<br>into a ball or triangle,<br>often with a filling, and<br>wrapped in seaweed.<br><br>Restores 1 hunger point.</html>";
+			return language.onigiriDescriptionText;
 		case 1:
-			return "<html>A dish featuring cooked<br>chicken served with a<br>variety of sides and<br>accompaniments.<br><br>Restores 3 hunger points.</html>";
+			return language.chickenPlateDescriptionText;
 		case 2:
-			return "<html>A rich and creamy dessert<br>made with a crust of<br>crushed biscuits or pastry,<br>filled with a smooth mixture<br>of cream cheese and sugar.<br><br>Restores 8 hunger points.</html>";
+			return language.cheesecakeDescriptionText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getFoodDescriptionByIndicator");
 	}
 	
-	public static String getBackgroundTitleByIndicator(int indicator) {
+	public static String getBackgroundTitleByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "Bedroom";
+			return language.bedroomText;
 		case 1:
-			return "Sofa";
+			return language.sofaText;
 		case 2:
-			return "Starlight";
+			return language.sunriseText;
 		case 3:
-			return "Night out";
+			return language.nightOutText;
 		case 4:
-			return "Enigma";
+			return language.enigmaText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundTitleByIndicator");
 	}
@@ -113,38 +114,38 @@ public class Items {
 		throw new RuntimeException("Unknown indicator provided to getBackgroundPriceByIndicator");
 	}
 	
-	public static String getBackgroundDescriptionByIndicator(int indicator) {
+	public static String getBackgroundDescriptionByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "Bedroom Description";
+			return language.bedroomDescriptionText;
 		case 1:
-			return "Sofa Description";
+			return language.sofaDescriptionText;
 		case 2:
-			return "Starlight Description";
+			return language.sunriseDescriptionText;
 		case 3:
-			return "Night out Description";
+			return language.nightOutDescriptionText;
 		case 4:
-			return "Enigma Description";
+			return language.enigmaDescriptionText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundDescriptionByIndicator");
 	}
 	
-	public static String getBorderTitleByIndicator(int indicator) {
+	public static String getBorderTitleByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "Black";
+			return language.blackText;
 		case 1:
-			return "Gold";
+			return language.goldText;
 		case 2:
-			return "Red";
+			return language.redText;
 		case 3:
-			return "Mint";
+			return language.mintText;
 		case 4:
-			return "Purple";
+			return language.purpleText;
 		case 5:
-			return "Blue";
+			return language.blueText;
 		case 6:
-			return "Strawberry Lemonade";
+			return language.strawberryLemonadeText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderTitleByIndicator");
 	}
@@ -204,22 +205,22 @@ public class Items {
 		throw new RuntimeException("Unknown indicator provided to getBorderPriceByIndicator");
 	}
 	
-	public static String getBorderDescriptionByIndicator(int indicator) {
+	public static String getBorderDescriptionByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "Black Description";
+			return language.solidBackgroundText;
 		case 1:
-			return "Gold Description";
+			return language.solidBackgroundText;
 		case 2:
-			return "Red Description";
+			return language.solidBackgroundText;
 		case 3:
-			return "Mint Description";
+			return language.solidBackgroundText;
 		case 4:
-			return "Purple Description";
+			return language.solidBackgroundText;
 		case 5:
-			return "Blue Description";
+			return language.solidBackgroundText;
 		case 6:
-			return "Strawberry Lemonade Description";
+			return language.gradientBackgroundText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderDescriptionByIndicator");
 	}

@@ -21,6 +21,7 @@ public class Constants {
 	 * ##################################
 	 */
 	public static final String version = "v1.0.0";
+	public static final int ACHIEVEMENT_COUNT = 12;
 	
 	/*
 	 * ##################################
@@ -87,6 +88,17 @@ public class Constants {
 	 * ##################################
 	 */
 	public static final Dimension ITEM_MENU_DIMENSION = new Dimension(32, 32);
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ACHIEVEMENTS CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public static final Font ACHIEVEMENT_TITLE_LABEL_FONT = new Font("Arial", Font.BOLD, 20);
+	public static final Font ACHIEVEMENT_DESCRIPTION_LABEL_FONT = new Font("Arial", Font.PLAIN, 12);
+	public static final Dimension ACHIEVEMENT_SCROLL_PANE_DIMENSION = new Dimension(400, 500);
 	
 	/*
 	 * ##################################

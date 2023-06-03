@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.language.Language;
+import resources.Theme;
 
 public class SetPanel extends JPanel {
 
@@ -25,6 +26,7 @@ public class SetPanel extends JPanel {
 	TimerPanel timerPanel;
 	long focusMode;
 	Language language;
+	Theme theme;
 	
 	/*
 	 * ##################################
@@ -72,6 +74,7 @@ public class SetPanel extends JPanel {
 		this.timerPanel = timerPanel;
 		this.focusMode = focusMode;
 		this.language = language;
+		this.theme = Theme.DARK;
 		
 		initializeComponents();
 		initializePanel();
@@ -117,6 +120,8 @@ public class SetPanel extends JPanel {
 	public void initializePomodoroSetComponents() {
 		// Initialize Components
 		pomoNumberOfSessionsPanel = new JPanel();
+		pomoNumberOfSessionsPanel.setBackground(theme.mainColor);
+		
 		pomoNumberOfSessionsLabel = new JLabel(language.pomoNumberOfSessionsText);
 		pomoNumberOfSessionsBox = new JComboBox<>();
 		
@@ -125,10 +130,14 @@ public class SetPanel extends JPanel {
 		}
 		
 		pomoSessionLengthPanel = new JPanel();
+		pomoSessionLengthPanel.setBackground(theme.mainColor);
+		
 		pomoSessionLengthLabel = new JLabel(language.pomoSessionLengthText);
 		pomoSessionLengthBox = new JComboBox<>();
 		
 		pomoBreakLengthPanel = new JPanel();
+		pomoBreakLengthPanel.setBackground(theme.mainColor);
+		
 		pomoBreakLengthLabel = new JLabel(language.pomoBreakLengthText);
 		pomoBreakLengthBox = new JComboBox<>();
 		
@@ -196,6 +205,8 @@ public class SetPanel extends JPanel {
 	public void initializeCustomCountdownSetComponents() {
 		// Initialize Components
 		customMinuteLengthPanel = new JPanel();
+		customMinuteLengthPanel.setBackground(theme.mainColor);
+		
 		customMinuteLengthLabel = new JLabel(language.minutesText);
 		customMinuteLengthBox = new JComboBox<>();
 		
@@ -208,6 +219,8 @@ public class SetPanel extends JPanel {
 		}
 		
 		customSecondLengthPanel = new JPanel();
+		customSecondLengthPanel.setBackground(theme.mainColor);
+		
 		customSecondLengthLabel = new JLabel(language.secondsText);
 		customSecondLengthBox = new JComboBox<>();
 		
@@ -274,6 +287,8 @@ public class SetPanel extends JPanel {
 	public void initializeFiveIntervalCountdownSetComponents() {
 		// Initialize Components
 		fiveLengthPanel = new JPanel();
+		fiveLengthPanel.setBackground(theme.mainColor);
+		
 		fiveLengthLabel = new JLabel(language.durationText);
 		fiveLengthBox = new JComboBox<>();
 		

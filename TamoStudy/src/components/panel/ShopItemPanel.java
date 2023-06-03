@@ -165,11 +165,11 @@ public class ShopItemPanel extends JPanel {
 	 */
 	public String getItemTitleByTypeIndicator(String type, int indicator) {
 		if(type.equals("FOOD")) {
-			return Items.getFoodTitleByIndicator(indicator);
+			return Items.getFoodTitleByIndicator(indicator, language);
 		} else if(type.equals("BACKGROUND")) {
-			return Items.getBackgroundTitleByIndicator(indicator);
+			return Items.getBackgroundTitleByIndicator(indicator, language);
 		} else if(type.equals("BORDER")) {
-			return Items.getBorderTitleByIndicator(indicator);
+			return Items.getBorderTitleByIndicator(indicator, language);
 		}
 		throw new RuntimeException("Unknown type  provided to getItemTitleByTypeIndicator");
 	}

@@ -270,6 +270,10 @@ public class ProfileSelectionPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int profileIndex = profilesBox.getSelectedIndex();
+				if(assignDefaultProfile.isSelected()) {
+					welcomeGUI.getGlobalSettings().setDefaultLocalProfile(profileIndex);
+					welcomeGUI.getGlobalSettingsJsonManager().writeJsonToFile(welcomeGUI.getGlobalSettings());
+				}
 				new TamoStudyGUI(profiles, profileIndex);
 				close();
 			}

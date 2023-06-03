@@ -3,10 +3,13 @@ package model;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
+import javax.swing.GrayFilter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
@@ -88,6 +91,17 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * ACHIEVEMENTS CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public Font achievementTitleLabelFont;
+	public Font achievementDescriptionLabelFont;
+	public Dimension achievementScrollPaneDimension;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS ATTRIBUTES
 	 * ##################################
 	 * ##################################
@@ -134,6 +148,10 @@ public class GuiSize {
 		rightArrowIcon = scaleImageIcon(RIGHT_ARROW_ICON, scale);
 		
 		itemMenuDimension = scaleDimension(ITEM_MENU_DIMENSION, scale);
+		
+		achievementTitleLabelFont = scaleFont(ACHIEVEMENT_TITLE_LABEL_FONT, scale);
+		achievementDescriptionLabelFont = scaleFont(ACHIEVEMENT_DESCRIPTION_LABEL_FONT, scale);
+		achievementScrollPaneDimension = scaleDimension(ACHIEVEMENT_SCROLL_PANE_DIMENSION, scale);
 		
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
@@ -335,6 +353,17 @@ public class GuiSize {
 	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
 	    return scaledIcon;
 	}
+	public ImageIcon scaleImageIconToGrayscale(ImageIcon originalIcon) {
+		double scale = getScaleFromIndex(this.index);
+		if(scale == 1) { return originalIcon; }
+		
+		ImageIcon grayIcon = GuiSize.toGrayscale(originalIcon);
+		
+	    Image originalImage = grayIcon.getImage();
+	    Image scaledImage = scaleImage(originalImage, scale);
+	    ImageIcon scaledIcon = new ImageIcon(scaledImage);
+	    return scaledIcon;
+	}
 	
 	public static ImageIcon scaleImageIcon(ImageIcon originalIcon, GuiSize guiSize) {
 		double scale = getScaleFromIndex(guiSize.index);
@@ -395,6 +424,27 @@ public class GuiSize {
 		primaryDangerButton(button, border, backgroundColor, font);
 		return button;
 	}
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * IMAGE HELPER METHODS
+	 * ##################################
+	 * ##################################
+	 */
+	public static ImageIcon toGrayscale(ImageIcon originalIcon) {
+        // Extract the Image from the ImageIcon
+        Image originalImage = originalIcon.getImage();
+
+        // Convert the Image to grayscale using GrayFilter
+        Image grayImage = GrayFilter.createDisabledImage(originalImage);
+
+        // Create a new ImageIcon from the grayscale image
+        ImageIcon grayscaleIcon = new ImageIcon(grayImage);
+
+        return grayscaleIcon;
+    }
+	
 	
 	/*
 	 * ##################################

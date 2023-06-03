@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -25,8 +26,10 @@ import javax.swing.plaf.ColorUIResource;
 import components.panel.ChangeGlobalSettingsPanel;
 import components.panel.ProfileSelectionPanel;
 import io.GlobalSettingsJsonManager;
+import io.ProfileJsonManager;
 import model.GlobalSettings;
 import model.language.Language;
+import model.profile.Profile;
 import resources.CheckForUpdates;
 import resources.Constants;
 import resources.Debug;
@@ -168,12 +171,21 @@ public class WelcomeGUI extends JFrame {
 				UI.put("OptionPane.background", new ColorUIResource(theme.mainColor));
 				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
 				UI.put("OptionPane.messageForeground", new ColorUIResource(Color.WHITE));
-				 
-				Object[] options = {};
-				JOptionPane.showOptionDialog(getRootPane(),
-						new ProfileSelectionPanel(getThis()),
-						language.localStudyText,
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+				
+				if(globalSettings.getDefaultLocalProfile() == -1) {	 
+					Object[] options = {};
+					JOptionPane.showOptionDialog(getRootPane(),
+							new ProfileSelectionPanel(getThis()),
+							language.localStudyText,
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
+				} else {
+					ProfileJsonManager profileJsonManager = new ProfileJsonManager();
+					List<Profile> profiles = profileJsonManager.readJson();
+					new TamoStudyGUI(profiles, (int) globalSettings.getDefaultLocalProfile());
+					dispose();
+					removeAll();
+				}
+				
 			}
 			
 		});

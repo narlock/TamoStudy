@@ -139,6 +139,43 @@ public abstract class Language {
 	/*
 	 * ##################################
 	 * ##################################
+	 * ITEMS TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String onigiriText;
+	public String chickenPlateText;
+	public String cheesecakeText;
+	public String onigiriDescriptionText;
+	public String chickenPlateDescriptionText;
+	public String cheesecakeDescriptionText;
+	
+	public String bedroomText;
+	public String sofaText;
+	public String sunriseText;
+	public String nightOutText;
+	public String enigmaText;
+	public String bedroomDescriptionText;
+	public String sofaDescriptionText;
+	public String sunriseDescriptionText;
+	public String nightOutDescriptionText;
+	public String enigmaDescriptionText;
+	
+	public String blackText;
+	public String goldText;
+	public String redText;
+	public String mintText;
+	public String purpleText;
+	public String blueText;
+	public String strawberryLemonadeText;
+	
+	public String solidBackgroundText;
+	public String gradientBackgroundText;
+	public String rareBackgroundText;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * SETTINGS STATE TEXT
 	 * ##################################
 	 * ##################################

@@ -83,14 +83,14 @@ public class InventoryItemPanel extends JPanel {
 	}
 	
 	public void initializeFoodItemPanel() {
-		itemTitleLabel = new JLabel(Items.getFoodTitleByIndicator(indicator));
+		itemTitleLabel = new JLabel(Items.getFoodTitleByIndicator(indicator, language));
 		itemTitleLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemTitleLabel.setForeground(theme.textColor);
 		itemIconLabel = new JLabel(Items.getFoodIconByIndicator(indicator, guiSize));
 		itemDescriptionPanel = new JPanel();
 		itemDescriptionPanel.setBackground(theme.subColor);
 		itemDescriptionPanel.setBorder(guiSize.settingsPanelBorder);
-		itemDescriptionLabel = new JLabel(Items.getFoodDescriptionByIndicator(indicator));
+		itemDescriptionLabel = new JLabel(Items.getFoodDescriptionByIndicator(indicator, language));
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionPanel.add(itemDescriptionLabel);
@@ -136,14 +136,14 @@ public class InventoryItemPanel extends JPanel {
 	}
 	
 	public void initializeBackgroundItemPanel() {
-		itemTitleLabel = new JLabel(Items.getBackgroundTitleByIndicator(indicator));
+		itemTitleLabel = new JLabel(Items.getBackgroundTitleByIndicator(indicator, language));
 		itemTitleLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemTitleLabel.setForeground(theme.textColor);
 		itemIconLabel = new JLabel(Items.getBackgroundIconByIndicator(indicator, guiSize));
 		itemDescriptionPanel = new JPanel();
 		itemDescriptionPanel.setBackground(theme.subColor);
 		itemDescriptionPanel.setBorder(guiSize.settingsPanelBorder);
-		itemDescriptionLabel = new JLabel(Items.getBackgroundDescriptionByIndicator(indicator));
+		itemDescriptionLabel = new JLabel(Items.getBackgroundDescriptionByIndicator(indicator, language));
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionPanel.add(itemDescriptionLabel);
@@ -166,14 +166,14 @@ public class InventoryItemPanel extends JPanel {
 	}
 	
 	public void initializeBorderItemPanel() {
-		itemTitleLabel = new JLabel(Items.getBorderTitleByIndicator(indicator));
+		itemTitleLabel = new JLabel(Items.getBorderTitleByIndicator(indicator, language));
 		itemTitleLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemTitleLabel.setForeground(theme.textColor);
 		itemIconLabel = new JLabel(Items.getBorderIconByIndicator(indicator, guiSize));
 		itemDescriptionPanel = new JPanel();
 		itemDescriptionPanel.setBackground(theme.subColor);
 		itemDescriptionPanel.setBorder(guiSize.settingsPanelBorder);
-		itemDescriptionLabel = new JLabel(Items.getBorderDescriptionByIndicator(indicator));
+		itemDescriptionLabel = new JLabel(Items.getBorderDescriptionByIndicator(indicator, language));
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionPanel.add(itemDescriptionLabel);

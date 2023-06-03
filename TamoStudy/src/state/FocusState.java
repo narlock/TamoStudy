@@ -217,7 +217,7 @@ public class FocusState extends State {
 				sessionsRemaining = 0;		// Reset pomdoro - no sessions remaining
 				sessionTimeIndicator = 0;	// Reset time indicator - will start on focus time
 				
-				String studyMessage = language.youFocusedForText + " " + tempMin + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
+				String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
 
 				// Reset counting variables
 				tempMin = 0;
@@ -346,7 +346,7 @@ public class FocusState extends State {
 					
 					// Update statistics
 					updateFocusStatistics();
-					String studyMessage = language.youFocusedForText + " " + tempMin + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
+					String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
 
 					// Reset counting variables
 					tempMin = 0;

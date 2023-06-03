@@ -132,6 +132,43 @@ public class EnglishLanguage extends Language {
 		/*
 		 * ##################################
 		 * ##################################
+		 * ITEMS TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		onigiriText = "Onigiri";
+		chickenPlateText = "Chicken Plate";
+		cheesecakeText = "Cheesecake";
+		onigiriDescriptionText = "<html>A traditional Japanese snack<br>made of seasoned rice shaped<br>into a ball or triangle,<br>often with a filling, and<br>wrapped in seaweed.<br><br>Restores 1 hunger point.</html>";
+		chickenPlateDescriptionText = "<html>A dish featuring cooked<br>chicken served with a<br>variety of sides and<br>accompaniments.<br><br>Restores 3 hunger points.</html>";
+		cheesecakeDescriptionText = "<html>A rich and creamy dessert<br>made with a crust of<br>crushed biscuits or pastry,<br>filled with a smooth mixture<br>of cream cheese and sugar.<br><br>Restores 8 hunger points.</html>";
+		
+		bedroomText = "Bedroom";
+		sofaText = "Sofa";
+		sunriseText = "Sunrise";
+		nightOutText = "Night Out";
+		enigmaText = "Enigma";
+		bedroomDescriptionText = "<html>A serene bedroom backdrop<br>with a cozy bed placed beneath<br>a large window, inviting<br>ample natural light and<br>a view of the outside world.</html>";
+		sofaDescriptionText = "<html>A chill room adorned with<br>a stylish red sofa, creating<br>a focal point of comfort and<br>elegance within a pleasant<br>and inviting ambiance.</html>";
+		sunriseDescriptionText = "<html>A breathtaking background<br>capturing the beauty of a<br>sunrise as the sun gracefully<br>emerges on the horizon.</html>";
+		nightOutDescriptionText = "<html>An atomospheric street<br>exuding a perfect blend of<br>warmth and chill vibes on<br>a delightful night out.</html>";
+		enigmaDescriptionText = "<html>An enigmatic backdrop<br>enveloped in an aura of<br>mystery, painted with deep<br>hues of red, maroon, and gray.</html>";
+		
+		blackText = "Black";
+		goldText = "Gold";
+		redText = "Red";
+		mintText = "Mint";
+		purpleText = "Purple";
+		blueText = "Blue";
+		strawberryLemonadeText = "Strawberry Lemonade";
+		
+		solidBackgroundText = "Solid Background";
+		gradientBackgroundText = "Gradient Background";
+		rareBackgroundText = "Rare Background";
+		
+		/*
+		 * ##################################
+		 * ##################################
 		 * SETTINGS STATE TEXT
 		 * ##################################
 		 * ##################################
