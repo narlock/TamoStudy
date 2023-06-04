@@ -88,7 +88,7 @@ public class HoursInPastPanel extends JPanel {
                     
                     // Popup
             		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-            		JLabel popupMessageLabel = new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + " - " + Utils.convertSecondsToHours(entry.getTime()) + " hours.  ");
+            		JLabel popupMessageLabel = new JLabel("  " + Utils.convertSecondsToHours(entry.getTime()) + " hours on " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
             		
             		popupMessageLabel.setForeground(theme.textColor);
             		popupMenu.setBackground(theme.layerColor);
@@ -110,7 +110,7 @@ public class HoursInPastPanel extends JPanel {
             	// add since it does not exist - add popup to show time during that day
                 JLabel dateLabel = new JLabel(guiSize.grayIcon);
         		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-        		JLabel popupMessageLabel = new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + " - 0.0 hours.  ");
+        		JLabel popupMessageLabel = new JLabel("  0.0 hours on " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
         		
         		popupMessageLabel.setForeground(theme.textColor);
         		popupMenu.setBackground(theme.layerColor);

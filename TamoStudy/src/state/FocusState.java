@@ -55,6 +55,8 @@ public class FocusState extends State {
 	
 	private Timer timer;
 	private int sessionsRemaining;
+	private Timer pauseTimer;
+	private int timerPauseIndicator;
 	
 	/**
 	 * Indicator for what time to use during pomodoro countdown timers.
@@ -367,7 +369,11 @@ public class FocusState extends State {
 					
 					// Update statistics
 					updateFocusStatistics();
+					
 					String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
+					if(sessionTimeIndicator != 0) {
+						studyMessage = "Break is over. Time to get back to focus!";
+					}
 
 					// Reset counting variables
 					tempMin = 0;
@@ -395,7 +401,7 @@ public class FocusState extends State {
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 							
 							//loop will end when user hits ok dialog
-							JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusCompleteText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							JOptionPane.showMessageDialog(getRootPane(), studyMessage, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 							clip.stop();
 							
 						} catch (Exception ex) {
@@ -403,14 +409,14 @@ public class FocusState extends State {
 							 * Under the condition that the user has a set timer alarm, but an exception
 							 * occurs, TamoStudy will proceed as if there was no alarm set.
 							 */
-							JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusCompleteText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+							JOptionPane.showMessageDialog(getRootPane(), studyMessage, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 						}
 					
 					} else {
 						/*
 						 * Under the condition that there is no timer alarm set
 						 */
-						JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusCompleteText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+						JOptionPane.showMessageDialog(getRootPane(), studyMessage, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 					}
 					//TODO Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 					
@@ -611,9 +617,41 @@ public class FocusState extends State {
 		if(timer.isRunning()) {
 			pauseFocusButton.setText("Resume Focus");
 			timer.stop();
+			
+			timerPauseIndicator = 0;
+			pauseTimer = new Timer(750, new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(timerPauseIndicator == 0) {
+						// Color Normal
+						timerPanel.minuteTimeLabel.setForeground(theme.altTextColor);
+						timerPanel.colonLabel.setForeground(theme.altTextColor);
+						timerPanel.secondTimeLabel.setForeground(theme.altTextColor);
+						timerPauseIndicator = 1;
+					} else {
+						// Color Alt
+						timerPanel.minuteTimeLabel.setForeground(theme.textColor);
+						timerPanel.colonLabel.setForeground(theme.textColor);
+						timerPanel.secondTimeLabel.setForeground(theme.textColor);
+						timerPauseIndicator = 0;
+					}
+				}
+				
+			});
+			pauseTimer.start();
+			
 		} else {
 			pauseFocusButton.setText("Pause Focus");
 			timer.start();
+			
+			if(pauseTimer.isRunning()) {
+				pauseTimer.stop();
+				// Set Color Normal
+				timerPanel.minuteTimeLabel.setForeground(theme.textColor);
+				timerPanel.colonLabel.setForeground(theme.textColor);
+				timerPanel.secondTimeLabel.setForeground(theme.textColor);
+			}
 		}
 		
 	}
