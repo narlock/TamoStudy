@@ -446,6 +446,26 @@ public class GuiSize {
 		return button;
 	}
 	
+	public JButton scalePrimaryJButton(JButton originalButton, double scale) {
+		BubbleBorder border = scaleBubbleBorder(Theme.PRIMARY_BORDER, scale);
+		Color backgroundColor = originalButton.getBackground();
+		Font font = scaleFont(originalButton.getFont(), scale);
+		
+		JButton button = new JButton(originalButton.getText());
+		primaryButton(button, border, backgroundColor, font);
+		return button;
+	}
+	
+	public JButton scaleSecondaryJButton(JButton originalButton, double scale) {
+		BubbleBorder border = scaleBubbleBorder(Theme.SECONDARY_BORDER, scale);
+		Color backgroundColor = originalButton.getBackground();
+		Font font = scaleFont(originalButton.getFont(), scale);
+		
+		JButton button = new JButton(originalButton.getText());
+		secondaryButton(button, border, backgroundColor, font);
+		return button;
+	}
+	
 	/*
 	 * ##################################
 	 * ##################################
@@ -568,6 +588,86 @@ public class GuiSize {
 			public void mouseExited(MouseEvent e) {
 				if(button.isEnabled()) {
 					button.setBackground(Theme.DANGER);
+					button.setForeground(Color.WHITE);
+				}
+			}
+			
+		});
+	}
+	
+	public void primaryButton(JButton button, 
+			Border border, 
+			Color backgroundColor, 
+			Font font
+		) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(border);
+		button.setBackground(backgroundColor);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(button.isEnabled()) {
+					button.setBackground(Theme.PRIMARY_ALT);
+					button.setForeground(new Color(191, 191, 191));
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(button.isEnabled()) {
+					button.setBackground(Theme.PRIMARY);
+					button.setForeground(Color.WHITE);
+				}
+			}
+			
+		});
+	}
+	
+	public void secondaryButton(JButton button, 
+			Border border, 
+			Color backgroundColor, 
+			Font font
+		) {
+		button.setEnabled(true);
+		button.setOpaque(true);
+		button.setBorder(border);
+		button.setBackground(backgroundColor);
+		button.setForeground(Color.WHITE);
+		button.setFont(font);
+		
+		button.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(button.isEnabled()) {
+					button.setBackground(Theme.SECONDARY_ALT);
+					button.setForeground(new Color(191, 191, 191));
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(button.isEnabled()) {
+					button.setBackground(Theme.SECONDARY);
 					button.setForeground(Color.WHITE);
 				}
 			}

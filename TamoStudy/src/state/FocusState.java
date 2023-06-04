@@ -87,7 +87,7 @@ public class FocusState extends State {
 	private TimerPanel timerPanel;
 	private SetPanel setPanel;
 	private JPanel buttonPanel;
-	private JButton startFocusButton, breakFocusButton;
+	private JButton startFocusButton, breakFocusButton, pauseFocusButton;
 
 	public FocusState(TamoStudyGUI tamoStudyGUI) {
 		super(tamoStudyGUI);
@@ -138,6 +138,7 @@ public class FocusState extends State {
 		buttonPanel = new JPanel();
 		startFocusButton = new JButton(language.startFocusText);
 		breakFocusButton = new JButton(language.breakFocusText);
+		pauseFocusButton = new JButton("Pause Focus");
 	}
 
 	@Override
@@ -182,9 +183,17 @@ public class FocusState extends State {
 		breakFocusButton.setBackground(Theme.DANGER_ALT);
 		breakFocusButton.setForeground(new Color(191, 191, 191));
 		
+		pauseFocusButton.setBackground(Theme.PRIMARY);
+		pauseFocusButton.setFont(theme.fontBoldRegSmall);
+		pauseFocusButton = guiSize.scalePrimaryJButton(pauseFocusButton, guiSize.getScaleFromSize((int) profile.getSettings().getGuiSize()));
+		pauseFocusButton.setEnabled(false);
+		pauseFocusButton.setBackground(Theme.PRIMARY_ALT);
+		pauseFocusButton.setForeground(new Color(191, 191, 191));
+		
 		buttonPanel.setBackground(theme.subColor);
 		buttonPanel.add(startFocusButton);
 		buttonPanel.add(breakFocusButton);
+		buttonPanel.add(pauseFocusButton);
 		
 		timerSetPanel.setBackground(theme.subColor);
 		timerSetPanel.add(timerPanel, gbcv);
@@ -230,6 +239,14 @@ public class FocusState extends State {
 				resetTimer();
 				
 				JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusBrokeText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+			}
+		});
+		
+		pauseFocusButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pauseResumeTimer();
 			}
 		});
 	}
@@ -280,6 +297,7 @@ public class FocusState extends State {
 			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		}
+		pauseFocusButton.setText("Pause Focus");
 		timerPanel.subTextLabel.setText(language.letsFocusText);
 	}
 	
@@ -528,7 +546,6 @@ public class FocusState extends State {
 		updateTimerInformation();
 		
 		// Set Tamo Image To Non-Focus
-		
 		tamoGraphicsPanel.getTamo().setFocused(false);
 		tamoGraphicsPanel.resetTamoImage();
 		tamoGraphicsPanel.repaint();
@@ -554,24 +571,51 @@ public class FocusState extends State {
 		// Disable Start focus
 		startFocusButton.setEnabled(enabled);
 		breakFocusButton.setEnabled(!enabled);
+		pauseFocusButton.setEnabled(!enabled);
 		
 		// Re-color start / break buttons
 		if(enabled) {
 			// Modify colors of start button
 			startFocusButton.setBackground(Theme.SUCCESS);
 			startFocusButton.setForeground(Color.WHITE);
+			if(profile.getSettings().getDifficulty() == 0) {
+				startFocusButton.setVisible(true);
+			}
 			
 			// Modify colors of break button
 			breakFocusButton.setBackground(Theme.DANGER_ALT);
 			breakFocusButton.setForeground(new Color(191, 191, 191));
+			
+			// Modify colors of pause button
+			pauseFocusButton.setBackground(Theme.PRIMARY_ALT);
+			pauseFocusButton.setForeground(new Color(191, 191, 191));
 		} else {
 			startFocusButton.setBackground(Theme.SUCCESS_ALT);
 			startFocusButton.setForeground(new Color(191, 191, 191));
 			
+			if(profile.getSettings().getDifficulty() == 0) {
+				startFocusButton.setVisible(false);
+			}
+			
 			// Modify colors of break button
 			breakFocusButton.setBackground(Theme.DANGER);
 			breakFocusButton.setForeground(Color.WHITE);
+			
+			// Modify colors of pause button
+			pauseFocusButton.setBackground(Theme.PRIMARY);
+			pauseFocusButton.setForeground(Color.WHITE);
 		}
+	}
+	
+	public void pauseResumeTimer() {
+		if(timer.isRunning()) {
+			pauseFocusButton.setText("Resume Focus");
+			timer.stop();
+		} else {
+			pauseFocusButton.setText("Pause Focus");
+			timer.start();
+		}
+		
 	}
 	
 }
