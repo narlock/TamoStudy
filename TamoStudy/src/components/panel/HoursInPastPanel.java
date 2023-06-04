@@ -51,12 +51,10 @@ public class HoursInPastPanel extends JPanel {
 	private List<DailyFocusEntry> focusEntries;
 	private GuiSize guiSize;
 	private Theme theme;
-	private Language language;
 	
-	public HoursInPastPanel(List<DailyFocusEntry> focusEntries, GuiSize guiSize, Language language) {
+	public HoursInPastPanel(List<DailyFocusEntry> focusEntries, GuiSize guiSize) {
 		this.focusEntries = focusEntries;
 		this.guiSize = guiSize;
-		this.language = language;
 		this.theme = Theme.DARK;
 		this.dateList = getDateList();
 
@@ -71,22 +69,6 @@ public class HoursInPastPanel extends JPanel {
 		this.setLayout(new GridLayout(gridRowCount, gridColCount));
 		this.setPreferredSize(guiSize.hoursInPastDimension);
 		addDaysToPanel();
-//		for(int i = 0; i < (gridRowCount * gridColCount) - 1; i++) {
-//			this.add(new JLabel(guiSize.grayIcon));
-//		}
-//		
-//		JLabel testLabel = new JLabel(guiSize.green1Icon);
-//		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-//		popupMenu.add(new JLabel("  June 4th, 2023 - 2 hours  "));
-//		testLabel.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				popupMenu.show(testLabel, e.getX(), e.getY());
-//			}
-//		});
-//		this.add(testLabel);
-//		this.add(new JLabel(guiSize.grayIcon));
-//		this.add(new JLabel(guiSize.grayIcon));
-		
 	}
 	
 	public void addDaysToPanel() {
@@ -144,7 +126,6 @@ public class HoursInPastPanel extends JPanel {
         		this.add(dateLabel);
             }
         }
-		
 	}
 	
 	/*

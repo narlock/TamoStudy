@@ -23,6 +23,7 @@ public class TamoGraphicsPanel extends JPanel {
 	private Tamo tamo;
 	private int backgroundIndicator;
 	private int borderIndicator;
+	private Timer timer;
 	
 	/*
 	 * ##################################
@@ -41,13 +42,11 @@ public class TamoGraphicsPanel extends JPanel {
 		this.backgroundIndicator = (int) backgroundIndicator;
 		this.borderIndicator = (int) borderIndicator;
 		
+		timer = new Timer(1000, e -> repaint());
 		initializeAttributes();
 		
 		// If Tamo is happy or normal status, repaint so tamo appears in random location
-		if(tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
-			Timer timer = new Timer(1000, e -> repaint());
-		    timer.start();
-		}
+		
 	}
 	
 	/**
@@ -70,6 +69,17 @@ public class TamoGraphicsPanel extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 		
+		if(tamo.isFocused()) {
+			tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
+			
+			if(timer.isRunning()) {
+				timer.stop();
+			}
+		}
+		else if(tamo.isFocused() == false && (tamo.getStatus(false) == "HAPPY" || tamo.getStatus(false) == "NORMAL")) {
+		    timer.start();
+		}
+		
 		g.drawImage(backgroundImage, guiSize.backgroundImageOffset, guiSize.backgroundImageOffset, this);
 		g.drawImage(tamoImage, getTamoX(), getTamoY(), this);
 		g.drawImage(borderImage, 0, 0, this);
@@ -84,7 +94,7 @@ public class TamoGraphicsPanel extends JPanel {
 	 */
 	
 	public int getTamoX() {
-		if(tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
+		if(tamo.isFocused() == false && tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
 			return getTamoRandomX();
 		} else { 
 			return getTamoCenterX();
@@ -92,7 +102,7 @@ public class TamoGraphicsPanel extends JPanel {
 	}
 	
 	public int getTamoY() {
-		if(tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
+		if(tamo.isFocused() == false && tamo.getStatus(false).equals("HAPPY") || tamo.getStatus(false).equals("NOMRAL")) {
 			return getTamoRandomY();
 		} else { 
 			return getTamoCenterY();
@@ -125,5 +135,13 @@ public class TamoGraphicsPanel extends JPanel {
 	    int backgroundImageHeight = backgroundImage.getHeight(this);
 	    int tamoImageHeight = tamoImage.getHeight(this);
 	    return (int) (Math.random() * (backgroundImageHeight - tamoImageHeight));
+	}
+	
+	public Tamo getTamo() {
+		return tamo;
+	}
+	
+	public void resetTamoImage() {
+		tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
 	}
 }

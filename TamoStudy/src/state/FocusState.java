@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -164,7 +165,9 @@ public class FocusState extends State {
 		tamoHappyHungerPanel.add(tamoHungerLabel);
 		
 		tamoPanel.add(tamoNameLabel, gbcv);
+		tamoPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		tamoPanel.add(tamoGraphicsPanel, gbcv);
+		tamoPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		tamoPanel.add(tamoHappyHungerPanel, gbcv);
 		
 		// Timer Set Panel
@@ -288,7 +291,7 @@ public class FocusState extends State {
 		tempMin = 0;
 		
 		// Set Tamo Image To Focus
-		tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
+		tamoGraphicsPanel.getTamo().setFocused(true);
 		tamoGraphicsPanel.repaint();
 	}
 	
@@ -453,7 +456,7 @@ public class FocusState extends State {
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
 			
 			// Set Tamo Image To Non-Focus
-			tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
+			tamoGraphicsPanel.getTamo().setFocused(false);
 			tamoGraphicsPanel.repaint();
 			break;
 		case 2:
@@ -466,7 +469,7 @@ public class FocusState extends State {
 			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
 			
 			// Set Tamo Image To Focus
-			tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(true));
+			tamoGraphicsPanel.getTamo().setFocused(true);
 			tamoGraphicsPanel.repaint();
 			break;
 		}
@@ -525,7 +528,9 @@ public class FocusState extends State {
 		updateTimerInformation();
 		
 		// Set Tamo Image To Non-Focus
-		tamoGraphicsPanel.tamoImage = guiSize.getTamoImage((int) tamo.getType(), tamo.getStatus(false));
+		
+		tamoGraphicsPanel.getTamo().setFocused(false);
+		tamoGraphicsPanel.resetTamoImage();
 		tamoGraphicsPanel.repaint();
 		
 		// Enable menu, options, and start buttons again

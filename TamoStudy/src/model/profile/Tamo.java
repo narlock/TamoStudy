@@ -22,6 +22,8 @@ public class Tamo {
 	
 	private long strikes;
 	
+	private boolean focused;
+	
 	/**
 	 * Tamo(name)
 	 * @brief Constructor for new profile Tamo
@@ -36,6 +38,8 @@ public class Tamo {
 		this.happy = 5;
 		this.hunger = 5;
 		this.setStrikes(0);
+		
+		focused = false;
 	}
 	
 	/**
@@ -49,6 +53,8 @@ public class Tamo {
 		this.type = type;
 		this.birthDateString = birthDateString;
 		this.passDateString = passDateString;
+		
+		focused = false;
 	}
 
 	/**
@@ -65,6 +71,8 @@ public class Tamo {
 		this.happy = happy;
 		this.hunger = hunger;
 		this.setStrikes(strikes);
+		
+		focused = false;
 	}
 
 	public String getName() {
@@ -168,19 +176,27 @@ public class Tamo {
 			return "FOCUS";
 		}
 		
-		if(happy <= 3) {
+		else if(happy <= 3) {
 			return "SAD";
 		}
 		
-		if(hunger <= 3) {
+		else if(hunger <= 3) {
 			return "HUNGRY";
 		}
 		
-		if(happy >= 7) {
+		else if(happy >= 7) {
 			return "HAPPY";
 		}
 		
 		return "NORMAL";
+	}
+	
+	public boolean isFocused() {
+		return focused;
+	}
+	
+	public void setFocused(boolean focused) {
+		this.focused = focused;
 	}
 	
 	// Every 24 hours studied, a new level is earned
