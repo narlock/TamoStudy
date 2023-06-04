@@ -1,6 +1,10 @@
 package components.panel;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,16 +15,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.LookAndFeel;
+import javax.swing.plaf.basic.BasicPopupMenuUI;
 
 import model.GuiSize;
 import model.language.Language;
 import model.time.DailyFocusEntry;
 import resources.Theme;
-import util.ColumnFirstGridLayout;
 import util.Utils;
 
 /**
@@ -99,10 +106,15 @@ public class HoursInPastPanel extends JPanel {
                     
                     // Popup
             		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-            		popupMenu.add(new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + " - " + Utils.convertSecondsToHours(entry.getTime()) + " hours.  "));
+            		JLabel popupMessageLabel = new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + " - " + Utils.convertSecondsToHours(entry.getTime()) + " hours.  ");
+            		
+            		popupMessageLabel.setForeground(theme.textColor);
+            		popupMenu.setBackground(theme.layerColor);
+            		popupMenu.add(popupMessageLabel);
+            		
             		dateLabel.addMouseListener(new MouseAdapter() {
             			public void mouseEntered(MouseEvent e) {
-            				popupMenu.show(dateLabel, e.getX(), e.getY());
+            				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 40);
             			}
             		});
             		
@@ -116,12 +128,16 @@ public class HoursInPastPanel extends JPanel {
             	// add since it does not exist - add popup to show time during that day
                 JLabel dateLabel = new JLabel(guiSize.grayIcon);
         		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
+        		JLabel popupMessageLabel = new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + " - 0.0 hours.  ");
+        		
+        		popupMessageLabel.setForeground(theme.textColor);
+        		popupMenu.setBackground(theme.layerColor);
         		
         		// popup
-        		popupMenu.add(new JLabel("  " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + " - " + "0.0 hours.  "));
+        		popupMenu.add(popupMessageLabel);
         		dateLabel.addMouseListener(new MouseAdapter() {
         			public void mouseEntered(MouseEvent e) {
-        				popupMenu.show(dateLabel, e.getX(), e.getY());
+        				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 40);
         			}
         		});
         		
