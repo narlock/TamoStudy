@@ -92,6 +92,20 @@ public class Constants {
 	/*
 	 * ##################################
 	 * ##################################
+	 * STATISTICS CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public static final Dimension HOURS_IN_PAST_DIMENSION = new Dimension(540, 150);
+	public static final ImageIcon GRAY_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("GRAY.png"));
+	public static final ImageIcon GREEN_1_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("GREEN_1.png"));
+	public static final ImageIcon GREEN_2_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("GREEN_2.png"));
+	public static final ImageIcon GREEN_3_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("GREEN_3.png"));
+	public static final ImageIcon GREEN_4_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("GREEN_4.png"));
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * ACHIEVEMENTS CONSTANTS
 	 * ##################################
 	 * ##################################

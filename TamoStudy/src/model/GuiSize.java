@@ -91,6 +91,20 @@ public class GuiSize {
 	/*
 	 * ##################################
 	 * ##################################
+	 * STATISTICS CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public Dimension hoursInPastDimension;
+	public ImageIcon grayIcon;
+	public ImageIcon green1Icon;
+	public ImageIcon green2Icon;
+	public ImageIcon green3Icon;
+	public ImageIcon green4Icon;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * ACHIEVEMENTS CONSTANTS
 	 * ##################################
 	 * ##################################
@@ -148,6 +162,13 @@ public class GuiSize {
 		rightArrowIcon = scaleImageIcon(RIGHT_ARROW_ICON, scale);
 		
 		itemMenuDimension = scaleDimension(ITEM_MENU_DIMENSION, scale);
+		
+		hoursInPastDimension = scaleDimension(HOURS_IN_PAST_DIMENSION, scale);
+		grayIcon = scaleImageIcon(GRAY_ICON, scale * (2.0 / 4.0));
+		green1Icon = scaleImageIcon(GREEN_1_ICON, scale * (2.0 / 4.0));
+		green2Icon = scaleImageIcon(GREEN_2_ICON, scale * (2.0 / 4.0));
+		green3Icon = scaleImageIcon(GREEN_3_ICON, scale * (2.0 / 4.0));
+		green4Icon = scaleImageIcon(GREEN_4_ICON, scale * (2.0 / 4.0));
 		
 		achievementTitleLabelFont = scaleFont(ACHIEVEMENT_TITLE_LABEL_FONT, scale);
 		achievementDescriptionLabelFont = scaleFont(ACHIEVEMENT_DESCRIPTION_LABEL_FONT, scale);

@@ -3,6 +3,7 @@ package state;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -11,12 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+import components.panel.HoursInPastPanel;
 import components.panel.TamoGraphicsPanel;
 import gui.TamoStudyGUI;
+import io.DailyFocusJsonManager;
 import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
 import model.profile.Tamo;
+import model.time.DailyFocus;
 import model.time.DailyFocusEntry;
 import model.time.MonthFocusEntry;
 import resources.Theme;
@@ -59,6 +63,9 @@ public class StatisticsState extends State {
 	private JLabel tamoHoursAllLabel;
 	private JLabel tamoLevelLabel;
 	private JProgressBar levelProgressBar;
+	
+	private DailyFocus profileDailyFocus;
+	private HoursInPastPanel hoursInPastPanel;
 
 	public StatisticsState(TamoStudyGUI tamoStudyGUI) {
 		super(tamoStudyGUI);
@@ -92,6 +99,14 @@ public class StatisticsState extends State {
 			tsGui.addNewMonthFocusEntryToMonthFocus(monthFocusEntry);
 			tsGui.getMonthFocusJsonManager().writeJsonToFile(tsGui.getMonthFocusList());
 		}
+		
+		DailyFocusJsonManager dailyFocusJsonManager = new DailyFocusJsonManager();
+		List<DailyFocus> dailyFocusList = dailyFocusJsonManager.readJson();
+		for(DailyFocus dailyFocus : dailyFocusList) {
+			if(dailyFocus.getProfileId() == profile.getId()) {
+				profileDailyFocus = dailyFocus;
+			}
+		}
 	}
 
 	@Override
@@ -107,6 +122,8 @@ public class StatisticsState extends State {
 		tamoHoursAllLabel = new JLabel(language.totalFocusText + ": " + Utils.convertSecondsToHours(profile.getTime()) + " " + language.hoursText);
 		tamoLevelLabel = new JLabel(language.levelText + " " + tamo.getLevel());
 		levelProgressBar = new JProgressBar(0, 100);
+		
+		hoursInPastPanel = new HoursInPastPanel(profileDailyFocus.getDailyFocusEntries(), guiSize, language);
 	}
 
 	@Override
@@ -188,6 +205,7 @@ public class StatisticsState extends State {
 		this.setLayout(new GridBagLayout());
 		this.add(statisticsPanel, gbcv);
 		// TODO Add Github-like contribution calendar
+		this.add(hoursInPastPanel, gbcv);
 	}
 
 	/*
