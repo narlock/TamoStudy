@@ -93,7 +93,12 @@ public class ShopItemPanel extends JPanel {
 				int tokensAfterPurchase = (int) tsGui.getProfile().getTokens() - price;
 				
 				// If the profile can afford the purchase
-				if(!(tokensAfterPurchase < 0)) {
+				if(type.equals("FOOD") && tsGui.getProfile().getFoodInventoryList().size() >= 35) {
+					// Cannot purchase
+					JOptionPane.showMessageDialog(getRootPane(), "Your Food Inventory is full!", "TamoStudy Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+				}
+				
+				else if(!(tokensAfterPurchase < 0)) {
 					
 					// Confirm that the user wants to purchase this item?
 					int result = JOptionPane.showConfirmDialog(
@@ -116,10 +121,15 @@ public class ShopItemPanel extends JPanel {
 						tsGui.updateTamoTokensLabel();
 						if(!type.equals("FOOD")) {
 							buyButton.setEnabled(false);
+						} else {
+							disableBuyButtonIfOwned();
 						}
 						
 					}
-					
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(getRootPane(), "Not enough Tamo tokens to complete purchase.", "TamoStudy Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 				}
 			}
 		});
@@ -128,6 +138,9 @@ public class ShopItemPanel extends JPanel {
 	public void disableBuyButtonIfOwned() {
 		if(type.equals("FOOD")) {
 			// Do nothing, can purchase multiple food
+			if(tsGui.getProfile().getFoodInventoryList().size() >= 35) {
+				buyButton.setEnabled(false);
+			}
 		} else if(type.equals("BACKGROUND")) {
 			for(long l : tsGui.getProfile().getBackgroundInventoryList()) {
 				if((int) l == indicator) {
