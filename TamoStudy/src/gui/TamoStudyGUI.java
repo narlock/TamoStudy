@@ -29,6 +29,7 @@ import io.ProfileJsonManager;
 import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
+import model.profile.ProfileUpdateManager;
 import model.time.DailyFocus;
 import model.time.DailyFocusEntry;
 import model.time.MonthFocus;
@@ -67,6 +68,7 @@ public class TamoStudyGUI extends JFrame {
 	private DiscordRP discordRP;
 	private Theme theme;
 	private GuiSize guiSize;
+	private ProfileUpdateManager profileUpdateManager;
 	
 	private DailyFocusJsonManager dailyFocusJsonManager;
 	private List<DailyFocus> dailyFocusList;
@@ -147,6 +149,8 @@ public class TamoStudyGUI extends JFrame {
 		theme = Theme.DARK;
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		
+		profileUpdateManager = new ProfileUpdateManager(this);
+		
 		dailyFocusJsonManager = new DailyFocusJsonManager();
 		dailyFocusList = dailyFocusJsonManager.readJson();
 		
@@ -225,6 +229,7 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	private void initializeComponentActions() {
+		profileUpdateManager.updateHappyHungerBasedOnTime();
 		
 		/*
 		 * Opens/Closes the Top Menu.
@@ -599,6 +604,14 @@ public class TamoStudyGUI extends JFrame {
 		return monthFocusJsonManager;
 	}
 	
+	public ProfileUpdateManager getProfileUpdateManager() {
+		return profileUpdateManager;
+	}
+
+	public void setProfileUpdateManager(ProfileUpdateManager profileUpdateManager) {
+		this.profileUpdateManager = profileUpdateManager;
+	}
+
 	/*
 	 * ##################################
 	 * ##################################

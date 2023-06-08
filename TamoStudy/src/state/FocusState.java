@@ -228,6 +228,12 @@ public class FocusState extends State {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Lose 2 happiness points when focus is broken
+				tsGui.getProfileUpdateManager().updateHappyOnEvent(2);
+				
+				// Update focus stats
+				updateFocusStatistics();
+				
 				sessionsRemaining = 0;		// Reset pomdoro - no sessions remaining
 				sessionTimeIndicator = 0;	// Reset time indicator - will start on focus time
 				

@@ -135,10 +135,8 @@ public class ProfileSelectionPanel extends JPanel {
 		
 		messageLabel = new JLabel();
 		if(!foundProfiles) {
-			messageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			messageLabel.setText(language.noProfilesText);
 		} else {
-			messageLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("INFO_GOOD.png")));
 			messageLabel.setText(language.welcomeBackText);
 		}
 		
