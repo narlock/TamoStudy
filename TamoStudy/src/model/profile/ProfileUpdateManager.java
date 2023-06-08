@@ -54,6 +54,14 @@ public class ProfileUpdateManager {
 			
 			// Update JSON
 			tamoStudyGUI.getProfileJsonManager().writeJsonToFile(tamoStudyGUI.getProfiles());
+			
+			/*
+			 * TODO
+			 * 
+			 * Under the condition that the state is display happy and hunger, notably,
+			 * dashboard, focus, and statistics, the happiness and hunger should be updated,
+			 * along with the tamo image.
+			 */
 		} else {
 			Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", 
 					"Same day detected - applying no changes to profile."
