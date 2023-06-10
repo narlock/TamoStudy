@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
@@ -30,6 +31,7 @@ import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
 import model.profile.ProfileUpdateManager;
+import model.profile.Tamo;
 import model.time.DailyFocus;
 import model.time.DailyFocusEntry;
 import model.time.MonthFocus;
@@ -47,6 +49,7 @@ import state.SettingsState;
 import state.ShopState;
 import state.State;
 import state.StatisticsState;
+import state.TamoHistoryState;
 import util.Utils;
 
 public class TamoStudyGUI extends JFrame {
@@ -96,6 +99,7 @@ public class TamoStudyGUI extends JFrame {
 	private JButton statisticsStateButton;
 	private JButton achievementsStateButton;
 	private JButton settingsStateButton;
+	private JButton tamoHistoryStateButton;
 	private JButton aboutStateButton;
 		
 	private State state;
@@ -118,6 +122,8 @@ public class TamoStudyGUI extends JFrame {
 		initializeComponentVisuals();
 		initializeComponentActions();
 		initializeFrame();
+		
+		checkForTamoDeath();
 	}
 	
 	/**
@@ -142,6 +148,7 @@ public class TamoStudyGUI extends JFrame {
 		initializeFrame();
 		
 		sidePanel.setVisible(false);
+		checkForTamoDeath();
 	}
 	
 	private void initializeAttributes() {
@@ -182,6 +189,7 @@ public class TamoStudyGUI extends JFrame {
 		statisticsStateButton = new JButton(lang.statisticsStateButtonText);
 		achievementsStateButton = new JButton(lang.achievementsStateButtonText);
 		settingsStateButton = new JButton(lang.settingsStateButtonText);
+		tamoHistoryStateButton = new JButton("Tamo History");
 		aboutStateButton = new JButton(lang.aboutStateButton);
 		
 	}
@@ -207,6 +215,7 @@ public class TamoStudyGUI extends JFrame {
 		addMenuButtonVisual(statisticsStateButton);
 		addMenuButtonVisual(achievementsStateButton);
 		addMenuButtonVisual(settingsStateButton);
+		addMenuButtonVisual(tamoHistoryStateButton);
 		addMenuButtonVisual(aboutStateButton);
 		
 		// Component Visual Placement
@@ -225,6 +234,9 @@ public class TamoStudyGUI extends JFrame {
 		sidePanel.add(achievementsStateButton, gbcv);
 		sidePanel.add(createSpaceLabel(), gbcv);
 		sidePanel.add(settingsStateButton, gbcv);
+		if(profile.getTamoHistory().size() > 0) {
+			sidePanel.add(tamoHistoryStateButton, gbcv);
+		}
 		sidePanel.add(aboutStateButton, gbcv);
 	}
 	
@@ -346,6 +358,21 @@ public class TamoStudyGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof SettingsState)) {
 					changeState(new SettingsState(getThis()));
+					sidePanel.setVisible(false);
+				}
+			}
+			
+		});
+		
+		/*
+		 * Changes to the Tamo History state.
+		 */
+		tamoHistoryStateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!(state instanceof TamoHistoryState)) {
+					changeState(new TamoHistoryState(getThis()));
 					sidePanel.setVisible(false);
 				}
 			}
@@ -689,5 +716,47 @@ public class TamoStudyGUI extends JFrame {
 		topNameTokensLabel.setText(profile.getName() + " • " + profile.getTokens());
 	}
 	
+	public void checkForTamoDeath() {
+		if(profile.getTamo().getStrikes() >= 3) {
+			// Tamo Death
+			Tamo deathTamo = new Tamo(
+						profile.getTamo().getName(),
+						profile.getTamo().getTime(),
+						profile.getTamo().getType(),
+						profile.getTamo().getBirthDateString(),
+						Utils.todayAsString()
+					);
+			List<Tamo> tamoHistory = new ArrayList<>(profile.getTamoHistory());
+			tamoHistory.add(deathTamo);
+			profile.setTamoHistory(tamoHistory);
+			
+			JPanel newTamoPanel = new JPanel();
+			JLabel tamoDeathMessageLabel = new JLabel("<html>" + profile.getTamo().getName() + "  who did not receive the care it required, has sadly passed away.<br>Progress for this Tamo will be saved in Tamo History.<br><br></html>");
+			JLabel newTamoNameLabel = new JLabel("Tamo Name ");
+			JTextField newTamoNameTextField = new JTextField(10);
+			
+			newTamoPanel.add(tamoDeathMessageLabel);
+			newTamoPanel.add(newTamoNameLabel);
+			newTamoPanel.add(newTamoNameTextField);
+			
+			
+			Object[] options = {"Reset"};
+			int resultPane = JOptionPane.showOptionDialog(getRootPane(), newTamoPanel, "TamoStudy", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")), options, options[0]);
+			if(resultPane == 0) {
+				String newTamoName = (newTamoNameTextField.getText().trim().isEmpty() || newTamoNameTextField.getText().trim().isEmpty()) 
+						? profile.getTamo().getName() 
+						: newTamoNameTextField.getText();
+				Tamo newTamo = new Tamo(newTamoName);
+				profile.setTamo(newTamo);
+			} else {
+				String newTamoName = profile.getTamo().getName();
+				Tamo newTamo = new Tamo(newTamoName);
+				profile.setTamo(newTamo);
+			}
+			
+			profileJsonManager.writeJsonToFile(profiles);
+			resetGui();
+		}
+	}
 }
 

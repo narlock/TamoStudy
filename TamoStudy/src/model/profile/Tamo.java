@@ -35,8 +35,8 @@ public class Tamo {
 		this.type = generateRandomTamoType();
 		this.birthDateString = Utils.todayAsString();
 		this.passDateString = null;
-		this.happy = 5;
-		this.hunger = 5;
+		this.happy = 7;
+		this.hunger = 8;
 		this.setStrikes(0);
 		
 		focused = false;
@@ -170,6 +170,9 @@ public class Tamo {
 	 * Otherwise, return NORMAL
 	 */
 	public String getStatus(boolean focused) {
+		if(passDateString != null) {
+			return "NORMAL";
+		}
 		
 		// Get Status String
 		if(focused) {

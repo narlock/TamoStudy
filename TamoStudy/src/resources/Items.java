@@ -90,6 +90,16 @@ public class Items {
 			return language.nightOutText;
 		case 4:
 			return language.enigmaText;
+		case 5:
+			return "Cozy Night";
+		case 6:
+			return "Study Time";
+		case 7:
+			return "Pleasant Bridge";
+		case 8:
+			return "Wisteria";
+		case 9:
+			return "Moon";
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundTitleByIndicator");
 	}
@@ -110,6 +120,12 @@ public class Items {
 		case 3:
 		case 4:
 			return 1000;
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			return 5000;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundPriceByIndicator");
 	}
@@ -126,6 +142,16 @@ public class Items {
 			return language.nightOutDescriptionText;
 		case 4:
 			return language.enigmaDescriptionText;
+		case 5:
+			return "description 5";
+		case 6:
+			return "description 6";
+		case 7:
+			return "description 7";
+		case 8:
+			return "description 8";
+		case 9:
+			return "description 9";
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundDescriptionByIndicator");
 	}

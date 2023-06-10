@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -165,7 +166,9 @@ public class ShopItemPanel extends JPanel {
 		this.setBorder(guiSize.settingsPanelBorder);
 		
 		this.add(itemTitleLabel, gbcv);
+		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(iconLabel, gbcv);
+		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(buyButton, gbcv);
 	}
 	

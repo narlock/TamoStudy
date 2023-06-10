@@ -2,6 +2,8 @@ package model.profile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import javax.swing.Timer;
 
@@ -47,10 +49,32 @@ public class ProfileUpdateManager {
 			Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", 
 					"New day - updating date string and applying happy/hunger changes."
 				);
+			LocalDate todayLocalDate = LocalDate.parse(Utils.todayAsString());
+			LocalDate previousLocalDate = LocalDate.parse(profile.getPreviousDateString());
+			
 			profile.setPreviousDateString(todayAsString);
 			// Updating happiness and hunger based on time
-			updateTamoHunger(tamo, 3);
-			updateTamoHappy(tamo, 2);
+			
+			long daysBetween = ChronoUnit.DAYS.between(previousLocalDate, todayLocalDate);
+			
+			if(daysBetween < 7) {
+				updateTamoHunger(tamo, 3);
+				updateTamoHappy(tamo, 2);
+				
+				if(profile.getTamo().getHunger() < 2 || profile.getTamo().getHappy() < 2) {
+					profile.getTamo().setStrikes(profile.getTamo().getStrikes() + 1);
+					Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", "Strike added to tamo " + profile.getTamo().getName() + ", now has " + profile.getTamo().getStrikes() + ".");
+				}
+			} else if(daysBetween >= 7) {
+				updateTamoHunger(tamo, 10);
+				updateTamoHappy(tamo, 10);
+				
+				if(profile.getTamo().getHunger() < 2 || profile.getTamo().getHappy() < 2) {
+					profile.getTamo().setStrikes(profile.getTamo().getStrikes() + 1);
+					Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", "Strike added to tamo " + profile.getTamo().getName() + ", now has " + profile.getTamo().getStrikes() + ".");
+				}
+			}
+			
 			
 			// Update JSON
 			tamoStudyGUI.getProfileJsonManager().writeJsonToFile(tamoStudyGUI.getProfiles());
@@ -104,9 +128,5 @@ public class ProfileUpdateManager {
 		
 		// Set hunger
 		tamo.setHappy(happy);
-	}
-	
-	public void checkForNewAchievements() {
-		
 	}
 }

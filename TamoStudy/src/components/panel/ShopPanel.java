@@ -193,7 +193,31 @@ public class ShopPanel extends JPanel {
 				this.repaint();
 				
 				// Add shop options on page 1
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 4, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 5, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 6, false));
+				this.add(nextButton);
+				
+				this.revalidate();
+			} else if(shopPage == 2) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 1
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 7, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 8, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BACKGROUND", 9, false));
+				this.add(nextButton);
+				
+				this.revalidate();
 			} else {
+			
 				this.removeAll();
 				this.repaint();
 			}

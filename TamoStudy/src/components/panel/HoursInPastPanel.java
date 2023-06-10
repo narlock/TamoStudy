@@ -96,7 +96,7 @@ public class HoursInPastPanel extends JPanel {
             		
             		dateLabel.addMouseListener(new MouseAdapter() {
             			public void mouseEntered(MouseEvent e) {
-            				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 40);
+            				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 50);
             			}
             		});
             		
@@ -119,7 +119,7 @@ public class HoursInPastPanel extends JPanel {
         		popupMenu.add(popupMessageLabel);
         		dateLabel.addMouseListener(new MouseAdapter() {
         			public void mouseEntered(MouseEvent e) {
-        				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 40);
+        				popupMenu.show(dateLabel, e.getX() - 120, e.getY() - 50);
         			}
         		});
         		
