@@ -140,7 +140,7 @@ public class Achievements {
 			
 			// Display achievement notification if setting is enabled
 			if(profile.getSettings().getReceiveNotifications()) {
-				JOptionPane.showMessageDialog(gui.getRootPane(), "Achievement Unlocked: " + getAchievementTitleByIndicator((int) indicator) + "<br>You have earned " + tokensEarned + " Tamo tokens!", "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(Achievements.class.getClassLoader().getResource("INFO.png")));
+				JOptionPane.showMessageDialog(gui.getRootPane(), "<html>Achievement Unlocked: " + getAchievementTitleByIndicator((int) indicator) + "<br>You have earned " + tokensEarned + " Tamo tokens!</html>", "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(Achievements.class.getClassLoader().getResource("INFO.png")));
 			}
 			
 			// Ensure Changes are earned
