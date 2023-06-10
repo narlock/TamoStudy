@@ -120,23 +120,12 @@ public class Profile {
 		this.settings = new ProfileSettings(languageIndicator, focusMode, sessionSoundIndicator, difficulty, showAhmNotifications);
 		this.backgroundIndicator = backgroundIndicator;
 		this.borderIndicator = 0;
-		this.achievementList = convertAhmStringToAchievementsList(ahmString);
+		this.achievementList = List.of((long) 6);
 		this.foodInventoryList = Collections.emptyList();
 		this.backgroundInventoryList = convertInvStringToBackgroundInventoryList(invString);
 		this.borderInventoryList = List.of((long) 0);
 		this.tamo = new Tamo(tamoName, time, tamoId, joinDateString, tamoHappiness, tamoHunger, strikes);
 		this.tamoHistory = Collections.emptyList();
-	}
-
-	private List<Long> convertAhmStringToAchievementsList(String ahmString) {
-		List<Long> achievementList = new ArrayList<>();
-		String achievements[] = ahmString.split("");
-		for(int i = 0; i < achievements.length; i++) {
-			if(achievements[i].equals("1")) {
-				achievementList.add((long) i);
-			}
-		}
-		return achievementList;
 	}
 	
 	private List<Long> convertInvStringToBackgroundInventoryList(String invString) {

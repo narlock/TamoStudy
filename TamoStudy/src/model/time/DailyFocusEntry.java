@@ -62,4 +62,5 @@ public class DailyFocusEntry {
 	public void setTime(Long time) {
 		this.time = time;
 	}
+	
 }

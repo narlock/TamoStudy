@@ -692,5 +692,10 @@ public class FocusState extends State {
 			Debug.info("FocusState.checkForFocusTimeAnyHappyAchievements", "Earning Achievement 3");
 			Achievements.earn(tsGui, 3);
 		}
+		
+		// Daily Focus
+		tsGui.getDailyFocus().checkInRowDailyFocusAchievements(tsGui, 3);
+		tsGui.getDailyFocus().checkInRowDailyFocusAchievements(tsGui, 7);
+		tsGui.getDailyFocus().checkInRowDailyFocusAchievements(tsGui, 30);
 	}
 }
