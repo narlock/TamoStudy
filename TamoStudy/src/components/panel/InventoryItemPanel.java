@@ -17,6 +17,7 @@ import gui.TamoStudyGUI;
 import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
+import resources.Achievements;
 import resources.Debug;
 import resources.Items;
 import resources.Theme;
@@ -125,6 +126,11 @@ public class InventoryItemPanel extends JPanel {
 				foodInventoryList.remove(indexToRemove);
 				profile.setFoodInventoryList(foodInventoryList);
 				
+				// Earn Tamo Full achievement if applicable
+				if(profile.getTamo().getHunger() >= 10) {
+					Achievements.earn(tsGui, 7);
+				}
+				
 				// Update JSON
 				tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
 				
@@ -158,6 +164,11 @@ public class InventoryItemPanel extends JPanel {
 				// Set Background
 				profile.setBackgroundIndicator(indicator);
 				
+				// Earn Background achievement if applicable
+				if(indicator != 0) {
+					Achievements.earn(tsGui, 5);
+				}
+				
 				// Update JSON
 				// TODO Add animation that background was set: "Background sunset set!" and fade to background color.
 				tsGui.getProfileJsonManager().writeJsonToFile(tsGui.getProfiles());
@@ -187,6 +198,11 @@ public class InventoryItemPanel extends JPanel {
 				
 				// Set backgrounds
 				profile.setBorderIndicator(indicator);
+				
+				// Earn Background achievement if applicable
+				if(indicator != 0) {
+					Achievements.earn(tsGui, 4);
+				}
 				
 				// Update JSON
 				// TODO Add animation that border was set: "Border black set!" and fade to background color.

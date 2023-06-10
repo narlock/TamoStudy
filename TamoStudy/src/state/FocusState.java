@@ -30,6 +30,7 @@ import model.profile.Profile;
 import model.profile.Tamo;
 import model.time.DailyFocusEntry;
 import model.time.MonthFocusEntry;
+import resources.Achievements;
 import resources.Debug;
 import resources.Theme;
 import util.Utils;
@@ -230,6 +231,9 @@ public class FocusState extends State {
 			public void actionPerformed(ActionEvent e) {
 				// Lose 2 happiness points when focus is broken
 				tsGui.getProfileUpdateManager().updateHappyOnEvent(2);
+				
+				// Update happiness label
+				tamoHappyLabel.setText("" + tamo.getHappy());
 				
 				// Update focus stats
 				updateFocusStatistics();
@@ -542,7 +546,7 @@ public class FocusState extends State {
 			// Update Tokens (72 seconds = 1 Tamo token)
 			profile.setTokens(profile.getTokens() + ((50 * timeEarned) / 3600));
 			
-			// Update Tamo Happiness
+			// Update Tamo Happiness (30 minutes = 1 Happy)
 			int happinessEarned = timeEarned / 1800;
 			int newHappy = (int) tamo.getHappy() + happinessEarned;
 			tamo.setHappy(newHappy >= 10 ? 10 : newHappy);
@@ -564,6 +568,9 @@ public class FocusState extends State {
 		
 		// Enable menu, options, and start buttons again
 		toggleButtons(true);
+		
+		// Check for focus time achievements
+		checkForFocusTimeAndHappyAchievements();
 	}
 	
 	/**
@@ -662,4 +669,28 @@ public class FocusState extends State {
 		
 	}
 	
+	public void checkForFocusTimeAndHappyAchievements() {
+		// Happy
+		if(profile.getTamo().getHappy() >= 10) {
+			Achievements.earn(tsGui, 8);
+		}
+		
+		// Focus Time
+		if(profile.getTime() >= 86400) {
+			Debug.info("FocusState.checkForFocusTimeAnyHappyAchievements", "Earning Achievement 0");
+			Achievements.earn(tsGui, 0);
+		}
+		if(profile.getTime() >= 259200) {
+			Debug.info("FocusState.checkForFocusTimeAnyHappyAchievements", "Earning Achievement 1");
+			Achievements.earn(tsGui, 1);
+		}
+		if(profile.getTime() >= 864000) {
+			Debug.info("FocusState.checkForFocusTimeAnyHappyAchievements", "Earning Achievement 2");
+			Achievements.earn(tsGui, 2);
+		}
+		if(profile.getTime() >= 4320000) {
+			Debug.info("FocusState.checkForFocusTimeAnyHappyAchievements", "Earning Achievement 3");
+			Achievements.earn(tsGui, 3);
+		}
+	}
 }

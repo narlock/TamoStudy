@@ -1,11 +1,16 @@
 package resources;
 
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.GrayFilter;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
+import gui.TamoStudyGUI;
 import model.GuiSize;
+import model.profile.Profile;
 
 public class Achievements {
 	public static ImageIcon getAchievementIconByIndicator(boolean earned, int indicator, GuiSize guiSize) {
@@ -86,5 +91,63 @@ public class Achievements {
 			return "Focus for 1+ hours for 30 days consecutively.";
 		}
 		throw new RuntimeException("Invalid indicator provided");
+	}
+	
+	public static long getAchievementTokenEarningsByIndicator(int indicator) {
+		switch(indicator) {
+		case 0:
+			return 100;
+		case 1:
+			return 500;
+		case 2:
+			return 1000;
+		case 3:
+			return 2000;
+		case 4:
+			return 50;
+		case 5:
+			return 50;
+		case 6:
+			return 50;
+		case 7:
+			return 50;
+		case 8:
+			return 50;
+		case 9:
+			return 100;
+		case 10:
+			return 250;
+		case 11:
+			return 1000;
+		}
+		throw new RuntimeException("Invalid indicator provided");
+	}
+	
+	public static void earn(TamoStudyGUI gui, long indicator) {
+		Profile profile = gui.getProfile();
+		List<Long> achievementList = new ArrayList<>(profile.getAchievementList());
+		if(!achievementList.contains((Long) indicator)) {
+			// Add achievement to achievement list
+			Debug.info("Achievements.earn", "Profile " + profile.getName() + " has earned achievement " + indicator + ".");
+			achievementList.add(indicator);
+			profile.setAchievementList(achievementList);
+			
+			// Earn tokens for earning the achievement
+			Debug.info("Achievements.earn", "Profile tokens before achievement: " + profile.getTokens());
+			long tokensEarned = getAchievementTokenEarningsByIndicator((int) indicator);
+			profile.setTokens(profile.getTokens() + tokensEarned);
+			Debug.info("Achievements.earn", "Profile tokens after achievement: " + profile.getTokens());
+			
+			// Display achievement notification if setting is enabled
+			if(profile.getSettings().getReceiveNotifications()) {
+				JOptionPane.showMessageDialog(gui.getRootPane(), "Achievement Unlocked: " + getAchievementTitleByIndicator((int) indicator) + "<br>You have earned " + tokensEarned + " Tamo tokens!", "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(Achievements.class.getClassLoader().getResource("INFO.png")));
+			}
+			
+			// Ensure Changes are earned
+			gui.updateTamoTokensLabel();
+			gui.getProfileJsonManager().writeJsonToFile(gui.getProfiles());
+		} else {
+			Debug.warn("Achievements.earn", "Profile " + profile.getName() + " already has achievement " + indicator + ".");
+		}
 	}
 }
