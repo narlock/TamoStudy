@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import io.ProfileJsonManager;
 import model.language.Language;
 import util.Utils;
 
@@ -265,6 +266,20 @@ public class Profile {
         for (int i = 0; i < 5; i++) {
             id = id * 10 + random.nextInt(10);
         }
-        return id;
+        
+        boolean idAlreadyExists = false;
+        ProfileJsonManager profileJsonManager = new ProfileJsonManager();
+        List<Profile> profiles = profileJsonManager.readJson();
+        for(Profile profile : profiles) {
+        	if(profile.getId() == id) {
+        		idAlreadyExists = true;
+        	}
+        }
+        
+        if(idAlreadyExists) {
+        	return generateRandomProfileId();
+        } else {
+        	return id;
+        }
 	}
 }

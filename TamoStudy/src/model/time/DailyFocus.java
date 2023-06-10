@@ -62,16 +62,16 @@ public class DailyFocus {
 			long month = dateCalendar.get(Calendar.MONTH) + 1;
 			long year = dateCalendar.get(Calendar.YEAR);
 			
-			Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Checking " + month + "/" + day + "/" + year);
+//			Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Checking " + month + "/" + day + "/" + year);
 			
 			for(DailyFocusEntry entry : this.dailyFocusEntries) {
-				Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Checking " + month + "/" + day + "/" + year + " is equal " + entry.getMonth() + "/" + entry.getDay() + "/" + entry.getYear() + " = " + (day == entry.getDay() && month == entry.getMonth() && year == entry.getYear()));
+//				Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Checking " + month + "/" + day + "/" + year + " is equal " + entry.getMonth() + "/" + entry.getDay() + "/" + entry.getYear() + " = " + (day == entry.getDay() && month == entry.getMonth() && year == entry.getYear()));
 				if(day == entry.getDay() && month == entry.getMonth() && year == entry.getYear() && entry.getTime() >= 3600) {
 					earnedDates[i] = true;
 				}
 			}
 			
-			Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Result: " + month + "/" + day + "/" + year + ". earnedDates[i] = " + earnedDates[i]);
+//			Debug.info("DailyFocus.checkInRowDailyFocusAchievement(" + length + ")", "Result: " + month + "/" + day + "/" + year + ". earnedDates[i] = " + earnedDates[i]);
 		}
 		
 		boolean earnedAchievement = true;
