@@ -67,7 +67,6 @@ public class ShopState extends State {
 	@Override
 	protected void initializeComponentVisuals() {
 		// TODO Auto-generated method stub
-		kathPanel.setBackground(theme.subColor);
 		shopPanel.setBackground(theme.subColor);
 	}
 

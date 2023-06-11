@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -730,14 +731,19 @@ public class TamoStudyGUI extends JFrame {
 			tamoHistory.add(deathTamo);
 			profile.setTamoHistory(tamoHistory);
 			
-			JPanel newTamoPanel = new JPanel();
-			JLabel tamoDeathMessageLabel = new JLabel("<html>" + profile.getTamo().getName() + "  who did not receive the care it required, has sadly passed away.<br>Progress for this Tamo will be saved in Tamo History.<br><br></html>");
-			JLabel newTamoNameLabel = new JLabel("Tamo Name ");
+			GridBagConstraints gbcv = new GridBagConstraints();
+			gbcv.gridwidth = GridBagConstraints.REMAINDER;
+			
+			JPanel newTamoPanel = new JPanel(new GridBagLayout());
+			JLabel tamoDeathMessageLabel = new JLabel("<html>" + profile.getTamo().getName() + "  who did not receive the care it required, has sadly passed away.<br><br>Progress for this Tamo will be saved in Tamo History.<br><br></html>");
+			tamoDeathMessageLabel.setForeground(Color.WHITE);
+			JLabel newTamoNameLabel = new JLabel("New Tamo Name");
+			newTamoNameLabel.setForeground(Color.WHITE);
 			JTextField newTamoNameTextField = new JTextField(10);
 			
-			newTamoPanel.add(tamoDeathMessageLabel);
-			newTamoPanel.add(newTamoNameLabel);
-			newTamoPanel.add(newTamoNameTextField);
+			newTamoPanel.add(tamoDeathMessageLabel, gbcv);
+			newTamoPanel.add(newTamoNameLabel, gbcv);
+			newTamoPanel.add(newTamoNameTextField, gbcv);
 			
 			
 			Object[] options = {"Reset"};

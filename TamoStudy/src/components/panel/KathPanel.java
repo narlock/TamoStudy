@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import model.GuiSize;
 import model.language.Language;
+import resources.Debug;
 import resources.Theme;
 
 public class KathPanel extends JPanel {
@@ -52,6 +53,8 @@ public class KathPanel extends JPanel {
 	}
 	
 	public void initializeAttributes() {
+		Debug.info("KathPanel.initializeAttributes", "shopIndicator = " + shopIndicator);
+		
 		if(shopIndicator == 0) {
 			messageLabel.setText("Welcome to the shop. What can I help you find?");
 			

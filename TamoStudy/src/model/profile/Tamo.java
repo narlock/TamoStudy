@@ -147,7 +147,7 @@ public class Tamo {
 	}
 
 	private long generateRandomTamoType() {
-		int max = 10;
+		int max = 4;
 		int min = 1;
 		Random random = new Random();
         return random.nextInt(max - min + 1) + min;
