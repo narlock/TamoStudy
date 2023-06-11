@@ -67,7 +67,7 @@ public class InventoryState extends State {
 	protected void initializeAttributes() {
 		profile = tsGui.getProfile();
 		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 		
 	}
 

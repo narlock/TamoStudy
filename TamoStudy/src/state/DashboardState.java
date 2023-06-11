@@ -81,7 +81,7 @@ public class DashboardState extends State {
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		tamo = profile.getTamo();
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 
 		this.dailyFocusEntry = Utils.searchTodayFocusEntryByProfile(tsGui.getDailyFocus().getDailyFocusEntries());
 		// Create new daily focus entry if it does not exist

@@ -70,11 +70,11 @@ public class SetPanel extends JPanel {
 	
 	// Stop watch contains no components
 	
-	public SetPanel(TimerPanel timerPanel, long focusMode, Language language) {
+	public SetPanel(Theme theme, TimerPanel timerPanel, long focusMode, Language language) {
 		this.timerPanel = timerPanel;
 		this.focusMode = focusMode;
 		this.language = language;
-		this.theme = Theme.DARK;
+		this.theme = theme;
 		
 		initializeComponents();
 		initializePanel();

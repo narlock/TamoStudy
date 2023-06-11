@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import gui.TamoStudyGUI;
 import io.ProfileJsonManager;
@@ -48,7 +49,10 @@ public class SettingsState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private JPanel titlePanel;
 	private JLabel messageLabel;
+	private JButton themeButton;
+	
 	private JPanel settingsPanel;
 	private JPanel languagePanel;
 	private JLabel languageLabel;
@@ -75,7 +79,6 @@ public class SettingsState extends State {
 	private JPanel showProgramCloseMessagePanel;
 	private JLabel showProgramCloseMessageLabel;
 	private JButton showProgramCloseMessageButton;
-	private JButton saveChangesButton;
 
 	/**
 	 * SettingsState
@@ -97,13 +100,23 @@ public class SettingsState extends State {
 		settings = tsGui.getProfile().getSettings();
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
-		theme = Theme.DARK;
+		theme = tsGui.getProfile().getSettings().getTheme();
 		Debug.info("SettingsState.initializeAttributes", "Loaded settings=" + settings);
 	}
 	
 	@Override
 	protected void initializeComponents() {
+		titlePanel = new JPanel();
 		messageLabel = new JLabel("Settings");
+		
+		themeButton = new JButton();
+		if(theme.type.equals("Dark")) {
+			themeButton.setIcon(guiSize.darkModeIcon);
+		} else {
+			themeButton.setIcon(guiSize.lightModeIcon);
+		}
+		addButtonVisual(themeButton);
+		
 		
 		settingsPanel = new JPanel(new GridBagLayout());
 		
@@ -166,14 +179,13 @@ public class SettingsState extends State {
 		showProgramCloseMessagePanel = new JPanel(new GridBagLayout());
 		showProgramCloseMessageLabel = new JLabel(language.exitMessageText);
 		showProgramCloseMessageButton = new JButton();
-		
-		saveChangesButton = new JButton(language.saveText);
 	}
 	
 	@Override
 	protected void initializeComponentVisuals() {
 		this.setLayout(new GridBagLayout());
 		
+		titlePanel.setBackground(theme.subColor);
 		messageLabel.setFont(guiSize.messageLabelFont);
 		messageLabel.setForeground(theme.textColor);
 		
@@ -242,12 +254,47 @@ public class SettingsState extends State {
 			showProgramCloseMessageButton.setText(language.offText);
 			Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize);
 		}
-		
-		Theme.successVisualButton(saveChangesButton, guiSize);
 	}
 
 	@Override
 	protected void initializeComponentActions() {
+		
+		languageBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				settings.setLanguage(Language.getLanguageFromBox(languageBox.getSelectedIndex()));
+				saveChanges();
+			}
+			
+		});
+		
+		focusModeBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				settings.setFocusMode(focusModeBox.getSelectedIndex());
+				saveChanges();
+			}
+		});
+		
+		difficultyBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				settings.setDifficulty(difficultyBox.getSelectedIndex());
+				saveChanges();
+			}
+		});
+		
+		timerAlarmBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				settings.setTimerAlarm(timerAlarmBox.getSelectedIndex());
+				saveChanges();
+			}
+		});
 		
 		/*
 		 * Upon click, the GUI's size will immediately be decreased.
@@ -303,10 +350,14 @@ public class SettingsState extends State {
 				if(receiveNotificationsButton.getText().equals(language.onText)) {
 					receiveNotificationsButton.setText(language.offText);
 					Theme.secondaryVisualButton(receiveNotificationsButton, guiSize);
+					settings.setReceiveNotifications(false);
 				} else {
 					receiveNotificationsButton.setText(language.onText);
 					Theme.primaryVisualButton(receiveNotificationsButton, guiSize);
+					settings.setReceiveNotifications(true);
 				}
+				
+				saveChanges();
 			}
 		});
 		
@@ -326,6 +377,16 @@ public class SettingsState extends State {
 					enableDiscordRPCButton.setText(language.onText);
 					Theme.primaryVisualButton(enableDiscordRPCButton, guiSize);
 				}
+				
+				if(!(System.getProperty("os.name").startsWith("Windows"))) {
+					settings.setEnableDiscordRPC(false);
+				} else if(enableDiscordRPCButton.getText().equals(language.onText)) {
+					settings.setEnableDiscordRPC(true);
+				} else {
+					settings.setEnableDiscordRPC(false);
+				}
+				
+				saveChanges();
 			}
 		});
 		
@@ -341,56 +402,34 @@ public class SettingsState extends State {
 				if(showProgramCloseMessageButton.getText().equals(language.onText)) {
 					showProgramCloseMessageButton.setText(language.offText);
 					Theme.secondaryVisualButton(showProgramCloseMessageButton, guiSize);
+					settings.setShowProgramCloseMessage(false);
 				} else {
 					showProgramCloseMessageButton.setText(language.onText);
 					Theme.primaryVisualButton(showProgramCloseMessageButton, guiSize);
+					settings.setShowProgramCloseMessage(true);
 				}
+				
+				saveChanges();
 			}
 		});
 		
-		/*
-		 * Upon click, all of the set values of the settings will be set
-		 * to the profile. After this, the settings will be wrote to the
-		 * JSON file. Finally, the message label will change to success
-		 * and display the saved message.
-		 */
-		saveChangesButton.addActionListener(new ActionListener() {
+		themeButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Set Settings
-				if(receiveNotificationsButton.getText().equals(language.onText)) {
-					settings.setReceiveNotifications(true);
+				if(theme.type.equals("Light")) {
+					theme = Theme.DARK;
 				} else {
-					settings.setReceiveNotifications(false);
+					theme = Theme.LIGHT;
 				}
-				
-				if(!(System.getProperty("os.name").startsWith("Windows"))) {
-					settings.setEnableDiscordRPC(false);
-				} else if(enableDiscordRPCButton.getText().equals(language.onText)) {
-					settings.setEnableDiscordRPC(true);
-				} else {
-					settings.setEnableDiscordRPC(false);
-				}
-				
-				if(showProgramCloseMessageButton.getText().equals(language.onText)) {
-					settings.setShowProgramCloseMessage(true);
-				} else {
-					settings.setShowProgramCloseMessage(false);
-				}
-					
-				settings.setLanguage(Language.getLanguageFromBox(languageBox.getSelectedIndex()));
-				settings.setFocusMode(focusModeBox.getSelectedIndex());
-				settings.setDifficulty(difficultyBox.getSelectedIndex());
-				settings.setTimerAlarm(timerAlarmBox.getSelectedIndex());
 				
 				// Overwrite JSON file
+				tsGui.getProfile().getSettings().setTheme(theme);
+				Debug.info("SettingsState.themeButton.actionPerformed", "Theme = " + theme.type);
 				profileJsonManager.writeJsonToFile(tsGui.getProfiles());
-				Debug.info("SettingsState.saveChangesButton.actionPerformed", "Wrote profiles to file=" + tsGui.getProfiles());
 				
-				// Change message label
-				messageLabel.setText(language.settingsSavedText);
-				messageLabel.setForeground(Theme.SUCCESS);
+				// Refresh tsGui
+				tsGui.resizeGui();
 			}
 		});
 	}
@@ -453,11 +492,12 @@ public class SettingsState extends State {
 		settingsPanel.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), innergbcv);
 		settingsPanel.add(showProgramCloseMessagePanel, innergbcv);
 		
-		this.add(messageLabel, gbcv);
+		titlePanel.add(messageLabel);
+		titlePanel.add(themeButton);
+		
+		this.add(titlePanel, gbcv);
 		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
 		this.add(settingsPanel, gbcv);
-		this.add(Box.createVerticalStrut(guiSize.settingsVerticalDifference), gbcv);
-		this.add(saveChangesButton, gbcv);
 		
 		if(!(System.getProperty("os.name").startsWith("Windows"))) {
 			enableDiscordRPCPanel.setVisible(false);
@@ -476,5 +516,26 @@ public class SettingsState extends State {
 		button.setContentAreaFilled(false);
 		button.setFocusPainted(false);
 		button.setBorderPainted(false);
+	}
+	
+	public void saveChanges() {
+		// Overwrite JSON file
+		profileJsonManager.writeJsonToFile(tsGui.getProfiles());
+		Debug.info("SettingsState.saveChangesButton.actionPerformed", "Wrote profiles to file=" + tsGui.getProfiles());
+		
+		// Change message label
+		messageLabel.setText(language.settingsSavedText);
+		messageLabel.setForeground(Theme.SUCCESS);
+		final Timer timer = new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				messageLabel.setText("Settings");
+				messageLabel.setForeground(theme.textColor);
+				((Timer) e.getSource()).stop();
+			}
+		});
+		timer.start();
+		
 	}
 }

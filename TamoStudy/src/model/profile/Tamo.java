@@ -152,11 +152,6 @@ public class Tamo {
 		Random random = new Random();
         return random.nextInt(max - min + 1) + min;
 	}
-	
-	private int getLevelFromTime() {
-		// TODO
-		return 10;
-	}
 
 	/**
 	 * @return status

@@ -252,6 +252,20 @@ public class ShopPanel extends JPanel {
 				this.add(nextButton);
 				
 				this.revalidate();
+			} else if(shopPage == 2) {
+				this.removeAll();
+				this.repaint();
+				
+				// Add shop options on page 1
+				this.add(previousButton);
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 7, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 8, false));
+				this.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference));
+				this.add(new ShopItemPanel(tsGui, guiSize, language, "BORDER", 9, false));
+				this.add(nextButton);
+				
+				this.revalidate();
 			} else {
 				this.removeAll();
 				this.repaint();

@@ -52,10 +52,10 @@ public class HoursInPastPanel extends JPanel {
 	private GuiSize guiSize;
 	private Theme theme;
 	
-	public HoursInPastPanel(List<DailyFocusEntry> focusEntries, GuiSize guiSize) {
+	public HoursInPastPanel(Theme theme, List<DailyFocusEntry> focusEntries, GuiSize guiSize) {
 		this.focusEntries = focusEntries;
 		this.guiSize = guiSize;
-		this.theme = Theme.DARK;
+		this.theme = theme;
 		this.dateList = getDateList();
 
 		initializePanel();

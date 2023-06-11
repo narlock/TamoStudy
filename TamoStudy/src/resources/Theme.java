@@ -12,7 +12,7 @@ import model.GuiSize;
 
 /**
  * @author Anthony Narlock (narlock)
- * Theme, contains information about the Colors for current Theme
+ * @brief Theme, contains information about the Colors for current Theme
  */
 
 public class Theme {
@@ -27,6 +27,8 @@ public class Theme {
 	public Color layerTextColor;
 	public Color altTextColor;
 	public Color selectedTextColor;
+	
+	public Color timerColor;
 	
 	public final Font fontPlainReg = new Font("Arial", Font.PLAIN, 24);
 	public final Font fontBoldReg = new Font("Arial", Font.BOLD, 24);
@@ -50,6 +52,7 @@ public class Theme {
 		    layerTextColor = new Color(153,153,153);
 		    altTextColor = new Color(87, 87, 87);
 		    selectedTextColor = new Color(244, 140, 6);
+		    timerColor = Color.BLACK;
 		    type = "Dark";
 		    break;
 		  case 1:
@@ -58,6 +61,9 @@ public class Theme {
 		    layerColor = Color.WHITE;
 		    textColor = new Color(64,64,64); 
 		    layerTextColor = Color.BLACK;
+		    altTextColor = new Color(87, 87, 87);
+		    selectedTextColor = new Color(244, 140, 6);
+		    timerColor = Color.WHITE;
 		    type = "Light";
 		    break;
 		  case 2:
@@ -120,6 +126,15 @@ public class Theme {
 	}
 	
 	public static final Theme DARK = new Theme(0);
+	public static final Theme LIGHT = new Theme(1);
+	
+	public static Theme getTheme(String themeString) {
+		if(themeString.equals("Dark")) {
+			return DARK;
+		} else if(themeString.equals("Light")) {
+			return LIGHT;
+		} else return DARK;
+	}
 	
 	public boolean checkEqualityWith(Theme other) {
 		return this.mainColor.equals(other.mainColor);

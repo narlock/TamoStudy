@@ -121,7 +121,8 @@ public class Constants {
 	 * ##################################
 	 * ##################################
 	 */
-
+	public static final ImageIcon DARK_MODE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("DARK_MODE.png"));
+	public static final ImageIcon LIGHT_MODE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("SUN_MODE.png"));
 	public static final Font SETTINGS_MESSAGE_LABEL_FONT = new Font("Arial", Font.BOLD, 24);
 	public static final Font SETTINGS_SETTING_LABEL_FONT = new Font("Arial", Font.BOLD, 16);
 	public static final Font SETTINGS_CHOICE_FONT = new Font("Arial", Font.PLAIN, 12);

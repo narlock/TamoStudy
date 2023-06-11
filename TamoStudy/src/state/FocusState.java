@@ -107,7 +107,7 @@ public class FocusState extends State {
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		tamo = profile.getTamo();
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 		
 		this.dailyFocusEntry = Utils.searchTodayFocusEntryByProfile(tsGui.getDailyFocus().getDailyFocusEntries());
 		// Create new daily focus entry if it does not exist
@@ -137,7 +137,7 @@ public class FocusState extends State {
 		
 		timerSetPanel = new JPanel(new GridBagLayout());
 		timerPanel = new TimerPanel(profile);
-		setPanel = new SetPanel(timerPanel, profile.getSettings().getFocusMode(), language);
+		setPanel = new SetPanel(theme, timerPanel, profile.getSettings().getFocusMode(), language);
 		buttonPanel = new JPanel();
 		startFocusButton = new JButton(language.startFocusText);
 		breakFocusButton = new JButton(language.breakFocusText);

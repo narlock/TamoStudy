@@ -49,12 +49,12 @@ public class AchievementPanel extends JPanel {
 	private JLabel achievementTitleLabel;
 	private JLabel achievementDescriptionLabel;
 	
-	public AchievementPanel(GuiSize guiSize, Language language, int indicator, boolean earned) {
+	public AchievementPanel(Theme theme, GuiSize guiSize, Language language, int indicator, boolean earned) {
 		this.guiSize = guiSize;
 		this.language = language;
 		this.indicator = indicator;
 		this.earned = earned;
-		this.theme = Theme.DARK;
+		this.theme = theme;
 		
 		initializeComponents();
 		initializePanel();
@@ -69,11 +69,14 @@ public class AchievementPanel extends JPanel {
 		achievementDescriptionLabel = new JLabel(Achievements.getAchievementDescriptionByIndicator(indicator));
 		achievementDescriptionLabel.setFont(guiSize.achievementDescriptionLabelFont);
 		achievementDescriptionLabel.setForeground(theme.textColor);
+		
+		achievementTextPanel.setBackground(theme.mainColor);
 		achievementTextPanel.add(achievementTitleLabel);
 		achievementTextPanel.add(achievementDescriptionLabel);
 	}
 	
 	public void initializePanel() {
+		this.setBackground(theme.mainColor);
 		this.add(achievementIconLabel, BorderLayout.WEST);
 		this.add(achievementTextPanel, BorderLayout.CENTER);
 	}

@@ -120,6 +120,8 @@ public class GuiSize {
 	 * ##################################
 	 * ##################################
 	 */
+	public ImageIcon darkModeIcon;
+	public ImageIcon lightModeIcon;
 	public Font messageLabelFont;
 	public Font settingLabelFont;
 	public Font settingsChoiceFont;
@@ -174,6 +176,8 @@ public class GuiSize {
 		achievementDescriptionLabelFont = scaleFont(ACHIEVEMENT_DESCRIPTION_LABEL_FONT, scale);
 		achievementScrollPaneDimension = scaleDimension(ACHIEVEMENT_SCROLL_PANE_DIMENSION, scale);
 		
+		darkModeIcon = scaleImageIcon(DARK_MODE_ICON, scale);
+		lightModeIcon = scaleImageIcon(LIGHT_MODE_ICON, scale);
 		messageLabelFont = scaleFont(SETTINGS_MESSAGE_LABEL_FONT, scale);
 		settingLabelFont = scaleFont(SETTINGS_SETTING_LABEL_FONT, scale);
 		settingsChoiceFont = scaleFont(SETTINGS_CHOICE_FONT, scale);

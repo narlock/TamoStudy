@@ -153,7 +153,7 @@ public class TamoStudyGUI extends JFrame {
 	
 	private void initializeAttributes() {
 		profileJsonManager = new ProfileJsonManager();
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		
 		profileUpdateManager = new ProfileUpdateManager(this);

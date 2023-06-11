@@ -19,6 +19,7 @@ import model.profile.Profile;
 import model.profile.ProfileSettings;
 import model.profile.Tamo;
 import resources.Debug;
+import resources.Theme;
 
 public class ProfileJsonManager extends JsonManager<List<Profile>> {
 
@@ -169,7 +170,8 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 					(long) profileSettingsJson.get("guiSize"),
 					(boolean) profileSettingsJson.get("receiveNotifications"),
 					(boolean) profileSettingsJson.get("enableDiscordRPC"),
-					(boolean) profileSettingsJson.get("showProgramCloseMessage")
+					(boolean) profileSettingsJson.get("showProgramCloseMessage"),
+					Theme.getTheme((String) profileSettingsJson.get("theme"))
 				);
 	}
 	
@@ -184,6 +186,7 @@ public class ProfileJsonManager extends JsonManager<List<Profile>> {
 		profileSettingsJson.put("receiveNotifications", profileSettings.getReceiveNotifications());
 		profileSettingsJson.put("enableDiscordRPC", profileSettings.getEnableDiscordRPC());
 		profileSettingsJson.put("showProgramCloseMessage", profileSettings.getShowProgramCloseMessage());
+		profileSettingsJson.put("theme", profileSettings.getTheme().type);
 		return profileSettingsJson;
 	}
 	public Tamo tamoJsonToTamoModel(JSONObject tamoJson) {

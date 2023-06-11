@@ -45,7 +45,7 @@ public class TimerPanel extends JPanel {
 		this.profile = profile;
 		this.language = profile.getSettings().getLanguage();
 		this.guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
-		this.theme = Theme.DARK;
+		this.theme = profile.getSettings().getTheme();
 		
 		initializeAttributes();
 		initializePanel();
@@ -53,7 +53,7 @@ public class TimerPanel extends JPanel {
 	
 	public void initializeAttributes() {
 		timerTimePanel = new JPanel();
-		timerTimePanel.setBackground(Color.BLACK);
+		timerTimePanel.setBackground(theme.timerColor);
 		
 		minuteTimeLabel = new JLabel("00");
 		minuteTimeLabel.setForeground(theme.textColor);
@@ -80,7 +80,7 @@ public class TimerPanel extends JPanel {
 		GridBagConstraints gbcv = new GridBagConstraints();
 		gbcv.gridwidth = GridBagConstraints.REMAINDER;
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.BLACK);
+		this.setBackground(theme.timerColor);
 		this.setBorder(guiSize.timerBorder);
 		
 		this.add(timerTimePanel, gbcv);

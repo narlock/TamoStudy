@@ -37,11 +37,11 @@ public class KathPanel extends JPanel {
 	 public Image kathImage;
 	 public JLabel messageLabel;
 	
-	public KathPanel(GuiSize guiSize, Language language) {
+	public KathPanel(Theme theme, GuiSize guiSize, Language language) {
 		this.guiSize = guiSize;
 		this.language = language;
 		shopIndicator = 0;
-		theme = Theme.DARK;
+		this.theme = theme;
 		
 		messageLabel = new JLabel();
 		

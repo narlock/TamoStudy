@@ -64,7 +64,7 @@ public class InventoryItemPanel extends JPanel {
 		this.profile = tsGui.getProfile();
 		this.guiSize = tsGui.getGuiSize();
 		this.language = tsGui.getProfile().getSettings().getLanguage();
-		this.theme = Theme.DARK;
+		this.theme = profile.getSettings().getTheme();
 		
 		this.type = type;
 		this.indicator = indicator;

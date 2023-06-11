@@ -77,7 +77,7 @@ public class TamoHistoryState extends State {
 		tamoHistory = tsGui.getProfile().getTamoHistory();
 		guiSize = tsGui.getGuiSize();
 		tamoPage = 0;
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 	}
 
 	@Override

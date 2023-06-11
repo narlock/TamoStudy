@@ -172,6 +172,12 @@ public class Items {
 			return language.blueText;
 		case 6:
 			return language.strawberryLemonadeText;
+		case 7:
+			return "Sunset";
+		case 8:
+			return "Teal";
+		case 9:
+			return "Code";
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderTitleByIndicator");
 	}
@@ -192,6 +198,12 @@ public class Items {
 			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_BLUE_SHOP.png")));
 		case 6:
 			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_STRAWLEMON_SHOP.png")));
+		case 7:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_SUNSET_SHOP.png")));
+		case 8:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_TEAL_SHOP.png")));
+		case 9:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_CODE_SHOP.png")));
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderIconByIndicator");
 	}
@@ -212,6 +224,12 @@ public class Items {
 			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_BLUE_INV.png")));
 		case 6:
 			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_STRAWLEMON_INV.png")));
+		case 7:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_SUNSET_INV.png")));
+		case 8:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_TEAL_INV.png")));
+		case 9:
+			return guiSize.scaleImageIcon(new ImageIcon(Items.class.getClassLoader().getResource("BORDER_CODE_INV.png")));
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderIconByIndicator");
 	}
@@ -226,7 +244,11 @@ public class Items {
 		case 5:
 			return 750;
 		case 6:
+		case 7:
+		case 8:
 			return 1250;
+		case 9:
+			return 800;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderPriceByIndicator");
 	}
@@ -234,19 +256,18 @@ public class Items {
 	public static String getBorderDescriptionByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return language.solidBackgroundText;
 		case 1:
-			return language.solidBackgroundText;
 		case 2:
-			return language.solidBackgroundText;
 		case 3:
-			return language.solidBackgroundText;
 		case 4:
-			return language.solidBackgroundText;
 		case 5:
 			return language.solidBackgroundText;
 		case 6:
+		case 7:
+		case 8:
 			return language.gradientBackgroundText;
+		case 9:
+			return "Themed Background";
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderDescriptionByIndicator");
 	}

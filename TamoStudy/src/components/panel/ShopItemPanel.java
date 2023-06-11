@@ -58,7 +58,7 @@ public class ShopItemPanel extends JPanel {
 		this.tsGui = tsGui;
 		this.guiSize = guiSize;
 		this.language = language;
-		theme = Theme.DARK;
+		theme = tsGui.getProfile().getSettings().getTheme();
 		
 		this.type = type;
 		this.indicator = indicator;

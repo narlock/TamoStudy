@@ -82,7 +82,7 @@ public class StatisticsState extends State {
 		language = tsGui.getProfile().getSettings().getLanguage();
 		guiSize = new GuiSize((int) profile.getSettings().getGuiSize());
 		tamo = profile.getTamo();
-		theme = Theme.DARK;
+		theme = profile.getSettings().getTheme();
 		
 		this.dailyFocusEntry = Utils.searchTodayFocusEntryByProfile(tsGui.getDailyFocus().getDailyFocusEntries());
 		// Create new daily focus entry if it does not exist
@@ -123,7 +123,7 @@ public class StatisticsState extends State {
 		tamoLevelLabel = new JLabel(language.levelText + " " + tamo.getLevel());
 		levelProgressBar = new JProgressBar(0, 100);
 		
-		hoursInPastPanel = new HoursInPastPanel(profileDailyFocus.getDailyFocusEntries(), guiSize);
+		hoursInPastPanel = new HoursInPastPanel(theme, profileDailyFocus.getDailyFocusEntries(), guiSize);
 	}
 
 	@Override

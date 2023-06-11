@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import components.panel.KathPanel;
 import components.panel.ShopPanel;
 import gui.TamoStudyGUI;
+import resources.Theme;
 
 public class ShopState extends State {
 
@@ -22,6 +23,7 @@ public class ShopState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private Theme theme;
 	private int shopIndicator; // Which shop we are currently in
 	
 	/*
@@ -46,14 +48,13 @@ public class ShopState extends State {
 
 	@Override
 	protected void initializeAttributes() {
-		// TODO Auto-generated method stub
-		
+		theme = tsGui.getProfile().getSettings().getTheme();
 	}
 
 	@Override
 	protected void initializeComponents() {
 		shopIndicator = 0;
-		kathPanel = new KathPanel(tsGui.getGuiSize(), tsGui.getProfile().getSettings().getLanguage());
+		kathPanel = new KathPanel(theme, tsGui.getGuiSize(), tsGui.getProfile().getSettings().getLanguage());
 		shopPanel = new ShopPanel(tsGui, tsGui.getGuiSize(), tsGui.getProfile().getSettings().getLanguage());
 		shopOptions = new JComboBox<>();
 		shopOptions.addItem("Select Shop");
@@ -66,7 +67,8 @@ public class ShopState extends State {
 	@Override
 	protected void initializeComponentVisuals() {
 		// TODO Auto-generated method stub
-		
+		kathPanel.setBackground(theme.subColor);
+		shopPanel.setBackground(theme.subColor);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package model.profile;
 
 import model.language.Language;
 import resources.Debug;
+import resources.Theme;
 
 public class ProfileSettings {
 	
@@ -28,6 +29,8 @@ public class ProfileSettings {
 	
 	private Boolean showProgramCloseMessage;
 	
+	private Theme theme;
+	
 	/**
 	 * New Profile Settings
 	 * @param language
@@ -44,6 +47,7 @@ public class ProfileSettings {
 		this.receiveNotifications = true;
 		this.enableDiscordRPC = false;
 		this.showProgramCloseMessage = true;
+		this.theme = Theme.DARK;
 	}
 
 	/**
@@ -58,7 +62,7 @@ public class ProfileSettings {
 	 * @param showProgramCloseMessage
 	 */
 	public ProfileSettings(Language language, long focusMode, long difficulty, long timerAlarm, long guiSize,
-			Boolean receiveNotifications, Boolean enableDiscordRPC, Boolean showProgramCloseMessage) {
+			Boolean receiveNotifications, Boolean enableDiscordRPC, Boolean showProgramCloseMessage, Theme theme) {
 		super();
 		this.language = language;
 		this.focusMode = focusMode;
@@ -68,6 +72,7 @@ public class ProfileSettings {
 		this.receiveNotifications = receiveNotifications;
 		this.enableDiscordRPC = enableDiscordRPC;
 		this.showProgramCloseMessage = showProgramCloseMessage;
+		this.theme = theme;
 	}
 	
 	/**
@@ -88,6 +93,7 @@ public class ProfileSettings {
 		this.receiveNotifications = showAhmNotifications;
 		this.enableDiscordRPC = false;
 		this.showProgramCloseMessage = true;
+		this.theme = Theme.DARK;
 	}
 
 	private long convertNewFocusMode(int oldFocusMode) {
@@ -165,6 +171,14 @@ public class ProfileSettings {
 
 	public void setShowProgramCloseMessage(Boolean showProgramCloseMessage) {
 		this.showProgramCloseMessage = showProgramCloseMessage;
+	}
+	
+	public Theme getTheme() {
+		return theme;
+	}
+	
+	public void setTheme(Theme theme) {
+		this.theme = theme;
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import model.GuiSize;
 import model.language.Language;
 import model.profile.Profile;
 import resources.Constants;
+import resources.Theme;
 
 public class AchievementsState extends State {
 
@@ -32,6 +33,7 @@ public class AchievementsState extends State {
 	private GuiSize guiSize;
 	private Language language;
 	private Profile profile;
+	private Theme theme;
 	
 	/*
 	 * ##################################
@@ -48,6 +50,7 @@ public class AchievementsState extends State {
 		guiSize = tsGui.getGuiSize();
 		profile = tsGui.getProfile();
 		language = profile.getSettings().getLanguage();
+		theme = profile.getSettings().getTheme();
 		
 		initializeAttributes();
 		initializeComponents();
@@ -68,12 +71,13 @@ public class AchievementsState extends State {
 		gbcv.anchor = GridBagConstraints.WEST;
 		
 		achievementsPanel = new JPanel(new GridBagLayout());
+		achievementsPanel.setBackground(theme.mainColor);
 		for(int i = 0; i < Constants.ACHIEVEMENT_COUNT; i++) {
 			boolean earned = false;
 			if(profile.getAchievementList().contains((long) i)) {
 				earned = true;
 			}
-			achievementsPanel.add(new AchievementPanel(guiSize, language, i, earned), gbcv);
+			achievementsPanel.add(new AchievementPanel(theme, guiSize, language, i, earned), gbcv);
 		}
 		scrollPane = new JScrollPane(achievementsPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
