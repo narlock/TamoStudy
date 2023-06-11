@@ -264,7 +264,9 @@ public class SettingsState extends State {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				settings.setLanguage(Language.getLanguageFromBox(languageBox.getSelectedIndex()));
-				saveChanges();
+				
+				// Refresh tsGui
+				tsGui.resizeGui();
 			}
 			
 		});

@@ -135,6 +135,8 @@ public class EnglishLanguage extends Language {
 		focusingText = "Focusing!";
 		startFocusText = "Start Focus";
 		breakFocusText = "Break Focus";
+		pauseFocusText = "Pause Focus";
+		resumeFocusText = "Resume Focus";
 		youFocusedForText = "You focused for";
 		minutesAndText = "minutes and";
 		secondsPeriodText = "seconds.";
@@ -142,6 +144,7 @@ public class EnglishLanguage extends Language {
 		focusText = "Focus";
 		breakText = "Break";
 		focusCompleteText = "Focus Complete";
+		breakOverText = "Break is over. Time to get back to focus!";
 		
 		/*
 		 * ##################################

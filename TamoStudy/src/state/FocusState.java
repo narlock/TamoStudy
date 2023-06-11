@@ -141,7 +141,7 @@ public class FocusState extends State {
 		buttonPanel = new JPanel();
 		startFocusButton = new JButton(language.startFocusText);
 		breakFocusButton = new JButton(language.breakFocusText);
-		pauseFocusButton = new JButton("Pause Focus");
+		pauseFocusButton = new JButton(language.pauseFocusText);
 	}
 
 	@Override
@@ -382,7 +382,7 @@ public class FocusState extends State {
 					
 					String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
 					if(sessionTimeIndicator != 0) {
-						studyMessage = "Break is over. Time to get back to focus!";
+						studyMessage = language.breakOverText;
 					}
 
 					// Reset counting variables
@@ -638,7 +638,7 @@ public class FocusState extends State {
 	
 	public void pauseResumeTimer() {
 		if(timer.isRunning()) {
-			pauseFocusButton.setText("Resume Focus");
+			pauseFocusButton.setText(language.resumeFocusText);
 			timer.stop();
 			
 			timerPauseIndicator = 0;
@@ -665,7 +665,7 @@ public class FocusState extends State {
 			pauseTimer.start();
 			
 		} else {
-			pauseFocusButton.setText("Pause Focus");
+			pauseFocusButton.setText(language.pauseFocusText);
 			timer.start();
 			
 			if(pauseTimer.isRunning()) {

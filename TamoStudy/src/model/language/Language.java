@@ -143,6 +143,8 @@ public abstract class Language {
 	public String focusingText;
 	public String startFocusText;
 	public String breakFocusText;
+	public String pauseFocusText;
+	public String resumeFocusText;
 	public String youFocusedForText;
 	public String minutesAndText;
 	public String secondsPeriodText;
@@ -150,6 +152,7 @@ public abstract class Language {
 	public String focusText;
 	public String breakText;
 	public String focusCompleteText;
+	public String breakOverText;
 	
 	/*
 	 * ##################################
@@ -307,6 +310,9 @@ public abstract class Language {
 		case 0:
 			language = new EnglishLanguage();
 			return language;
+		case 1:
+			language = new SpanishLanguage();
+			return language;
 		default:
 			language = new EnglishLanguage();
 			return language;
@@ -316,6 +322,9 @@ public abstract class Language {
 	public static int getIndexFromLanguage(Language language) {
 		if(language instanceof EnglishLanguage) {
 			return 0;
+		}
+		if(language instanceof SpanishLanguage) {
+			return 1;
 		}
 		return 0;
 	}
@@ -327,6 +336,9 @@ public abstract class Language {
 		case "ENG":
 			language = new EnglishLanguage();
 			return language;
+		case "SPA":
+			language = new SpanishLanguage();
+			return language;
 		default:
 			language = new EnglishLanguage();
 			return language;
@@ -337,6 +349,9 @@ public abstract class Language {
 	public String toString() {
 		if(this instanceof EnglishLanguage) {
 			return "ENG";
+		}
+		if(this instanceof SpanishLanguage) {
+			return "SPA";
 		}
 		return "ENG";
 	}
