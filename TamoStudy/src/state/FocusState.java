@@ -566,6 +566,16 @@ public class FocusState extends State {
 		tamoGraphicsPanel.resetTamoImage();
 		tamoGraphicsPanel.repaint();
 		
+		// Ensure that if paused was selected, that it is reset
+		if(pauseTimer.isRunning()) {
+			pauseTimer.stop();
+			
+			pauseFocusButton.setText("Pause Focus");
+			timerPanel.minuteTimeLabel.setForeground(theme.textColor);
+			timerPanel.colonLabel.setForeground(theme.textColor);
+			timerPanel.secondTimeLabel.setForeground(theme.textColor);
+		}
+		
 		// Enable menu, options, and start buttons again
 		toggleButtons(true);
 		
