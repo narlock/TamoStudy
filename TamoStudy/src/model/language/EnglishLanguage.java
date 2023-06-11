@@ -18,6 +18,19 @@ public class EnglishLanguage extends Language {
 		/*
 		 * ##################################
 		 * ##################################
+		 * MAIN GUI TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		areYouSureYouWantToExitText = "Are you sure you want to exit?";
+		dontShowThisMessageAgainText = "Don't show this message again";
+		exitTamoStudyText = "Exit TamoStudy?";
+		deathText1 = "who did not receive the care it required, has sadly passed away.";
+		deathText2 = "Progress for this Tamo will be saved in Tamo History.";
+		newTamoNameText = "New Tamo Name";
+		/*
+		 * ##################################
+		 * ##################################
 		 * PROFILE CREATION / SELECTION TEXT
 		 * ##################################
 		 * ##################################
@@ -89,6 +102,7 @@ public class EnglishLanguage extends Language {
 		statisticsStateButtonText = "Statistics";
 		achievementsStateButtonText = "Achievements";
 		settingsStateButtonText = "Settings";
+		tamoHistoryText = "Tamo History";
 		aboutStateButton = "About";
 		
 		/*
@@ -148,11 +162,22 @@ public class EnglishLanguage extends Language {
 		sunriseText = "Sunrise";
 		nightOutText = "Night Out";
 		enigmaText = "Enigma";
+		cozyNightText = "Cozy Night";
+		studyTimeText = "Study Time";
+		pleasantBridgeText = "Pleasant Bridge";
+		wisteriaText = "Wisteria";
+		moonText = "Moon";
+		
 		bedroomDescriptionText = "<html>A serene bedroom backdrop<br>with a cozy bed placed beneath<br>a large window, inviting<br>ample natural light and<br>a view of the outside world.</html>";
 		sofaDescriptionText = "<html>A chill room adorned with<br>a stylish red sofa, creating<br>a focal point of comfort and<br>elegance within a pleasant<br>and inviting ambiance.</html>";
 		sunriseDescriptionText = "<html>A breathtaking background<br>capturing the beauty of a<br>sunrise as the sun gracefully<br>emerges on the horizon.</html>";
 		nightOutDescriptionText = "<html>An atomospheric street<br>exuding a perfect blend of<br>warmth and chill vibes on<br>a delightful night out.</html>";
 		enigmaDescriptionText = "<html>An enigmatic backdrop<br>enveloped in an aura of<br>mystery, painted with deep<br>hues of red, maroon, and gray.</html>";
+		cozyNightDescriptionText = "Cozy Night Description";
+		studyTimeDescriptionText = "Study Time Description";
+		pleasantBridgeDescriptionText = "Pleasant Bridge Description";
+		wisteriaDescriptionText = "Wisteria Description";
+		moonDescriptionText = "Moon Description";
 		
 		blackText = "Black";
 		goldText = "Gold";
@@ -161,10 +186,82 @@ public class EnglishLanguage extends Language {
 		purpleText = "Purple";
 		blueText = "Blue";
 		strawberryLemonadeText = "Strawberry Lemonade";
+		sunsetText = "Sunset";
+		tealText = "Teal";
+		codeText = "Code";
 		
 		solidBackgroundText = "Solid Background";
 		gradientBackgroundText = "Gradient Background";
 		rareBackgroundText = "Rare Background";
+		themedBackgroundText = "Themed Background";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * SHOP TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		yourFoodInventoryIsFullText = "Your Food Inventory is full!";
+		confirmPurchaseOfText = "Confirm purchase of";
+		notEnoughTamoTokensText = "Not enough Tamo tokens to complete purchase.";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * INVENTORY TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		feedTamoText = "Feed Tamo";
+		setBackgroundText = "Set Background";
+		setBorderText = "Set Border";
+		welcomeToTheShopText = "Welcome to the shop. What can I help you find?";
+		hereAreOurFoodOptionsText = "Here are our food options!";
+		whatBackgroundsCanIHelpFindText = "What background can I help you find?";
+		whatBordersCanIHelpFindText = "What borders can I help you find?";
+		letsCustomizeFocusTimerText = "Let's customize the focus timer!";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * ACHIEVEMENTS STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		hoursOnText = "hours on";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * ACHIEVEMENTS STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		theBeginningText = "The Beginning";
+		theBeginningDescText = "<html>Earn Tamo level 1.<br>(Achieve total focus time of 24 hours)</html>";
+		nothingCanStopUsText = "Nothing can stop us!";
+		nothingCanStopUsDescText = "<html>Earn Tamo level 3.<br>(Achieve total focus time of 72 hours)</html>";
+		neverGiveUpText = "Never give up!";
+		neverGiveUpDescText = "<html>Earn Tamo level 10.<br>(Achieve total focus time of 240 hours)</html>";
+		focusAscensionText = "Focus Ascension";
+		focusAscensionDescText = "<html>Earn Tamo level 50.<br>(Achieve total focus time of 1200 hours)</html>";
+		cosmeticsText = "Cosmetics";
+		cosmeticsDescText = "Purchase and change your Tamo's border.";
+		sceneryChangeText = "Scenery Change";
+		sceneryChangeDescText = "Purchase and change your Tamo's background.";
+		fromTheBeginningText = "From the Beginning";
+		fromTheBeginningDescText = "Updated profile from previous TamoStudy Release.";
+		tamoFullText = "Tamo Full";
+		tamoFullDescText = "Achieve maximum Tamo hunger.";
+		tamoLoveText = "Tamo Love";
+		tamoLoveDescText = "Achieve maximum Tamo happiness.";
+		dedicatedText = "Dedicated";
+		dedicatedDescText = "Focus for 1+ hours for 3 days consecutively.";
+		buildingConsistencyText = "Building Consistency";
+		buildingConsistencyDescText = "Focus for 1+ hours for 7 days consecutively.";
+		tamoScholarText = "Tamo Scholar";
+		tamoScholarDescText = "Focus for 1+ hours for 30 days consecutively.";
 		
 		/*
 		 * ##################################

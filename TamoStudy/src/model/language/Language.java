@@ -17,6 +17,20 @@ public abstract class Language {
 	/*
 	 * ##################################
 	 * ##################################
+	 * MAIN GUI TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String areYouSureYouWantToExitText;
+	public String dontShowThisMessageAgainText;
+	public String exitTamoStudyText;
+	public String deathText1;
+	public String deathText2;
+	public String newTamoNameText;
+	
+	/*
+	 * ##################################
+	 * ##################################
 	 * CHANGE GLOBAL SETTINGS TEXT
 	 * ##################################
 	 * ##################################
@@ -96,6 +110,7 @@ public abstract class Language {
 	public String statisticsStateButtonText;
 	public String achievementsStateButtonText;
 	public String settingsStateButtonText;
+	public String tamoHistoryText;
 	public String aboutStateButton;
 	
 	/*
@@ -155,11 +170,22 @@ public abstract class Language {
 	public String sunriseText;
 	public String nightOutText;
 	public String enigmaText;
+	public String cozyNightText;
+	public String studyTimeText;
+	public String pleasantBridgeText;
+	public String wisteriaText;
+	public String moonText;
+	
 	public String bedroomDescriptionText;
 	public String sofaDescriptionText;
 	public String sunriseDescriptionText;
 	public String nightOutDescriptionText;
 	public String enigmaDescriptionText;
+	public String cozyNightDescriptionText;
+	public String studyTimeDescriptionText;
+	public String pleasantBridgeDescriptionText;
+	public String wisteriaDescriptionText;
+	public String moonDescriptionText;
 	
 	public String blackText;
 	public String goldText;
@@ -168,10 +194,88 @@ public abstract class Language {
 	public String purpleText;
 	public String blueText;
 	public String strawberryLemonadeText;
+	public String sunsetText;
+	public String tealText;
+	public String codeText;
 	
 	public String solidBackgroundText;
 	public String gradientBackgroundText;
 	public String rareBackgroundText;
+	public String themedBackgroundText;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * SHOP TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String yourFoodInventoryIsFullText;
+	public String confirmPurchaseOfText;
+	public String notEnoughTamoTokensText;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * INVENTORY TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String feedTamoText;
+	public String setBackgroundText;
+	public String setBorderText;
+	public String welcomeToTheShopText;
+	public String hereAreOurFoodOptionsText;
+	public String whatBackgroundsCanIHelpFindText;
+	public String whatBordersCanIHelpFindText;
+	public String letsCustomizeFocusTimerText;
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ACHIEVEMENTS STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String hoursOnText;
+	
+	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ACHIEVEMENTS STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String theBeginningText;
+	public String theBeginningDescText;
+	public String nothingCanStopUsText;
+	public String nothingCanStopUsDescText;
+	public String neverGiveUpText;
+	public String neverGiveUpDescText;
+	public String focusAscensionText;
+	public String focusAscensionDescText;
+	public String cosmeticsText;
+	public String cosmeticsDescText;
+	public String sceneryChangeText;
+	public String sceneryChangeDescText;
+	public String fromTheBeginningText;
+	public String fromTheBeginningDescText;
+	public String tamoFullText;
+	public String tamoFullDescText;
+	public String tamoLoveText;
+	public String tamoLoveDescText;
+	public String dedicatedText;
+	public String dedicatedDescText;
+	public String buildingConsistencyText;
+	public String buildingConsistencyDescText;
+	public String tamoScholarText;
+	public String tamoScholarDescText;
+	
+	public String hasEarnedAchievementText;
+	public String achievementUnlockedText;
+	public String youHaveEarnedText;
+	public String tamoTokensText;
 	
 	/*
 	 * ##################################

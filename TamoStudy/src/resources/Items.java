@@ -91,15 +91,15 @@ public class Items {
 		case 4:
 			return language.enigmaText;
 		case 5:
-			return "Cozy Night";
+			return language.cozyNightText;
 		case 6:
-			return "Study Time";
+			return language.studyTimeText;
 		case 7:
-			return "Pleasant Bridge";
+			return language.pleasantBridgeText;
 		case 8:
-			return "Wisteria";
+			return language.wisteriaText;
 		case 9:
-			return "Moon";
+			return language.moonText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundTitleByIndicator");
 	}
@@ -143,15 +143,15 @@ public class Items {
 		case 4:
 			return language.enigmaDescriptionText;
 		case 5:
-			return "description 5";
+			return language.cozyNightDescriptionText;
 		case 6:
-			return "description 6";
+			return language.studyTimeDescriptionText;
 		case 7:
-			return "description 7";
+			return language.pleasantBridgeDescriptionText;
 		case 8:
-			return "description 8";
+			return language.wisteriaDescriptionText;
 		case 9:
-			return "description 9";
+			return language.moonDescriptionText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBackgroundDescriptionByIndicator");
 	}
@@ -173,11 +173,11 @@ public class Items {
 		case 6:
 			return language.strawberryLemonadeText;
 		case 7:
-			return "Sunset";
+			return language.sunsetText;
 		case 8:
-			return "Teal";
+			return language.tealText;
 		case 9:
-			return "Code";
+			return language.codeText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderTitleByIndicator");
 	}
@@ -267,7 +267,7 @@ public class Items {
 		case 8:
 			return language.gradientBackgroundText;
 		case 9:
-			return "Themed Background";
+			return language.themedBackgroundText;
 		}
 		throw new RuntimeException("Unknown indicator provided to getBorderDescriptionByIndicator");
 	}

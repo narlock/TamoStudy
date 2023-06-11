@@ -95,7 +95,7 @@ public class InventoryItemPanel extends JPanel {
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionPanel.add(itemDescriptionLabel);
-		itemActionButton = new JButton("Feed Tamo");
+		itemActionButton = new JButton(language.feedTamoText);
 		
 		itemActionButton.addActionListener(new ActionListener() {
 			
@@ -153,7 +153,7 @@ public class InventoryItemPanel extends JPanel {
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionPanel.add(itemDescriptionLabel);
-		itemActionButton = new JButton("Set Background");
+		itemActionButton = new JButton(language.setBackgroundText);
 		
 		itemActionButton.addActionListener(new ActionListener() {
 			
@@ -188,7 +188,7 @@ public class InventoryItemPanel extends JPanel {
 		itemDescriptionLabel.setFont(guiSize.settingsChoiceBoldFont);
 		itemDescriptionLabel.setForeground(theme.textColor);
 		itemDescriptionPanel.add(itemDescriptionLabel);
-		itemActionButton = new JButton("Set Border");
+		itemActionButton = new JButton(language.setBorderText);
 		
 		itemActionButton.addActionListener(new ActionListener() {
 			

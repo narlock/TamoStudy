@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import gui.TamoStudyGUI;
 import model.GuiSize;
+import model.language.Language;
 import model.profile.Profile;
 
 public class Achievements {
@@ -33,62 +34,62 @@ public class Achievements {
         return grayscaleIcon;
     }
 	
-	public static String getAchievementTitleByIndicator(int indicator) {
+	public static String getAchievementTitleByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "The Beginning";
+			return language.theBeginningText;
 		case 1:
-			return "Nothing can stop us!";
+			return language.nothingCanStopUsText;
 		case 2:
-			return "Never give up!";
+			return language.neverGiveUpText;
 		case 3:
-			return "Focus Ascension";
+			return language.focusAscensionText;
 		case 4:
-			return "Cosmetics";
+			return language.cosmeticsText;
 		case 5:
-			return "Scenery Change";
+			return language.sceneryChangeText;
 		case 6:
-			return "From the Beginning";
+			return language.fromTheBeginningText;
 		case 7:
-			return "Tamo Full";
+			return language.tamoFullText;
 		case 8:
-			return "Tamo Love";
+			return language.tamoLoveText;
 		case 9:
-			return "Dedicated";
+			return language.dedicatedText;
 		case 10:
-			return "Building Consistency";
+			return language.buildingConsistencyText;
 		case 11:
-			return "Tamo Scholar";
+			return language.tamoScholarText;
 		}
 		throw new RuntimeException("Invalid indicator provided");
 	}
 	
-	public static String getAchievementDescriptionByIndicator(int indicator) {
+	public static String getAchievementDescriptionByIndicator(int indicator, Language language) {
 		switch(indicator) {
 		case 0:
-			return "<html>Earn Tamo level 1.<br>(Achieve total focus time of 24 hours)</html>";
+			return language.theBeginningDescText;
 		case 1:
-			return "<html>Earn Tamo level 3.<br>(Achieve total focus time of 72 hours)</html>";
+			return language.nothingCanStopUsDescText;
 		case 2:
-			return "<html>Earn Tamo level 10.<br>(Achieve total focus time of 240 hours)</html>";
+			return language.neverGiveUpDescText;
 		case 3:
-			return "<html>Earn Tamo level 50.<br>(Achieve total focus time of 1200 hours)</html>";
+			return language.focusAscensionDescText;
 		case 4:
-			return "Purchase and change your Tamo's Border.";
+			return language.cosmeticsDescText;
 		case 5:
-			return "Purchase and change your Tamo's Background.";
+			return language.sceneryChangeDescText;
 		case 6:
-			return "Updated from previous TamoStudy release.";
+			return language.fromTheBeginningDescText;
 		case 7:
-			return "Achieve maximum Tamo hunger.";
+			return language.tamoFullDescText;
 		case 8:
-			return "Achieve maximum Tamo happiness.";
+			return language.tamoLoveDescText;
 		case 9:
-			return "Focus for 1+ hours for 3 days consecutively.";
+			return language.dedicatedDescText;
 		case 10:
-			return "Focus for 1+ hours for 7 days consecutively.";
+			return language.buildingConsistencyDescText;
 		case 11:
-			return "Focus for 1+ hours for 30 days consecutively.";
+			return language.tamoScholarDescText;
 		}
 		throw new RuntimeException("Invalid indicator provided");
 	}
@@ -125,6 +126,7 @@ public class Achievements {
 	
 	public static void earn(TamoStudyGUI gui, long indicator) {
 		Profile profile = gui.getProfile();
+		Language language = gui.getProfile().getSettings().getLanguage();
 		List<Long> achievementList = new ArrayList<>(profile.getAchievementList());
 		if(!achievementList.contains((Long) indicator)) {
 			// Add achievement to achievement list
@@ -140,7 +142,7 @@ public class Achievements {
 			
 			// Display achievement notification if setting is enabled
 			if(profile.getSettings().getReceiveNotifications()) {
-				JOptionPane.showMessageDialog(gui.getRootPane(), "<html>Achievement Unlocked: " + getAchievementTitleByIndicator((int) indicator) + "<br>You have earned " + tokensEarned + " Tamo tokens!</html>", "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(Achievements.class.getClassLoader().getResource("INFO.png")));
+				JOptionPane.showMessageDialog(gui.getRootPane(), "<html>Achievement Unlocked: " + getAchievementTitleByIndicator((int) indicator, language) + "<br>You have earned " + tokensEarned + " Tamo tokens!</html>", "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(Achievements.class.getClassLoader().getResource("INFO.png")));
 			}
 			
 			// Ensure Changes are earned

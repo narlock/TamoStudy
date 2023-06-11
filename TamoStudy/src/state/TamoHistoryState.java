@@ -78,6 +78,7 @@ public class TamoHistoryState extends State {
 		guiSize = tsGui.getGuiSize();
 		tamoPage = 0;
 		theme = profile.getSettings().getTheme();
+		language = profile.getSettings().getLanguage();
 	}
 
 	@Override
@@ -91,7 +92,7 @@ public class TamoHistoryState extends State {
 		tamoGraphicsPanel = new TamoGraphicsPanel(guiSize, tamo, profile.getBackgroundIndicator(), profile.getBorderIndicator());
 		
 		tamoNameLabel = new JLabel(tamo.getName());
-		tamoLevelLabel = new JLabel("Level: " + tamo.getLevel());
+		tamoLevelLabel = new JLabel(language.levelText + " : " + tamo.getLevel());
 		levelProgressBar = new JProgressBar(0, 100);
 		tamoHeadstoneLabel = new JLabel(tamo.getBirthDateString() + " - " + tamo.getPassDateString());
 	}
@@ -212,7 +213,7 @@ public class TamoHistoryState extends State {
 		tamoGraphicsPanelPanel.add(tamoGraphicsPanel);
 		
 		tamoNameLabel.setText(tamo.getName());
-		tamoLevelLabel.setText("Level: " + tamo.getLevel());
+		tamoLevelLabel.setText(language.levelText + " : " + tamo.getLevel());
 		levelProgressBar.setValue(tamo.levelProgress());
 		tamoHeadstoneLabel.setText(tamo.getBirthDateString() + " - " + tamo.getPassDateString());
 		

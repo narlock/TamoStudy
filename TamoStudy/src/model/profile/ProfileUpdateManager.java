@@ -57,7 +57,7 @@ public class ProfileUpdateManager {
 			
 			long daysBetween = ChronoUnit.DAYS.between(previousLocalDate, todayLocalDate);
 			
-			if(daysBetween < 7) {
+			if(daysBetween < 7 || profile.getSettings().getDifficulty() == 0) {
 				updateTamoHunger(tamo, 3);
 				updateTamoHappy(tamo, 2);
 				
@@ -65,7 +65,7 @@ public class ProfileUpdateManager {
 					profile.getTamo().setStrikes(profile.getTamo().getStrikes() + 1);
 					Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", "Strike added to tamo " + profile.getTamo().getName() + ", now has " + profile.getTamo().getStrikes() + ".");
 				}
-			} else if(daysBetween >= 7) {
+			} else if(daysBetween >= 7 && profile.getSettings().getDifficulty() > 0) {
 				updateTamoHunger(tamo, 10);
 				updateTamoHappy(tamo, 10);
 				
@@ -73,6 +73,9 @@ public class ProfileUpdateManager {
 					profile.getTamo().setStrikes(profile.getTamo().getStrikes() + 1);
 					Debug.info("ProfileUpdateManager.updateHappyHungerOnDayChange", "Strike added to tamo " + profile.getTamo().getName() + ", now has " + profile.getTamo().getStrikes() + ".");
 				}
+			} else if(daysBetween >= 30) {
+				profile.getTamo().setStrikes(3);
+				Debug.info("ProfileUpdateManage.updateHappyHungerOnDayChange", "User did not login within 30 days. Tamo automatically passes.");
 			}
 			
 			

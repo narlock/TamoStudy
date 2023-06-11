@@ -63,10 +63,10 @@ public class AchievementPanel extends JPanel {
 	public void initializeComponents() {
 		achievementIconLabel = new JLabel(Achievements.getAchievementIconByIndicator(earned, indicator, guiSize));
 		achievementTextPanel = new JPanel(new GridLayout(2, 1));
-		achievementTitleLabel = new JLabel(Achievements.getAchievementTitleByIndicator(indicator));
+		achievementTitleLabel = new JLabel(Achievements.getAchievementTitleByIndicator(indicator, language));
 		achievementTitleLabel.setFont(guiSize.achievementTitleLabelFont);
 		achievementTitleLabel.setForeground(theme.textColor);
-		achievementDescriptionLabel = new JLabel(Achievements.getAchievementDescriptionByIndicator(indicator));
+		achievementDescriptionLabel = new JLabel(Achievements.getAchievementDescriptionByIndicator(indicator, language));
 		achievementDescriptionLabel.setFont(guiSize.achievementDescriptionLabelFont);
 		achievementDescriptionLabel.setForeground(theme.textColor);
 		

@@ -567,7 +567,7 @@ public class FocusState extends State {
 		tamoGraphicsPanel.repaint();
 		
 		// Ensure that if paused was selected, that it is reset
-		if(pauseTimer.isRunning()) {
+		if(pauseTimer != null && pauseTimer.isRunning()) {
 			pauseTimer.stop();
 			
 			pauseFocusButton.setText("Pause Focus");

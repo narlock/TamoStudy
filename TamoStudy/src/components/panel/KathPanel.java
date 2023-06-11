@@ -56,31 +56,31 @@ public class KathPanel extends JPanel {
 		Debug.info("KathPanel.initializeAttributes", "shopIndicator = " + shopIndicator);
 		
 		if(shopIndicator == 0) {
-			messageLabel.setText("Welcome to the shop. What can I help you find?");
+			messageLabel.setText(language.welcomeToTheShopText);
 			
 			this.setPreferredSize(guiSize.kathShopDimension);
 			this.setBackground(new Color(153, 236, 255));
 			this.setBorder(guiSize.messageBorder);
 		} else if(shopIndicator == 1) {
-			messageLabel.setText("Here are our food options!");
+			messageLabel.setText(language.hereAreOurFoodOptionsText);
 			
 			this.setPreferredSize(guiSize.kathMsgDimension);
 			this.setBackground(theme.subColor);
 			this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		} else if(shopIndicator == 2) {
-			messageLabel.setText("What background can I help you find?");
+			messageLabel.setText(language.whatBackgroundsCanIHelpFindText);
 			
 			this.setPreferredSize(guiSize.kathMsgDimension);
 			this.setBackground(theme.subColor);
 			this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		} else if(shopIndicator == 3) {
-			messageLabel.setText("What borders can I help you find?");
+			messageLabel.setText(language.whatBordersCanIHelpFindText);
 			
 			this.setPreferredSize(guiSize.kathMsgDimension);
 			this.setBackground(theme.subColor);
 			this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		} else if(shopIndicator == 4) {
-			messageLabel.setText("Let's customize the focus timer!");
+			messageLabel.setText(language.letsCustomizeFocusTimerText);
 			
 			this.setPreferredSize(guiSize.kathMsgDimension);
 			this.setBackground(theme.subColor);

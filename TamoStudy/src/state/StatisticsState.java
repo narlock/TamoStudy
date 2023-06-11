@@ -123,7 +123,7 @@ public class StatisticsState extends State {
 		tamoLevelLabel = new JLabel(language.levelText + " " + tamo.getLevel());
 		levelProgressBar = new JProgressBar(0, 100);
 		
-		hoursInPastPanel = new HoursInPastPanel(theme, profileDailyFocus.getDailyFocusEntries(), guiSize);
+		hoursInPastPanel = new HoursInPastPanel(language, theme, profileDailyFocus.getDailyFocusEntries(), guiSize);
 	}
 
 	@Override

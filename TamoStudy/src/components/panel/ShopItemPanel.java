@@ -96,7 +96,7 @@ public class ShopItemPanel extends JPanel {
 				// If the profile can afford the purchase
 				if(type.equals("FOOD") && tsGui.getProfile().getFoodInventoryList().size() >= 35) {
 					// Cannot purchase
-					JOptionPane.showMessageDialog(getRootPane(), "Your Food Inventory is full!", "TamoStudy Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+					JOptionPane.showMessageDialog(getRootPane(), language.yourFoodInventoryIsFullText, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 				}
 				
 				else if(!(tokensAfterPurchase < 0)) {
@@ -104,8 +104,8 @@ public class ShopItemPanel extends JPanel {
 					// Confirm that the user wants to purchase this item?
 					int result = JOptionPane.showConfirmDialog(
 							getRootPane(), 
-							"Confirm Purchase of " + itemTitle + " (" + type + ")",
-							"Confirm Shop Purchase",
+							language.confirmPurchaseOfText + " " + itemTitle + " (" + type + ")",
+							"TamoStudy",
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE,
 							new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
@@ -130,7 +130,7 @@ public class ShopItemPanel extends JPanel {
 				}
 				
 				else {
-					JOptionPane.showMessageDialog(getRootPane(), "Not enough Tamo tokens to complete purchase.", "TamoStudy Message", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+					JOptionPane.showMessageDialog(getRootPane(), language.notEnoughTamoTokensText, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 				}
 			}
 		});

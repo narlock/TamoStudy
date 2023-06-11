@@ -78,12 +78,12 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 	}
 	
 	private void initializeComponents() {
-		messageLabel = new JLabel("Global Settings");
+		messageLabel = new JLabel(language.globalSettingsText);
 		
 		settingsPanel = new JPanel(new GridBagLayout());
 		
 		languagePanel = new JPanel(new GridBagLayout());
-		languageLabel = new JLabel("Language");
+		languageLabel = new JLabel(language.languageText);
 		languageBox = new JComboBox<>();
 		languageBox.addItem(language.englishText);
 		languageBox.addItem(language.spanishText);

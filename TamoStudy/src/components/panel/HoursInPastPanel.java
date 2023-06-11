@@ -51,12 +51,14 @@ public class HoursInPastPanel extends JPanel {
 	private List<DailyFocusEntry> focusEntries;
 	private GuiSize guiSize;
 	private Theme theme;
+	private Language language;
 	
-	public HoursInPastPanel(Theme theme, List<DailyFocusEntry> focusEntries, GuiSize guiSize) {
+	public HoursInPastPanel(Language language, Theme theme, List<DailyFocusEntry> focusEntries, GuiSize guiSize) {
 		this.focusEntries = focusEntries;
 		this.guiSize = guiSize;
 		this.theme = theme;
 		this.dateList = getDateList();
+		this.language = language;
 
 		initializePanel();
 	}
@@ -88,7 +90,7 @@ public class HoursInPastPanel extends JPanel {
                     
                     // Popup
             		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-            		JLabel popupMessageLabel = new JLabel("  " + Utils.convertSecondsToHours(entry.getTime()) + " hours on " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
+            		JLabel popupMessageLabel = new JLabel("  " + Utils.convertSecondsToHours(entry.getTime()) + " " + language.hoursOnText + " " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
             		
             		popupMessageLabel.setForeground(theme.textColor);
             		popupMenu.setBackground(theme.layerColor);
@@ -110,7 +112,7 @@ public class HoursInPastPanel extends JPanel {
             	// add since it does not exist - add popup to show time during that day
                 JLabel dateLabel = new JLabel(guiSize.grayIcon);
         		final JPopupMenu popupMenu = new JPopupMenu("Test Popup");
-        		JLabel popupMessageLabel = new JLabel("  0.0 hours on " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
+        		JLabel popupMessageLabel = new JLabel("  0.0" + " " + language.hoursOnText + " " + date.getDayOfWeek() + ", " + date.getMonth() + " " + date.getDayOfMonth() + ", " + date.getYear() + "  ");
         		
         		popupMessageLabel.setForeground(theme.textColor);
         		popupMenu.setBackground(theme.layerColor);

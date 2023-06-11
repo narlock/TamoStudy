@@ -119,8 +119,10 @@ public class InventoryState extends State {
 	
 	public void initializeItemsToInventoryMenuPanel(GridBagConstraints gbcv) {
 		inventoryPanel = new JPanel(new GridLayout(1, 2));
+		inventoryPanel.setBackground(theme.mainColor);
 		inventoryPanel.setBorder(guiSize.settingsPanelBorder);
 		inventoryMenuPanel = new JPanel(new GridLayout(7, 5));
+		inventoryMenuPanel.setBackground(theme.mainColor);
 		
 		for(long foodIndicator : profile.getFoodInventoryList()) {
 			inventoryMenuPanel.add(createFoodMenuItemButton((int) foodIndicator));
@@ -148,8 +150,10 @@ public class InventoryState extends State {
 		this.repaint();
 		
 		inventoryPanel = new JPanel(new GridBagLayout());
+		inventoryPanel.setBackground(theme.mainColor);
 		inventoryPanel.setBorder(guiSize.settingsPanelBorder);
 		inventoryMenuPanel = new JPanel(new GridLayout(7, 5));
+		inventoryMenuPanel.setBackground(theme.mainColor);
 		
 		if(inventoryBox.getSelectedIndex() == 0) {
 			for(long foodIndicator : profile.getFoodInventoryList()) {

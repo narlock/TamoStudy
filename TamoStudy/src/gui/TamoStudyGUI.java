@@ -190,7 +190,7 @@ public class TamoStudyGUI extends JFrame {
 		statisticsStateButton = new JButton(lang.statisticsStateButtonText);
 		achievementsStateButton = new JButton(lang.achievementsStateButtonText);
 		settingsStateButton = new JButton(lang.settingsStateButtonText);
-		tamoHistoryStateButton = new JButton("Tamo History");
+		tamoHistoryStateButton = new JButton(lang.tamoHistoryText);
 		aboutStateButton = new JButton(lang.aboutStateButton);
 		
 	}
@@ -402,7 +402,7 @@ public class TamoStudyGUI extends JFrame {
 		this.add(state, BorderLayout.CENTER);
 		
 		this.getContentPane().setBackground(theme.mainColor);
-		this.setTitle("TamoStudy Release " + Constants.version);
+		this.setTitle("TamoStudy " + Constants.version);
 		this.setSize(guiSize.frameSize);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -428,14 +428,14 @@ public class TamoStudyGUI extends JFrame {
 		    public void windowClosing(WindowEvent e) {
 		    	JPanel panel = new JPanel();
 		    	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		    	JLabel label = new JLabel("Are you sure you want to exit?");
-		    	label.setForeground(theme.textColor);
+		    	JLabel label = new JLabel(profile.getSettings().getLanguage().areYouSureYouWantToExitText);
+		    	label.setForeground(Color.WHITE);
 		    	label.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		    	JPanel confirmPanel = new JPanel();
 		    	confirmPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		    	JCheckBox checkBox = new JCheckBox();
-		    	JLabel confirmLabel = new JLabel("Don't show this message again");
-		    	confirmLabel.setForeground(theme.textColor);
+		    	JLabel confirmLabel = new JLabel(profile.getSettings().getLanguage().dontShowThisMessageAgainText);
+		    	confirmLabel.setForeground(Color.WHITE);
 		    	
 		    	panel.add(label);
 		    	confirmPanel.add(checkBox);
@@ -735,9 +735,9 @@ public class TamoStudyGUI extends JFrame {
 			gbcv.gridwidth = GridBagConstraints.REMAINDER;
 			
 			JPanel newTamoPanel = new JPanel(new GridBagLayout());
-			JLabel tamoDeathMessageLabel = new JLabel("<html>" + profile.getTamo().getName() + "  who did not receive the care it required, has sadly passed away.<br><br>Progress for this Tamo will be saved in Tamo History.<br><br></html>");
+			JLabel tamoDeathMessageLabel = new JLabel("<html>" + profile.getTamo().getName() + ", " + profile.getSettings().getLanguage().deathText1 + "<br><br>" + profile.getSettings().getLanguage().deathText2 + "<br><br></html>");
 			tamoDeathMessageLabel.setForeground(Color.WHITE);
-			JLabel newTamoNameLabel = new JLabel("New Tamo Name");
+			JLabel newTamoNameLabel = new JLabel(profile.getSettings().getLanguage().newTamoNameText);
 			newTamoNameLabel.setForeground(Color.WHITE);
 			JTextField newTamoNameTextField = new JTextField(10);
 			
@@ -746,7 +746,7 @@ public class TamoStudyGUI extends JFrame {
 			newTamoPanel.add(newTamoNameTextField, gbcv);
 			
 			
-			Object[] options = {"Reset"};
+			Object[] options = {profile.getSettings().getLanguage().resetText};
 			int resultPane = JOptionPane.showOptionDialog(getRootPane(), newTamoPanel, "TamoStudy", JOptionPane.PLAIN_MESSAGE, JOptionPane.QUESTION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")), options, options[0]);
 			if(resultPane == 0) {
 				String newTamoName = (newTamoNameTextField.getText().trim().isEmpty() || newTamoNameTextField.getText().trim().isEmpty()) 
