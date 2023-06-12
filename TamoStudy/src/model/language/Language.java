@@ -303,6 +303,15 @@ public abstract class Language {
 	public String saveText;
 	public String resetText;
 	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ABOUT STATE TEXT
+	 * ##################################
+	 * ##################################
+	 */
+	public String aboutTamoStudyText;
+	
 	public static Language getLanguageFromBox(int index) {
 		Language language;
 		

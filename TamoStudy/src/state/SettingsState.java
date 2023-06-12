@@ -267,6 +267,8 @@ public class SettingsState extends State {
 				
 				// Refresh tsGui
 				tsGui.resizeGui();
+				
+				saveChanges();
 			}
 			
 		});

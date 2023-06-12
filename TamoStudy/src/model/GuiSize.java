@@ -132,6 +132,19 @@ public class GuiSize {
 	public ImageIcon minusImageIcon;
 	public ImageIcon addImageIcon;
 	
+	/*
+	 * ##################################
+	 * ##################################
+	 * ABOUT STATE ATTRIBUTES
+	 * ##################################
+	 * ##################################
+	 */
+	public ImageIcon narlockIcon;
+	public ImageIcon tamoStudyIcon;
+	public ImageIcon twitterIcon;
+	public ImageIcon youtubeIcon;
+	public ImageIcon instagramIcon;
+	
 	public GuiSize(int size) {
 		double scale = getScaleFromSize(size);
 		index = size;
@@ -187,6 +200,12 @@ public class GuiSize {
 		settingsVerticalDifference = scaleInteger(SETTINGS_VERTICAL_COMPONENT_DIFFERENCE, scale);
 		minusImageIcon = scaleImageIcon(MINUS_BUTTON_IMAGE_ICON, scale);
 		addImageIcon = scaleImageIcon(ADD_BUTTON_IMAGE_ICON, scale);
+		
+		narlockIcon = scaleImageIcon(NARLOCK_ICON, scale);
+		tamoStudyIcon = scaleImageIcon(TAMOSTUDY_ICON, scale);
+		twitterIcon = scaleImageIcon(TWITTER_ICON, scale);
+		youtubeIcon = scaleImageIcon(YOUTUBE_ICON, scale);
+		instagramIcon = scaleImageIcon(INSTAGRAM_ICON, scale);
 	}
 	
 	public double getScaleFromSize(int size) {
@@ -512,6 +531,12 @@ public class GuiSize {
 			return "BLUE";
 		case 6:
 			return "STRAWLEMON";
+		case 7:
+			return "SUNSET";
+		case 8:
+			return "TEAL";
+		case 9:
+			return "CODE";
 		case 0:
 		default:
 			return "BLACK";

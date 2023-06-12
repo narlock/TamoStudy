@@ -132,4 +132,17 @@ public class Constants {
 	public static final ImageIcon MINUS_BUTTON_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("MINUS.png"));
 	public static final ImageIcon ADD_BUTTON_IMAGE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("ADD.png"));
 
+	/*
+	 * ##################################
+	 * ##################################
+	 * ABOUT STATE CONSTANTS
+	 * ##################################
+	 * ##################################
+	 */
+	public static final ImageIcon NARLOCK_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("NARLOCK_ICON.png"));
+	public static final ImageIcon TAMOSTUDY_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("TAMOSTUDY_ICON.png"));
+	public static final ImageIcon TWITTER_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("TWITTER_ICON.png"));
+	public static final ImageIcon YOUTUBE_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("YOUTUBE_ICON.png"));
+	public static final ImageIcon INSTAGRAM_ICON = new ImageIcon(Constants.class.getClassLoader().getResource("INSTAGRAM_ICON.png"));
+	
 }

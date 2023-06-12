@@ -244,13 +244,13 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 */
 		theBeginningText = "El Comienzo";
-		theBeginningDescText = "<html>Alcanza el nivel 1 de Tamo.<br>(Logra un tiempo total de enfoque de 24 horas)</html>";
+		theBeginningDescText = "Logra un tiempo total de enfoque de 24 horas.";
 		nothingCanStopUsText = "¡Nada nos puede detener!";
-		nothingCanStopUsDescText = "<html>Alcanza el nivel 3 de Tamo.<br>(Logra un tiempo total de enfoque de 72 horas)</html>";
+		nothingCanStopUsDescText = "Logra un tiempo total de enfoque de 72 horas";
 		neverGiveUpText = "¡Nunca te rindas!";
-		neverGiveUpDescText = "<html>Alcanza el nivel 10 de Tamo.<br>(Logra un tiempo total de enfoque de 240 horas)</html>";
+		neverGiveUpDescText = "Logra un tiempo total de enfoque de 240 horas.";
 		focusAscensionText = "Ascenso en el Enfoque";
-		focusAscensionDescText = "<html>Alcanza el nivel 50 de Tamo.<br>(Logra un tiempo total de enfoque de 1200 horas)</html>";
+		focusAscensionDescText = "Logra un tiempo total de enfoque de 1200 horas.";
 		cosmeticsText = "Cosméticos";
 		cosmeticsDescText = "Compra y cambia el borde de tu Tamo.";
 		sceneryChangeText = "Cambio de Escenario";
@@ -290,5 +290,14 @@ public class SpanishLanguage extends Language {
 		offText = "APAGADO";
 		saveText = "Guardar";
 		resetText = "Restablecer";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * ABOUT STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		aboutTamoStudyText = "<html>TamoStudy es un temporizador de trabajo y estudio diseñado<br>para mejorar la productividad, incorporando una mascota<br>virtual divertida para motivar a los usuarios a concentrars<br>en sus tareas.</html>";
 	}
 }

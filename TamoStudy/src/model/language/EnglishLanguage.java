@@ -242,13 +242,13 @@ public class EnglishLanguage extends Language {
 		 * ##################################
 		 */
 		theBeginningText = "The Beginning";
-		theBeginningDescText = "<html>Earn Tamo level 1.<br>(Achieve total focus time of 24 hours)</html>";
+		theBeginningDescText = "Achieve total focus time of 24 hours.";
 		nothingCanStopUsText = "Nothing can stop us!";
-		nothingCanStopUsDescText = "<html>Earn Tamo level 3.<br>(Achieve total focus time of 72 hours)</html>";
+		nothingCanStopUsDescText = "Achieve total focus time of 72 hours";
 		neverGiveUpText = "Never give up!";
-		neverGiveUpDescText = "<html>Earn Tamo level 10.<br>(Achieve total focus time of 240 hours)</html>";
+		neverGiveUpDescText = "Achieve total focus time of 240 hours";
 		focusAscensionText = "Focus Ascension";
-		focusAscensionDescText = "<html>Earn Tamo level 50.<br>(Achieve total focus time of 1200 hours)</html>";
+		focusAscensionDescText = "Achieve total focus time of 1200 hours";
 		cosmeticsText = "Cosmetics";
 		cosmeticsDescText = "Purchase and change your Tamo's border.";
 		sceneryChangeText = "Scenery Change";
@@ -288,5 +288,14 @@ public class EnglishLanguage extends Language {
 		offText = "OFF";
 		saveText = "Save";
 		resetText = "Reset";
+		
+		/*
+		 * ##################################
+		 * ##################################
+		 * ABOUT STATE TEXT
+		 * ##################################
+		 * ##################################
+		 */
+		aboutTamoStudyText = "<html>TamoStudy is a work and study timer designed to enhance<br>productivity, incorporating an enjoyable virtual pet to<br>motivate users to concentrate on their tasks.</html>";
 	}
 }
