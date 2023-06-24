@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import components.panel.InventoryItemPanel;
 import gui.TamoStudyGUI;
 import model.GuiSize;
+import model.language.Language;
 import model.profile.Profile;
 import resources.Debug;
 import resources.Items;
@@ -38,6 +39,7 @@ public class InventoryState extends State {
 	private GuiSize guiSize;
 	private Profile profile;
 	private Theme theme;
+	private Language language;
 	
 	/*
 	 * ##################################
@@ -68,20 +70,20 @@ public class InventoryState extends State {
 		profile = tsGui.getProfile();
 		guiSize = new GuiSize((int) tsGui.getProfile().getSettings().getGuiSize());
 		theme = profile.getSettings().getTheme();
-		
+		language = tsGui.getProfile().getSettings().getLanguage();
 	}
 
 	@Override
 	protected void initializeComponents() {
 		inventorySelectionPanel = new JPanel();
 		inventorySelectionPanel.setBackground(theme.subColor);
-		inventoryTitleLabel = new JLabel("Inventory");
+		inventoryTitleLabel = new JLabel(language.inventoryText);
 		inventoryTitleLabel.setFont(guiSize.settingLabelFont);
 		inventoryTitleLabel.setForeground(theme.textColor);
 		inventoryBox = new JComboBox<>();
-		inventoryBox.addItem("Food");
-		inventoryBox.addItem("Backgrounds");
-		inventoryBox.addItem("Borders");
+		inventoryBox.addItem(language.foodText);
+		inventoryBox.addItem(language.backgroundsText);
+		inventoryBox.addItem(language.bordersText);
 		
 		inventoryBox.addActionListener(new ActionListener() {
 			

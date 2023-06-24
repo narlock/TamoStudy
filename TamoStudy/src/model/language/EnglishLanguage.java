@@ -205,6 +205,10 @@ public class EnglishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
+		selectShopText = "Select Shop";
+		foodText = "Food";
+		backgroundsText = "Backgrounds";
+		bordersText = "Borders";
 		yourFoodInventoryIsFullText = "Your Food Inventory is full!";
 		confirmPurchaseOfText = "Confirm purchase of";
 		notEnoughTamoTokensText = "Not enough Tamo tokens to complete purchase.";
@@ -216,6 +220,7 @@ public class EnglishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
+		inventoryText = "Inventory";
 		feedTamoText = "Feed Tamo";
 		setBackgroundText = "Set Background";
 		setBorderText = "Set Border";

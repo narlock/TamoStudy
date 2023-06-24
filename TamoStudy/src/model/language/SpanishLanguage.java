@@ -178,11 +178,11 @@ public class SpanishLanguage extends Language {
 		sunriseDescriptionText = "<html>Un fondo impresionante<br>que captura la belleza de un<br>amanecer mientras el sol emerge<br>graciosamente en el horizonte.</html>";
 		nightOutDescriptionText = "<html>Una atmósfera callejera<br>que emana una combinación<br>perfecta de calidez y<br>ambiente relajado en una<br>agradable noche fuera.</html>";
 		enigmaDescriptionText = "<html>Un fondo enigmático<br>envuelto en un aura de<br>misterio, pintado con tonos<br>profundos de rojo, granate y gris.</html>";
-		cozyNightDescriptionText = "Descripción de Noche Acogedora";
-		studyTimeDescriptionText = "Descripción de Tiempo de Estudio";
-		pleasantBridgeDescriptionText = "Descripción de Puente Agradable";
-		wisteriaDescriptionText = "Descripción de Glicina";
-		moonDescriptionText = "Descripción de Luna";
+		cozyNightDescriptionText = "<html>Un entorno sereno nocturno con una acogedora cama adornada con un tierno oso de peluche, irradiando calidez y una atmósfera reconfortante, perfecta para un sueño tranquilo.</html>";
+		studyTimeDescriptionText = "<html>Un refugio ideal para estudiar te espera con un gran escritorio de madera, una lámpara radiante iluminando filas de libros en una estantería amplia, creando un entorno propicio para el aprendizaje concentrado.</html>";
+		pleasantBridgeDescriptionText = "<html>Se despliega una serena escena de un bosque, mostrando un pintoresco puente japonés elegantemente arqueado sobre un río tranquilo, envuelto por la abrazadora belleza de la naturaleza.</html>";
+		wisteriaDescriptionText = "<html>En una escena onírica, florecen encantadores árboles de glicinas, sus cascadas de flores púrpuras ondeando suavemente mientras las hojas otoñales descienden graciosamente, pintando un momento pintoresco en la naturaleza.</html>";
+		moonDescriptionText = "<html>A medida que amanece, se despliega un espectáculo impresionante: una magnífica luna azul se alza en el cielo, sus brillantes rayos pintan el mundo en tonos de oro y azul, una armonía celestial de amanecer y magia lunar.</html>";
 
 		blackText = "Negro";
 		goldText = "Dorado";
@@ -207,6 +207,10 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
+		selectShopText = "Seleccionar Tienda";
+		foodText = "Comida";
+		backgroundsText = "Fondos";
+		bordersText = "Bordes";
 		yourFoodInventoryIsFullText = "¡Tu inventario de comida está lleno!";
 		confirmPurchaseOfText = "Confirmar compra de";
 		notEnoughTamoTokensText = "No tienes suficientes fichas Tamo para completar la compra.";
@@ -218,6 +222,7 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
+		inventoryText = "Inventario";
 		feedTamoText = "Alimentar a Tamo";
 		setBackgroundText = "Establecer Fondo";
 		setBorderText = "Establecer Borde";

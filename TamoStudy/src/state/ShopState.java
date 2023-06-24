@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import components.panel.KathPanel;
 import components.panel.ShopPanel;
 import gui.TamoStudyGUI;
+import model.language.Language;
 import resources.Theme;
 
 public class ShopState extends State {
@@ -23,6 +24,7 @@ public class ShopState extends State {
 	 * ##################################
 	 * ##################################
 	 */
+	private Language language;
 	private Theme theme;
 	private int shopIndicator; // Which shop we are currently in
 	
@@ -48,6 +50,7 @@ public class ShopState extends State {
 
 	@Override
 	protected void initializeAttributes() {
+		language = tsGui.getProfile().getSettings().getLanguage();
 		theme = tsGui.getProfile().getSettings().getTheme();
 	}
 
@@ -57,10 +60,10 @@ public class ShopState extends State {
 		kathPanel = new KathPanel(theme, tsGui.getGuiSize(), tsGui.getProfile().getSettings().getLanguage());
 		shopPanel = new ShopPanel(tsGui, tsGui.getGuiSize(), tsGui.getProfile().getSettings().getLanguage());
 		shopOptions = new JComboBox<>();
-		shopOptions.addItem("Select Shop");
-		shopOptions.addItem("Food");
-		shopOptions.addItem("Backgrounds");
-		shopOptions.addItem("Borders");
+		shopOptions.addItem(language.selectShopText);
+		shopOptions.addItem(language.foodText);
+		shopOptions.addItem(language.backgroundsText);
+		shopOptions.addItem(language.bordersText);
 //		shopOptions.addItem("Timer Customization");
 	}
 

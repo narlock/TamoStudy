@@ -718,6 +718,8 @@ public class TamoStudyGUI extends JFrame {
 	}
 	
 	public void checkForTamoDeath() {
+		
+		// Check for tamo death
 		if(profile.getTamo().getStrikes() >= 3) {
 			// Tamo Death
 			Tamo deathTamo = new Tamo(

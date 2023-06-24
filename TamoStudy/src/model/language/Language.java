@@ -213,6 +213,10 @@ public abstract class Language {
 	 * ##################################
 	 * ##################################
 	 */
+	public String selectShopText;
+	public String foodText;
+	public String backgroundsText;
+	public String bordersText;
 	public String yourFoodInventoryIsFullText;
 	public String confirmPurchaseOfText;
 	public String notEnoughTamoTokensText;
@@ -224,6 +228,7 @@ public abstract class Language {
 	 * ##################################
 	 * ##################################
 	 */
+	public String inventoryText;
 	public String feedTamoText;
 	public String setBackgroundText;
 	public String setBorderText;
