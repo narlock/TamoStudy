@@ -176,11 +176,11 @@ public class EnglishLanguage extends Language {
 		sunriseDescriptionText = "<html>A breathtaking background<br>capturing the beauty of a<br>sunrise as the sun gracefully<br>emerges on the horizon.</html>";
 		nightOutDescriptionText = "<html>An atomospheric street<br>exuding a perfect blend of<br>warmth and chill vibes on<br>a delightful night out.</html>";
 		enigmaDescriptionText = "<html>An enigmatic backdrop<br>enveloped in an aura of<br>mystery, painted with deep<br>hues of red, maroon, and gray.</html>";
-		cozyNightDescriptionText = "Cozy Night Description";
-		studyTimeDescriptionText = "Study Time Description";
-		pleasantBridgeDescriptionText = "Pleasant Bridge Description";
-		wisteriaDescriptionText = "Wisteria Description";
-		moonDescriptionText = "Moon Description";
+		cozyNightDescriptionText = "<html>A serene night-time setting with a snug bed adorned with a cuddly teddy bear, radiating warmth and comforting vibes, perfect for peaceful slumber.";
+		studyTimeDescriptionText = "<html>An ideal study haven awaits with<br>a grand wooden desk, a radiant<br>lamp illuminating rows of books<br>on a sizable bookshelf, fostering<br>an environment conducive to<br>focused learning.</html>";
+		pleasantBridgeDescriptionText = "<html>A serene forest scene unfolds,<br>showcasing a picturesque Japanese<br>bridge gracefully arched over a<br>tranquil river, enveloped by the<br>soothing embrace of nature's<br>beauty.</html>";
+		wisteriaDescriptionText = "<html>In a dreamy scene, enchanting<br>wisteria trees flourish, their<br>cascading purple blooms swaying<br>gently as autumn leaves gracefully<br>descend, painting a picturesque<br>moment in nature.</html>";
+		moonDescriptionText = "<html>As dawn breaks, a breathtaking<br>spectacle unfolds - a magnificent<br>blue moon hovers in the sky, its<br>radiant beams painting the world<br>in hues of gold and azure, a<br>celestial harmony of sunrise and<br>lunar magic.</html>";
 		
 		blackText = "Black";
 		goldText = "Gold";
