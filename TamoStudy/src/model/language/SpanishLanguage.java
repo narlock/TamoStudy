@@ -1,5 +1,11 @@
 package model.language;
 
+/**
+ * 
+ * @author narlock
+ * @translator ???
+ *
+ */
 public class SpanishLanguage extends Language {
 	public SpanishLanguage() {
 		/*

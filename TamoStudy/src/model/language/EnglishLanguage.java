@@ -1,5 +1,26 @@
 package model.language;
 
+/**
+ * 
+ * @author narlock
+ * @translator narlock
+ * 
+ * TRANSLATOR STEPS:
+ * 1. Rename the file to YourLanguage.java 
+ * 		- Where 'Your' is replaced with your language, for example, 'English' would make the file EnglishStrategy.java
+ * 2. Rename 'EnglishLanguage' on line 25 to YourLanguage
+ * 		- Where 'Your' is replaced with your language, for example, 'English' would make the class name EnglishLanguage
+ * 3. Replace all of the text after each assignment (equals sign '=') for each line with the proper translation.
+ * 		- For the `<html>` ones, keep the beginning and ending html tags, and add a `<br>` tag after roughly every 25-30
+ * 		characters. The EnglishLanguage file provides plenty of examples for each. Complete words, do not cut in the middle.
+ * 		- For context, the html tag represents that the text is going to be used as a HTML element. The br element represents
+ * 		a 'break line' (where to tell the text to go to the next line)
+ * 			- For example, if I wrote `<html>Hello<br>World</html> the text would appear in a JLabel like:
+ * 					Hello
+ * 					World
+ * 4. Replace the @translator tag on line 6 with your alias.
+ *
+ */
 public class EnglishLanguage extends Language {
 	public EnglishLanguage() {
 		/*
