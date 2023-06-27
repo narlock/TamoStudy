@@ -21,7 +21,7 @@ package model.language;
  * 4. Replace the @translator tag on line 6 with your alias.
  *
  */
-public class EnglishLanguage extends Language {
+public class DutchLanguage extends Language {
 	public DutchLanguage() {
 		/*
 		 * ##################################
