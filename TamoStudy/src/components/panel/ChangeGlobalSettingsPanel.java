@@ -195,6 +195,8 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 				
 				globalSettingsJsonManager.writeJsonToFile(globalSettings);
 				Debug.info("ChangeGlobalSettingsPanel.saveChangesButton.actionPerformed", "Saved new globalSettings=" + globalSettings);
+				
+				welcomeGUI.resetGui();
 			}
 			
 		});

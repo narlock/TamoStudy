@@ -285,6 +285,13 @@ public class WelcomeGUI extends JFrame {
 		theme.buttonLayerEnterEffect(button);
 	}
 	
+	public void resetGui() {
+		this.setVisible(false);
+		this.dispose();
+		
+		new WelcomeGUI();
+	}
+	
 	/**
 	 * resetToMainMenu
 	 * @brief Revalidates main panel on updates
