@@ -66,7 +66,7 @@ public class Profile {
 		this.backgroundInventoryList = List.of((long) 0);
 		this.borderInventoryList = List.of((long) 0);
 		this.tamo = new Tamo(
-					name
+					tamoName
 				);
 		this.tamoHistory = Collections.emptyList();
 	}

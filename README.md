@@ -2,17 +2,16 @@
 
 <!-- Main Header -->
 <p align="center">
-  <img src="./README%20Assets/TamoStudyCard.gif" width="40%"/>
+  <img src="./README%20Assets/TamoStudyLogo.gif" width="40%"/><br>
+  <a href="https://github.com/narlock/TamoStudy/releases/"><img src="https://img.shields.io/github/v/release/narlock/TamoStudy"></a><br>
+  by <a href="https://github.com/narlock">narlock</a>
 </p>
 
-<p align="center">
-by <a href="https://github.com/narlock">narlock</a>
-</p>
+<hr><br>
 
 <!-- GitHub Shields-->
 <p align="center">
   <a href="https://github.com/narlock/TamoStudy/releases/"><img src="https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg"></a>
-  <a href="https://github.com/narlock/TamoStudy/releases/"><img src="https://img.shields.io/github/v/release/narlock/TamoStudy"></a>
   <a href="https://github.com/narlock/TamoStudy/commits/main"><img src="https://img.shields.io/github/last-commit/narlock/TamoStudy"></a>
   <a href="https://discord.gg/eEbEYbXaNS"><img src="https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield"></a>
 </p>
@@ -29,7 +28,7 @@ by <a href="https://github.com/narlock">narlock</a>
 
 **TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
 
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+
 
 - [Website](http://tamostudy.com/)
 - [Features](#features)
@@ -153,6 +152,11 @@ This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/disco
 <p align="center">
   <a href="https://www.youtube.com/watch?v=8JeMkaXIQOY"><img src="https://i.imgur.com/nVWKkXF.jpg" width="50%"></a>
 </p>
+
+## Architecture
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 ## Original Concept Idea
 
