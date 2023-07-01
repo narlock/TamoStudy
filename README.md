@@ -22,7 +22,7 @@
 An improved program launcher. Allows the user to select either local study and the soon-to-be-developed online study.
 
 <p align="center">
-  <img src="./README%20Assets/WelcomeScreen.png" width="50%"/>
+  <img src="./README%20Assets/WelcomeScreen.png" width="75%"/>
 </p>
 
 Global settings can be change using the cog at the top-right including resetting the default profile, setting the global language, and to receive update notifications.
@@ -30,7 +30,7 @@ Global settings can be change using the cog at the top-right including resetting
 ### 👥 **Profile Loader**
 
 <p align="center">
-  <img src="./README%20Assets/ProfileLoader.png" width="50%"/>
+  <img src="./README%20Assets/ProfileLoader.png" width="75%"/>
 </p>
 
 ### ⏰ **Focus Timers**
