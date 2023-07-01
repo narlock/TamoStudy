@@ -1,34 +1,18 @@
 <!-- Author: @narlock -->
+  <a href="https://instagram.com/narlockdev" style="padding:10px;"><img src="https://i.imgur.com/DCFiEHr.png" alt="Instagram" align="right" width="60"></a>
+  <a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/iXAguWQ.png" alt="Patreon" align="right" width="60"></a>
+  <a href="https://twitter.com/narlockDev" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png" align="right" width="60"></a>
+  <a href="https://youtube.com/narlock"><img src="https://i.imgur.com/5npSWBq.png" alt="YouTube" align="right" width="60"></a>
+    <a href="https://tamostudy.com"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/Application%20Assets/icon_512x512%402x.png" alt="TamoStudy logo" title="TamoStudy" align="right" width="60"></a>
 
-<!-- Main Header -->
-<p align="center">
-  <img src="./README%20Assets/TamoStudyLogo.gif" width="40%"/><br>
-  <a href="https://github.com/narlock/TamoStudy/releases/"><img src="https://img.shields.io/github/v/release/narlock/TamoStudy"></a><br>
-  by <a href="https://github.com/narlock">narlock</a>
-</p>
+# TamoStudy
 
-<hr><br>
-
-<!-- GitHub Shields-->
-<p align="center">
-  <a href="https://github.com/narlock/TamoStudy/releases/"><img src="https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg"></a>
-  <a href="https://github.com/narlock/TamoStudy/commits/main"><img src="https://img.shields.io/github/last-commit/narlock/TamoStudy"></a>
-  <a href="https://discord.gg/eEbEYbXaNS"><img src="https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield"></a>
-</p>
-
-<!-- Social Links -->
-<p align="center">
-  <a href="https://youtube.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/5npSWBq.png" alt="YouTube"></a>
-  <a href="https://instagram.com/narlockdev" style="padding:10px;"><img src="https://i.imgur.com/DCFiEHr.png" alt="Instagram"></a>
-  <a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/iXAguWQ.png" alt="Patreon"></a>
-  <a href="https://twitter.com/narlockDev" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png"></a>
-<p>
-
-<hr>
+[![Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/releases/)
+[![Latest Release](https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg)](https://github.com/narlock/TamoStudy/releases/)
+[![Latest Release](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
+[![Latest Release](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
 
 **TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
-
-
 
 - [Website](http://tamostudy.com/)
 - [Features](#features)
