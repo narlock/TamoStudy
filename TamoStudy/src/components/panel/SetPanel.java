@@ -94,6 +94,10 @@ public class SetPanel extends JPanel {
 			// Five Min Interval Countdown
 			initializeFiveIntervalCountdownSetComponents();
 			break;
+		case 3:
+			// Stopwatch
+			initializeStopwatchComponents();
+			break;
 		case 4:
 			// Pomodoro with Long Breaks
 			initializePomodoroSetComponents();
@@ -347,6 +351,10 @@ public class SetPanel extends JPanel {
 	 * we will just count is as a loop to the user. 
 	 */
 	
+	public void initializeStopwatchComponents() {
+		// Nothing at the moment
+	}
+	
 	/*
 	 * ##################################
 	 * ##################################
@@ -399,6 +407,8 @@ public class SetPanel extends JPanel {
 		case 2:
 			// Toggle Five Min Interval Countdown Options
 			fiveLengthBox.setEnabled(enabled);
+			break;
+		case 3:
 			break;
 		case 4:
 			// Toggle Pomodoro with Long Breaks Options

@@ -144,7 +144,7 @@ public class SettingsState extends State {
 		focusModeBox.addItem(language.pomodoroText);
 		focusModeBox.addItem(language.customCountdownText);
 		focusModeBox.addItem(language.fiveMinIntervalCountdownText);
-//		focusModeBox.addItem(language.stopwatchText);
+		focusModeBox.addItem(language.stopwatchText);
 		
 		difficultyPanel = new JPanel(new GridBagLayout());
 		difficultyLabel = new JLabel(language.difficultyText);

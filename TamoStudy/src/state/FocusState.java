@@ -58,6 +58,7 @@ public class FocusState extends State {
 	private int sessionsRemaining;
 	private Timer pauseTimer;
 	private int timerPauseIndicator;
+	private int stopwatchCycleCount;
 	
 	/**
 	 * Indicator for what time to use during pomodoro countdown timers.
@@ -200,7 +201,11 @@ public class FocusState extends State {
 		
 		timerSetPanel.setBackground(theme.subColor);
 		timerSetPanel.add(timerPanel, gbcv);
-		timerSetPanel.add(setPanel, gbcv);
+		
+		if(profile.getSettings().getFocusMode() != 3) {
+			timerSetPanel.add(setPanel, gbcv);
+		}
+		
 		timerSetPanel.add(buttonPanel, gbcv);
 	}
 
@@ -220,7 +225,12 @@ public class FocusState extends State {
 				toggleButtons(false);
 				
 				//Create Timer
-				createTimer();
+				if(profile.getSettings().getFocusMode() != 3) {
+					createTimer();
+				} else {
+					createStopwatch();
+				}
+				
 			}
 			
 		});
@@ -229,28 +239,45 @@ public class FocusState extends State {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Lose 2 happiness points when focus is broken
-				tsGui.getProfileUpdateManager().updateHappyOnEvent(2);
-				
-				// Update happiness label
-				tamoHappyLabel.setText("" + tamo.getHappy());
-				
-				// Update focus stats
-				updateFocusStatistics();
-				
-				sessionsRemaining = 0;		// Reset pomdoro - no sessions remaining
-				sessionTimeIndicator = 0;	// Reset time indicator - will start on focus time
-				
-				String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
+				if(profile.getSettings().getFocusMode() != 3) {
+					// Lose 2 happiness points when focus is broken
+					tsGui.getProfileUpdateManager().updateHappyOnEvent(2);
+					
+					// Update happiness label
+					tamoHappyLabel.setText("" + tamo.getHappy());
+					
+					// Update focus stats
+					updateFocusStatistics();
+					
+					sessionsRemaining = 0;		// Reset pomdoro - no sessions remaining
+					sessionTimeIndicator = 0;	// Reset time indicator - will start on focus time
+					
+					String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
 
-				// Reset counting variables
-				tempMin = 0;
-				tempSec = 0;
+					// Reset counting variables
+					tempMin = 0;
+					tempSec = 0;
+					
+					timer.stop();
+					resetTimer();
+					
+					JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusBrokeText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+				} else {
+					String studyMessage = language.youFocusedForText + " " + tempMin + " " + language.minutesAndText + " " + tempSec + " " + language.secondsPeriodText;
+					
+					// Update focus statistics
+					updateFocusStatistics();
+					
+					// Reset counting variables
+					tempMin = 0;
+					tempSec = 0;
+					
+					timer.stop();
+					resetTimer();
+					
+					JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusBrokeText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+				}
 				
-				timer.stop();
-				resetTimer();
-				
-				JOptionPane.showMessageDialog(getRootPane(), studyMessage, language.focusBrokeText, JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 			}
 		});
 		
@@ -298,6 +325,12 @@ public class FocusState extends State {
 			timerPanel.secondTimeLabel.setText(((String) setPanel.fiveLengthBox.getSelectedItem()).substring(3));
 			sessionsRemaining = 0;
 			break;
+		case 3:
+			// Stopwatch
+			timerPanel.minuteTimeLabel.setText("00");
+			timerPanel.secondTimeLabel.setText("00");
+			stopwatchCycleCount = 0;
+			break;
 		case 4:
 			// Pomodoro with Long Breaks
 			// TODO
@@ -309,7 +342,7 @@ public class FocusState extends State {
 			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		}
-		pauseFocusButton.setText("Pause Focus");
+		pauseFocusButton.setText(language.pauseFocusText);
 		timerPanel.subTextLabel.setText(language.letsFocusText);
 	}
 	
@@ -428,7 +461,6 @@ public class FocusState extends State {
 						 */
 						JOptionPane.showMessageDialog(getRootPane(), studyMessage, "TamoStudy", JOptionPane.INFORMATION_MESSAGE,  new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
 					}
-					//TODO Display Completed message, in the future, it will do a calculation to show amount of points earned in the session
 					
 					// Go to next session or break - POMODORO ONLY
 					if(sessionsRemaining > 1) {
@@ -516,6 +548,56 @@ public class FocusState extends State {
 		startFocusButton.doClick();
 	}
 	
+	public void createStopwatch() {
+		Debug.info("FocusState.createStopwatch", "Starting stopwatch...");
+		stopwatchCycleCount = 0;
+		timerPanel.subTextLabel.setText("Cycles: " + stopwatchCycleCount);
+		
+		timer = new Timer(1000, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Begin counting up starting from 00:00
+				sec++;
+				tempSec = tempSec + 1;
+				
+				if(tempSec == 59) {
+					tempMin = tempMin + 1;
+					tempSec = 0;
+				}
+				
+				// Increment minute when sec = 60
+				if(sec == 59) {
+					sec = 0;
+					min++;
+				}
+				
+				// Add cycle
+				if(min == 100) {
+					min = 0;
+					stopwatchCycleCount++;
+					timerPanel.subTextLabel.setText("Cycles: " + stopwatchCycleCount);
+				}
+				
+				if(sec < 10) {
+					timerPanel.secondTimeLabel.setText("0" + sec);
+				}
+				else {
+					timerPanel.secondTimeLabel.setText("" + sec);
+				}
+				if(min < 10) {
+					timerPanel.minuteTimeLabel.setText("0" + min);
+				}
+				else {
+					timerPanel.minuteTimeLabel.setText("" + min);
+				}
+				
+			}
+			
+		});
+		timer.start();
+	}
+	
 	/*
 	 * ##################################
 	 * ##################################
@@ -539,6 +621,7 @@ public class FocusState extends State {
 		// Update Time
 		if(sessionTimeIndicator == 0) { // Only earn on focus sessions
 			int timeEarned = tempSec + (tempMin * 60);
+			Debug.info("FocusState.updateFocusStatistics", "Earned " + timeEarned + " tamo tokens");
 			dailyFocusEntry.setTime(dailyFocusEntry.getTime() + timeEarned); // Daily Time
 			monthFocusEntry.setTime(monthFocusEntry.getTime() + timeEarned); // Month Time
 			profile.setTime(profile.getTime() + timeEarned); // Total Time

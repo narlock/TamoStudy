@@ -710,6 +710,7 @@ public class TamoStudyGUI extends JFrame {
 		statisticsStateButton.setEnabled(enabled);
 		achievementsStateButton.setEnabled(enabled);
 		settingsStateButton.setEnabled(enabled);
+		tamoHistoryStateButton.setEnabled(enabled);
 		aboutStateButton.setEnabled(enabled);
 	}
 	
