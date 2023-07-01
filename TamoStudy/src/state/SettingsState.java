@@ -160,8 +160,8 @@ public class SettingsState extends State {
 		timerAlarmBox.addItem(language.softAlarmText);
 		timerAlarmBox.addItem(language.traditionalAlarmText);
 		timerAlarmBox.addItem(language.pacAlarmText);
-		timerAlarmBox.addItem(language.calmAlarmText);
-		timerAlarmBox.addItem(language.bellAlarmText);
+//		timerAlarmBox.addItem(language.calmAlarmText);
+//		timerAlarmBox.addItem(language.bellAlarmText);
 		
 		guiSizePanel = new JPanel(new GridBagLayout());
 		guiSizeLabel = new JLabel(language.guiSizeText);
