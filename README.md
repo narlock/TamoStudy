@@ -1,9 +1,10 @@
 <!-- Author: @narlock -->
-  <a href="https://instagram.com/narlockdev" style="padding:10px;"><img src="https://i.imgur.com/DCFiEHr.png" alt="Instagram" align="right" width="60"></a>
-  <a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://i.imgur.com/iXAguWQ.png" alt="Patreon" align="right" width="60"></a>
-  <a href="https://twitter.com/narlockDev" style="padding:10px;"><img src="https://i.imgur.com/W8iSkd5.png" align="right" width="60"></a>
-  <a href="https://youtube.com/narlock"><img src="https://i.imgur.com/5npSWBq.png" alt="YouTube" align="right" width="60"></a>
-    <a href="https://tamostudy.com"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/Application%20Assets/icon_512x512%402x.png" alt="TamoStudy logo" title="TamoStudy" align="right" width="60"></a>
+
+<a href="https://instagram.com/narlockdev" style="padding:10px;"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/README%20Assets/instagramApp.png" alt="Instagram" align="right" width="60"></a>
+<a href="https://patreon.com/narlock" style="padding:10px;"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/README%20Assets/patreonApp.png" alt="Patreon" align="right" width="60"></a>
+<a href="https://twitter.com/narlockDev" style="padding:10px;"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/README%20Assets/twitterApp.png" align="right" width="60"></a>
+<a href="https://youtube.com/narlock"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/README%20Assets/youtubeApp.png" alt="YouTube" align="right" width="60"></a>
+<a href="https://tamostudy.com"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/Application%20Assets/icon_512x512%402x.png" alt="TamoStudy logo" title="TamoStudy" align="right" width="60"></a>
 
 # TamoStudy
 
