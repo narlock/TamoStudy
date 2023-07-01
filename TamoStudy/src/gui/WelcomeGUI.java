@@ -99,7 +99,7 @@ public class WelcomeGUI extends JFrame {
 		
 		tamoStudyLogoImageLabel = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("TAMOSTUDY_LOGO_IMAGE_LARGE.gif")));
 		
-		authorLabel = new JLabel("Release " + Constants.version + " • " + language.createdByText + " narlock • tamostudy.com");
+		authorLabel = new JLabel(Constants.version + " • " + language.createdByText + " narlock • tamostudy.com");
 		
 		buttonPanel = new JPanel();
 		localStudyButton = new JButton(language.localStudyText);
@@ -194,7 +194,7 @@ public class WelcomeGUI extends JFrame {
 	private void initializeFrame() {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(theme.mainColor);
-		this.setTitle("TamoStudy Release " + Constants.version);
+		this.setTitle("TamoStudy " + Constants.version);
 		this.setSize(650,500);
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);

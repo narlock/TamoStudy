@@ -402,19 +402,19 @@ public class ProfileSelectionPanel extends JPanel {
 		languageBox = new JComboBox<>();
 		languageBox.addItem(language.englishText);
 		languageBox.addItem(language.spanishText);
-		languageBox.addItem(language.hindiText);
-		languageBox.addItem(language.portugueseText);
-		languageBox.addItem(language.japaneseText);
-		languageBox.addItem(language.germanText);
-		languageBox.addItem(language.frenchText);
-		languageBox.addItem(language.turkishText);
-		languageBox.addItem(language.mandarinChineseText);
-		languageBox.addItem(language.dutchText);
-		languageBox.addItem(language.koreanText);
-		languageBox.addItem(language.russianText);
-		languageBox.addItem(language.hungarianText);
-		languageBox.addItem(language.romanianText);
-		
+//		languageBox.addItem(language.hindiText);
+//		languageBox.addItem(language.portugueseText);
+//		languageBox.addItem(language.japaneseText);
+//		languageBox.addItem(language.germanText);
+//		languageBox.addItem(language.frenchText);
+//		languageBox.addItem(language.turkishText);
+//		languageBox.addItem(language.mandarinChineseText);
+//		languageBox.addItem(language.dutchText);
+//		languageBox.addItem(language.koreanText);
+//		languageBox.addItem(language.russianText);
+//		languageBox.addItem(language.hungarianText);
+//		languageBox.addItem(language.romanianText);
+//		
 		difficultyPanel = new JPanel();
 		difficultyLabel = new JLabel(language.difficultyText);
 		difficultyBox = new JComboBox<>();
