@@ -13,28 +13,37 @@
 [![Latest Release](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
 [![Latest Release](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
 
-**TamoStudy** - A work and study productivity timer that implements a fun, virtual pet to help you stay driven to focus!
+**TamoStudy** is a work and study timer designed to enhance productivity, incorporating an enjoyable virtual pet to motivate users to concentrate on their tasks. Programmed utilizing **Java 8**, development for this application began in January of 2021.
 
-- [Website](http://tamostudy.com/)
-- [Features](#features)
-- [Setup TamoStudy](#setup-tamostudy)
-- [Original Concept Idea](#original-concept-idea)
-- [Contributors](#contributors)
+## 🚀 **Features**
 
-## **Features**
+### 👋 **Welcome Screen**
 
-### **Focus Timer**
+An improved program launcher. Allows the user to select either local study and the soon-to-be-developed online study.
 
-A simple, customizable countdown timer for deep focus work.
+![Welcome Screen](./README%20Assets/WelcomeScreen.png)
+
+Global settings can be change using the cog at the top-right including resetting the default profile, setting the global language, and to receive update notifications.
+
+### 👥 **Profile Loader**
+
+![Welcome Screen](./README%20Assets/ProfileLoader.png)
+
+### ⏰ **Focus Timers**
+
+Simple, customizable countdown timers for deep focus work.
 
 ![Focus Timer](./README%20Assets/FocusTime.png)
 - *Custom Interval Countdown*: Customize the number of minutes and the number of a seconds in a single focus session.
 - *5-Interval Countdown*: Easily choose a focus time from a selection of factors of 5 minutes.
 - *Pomodoro*: The popular *[pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique)* that breaks work into intervals. For a number of sessions, focus for a specified amount of time, then take a break for a specified amount of time.
 
+![Stopwatch]()
+- *Stopwatch*: A standard stopwatch timer which counts up. The implementation in TamoStudy counts the amount of cycles (100 minutes) studied. The timer will appear back to 0 minutes and 0 seconds after each cycle.
+
 Upon completing focus sessions, you will receive Tamo Tokens! With Tamo Tokens, you can purchase food for your virtual pet and additional customization! To keep your Tamo happy, you must complete your desired focus sessions!
 
-### **Shop**
+### 🛍️ **Shop**
 
 A shop for purchasing food to feed the user's virtual pet. Additionally, the user can purchase cosmetic customization items!
 
@@ -45,17 +54,7 @@ A shop for purchasing food to feed the user's virtual pet. Additionally, the use
 - Purchasing a food item will automatically satisfy the hunger of the user's virtual pet.
 - Purchasing a background will add the background to the user's inventory.
 
-### **Themes**
-
-Customize the look of the TamoStudy interface through the use of colored themes!
-
-<p align="center">
-  <img src="./README%20Assets/Themes.png" width="70%"/>
-</p>
-
-- Select one of the themes by pressing the "Select" button next to the theme.
-
-### **Inventory**
+### 🌇 **Inventory**
 
 The user's inventory allows for items to be stored and used when the user desires. As of TamoStudy Beta v4.2, the inventory supports backgrounds. The user can utilize the "Select" button next to the background of their choice to apply the background to their Tamo!
 
@@ -63,7 +62,7 @@ The user's inventory allows for items to be stored and used when the user desire
   <img src="./README%20Assets/Inventory.png" width="70%"/>
 </p>
 
-### **Statistics**
+### 📈 **Statistics**
 
 - View your statistics while using TamoStudy!
 
@@ -71,7 +70,7 @@ The user's inventory allows for items to be stored and used when the user desire
   <img src="./README%20Assets/Statistics.png" width="70%"/>
 </p>
 
-### **Achievements**
+### 🥇 **Achievements**
 
 - Unlock achievements during your use of TamoStudy!
 
@@ -79,7 +78,7 @@ The user's inventory allows for items to be stored and used when the user desire
   <img src="./README%20Assets/Achievements.png" width="70%"/>
 </p>
 
-### **Settings**
+### ⚙️ **Settings**
 
 - Change the settings of TamoStudy to match your preferences!
 
@@ -87,7 +86,7 @@ The user's inventory allows for items to be stored and used when the user desire
   <img src="./README%20Assets/Settings.png" width="70%"/>
 </p>
 
-### Discord Rich Presence
+### 🤖 Discord Rich Presence
 This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). As of Beta v4.2, Discord Rich Presence is only supported on Windows devices.
 
 - Each Idle screen has its own presence. An example is below:
