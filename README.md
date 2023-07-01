@@ -181,8 +181,7 @@ To download TamoStudy, read through the download page [here](https://github.com/
 
 - **Windows**
   - Download the `TamoStudy.exe` file.
-  > Note
-  > You must give permission to open this application through the Windows Smart Screen. Simply allow trust the program to run.
+  - Upon opening for the first time, you will be required to give permission to open this application through the Windows Smart Screen. Simply allow trust the program to run.
 
 - **Mac OS**
   - Download the `TamoStudy.MacOS.zip` file.
