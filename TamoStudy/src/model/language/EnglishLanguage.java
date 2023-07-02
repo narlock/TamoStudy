@@ -185,7 +185,7 @@ public class EnglishLanguage extends Language {
 		sofaText = "Sofa";
 		sunriseText = "Sunrise";
 		nightOutText = "Night Out";
-		enigmaText = "Enigma";
+		enigmaText = "Misterio";
 		cozyNightText = "Cozy Night";
 		studyTimeText = "Study Time";
 		pleasantBridgeText = "Pleasant Bridge";
