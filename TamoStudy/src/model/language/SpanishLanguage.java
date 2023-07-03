@@ -177,7 +177,7 @@ public class SpanishLanguage extends Language {
 		sofaText = "Sofá";
 		sunriseText = "Amanecer";
 		nightOutText = "Noche Fuera";
-		enigmaText = "Enigma";
+		enigmaText = "Misterio";
 		cozyNightText = "Noche Acogedora";
 		studyTimeText = "Tiempo de Estudio";
 		pleasantBridgeText = "Puente Agradable";
