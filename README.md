@@ -212,6 +212,7 @@ Thank you for everyone that has created a pull request to support the developmen
 - [Shorent](http://github.com/Shorent) - Development (Web)
 - [Alyksett](http://github.com/Alyksett) - Development (Main)
 - [britthubs](http://github.com/britthubs) - Translation (Main)
+- [tokisuno](http://github.com/tokisuno) - Translation (Main)
 
 <hr>
 <p align="center">
