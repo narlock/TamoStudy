@@ -6,7 +6,7 @@
 <a href="https://youtube.com/narlock"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/README%20Assets/youtubeApp.png" alt="YouTube" align="right" width="60"></a>
 <a href="https://tamostudy.com"><img src="https://raw.githubusercontent.com/narlock/TamoStudy/main/Application%20Assets/icon_512x512%402x.png" alt="TamoStudy logo" title="TamoStudy" align="right" width="60"></a>
 
-# TamoStudy --- Spanish Translation
+# TamoStudy
 
 [![Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/releases/)
 [![Latest Release](https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg)](https://github.com/narlock/TamoStudy/releases/)
