@@ -145,6 +145,7 @@ public class ProfileSelectionPanel extends JPanel {
 		importProfileButton = new JButton(language.importProfileText);
 		
 		selectProfilePanel = new JPanel();
+		selectProfilePanel.setBackground(theme.subColor);
 		selectProfileLabel = new JLabel(language.chooseProfileText);
 		profilesBox = new JComboBox<>();
 		if(foundProfiles) {
@@ -153,6 +154,7 @@ public class ProfileSelectionPanel extends JPanel {
 			}
 		}
 		assignDefaultProfile = new JCheckBox(language.loadProfileAutomaticallyText);
+		assignDefaultProfile.setBackground(theme.subColor);
 		
 		profileOptionsButtonPanel = new JPanel();
 		loadProfileButton = new JButton(language.loadProfileText);
