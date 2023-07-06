@@ -333,7 +333,9 @@ public class FocusState extends State {
 			break;
 		case 4:
 			// Pomodoro with Long Breaks
-			// TODO
+			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
+			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		default:
 			// Pomodoro
@@ -362,7 +364,7 @@ public class FocusState extends State {
 		Debug.info("FocusState.createTimer", "Starting focus timer...");
 		
 		sessionTimeIndicator = 0; // Ensure in focus mode
-		if(profile.getSettings().getFocusMode() == 0) {
+		if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 4) {
 			int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			timerPanel.subTextLabel.setText(language.focusText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
 		}
@@ -470,7 +472,6 @@ public class FocusState extends State {
 							Debug.info("FocusState.timer.actionPerformed", "Focus session " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions + " completed.");
 							sessionTimeIndicator = 1; // Break time
 							timerPanel.subTextLabel.setText(language.breakText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
-							// TODO Refactor to add logic to check if long break or not... Set to 2 if long break
 						} 
 						// Currently finished break session
 						else if(sessionTimeIndicator == 1) {
@@ -480,8 +481,7 @@ public class FocusState extends State {
 							sessionTimeIndicator = 0; // Focus time
 							timerPanel.subTextLabel.setText(language.focusText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
 						}
-						// TODO Add else if branch for long session and refactor for long session
-						
+
 						nextSession();
 					} else {
 						// Timer is done!
