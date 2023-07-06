@@ -521,8 +521,8 @@ public class FocusState extends State {
 			int sessionNumber = (((Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem() - sessionsRemaining) + 1);
 			if(profile.getSettings().getFocusMode() == 4 && setPanel.sessions.get(sessionNumber) == 1) {
 				// Long Break
-				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
-				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoLongBreakLengthBox.getSelectedItem()).substring(0, 2));
+				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoLongBreakLengthBox.getSelectedItem()).substring(3));
 			} else {
 				// Short Break
 				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
