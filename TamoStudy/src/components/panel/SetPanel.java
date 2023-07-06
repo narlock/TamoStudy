@@ -4,12 +4,20 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.language.Language;
+import resources.Debug;
 import resources.Theme;
 
 public class SetPanel extends JPanel {
@@ -48,9 +56,10 @@ public class SetPanel extends JPanel {
 	public JComboBox<String> pomoBreakLengthBox;
 	
 	// TODO Pomodoro Mode + Long Break
-	private JPanel pomoLongBreakAfterXSessionsPanel;
-	private JLabel pomoLongBreakAfterXSessionsLabel;
-	public JComboBox<String> pomoLongBreakAfterXSessionsBox; // TODO change dynamically based off of settings
+	private JPanel pomoLongBreakSelectionPanel;
+	private JLabel pomoLongBreakSessions;
+	public JButton pomoLongBreakSetButton; // TODO change dynamically based off of settings
+	public Map<Integer, Integer> sessions;
 	private JPanel pomoLongBreakLengthPanel;
 	private JLabel pomoLongBreakLengthLabel;
 	public JComboBox<String> pomoLongBreakLengthBox;
@@ -75,6 +84,7 @@ public class SetPanel extends JPanel {
 		this.focusMode = focusMode;
 		this.language = language;
 		this.theme = theme;
+		sessions = new HashMap<>();
 		
 		initializeComponents();
 		initializePanel();
@@ -370,18 +380,75 @@ public class SetPanel extends JPanel {
 		 * In here we will want to add the long break components and add them
 		 * to this.
 		 */
+		pomoLongBreakSelectionPanel = new JPanel();
+		pomoLongBreakSelectionPanel.setBackground(theme.mainColor);
+		pomoLongBreakSessions = new JLabel("Long Break");
+		pomoLongBreakSessions.setForeground(timerPanel.getTheme().textColor);
+		pomoLongBreakSessions.setFont(timerPanel.getGuiSize().settingsChoiceBoldFont);
+		pomoLongBreakSetButton = new JButton("Configure");
+		pomoLongBreakSetButton.setOpaque(true);
+		pomoLongBreakSetButton.setForeground(timerPanel.getTheme().textColor);
+		pomoLongBreakSetButton.setBackground(Theme.PRIMARY);
+		pomoLongBreakSetButton.setFont(timerPanel.getGuiSize().settingsChoiceBoldFont);
+		pomoLongBreakSelectionPanel.add(pomoLongBreakSessions);
+		pomoLongBreakSelectionPanel.add(pomoLongBreakSetButton);
 		
-		// Initialize Components
+		pomoLongBreakLengthPanel = new JPanel();
+		pomoLongBreakLengthPanel.setBackground(theme.mainColor);
+		pomoLongBreakLengthLabel = new JLabel("Long Break Length");
+		pomoLongBreakLengthLabel.setForeground(timerPanel.getTheme().textColor);
+		pomoLongBreakLengthBox = new JComboBox<>();
+		for(int i = 5; i <= 95; i = i + 5) {
+			if(i == 5) {
+				pomoLongBreakLengthBox.addItem("0" + i + ":00");
+			}
+			else {
+				pomoLongBreakLengthBox.addItem(i + ":00");
+			}
+		}
+		pomoLongBreakLengthPanel.add(pomoLongBreakLengthLabel);
+		pomoLongBreakLengthPanel.add(pomoLongBreakLengthBox);
 		
-		// Initalize Component Visual
-		
-		// Add Components to set panel
+		GridBagConstraints innergbcv = new GridBagConstraints();
+		innergbcv.gridwidth = GridBagConstraints.REMAINDER;
+		innergbcv.anchor = GridBagConstraints.WEST;
+		this.add(pomoLongBreakLengthPanel, innergbcv);
+		this.add(pomoLongBreakSelectionPanel, innergbcv);
 		
 		initializePomodoroLongBreakComponentActions();
 	}
 	
 	public void initializePomodoroLongBreakComponentActions() {
+		pomoNumberOfSessionsBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sessions.clear(); // Ensure sessions is empty
+				int numberOfSessions = pomoNumberOfSessionsBox.getSelectedIndex() + 1;
+				for(int i = 1; i <= numberOfSessions; i++) {
+					sessions.put(i, 0); // 0 represents short break, 1 for long break
+				}
+				Debug.info("SetPanel.pomoNumberOfSessionsBox.actionPerfomed", "Pomodoro sessions set to " + sessions.size());
+			}
+			// Long breaks will be set using the long break set box.
+		});
 		
+		pomoLongBreakSetButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(sessions.size() <= 1) {
+					JOptionPane.showMessageDialog(getRootPane(), "<html>To configure long break, you must<br>do more than 1 session.</html>", "TamoStudy", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+				} else {
+					LongBreakSetPanel longBreakSetPanel = new LongBreakSetPanel(theme, sessions);
+					JOptionPane.showMessageDialog(getRootPane(), longBreakSetPanel, "TamoStudy", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getClassLoader().getResource("INFO.png")));
+					for(int i = 1; i <= sessions.size(); i++) {
+						System.out.println("sessions[" + i + "] = " + sessions.get(i));
+					}
+				}
+				
+			}
+			
+		});
 	}
 	
 	/*
@@ -415,7 +482,7 @@ public class SetPanel extends JPanel {
 			pomoNumberOfSessionsBox.setEnabled(enabled);
 			pomoSessionLengthBox.setEnabled(enabled);
 			pomoBreakLengthBox.setEnabled(enabled);
-			pomoLongBreakAfterXSessionsBox.setEnabled(enabled);
+			pomoLongBreakSetButton.setEnabled(enabled);
 			pomoLongBreakLengthBox.setEnabled(enabled);
 			break;
 		default:

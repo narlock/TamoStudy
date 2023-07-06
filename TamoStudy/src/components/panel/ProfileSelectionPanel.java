@@ -431,6 +431,7 @@ public class ProfileSelectionPanel extends JPanel {
 		focusModeBox.addItem(language.customCountdownText);
 		focusModeBox.addItem(language.fiveMinIntervalCountdownText);
 		focusModeBox.addItem(language.stopwatchText);
+		focusModeBox.addItem("Pomodoro with Long Breaks");
 		
 		createProfileButtonPanel = new JPanel();
 		confirmCreateProfileButton = new JButton(language.createText);

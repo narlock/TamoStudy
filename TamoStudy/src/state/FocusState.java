@@ -518,15 +518,20 @@ public class FocusState extends State {
 		switch(sessionTimeIndicator) {
 		case 1:
 			// Break Timer Set
-			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
-			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			int sessionNumber = (((Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem() - sessionsRemaining) + 1);
+			if(profile.getSettings().getFocusMode() == 4 && setPanel.sessions.get(sessionNumber) == 1) {
+				// Long Break
+				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
+				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			} else {
+				// Short Break
+				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
+				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			}
 			
 			// Set Tamo Image To Non-Focus
 			tamoGraphicsPanel.getTamo().setFocused(false);
 			tamoGraphicsPanel.repaint();
-			break;
-		case 2:
-			// TODO Long Break Timer Set
 			break;
 		case 0:
 		default:
