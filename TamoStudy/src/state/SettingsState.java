@@ -452,15 +452,19 @@ public class SettingsState extends State {
 		innergbcv.anchor = GridBagConstraints.WEST;
 		
 		languagePanel.add(languageLabel);
+		languagePanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference / 2), gbch);
 		languagePanel.add(languageBox);
 		
 		focusModePanel.add(focusModeLabel);
+		focusModePanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference / 2), gbch);
 		focusModePanel.add(focusModeBox);
 		
 		difficultyPanel.add(difficultyLabel);
+		difficultyPanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference / 2), gbch);
 		difficultyPanel.add(difficultyBox);
 		
 		timerAlarmPanel.add(timerAlarmLabel);
+		timerAlarmPanel.add(Box.createHorizontalStrut(guiSize.settingsHorizontalDifference / 2), gbch);
 		timerAlarmPanel.add(timerAlarmBox);
 		
 		guiSizePanel.add(guiSizeLabel, gbch); 
