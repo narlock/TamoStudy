@@ -386,10 +386,6 @@ public class SetPanel extends JPanel {
 		pomoLongBreakSessions.setForeground(timerPanel.getTheme().textColor);
 		pomoLongBreakSessions.setFont(timerPanel.getGuiSize().settingsChoiceBoldFont);
 		pomoLongBreakSetButton = new JButton("Configure");
-		pomoLongBreakSetButton.setOpaque(true);
-		pomoLongBreakSetButton.setForeground(timerPanel.getTheme().textColor);
-		pomoLongBreakSetButton.setBackground(Theme.PRIMARY);
-		pomoLongBreakSetButton.setFont(timerPanel.getGuiSize().settingsChoiceBoldFont);
 		pomoLongBreakSelectionPanel.add(pomoLongBreakSessions);
 		pomoLongBreakSelectionPanel.add(pomoLongBreakSetButton);
 		
