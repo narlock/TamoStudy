@@ -63,8 +63,10 @@ public class Profile {
 		this.borderIndicator = 0;
 		this.achievementList = Collections.emptyList();
 		this.foodInventoryList = Collections.emptyList();
-		this.backgroundInventoryList = List.of((long) 0);
-		this.borderInventoryList = List.of((long) 0);
+		this.backgroundInventoryList = new ArrayList<Long>();
+        this.backgroundInventoryList.add(0L);
+        this.borderInventoryList = new ArrayList<Long>();
+        this.borderInventoryList.add(0L);
 		this.tamo = new Tamo(
 					tamoName
 				);
@@ -121,10 +123,12 @@ public class Profile {
 		this.settings = new ProfileSettings(languageIndicator, focusMode, sessionSoundIndicator, difficulty, showAhmNotifications);
 		this.backgroundIndicator = backgroundIndicator;
 		this.borderIndicator = 0;
-		this.achievementList = List.of((long) 6);
+		this.achievementList = new ArrayList<Long>();
+		this.achievementList.add(6L);
 		this.foodInventoryList = Collections.emptyList();
 		this.backgroundInventoryList = convertInvStringToBackgroundInventoryList(invString);
-		this.borderInventoryList = List.of((long) 0);
+        this.borderInventoryList = new ArrayList<Long>();
+        this.borderInventoryList.add(0L);
 		this.tamo = new Tamo(tamoName, time, tamoId, joinDateString, tamoHappiness, tamoHunger, strikes);
 		this.tamoHistory = Collections.emptyList();
 	}
