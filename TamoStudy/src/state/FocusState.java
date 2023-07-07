@@ -505,7 +505,22 @@ public class FocusState extends State {
 					else {
 						timerPanel.minuteTimeLabel.setText("" + min);
 					}
-//					updateRPCTimer();
+					
+					if(sessionTimeIndicator == 0) {
+						// Focusing
+						if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 4) {
+							int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
+							int currentSession = ((numOfSessions - sessionsRemaining) + 1);
+							tsGui.updateDiscordRPC("Focusing - Session " + currentSession + "/" + numOfSessions, timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+						} else {
+							tsGui.updateDiscordRPC("Focusing", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+						}
+					} else if(sessionTimeIndicator == 1) {
+						// Break
+						tsGui.updateDiscordRPC("Break", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+					}
+					
+					
 				}
 			}
 		});
@@ -597,6 +612,7 @@ public class FocusState extends State {
 					timerPanel.minuteTimeLabel.setText("" + min);
 				}
 				
+				tsGui.updateDiscordRPC("Focusing - Stopwatch", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + ", cycles: " + stopwatchCycleCount);
 			}
 			
 		});
@@ -669,6 +685,9 @@ public class FocusState extends State {
 		
 		// Check for focus time achievements
 		checkForFocusTimeAndHappyAchievements();
+		
+		// Revert Discord RPC
+		tsGui.updateDiscordRPC("Ready to Focus!", "");
 	}
 	
 	/**

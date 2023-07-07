@@ -175,6 +175,11 @@ public class TamoStudyGUI extends JFrame {
 		if(monthFocus == null) {
 			monthFocus = addNewMonthFocusToMonthFocusList(Utils.createMonthFocus(profile));
 		}
+		
+		if(System.getProperty("os.name").startsWith("Windows") && profile.getSettings().getEnableDiscordRPC()) {
+			discordRP = new DiscordRP();
+			discordRP.start();
+		}
 	}
 	
 	private void initializeComponents() {
@@ -268,6 +273,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof DashboardState)) {
+					updateDiscordRPC("Viewing Dashboard...", "");
 					changeState(new DashboardState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -283,6 +289,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof FocusState)) {
+					updateDiscordRPC("Ready to Focus!", "");
 					changeState(new FocusState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -298,6 +305,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof ShopState)) {
+					updateDiscordRPC("Browsing Shop...", "");
 					changeState(new ShopState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -313,6 +321,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof InventoryState)) {
+					updateDiscordRPC("Viewing Inventory...", "");
 					changeState(new InventoryState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -328,6 +337,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof StatisticsState)) {
+					updateDiscordRPC("Viewing statistics...", "");
 					changeState(new StatisticsState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -343,6 +353,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof AchievementsState)) {
+					updateDiscordRPC("Viewing achievements...", "");
 					changeState(new AchievementsState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -358,6 +369,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof SettingsState)) {
+					updateDiscordRPC("Changing settings...", "");
 					changeState(new SettingsState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -373,6 +385,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof TamoHistoryState)) {
+					updateDiscordRPC("Viewing Tamo History...", "");
 					changeState(new TamoHistoryState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -388,6 +401,7 @@ public class TamoStudyGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!(state instanceof AboutState)) {
+					updateDiscordRPC("Reading about TamoStudy!", "");
 					changeState(new AboutState(getThis()));
 					sidePanel.setVisible(false);
 				}
@@ -765,6 +779,26 @@ public class TamoStudyGUI extends JFrame {
 			
 			profileJsonManager.writeJsonToFile(profiles);
 			resetGui();
+		}
+	}
+	
+	/**
+	 * updateDiscordRPC
+	 * @param line
+	 * @brief Helper method to update the discord RPC presence
+	 */
+	public void updateDiscordRPC(String line, String line2) {
+		// If discord RPC is enabled and on Windows
+		if(System.getProperty("os.name").startsWith("Windows") && profile.getSettings().getEnableDiscordRPC()) {
+			
+			// Create new instance of discordRP if not initialized, otherwise update
+			if(discordRP == null) {
+				discordRP = new DiscordRP();
+				discordRP.start(line);
+			} else {
+				discordRP.update(line, line2);
+			}
+			
 		}
 	}
 }
