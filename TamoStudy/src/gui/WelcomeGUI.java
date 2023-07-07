@@ -153,6 +153,7 @@ public class WelcomeGUI extends JFrame {
 				UI.put("Panel.background", new ColorUIResource(theme.mainColor));
 				UI.put("OptionPane.messageForeground", new ColorUIResource(theme.textColor));
 				 
+				System.out.println("global settings text= " + language.globalSettingsText);
 				Object[] options = {};
 				JOptionPane.showOptionDialog(getRootPane(),
 						new ChangeGlobalSettingsPanel(getThis()),

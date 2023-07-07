@@ -35,6 +35,7 @@ public class EnglishLanguage extends Language {
 		onlineStudyText = "Online Study";
 		unableSearchUpdatesText = "Unable to search for updates. Not connected to the Internet.";
 		updateAvailableDownloadText = "is now available. Click here to download!"; // VER ... {}
+		globalSettingsText = "Global Settings";
 		
 		/*
 		 * ##################################

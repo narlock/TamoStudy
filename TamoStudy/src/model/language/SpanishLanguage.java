@@ -20,6 +20,7 @@ public class SpanishLanguage extends Language {
 		onlineStudyText = "Estudio en línea";
 		unableSearchUpdatesText = "No se puede buscar actualizaciones. No hay conexión a Internet.";
 		updateAvailableDownloadText = "Actualización disponsible. ¡Haz clic aquí para descargar!"; // VER ... {}
+		globalSettingsText = "Global Settings";
 
 		/*
 		 * ##################################
