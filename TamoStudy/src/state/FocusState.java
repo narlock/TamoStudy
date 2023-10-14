@@ -100,6 +100,9 @@ public class FocusState extends State {
 		initializeComponentVisuals();
 		initializeComponentActions();
 		initializePanel();
+		
+		revalidate();
+		repaint();
 	}
 
 	@Override
