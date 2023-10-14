@@ -333,7 +333,9 @@ public class FocusState extends State {
 			break;
 		case 4:
 			// Pomodoro with Long Breaks
-			// TODO
+			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(0, 2));
+			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoSessionLengthBox.getSelectedItem()).substring(3));
+			sessionsRemaining = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			break;
 		default:
 			// Pomodoro
@@ -362,7 +364,7 @@ public class FocusState extends State {
 		Debug.info("FocusState.createTimer", "Starting focus timer...");
 		
 		sessionTimeIndicator = 0; // Ensure in focus mode
-		if(profile.getSettings().getFocusMode() == 0) {
+		if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 4) {
 			int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
 			timerPanel.subTextLabel.setText(language.focusText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
 		}
@@ -470,7 +472,6 @@ public class FocusState extends State {
 							Debug.info("FocusState.timer.actionPerformed", "Focus session " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions + " completed.");
 							sessionTimeIndicator = 1; // Break time
 							timerPanel.subTextLabel.setText(language.breakText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
-							// TODO Refactor to add logic to check if long break or not... Set to 2 if long break
 						} 
 						// Currently finished break session
 						else if(sessionTimeIndicator == 1) {
@@ -480,8 +481,7 @@ public class FocusState extends State {
 							sessionTimeIndicator = 0; // Focus time
 							timerPanel.subTextLabel.setText(language.focusText + " " + ((numOfSessions - sessionsRemaining) + 1) + "/" + numOfSessions);
 						}
-						// TODO Add else if branch for long session and refactor for long session
-						
+
 						nextSession();
 					} else {
 						// Timer is done!
@@ -505,7 +505,22 @@ public class FocusState extends State {
 					else {
 						timerPanel.minuteTimeLabel.setText("" + min);
 					}
-//					updateRPCTimer();
+					
+					if(sessionTimeIndicator == 0) {
+						// Focusing
+						if(profile.getSettings().getFocusMode() == 0 || profile.getSettings().getFocusMode() == 4) {
+							int numOfSessions = (Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem();
+							int currentSession = ((numOfSessions - sessionsRemaining) + 1);
+							tsGui.updateDiscordRPC("Focusing - Session " + currentSession + "/" + numOfSessions, timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+						} else {
+							tsGui.updateDiscordRPC("Focusing", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+						}
+					} else if(sessionTimeIndicator == 1) {
+						// Break
+						tsGui.updateDiscordRPC("Break", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + " remaining");
+					}
+					
+					
 				}
 			}
 		});
@@ -518,15 +533,20 @@ public class FocusState extends State {
 		switch(sessionTimeIndicator) {
 		case 1:
 			// Break Timer Set
-			timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
-			timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			int sessionNumber = (((Integer) setPanel.pomoNumberOfSessionsBox.getSelectedItem() - sessionsRemaining) + 1);
+			if(profile.getSettings().getFocusMode() == 4 && setPanel.sessions.get(sessionNumber) == 1) {
+				// Long Break
+				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoLongBreakLengthBox.getSelectedItem()).substring(0, 2));
+				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoLongBreakLengthBox.getSelectedItem()).substring(3));
+			} else {
+				// Short Break
+				timerPanel.minuteTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(0, 2));
+				timerPanel.secondTimeLabel.setText(((String) setPanel.pomoBreakLengthBox.getSelectedItem()).substring(3));
+			}
 			
 			// Set Tamo Image To Non-Focus
 			tamoGraphicsPanel.getTamo().setFocused(false);
 			tamoGraphicsPanel.repaint();
-			break;
-		case 2:
-			// TODO Long Break Timer Set
 			break;
 		case 0:
 		default:
@@ -592,6 +612,7 @@ public class FocusState extends State {
 					timerPanel.minuteTimeLabel.setText("" + min);
 				}
 				
+				tsGui.updateDiscordRPC("Focusing - Stopwatch", timerPanel.minuteTimeLabel.getText() + ":" + timerPanel.secondTimeLabel.getText() + ", cycles: " + stopwatchCycleCount);
 			}
 			
 		});
@@ -664,6 +685,9 @@ public class FocusState extends State {
 		
 		// Check for focus time achievements
 		checkForFocusTimeAndHappyAchievements();
+		
+		// Revert Discord RPC
+		tsGui.updateDiscordRPC("Ready to Focus!", "");
 	}
 	
 	/**

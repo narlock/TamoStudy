@@ -28,6 +28,7 @@ public class CheckForUpdates {
 	
 	public CheckForUpdates() {
 		currentReleases = new ArrayList<String>();
+		currentReleases.add("\"b5.0\"");
 		currentReleases.add("\"b4.2\"");
 		currentReleases.add("\"b4.1\"");
 		currentReleases.add("\"b4.0\"");

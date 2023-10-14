@@ -19,7 +19,8 @@ public class SpanishLanguage extends Language {
 		localStudyText = "Estudio Local";
 		onlineStudyText = "Estudio en línea";
 		unableSearchUpdatesText = "No se puede buscar actualizaciones. No hay conexión a Internet.";
-		updateAvailableDownloadText = "está disponible. ¡Haz clic aquí para descargar!"; // VER ... {}
+		updateAvailableDownloadText = "Actualización disponsible. ¡Haz clic aquí para descargar!"; // VER ... {}
+		globalSettingsText = "Global Settings";
 
 		/*
 		 * ##################################
@@ -28,10 +29,10 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
-		areYouSureYouWantToExitText = "¿Estás seguro de que quieres salir?";
-		dontShowThisMessageAgainText = "No mostrar este mensaje nuevamente";
+		areYouSureYouWantToExitText = "Hiciste todo lo que querías?";
+		dontShowThisMessageAgainText = "No mostrar este mensaje de nuevo";
 		exitTamoStudyText = "¿Salir de TamoStudy?";
-		deathText1 = "que no recibió los cuidados necesarios, lamentablemente ha fallecido.";
+		deathText1 = "Por el descuido, lamento decir que tu Tamo ha fallecido :(";
 		deathText2 = "El progreso de este Tamo se guardará en el Historial de Tamo.";
 		newTamoNameText = "Nombre del nuevo Tamo";
 
@@ -42,8 +43,8 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
-		noProfilesText = "No se encontraron perfiles locales.";
-		welcomeBackText = "¡Bienvenido de nuevo a TamoStudy!";
+		noProfilesText = "No se encuentran perfiles locales en este computadora.";
+		welcomeBackText = "¡Bienvenido de vuelta a TamoStudy!";
 		createNewProfileText = "Crear nuevo perfil";
 		importProfileText = "Importar perfil de Beta 4.2";
 		chooseProfileText = "Elegir perfil";
@@ -53,7 +54,7 @@ public class SpanishLanguage extends Language {
 		invalidProfileFileText = "Perfil de Beta v4.2 no válido";
 		confirmDeleteProfileText = "Confirmar eliminación del perfil";
 		areYouSureText = "¿Estás seguro?";
-		createProfileText = "Crear perfil de TamoStudy";
+		createProfileText = "Crear perfil de TamoStudy"; // <--- but there is createNewProfileText. -- de: tokisuno
 		usernameText = "Nombre de usuario";
 		tamoNameText = "Nombre del Tamo";
 
@@ -69,31 +70,31 @@ public class SpanishLanguage extends Language {
 		frenchText = "Francés";
 		turkishText = "Turco";
 		mandarinChineseText = "Chino Mandarín";
-		dutchText = "Neerlandés";
+		dutchText = "Holandés";
 		koreanText = "Coreano";
 		russianText = "Ruso";
 		hungarianText = "Húngaro";
 		romanianText = "Rumano";
 
-		difficultyText = "Dificultad";
-		peacefulText = "Tranquilo";
+		difficultyText = "Niveles de Dificultad";
+		peacefulText = "Pacífico";
 		challengingText = "Desafiante";
-		ironManText = "Iron Man";
+		ironManText = "EXTREMO";
 
-		focusModeText = "Modo de enfoque";
-		pomodoroText = "Técnica Pomodoro";
-		customCountdownText = "Cuenta regresiva personalizada";
-		fiveMinIntervalCountdownText = "Cuenta regresiva de 5 minutos por intervalo";
-		stopwatchText = "Cronómetro";
+		focusModeText = "Modo de concentración";
+		pomodoroText = "Pomodoro";
+		customCountdownText = "Temporizador Personalizado";
+		fiveMinIntervalCountdownText = "Temporizador fijado en 5 minutos por intervalo";
+		stopwatchText = "Modo Cronómetro";
 
 		resetDefaultProfileText = "Restablecer perfil predeterminado";
-		updateNotificationsText = "Notificaciones de actualización";
+		updateNotificationsText = "Actualizar notificaiones";
 		defaultProfileReset = "Restablecimiento del perfil predeterminado";
 
 		createText = "Crear";
 		cancelText = "Cancelar";
 		mustEnterValidNameText = "¡Debes ingresar un nombre válido!";
-		settingsSavedText = "Configuración guardada";
+		settingsSavedText = "¡Ya está!";
 		
 		/*
 		 * ##################################
@@ -103,15 +104,15 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 */
 		menuButtonText = "Menú";
-		dashboardStateButtonText = "Tablero";
-		focusStateButtonText = "Enfoque";
+		dashboardStateButtonText = "Inicio";
+		focusStateButtonText = "Centrar su atención";
 		shopStateButtonText = "Tienda";
 		inventoryStateButtonText = "Inventario";
 		statisticsStateButtonText = "Estadísticas";
 		achievementsStateButtonText = "Logros";
 		settingsStateButtonText = "Configuración";
-		tamoHistoryText = "Historial de Tamo";
-		aboutStateButton = "Acerca de";
+		tamoHistoryText = "Historia de Tamo";
+		aboutStateButton = "Acerca de TamoStudy";
 
 		/*
 		 * ##################################
@@ -120,39 +121,39 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
-		todaysFocusText = "Enfoque de hoy";
-		monthFocusText = "Enfoque del mes";
-		totalFocusText = "Enfoque total";
+		todaysFocusText = "Tiempo dedicado al aprendizaje (hoy)";
+		monthFocusText = "Tiempo dedicado al aprendizaje (mes)";
+		totalFocusText = "Tiempo dedicado al aprendizaje (total)";
 		levelText = "Nivel";
 		hoursText = "hrs";
 
 		/*
 		 * ##################################
 		 * ##################################
-		 * TEXTO DEL ESTADO DE ENFOQUE
+		 * TEXTO DEL ESTADO DE CENTRARSE
 		 * ##################################
 		 * ##################################
 		 */
-		pomoNumberOfSessionsText = "No. de Sesiones";
+		pomoNumberOfSessionsText = "Cantidad de sesiones";
 		pomoSessionLengthText = "Duración de Sesión";
 		pomoBreakLengthText = "Duración de Descanso";
 		minutesText = "Minutos";
 		secondsText = "Segundos";
 		durationText = "Duración";
-		letsFocusText = "¡A Enfocarse!";
-		focusingText = "Enfocando!";
-		startFocusText = "Iniciar Enfoque";
-		breakFocusText = "Descanso";
-		pauseFocusText = "Pausar enfoque";
-		resumeFocusText = "Reanudar enfoque";
-		youFocusedForText = "Te enfocaste durante";
+		letsFocusText = "¡Concéntrate!";
+		focusingText = "Concentrado :3";
+		startFocusText = "Iniciar mantener concentración";
+		breakFocusText = "Descansa";
+		pauseFocusText = "Pausar temporizador";
+		resumeFocusText = "Reanudar mantener concentración";
+		youFocusedForText = "Te concentraste durante";
 		minutesAndText = "minutos y";
 		secondsPeriodText = "segundos.";
-		focusBrokeText = "Se interrumpió el enfoque";
-		focusText = "Enfoque";
-		breakText = "Descanso";
-		focusCompleteText = "Enfoque Completo";
-		breakOverText = "¡La pausa ha terminado! ¡Es hora de volver al enfoque!";
+		focusBrokeText = "Se interrumpió su concentración";
+		focusText = "Concentración";
+		breakText = "Descansa";
+		focusCompleteText = "Sección completado";
+		breakOverText = "¡El descanso ha terminado! ¡Concéntrate YA!";
 		
 		/*
 		 * ##################################
@@ -161,6 +162,11 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
+
+
+        // i have 0 idea how to translate food descriptions in spanish.
+        // would be better if someone else did this
+        // de: tokisuno
 		onigiriText = "Onigiri";
 		chickenPlateText = "Plato de Pollo";
 		cheesecakeText = "Cheesecake";
@@ -172,7 +178,7 @@ public class SpanishLanguage extends Language {
 		sofaText = "Sofá";
 		sunriseText = "Amanecer";
 		nightOutText = "Noche Fuera";
-		enigmaText = "Enigma";
+		enigmaText = "Misterio";
 		cozyNightText = "Noche Acogedora";
 		studyTimeText = "Tiempo de Estudio";
 		pleasantBridgeText = "Puente Agradable";
@@ -197,7 +203,7 @@ public class SpanishLanguage extends Language {
 		purpleText = "Morado";
 		blueText = "Azul";
 		strawberryLemonadeText = "Limada de Fresa";
-		sunsetText = "Atardecer";
+		sunsetText = "Puesta del sol";
 		tealText = "Turquesa";
 		codeText = "Código";
 
@@ -216,10 +222,10 @@ public class SpanishLanguage extends Language {
 		selectShopText = "Seleccionar Tienda";
 		foodText = "Comida";
 		backgroundsText = "Fondos";
-		bordersText = "Bordes";
+		bordersText = "Fronteras";
 		yourFoodInventoryIsFullText = "¡Tu inventario de comida está lleno!";
-		confirmPurchaseOfText = "Confirmar compra de";
-		notEnoughTamoTokensText = "No tienes suficientes fichas Tamo para completar la compra.";
+		confirmPurchaseOfText = "Confirmar pedido por completo";
+		notEnoughTamoTokensText = "No tienes suficientes fichas de Tamo para completar esta compra.";
 		
 		/*
 		 * ##################################
@@ -255,29 +261,29 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 */
 		theBeginningText = "El Comienzo";
-		theBeginningDescText = "Logra un tiempo total de enfoque de 24 horas.";
+		theBeginningDescText = "Logra 24 horas de concentración";
 		nothingCanStopUsText = "¡Nada nos puede detener!";
-		nothingCanStopUsDescText = "Logra un tiempo total de enfoque de 72 horas";
+		nothingCanStopUsDescText = "Logra 72 horas de concentración";
 		neverGiveUpText = "¡Nunca te rindas!";
-		neverGiveUpDescText = "Logra un tiempo total de enfoque de 240 horas.";
-		focusAscensionText = "Ascenso en el Enfoque";
-		focusAscensionDescText = "Logra un tiempo total de enfoque de 1200 horas.";
+		neverGiveUpDescText = "Logra 240 horas de concentración";
+		focusAscensionText = "Ascención mental.";
+		focusAscensionDescText = "Logra 1200 horas de concentración";
 		cosmeticsText = "Cosméticos";
-		cosmeticsDescText = "Compra y cambia el borde de tu Tamo.";
-		sceneryChangeText = "Cambio de Escenario";
-		sceneryChangeDescText = "Compra y cambia el fondo de tu Tamo.";
-		fromTheBeginningText = "Desde el Comienzo";
+		cosmeticsDescText = "Compra y cambia la frontera de tu Tamo.";
+		sceneryChangeText = "Cambia el paisaje de fondo";
+		sceneryChangeDescText = "Compra y cambia el paisaje de fondo de tu Tamo.";
+		fromTheBeginningText = "Desde el comienzo";
 		fromTheBeginningDescText = "Perfil actualizado desde la versión anterior de TamoStudy.";
 		tamoFullText = "Tamo Completo";
 		tamoFullDescText = "Alcanza el hambre máxima de tu Tamo.";
 		tamoLoveText = "Amor Tamo";
 		tamoLoveDescText = "Alcanza la felicidad máxima de tu Tamo.";
 		dedicatedText = "Dedicado";
-		dedicatedDescText = "Enfoca durante 1 hora o más durante 3 días consecutivos.";
-		buildingConsistencyText = "Construyendo Consistencia";
-		buildingConsistencyDescText = "Enfoca durante 1 hora o más durante 7 días consecutivos.";
-		tamoScholarText = "Erudito Tamo";
-		tamoScholarDescText = "Enfoca durante 1 hora o más durante 30 días consecutivos.";
+		dedicatedDescText = "Mantén concentración durante 1 hora o más durante 3 días consecutivos.";
+		buildingConsistencyText = "Construyendo consistencia";
+		buildingConsistencyDescText = "Mantén concentración durante 1 hora o más durante 7 días consecutivos.";
+		tamoScholarText = "Tamo Erudito";
+		tamoScholarDescText = "Mantén concentración durante 1 hora o más durante 30 días consecutivos.";
 		
 		/*
 		 * ##################################
@@ -288,15 +294,15 @@ public class SpanishLanguage extends Language {
 		 */
 		timerAlarmText = "Alarma del Temporizador";
 		noTimerAlarmText = "Ninguna";
-		softAlarmText = "Alarma Suave";
-		traditionalAlarmText = "Alarma Tradicional";
-		pacAlarmText = "Alarma Pac";
-		calmAlarmText = "Alarma Tranquila";
-		bellAlarmText = "Alarma de Campana";
-		guiSizeText = "Tamaño de la Interfaz";
+		softAlarmText = "Alarma pacífica";
+		traditionalAlarmText = "Alarma tradicional";
+		pacAlarmText = "Alarma pac";
+		calmAlarmText = "Alarma tranquila";
+		bellAlarmText = "Alarma de campana";
+		guiSizeText = "Tamaño de la interfaz";
 		notificationsText = "Notificaciones";
-		discordRPCText = "RPC de Discord";
-		exitMessageText = "Mensaje de Salida";
+		discordRPCText = "Discord RPC";
+		exitMessageText = "Mensaje de salida";
 		onText = "ENCENDIDO";
 		offText = "APAGADO";
 		saveText = "Guardar";
@@ -309,6 +315,6 @@ public class SpanishLanguage extends Language {
 		 * ##################################
 		 * ##################################
 		 */
-		aboutTamoStudyText = "<html>TamoStudy es un temporizador de trabajo y estudio diseñado<br>para mejorar la productividad, incorporando una mascota<br>virtual divertida para motivar a los usuarios a concentrars<br>en sus tareas.</html>";
+		aboutTamoStudyText = "<html>TamoStudy es un temporizador de trabajo y estudio diseñado<br>para mejorar la productivida al incorporar una mascota<br>virtual divertida para motivar a los usuarios a concentrarse<br>en sus tareas.</html>";
 	}
 }

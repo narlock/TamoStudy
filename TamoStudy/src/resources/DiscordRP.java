@@ -23,12 +23,40 @@ public class DiscordRP {
 	 */
 	public void start() {
 		if(System.getProperty("os.name").contains("Windows")) {
-			System.out.println("started");
+			Debug.info("DiscordRP.start","started");
 			this.created = 	System.currentTimeMillis();
 			
 			handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
-				System.out.println("TamoStudy + Discord Rich Presence ready for  " + user.username + "#" + user.discriminator + "!");
-				update("TamoStudy starting...", "");
+				Debug.info("DiscordRP.start", "TamoStudy + Discord Rich Presence ready for  " + user.username + "#" + user.discriminator + "!");
+				update("Just opened TamoStudy!", "");
+			}).build();
+			
+			DiscordRPC.discordInitialize("1056586375484424263", handlers, true);
+			
+			new Thread("Discord Rich Presence") {
+				@Override
+				public void run() {
+					while(running) {
+						DiscordRPC.discordRunCallbacks();
+					}
+				}
+			}.start();
+		}
+	}
+	
+	/**
+	 * start
+	 * @param initialMessage
+	 * @brief Initiates Rich Presence with set initialMessage
+	 */
+	public void start(String initialMessage) {
+		if(System.getProperty("os.name").contains("Windows")) {
+			Debug.info("DiscordRP.start","started");
+			this.created = 	System.currentTimeMillis();
+			
+			handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
+				Debug.info("DiscordRP.start", "TamoStudy + Discord Rich Presence ready for  " + user.username + "#" + user.discriminator + "!");
+				update(initialMessage, "");
 			}).build();
 			
 			DiscordRPC.discordInitialize("1056586375484424263", handlers, true);
@@ -62,6 +90,7 @@ public class DiscordRP {
 	 * @param secondLine
 	 */
 	public void update(String firstLine, String secondLine) {
+		Debug.info("DiscordRP.start", "Updating presence");
 		if(System.getProperty("os.name").contains("Windows")) {
 			DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
 			b.setBigImage("large", "");

@@ -214,6 +214,7 @@ public class ChangeGlobalSettingsPanel extends JPanel {
 		innergbcv.anchor = GridBagConstraints.WEST;
 		
 		languagePanel.add(languageLabel);
+		languagePanel.add(Box.createHorizontalStrut(10));
 		languagePanel.add(languageBox);
 		
 		resetDefaultLocalProfilePanel.add(resetDefaultLocalProfileLabel);

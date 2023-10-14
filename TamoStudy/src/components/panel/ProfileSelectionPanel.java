@@ -145,6 +145,7 @@ public class ProfileSelectionPanel extends JPanel {
 		importProfileButton = new JButton(language.importProfileText);
 		
 		selectProfilePanel = new JPanel();
+		selectProfilePanel.setBackground(theme.subColor);
 		selectProfileLabel = new JLabel(language.chooseProfileText);
 		profilesBox = new JComboBox<>();
 		if(foundProfiles) {
@@ -153,6 +154,7 @@ public class ProfileSelectionPanel extends JPanel {
 			}
 		}
 		assignDefaultProfile = new JCheckBox(language.loadProfileAutomaticallyText);
+		assignDefaultProfile.setBackground(theme.subColor);
 		
 		profileOptionsButtonPanel = new JPanel();
 		loadProfileButton = new JButton(language.loadProfileText);
@@ -430,6 +432,7 @@ public class ProfileSelectionPanel extends JPanel {
 		focusModeBox.addItem(language.customCountdownText);
 		focusModeBox.addItem(language.fiveMinIntervalCountdownText);
 		focusModeBox.addItem(language.stopwatchText);
+		focusModeBox.addItem("Pomodoro with Long Breaks");
 		
 		createProfileButtonPanel = new JPanel();
 		confirmCreateProfileButton = new JButton(language.createText);

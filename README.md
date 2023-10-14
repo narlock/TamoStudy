@@ -15,6 +15,8 @@
 
 **TamoStudy** is a work and study timer designed to enhance productivity, incorporating an enjoyable virtual pet to motivate users to concentrate on their tasks. Programmed utilizing **Java 8**, development for this application began in January of 2021.
 
+Development of **TamoStudy**, including the online functionality has been moved to the [TamoStudy Organization](https://github.com/TamoStudy/TamoStudy) repository.
+
 ## 🚀 **Features**
 
 ### 👋 **Welcome Screen**
@@ -139,26 +141,15 @@ The user's inventory allows for items to be stored and used when the user desire
 </p>
 
 ### 🤖 Discord Rich Presence
-This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). Discord Rich Presence is only supported on Windows devices.
-
-- Each Idle screen has its own presence. An example is below:
-
-<p align="center">
-  <img src="https://i.imgur.com/tNxSE5K.png" width="20%"/>
-</p>
-
-- During Focus sessions, the time and a display that the user is focusing is displayed:
+This implementation utilizes the [DiscordRPC JAR](https://github.com/Vatuu/discord-rpc). <u>Discord Rich Presence is only supported on **Windows** devices</u>. Development in the future will be explored so that macOS devices are supported.
+- This feature can be enabled or disabled on Windows devices in the settings menu. A refresh of the application may need to be taken depending on whether you turn it on or off.
+- The following is a collection of images that your status can be expected to show while using TamoStudy with Discord Rich Presence:
 
 <p align="center">
-  <img src="https://i.imgur.com/3JZmbyw.png" width="20%"/>
+  <img src="./README%20Assets/DiscordRPC.png" width="70%"/>
 </p>
 
-- During Pomodoro Breaks, a break display is shown:
-
-<p align="center">
-  <img src="https://i.imgur.com/2CkQ7na.png" width="20%"/>
-</p>
-
+- Note: If your computer is utilizing a lot of RAM / CPU power while using TamoStudy, it is recommended that you turn off the Discord RPC feature from the settings menu to improve performance.
 
 ## 🛠️ **Setup TamoStudy**
 
@@ -194,7 +185,7 @@ To download TamoStudy, read through the download page [here](https://github.com/
 
 ### 📺 **Demo & Installation Tutorial**
 <p align="center">
-  <a href="https://www.youtube.com/watch?v=8JeMkaXIQOY"><img src="https://i.imgur.com/nVWKkXF.jpg" width="70%"></a>
+  <a href="https://www.youtube.com/watch?v=8JeMkaXIQOY"><img src="./README%20Assets/tamoStudyBeta4.png" width="70%"></a>
 </p>
 
 ## 💡 **Original Concept Idea**
@@ -212,6 +203,9 @@ Thank you for everyone that has created a pull request to support the developmen
 - [Shorent](http://github.com/Shorent) - Development (Web)
 - [Alyksett](http://github.com/Alyksett) - Development (Main)
 - [britthubs](http://github.com/britthubs) - Translation (Main)
+- [tokisuno](http://github.com/tokisuno) - Translation (Main)
+
+And everyone else that has contributed outside of GitHub pull requests!
 
 <hr>
 <p align="center">

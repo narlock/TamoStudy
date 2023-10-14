@@ -15,7 +15,6 @@ public class TamoStudy {
 	public static void main(String[] args) {
 		Debug.info("TamoStudy.main", "TamoStudy program starting to run.");
 		new WelcomeGUI();
-
 	}
 	
 }
