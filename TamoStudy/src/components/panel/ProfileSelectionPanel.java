@@ -328,6 +328,7 @@ public class ProfileSelectionPanel extends JPanel {
 		selectProfileLabel.setForeground(Color.WHITE);
 		
 		assignDefaultProfile.setForeground(Color.WHITE);
+		assignDefaultProfile.setBackground(theme.subColor);
 		
 		profileOptionsButtonPanel.setLayout(new GridBagLayout());
 		profileOptionsButtonPanel.setBackground(theme.subColor);
