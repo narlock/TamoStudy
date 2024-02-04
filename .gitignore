@@ -1,0 +1,14 @@
+TamoStudy/.project
+
+*.class
+bin/
+.classpath
+.project
+.github/workflows/firebase-hosting-merge.yml
+.github/workflows/firebase-hosting-pull-request.yml
+TamoStudy Web/.firebaserc
+TamoStudy Web/firebase.json
+.DS_Store
+*.jar
+TamoStudy/.idea/vcs.xml
+TamoStudy/.idea/misc.xml
