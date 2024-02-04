@@ -8,7 +8,6 @@
 # TamoStudy
 
 [![Latest Release](https://img.shields.io/github/v/release/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/releases/)
-[![Downloads](https://img.shields.io/github/downloads/narlock/TamoStudy/total.svg)](https://github.com/narlock/TamoStudy/releases/)
 [![Latest Commit](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
 [![Discord](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
 
