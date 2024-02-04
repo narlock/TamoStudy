@@ -23,7 +23,7 @@ An improved program launcher. Allows the user to select either local study and t
   <img src="./README%20Assets/WelcomeScreen.png" width="75%"/>
 </p>
 
-Global settings can be change using the cog at the top-right including resetting the default profile, setting the global language, and to receive update notifications.
+Global settings can be change using the cog at the top-right including resetting the default profile, setting the global language, and to receive update notifications. Global settings and profile information is stored onto the users drive under `Documents/TamoStudy` in the respective `dailyfocus`, `globalSettings`, `monthfocus` and `profiles` files. For the Stream version of TamoStudy, settings are stored in `Documents/TamoStudyStream` with a `settings` file.
 
 ### 👥 **Local Profile Loader**
 
