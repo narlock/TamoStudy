@@ -11,7 +11,7 @@
 [![Latest Commit](https://img.shields.io/github/last-commit/narlock/TamoStudy)](https://github.com/narlock/TamoStudy/commits/main)
 [![Discord](https://discordapp.com/api/guilds/821757961830793236/widget.png?style=shield)](https://discord.gg/eEbEYbXaNS)
 
-**TamoStudy** is a free, open source work and study timer designed to enhance productivity, incorporating an enjoyable virtual pet to motivate users to concentrate on their tasks. Programmed utilizing **Java 8**, development for this application began in January of 2021.
+**TamoStudy** is a free, open source work and study timer designed to enhance productivity, incorporating an enjoyable virtual pet to motivate users to concentrate on their tasks. Programmed utilizing **Java 8**, development for this application began in January of 2021. As of February 2024, this application will be marked in a completed state. I currently have no plans to continue development of this application.
 
 ## 🚀 **Features**
 
